@@ -47,6 +47,10 @@ export class HomepageComponent {
   isActiveRoute(route: string): boolean {
     return this.router.url.includes(`/front-pages/${route}`);
   }
+  openExternal(url: string) {
+  window.open(url, '_blank'); // opens in new tab
+}
+
   hideCloser() {
     this.hideCloserBtn = false;
   }

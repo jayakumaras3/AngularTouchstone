@@ -697,72 +697,86 @@ export const  setupCards:setupCards[] = [
 
 export const stats = [
   {
-    label: 'Founded',
+    label: '',
+    value: '2008',
+    description: 'Purpleframe, founded as an eLearning company',
+  },
+  {
+    label: ' ',
+    value: '2016',
+    description: 'Acquired by TalentQuest, a leader in talent management technology',
+  },
+  {
+    label: ' ',
+    value: '2017',
+    description: 'Named one of Georgia’s Top 10 Most Innovative Technology Companies',
+  },
+  {
+    label: ' ',
     value: '2019',
-    description: 'When we founded Modernize',
+    description: 'Won the Education and Training Award at the Corporate Vision Global Business Awards',
   },
   {
-    label: 'Growth',
-    value: '1,400%',
-    description: 'Revenue growth in 2024',
+    label: ' ',
+    value: '2020',
+    description: 'Earned Gold at the Brandon Hall Excellence Awards for Unique Learning Technology',
   },
   {
-    label: 'Customers',
-    value: '300k+',
-    description: 'Customers on Modernize',
+    label: ' ',
+    value: '2025',
+    description: 'TalentQuest, acquired by Energage, specializes in behavioral assessment and workplace culture; the eLearning division has been rebranded as Touchstone Learning & Consulting',
+  },
+];
+export const tclients = [
+  {
+    label: '',
+    value: '40%',
+    description: 'Increase in Employee Engagement',
   },
   {
-    label: 'Dashboards',
-    value: '25k+',
-    description: 'Dashboards built using Modernize',
+    label: ' ',
+    value: '25%',
+    description: 'Decrease in Employee Turnover',
+  },
+  {
+    label: ' ',
+    value: '40%',
+    description: 'Savings on Your Current HR Spend',
+  },
+  {
+    label: ' ',
+    value: '100%',
+    description: 'Better Understanding of Your Talent',
   },
 ];
 
 export const team = [
   {id: 1,
-    name: 'Alex Martinez',
-    position: 'CEO & Co-Founder',
-    image: 'assets/images/front-pages/user1.jpg'
+    name: 'Frank M. Merritt, Ph.D.',
+    position: 'CEO',
+    image: 'assets/images/front-pages/1.jpeg'
   },
   {
     id: 2,
-    name: 'Jordan Nguyen',
-    position: 'CTO & Co-Founder',
-    image: 'assets/images/front-pages/user2.jpg'
+    name: 'Pramod Chandran',
+    position: 'COO',
+    image: 'assets/images/front-pages/2.jpg'
   },
   {
     id: 3,
-    name: 'Taylor Roberts',
-    position: 'Product Manager',
-    image: 'assets/images/front-pages/user3.jpg'
+    name: 'Vinod Chithambaram',
+    position: 'EVP – LEARNING PRODUCTS AND APAC SALES',
+    image: 'assets/images/front-pages/3.png'
   },
   {id: 4,
-    name: 'Morgan Patel',
-    position: 'Lead Developer',
-    image: 'assets/images/front-pages/user4.jpg'
+    name: 'Marsha Schrage, Ph.D., SHRM-SCP',
+    position: 'Executive Director | Consulting',
+    image: 'assets/images/front-pages/4.jpg'
   },
   {
     id: 5,
-    name: 'Andrew Grant',
-    position: 'Product Manager',
-    image: 'assets/images/front-pages/user5.jpg'
-  },
-  {
-    id: 6,
-    name: 'Leo Pratt',
-    position: 'Lead Developer',
-    image: 'assets/images/front-pages/user3.jpg'
-  },
-  {
-    id: 7,
-    name: 'C. A. Nunez',
-    position: 'CEO & Co-Founder',
-    image: 'assets/images/front-pages/user2.jpg'
-  },
-  {
-    id: 8,
-    name: 'Leo Maxwell',
-    position: 'Lead Developer',
-    image: 'assets/images/front-pages/user1.jpg'
+    name: 'Rick Brandt, Ph.D.',
+    position: 'Executive Vice President | Consulting',
+    image: 'assets/images/front-pages/5.jpeg'
   }
 ];

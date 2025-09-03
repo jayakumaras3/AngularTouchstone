@@ -63,7 +63,15 @@ export class AppLandingpageComponent {
   ngOnInit(): void {}
 
   // scroll to demos
+  aboutUs() {
+    //this.scroller.scrollToAnchor('demos');
+    
+    this.scroller.scrollToAnchor('demos3');
+  }
+ // scroll to demos
   gotoDemos() {
+    //this.scroller.scrollToAnchor('demos');
+    
     this.scroller.scrollToAnchor('demos');
   }
 
@@ -270,98 +278,43 @@ export class AppLandingpageComponent {
   features: features[] = [
     {
       id: 1,
-      icon: 'wand',
-      title: '6 Theme Colors',
+      icon: 'camera',
+      title: 'Project Management',
       subtext:
-        'We have included 6 pre-defined Theme Colors with Modernize Admin.',
+        'Seamlessly plan, execute, and monitor your projects with our intuitive project management tools. Track progress, set deadlines, and allocate resources efficiently to ensure your team stays on target.',
     },
     {
       id: 2,
       icon: 'shield-lock',
-      title: 'Authguard',
+      title: 'Course Builder',
       subtext:
-        'AuthGuard is used to protect the routes from unauthorized access in angular.',
+        'Say goodbye to complicated authoring tools and hello to a seamless content creation experience with our online Course Builder. Start creating dynamic and interactive content today with our platform.',
     },
     {
       id: 15,
       icon: 'code',
-      title: 'Based on M3',
+      title: 'Online Review',
       subtext:
-        'Material Design 3 is the latest iteration of Google Material Design system',
+        'Facilitate seamless feedback and collaboration with our integrated online review tools. Streamline the review process and ensure all stakeholders are aligned.',
     },
     {
       id: 3,
       icon: 'archive',
-      title: '80+ Page Templates',
-      subtext: 'Yes, we have 6 demos & 80+ Pages per demo to make it easier.',
+      title: 'e-Manual',
+      subtext: 'E-Manual is a cutting-edge online platform designed to empower manufacturers in creating, managing, and maintaining service manuals with ease. With E-Manual, troubleshooting and searching for online support will be easy.',
     },
     {
       id: 4,
       icon: 'adjustments',
-      title: '50+ UI Components',
+      title: 'Learning Management System',
       subtext:
-        'Almost 50+ UI Components being given with Modernize Admin Pack.',
+        'Empower your team with our comprehensive Learning Management System. Create and manage training programs, track learner progress, and enhance skills development to foster a culture of continuous improvement.',
     },
     {
       id: 5,
       icon: 'tag',
-      title: 'Material ',
-      subtext: 'Its been made with Material and full responsive layout.',
-    },
-    {
-      id: 6,
-      icon: 'diamond',
-      title: '3400+ Font Icons',
-      subtext:
-        'Lots of Icon Fonts are included here in the package of Modernize Admin.',
-    },
-    {
-      id: 7,
-      icon: 'language-katakana',
-      title: 'i18 Angular',
-      subtext: 'i18 is a powerful internationalization framework for Angular.',
-    },
-    {
-      id: 8,
-      icon: 'arrows-shuffle',
-      title: 'Easy to Customize',
-      subtext: 'Customization will be easy as we understand your pain.',
-    },
-    {
-      id: 9,
-      icon: 'chart-pie',
-      title: 'Lots of Chart Options',
-      subtext: 'You name it and we have it, Yes lots of variations for Charts.',
-    },
-    {
-      id: 10,
-      icon: 'layers-intersect',
-      title: 'Lots of Table Examples',
-      subtext: 'Data Tables are initial requirement and we added them.',
-    },
-    {
-      id: 11,
-      icon: 'refresh',
-      title: 'Regular Updates',
-      subtext: 'We are constantly updating our pack with new features.',
-    },
-    {
-      id: 12,
-      icon: 'book',
-      title: 'Detailed Documentation',
-      subtext: 'We have made detailed documentation, so it will easy to use.',
-    },
-    {
-      id: 13,
-      icon: 'calendar',
-      title: 'Calendar Design',
-      subtext: 'Calendar is available with our package & in nice design.',
-    },
-    {
-      id: 14,
-      icon: 'messages',
-      title: 'Dedicated Support',
-      subtext: 'We believe in supreme support is key and we offer that.',
+      title: 'AR/VR Tracking ',
+      subtext: 'Elevate your projects with innovative AR/VR tracking capabilities. Gain real-time insights and visualize complex data, allowing your team to make data-driven decisions and enhance overall project outcomes.',
     },
   ];
 

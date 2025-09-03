@@ -7,6 +7,7 @@ import { FooterComponent } from '../footer/footer.component';
 import {
   setupCards,
   stats,
+  tclients,
   users,
 } from '../front-pagesData';
 import { CommonModule } from '@angular/common';
@@ -22,6 +23,7 @@ import { CommonModule } from '@angular/common';
 export class AboutUsComponent {
   setupCards=setupCards;
   stats = stats;
+   tclients=tclients;
     currentIndex = signal(0); // Starting from 0
     users = users;
    // Computed values to auto-update template

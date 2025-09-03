@@ -401,7 +401,7 @@ export const navItems: NavItem[] = [
             route: '/authentication',
             children: [
               {
-                displayName: 'Login 1',
+                displayName: 'Login',
                 iconName: 'point',
                 route: '/authentication/login',
               },
@@ -418,7 +418,7 @@ export const navItems: NavItem[] = [
             route: '/authentication',
             children: [
               {
-                displayName: 'Login 1',
+                displayName: 'Login',
                 iconName: 'point',
                 route: '/authentication/side-register',
               },
