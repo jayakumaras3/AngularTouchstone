@@ -1,16 +1,16 @@
 import { Routes } from '@angular/router';
 import { BlankComponent } from './layouts/blank/blank.component';
 import { FullComponent } from './layouts/full/full.component';
-import { HomepageComponent } from './pages/front-pages/homepage/homepage.component';
+import { HomepageDetailsComponent } from './pages/front-pages/homepage-details/homepage-details.component';
 export const routes: Routes = [
   {
     path: '',
-    component: FullComponent,
+    component: BlankComponent,
     children: [
       {
         path: '',
-        redirectTo: '/front-pages/homepage',
-        pathMatch: 'full',
+        component: HomepageDetailsComponent,
+        pathMatch: 'full'
       },
       {
         path: 'starter',
@@ -24,7 +24,6 @@ export const routes: Routes = [
             (m) => m.DashboardsRoutes
           ),
       },
-
       {
         path: 'forms',
         loadChildren: () =>
