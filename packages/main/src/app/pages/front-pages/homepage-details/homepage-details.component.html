@@ -10,6 +10,66 @@
           </h1>
         </div>
       </div>
+      <div class="demo-slider overflow-hidden d-flex gap-30 spacing-bottom">
+        <div>
+          <div class="demo-slide">
+            <a [routerLink]="['/apps/chat']">
+              <img src="assets/images/front-pages/app-chat.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
+              </a>
+            </div>
+          </div>
+          <div>
+            <div class="demo-slide">
+              <a (click)="onImageClick('/apps/email/inbox')">
+                <img src="assets/images/front-pages/app-email.jpg" alt="slide" class="img-fluid rounded-7 sliderImg"
+                  [ngClass]="{
+                  'img-border': selectedPath === '/apps/email/inbox'
+                }" />
+              </a>
+            </div>
+          </div>
+          <div>
+            <div class="demo-slide">
+              <a (click)="onImageClick('/dashboards/dashboard1')">
+                <img src="assets/images/front-pages/demo-main.jpg" alt="slide" class="img-fluid rounded-7 sliderImg"
+                  [ngClass]="{
+                  'img-border': selectedPath === '/dashboards/dashboard1'
+                }" />
+              </a>
+            </div>
+          </div>
+          <div>
+            <div class="demo-slide">
+              <img src="assets/images/front-pages/demo-dark.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
+            </div>
+          </div>
+          <div>
+            <div class="demo-slide">
+              <a (click)="onImageClick('/front-pages/homepage')">
+                <img src="assets/images/front-pages/demo-horizontal.jpg" alt="slide"
+                  class="img-fluid rounded-7 sliderImg" [ngClass]="{
+                  'img-border': selectedPath === '/front-pages/homepage'
+                }" />
+              </a>
+            </div>
+          </div>
+          <div>
+            <div class="demo-slide">
+              <img src="assets/images/front-pages/demo-rtl.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
+            </div>
+          </div>
+          <div>
+            <div class="demo-slide">
+              <img src="assets/images/front-pages/app-chat.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
+            </div>
+          </div>
+          <div>
+            <div class="demo-slide">
+              <img src="assets/images/front-pages/app-email.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
+            </div>
+          </div>
+        </div>
+
       <div class="row align-items-end justify-content-center">
         @if(!isMobileView){
 

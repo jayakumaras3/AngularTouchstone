@@ -21,7 +21,7 @@ export class HomepageComponent {
   mobileQuery: MediaQueryList;
   isMobileView = false;
   hideCloserBtn: boolean = true;
-  private router = inject(Router)
+  public router = inject(Router)
   private mediaMatcher: MediaQueryList = matchMedia(`(max-width: 1199px)`);
   showBackToTop: boolean;
   isTopbarFixed: boolean;

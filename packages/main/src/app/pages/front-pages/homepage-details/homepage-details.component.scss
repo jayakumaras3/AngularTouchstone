@@ -76,7 +76,11 @@
       }
     }
   }
-
+.demo-slider {
+        .demo-slide {
+          animation: slide3d 15s linear infinite;
+        }
+      }
   .features {
 
     .cardWithShadow {
