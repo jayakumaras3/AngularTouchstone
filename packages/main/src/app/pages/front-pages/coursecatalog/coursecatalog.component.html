@@ -1,6 +1,7 @@
 <header class="cc-hero">
   <h1>{{ mainTitle }}</h1>
 </header>
+
 <div class="cc-badge">{{ subTitle }}</div>
 
 <section class="cc-grid">
@@ -12,7 +13,7 @@
         <ng-container *ngFor="let sub of cat.subCategories">
           <h3>{{ sub.name }}</h3>
           <ul>
-            <li *ngFor="let c of sub.courses">
+            <li *ngFor="let c of sub.courses; let i = index" [style.--index]="i">
               {{ c.title }} <span *ngIf="c.duration">({{ c.duration }})</span>
             </li>
           </ul>
@@ -21,7 +22,7 @@
     </ng-container>
   </div>
 
-  <!-- Right Column (stacked multiple categories) -->
+  <!-- Right Column -->
   <div class="cc-col">
     <ng-container *ngFor="let cat of rightColumns">
       <div class="cc-card">
@@ -29,7 +30,7 @@
         <ng-container *ngFor="let sub of cat.subCategories">
           <h3>{{ sub.name }}</h3>
           <ul>
-            <li *ngFor="let c of sub.courses">
+            <li *ngFor="let c of sub.courses; let i = index" [style.--index]="i">
               {{ c.title }} <span *ngIf="c.duration">({{ c.duration }})</span>
             </li>
           </ul>
