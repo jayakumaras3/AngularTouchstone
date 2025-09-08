@@ -1,0 +1,40 @@
+<header class="cc-hero">
+  <h1>{{ mainTitle }}</h1>
+</header>
+<div class="cc-badge">{{ subTitle }}</div>
+
+<section class="cc-grid">
+  <!-- Left Column -->
+  <div class="cc-col">
+    <ng-container *ngFor="let cat of leftColumn">
+      <div class="cc-card">
+        <h2>{{ cat.title }} ({{ cat.count }})</h2>
+        <ng-container *ngFor="let sub of cat.subCategories">
+          <h3>{{ sub.name }}</h3>
+          <ul>
+            <li *ngFor="let c of sub.courses">
+              {{ c.title }} <span *ngIf="c.duration">({{ c.duration }})</span>
+            </li>
+          </ul>
+        </ng-container>
+      </div>
+    </ng-container>
+  </div>
+
+  <!-- Right Column (stacked multiple categories) -->
+  <div class="cc-col">
+    <ng-container *ngFor="let cat of rightColumns">
+      <div class="cc-card">
+        <h2>{{ cat.title }} ({{ cat.count }})</h2>
+        <ng-container *ngFor="let sub of cat.subCategories">
+          <h3>{{ sub.name }}</h3>
+          <ul>
+            <li *ngFor="let c of sub.courses">
+              {{ c.title }} <span *ngIf="c.duration">({{ c.duration }})</span>
+            </li>
+          </ul>
+        </ng-container>
+      </div>
+    </ng-container>
+  </div>
+</section>

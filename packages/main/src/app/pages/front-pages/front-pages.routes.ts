@@ -7,6 +7,7 @@ import { PortfolioComponent } from './portfolio/portfolio.component';
 import { PricingComponent } from './pricing/pricing.component';
 import { ContactComponent } from './contact/contact.component';
 import { BlogDetailsComponent } from './blog-details/blog-details.component';
+import { CourseCatalogComponent } from './coursecatalog/coursecatalog.component';
 
 
 export const FrontPagesRoutes: Routes = [
@@ -22,6 +23,7 @@ export const FrontPagesRoutes: Routes = [
           { path: 'portfolio', component: PortfolioComponent },
           { path: 'pricing', component: PricingComponent  },
           { path: 'contact', component: ContactComponent },
+          {path:'coursecatalog',component:CourseCatalogComponent},
           { path: 'blog-details', component: BlogDetailsComponent },
         ],
       },
