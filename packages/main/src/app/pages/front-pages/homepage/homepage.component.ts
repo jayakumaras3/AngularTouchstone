@@ -6,11 +6,12 @@ import { ActivatedRoute, Router, RouterLink, RouterOutlet } from '@angular/route
 import { IconModule } from 'src/app/icon/icon.module';
 import { BrandingComponent } from 'src/app/layouts/full/vertical/sidebar/branding.component';
 import { MaterialModule } from 'src/app/material.module';
+import { HomepageDetailsComponent } from '../homepage-details/homepage-details.component';
 
 @Component({
   selector: 'app-homepage',
   imports: [MaterialModule, BrandingComponent, RouterLink,
-    IconModule, RouterOutlet, CommonModule],
+    IconModule, RouterOutlet, CommonModule,HomepageDetailsComponent],
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.scss'
 })
