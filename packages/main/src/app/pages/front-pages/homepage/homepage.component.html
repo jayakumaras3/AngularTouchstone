@@ -51,11 +51,10 @@
   </button>--> 
 
 <!-- Core Catalog -->
-<button mat-button class="m-x-8 f-s-15 f-w-500 nav-item"
-        (click)="openExternal('https://go.touchstonelc.com/Core_courses')">
-  Core Catalog
-</button>
-
+  <button mat-button class="m-x-8 f-s-14 f-w-500 nav-item" [class.selected]="isActiveRoute('corecatalog')"
+    [routerLink]="['/front-pages/corecatalog']">
+        Core Catalog
+  </button>
              <!--  <button mat-button class="m-x-8 f-s-15 f-w-500 nav-item" [routerLink]="['/front-pages/portfolio']"
                 [class.selected]="isActiveRoute('portfolio')">
                 Portfolio

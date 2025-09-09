@@ -8,6 +8,7 @@ import { PricingComponent } from './pricing/pricing.component';
 import { ContactComponent } from './contact/contact.component';
 import { BlogDetailsComponent } from './blog-details/blog-details.component';
 import { CourseCatalogComponent } from './coursecatalog/coursecatalog.component';
+import { CorecatalogComponent } from './corecatalog/corecatalog.component';
 
 
 export const FrontPagesRoutes: Routes = [
@@ -19,11 +20,12 @@ export const FrontPagesRoutes: Routes = [
           { path: '', redirectTo: 'homepage', pathMatch: 'full' },
           { path: 'homepage', component: HomepageDetailsComponent }, // real homepage content
           { path: 'about', component: AboutUsComponent },
-          {path:'blog',component:BlogComponent },
+          { path:'blog',component:BlogComponent },
           { path: 'portfolio', component: PortfolioComponent },
           { path: 'pricing', component: PricingComponent  },
           { path: 'contact', component: ContactComponent },
-          {path:'coursecatalog',component:CourseCatalogComponent},
+          { path:'coursecatalog',component:CourseCatalogComponent},
+          { path:'corecatalog',component:CorecatalogComponent},
           { path: 'blog-details', component: BlogDetailsComponent },
         ],
       },

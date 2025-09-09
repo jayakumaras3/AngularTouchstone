@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { FooterComponent } from '../footer/footer.component';
 
 type Course = { title: string; author?: string; duration?: string };
 type SubCategory = { name: string; courses: Course[] };
@@ -869,7 +870,7 @@ const catalogData: Category[] = [
 @Component({
   selector: 'app-course-catalog',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,FooterComponent],
   templateUrl: './coursecatalog.component.html',
   styleUrls: ['./coursecatalog.component.scss']
 })
