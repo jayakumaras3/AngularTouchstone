@@ -5,7 +5,12 @@
     width: 100%;
     padding: 0 15px;
   }
-
+  
+  .footer-container {
+    height: 385px !important;    // adjust this until it matches the red line
+    overflow: hidden;
+    margin-bottom: 0 !important;
+  }
   .home-page-header {
 
     .header-container-content {

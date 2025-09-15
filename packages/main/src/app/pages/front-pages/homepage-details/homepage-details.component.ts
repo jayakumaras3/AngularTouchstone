@@ -90,6 +90,9 @@ export class HomepageDetailsComponent {
       this.mobileQuery.removeEventListener('change', listener);
     });
   }
+   isActiveRoute(route: string): boolean {
+    return this.router.url.includes(`/front-pages/${route}`);
+  }
   isOver(): boolean {
     return this.mediaMatcher.matchMedia('(max-width: 1199px)').matches;
   }

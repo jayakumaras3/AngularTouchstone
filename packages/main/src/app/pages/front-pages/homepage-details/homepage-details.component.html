@@ -1,10 +1,37 @@
-<div class="home-page">
+<div class="home-page header-container">
   <div class="bg-light-primary home-page-header">
     <div class="header-container-content custom-container m-x-auto">
+       <div class="custom-container footer-dashboard">
+    <div class="bg-light-primary rounded-8 footer-container overflow-hidden">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="spacing-top-bottom spacing-left left-side-content">
+            <h2 class="f-s-40 m-b-24 lh-normal section-sub-title">
+             DOCHEK - an essential tool for Learning Management
+            </h2>
+            <div class="m-b-24 hstack">
+              <a [class.selected]="isActiveRoute('coursecatalog')"
+                [routerLink]="['/authentication/login']"  mat-flat-button color="primary" class="">Member Login</a>
+
+              <a [class.selected]="isActiveRoute('side-register')"
+                [routerLink]="['/authentication/side-register']"mat-stroked-button color="primary"
+                class="border-primary">Register as Member</a>
+            </div>
+
+            <span class="f-s-14 f-w-600"> One-time purchase</span> - no
+            recurring fees.
+          </div>
+        </div>
+        <div class="col-md-6 d-none d-lg-block">
+          <img src="assets/images/front-pages/design-collection.png" alt="bg-img" class="imgStyleDash" />
+        </div>
+      </div>
+    </div>
+  </div>
       <div class="row justify-content-center">
         <div class="col-md-8">
           <h1 class="banner-title text-center m-t-48">
-           DOCHEK - an essential
+            DOCHEK - an essential
             <span class="text-primary">tool for Learning </span>
             Management
           </h1>
@@ -15,60 +42,60 @@
           <div class="demo-slide">
             <a [routerLink]="['/apps/chat']">
               <img src="assets/images/front-pages/app-chat.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
-              </a>
-            </div>
-          </div>
-          <div>
-            <div class="demo-slide">
-              <a (click)="onImageClick('/apps/email/inbox')">
-                <img src="assets/images/front-pages/app-email.jpg" alt="slide" class="img-fluid rounded-7 sliderImg"
-                  [ngClass]="{
-                  'img-border': selectedPath === '/apps/email/inbox'
-                }" />
-              </a>
-            </div>
-          </div>
-          <div>
-            <div class="demo-slide">
-              <a (click)="onImageClick('/dashboards/dashboard1')">
-                <img src="assets/images/front-pages/demo-main.jpg" alt="slide" class="img-fluid rounded-7 sliderImg"
-                  [ngClass]="{
-                  'img-border': selectedPath === '/dashboards/dashboard1'
-                }" />
-              </a>
-            </div>
-          </div>
-          <div>
-            <div class="demo-slide">
-              <img src="assets/images/front-pages/demo-dark.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
-            </div>
-          </div>
-          <div>
-            <div class="demo-slide">
-              <a (click)="onImageClick('/front-pages/homepage')">
-                <img src="assets/images/front-pages/demo-horizontal.jpg" alt="slide"
-                  class="img-fluid rounded-7 sliderImg" [ngClass]="{
-                  'img-border': selectedPath === '/front-pages/homepage'
-                }" />
-              </a>
-            </div>
-          </div>
-          <div>
-            <div class="demo-slide">
-              <img src="assets/images/front-pages/demo-rtl.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
-            </div>
-          </div>
-          <div>
-            <div class="demo-slide">
-              <img src="assets/images/front-pages/app-chat.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
-            </div>
-          </div>
-          <div>
-            <div class="demo-slide">
-              <img src="assets/images/front-pages/app-email.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
-            </div>
+            </a>
           </div>
         </div>
+        <div>
+          <div class="demo-slide">
+            <a (click)="onImageClick('/apps/email/inbox')">
+              <img src="assets/images/front-pages/app-email.jpg" alt="slide" class="img-fluid rounded-7 sliderImg"
+                [ngClass]="{
+                  'img-border': selectedPath === '/apps/email/inbox'
+                }" />
+            </a>
+          </div>
+        </div>
+        <div>
+          <div class="demo-slide">
+            <a (click)="onImageClick('/dashboards/dashboard1')">
+              <img src="assets/images/front-pages/demo-main.jpg" alt="slide" class="img-fluid rounded-7 sliderImg"
+                [ngClass]="{
+                  'img-border': selectedPath === '/dashboards/dashboard1'
+                }" />
+            </a>
+          </div>
+        </div>
+        <div>
+          <div class="demo-slide">
+            <img src="assets/images/front-pages/demo-dark.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
+          </div>
+        </div>
+        <div>
+          <div class="demo-slide">
+            <a (click)="onImageClick('/front-pages/homepage')">
+              <img src="assets/images/front-pages/demo-horizontal.jpg" alt="slide" class="img-fluid rounded-7 sliderImg"
+                [ngClass]="{
+                  'img-border': selectedPath === '/front-pages/homepage'
+                }" />
+            </a>
+          </div>
+        </div>
+        <div>
+          <div class="demo-slide">
+            <img src="assets/images/front-pages/demo-rtl.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
+          </div>
+        </div>
+        <div>
+          <div class="demo-slide">
+            <img src="assets/images/front-pages/app-chat.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
+          </div>
+        </div>
+        <div>
+          <div class="demo-slide">
+            <img src="assets/images/front-pages/app-email.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
+          </div>
+        </div>
+      </div>
 
       <div class="row align-items-end justify-content-center">
         @if(!isMobileView){
@@ -364,9 +391,9 @@
     </div>
   </div>
 
-  <div class="our-leadership spacing-top p-b-48">
+  <!-- <div class="our-leadership spacing-top p-b-48">
     <app-image-slider></app-image-slider>
-  </div>
+  </div> -->
 
   <div class="toolBar bg-primary p-y-16">
     <div class="container">

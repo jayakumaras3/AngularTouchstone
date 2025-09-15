@@ -89,9 +89,9 @@ button, .btn, .cc-button {
       }
 
       h2 {
-        font-size: 1.7rem;
+        font-size: 1.4rem;
         margin-bottom: 1rem;
-        color: $primary-color;
+        color: $accent-color;
       //  background: lighten($primary-color, 45%);
         display: inline-block;
         padding: 0.4rem 0 rem;
@@ -101,7 +101,7 @@ button, .btn, .cc-button {
       }
 
       h3 {
-        font-size: 1.3rem;
+        font-size: 1.1rem;
         margin: 1rem 0 0.6rem 0;
         color: $secondary-color;
        // border-left: 4px solid $accent-color;
@@ -116,7 +116,7 @@ button, .btn, .cc-button {
 
           li {
             position: relative;
-            font-size: 1rem;
+            font-size: 0.9rem;
             line-height: 1.6;
             margin-bottom: 0.8rem;
             padding-left: 2rem;
