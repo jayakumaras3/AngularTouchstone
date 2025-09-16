@@ -19,10 +19,24 @@ export const routes: Routes = [
           import('./pages/pages.routes').then((m) => m.PagesRoutes),
       },
       {
-        path: 'dashboards',
+        path: 'authentication',
         loadChildren: () =>
-          import('./pages/dashboards/dashboards.routes').then(
-            (m) => m.DashboardsRoutes
+          import('./pages/authentication/authentication.routes').then(
+            (m) => m.AuthenticationRoutes
+          ),
+      },
+      {
+        path: 'landingpage',
+        loadChildren: () =>
+          import('./pages/theme-pages/landingpage/landingpage.routes').then(
+            (m) => m.LandingPageRoutes
+          ),
+      },
+      {
+        path: 'front-pages',
+        loadChildren: () =>
+          import('./pages/front-pages/front-pages.routes').then(
+            (m) => m.FrontPagesRoutes
           ),
       },
       {
@@ -75,28 +89,14 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: BlankComponent,
+    component: FullComponent,
     children: [
       {
-        path: 'authentication',
+        path: 'dashboards',
         loadChildren: () =>
-          import('./pages/authentication/authentication.routes').then(
-            (m) => m.AuthenticationRoutes
+          import('./pages/dashboards/dashboards.routes').then(
+            (m) => m.DashboardsRoutes
           ),
-      },
-      {
-        path: 'landingpage',
-        loadChildren: () =>
-          import('./pages/theme-pages/landingpage/landingpage.routes').then(
-            (m) => m.LandingPageRoutes
-          ),
-      },
-      {
-        path: 'front-pages',
-        loadChildren: () =>
-          import('./pages/front-pages/front-pages.routes').then(
-            (m) => m.FrontPagesRoutes
-          ), 
       },
     ],
   },
