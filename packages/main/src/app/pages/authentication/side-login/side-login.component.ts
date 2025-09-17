@@ -17,7 +17,7 @@ export class AppSideLoginComponent {
   constructor(private authservice:AuthService, private router: Router) { }
 
   form = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
+    username: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required, Validators.minLength(6)])
   });
 
@@ -27,22 +27,23 @@ export class AppSideLoginComponent {
 
 submit() {
   if (this.form.valid) {
-    this.authservice.login(this.form.value.email!, this.form.value.password!)
-      .subscribe({
-        next: res => {
-          console.log('Login Response:', res);
-          if (res.success) {
-            localStorage.setItem('token', res.token);
-            this.router.navigate(['/dashboards/dashboard1']);
-          } else {
-            alert(res.message || 'Login failed');
-          }
-        },
-        error: err => {
-          console.error('HTTP Error:', err);
-          alert('Server error, check console for details');
-        }
-      });
+  this.authservice.login(this.form.value.username!, this.form.value.password!)
+  .subscribe({
+    next: res => {
+      console.log('Login Response:', res);
+      if (res.success) {
+        // Save user in localStorage instead of token
+        localStorage.setItem('user', JSON.stringify(res.user));
+        this.router.navigate(['/dashboards/dashboard1']);
+      } else {
+        alert(res.message || 'Login failed');
+      }
+    },
+    error: err => {
+      console.error('HTTP Error:', err);
+      alert('Server error, check console for details');
+    }
+  });
   }
 }
 

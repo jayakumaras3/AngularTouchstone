@@ -35,12 +35,12 @@
                 class="w-100"
                 color="primary"
               >
-                <input matInput formControlName="email" />
-                @if(f['email'].touched && f['email'].invalid) {
+                <input matInput formControlName="username" />
+                @if(f['username'].touched && f['username'].invalid) {
                 <mat-hint class="m-b-16 error-msg">
-                  @if(f['email'].errors && f['email'].errors['required']) {
-                  <div class="text-error">Email is required.</div>
-                  } @if(f['email'].errors && f['email'].errors['minlength']) {
+                  @if(f['username'].errors && f['username'].errors['required']) {
+                  <div class="text-error">username is required.</div>
+                  } @if(f['username'].errors && f['username'].errors['minlength']) {
                   <div class="text-error">Email should be 6 character.</div>
                   }
                 </mat-hint>
