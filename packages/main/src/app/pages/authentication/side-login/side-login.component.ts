@@ -13,7 +13,7 @@ import { AuthService } from '../../../services/login/auth.service';
 })
 export class AppSideLoginComponent {
 //  options = this.settings.getOptions();
-
+baseUrlpath:string="DOCHEKDOTCOM/app/Views/angular_view/";
   constructor(private authservice:AuthService, private router: Router) { }
 
   form = new FormGroup({
@@ -33,8 +33,9 @@ submit() {
       console.log('Login Response:', res);
       if (res.success) {
         // Save user in localStorage instead of token
-        localStorage.setItem('user', JSON.stringify(res.user));
-        this.router.navigate(['/dashboards/dashboard1']);
+       // localStorage.setItem('user', JSON.stringify(res.user));
+       // this.router.navigate(['/dashboards/dashboard1']);
+     //  window.location.href = "http://172.16.0.99/DOCHEKDOTCOM/My_training";
       } else {
         alert(res.message || 'Login failed');
       }
