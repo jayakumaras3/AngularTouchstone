@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { CoreService } from 'src/app/services/core.service';
-
+import { logoUrl } from '../../../../config';
 @Component({
   selector: 'app-branding',
   imports: [],
   template: `
-    <a href="/" class="logodark">
+    <a [href]="logoUrl" class="logodark">
       <img
         src="./assets/images/logos/dark-logo.svg"
         class="align-middle m-2"
@@ -13,7 +13,7 @@ import { CoreService } from 'src/app/services/core.service';
       />
     </a>
 
-    <a href="/" class="logolight">
+    <a [href]="logoUrl" class="logolight">
       <img
         src="./assets/images/logos/light-logo.svg"
         class="align-middle m-2"
@@ -23,6 +23,7 @@ import { CoreService } from 'src/app/services/core.service';
   `,
 })
 export class BrandingComponent {
+  logoUrl = logoUrl; 
   options = this.settings.getOptions();
   constructor(private settings: CoreService) {}
 }

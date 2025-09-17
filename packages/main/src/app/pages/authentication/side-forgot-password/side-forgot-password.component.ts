@@ -10,7 +10,7 @@ import {
 import { Router, RouterModule } from '@angular/router';
 import { MaterialModule } from '../../../material.module';
 import { BrandingComponent } from '../../../layouts/full/vertical/sidebar/branding.component';
-
+import { baseUrlPath } from '../../../config';
 @Component({
   selector: 'app-side-forgot-password',
   imports: [
@@ -23,6 +23,7 @@ import { BrandingComponent } from '../../../layouts/full/vertical/sidebar/brandi
   templateUrl: './side-forgot-password.component.html',
 })
 export class AppSideForgotPasswordComponent {
+  baseUrlPath = baseUrlPath;
   options = this.settings.getOptions();
 
   constructor(private settings: CoreService, private router: Router) {}

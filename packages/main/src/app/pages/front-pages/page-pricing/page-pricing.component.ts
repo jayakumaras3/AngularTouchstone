@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { IconModule } from 'src/app/icon/icon.module';
 import { MaterialModule } from 'src/app/material.module';
 import { paymentLogos, plans } from '../front-pagesData';
-
+import { baseUrlPath } from '../../../config';  
 @Component({
   selector: 'app-page-pricing',
   imports: [MaterialModule, IconModule, CommonModule],
@@ -11,6 +11,7 @@ import { paymentLogos, plans } from '../front-pagesData';
   styleUrl: './page-pricing.component.scss',
 })
 export class PagePricingComponent {
+  baseUrlPath=baseUrlPath;
   plans = plans;
 
   paymentLogos = paymentLogos;

@@ -11,6 +11,19 @@ export interface AppSettings {
   navPos: 'side' | 'top';
 }
 
+export const baseUrlPath = '/DOCHEKDOTCOM/app/Views/angular_view/';
+//localhost Root
+/*export const baseUrlPath = '';
+
+//export const baseUrlPathslash = '';
+
+export const logoUrl = '/';*/
+
+export const baseUrlPathslash = '/DOCHEKDOTCOM/app/Views/angular_view';
+
+export const logoUrl = '/DOCHEKDOTCOM/app/Views/angular_view/';
+
+
 export const defaults: AppSettings = {
   dir: 'ltr',
   theme: 'light',

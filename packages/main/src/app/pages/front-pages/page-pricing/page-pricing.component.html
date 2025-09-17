@@ -32,7 +32,7 @@
           @for(feature of plan.features; track feature) {
           <div class="d-flex align-items-center gap-8 m-b-12">
             <img
-              [src]="feature.included ? '/assets/images/front-pages/icon-circle-check.svg' : '/assets/images/front-pages/icon-circle-x.svg'"
+              [src]="feature.included ? `${baseUrlPath}/assets/images/front-pages/icon-circle-check.svg` : `${baseUrlPath}/assets/images/front-pages/icon-circle-x.svg`"
               alt="icon-facebook-dark" width="21" height="21" />
 
             <span [ngClass]="{
