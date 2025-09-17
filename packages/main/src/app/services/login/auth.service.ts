@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -7,19 +7,21 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-  private apiUrl = 'http://172.16.0.162/'; // adjust if hosted differently
+  private apiUrl = '/DOCHEKDOTCOM/landing/'; // adjust if hosted differently
+  //run in local server
+//  private apiUrl = 'http://172.16.0.99/DOCHEKDOTCOM/landing/'; // adjust if hosted differently
 
   constructor(private http: HttpClient) {}
 
 
    // LOGIN
-    login(username: string, password: string): Observable<any> {
-  return this.http.post<any>(
-    `http://172.16.0.162/landing/login_register`,   // ✅ not _test
-    { username :'srividya.a@touchstonelc.com', password:'qwer@1234' },
-    { headers: { 'Content-Type': 'application/json' } }
-  );
-}
+login(username: string, password: string): Observable<any> {
+    return this.http.post<any>(
+      `${this.apiUrl}/login_register`,
+      { username, password },  // ✅ send raw JSON
+      { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
+    );
+  }
 
 
 
