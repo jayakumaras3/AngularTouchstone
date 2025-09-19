@@ -7,15 +7,16 @@
         <div class="col-lg-6">
           <div class="spacing-top-bottom spacing-left left-side-content">
             <h2 class="f-s-40 m-b-24 lh-normal section-sub-title">
-             DOCHEK - an essential tool for Learning Management
+             1 Platform. All Your Learning Needs. Zero Chaos
             </h2>
+           <h3 class="f-s-18 m-b-24 lh-normal section-sub-title"> Deliver, manage, and track training in just a few clicks, all in one simple workspace </h3>
             <div class="m-b-24 hstack">
               <a [class.selected]="isActiveRoute('coursecatalog')"
                 [routerLink]="['/authentication/login']"  mat-flat-button color="primary" class="">Member Login</a>
 
               <a [class.selected]="isActiveRoute('side-register')"
                 [routerLink]="['/authentication/side-register']"mat-stroked-button color="primary"
-                class="border-primary">Register as Member</a>
+                class="border-primary">Book a Demo</a>
             </div>
 
             <span class="f-s-14 f-w-600"> One-time purchase</span> - no
@@ -28,7 +29,15 @@
       </div>
     </div>
   </div>
-      <div class="row justify-content-center">
+  <div class="m-t-32 ">
+    <!-- <p class="text-center f-s-14 m-b-0">Secured payment with PayPal & Razorpay</p>--> 
+  <div class="d-flex align-items-center justify-content-center m-t-32 m-x-0 gap-48 flex-wrap">
+    @for( logo of paymentLogos;track logo){
+    <img class="cursor-pointer" [src]="logo.src" [alt]="logo.alt" [matTooltip]="logo.tooltip"
+      matTooltipPosition="below">
+    }
+  </div>
+     <!-- <div class="row justify-content-center">
         <div class="col-md-8">
           <h1 class="banner-title text-center m-t-48">
             DOCHEK - an essential
@@ -36,7 +45,8 @@
             Management
           </h1>
         </div>
-      </div>
+      </div> -->
+      <!-- slider images disabled 
       <div class="demo-slider overflow-hidden d-flex gap-30 spacing-bottom">
         <div>
           <div class="demo-slide">
@@ -95,7 +105,187 @@
             <img src="assets/images/front-pages/app-email.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
           </div>
         </div>
+      </div>-->
+      
+     <div class="container spacing-top" id="demos2">
+        <div class="row justify-content-center">
+          <div class="col-lg-6 col-sm-8">
+            <!-- <span
+              class="text-primary text-uppercase d-block text-center f-w-500"
+              >ALMOST COVERED EVERYTHING</span 
+            >-->
+            <h2 class="section-title text-center m-t-16">
+              Scale Without Limits 
+            </h2>
+          </div>
+        </div>
+
+        <!-- features -->
+       <div class="row m-t-24 spacing-bottom">
+          @for(feature of features; track feature.title) {
+          <div class="col-12 col-sm-6 col-lg-4 text-center">
+            <i-tabler
+              [name]="feature.icon"
+              class="icon-40 text-primary m-t-16"
+            ></i-tabler>
+            <h6 class="m-0 f-s-18 f-w-600 m-b-8 m-t-24">{{ feature.title }}</h6>
+            <span class="f-s-14 m-b-24 d-block lh-base">{{
+              feature.subtext
+            }}</span>
+          </div>
+          }
+        </div>
+<div class="col-md-12">
+  <mat-card class="cardWithShadow b-1 rounded-8 m-b-0 p-48">
+    <mat-card-content><h2>Simple for Learners, Seamless for Admins </h2><br>
+      <mat-card-title class="f-s-16 f-w-600 m-b-24">
+        {{ activeFeature.subtext }}
+      </mat-card-title>
+
+   <!--  <div class="d-flex align-items-center gap-16 m-b-24">
+        <div>
+          <img
+            [src]="getUser().img"
+            [alt]="getUser().name"
+            class="rounded-circle"
+            width="40"
+          />
+        </div>
+        <h6 class="f-s-14 f-w-600">{{ getUser().name }}</h6>
+      </div> -->  
+
+      <p class="f-s-12 m-b-16 m-t-0">{{ activeFeature.title }}</p>
+
+      <mat-divider></mat-divider>
+
+      <div class="d-flex align-items-center gap-10 m-t-8">
+        <button
+          class="bg-light icon-32 d-flex align-items-center justify-content-center"
+          mat-icon-button
+          (click)="showPrevious()"
+        >
+          <i-tabler
+            name="chevron-left"
+            class="icon-18 d-flex align-items-center justify-content-center"
+          ></i-tabler>
+        </button>
+
+        <span class="f-s-14">{{ showCounter() }}</span>
+
+        <button
+          class="bg-light icon-32 d-flex align-items-center justify-content-center"
+          mat-icon-button
+          (click)="showNext()"
+        >
+          <i-tabler
+            name="chevron-right"
+            class="icon-18 d-flex align-items-center justify-content-center"
+          ></i-tabler>
+        </button>
       </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<div class="template-slider spacing-top-bottom">
+    <div class="custom-container">
+      <div class="bg-light-primary rounded-pill spacing-top-bottom template-slider-content">
+        <div class="spacing-left-right m-b-8">
+          <h2 class="f-s-40 lh-normal section-sub-title">
+            Discover Powerful Dozens of <br> Purpose-Fit Templates
+          </h2>
+        </div>
+        <div class="demo-slider overflow-hidden d-flex gap-30 spacing-bottom">
+          <div>
+            <div class="demo-slide">
+              <a [routerLink]="['/apps/chat']">
+                <img src="assets/images/front-pages/app-chat.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
+              </a>
+            </div>
+          </div>
+          <div>
+            <div class="demo-slide">
+              <a (click)="onImageClick('/apps/email/inbox')">
+                <img src="assets/images/front-pages/app-email.jpg" alt="slide" class="img-fluid rounded-7 sliderImg"
+                  [ngClass]="{
+                  'img-border': selectedPath === '/apps/email/inbox'
+                }" />
+              </a>
+            </div>
+          </div>
+          <div>
+            <div class="demo-slide">
+              <a (click)="onImageClick('/dashboards/dashboard1')">
+                <img src="assets/images/front-pages/demo-main.jpg" alt="slide" class="img-fluid rounded-7 sliderImg"
+                  [ngClass]="{
+                  'img-border': selectedPath === '/dashboards/dashboard1'
+                }" />
+              </a>
+            </div>
+          </div>
+          <div>
+            <div class="demo-slide">
+              <img src="assets/images/front-pages/demo-dark.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
+            </div>
+          </div>
+          <div>
+            <div class="demo-slide">
+              <a (click)="onImageClick('/front-pages/homepage')">
+                <img src="assets/images/front-pages/demo-horizontal.jpg" alt="slide"
+                  class="img-fluid rounded-7 sliderImg" [ngClass]="{
+                  'img-border': selectedPath === '/front-pages/homepage'
+                }" />
+              </a>
+            </div>
+          </div>
+          <div>
+            <div class="demo-slide">
+              <img src="assets/images/front-pages/demo-rtl.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
+            </div>
+          </div>
+          <div>
+            <div class="demo-slide">
+              <img src="assets/images/front-pages/app-chat.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
+            </div>
+          </div>
+          <div>
+            <div class="demo-slide">
+              <img src="assets/images/front-pages/app-email.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
+            </div>
+          </div>
+        </div>
+        <div class="spacing-left-right">
+          <div class="row">
+            <div class="col-md-4 text-center m-b-30">
+              <h3 class="f-s-18 m-b-16">High Customizability</h3>
+              <p class="f-s-14 m-0">
+                Tailor the dashboard to your exact needs. Customize layouts, color
+                schemes, and widgets effortlessly for a personalized user
+                experience.
+              </p>
+            </div>
+            <div class="col-md-4 text-center m-b-30">
+              <h3 class="f-s-18 m-b-16">Powerful Data Analytics</h3>
+              <p class="f-s-14 m-0">
+                Unlock the true potential of your data with our advanced analytics
+                tools. Gain valuable insights and make data-driven decisions with
+                ease.
+              </p>
+            </div>
+
+            <div class="col-md-4 text-center m-b-30">
+              <h3 class="f-s-18 m-b-16">Interactive Charts</h3>
+              <p class="f-s-14 m-0">
+                Visualize complex data sets beautifully with our interactive
+                graphs and charts. Quickly grasp trends and patterns for smarter
+                analysis.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
       <div class="row align-items-end justify-content-center">
         @if(!isMobileView){
@@ -412,105 +602,7 @@
     </div>
   </div>
 
-  <div class="template-slider spacing-top-bottom">
-    <div class="custom-container">
-      <div class="bg-light-primary rounded-pill spacing-top-bottom template-slider-content">
-        <div class="spacing-left-right m-b-8">
-          <h2 class="f-s-40 lh-normal section-sub-title">
-            Discover Powerful Dozens of <br> Purpose-Fit Templates
-          </h2>
-        </div>
-        <div class="demo-slider overflow-hidden d-flex gap-30 spacing-bottom">
-          <div>
-            <div class="demo-slide">
-              <a [routerLink]="['/apps/chat']">
-                <img src="assets/images/front-pages/app-chat.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
-              </a>
-            </div>
-          </div>
-          <div>
-            <div class="demo-slide">
-              <a (click)="onImageClick('/apps/email/inbox')">
-                <img src="assets/images/front-pages/app-email.jpg" alt="slide" class="img-fluid rounded-7 sliderImg"
-                  [ngClass]="{
-                  'img-border': selectedPath === '/apps/email/inbox'
-                }" />
-              </a>
-            </div>
-          </div>
-          <div>
-            <div class="demo-slide">
-              <a (click)="onImageClick('/dashboards/dashboard1')">
-                <img src="assets/images/front-pages/demo-main.jpg" alt="slide" class="img-fluid rounded-7 sliderImg"
-                  [ngClass]="{
-                  'img-border': selectedPath === '/dashboards/dashboard1'
-                }" />
-              </a>
-            </div>
-          </div>
-          <div>
-            <div class="demo-slide">
-              <img src="assets/images/front-pages/demo-dark.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
-            </div>
-          </div>
-          <div>
-            <div class="demo-slide">
-              <a (click)="onImageClick('/front-pages/homepage')">
-                <img src="assets/images/front-pages/demo-horizontal.jpg" alt="slide"
-                  class="img-fluid rounded-7 sliderImg" [ngClass]="{
-                  'img-border': selectedPath === '/front-pages/homepage'
-                }" />
-              </a>
-            </div>
-          </div>
-          <div>
-            <div class="demo-slide">
-              <img src="assets/images/front-pages/demo-rtl.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
-            </div>
-          </div>
-          <div>
-            <div class="demo-slide">
-              <img src="assets/images/front-pages/app-chat.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
-            </div>
-          </div>
-          <div>
-            <div class="demo-slide">
-              <img src="assets/images/front-pages/app-email.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
-            </div>
-          </div>
-        </div>
-        <div class="spacing-left-right">
-          <div class="row">
-            <div class="col-md-4 text-center m-b-30">
-              <h3 class="f-s-18 m-b-16">High Customizability</h3>
-              <p class="f-s-14 m-0">
-                Tailor the dashboard to your exact needs. Customize layouts, color
-                schemes, and widgets effortlessly for a personalized user
-                experience.
-              </p>
-            </div>
-            <div class="col-md-4 text-center m-b-30">
-              <h3 class="f-s-18 m-b-16">Powerful Data Analytics</h3>
-              <p class="f-s-14 m-0">
-                Unlock the true potential of your data with our advanced analytics
-                tools. Gain valuable insights and make data-driven decisions with
-                ease.
-              </p>
-            </div>
-
-            <div class="col-md-4 text-center m-b-30">
-              <h3 class="f-s-18 m-b-16">Interactive Charts</h3>
-              <p class="f-s-14 m-0">
-                Visualize complex data sets beautifully with our interactive
-                graphs and charts. Quickly grasp trends and patterns for smarter
-                analysis.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  
 
   <div class="features spacing-bottom">
     <div class="container">
