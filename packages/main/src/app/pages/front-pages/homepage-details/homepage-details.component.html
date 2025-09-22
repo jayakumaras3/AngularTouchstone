@@ -136,56 +136,39 @@
           }
         </div>
 <div class="col-md-12">
-  <mat-card class="cardWithShadow b-1 rounded-8 m-b-0 p-48">
-    <mat-card-content><h2>Simple for Learners, Seamless for Admins </h2><br>
-      <mat-card-title class="f-s-16 f-w-600 m-b-24">
+  <mat-card class="testimonial-card-alt">
+    <mat-card-content>
+      <!-- Decorative quote icon -->
+      <div class="quote-icon">“</div>
+
+      <!-- Quote text -->
+      <p class="testimonial-quote-alt">
         {{ activeFeature.subtext }}
-      </mat-card-title>
+      </p>
 
-   <!--  <div class="d-flex align-items-center gap-16 m-b-24">
-        <div>
-          <img
-            [src]="getUser().img"
-            [alt]="getUser().name"
-            class="rounded-circle"
-            width="40"
-          />
-        </div>
-        <h6 class="f-s-14 f-w-600">{{ getUser().name }}</h6>
-      </div> -->  
-
-      <p class="f-s-12 m-b-16 m-t-0">{{ activeFeature.title }}</p>
+      <!-- User info -->
+      <p class="testimonial-user-alt">
+        – {{ activeFeature.title }}
+      </p>
 
       <mat-divider></mat-divider>
 
-      <div class="d-flex align-items-center gap-10 m-t-8">
-        <button
-          class="bg-light icon-32 d-flex align-items-center justify-content-center"
-          mat-icon-button
-          (click)="showPrevious()"
-        >
-          <i-tabler
-            name="chevron-left"
-            class="icon-18 d-flex align-items-center justify-content-center"
-          ></i-tabler>
+      <!-- Controls -->
+      <div class="testimonial-controls-alt">
+        <button mat-icon-button class="nav-btn" (click)="showPrevious()">
+          <i-tabler name="chevron-left" class="icon-18"></i-tabler>
         </button>
 
-        <span class="f-s-14">{{ showCounter() }}</span>
+        <span class="counter">{{ showCounter() }}</span>
 
-        <button
-          class="bg-light icon-32 d-flex align-items-center justify-content-center"
-          mat-icon-button
-          (click)="showNext()"
-        >
-          <i-tabler
-            name="chevron-right"
-            class="icon-18 d-flex align-items-center justify-content-center"
-          ></i-tabler>
+        <button mat-icon-button class="nav-btn" (click)="showNext()">
+          <i-tabler name="chevron-right" class="icon-18"></i-tabler>
         </button>
       </div>
     </mat-card-content>
   </mat-card>
 </div>
+
 
 <div class="template-slider spacing-top-bottom">
     <div class="custom-container">

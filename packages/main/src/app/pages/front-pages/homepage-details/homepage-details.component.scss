@@ -1,3 +1,66 @@
+.testimonial-card-alt {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  padding: 40px 48px;
+  margin: auto;
+  text-align: center;
+  position: relative;
+}
+
+.quote-icon {
+  font-size: 48px;
+  font-weight: 700;
+  color: #3b82f6;
+  opacity: 0.15;
+  position: absolute;
+  top: 24px;
+  left: 32px;
+}
+
+.testimonial-quote-alt {
+  font-size: 18px;
+  line-height: 1.7;
+  font-style: italic;
+  color: #1f2937;
+  margin-bottom: 28px;
+}
+
+.testimonial-user-alt {
+  font-size: 15px;
+  font-weight: 600;
+  color: #6b7280;
+  margin-bottom: 20px;
+}
+
+.testimonial-controls-alt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.nav-btn {
+  background: #f3f4f6;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  transition: all 0.2s ease-in-out;
+}
+
+.nav-btn:hover {
+  background: #e5e7eb;
+  transform: scale(1.08);
+}
+
+.counter {
+  font-size: 14px;
+  font-weight: 500;
+  color: #6b7280;
+}
+
 .home-page {
   .custom-container {
     max-width: 1400px;
