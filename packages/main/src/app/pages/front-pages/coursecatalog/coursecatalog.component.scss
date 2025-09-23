@@ -10,7 +10,11 @@ $card-shadow: rgba(0, 0, 0, 0.08);
 $border-radius: 16px;
 $bullet-color: #6366f1;    // soft indigo checkmarks
 
-
+.cc-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
 // Hero
 .cc-hero {
   background: $primary-color;

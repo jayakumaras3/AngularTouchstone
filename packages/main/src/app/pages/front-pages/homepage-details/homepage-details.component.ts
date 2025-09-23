@@ -1,7 +1,7 @@
 import { Component, computed, DestroyRef, inject, signal } from '@angular/core';
 import { IconModule } from 'src/app/icon/icon.module';
 import { MaterialModule } from 'src/app/material.module';
-import { paymentLogos, plans } from '../front-pagesData';
+import { paymentLogos, plans,clientLogo } from '../front-pagesData';
 import {
   faqList,
   followercardsFirst,
@@ -42,6 +42,40 @@ interface features {
 
 export class HomepageDetailsComponent {
     paymentLogos = paymentLogos;
+    clientLogo=clientLogo;
+     industries = [
+    {
+      title: 'Switch Without the Stress',
+      icon: 'bi bi-cash-coin',
+      img: 'assets/images/industryImage/finance.jpg',
+      desc: 'Moving to a new LMS doesn’t have to be messy. Dochek makes migration simple by supporting industry standards (SCORM1.2I) and offering seamless data transfer from your existing LMS. '
+    },
+    {
+      title: 'Life Sciences',
+      icon: 'bi bi-heart-pulse',
+      img: 'assets/images/industryImage/lifescience.jpg',
+      desc: 'Accelerating product knowledge and compliance through immersive life sciences training.',
+      insight: true
+    },
+    {
+      title: 'Technology',
+      icon: 'bi bi-cpu',
+      img: 'assets/images/industryImage/technology.jpg',
+      desc: 'Accelerating product knowledge and compliance through immersive life sciences training.'
+    },
+    {
+      title: 'Manufacturing',
+      icon: 'bi bi-gear-wide-connected',
+      img: 'assets/images/industryImage/manufacturing.jpg',
+      desc: 'Accelerating product knowledge and compliance through immersive life sciences training.'
+    },
+    {
+      title: 'Government',
+      icon: 'bi bi-bank',
+      img: 'assets/images/industryImage/government.jpg',
+      desc: 'Accelerating product knowledge and compliance through immersive life sciences training.'
+    }
+  ];
  features:features[] = [
     {
       id: 1,

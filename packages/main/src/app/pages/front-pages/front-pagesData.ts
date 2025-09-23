@@ -389,7 +389,44 @@ export const plans = [
     ],
   },
 ];
-
+export const clientLogo = [
+  { src: `${baseUrlPath}assets/images/clientlogo/001.jpg`, alt: 'Arbys', tooltip: 'Arbys' },
+  {
+    src: `${baseUrlPath}assets/images/clientlogo/002.jpg`,
+    alt: 'GE',
+    tooltip: 'GE',
+  },
+  {
+      "src": "assets/images/clientlogo/003.jpg",
+      "alt": "Levi&#39;s",
+      "tooltip": "Levi&#39;s"
+    },
+  {
+    src: `${baseUrlPath}assets/images/clientlogo/004.jpg`,
+    alt: 'Nestle',
+    tooltip: 'Nestle',
+  },
+  {
+    src: `${baseUrlPath}assets/images/clientlogo/005.jpg`,
+    alt: 'Schneider Electric',
+    tooltip: 'Schneider Electric',
+  },
+  {
+    src: `${baseUrlPath}assets/images/clientlogo/006.jpg`,
+    alt: 'SHARP',
+    tooltip: 'SHARP',
+  },  
+  {
+    src: `${baseUrlPath}assets/images/clientlogo/007.jpg`,
+    alt: 'Spirit',
+    tooltip: 'Spirit',
+  },  
+  {
+    src: `${baseUrlPath}assets/images/clientlogo/008.jpg`,
+    alt: 'Wabtec',
+    tooltip: 'Wabtec',
+  },
+];
 export const paymentLogos = [
   { src: `${baseUrlPath}assets/images/front-pages/icon-visa.svg`, alt: 'visa', tooltip: 'Visa' },
   {
@@ -427,35 +464,25 @@ export const paymentLogos = [
 
 export const faqList = [
   {
-    question: 'What is included with my purchase?',
+    question: 'What makes DoChek different from other LMS platforms?',
     answer:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.',
+      'Unlike complex systems that overwhelm users, DoChek focuses on simplicity. Learners just attend courses, while admins can manage, assign, and track training in a few clicks. It’s built to be powerful but uncluttered. ',
   },
   {
-    question: 'Are there any recurring fees?',
+    question: 'Can DoChek handle large numbers of users? ',
     answer:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.',
+      'Yes. DoChek is designed to scale. It manages multiple clients and partners from a single platform, and ensures smooth performance without slowdowns. ',
   },
   {
-    question: 'Can i use template on multiple projects? ',
+    question: 'Can we build my own courses in DoChek?  ',
     answer:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.',
+      'Yes. With the course builder, you can create and customize training modules, add assessments (MCQs, SCQs, simulations), and even export them as SCORM packages to use in other LMS platforms. ',
   },
   {
     question:
-      'Can i use customize the admin dashboard template to match my brand?',
+      'What kind of pre-built courses are available? ',
     answer:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.',
-  },
-  {
-    question: 'Are any restrictions on using the template?',
-    answer:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.',
-  },
-  {
-    question: 'How can i get support after purchase? ',
-    answer:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.',
+      'Through the DoChek Marketplace, you get access to 500+ ready-to-use courses covering compliance, communication, leadership, workplace safety, and more. You can deploy them immediately or customize them to fit your needs. ',
   },
 ];
 

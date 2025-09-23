@@ -1,7 +1,7 @@
 <div class="home-page header-container">
   <div class="bg-light-primary home-page-header">
     <div class="header-container-content custom-container m-x-auto">
-       <div class="custom-container footer-dashboard">
+    <div class="custom-container footer-dashboard">
     <div class="bg-light-primary rounded-8 footer-container overflow-hidden">
       <div class="row">
         <div class="col-lg-6">
@@ -32,8 +32,8 @@
   <div class="m-t-32 ">
     <!-- <p class="text-center f-s-14 m-b-0">Secured payment with PayPal & Razorpay</p>--> 
   <div class="d-flex align-items-center justify-content-center m-t-32 m-x-0 gap-48 flex-wrap">
-    @for( logo of paymentLogos;track logo){
-    <img class="cursor-pointer" [src]="logo.src" [alt]="logo.alt" [matTooltip]="logo.tooltip"
+    @for( logo of clientLogo;track logo){
+    <img class="cursor-pointer clientlogo_" [src]="logo.src" [alt]="logo.alt" [matTooltip]="logo.tooltip"
       matTooltipPosition="below">
     }
   </div>
@@ -46,19 +46,19 @@
           </h1>
         </div>
       </div> -->
-      <!-- slider images disabled 
-      <div class="demo-slider overflow-hidden d-flex gap-30 spacing-bottom">
+      <!-- slider images disabled -->
+      <div class="demo-slider overflow-hidden d-flex gap-30 spacing-top">
         <div>
           <div class="demo-slide">
             <a [routerLink]="['/apps/chat']">
-              <img src="assets/images/front-pages/app-chat.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
+              <img src="assets/images/front-pages/001.png" alt="slide" class="img-fluid rounded-7 sliderImg" />
             </a>
           </div>
         </div>
         <div>
           <div class="demo-slide">
             <a (click)="onImageClick('/apps/email/inbox')">
-              <img src="assets/images/front-pages/app-email.jpg" alt="slide" class="img-fluid rounded-7 sliderImg"
+              <img src="assets/images/Awards/002.png" alt="slide" class="img-fluid rounded-7 sliderImg"
                 [ngClass]="{
                   'img-border': selectedPath === '/apps/email/inbox'
                 }" />
@@ -68,7 +68,7 @@
         <div>
           <div class="demo-slide">
             <a (click)="onImageClick('/dashboards/dashboard1')">
-              <img src="assets/images/front-pages/demo-main.jpg" alt="slide" class="img-fluid rounded-7 sliderImg"
+              <img src="assets/images/Awards/003.png" alt="slide" class="img-fluid rounded-7 sliderImg"
                 [ngClass]="{
                   'img-border': selectedPath === '/dashboards/dashboard1'
                 }" />
@@ -77,13 +77,13 @@
         </div>
         <div>
           <div class="demo-slide">
-            <img src="assets/images/front-pages/demo-dark.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
+            <img src="assets/images/Awards/004.png" alt="slide" class="img-fluid rounded-7 sliderImg" />
           </div>
         </div>
         <div>
           <div class="demo-slide">
             <a (click)="onImageClick('/front-pages/homepage')">
-              <img src="assets/images/front-pages/demo-horizontal.jpg" alt="slide" class="img-fluid rounded-7 sliderImg"
+              <img src="assets/images/Awards/005.png" alt="slide" class="img-fluid rounded-7 sliderImg"
                 [ngClass]="{
                   'img-border': selectedPath === '/front-pages/homepage'
                 }" />
@@ -92,20 +92,20 @@
         </div>
         <div>
           <div class="demo-slide">
-            <img src="assets/images/front-pages/demo-rtl.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
+            <img src="assets/images/Awards/006.png" alt="slide" class="img-fluid rounded-7 sliderImg" />
           </div>
         </div>
         <div>
           <div class="demo-slide">
-            <img src="assets/images/front-pages/app-chat.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
+            <img src="assets/images/Awards/007.png" alt="slide" class="img-fluid rounded-7 sliderImg" />
           </div>
         </div>
         <div>
           <div class="demo-slide">
-            <img src="assets/images/front-pages/app-email.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
+            <img src="assets/images/Awards/008.png" alt="slide" class="img-fluid rounded-7 sliderImg" />
           </div>
         </div>
-      </div>-->
+      </div>
       
      <div class="container spacing-top" id="demos2">
         <div class="row justify-content-center">
@@ -135,6 +135,24 @@
           </div>
           }
         </div>
+        <div class="bg-light-primary rounded-8 footer-container-bookDemo overflow-hidden">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="spacing-top spacing-left left-side-content">
+            <h2 class="f-s-25 m-b-24 lh-normal section-sub-title">
+             Simple for Learners, Seamless for Admins
+            </h2>
+           <h3 class="f-s-14 m-b-24 d-block lh-base fontWeightnormal  section-sub-title">With DoChek’s lightweight interface, training is hassle-free. Manage multiple users and clients from a single platform, without server slowdowns. Our partners benefit from less administrative hassle, smoother delivery, and sharper insights. Just assign the courses, and let DoChek manage the rest. </h3>
+            <div class="m-b-24 hstack">
+              <a [class.selected]="isActiveRoute('coursecatalog')"
+                [routerLink]="['/authentication/login']"  mat-flat-button color="primary" class="">Book Demo</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 d-none d-lg-block">
+          <img src="assets/images/front-pages/design-collection.png" alt="bg-img" class="imgStyleDash" />
+        </div>
+      </div>
 <div class="col-md-12">
   <mat-card class="testimonial-card-alt">
     <mat-card-content>
@@ -337,7 +355,35 @@
     </div>
   </div>
 
-  <div class="introducing-section dashboardCards spacing-top-bottom">
+  <!-- Card animation Start-->
+    <div class="introducing-section dashboardCards spacing-top">
+    <section class=" py-5 my-5 hero-bg text-center">
+    <div class="container">
+      <h5 class="text-secondary mb-4 section-title">INDUSTRY EXPERTISE</h5><br><br>
+
+      <div class="row justify-content-center g-4">
+        <div class="col-md-2" *ngFor="let ind of industries">
+          <div class="industry-card">
+            <img [src]="ind.img" class="card-bg" />
+            <div class="overlay">
+              <i [class]="ind.icon"></i>
+              <h6 class="mt-2">{{ ind.title }}</h6>
+
+             <div class="insight-text">
+              <small class="text-warning fw-bold">INDUSTRY INSIGHT</small>
+              <p>{{ ind.desc }}</p>
+              <button class="btn btn-outline-light btn-sm">Learn More</button>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  </div>
+  <!-- Card animation end-->
+
+  <div class="introducing-section dashboardCards spacing-bottom">
     <div class="container card-container">
       <div class="row justify-content-center">
         <div class="col-md-6">
@@ -584,8 +630,7 @@
       </div>
     </div>
   </div>
-
-  
+ 
 
   <div class="features spacing-bottom">
     <div class="container">
