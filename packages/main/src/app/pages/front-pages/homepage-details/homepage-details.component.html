@@ -46,7 +46,7 @@
           </h1>
         </div>
       </div> -->
-      <!-- slider images disabled -->
+      <!-- slider images disabled 
       <div class="demo-slider overflow-hidden d-flex gap-30 spacing-top">
         <div>
           <div class="demo-slide">
@@ -105,7 +105,7 @@
             <img src="assets/images/Awards/008.png" alt="slide" class="img-fluid rounded-7 sliderImg" />
           </div>
         </div>
-      </div>
+      </div>-->
       
      <div class="container spacing-top" id="demos2">
         <div class="row justify-content-center">
@@ -551,7 +551,7 @@
             <div class="m-y-30">
               <mat-accordion multi>
                 <!-- Panel 0 -->
-                <mat-expansion-panel #panel0 [expanded]="selectedIndex === 0 || selectedIndex === 3" hideToggle
+                <mat-expansion-panel #panel0 [expanded]="selectedIndex === 0" hideToggle
                   class="expansion-panel">
                   <mat-expansion-panel-header>
                     <div class="d-flex align-items-center justify-content-between w-100">
@@ -566,7 +566,22 @@
                     </p>
                   </div>
                 </mat-expansion-panel>
-
+                <!-- Panel 3 -->
+                 <mat-expansion-panel #panel0 [expanded]="selectedIndex === 3" hideToggle
+                  class="expansion-panel">
+                  <mat-expansion-panel-header>
+                    <div class="d-flex align-items-center justify-content-between w-100">
+                      <span class="f-s-18 f-w-500">Factor in outside colleagues 3</span>
+                      <tabler-icon [name]="panel0.expanded ? 'minus' : 'plus'" class="m-l-8 icon-20"></tabler-icon>
+                    </div>
+                  </mat-expansion-panel-header>
+                  <div>
+                    <p class="f-s-16 m-y-0">
+                      Factor in availability for required attendees, and skip
+                      checking for conflicts for optional attendees.
+                    </p>
+                  </div>
+                </mat-expansion-panel>  
                 <!-- Panel 1 -->
                 <mat-expansion-panel #panel1 [expanded]="selectedIndex === 1" hideToggle class="expansion-panel">
                   <mat-expansion-panel-header>
@@ -636,7 +651,7 @@
     <div class="container">
       <div class="row align-items-center justify-content-between">
         <!--row-->
-        <div class="col-md-5 m-b-30">
+        <div class="col-md-3 m-b-30">
           <div class="client-margin">
             <h2 class="lh-normal f-s-40 m-b-16 section-sub-title">
               What our clients <br> think <img src="assets/images/front-pages/logoIcon.svg" alt="logo" />
@@ -649,7 +664,7 @@
             </p>
           </div>
         </div>
-        <div class="col-md-5">
+        <div class="col-md-7">
           <mat-card class="cardWithShadow b-1 rounded-8 m-b-0 p-48">
             <mat-card-content>
               <mat-card-title class="f-s-24 f-w-600 m-b-24">Features availability</mat-card-title>

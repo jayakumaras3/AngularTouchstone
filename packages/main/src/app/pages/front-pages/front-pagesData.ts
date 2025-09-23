@@ -390,7 +390,7 @@ export const plans = [
   },
 ];
 export const clientLogo = [
-  { src: `${baseUrlPath}assets/images/clientlogo/001.jpg`, alt: 'Arbys', tooltip: 'Arbys' },
+  { src: `${baseUrlPath}assets/images/clientlogo/001.jpg`, alt: "Arby's", tooltip: "Arby's" },
   {
     src: `${baseUrlPath}assets/images/clientlogo/002.jpg`,
     alt: 'GE',
@@ -398,8 +398,8 @@ export const clientLogo = [
   },
   {
       "src": "assets/images/clientlogo/003.jpg",
-      "alt": "Levi&#39;s",
-      "tooltip": "Levi&#39;s"
+      "alt": "Levi's",
+      "tooltip": "Levi's"
     },
   {
     src: `${baseUrlPath}assets/images/clientlogo/004.jpg`,
