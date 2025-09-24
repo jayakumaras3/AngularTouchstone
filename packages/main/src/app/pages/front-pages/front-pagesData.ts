@@ -317,6 +317,81 @@ export const tiles = [
     subtitle: 'A rich collection for seamless user experiences.',
   },
 ];
+export const pricingBanner = {
+  title: 'Flexible Pricing for Every Learning Need',
+  subtitle:
+    'Enjoy premium features with a plan that suits your business’s pace and budget',
+  cta: 'Choose the Right Plan For Your Team',
+};
+
+export const pricingPlans = {
+  monthly: [
+    {
+      title: 'Single Course',
+      price: '$1',
+      period: 'Per Month',
+      description: 'Best for one-off learners',
+      features: ['Access to 1 course'],
+      button: 'Get Started',
+    },
+    {
+      title: '10-Course Bundle',
+      price: '$8',
+      period: 'Per Month',
+      description: 'Perfect for small teams',
+      features: ['Access to 10 courses each month'],
+      button: 'Get Started',
+    },
+    {
+      title: '50-Course Bundle',
+      price: '$30',
+      period: 'Per Month',
+      description: 'Best for growing organizations with diverse training needs',
+      features: ['Access to 50 courses each month'],
+      button: 'Get Started',
+    },
+    {
+      title: 'Enterprise (50+ courses)',
+      price: 'Contact Sales',
+      description: 'Customized Plan for large teams',
+      features: [],
+      button: 'Get Started',
+    },
+  ],
+  yearly: [
+    {
+      title: 'Single Course',
+      price: '$10',
+      period: 'Per Year',
+      description: 'Best for one-off learners',
+      features: ['Access to 1 course'],
+      button: 'Get Started',
+    },
+    {
+      title: '10-Course Bundle',
+      price: '$77',
+      period: 'Per Year',
+      description: 'Perfect for small teams',
+      features: ['Access to 10 courses'],
+      button: 'Get Started',
+    },
+    {
+      title: '50-Course Bundle',
+      price: '$480',
+      period: 'Per Year',
+      description: 'Best for growing organizations with diverse training needs',
+      features: ['Access to 50 courses'],
+      button: 'Get Started',
+    },
+    {
+      title: 'Enterprise (50+ courses)',
+      price: 'Contact Sales',
+      description: 'Customized Plan for large teams',
+      features: [],
+      button: 'Get Started',
+    },
+  ],
+};
 
 export const users = [
   { name: 'Jenny Wilson', img: `${baseUrlPathslash}/assets/images/profile/user-1.jpg` },

@@ -1,18 +1,23 @@
+
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { IconModule } from 'src/app/icon/icon.module';
+import { Component, importProvidersFrom } from '@angular/core';
 import { MaterialModule } from 'src/app/material.module';
-import { paymentLogos, plans } from '../front-pagesData';
-import { baseUrlPath } from '../../../config';  
+import { pricingBanner, pricingPlans } from '../front-pagesData';
+import { paymentLogos } from '../front-pagesData';
+
 @Component({
   selector: 'app-page-pricing',
-  imports: [MaterialModule, IconModule, CommonModule],
+  imports: [MaterialModule, CommonModule],
   templateUrl: './page-pricing.component.html',
   styleUrl: './page-pricing.component.scss',
 })
 export class PagePricingComponent {
-  baseUrlPath=baseUrlPath;
-  plans = plans;
+  banner = pricingBanner;
+  plans = pricingPlans;
+    paymentLogos = paymentLogos;
+  selectedPlan: 'monthly' | 'yearly' = 'monthly';
 
-  paymentLogos = paymentLogos;
+  togglePlan(period: 'monthly' | 'yearly') {
+    this.selectedPlan = period;
+  }
 }
