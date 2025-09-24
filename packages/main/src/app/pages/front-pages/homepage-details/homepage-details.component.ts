@@ -80,6 +80,7 @@ export class HomepageDetailsComponent {
     {
       id: 1,
       icon: 'camera',
+      
       title: 'Build & Customize Easily',
       subtext:
         'Create and upload courses, package multiple trainings into a module, and export as SCORM for any LMS ',
@@ -103,21 +104,24 @@ export class HomepageDetailsComponent {
     {
       id: 1,
       icon: 'camera',
-      title: '- Misha Rodriguez, L&D Lead in a leading logistics company',
+      title: 'Misha Rodriguez, L&D Lead in a leading logistics company',
+      img: `assets/images/profile/user-1.jpg`,
       subtext:
         '“DoCheck has simplified learning management for us. Earlier, we were juggling different platforms for uploading courses, tracking progress, and managing Excel reports. Now, everything happens under one roof, and it saves us a lot of time and effort”  ',
     },
     {
       id: 2,
       icon: 'shield-lock',
-      title: '- Liam Grant, HR Manager at a global FMCG brand',
+      title: 'Liam Grant, HR Manager at a global FMCG brand',
+      img: `assets/images/profile/user-2.jpg`,
       subtext:
         '“With DoCheck, we build scenarios that mirror real situations, like a conference or client meeting. Every learner gets the same setup, but their answers differ, which gives us a much clearer view of their decision-making skills.” ',
     },
     {
       id: 15,
       icon: 'code',
-      title: '- Sophie Müller, Training Coordinator in a European retail group',
+      title: 'Sophie Müller, Training Coordinator in a European retail group',
+      img: `assets/images/profile/user-3.jpg`,
       subtext:
         'Finally, a learning management platform that’s simple to use and affordable. We can train more employees without worrying about costs spiraling out of control or the system slowing down when multiple users log in. ',
     },

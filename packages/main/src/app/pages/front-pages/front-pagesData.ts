@@ -676,15 +676,15 @@ export const followercardThird: followercards[] = [
 ];
 
 export const topcardsGrid = [
-  { title: 'Light & Dark Color Schemes', subtitle: 'Choose your preferred visual style effortlessly.',
+  { title: 'Stress-free Switch', subtitle: 'Dochek makes migration simple by supporting industry standards (SCORM1.2I) and seamless data transfer from your existing LMS.',
      img: `${baseUrlPathslash}/assets/images/svgs/icon-briefcase.svg`, color: 'warning' },
-  { title: '12+ Ready to Use Application Designs', subtitle: 'Instantly deployable designs for your applications.',
+  { title: 'Build Courses within 24 Hours', subtitle: 'Our course builder feature enables you to create modules inside the platform and export them as SCORM packages.',
     img: `${baseUrlPath}assets/icons/icon2.png`, color: 'secondary',imgMain: `${baseUrlPathslash}/assets/images/landingpage/background/feature-apps.png`, },
   { title: 'New Demos', subtitle: 'Brand new demos to help you build the perfect dashboard: <strong>Dark and Right-to-Left.</strong>', 
     img: `${baseUrlPathslash}/assets/images/front-pages/logoIcon.svg`, color: 'primary',imgMain: `${baseUrlPathslash}/assets/images/landingpage/background/screen1.png` },
-  { title: 'Code Improvements', subtitle: 'Benefit from continuous improvements and optimizations.', 
+  { title: 'Track What Matters', subtitle: 'Get to know the time spent per module, learner behavior patterns, assessment performance, and drop-off points.', 
     img: `${baseUrlPathslash}/assets/images/front-pages/icon-speech-bubble.svg`, color: 'success' },
-  { title: '50+ UI Components', subtitle: 'A rich collection for seamless user experiences.', 
+  { title: 'Manage Feedback, Better', subtitle: 'Reviewers can leave timestamped comments right inside your courses, so developers can course correct instantly. No confusion, just continuous improvement.', 
     img: `${baseUrlPathslash}/assets/images/front-pages/icon-favorites.svg`, color: 'error' },
 ];
 

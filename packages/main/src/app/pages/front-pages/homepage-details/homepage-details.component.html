@@ -355,7 +355,7 @@
     </div>
   </div>
 
-  <!-- Card animation Start-->
+  <!-- Card animation Start
     <div class="introducing-section dashboardCards spacing-top">
     <section class=" py-5 my-5 hero-bg text-center">
     <div class="container">
@@ -380,10 +380,10 @@
       </div>
     </div>
   </section>
-  </div>
+  </div>-->
   <!-- Card animation end-->
 
-  <div class="introducing-section dashboardCards spacing-bottom">
+  <div class="introducing-section dashboardCards spacing-top-bottom">
     <div class="container card-container">
       <div class="row justify-content-center">
         <div class="col-md-6">
@@ -403,15 +403,15 @@
         <div class="col-md-4">
           <div>
             @for (topcard of topcards; track topcard.title) {
-            @if (topcard.title === 'Light & Dark Color Schemes' || topcard.title.includes('12+')) {
+            @if (topcard.title === 'Stress-free Switch' || topcard.title.includes('Build')) {
             <mat-card class="shadow-none text-center rounded-12 bg-light-{{ topcard.color }} card-box p-x-30 p-y-44">
               <mat-card-content>
-                @if (topcard.title === 'Light & Dark Color Schemes') {
+                @if (topcard.title === 'Stress-free Switch') {
                 <img [src]="topcard.img" alt="icon" width="40" />
                 }
                 <h6 class="f-s-16 m-t-16">{{ topcard.title }}</h6>
                 <p class="f-s-14 m-t-16">{{ topcard.subtitle }}</p>
-                @if (topcard.title.includes('12+')) {
+                @if (topcard.title.includes('Build')) {
                 <img [src]="topcard.imgMain" alt="image" class="img-fluid w-100 m-t-16 m-b--48" />
                 }
               </mat-card-content>
@@ -444,7 +444,7 @@
         <div class="col-md-4">
           <div>
             @for (topcard of topcards; track topcard.title) {
-            @if (topcard.title.includes('Code Improvements') || topcard.title.includes('UI Components')) {
+            @if (topcard.title.includes('Track What Matters') || topcard.title.includes('Manage Feedback, Better')) {
             <mat-card class="shadow-none text-center rounded-12 bg-light-{{ topcard.color }} card-box p-x-30 p-y-48">
               <mat-card-content>
                 <img [src]="topcard.img" alt="icon" width="40" />
@@ -505,7 +505,7 @@
       <!--end-->
     </div>
   </div>
-
+<!--  4 tab info bar
   <div class="tab-header">
     <mat-divider></mat-divider>
     <div class="container">
@@ -534,9 +534,9 @@
             <span class="tab-label f-s-18 f-w-500">Workflows</span>
           </ng-template>
         </mat-tab>
-      </mat-tab-group>
+      </mat-tab-group>-->
 
-      <!-- Tab content shown BELOW the tab group -->
+      <!-- Tab content shown BELOW the tab group 
 
       <div class="row tab-header-content p-y-66 align-items-center">
         <div class="col-md-6">
@@ -550,7 +550,7 @@
             <h2 class="f-s-40 lh-lg section-sub-title">Defend your focus</h2>
             <div class="m-y-30">
               <mat-accordion multi>
-                <!-- Panel 0 -->
+                <!-Panel 0->
                 <mat-expansion-panel #panel0 [expanded]="selectedIndex === 0" hideToggle
                   class="expansion-panel">
                   <mat-expansion-panel-header>
@@ -566,7 +566,7 @@
                     </p>
                   </div>
                 </mat-expansion-panel>
-                <!-- Panel 3 -->
+                <!- Panel 3 ->
                  <mat-expansion-panel #panel0 [expanded]="selectedIndex === 3" hideToggle
                   class="expansion-panel">
                   <mat-expansion-panel-header>
@@ -582,7 +582,7 @@
                     </p>
                   </div>
                 </mat-expansion-panel>  
-                <!-- Panel 1 -->
+                <!- Panel 1 ->
                 <mat-expansion-panel #panel1 [expanded]="selectedIndex === 1" hideToggle class="expansion-panel">
                   <mat-expansion-panel-header>
                     <div class="d-flex align-items-center justify-content-between w-100">
@@ -598,7 +598,7 @@
                   </div>
                 </mat-expansion-panel>
 
-                <!-- Panel 2 & 3 merged -->
+                <!- Panel 2 & 3 merged ->
                 <mat-expansion-panel #panel2 [expanded]="selectedIndex === 2" hideToggle class="expansion-panel">
                   <mat-expansion-panel-header>
                     <div class="d-flex align-items-center justify-content-between w-100">
@@ -624,11 +624,11 @@
       </div>
     </div>
   </div>
-
+4 tab end --> 
   <!-- <div class="our-leadership spacing-top p-b-48">
     <app-image-slider></app-image-slider>
   </div> -->
-
+<!--
   <div class="toolBar bg-primary p-y-16">
     <div class="container">
       <div class="d-flex align-items-center justify-content-center">
@@ -644,64 +644,80 @@
         </span>
       </div>
     </div>
-  </div>
+  </div>-->
  
 
   <div class="features spacing-bottom">
     <div class="container">
       <div class="row align-items-center justify-content-between">
         <!--row-->
-        <div class="col-md-3 m-b-30">
+        <div class="col-md-5 m-b-30">
           <div class="client-margin">
             <h2 class="lh-normal f-s-40 m-b-16 section-sub-title">
               What our clients <br> think <img src="assets/images/front-pages/logoIcon.svg" alt="logo" />
               about us?
             </h2>
             <p class="m-0">
-              Our users' feedback is a testament to our commitment to quality
-              and user satisfaction. Read what they have to say about their
-              journey with us.
+             Our partners benefit from reduced administrative hassle, smoother delivery, and sharper insights, which helps their teams learn smarter, and perform better.
             </p>
           </div>
         </div>
-        <div class="col-md-7">
-          <mat-card class="cardWithShadow b-1 rounded-8 m-b-0 p-48">
-            <mat-card-content>
-              <mat-card-title class="f-s-24 f-w-600 m-b-24">Features availability</mat-card-title>
+       <div class="col-md-7">
+  <mat-card class="cardWithShadow b-1 rounded-8 m-b-0 p-48">
+    <mat-card-content>
+      <mat-card-title class="f-s-24 f-w-600 m-b-24">Features availability</mat-card-title>
 
-              <div class="d-flex align-items-center gap-16 m-b-24">
-                <div>
-                  <img [src]="currentUser().img" [alt]="currentUser().name" class="rounded-circle" width="40" />
-                </div>
-                <h6 class="f-s-14 f-w-600">{{ currentUser().name }}</h6>
-              </div>
-
-              <p class="f-s-14 m-b-16 m-t-0">
-                Our users' feedback is a testament to our commitment to quality
-                and user satisfaction. Read what they have to say about their
-                journey with us.
-              </p>
-
-              <mat-divider></mat-divider>
-
-              <div class="d-flex align-items-center gap-10 m-t-8">
-                <button class="bg-light icon-32 d-flex align-items-center justify-content-center" mat-icon-button
-                  (click)="goPrev()">
-                  <i-tabler name="chevron-left"
-                    class="icon-18 d-flex align-items-center justify-content-center"></i-tabler>
-                </button>
-
-                <span class="f-s-14">{{ displayCount() }}</span>
-
-                <button class="bg-light icon-32 d-flex align-items-center justify-content-center" mat-icon-button
-                  (click)="goNext()">
-                  <i-tabler name="chevron-right"
-                    class="icon-18 d-flex align-items-center justify-content-center"></i-tabler>
-                </button>
-              </div>
-            </mat-card-content>
-          </mat-card>
+      <!-- Profile Image + Name -->
+      <div class="d-flex align-items-center gap-16 m-b-24">
+        <div>
+          <img
+            [src]="activeFeature.img"
+            [alt]="activeFeature.title"
+            class="rounded-circle"
+            width="40"
+            height="40"
+          />
         </div>
+        <h6 class="f-s-14 f-w-600">{{ activeFeature.title }}</h6>
+      </div>
+
+      <!-- Subtext -->
+      <p class="f-s-14 m-b-16 m-t-0">
+        {{ activeFeature.subtext }}
+      </p>
+
+      <mat-divider></mat-divider>
+
+      <!-- Navigation -->
+      <div class="d-flex align-items-center gap-10 m-t-8">
+        <button
+          class="bg-light icon-32 d-flex align-items-center justify-content-center"
+          mat-icon-button
+          (click)="showPrevious()"
+        >
+          <i-tabler
+            name="chevron-left"
+            class="icon-18 d-flex align-items-center justify-content-center"
+          ></i-tabler>
+        </button>
+
+        <span class="f-s-14">{{ showCounter() }}</span>
+
+        <button
+          class="bg-light icon-32 d-flex align-items-center justify-content-center"
+          mat-icon-button
+          (click)="showNext()"
+        >
+          <i-tabler
+            name="chevron-right"
+            class="icon-18 d-flex align-items-center justify-content-center"
+          ></i-tabler>
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+
       </div>
     </div>
   </div>
@@ -712,7 +728,7 @@
         <div class="row justify-content-center">
           <div class="col-md-6">
             <h2 class="lh-normal text-center f-s-40 m-b-30 section-sub-title">
-              Enjoy unparalleled features & exceptional flexibility.
+              Access 500+ Ready to Deploy Courses
             </h2>
           </div>
         </div>
