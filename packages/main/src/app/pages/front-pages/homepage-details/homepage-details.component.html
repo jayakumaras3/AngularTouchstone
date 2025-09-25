@@ -34,6 +34,33 @@
       </div>
     </div>
   </div>
+  <div class="course-container">
+  <div class="header">
+    <h1>Career skills that work</h1>
+    <button class="free-trial-btn">Start 7-day Free Trial</button>
+  </div>
+
+  <div class="courses-grid">
+    <div *ngFor="let course of displayedCourses" class="course-card">
+      <div class="course-thumbnail">
+        <img [src]="course.thumbnail" [alt]="course.title" class="thumbnail-image">
+        <div class="university-badge">{{course.universityShort}}</div>
+      </div>
+      <div class="course-content">
+        <div class="university">{{course.university}}</div>
+        <h3 class="course-title">{{course.title}}</h3>
+        <div class="level">{{course.level}}</div>
+        <div class="provider" *ngIf="course.provider">{{course.provider}}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="show-more-container" *ngIf="hasMoreCourses">
+    <button class="show-more-btn" (click)="loadMore()">
+      Show {{coursesToShow}} more
+    </button>
+  </div>
+</div>
   <div class="m-t-32 ">
     <!-- <p class="text-center f-s-14 m-b-0">Secured payment with PayPal & Razorpay</p>--> 
   <div class="d-flex align-items-center justify-content-center m-t-32 m-x-0 gap-48 flex-wrap">

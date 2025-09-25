@@ -1,4 +1,4 @@
-import { Component, computed, DestroyRef, inject, signal } from '@angular/core';
+import { Component, computed, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { IconModule } from 'src/app/icon/icon.module';
 import { MaterialModule } from 'src/app/material.module';
 import { paymentLogos, plans,clientLogo } from '../front-pagesData';
@@ -21,6 +21,14 @@ import { TemplateVideoComponent } from '../template-video/template-video.compone
 import { Router, RouterModule } from '@angular/router';
 import { PopupwindowComponent } from '../popupwindow/popupwindow.component';
 
+interface Course {
+  university: string;
+  universityShort: string;
+  title: string;
+  level: string;
+  provider: string;
+  thumbnail: string;
+}
 interface features {
   id: number;
   icon: string;
@@ -41,7 +49,194 @@ interface features {
   styleUrl: './homepage-details.component.scss',
 })
 
-export class HomepageDetailsComponent {
+export class HomepageDetailsComponent implements OnInit{
+     allCourses: Course[] = [
+    {
+      university: 'University of Michigan',
+      universityShort: 'UM',
+      title: 'Python for Everybody',
+      level: 'Beginner - Specialization',
+      provider: '',
+      thumbnail: 'https://images.unsplash.com/photo-1526379879527-8559ecfcaec0?w=400&h=200&fit=crop'
+    },
+    {
+      university: 'Vanderbilt University',
+      universityShort: 'VU',
+      title: 'Prompt Engineering',
+      level: 'Beginner - Specialization',
+      provider: '',
+      thumbnail: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=400&h=200&fit=crop'
+    },
+    {
+      university: 'IBM, IBM',
+      universityShort: 'IBM',
+      title: 'IBM Data Science',
+      level: 'Beginner - Professional Certificate',
+      provider: 'IBM',
+      thumbnail: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=200&fit=crop'
+    },
+    {
+      university: 'ALEXIIS',
+      universityShort: 'ALX',
+      title: 'Advanced Machine Learning',
+      level: 'Intermediate - Specialization',
+      provider: '',
+      thumbnail: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400&h=200&fit=crop'
+    },
+    {
+      university: 'Stanford University',
+      universityShort: 'SU',
+      title: 'Machine Learning',
+      level: 'Intermediate - Specialization',
+      provider: '',
+      thumbnail: 'https://images.unsplash.com/photo-1555255707-c07966088b7b?w=400&h=200&fit=crop'
+    },
+    {
+      university: 'Google',
+      universityShort: 'GOOG',
+      title: 'Google UX Design',
+      level: 'Beginner - Professional Certificate',
+      provider: 'Google',
+      thumbnail: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=400&h=200&fit=crop'
+    },
+    {
+      university: 'University of Pennsylvania',
+      universityShort: 'UP',
+      title: 'Business Foundations',
+      level: 'Beginner - Specialization',
+      provider: '',
+      thumbnail: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=200&fit=crop'
+    },
+    {
+      university: 'Johns Hopkins University',
+      universityShort: 'JHU',
+      title: 'Data Science',
+      level: 'Intermediate - Specialization',
+      provider: '',
+      thumbnail: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=200&fit=crop'
+    },
+    {
+      university: 'University of California',
+      universityShort: 'UC',
+      title: 'Full Stack Web Development',
+      level: 'Intermediate - Specialization',
+      provider: '',
+      thumbnail: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=200&fit=crop'
+    },
+    {
+      university: 'Harvard University',
+      universityShort: 'HU',
+      title: 'CS50: Introduction to Computer Science',
+      level: 'Beginner - Course',
+      provider: '',
+      thumbnail: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=200&fit=crop'
+    },
+    {
+      university: 'Meta',
+      universityShort: 'META',
+      title: 'Front-End Developer',
+      level: 'Beginner - Professional Certificate',
+      provider: 'Meta',
+      thumbnail: 'https://images.unsplash.com/photo-1611605698335-8b1569810432?w=400&h=200&fit=crop'
+    },
+    {
+      university: 'University of London',
+      universityShort: 'UL',
+      title: 'Computer Science',
+      level: 'Intermediate - Degree',
+      provider: '',
+      thumbnail: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=200&fit=crop'
+    },
+    {
+      university: 'Amazon',
+      universityShort: 'AWS',
+      title: 'AWS Cloud Practitioner',
+      level: 'Beginner - Certification',
+      provider: 'Amazon',
+      thumbnail: 'https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=400&h=200&fit=crop'
+    },
+    {
+      university: 'University of Toronto',
+      universityShort: 'UT',
+      title: 'Learn to Program: The Fundamentals',
+      level: 'Beginner - Course',
+      provider: '',
+      thumbnail: 'https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=400&h=200&fit=crop'
+    },
+    {
+      university: 'IBM',
+      universityShort: 'IBM',
+      title: 'AI Engineering',
+      level: 'Intermediate - Professional Certificate',
+      provider: 'IBM',
+      thumbnail: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=200&fit=crop'
+    },
+    {
+      university: 'University of Colorado',
+      universityShort: 'UCO',
+      title: 'Data Structures and Algorithms',
+      level: 'Intermediate - Specialization',
+      provider: '',
+      thumbnail: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&h=200&fit=crop'
+    },
+    {
+      university: 'MIT',
+      universityShort: 'MIT',
+      title: 'Computer Science and Programming',
+      level: 'Intermediate - Course',
+      provider: '',
+      thumbnail: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=200&fit=crop'
+    },
+    {
+      university: 'Microsoft',
+      universityShort: 'MS',
+      title: 'Azure Fundamentals',
+      level: 'Beginner - Certification',
+      provider: 'Microsoft',
+      thumbnail: 'https://images.unsplash.com/photo-1591012911207-7d26f4695df6?w=400&h=200&fit=crop'
+    },
+    {
+      university: 'Duke University',
+      universityShort: 'DU',
+      title: 'Statistics with R',
+      level: 'Intermediate - Specialization',
+      provider: '',
+      thumbnail: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=200&fit=crop'
+    }
+  ];
+
+  displayedCourses: Course[] = [];
+  initialCoursesCount: number = 3;
+  coursesPerLoad: number = 8;
+  currentDisplayCount: number = 0;
+
+  ngOnInit() {
+    this.loadInitialCourses();
+  }
+
+  get hasMoreCourses(): boolean {
+    return this.displayedCourses.length < this.allCourses.length;
+  }
+
+  get coursesToShow(): number {
+    const remaining = this.allCourses.length - this.displayedCourses.length;
+    return remaining > this.coursesPerLoad ? this.coursesPerLoad : remaining;
+  }
+
+  loadInitialCourses() {
+    this.currentDisplayCount = this.initialCoursesCount;
+    this.displayedCourses = this.allCourses.slice(0, this.initialCoursesCount);
+  }
+
+  loadMore() {
+    this.currentDisplayCount += this.coursesPerLoad;
+    
+    if (this.currentDisplayCount >= this.allCourses.length) {
+      this.displayedCourses = [...this.allCourses];
+    } else {
+      this.displayedCourses = this.allCourses.slice(0, this.currentDisplayCount);
+    }
+  }
   
 openBookDemoDialog() {
   const dialogRef = this.dialog.open(PopupwindowComponent, {
