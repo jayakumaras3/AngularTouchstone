@@ -19,6 +19,7 @@ import { FooterComponent } from '../footer/footer.component';
 import { MatDialog } from '@angular/material/dialog';
 import { TemplateVideoComponent } from '../template-video/template-video.component';
 import { Router, RouterModule } from '@angular/router';
+import { PopupwindowComponent } from '../popupwindow/popupwindow.component';
 
 interface features {
   id: number;
@@ -41,6 +42,21 @@ interface features {
 })
 
 export class HomepageDetailsComponent {
+  
+openBookDemoDialog() {
+  const dialogRef = this.dialog.open(PopupwindowComponent, {
+    width: '500px',
+    disableClose: true,
+    autoFocus: true,
+  });
+
+  dialogRef.afterClosed().subscribe((result) => {
+    if (result) {
+      console.log('Form submitted:', result);
+    }
+  });
+}
+
     paymentLogos = paymentLogos;
     clientLogo=clientLogo;
      industries = [

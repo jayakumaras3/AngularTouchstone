@@ -14,9 +14,14 @@
               <a [class.selected]="isActiveRoute('coursecatalog')"
                 [routerLink]="['/authentication/login']"  mat-flat-button color="primary" class="">Member Login</a>
 
-              <a [class.selected]="isActiveRoute('side-register')"
-                [routerLink]="['/authentication/side-register']"mat-stroked-button color="primary"
-                class="border-primary">Book a Demo</a>
+             <a mat-stroked-button 
+   color="primary" 
+   class="border-primary" 
+   [class.selected]="isActiveRoute('side-register')" 
+   (click)="openBookDemoDialog()">
+  Book a Demo
+</a>
+
             </div>
 
             <span class="f-s-14 f-w-600"> One-time purchase</span> - no

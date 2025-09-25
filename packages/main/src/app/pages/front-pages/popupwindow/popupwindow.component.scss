@@ -1,0 +1,12 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.full-width {
+  width: 100%;
+}
+.mat-mdc-dialog-content{
+    padding-top: 10px !important;
+}
