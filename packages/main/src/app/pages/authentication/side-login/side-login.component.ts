@@ -27,24 +27,31 @@ baseUrlpath:string="DOCHEKDOTCOM/app/Views/angular_view/";
 
 submit() {
   if (this.form.valid) {
-  this.authservice.login(this.form.value.username!, this.form.value.password!)
-  .subscribe({
-    next: res => {
-      console.log('Login Response:', res);
-      if (res.success) {
-        // Save user in localStorage instead of token
-       // localStorage.setItem('user', JSON.stringify(res.user));
-       // this.router.navigate(['/dashboards/dashboard1']);
-     //  window.location.href = "http://172.16.0.99/DOCHEKDOTCOM/My_training";
-      } else {
-        alert(res.message || 'Login failed');
-      }
-    },
-    error: err => {
-      console.error('HTTP Error:', err);
-      alert('Server error, check console for details');
-    }
-  });
+    this.authservice.login(this.form.value.username!, this.form.value.password!)
+      .subscribe({
+        next: res => {
+          console.log('Login Response:', res);
+          if (res.success) {
+            // Save user in localStorage if needed
+            localStorage.setItem('user', JSON.stringify(res.user));
+            
+            // Redirect to the URL from response
+            if (res.redirect_url) {
+              window.location.href = res.redirect_url;
+            } else {
+              // Fallback to default route if no redirect_url provided
+            //  this.router.navigate(['/dashboards/dashboard1']);
+            console.log("jk error");
+            }
+          } else {
+            alert(res.message || 'Login failed');
+          }
+        },
+        error: err => {
+          console.error('HTTP Error:', err);
+          alert('Server error, check console for details');
+        }
+      });
   }
 }
 
