@@ -29,6 +29,7 @@ interface Course {
   provider: string;
   thumbnail: string;
 }
+
 interface features {
   id: number;
   icon: string;
@@ -48,7 +49,7 @@ interface features {
   templateUrl: './homepage-details.component.html',
   styleUrl: './homepage-details.component.scss',
 })
-
+  /*  Courese Career skills start*/
 export class HomepageDetailsComponent implements OnInit{
      allCourses: Course[] = [
     {
@@ -237,7 +238,7 @@ export class HomepageDetailsComponent implements OnInit{
       this.displayedCourses = this.allCourses.slice(0, this.currentDisplayCount);
     }
   }
-  
+  /*  Courese Career skills end*/
 openBookDemoDialog() {
   const dialogRef = this.dialog.open(PopupwindowComponent, {
     width: '500px',

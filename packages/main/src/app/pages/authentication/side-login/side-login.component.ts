@@ -41,7 +41,7 @@ submit() {
             } else {
               // Fallback to default route if no redirect_url provided
             //  this.router.navigate(['/dashboards/dashboard1']);
-            console.log("jk error");
+            console.log(" error redirect");
             }
           } else {
             alert(res.message || 'Login failed');

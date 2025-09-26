@@ -34,13 +34,18 @@
       </div>
     </div>
   </div>
+  <!--  Career skills Start-->
   <div class="course-container">
-  <div class="header">
-    <h1>Career skills that work</h1>
-    <button class="free-trial-btn">Start 7-day Free Trial</button>
-  </div>
-
   <div class="courses-grid">
+    <!-- Header as first card -->
+    <div class="course-card header-card">
+      <div class="header-content">
+        <h1>Career skills that work</h1>
+        <button class="free-trial-btn">Start 7-day Free Trial</button>
+      </div>
+    </div>
+    
+    <!-- Course cards -->
     <div *ngFor="let course of displayedCourses" class="course-card">
       <div class="course-thumbnail">
         <img [src]="course.thumbnail" [alt]="course.title" class="thumbnail-image">
@@ -61,6 +66,9 @@
     </button>
   </div>
 </div>
+<!--  Career skills End-->
+
+
   <div class="m-t-32 ">
     <!-- <p class="text-center f-s-14 m-b-0">Secured payment with PayPal & Razorpay</p>--> 
   <div class="d-flex align-items-center justify-content-center m-t-32 m-x-0 gap-48 flex-wrap">

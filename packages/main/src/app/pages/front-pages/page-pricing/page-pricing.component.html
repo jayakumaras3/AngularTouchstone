@@ -1,9 +1,9 @@
 <section class="pricing-section">
-   <!-- <div class="pricing-header">
-  <h2>{{ banner.title }}</h2>
+  <div class="pricing-header">
+    <h2>{{ banner.title }}</h2>
     <p>{{ banner.subtitle }}</p>
     <h4 class="cta">{{ banner.cta }}</h4>
-  </div>-->
+  </div>
 
   <div class="toggle-buttons">
     <button [class.active]="selectedPlan === 'monthly'" (click)="selectedPlan = 'monthly'">Monthly</button>
@@ -23,10 +23,12 @@
       </div>
 
       <ul class="features">
-        <li *ngFor="let feature of plan.features"><span class="check">✔</span>{{ feature }}</li>
+        <li *ngFor="let feature of plan.features">
+          <span class="check">✔</span> {{ feature }}
+        </li>
       </ul>
 
-      <button class="plan-btn">Contact Sales</button>
+      <button class="plan-btn">{{ plan.button }}</button>
     </div>
   </div>
 </section>
