@@ -382,32 +382,59 @@ export const pricingPlans = {
     {
       title: 'Single Course',
       price: '$10',
-      period: 'Per Year',
+      period: 'Per Month',
       description: 'Best for one-off learners',
-      features: ['Access to 1 course'],
+      features: [
+        'Access to 1 course',
+        'Certification with every course',
+        'Mobile & desktop access',
+        'Easy course upload',
+        'AR/VR insights',
+        'Email support'
+      ],
       button: 'Get Started',
     },
     {
       title: '10-Course Bundle',
       price: '$77',
-      period: 'Per Year',
+      period: 'Per Month',
       description: 'Perfect for small teams',
-      features: ['Access to 10 courses'],
+      features: [
+        'Access to 10 courses each month',
+        'Certification with every course',
+        'Mobile & desktop access',
+        'Easy course upload',
+        'AR/VR insights',
+        'Email support'
+      ],
       button: 'Get Started',
     },
     {
       title: '50-Course Bundle',
       price: '$480',
-      period: 'Per Year',
-      description: 'Best for growing organizations with diverse training needs',
-      features: ['Access to 50 courses'],
+      period: 'Per Month',
+      description: 'Best for fast-growing businesses',
+      features: [
+        'Access to 50 courses each month',
+        'Certification with every course',
+        'Mobile & desktop access',
+        'Easy course upload',
+        'AR/VR insights',
+        'Priority email assistance'
+      ],
       button: 'Get Started',
     },
     {
       title: 'Enterprise (50+ courses)',
       price: 'Contact Sales',
       description: 'Customized Plan for large teams',
-      features: [],
+      features: [
+        'Certification with every course',
+        'Mobile & desktop access',
+        'Easy course upload',
+        'AR/VR insights',
+        'Dedicated success manager'
+      ],
       button: 'Get Started',
     },
   ],
@@ -492,37 +519,17 @@ export const plans = [
   },
 ];
 export const clientLogo = [
-  { src: `${baseUrlPath}assets/images/clientlogo/001.jpg`, alt: "Arby's", tooltip: "Arby's" },
+ 
   {
     src: `${baseUrlPath}assets/images/clientlogo/002.jpg`,
     alt: 'GE',
     tooltip: 'GE',
   },
   {
-      "src": "assets/images/clientlogo/003.jpg",
-      "alt": "Levi's",
-      "tooltip": "Levi's"
-    },
-  {
     src: `${baseUrlPath}assets/images/clientlogo/004.jpg`,
     alt: 'Nestle',
     tooltip: 'Nestle',
-  },
-  {
-    src: `${baseUrlPath}assets/images/clientlogo/005.jpg`,
-    alt: 'Schneider Electric',
-    tooltip: 'Schneider Electric',
-  },
-  {
-    src: `${baseUrlPath}assets/images/clientlogo/006.jpg`,
-    alt: 'SHARP',
-    tooltip: 'SHARP',
-  },  
-  {
-    src: `${baseUrlPath}assets/images/clientlogo/007.jpg`,
-    alt: 'Spirit',
-    tooltip: 'Spirit',
-  },  
+  }, 
   {
     src: `${baseUrlPath}assets/images/clientlogo/008.jpg`,
     alt: 'Wabtec',
@@ -568,7 +575,7 @@ export const faqList = [
   {
     question: 'What makes DoChek different from other LMS platforms?',
     answer:
-      'Unlike complex systems that overwhelm users, DoChek focuses on simplicity. Learners just attend courses, while admins can manage, assign, and track training in a few clicks. It’s built to be powerful but uncluttered. ',
+      'Unlike complex learning platforms, that overwhelm users, DoChek focuses on simplicity. Learners just attend courses, while admins can manage, assign, and track training in a few clicks. It’s built to be powerful but uncluttered.',
   },
   {
     question: 'Can DoChek handle large numbers of users? ',
@@ -585,6 +592,30 @@ export const faqList = [
       'What kind of pre-built courses are available? ',
     answer:
       'Through the DoChek Marketplace, you get access to 500+ ready-to-use courses covering compliance, communication, leadership, workplace safety, and more. You can deploy them immediately or customize them to fit your needs. ',
+  },
+  {
+    question:
+      'Can we migrate from our existing learning platform without losing data? ',
+    answer:
+      'Yes. DoChek supports industry standards like SCORM 1.2 and makes migration seamless. Your courses, learner data, and progress can be transferred smoothly, allowing your teams to pick up right where they left off. ',
+  },
+  {
+    question:
+      'How does DoChek keep learners engaged? ',
+    answer:
+      'DoCheck offers gamification, discussion forums, and scenario-based simulations to make learning interactive. This leads to higher participation, better completion rates, and stronger knowledge retention.',
+  },
+  {
+    question:
+      'Can I track more than just course completions in the DoCheck learning platform?',
+    answer:
+      'Yes. DoChek’s analytics go beyond “completed/not completed.” In our eLearning platform, you can view time spent per module, learner behavior patterns, drop-off points, and assessment performance. This can help you improve your training strategy. ',
+  },
+  {
+    question:
+      'Does DoChek work on mobile devices? ',
+    answer:
+      'Yes. DoChek is fully responsive and mobile-first, so learners can access training anytime, anywhere, whether they’re in the office, at home, or on the go. ',
   },
 ];
 
@@ -782,7 +813,7 @@ export const topcardsGrid = [
      img: `${baseUrlPathslash}/assets/images/svgs/icon-briefcase.svg`, color: 'warning' },
   { title: 'Build Courses within 24 Hours', subtitle: 'Our course builder feature enables you to create modules inside the platform and export them as SCORM packages.',
     img: `${baseUrlPath}assets/icons/icon2.png`, color: 'secondary',imgMain: `${baseUrlPathslash}/assets/images/landingpage/background/feature-apps.png`, },
-  { title: 'New Demos', subtitle: 'Brand new demos to help you build the perfect dashboard: <strong>Dark and Right-to-Left.</strong>', 
+  { title: 'Fast. Reliable. Scalable.', subtitle: 'A single platform that stays smooth, even as your learners grow from dozens to thousands.', 
     img: `${baseUrlPathslash}/assets/images/front-pages/logoIcon.svg`, color: 'primary',imgMain: `${baseUrlPathslash}/assets/images/landingpage/background/screen1.png` },
   { title: 'Track What Matters', subtitle: 'Get to know the time spent per module, learner behavior patterns, assessment performance, and drop-off points.', 
     img: `${baseUrlPathslash}/assets/images/front-pages/icon-speech-bubble.svg`, color: 'success' },

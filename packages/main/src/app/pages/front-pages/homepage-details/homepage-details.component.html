@@ -24,8 +24,6 @@
 
             </div>
 
-            <span class="f-s-14 f-w-600"> One-time purchase</span> - no
-            recurring fees.
           </div>
         </div>
         <div class="col-md-6 d-none d-lg-block">
@@ -34,39 +32,7 @@
       </div>
     </div>
   </div>
-  <!--  Career skills Start-->
-  <div class="course-container">
-  <div class="courses-grid">
-    <!-- Header as first card -->
-    <div class="course-card header-card">
-      <div class="header-content">
-        <h1>Career skills that work</h1>
-        <button class="free-trial-btn">Start 7-day Free Trial</button>
-      </div>
-    </div>
-    
-    <!-- Course cards -->
-    <div *ngFor="let course of displayedCourses" class="course-card">
-      <div class="course-thumbnail">
-        <img [src]="course.thumbnail" [alt]="course.title" class="thumbnail-image">
-        <div class="university-badge">{{course.universityShort}}</div>
-      </div>
-      <div class="course-content">
-        <div class="university">{{course.university}}</div>
-        <h3 class="course-title">{{course.title}}</h3>
-        <div class="level">{{course.level}}</div>
-        <div class="provider" *ngIf="course.provider">{{course.provider}}</div>
-      </div>
-    </div>
-  </div>
 
-  <div class="show-more-container" *ngIf="hasMoreCourses">
-    <button class="show-more-btn" (click)="loadMore()">
-      Show {{coursesToShow}} more
-    </button>
-  </div>
-</div>
-<!--  Career skills End-->
 
 
   <div class="m-t-32 ">
@@ -428,8 +394,7 @@
       <div class="row justify-content-center">
         <div class="col-md-6">
           <p class="text-center m-t-0">
-            Introducing Modernize's Light & Dark Skins, Exceptional Dashboards,
-            and Dynamic Pages - Stay Updated on What's New!
+            DoChek has a lightweight interface, which makes training hassle-free. It enables you to manage multiple users and clients from a single platform, without server slowdowns. Just assign the courses, and let DoChek manage the rest.
           </p>
         </div>
       </div>
@@ -465,7 +430,7 @@
             @for (topcard of topcards; track topcard.title)
             {
             @if
-            (topcard.title.includes('New Demos')) {
+            (topcard.title.includes('Fast. Reliable. Scalable.')) {
             <mat-card class="shadow-none text-center rounded-12 bg-light-{{
           topcard.color
         }} card-box tall-card p-x-30 p-y-48">
@@ -527,7 +492,7 @@
         @for (topcard of topcards; track topcard.title)
         {
         @if
-        (topcard.title.includes('New Demos')) {
+        (topcard.title.includes('Fast. Reliable. Scalable.')) {
         <mat-card class="shadow-none text-center rounded-12 bg-light-{{
         topcard.color
       }} card-box tall-card p-x-32 p-y-48">
@@ -762,78 +727,39 @@
     </div>
   </div>
 
-  <div class="exceptional position-relative">
-    <div class="custom-container">
-      <div class="bg-light-primary rounded-8 exceptional-content spacing-top-bottom">
-        <div class="row justify-content-center">
-          <div class="col-md-6">
-            <h2 class="lh-normal text-center f-s-40 m-b-30 section-sub-title">
-              Access 500+ Ready to Deploy Courses
-            </h2>
-          </div>
-        </div>
-
-        <div class="m-t-0">
-          <div class="demo-slider overflow-hidden d-flex gap-30">
-            <div class="row flex-nowrap overflow-auto gap-20">
-              @for (followercard of followercardsfirst; track followercard.title)
-              {
-              <div class="col-2">
-                <mat-card class="cardWithShadow demo-slide rounded-8">
-                  <mat-card-content>
-                    <div class="d-flex align-items-center justify-content-center x-20">
-                      <img [src]="followercard.imgSrc" alt="icon" />
-                      <h6 class="m-0 f-w-500 f-s-14 m-x-8">
-                        {{ followercard.title }}
-                      </h6>
-                    </div>
-                  </mat-card-content>
-                </mat-card>
-              </div>
-              }
-            </div>
-          </div>
-          <div class="demo-slider overflow-hidden d-flex gap-30 m-t-2">
-            <div class="row flex-nowrap overflow-auto gap-20">
-              @for (followercard of followercardsecond; track followercard.title)
-              {
-              <div class="col-2">
-                <mat-card class="cardWithShadow demo-slide-two rounded-8">
-                  <mat-card-content>
-                    <div class="d-flex align-items-center justify-content-center x-20">
-                      <img [src]="followercard.imgSrc" alt="icon" />
-                      <h6 class="m-0 f-w-500 f-s-14 m-x-8">
-                        {{ followercard.title }}
-                      </h6>
-                    </div>
-                  </mat-card-content>
-                </mat-card>
-              </div>
-              }
-            </div>
-          </div>
-          <div class="demo-slider overflow-hidden d-flex gap-30 m-t-2">
-            <div class="row flex-nowrap overflow-auto gap-20">
-              @for (followercard of followercardthird; track followercard.title) {
-              <div class="col-2">
-                <mat-card class="cardWithShadow demo-slide rounded-8">
-                  <mat-card-content>
-                    <div class="d-flex align-items-center justify-content-center x-20">
-                      <img [src]="followercard.imgSrc" alt="icon" />
-                      <h6 class="m-0 f-w-500 f-s-14 m-x-8">
-                        {{ followercard.title }}
-                      </h6>
-                    </div>
-                  </mat-card-content>
-                </mat-card>
-              </div>
-              }
-            </div>
-          </div>
-        </div>
+    <!--  Career skills Start-->
+  <div class="course-container">
+  <div class="courses-grid">
+    <!-- Header as first card -->
+    <div class="course-card header-card">
+      <div class="header-content">
+        <h1>Access 500+ Ready to Deploy Courses</h1>
+        <button class="free-trial-btn">Start 7-day Free Trial</button>
+      </div>
+    </div>
+    
+    <!-- Course cards -->
+    <div *ngFor="let course of displayedCourses" class="course-card">
+      <div class="course-thumbnail">
+        <img [src]="course.thumbnail" [alt]="course.title" class="thumbnail-image">
+        <div class="university-badge">{{course.universityShort}}</div>
+      </div>
+      <div class="course-content">
+        <div class="university">{{course.university}}</div>
+        <h3 class="course-title">{{course.title}}</h3>
+        <div class="level">{{course.level}}</div>
+        <div class="provider" *ngIf="course.provider">{{course.provider}}</div>
       </div>
     </div>
   </div>
+
+  <div class="show-more-container" *ngIf="hasMoreCourses">
+    <button class="show-more-btn" (click)="loadMore()">
+      Show {{coursesToShow}} more
+    </button>
+  </div>
+</div>
+<!--  Career skills End-->
 
   <div class="asked-questions spacing-top-bottom">
     <div class="container">

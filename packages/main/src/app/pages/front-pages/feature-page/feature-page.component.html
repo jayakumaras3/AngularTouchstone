@@ -1,24 +1,50 @@
-<div class="contact-page">
-  <div class="banner-section bg-light-primary contact-herder spacing-top-bottom">
-    <div class="container p-y-20">
-      <div class="row align-items-center">
+<div class="home-page header-container">
+ <div class="bg-light-primary home-page-header">
+    <div class="header-container-content custom-container m-x-auto">
+    <div class="custom-container footer-dashboard">
+    <div class="bg-light-primary rounded-8 footer-container overflow-hidden">
+      <div class="row">
         <div class="col-lg-6">
-          <h1 class="m-b-24 f-s-48 lh-normal section-sub-title">
-          Dochek - a Clutter-free Tool for Learning Management
-          </h1>
-          <div class="hstack">
-            <a mat-flat-button color="primary" (click)="openBookDemoDialog()">Book a Demo</a>
-            <a mat-stroked-button color="primary" class="border-primary">Login</a>
+          <div class="spacing-top-bottom spacing-left left-side-content">
+            <h2 class="f-s-40 m-b-24 lh-normal section-sub-title">
+             Everything You Need for Training, In One Place. 
+            </h2>
+           <h3 class="f-s-18 m-b-24 lh-normal section-sub-title"> No wasted hours. No wasted budgets. Just faster, smarter training Book a Demo. </h3>
+            
+
           </div>
         </div>
-
-        <div class="col-lg-6">
-          <p class="lh-base m-t-32">
-           Dochek is a lightweight learning platform built to simplify the way organizations deliver and manage training. It removes the burden of juggling between multiple tools for uploads, tracking, reviews, and brings it all in one place, without any system lags.</p>
+        <div class="col-md-6 d-none d-lg-block">
+          <img src="assets/images/front-pages/design-collection.png" alt="bg-img" class="imgStyleDash" />
         </div>
       </div>
     </div>
   </div>
+  </div>
+
+<div class="contact-page">
+  
+ <div class="outcomes-container">
+  <div class="outcomes-card">
+    <!-- Left side image -->
+    <div class="outcomes-image">
+      <img [src]="imagePath" alt="Learner outcomes" />
+    </div>
+
+    <!-- Right side content -->
+    <div class="outcomes-content">
+      <h2>Learner outcomes on Coursera</h2>
+      <p>
+        <strong>77% of learners report career benefits</strong>, such as new
+        skills, increased pay, and new job opportunities.
+        <a [href]="reportLink" target="_blank">2023 Coursera Learner Outcomes Report</a>
+      </p>
+
+      <button class="cta-btn">Join for Free</button>
+    </div>
+  </div>
+</div>
+
 <!--
   <div class="spacing-top-bottom setup-process">
     <div class="container">
