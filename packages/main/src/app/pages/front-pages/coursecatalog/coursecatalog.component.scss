@@ -1,4 +1,223 @@
 
+/* Search Results Section - Full width below search */
+.search-results-section {
+  margin: 2rem 0;
+  text-align: left;
+  width: 100%;
+  
+  .search-results-title {
+    color: #374151;
+    font-weight: 600;
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
+    line-height: 1.4;
+    
+    strong {
+      color: #3b82f6;
+    }
+  }
+  
+  .search-results-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    text-align: left;
+  }
+  
+  .result-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    
+    &:hover {
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-color: #d1d5db;
+      transform: translateY(-1px);
+    }
+    
+    .result-title {
+      font-weight: 500;
+      color: #374151;
+      font-size: 1rem;
+      line-height: 1.5;
+      margin: 0;
+    }
+    
+    .result-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.875rem;
+      
+      .duration {
+        color: #6b7280;
+        font-weight: 400;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        
+        &::before {
+          content: "⏰";
+          font-size: 0.8rem;
+        }
+      }
+      
+      .author {
+        color: #3b82f6;
+        font-style: italic;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+/* Alternative: Grid layout with single column */
+.search-results-grid.grid-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+/* Or use this if you prefer list-style layout */
+.search-results-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  
+  .result-item {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+    
+    &:not(:last-child) {
+      margin-bottom: 8px;
+    }
+    
+    &:hover {
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-color: #d1d5db;
+    }
+    
+    .result-title {
+      font-weight: 500;
+      color: #374151;
+      font-size: 1rem;
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+    
+    .result-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.875rem;
+      
+      .duration {
+        color: #6b7280;
+        font-weight: 400;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        
+        &::before {
+          content: "⏰";
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+}
+
+/* Enhanced spacing for better readability */
+.search-results-section {
+  .search-results-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .results-count {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-top: 4px;
+    font-weight: 400;
+  }
+}
+
+/* Animation for smooth appearance */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.search-results-section .result-card,
+.search-results-list .result-item {
+  animation: slideInUp 0.3s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .search-results-section {
+    margin: 1.5rem 0;
+    
+    .search-results-title {
+      font-size: 1.1rem;
+      margin-bottom: 1.25rem;
+    }
+    
+    .result-card {
+      padding: 16px;
+      gap: 6px;
+    }
+    
+    .search-results-grid {
+      gap: 12px;
+    }
+  }
+  
+  .search-results-list .result-item {
+    padding: 16px;
+    
+    &:not(:last-child) {
+      margin-bottom: 6px;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .search-results-section {
+    .search-results-title {
+      font-size: 1rem;
+    }
+    
+    .result-card {
+      padding: 14px;
+    }
+    
+    .result-meta {
+      flex-direction: column;
+      align-items: flex-start !important;
+      gap: 4px !important;
+    }
+  }
+}
 // New Theme Variables (based on DOCHEK screenshot)
 $primary-color: #1e293b;   // dark slate for headings
 $secondary-color: #334155; // slightly lighter for body text

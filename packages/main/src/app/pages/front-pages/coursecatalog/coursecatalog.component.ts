@@ -1,15 +1,23 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FooterComponent } from '../footer/footer.component';
+import { FormsModule } from '@angular/forms';
+type Course = { 
+  title: string; 
+  author?: string; 
+  duration?: string 
+};
 
-type Course = { title: string; author?: string; duration?: string };
-type SubCategory = { name: string; courses: Course[] };
+type SubCategory = { 
+  name: string; 
+  courses: Course[] 
+};
+
 interface Category {
   title: string;
   count: number;
   subCategories: SubCategory[];
 }
-
 const catalogData: Category[] = [
   {
     title: 'Business Skills',
@@ -870,7 +878,7 @@ const catalogData: Category[] = [
 @Component({
   selector: 'app-course-catalog',
   standalone: true,
-  imports: [CommonModule,FooterComponent],
+  imports: [CommonModule,FooterComponent,FormsModule],
   templateUrl: './coursecatalog.component.html',
   styleUrls: ['./coursecatalog.component.scss']
 })
@@ -879,4 +887,86 @@ export class CourseCatalogComponent {
   rightColumns = catalogData.slice(1); // the rest
   mainTitle = 'Course Catalog';
   subTitle = 'Micro Learning (500)';
+  
+  catalogData: Category[] = catalogData;
+  filteredCatalog: Category[] = [];
+  searchResults: Course[] = [];
+  searchTerm: string = '';
+  showSearchDropdown: boolean = false;
+
+  constructor() {
+    this.filteredCatalog = this.catalogData;
+  }
+
+  onSearch(): void {
+    const term = this.searchTerm.toLowerCase().trim();
+
+    if (!term) {
+      this.filteredCatalog = this.catalogData;
+      this.searchResults = [];
+      this.showSearchDropdown = false;
+      return;
+    }
+
+    // Filter the catalog data
+    this.filteredCatalog = this.catalogData
+      .map((category: Category): Category => {
+        const filteredSubCategories: SubCategory[] = category.subCategories
+          .map((subCat: SubCategory): SubCategory => {
+            const filteredCourses: Course[] = subCat.courses.filter((course: Course) => {
+              const title = course.title.toLowerCase();
+              
+              // Exact substring match
+              if (title.includes(term)) return true;
+
+              // Word-based partial match (any word should match)
+              const words = term.split(' ').filter(w => w.length > 2);
+              return words.some(word => title.includes(word));
+            });
+
+            return { ...subCat, courses: filteredCourses };
+          })
+          .filter((subCat: SubCategory) => subCat.courses.length > 0);
+
+        return { ...category, subCategories: filteredSubCategories };
+      })
+      .filter((cat: Category) => cat.subCategories.length > 0);
+
+    // Flat list for search results display
+    this.searchResults = this.filteredCatalog.flatMap(cat =>
+      cat.subCategories.flatMap(subCat => subCat.courses)
+    );
+
+    // Show dropdown when typing
+    this.showSearchDropdown = this.searchTerm.length > 0 && this.searchResults.length > 0;
+  }
+
+  onSearchFocus(): void {
+    if (this.searchTerm && this.searchResults.length > 0) {
+      this.showSearchDropdown = true;
+    }
+  }
+
+  onSearchBlur(): void {
+    // Small timeout to allow click event to register before hiding
+    setTimeout(() => {
+      this.showSearchDropdown = false;
+    }, 200);
+  }
+
+  onCourseSelect(course: Course): void {
+    this.searchTerm = course.title;
+    this.showSearchDropdown = false;
+    // Optional: Add any additional logic when a course is selected
+    console.log('Selected course:', course);
+  }
+
+  clearSearch(): void {
+    this.searchTerm = '';
+    this.searchResults = [];
+    this.showSearchDropdown = false;
+    this.filteredCatalog = this.catalogData;
+  }
+
+
 }

@@ -15,12 +15,12 @@
                 [routerLink]="['/authentication/login']"  mat-flat-button color="primary" class="">Member Login</a>
 
              <a mat-stroked-button 
-   color="primary" 
-   class="border-primary" 
-   [class.selected]="isActiveRoute('side-register')" 
-   (click)="openBookDemoDialog()">
-  Book a Demo
-</a>
+            color="primary" 
+            class="border-primary" 
+            [class.selected]="isActiveRoute('side-register')" 
+            (click)="openBookDemoDialog()">
+            Book a Demo
+                </a>
 
             </div>
 
@@ -742,13 +742,13 @@
     <div *ngFor="let course of displayedCourses" class="course-card">
       <div class="course-thumbnail">
         <img [src]="course.thumbnail" [alt]="course.title" class="thumbnail-image">
-        <div class="university-badge">{{course.universityShort}}</div>
+      <!-- <div class="university-badge">{{course.universityShort}}</div> -->  
       </div>
       <div class="course-content">
-        <div class="university">{{course.university}}</div>
+       <!-- <div class="university">{{course.university}}</div>--> 
         <h3 class="course-title">{{course.title}}</h3>
-        <div class="level">{{course.level}}</div>
-        <div class="provider" *ngIf="course.provider">{{course.provider}}</div>
+        <!-- <div class="level">{{course.level}}</div>
+        <div class="provider" *ngIf="course.provider">{{course.provider}}</div> -->
       </div>
     </div>
   </div>

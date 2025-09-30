@@ -55,7 +55,7 @@ export class HomepageDetailsComponent implements OnInit{
     {
       university: 'University of Michigan',
       universityShort: 'UM',
-      title: 'Python for Everybody',
+      title: 'Emotional Quotient (EQ) Strategies',
       level: 'Beginner - Specialization',
       provider: '',
       thumbnail: 'https://images.unsplash.com/photo-1526379879527-8559ecfcaec0?w=400&h=200&fit=crop'
@@ -73,7 +73,7 @@ export class HomepageDetailsComponent implements OnInit{
       universityShort: 'IBM',
       title: 'IBM Data Science',
       level: 'Beginner - Professional Certificate',
-      provider: 'IBM',
+      provider: '',
       thumbnail: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=200&fit=crop'
     },
     {
@@ -97,7 +97,7 @@ export class HomepageDetailsComponent implements OnInit{
       universityShort: 'GOOG',
       title: 'Google UX Design',
       level: 'Beginner - Professional Certificate',
-      provider: 'Google',
+      provider: '',
       thumbnail: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=400&h=200&fit=crop'
     },
     {
@@ -137,7 +137,7 @@ export class HomepageDetailsComponent implements OnInit{
       universityShort: 'META',
       title: 'Front-End Developer',
       level: 'Beginner - Professional Certificate',
-      provider: 'Meta',
+      provider: '',
       thumbnail: 'https://images.unsplash.com/photo-1611605698335-8b1569810432?w=400&h=200&fit=crop'
     },
     {
@@ -153,7 +153,7 @@ export class HomepageDetailsComponent implements OnInit{
       universityShort: 'AWS',
       title: 'AWS Cloud Practitioner',
       level: 'Beginner - Certification',
-      provider: 'Amazon',
+      provider: '',
       thumbnail: 'https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=400&h=200&fit=crop'
     },
     {
@@ -169,7 +169,7 @@ export class HomepageDetailsComponent implements OnInit{
       universityShort: 'IBM',
       title: 'AI Engineering',
       level: 'Intermediate - Professional Certificate',
-      provider: 'IBM',
+      provider: '',
       thumbnail: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=200&fit=crop'
     },
     {
@@ -193,7 +193,7 @@ export class HomepageDetailsComponent implements OnInit{
       universityShort: 'MS',
       title: 'Azure Fundamentals',
       level: 'Beginner - Certification',
-      provider: 'Microsoft',
+      provider: '',
       thumbnail: 'https://images.unsplash.com/photo-1591012911207-7d26f4695df6?w=400&h=200&fit=crop'
     },
     {

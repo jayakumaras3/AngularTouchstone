@@ -1,6 +1,58 @@
-<div class="row justify-content-center main-tile"> <div class="col-md-8"> <h1 class="banner-title text-center m-t-48"> Micro Learning <span class="text-primary"> (500) </span> </h1> </div> </div> <!-- <div class="cc-badge">{{ subTitle }}</div> -->
-<section class="cc-grid m-b-80">
-  <div class="row justify-content-center w-100">
+<div class="row justify-content-center main-tile">
+  <div class="col-md-8">
+    <h1 class="banner-title text-center m-t-48">
+      Micro Learning
+      <span class="text-primary"> (500) </span>
+    </h1>
+  </div>
+</div>
+
+<section class="cc-grid m-b-80 row justify-content-center w-100">
+  <!-- Search Container -->
+  <div class="search-container mb-4">
+    <div class="search-input-wrapper position-relative">
+      <input
+        type="text"
+        class="form-control search-input"
+        placeholder="Search courses..."
+        [(ngModel)]="searchTerm"
+        (input)="onSearch()"
+      />
+      <!-- Clear Button -->
+      <button
+        *ngIf="searchTerm"
+        type="button"
+        class="btn btn-sm clear-search-btn"
+        (click)="clearSearch()"
+      >
+        ×
+      </button>
+    </div>
+  </div>
+
+  <!-- Search Results Section -->
+  <div *ngIf="searchTerm && searchResults.length > 0" class="search-results-section mb-4 row justify-content-center w-100">
+    <div class="search-results-grid ">
+       <h3 class="search-results-title mb-4">Search Results for "{{ searchTerm }}" ({{ searchResults.length }} courses found)</h3>
+   
+      <div class="result-card " *ngFor="let course of searchResults">
+        <div class="result-title">{{ course.title }}</div>
+        <div class="result-meta">
+          <span *ngIf="course.duration" class="duration">⏱ {{ course.duration }}</span>
+          <span *ngIf="course.author" class="author">by {{ course.author }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- No Results Message -->
+  <div *ngIf="searchTerm && searchResults.length === 0" class="no-results text-center py-5 ">
+    <p class="text-muted">No courses found for "<strong>{{ searchTerm }}</strong>"</p>
+    <button class="btn btn-outline-primary mt-2" (click)="clearSearch()">Clear Search</button>
+  </div>
+
+  <!-- Original Catalog Layout (shown when no search) -->
+  <div *ngIf="!searchTerm" class="row justify-content-center w-100">
     <!-- Left Column -->
     <div class="cc-col col-md-5">
       <ng-container *ngFor="let cat of leftColumn">
@@ -10,7 +62,7 @@
             <h3>{{ sub.name }}</h3>
             <ul>
               <li *ngFor="let c of sub.courses; let i = index" [style.--index]="i">
-                {{ c.title }} <span *ngIf="c.duration">({{ c.duration }})</span>
+                {{ c.title }} <span *ngIf="c.duration" class="course-duration">({{ c.duration }})</span>
               </li>
             </ul>
           </ng-container>
@@ -27,7 +79,7 @@
             <h3>{{ sub.name }}</h3>
             <ul>
               <li *ngFor="let c of sub.courses; let i = index" [style.--index]="i">
-                {{ c.title }} <span *ngIf="c.duration">({{ c.duration }})</span>
+                {{ c.title }} <span *ngIf="c.duration" class="course-duration">({{ c.duration }})</span>
               </li>
             </ul>
           </ng-container>
@@ -36,4 +88,7 @@
     </div>
   </div>
 </section>
-<div class="footer"> <app-footer></app-footer> </div>
+
+<div class="footer">
+  <app-footer></app-footer>
+</div>
