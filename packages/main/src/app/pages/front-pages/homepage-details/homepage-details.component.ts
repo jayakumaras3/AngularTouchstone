@@ -53,156 +53,156 @@ interface features {
 export class HomepageDetailsComponent implements OnInit{
      allCourses: Course[] = [
     {
-      university: 'University of Michigan',
-      universityShort: 'UM',
-      title: 'Emotional Quotient (EQ) Strategies',
+      university: '',
+      universityShort: '',
+      title: 'Network Cybersecurity Attacks– Management and Monitoring',
       level: 'Beginner - Specialization',
       provider: '',
-      thumbnail: 'https://images.unsplash.com/photo-1526379879527-8559ecfcaec0?w=400&h=200&fit=crop'
+      thumbnail: 'assets/images/courses/C4U73_thumbnail_400x200.jpg'
     },
     {
-      university: 'Vanderbilt University',
-      universityShort: 'VU',
-      title: 'Prompt Engineering',
+      university: '',
+      universityShort: '',
+      title: 'Basic Digital Skills',
       level: 'Beginner - Specialization',
       provider: '',
-      thumbnail: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=400&h=200&fit=crop'
+      thumbnail: 'assets/images/courses/C4U136_thumbnail_400x200.jpg'
     },
     {
-      university: 'IBM, IBM',
-      universityShort: 'IBM',
-      title: 'IBM Data Science',
+      university: '',
+      universityShort: '',
+      title: 'Data Protection and Privacy [Retired]',
       level: 'Beginner - Professional Certificate',
       provider: '',
-      thumbnail: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=200&fit=crop'
+      thumbnail: 'assets/images/courses/C4U351_thumbnail_400x200.jpg'
     },
     {
-      university: 'ALEXIIS',
-      universityShort: 'ALX',
-      title: 'Advanced Machine Learning',
+      university: '',
+      universityShort: '',
+      title: 'Becoming an Effective Manager Conflict Resolution',
       level: 'Intermediate - Specialization',
       provider: '',
-      thumbnail: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400&h=200&fit=crop'
+      thumbnail: 'assets/images/courses/Track_07_L3_thumbnail_400x200.jpg'
     },
     {
-      university: 'Stanford University',
-      universityShort: 'SU',
-      title: 'Machine Learning',
+      university: '',
+      universityShort: '',
+      title: 'Effective Coaching: Coaching Conversations',
       level: 'Intermediate - Specialization',
       provider: '',
-      thumbnail: 'https://images.unsplash.com/photo-1555255707-c07966088b7b?w=400&h=200&fit=crop'
+      thumbnail: 'assets/images/courses/Track_08_5_thumbnail_400x200.jpg'
     },
     {
-      university: 'Google',
-      universityShort: 'GOOG',
-      title: 'Google UX Design',
+      university: '',
+      universityShort: '',
+      title: 'Emotional Intelligence: Introduction to Emotional Quotient (EQ)',
       level: 'Beginner - Professional Certificate',
       provider: '',
-      thumbnail: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=400&h=200&fit=crop'
+      thumbnail: 'assets/images/courses/Track_09_L1_thumbnail_400x200.jpg'
     },
     {
-      university: 'University of Pennsylvania',
-      universityShort: 'UP',
-      title: 'Business Foundations',
+      university: '',
+      universityShort: '',
+      title: 'Emotional Intelligence: Personal Competence',
       level: 'Beginner - Specialization',
       provider: '',
-      thumbnail: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=200&fit=crop'
+      thumbnail: 'assets/images/courses/Track_09_L2_thumbnail_400x200.jpg'
     },
     {
-      university: 'Johns Hopkins University',
-      universityShort: 'JHU',
-      title: 'Data Science',
+      university: '',
+      universityShort: '',
+      title: 'Social Competence',
       level: 'Intermediate - Specialization',
       provider: '',
-      thumbnail: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=200&fit=crop'
+      thumbnail: 'assets/images/courses/Track_09_L3_thumbnail_400x200.jpg'
     },
     {
-      university: 'University of California',
-      universityShort: 'UC',
-      title: 'Full Stack Web Development',
+      university: '',
+      universityShort: '',
+      title: 'Emotional Intelligence: Emotional Quotient (EQ) Strategies',
       level: 'Intermediate - Specialization',
       provider: '',
-      thumbnail: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=200&fit=crop'
+      thumbnail: 'assets/images/courses/Track_09_L4_thumbnail_400x200.jpg'
     },
     {
-      university: 'Harvard University',
-      universityShort: 'HU',
-      title: 'CS50: Introduction to Computer Science',
+      university: '',
+      universityShort: '',
+      title: 'Leading Teams: Intrinsic vs. Extrinsic Motivation',
       level: 'Beginner - Course',
       provider: '',
-      thumbnail: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=200&fit=crop'
+      thumbnail: 'assets/images/courses/Track_10_L1_thumbnail_400x200.jpg'
     },
     {
-      university: 'Meta',
-      universityShort: 'META',
-      title: 'Front-End Developer',
+      university: '',
+      universityShort: '',
+      title: 'Becoming an Effective Manager: Building Emotional Intelligence',
       level: 'Beginner - Professional Certificate',
       provider: '',
-      thumbnail: 'https://images.unsplash.com/photo-1611605698335-8b1569810432?w=400&h=200&fit=crop'
+      thumbnail: 'assets/images/courses/Track_11_L2_thumbnail_400x200.jpg'
     },
     {
-      university: 'University of London',
-      universityShort: 'UL',
-      title: 'Computer Science',
+      university: '',
+      universityShort: '',
+      title: 'Becoming an Effective Manager_Conflict Resolution',
       level: 'Intermediate - Degree',
       provider: '',
-      thumbnail: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=200&fit=crop'
+      thumbnail: 'assets/images/courses/Track_11_L3_thumbnail_400x200.jpg'
     },
     {
-      university: 'Amazon',
-      universityShort: 'AWS',
+      university: '',
+      universityShort: '',
       title: 'AWS Cloud Practitioner',
       level: 'Beginner - Certification',
       provider: '',
-      thumbnail: 'https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=400&h=200&fit=crop'
+      thumbnail: 'assets/images/courses/C4U73_thumbnail_400x200.jpg'
     },
     {
-      university: 'University of Toronto',
-      universityShort: 'UT',
+      university: '',
+      universityShort: '',
       title: 'Learn to Program: The Fundamentals',
       level: 'Beginner - Course',
       provider: '',
-      thumbnail: 'https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=400&h=200&fit=crop'
+      thumbnail: 'assets/images/courses/C4U73_thumbnail_400x200.jpg'
     },
     {
-      university: 'IBM',
-      universityShort: 'IBM',
+      university: '',
+      universityShort: '',
       title: 'AI Engineering',
       level: 'Intermediate - Professional Certificate',
       provider: '',
-      thumbnail: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=200&fit=crop'
+      thumbnail: 'assets/images/courses/C4U73_thumbnail_400x200.jpg'
     },
     {
-      university: 'University of Colorado',
-      universityShort: 'UCO',
+      university: '',
+      universityShort: '',
       title: 'Data Structures and Algorithms',
       level: 'Intermediate - Specialization',
       provider: '',
-      thumbnail: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&h=200&fit=crop'
+      thumbnail: 'assets/images/courses/C4U73_thumbnail_400x200.jpg'
     },
     {
-      university: 'MIT',
-      universityShort: 'MIT',
+      university: '',
+      universityShort: '',
       title: 'Computer Science and Programming',
       level: 'Intermediate - Course',
       provider: '',
-      thumbnail: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=200&fit=crop'
+      thumbnail: 'assets/images/courses/C4U73_thumbnail_400x200.jpg'
     },
     {
-      university: 'Microsoft',
-      universityShort: 'MS',
+      university: '',
+      universityShort: '',
       title: 'Azure Fundamentals',
       level: 'Beginner - Certification',
       provider: '',
-      thumbnail: 'https://images.unsplash.com/photo-1591012911207-7d26f4695df6?w=400&h=200&fit=crop'
+      thumbnail: 'assets/images/courses/C4U73_thumbnail_400x200.jpg'
     },
     {
-      university: 'Duke University',
-      universityShort: 'DU',
+      university: '',
+      universityShort: '',
       title: 'Statistics with R',
       level: 'Intermediate - Specialization',
       provider: '',
-      thumbnail: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=200&fit=crop'
+      thumbnail: 'assets/images/courses/C4U73_thumbnail_400x200.jpg'
     }
   ];
 
