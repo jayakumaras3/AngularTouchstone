@@ -35,6 +35,8 @@ interface TimelineEvent {
   styleUrl: './about-us.component.scss'
 })
 export class AboutUsComponent {
+   reportLink = 'https://www.coursera.org';
+  imagePath = 'assets/images/front-pages/2.jpg';
   timelineEvents: TimelineEvent[] = [
     {
       year: '2016',

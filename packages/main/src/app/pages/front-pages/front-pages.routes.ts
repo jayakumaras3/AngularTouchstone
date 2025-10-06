@@ -10,6 +10,7 @@ import { BlogDetailsComponent } from './blog-details/blog-details.component';
 import { CourseCatalogComponent } from './coursecatalog/coursecatalog.component';
 import { FeaturePageComponent } from './feature-page/feature-page.component';
 import { CorecatalogComponent } from './corecatalog/corecatalog.component';
+import { ShopComponent } from '../apps/ecommerce/shop/shop.component';
 
 
 export const FrontPagesRoutes: Routes = [
@@ -29,6 +30,7 @@ export const FrontPagesRoutes: Routes = [
            { path:'featurepage',component:FeaturePageComponent},
           { path:'corecatalog',component:CorecatalogComponent},
           { path: 'blog-details', component: BlogDetailsComponent },
+           { path: 'shop', component: ShopComponent }, 
         ],
       },
 ];

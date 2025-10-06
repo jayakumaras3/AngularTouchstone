@@ -17,6 +17,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProductService } from 'src/app/services/apps/product/product.service';
 import { Element, PRODUCT_DATA } from '../ecommerceData';
+import { FooterComponent } from '../../../front-pages/footer/footer.component';
+
 
 export interface Section {
   name: string;
@@ -31,6 +33,7 @@ export interface Section {
     CommonModule,
     FormsModule,
     NgScrollbarModule,
+    FooterComponent,
   ],
   templateUrl: './shop.component.html',
   styleUrl: './shop.component.scss',

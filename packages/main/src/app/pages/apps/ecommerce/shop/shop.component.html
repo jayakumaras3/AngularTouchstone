@@ -1,12 +1,14 @@
-<mat-card class="cardWithShadow overflow-hidden position-relative">
+<div class="home-page header-container bgset ">
+  <div class=" home-page-header spacing-top-bottom">
+<mat-card class="cardWithShadow overflow-hidden position-relative ">
   <mat-sidenav-container class="email-box">
     <mat-sidenav #mailnav [mode]="isOver() ? 'over' : 'side'" [opened]="!isOver()" class="mail-sidebar">
       <ng-scrollbar class="position-relative" style="height: 100%">
-        <div class="p-16">
+       <!-- <div class="p-16">
           <button mat-flat-button color="primary" class="w-100 btn-block" (click)="getAddProductRoute()">
             Add New Product
           </button>
-        </div>
+        </div> -->
         <h5 class="m-0 p-t-16 p-x-32 f-s-14 f-w-600">Filter by Category</h5>
         <div class="p-16">
           <mat-nav-list>
@@ -96,14 +98,16 @@
         </div>
         <div class="row">
           @for(productcard of filteredCards; track productcard.product_name) {
-          <div class="col-sm-6 col-lg-4 p-x-12">
-            <mat-card class="cardWithShadow productcard overflow-hidden b-1 cursor-pointer"
-              (click)="getviewDetails(productcard)">
+          <div class="col-sm-6 col-lg-3 p-x-12">
+         <!--   <mat-card class="cardWithShadow productcard overflow-hidden b-1 cursor-pointer"
+              (click)="getviewDetails(productcard)"> -->
+                 <mat-card class="cardWithShadow productcard overflow-hidden b-1 cursor-pointer"
+              >
               <a routerLink="/widgets/cards">
                 <div class="img-wrapper position-relative">
                   <img [src]="productcard.imagePath" alt="imgSrc" class="w-100" mat-card-image />
                   <div class="d-flex align-items-center icon-container">
-                    <button mat-mini-fab class="cart-btn-overlay bg-error text-white" matTooltip="Delete" (click)="
+                   <!-- <button mat-mini-fab class="cart-btn-overlay bg-error text-white" matTooltip="Delete" (click)="
                         openDialog(productcard.id); $event.stopPropagation()
                       ">
                       <i-tabler name="trash" class="icon-16 d-flex"></i-tabler>
@@ -111,7 +115,7 @@
                     <button mat-mini-fab class="cart-btn-overlay bg-primary text-white" matTooltip="Edit"
                       (click)="getEditedProduct(productcard)">
                       <i-tabler name="pencil" class="icon-16 d-flex"></i-tabler>
-                    </button>
+                    </button>-->
                   </div>
                 </div>
               </a>
@@ -156,3 +160,11 @@
     </mat-sidenav-content>
   </mat-sidenav-container>
 </mat-card>
+</div>
+</div>  
+
+  <div class="footer">
+    <div>
+      <app-footer></app-footer>
+    </div>
+  </div>

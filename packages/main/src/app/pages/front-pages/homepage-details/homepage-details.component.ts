@@ -55,7 +55,7 @@ export class HomepageDetailsComponent implements OnInit{
     {
       university: '',
       universityShort: '',
-      title: 'Network Cybersecurity Attacks– Management and Monitoring',
+      title: 'Network Cybersecurity Attacks: Management and Monitoring',
       level: 'Beginner - Specialization',
       provider: '',
       thumbnail: 'assets/images/courses/C4U73_thumbnail_400x200.jpg'
@@ -75,6 +75,22 @@ export class HomepageDetailsComponent implements OnInit{
       level: 'Beginner - Professional Certificate',
       provider: '',
       thumbnail: 'assets/images/courses/C4U351_thumbnail_400x200.jpg'
+    },    
+    {
+      university: '',
+      universityShort: '',
+      title: 'Relationship Between Data Protection and Privacy',
+      level: 'Intermediate - Specialization',
+      provider: '',
+      thumbnail: 'assets/images/courses/C4UM29_thumbnail_400x200.jpg'
+    },    
+    {
+      university: '',
+      universityShort: '',
+      title: 'Continuous learning and curiosity',
+      level: 'Intermediate - Specialization',
+      provider: '',
+      thumbnail: 'assets/images/courses/C4UM36_thumbnail_400x200.jpg'
     },
     {
       university: '',
@@ -143,7 +159,7 @@ export class HomepageDetailsComponent implements OnInit{
     {
       university: '',
       universityShort: '',
-      title: 'Becoming an Effective Manager_Conflict Resolution',
+      title: 'Becoming an Effective Manager Conflict Resolution',
       level: 'Intermediate - Degree',
       provider: '',
       thumbnail: 'assets/images/courses/Track_11_L3_thumbnail_400x200.jpg'
@@ -151,59 +167,42 @@ export class HomepageDetailsComponent implements OnInit{
     {
       university: '',
       universityShort: '',
-      title: 'AWS Cloud Practitioner',
-      level: 'Beginner - Certification',
-      provider: '',
-      thumbnail: 'assets/images/courses/C4U73_thumbnail_400x200.jpg'
-    },
-    {
-      university: '',
-      universityShort: '',
-      title: 'Learn to Program: The Fundamentals',
-      level: 'Beginner - Course',
-      provider: '',
-      thumbnail: 'assets/images/courses/C4U73_thumbnail_400x200.jpg'
-    },
-    {
-      university: '',
-      universityShort: '',
-      title: 'AI Engineering',
-      level: 'Intermediate - Professional Certificate',
-      provider: '',
-      thumbnail: 'assets/images/courses/C4U73_thumbnail_400x200.jpg'
-    },
-    {
-      university: '',
-      universityShort: '',
-      title: 'Data Structures and Algorithms',
+      title: 'Interpersonal Effectiveness: Networking and Building Relationships',
       level: 'Intermediate - Specialization',
       provider: '',
-      thumbnail: 'assets/images/courses/C4U73_thumbnail_400x200.jpg'
-    },
-    {
+      thumbnail: 'assets/images/courses/Track_29_L2_thumbnail_400x200.jpg'
+    },{
       university: '',
       universityShort: '',
-      title: 'Computer Science and Programming',
-      level: 'Intermediate - Course',
-      provider: '',
-      thumbnail: 'assets/images/courses/C4U73_thumbnail_400x200.jpg'
-    },
-    {
-      university: '',
-      universityShort: '',
-      title: 'Azure Fundamentals',
-      level: 'Beginner - Certification',
-      provider: '',
-      thumbnail: 'assets/images/courses/C4U73_thumbnail_400x200.jpg'
-    },
-    {
-      university: '',
-      universityShort: '',
-      title: 'Statistics with R',
+      title: 'Becoming an Effective Manager: Managing Performance',
       level: 'Intermediate - Specialization',
       provider: '',
-      thumbnail: 'assets/images/courses/C4U73_thumbnail_400x200.jpg'
-    }
+      thumbnail: 'assets/images/courses/Track_11_L5_thumbnail_400x200.jpg'
+    },
+    {
+      university: '',
+      universityShort: '',
+      title: 'Becoming an Effective Manager: Giving Effective Feedback',
+      level: 'Intermediate - Specialization',
+      provider: '',
+      thumbnail: 'assets/images/courses/Track_11_L6_thumbnail_400x200.jpg'
+    },
+    {
+      university: '',
+      universityShort: '',
+      title: 'Business Power Skills: Effective Presentations',
+      level: 'Intermediate - Specialization',
+      provider: '',
+      thumbnail: 'assets/images/courses/Track_12_L4_thumbnail_400x200.jpg'
+    },
+    {
+      university: '',
+      universityShort: '',
+      title: 'Becoming a Competent Leader: Creative Thinking and Problem Solving',
+      level: 'Intermediate - Specialization',
+      provider: '',
+      thumbnail: 'assets/images/courses/Track_13_L4_thumbnail_400x200.jpg'
+    },
   ];
 
   displayedCourses: Course[] = [];
