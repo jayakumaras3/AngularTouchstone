@@ -21,3 +21,70 @@
     }
   }
 }
+.spacing-top-bottom {
+    padding: 40px 0;
+}
+.timeline-horizontal {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 60px auto;
+  padding: 20px 0;
+  border-top: 2px solid #ddd;
+}
+
+.timeline-horizontal::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #ddd;
+  transform: translateY(-50%);
+}
+
+.timeline-item {
+  position: relative;
+  width: 12%;
+  text-align: center;
+}
+
+.timeline-item.top {
+  align-self: flex-start;
+  margin-bottom: 80px;
+}
+
+.timeline-item.bottom {
+  align-self: flex-end;
+  margin-top: 80px;
+}
+
+.timeline-card {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.timeline-card h4 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  
+}
+
+.timeline-card h5 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.timeline-card p {
+  font-size: 13px;
+  color: #777;
+  margin: 0;
+}
+

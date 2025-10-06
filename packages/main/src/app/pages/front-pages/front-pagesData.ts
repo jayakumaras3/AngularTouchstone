@@ -521,20 +521,71 @@ export const plans = [
 export const clientLogo = [
  
   {
-    src: `${baseUrlPath}assets/images/clientlogo/002.jpg`,
-    alt: 'GE',
-    tooltip: 'GE',
+    src: `${baseUrlPath}assets/images/clientlogo/Bata.png`,
+    alt: 'Bata',
+    tooltip: 'Bata',
   },
   {
-    src: `${baseUrlPath}assets/images/clientlogo/004.jpg`,
+    src: `${baseUrlPath}assets/images/clientlogo/Beckman-Coulter.png`,
+    alt: 'Beckman-Coulter',
+    tooltip: 'Beckman-Coulter',
+  }, 
+  {
+    src: `${baseUrlPath}assets/images/clientlogo/Britannia.png`,
+    alt: 'Britannia',
+    tooltip: 'Britannia',
+  }, 
+  {
+    src: `${baseUrlPath}assets/images/clientlogo/Daimler.png`,
+    alt: 'Daimler',
+    tooltip: 'Daimler',
+  }, 
+  {
+    src: `${baseUrlPath}assets/images/clientlogo/Dairy-Farm.png`,
+    alt: 'Dairy-Farm',
+    tooltip: 'Dairy-Farm',
+  }, 
+  {
+    src: `${baseUrlPath}assets/images/clientlogo/DFI.png`,
+    alt: 'DFI',
+    tooltip: 'DFI',
+  }, 
+  {
+    src: `${baseUrlPath}assets/images/clientlogo/Fulcrum-Labs.png`,
+    alt: 'Fulcrum-Labs',
+    tooltip: 'Fulcrum-Labs',
+  }, 
+  {
+    src: `${baseUrlPath}assets/images/clientlogo/George-Fisher.png`,
+    alt: 'George-Fisher',
+    tooltip: 'George-Fisher',
+  }, 
+  {
+    src: `${baseUrlPath}assets/images/clientlogo/Knowledge-Architect.png`,
+    alt: 'Knowledge-Architect',
+    tooltip: 'Knowledge-Architect',
+  }, 
+  {
+    src: `${baseUrlPath}assets/images/clientlogo/Morrison-Products.png`,
+    alt: 'Morrison-Products',
+    tooltip: 'Morrison-Products',
+  }, 
+  {
+    src: `${baseUrlPath}assets/images/clientlogo/Nestle.png`,
     alt: 'Nestle',
     tooltip: 'Nestle',
   }, 
   {
-    src: `${baseUrlPath}assets/images/clientlogo/008.jpg`,
-    alt: 'Wabtec',
-    tooltip: 'Wabtec',
+    src: `${baseUrlPath}assets/images/clientlogo/Novartis.png`,
+    alt: 'Novartis',
+    tooltip: 'Novartis',
+  }, 
+  {
+    src: `${baseUrlPath}assets/images/clientlogo/Transperfect.png`,
+    alt: 'Transperfect',
+    tooltip: 'Transperfect',
   },
+  
 ];
 export const paymentLogos = [
   { src: `${baseUrlPath}assets/images/front-pages/icon-visa.svg`, alt: 'visa', tooltip: 'Visa' },
@@ -858,33 +909,38 @@ export const  setupCards:setupCards[] = [
 export const stats = [
   {
     label: '',
-    value: '2008',
-    description: 'Purpleframe, founded as an eLearning company',
-  },
-  {
-    label: ' ',
     value: '2016',
-    description: 'Acquired by TalentQuest, a leader in talent management technology',
-  },
-  {
-    label: ' ',
-    value: '2017',
-    description: 'Named one of Georgia’s Top 10 Most Innovative Technology Companies',
+    description: 'Online Review Tool Launched',
   },
   {
     label: ' ',
     value: '2019',
-    description: 'Won the Education and Training Award at the Corporate Vision Global Business Awards',
+    description: 'AR/VR Tracking Integrated',
   },
   {
     label: ' ',
     value: '2020',
-    description: 'Earned Gold at the Brandon Hall Excellence Awards for Unique Learning Technology',
+    description: 'Course Builder Introduced',
+  },
+  {
+    label: ' ',
+    value: '2022',
+    description: '50+ Courses Released',
+  },
+  {
+    label: ' ',
+    value: '2023',
+    description: 'Global Translation Support Enabled',
   },
   {
     label: ' ',
     value: '2025',
-    description: 'TalentQuest, acquired by Energage, specializes in behavioral assessment and workplace culture; the eLearning division has been rebranded as Touchstone Learning & Consulting',
+    description: 'SCORM, Assessment Builder & Course Builder v4 Rolled Out',
+  },
+  {
+    label: ' ',
+    value: 'Present Day',
+    description: '500+ Courses and Expanding',
   },
 ];
 export const tclients = [
