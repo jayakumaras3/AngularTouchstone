@@ -59,10 +59,10 @@ export class ShopComponent implements OnInit {
 
   folders: Section[] = [
     { name: 'all', icon: 'users' },
-    { name: 'fashion', icon: 'hanger' },
-    { name: 'books', icon: 'book' },
-    { name: 'toys', icon: 'mood-smile' },
-    { name: 'electronics', icon: 'device-laptop' },
+    { name: 'Becoming a Competent Leader', icon: 'hanger' },
+    { name: 'Business Acumen Finance', icon: 'book' },
+    { name: 'Effective Feedback', icon: 'mood-smile' },
+    { name: 'Business Power Skills', icon: 'device-laptop' },
   ];
   selectedCategory: string = this.folders[0].name;
 
@@ -230,15 +230,31 @@ export class ShopComponent implements OnInit {
 
     this.resetAndLoad(filtered);
   }
-
-  getRestFilter() {
+//It loads 500 courses at once.
+/*  getRestFilter() {
     this.selectedCategory = this.folders[0].name;
     this.selectedSortBy = this.notes[0].name;
     this.selectedGender = 'all';
     this.selectedPrice = 'all';
     this.searchText = '';
     this.resetAndLoad(PRODUCT_DATA);
-  }
+  } */
+ // So changed to load 16 courses at once
+getRestFilter() {
+  this.selectedCategory = this.folders[0].name;
+  this.selectedSortBy = this.notes[0].name;
+  this.selectedGender = 'all';
+  this.selectedPrice = 'all';
+  this.searchText = '';
+
+  // Reset all product arrays and pagination
+  this.allProducts = PRODUCT_DATA;
+  this.filteredCards = [];
+  this.currentPage = 1;
+
+  // Load first 16 products only
+  this.loadMoreProducts();
+}
 
   // ========================
   // Misc Functions

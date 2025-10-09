@@ -1,3 +1,18 @@
+/* Allow category names to wrap onto next line */
+mat-list-item .mat-mdc-list-item-title,
+mat-list-item .mat-line,
+mat-list-item span[matListItemTitle] {
+  white-space: normal !important;
+  word-wrap: break-word;
+  overflow: visible;
+  line-height: 1.4;
+}
+
+/* Keep spacing neat */
+mat-list-item {
+  align-items: flex-start;
+}
+
 .bgset{
   
     margin: 0 auto;
