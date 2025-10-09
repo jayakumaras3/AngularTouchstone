@@ -30,7 +30,7 @@ export const FrontPagesRoutes: Routes = [
            { path:'featurepage',component:FeaturePageComponent},
           { path:'corecatalog',component:CorecatalogComponent},
           { path: 'blog-details', component: BlogDetailsComponent },
-           { path: 'shop', component: ShopComponent }, 
+           { path: 'catalog', component: ShopComponent }, 
         ],
       },
 ];
