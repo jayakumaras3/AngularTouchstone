@@ -526,11 +526,6 @@ export const clientLogo = [
     tooltip: 'Bata',
   },
   {
-    src: `${baseUrlPath}assets/images/clientlogo/Beckman-Coulter.png`,
-    alt: 'Beckman-Coulter',
-    tooltip: 'Beckman-Coulter',
-  }, 
-  {
     src: `${baseUrlPath}assets/images/clientlogo/Britannia.png`,
     alt: 'Britannia',
     tooltip: 'Britannia',
@@ -554,16 +549,6 @@ export const clientLogo = [
     src: `${baseUrlPath}assets/images/clientlogo/Fulcrum-Labs.png`,
     alt: 'Fulcrum-Labs',
     tooltip: 'Fulcrum-Labs',
-  }, 
-  {
-    src: `${baseUrlPath}assets/images/clientlogo/George-Fisher.png`,
-    alt: 'George-Fisher',
-    tooltip: 'George-Fisher',
-  }, 
-  {
-    src: `${baseUrlPath}assets/images/clientlogo/Knowledge-Architect.png`,
-    alt: 'Knowledge-Architect',
-    tooltip: 'Knowledge-Architect',
   }, 
   {
     src: `${baseUrlPath}assets/images/clientlogo/Morrison-Products.png`,
