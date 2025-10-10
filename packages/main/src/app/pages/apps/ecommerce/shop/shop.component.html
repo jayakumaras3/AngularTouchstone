@@ -1,5 +1,5 @@
-<div class="home-page header-container bgset ">
-  <div class=" home-page-header spacing-top-bottom bgwidth">
+<div class="home-page header-container ">
+  <div class=" home-page-header spacing-top-bottom bgwidth ">
 <mat-card class="cardWithShadow overflow-hidden position-relative ">
   <mat-sidenav-container class="email-box">
     <mat-sidenav #mailnav [mode]="isOver() ? 'over' : 'side'" [opened]="!isOver()" class="mail-sidebar">
@@ -73,7 +73,7 @@
       <div class="p-24">
         <div class="d-flex align-items-center justify-content-between m-b-24">
           @if(!isMobileView){
-          <h6 class="f-s-20 f-w-600">Products</h6>
+          <h6 class="f-s-20 f-w-600">Products to Courses</h6>
           } @if(isMobileView){
           <button mat-mini-fab class="bg-primary text-white" aria-label="Example icon button with a delete icon"
             (click)="mailnav.toggle()">
@@ -98,7 +98,7 @@
         </div>
         <div class="row">
           @for(productcard of filteredCards; track productcard.product_name) {
-          <div class="col-sm-6 col-lg-3 p-x-12">
+          <div class="col-sm-6 col-lg-4 p-x-12">
          <!--   <mat-card class="cardWithShadow productcard overflow-hidden b-1 cursor-pointer"
               (click)="getviewDetails(productcard)"> -->
                  <mat-card class="cardWithShadow productcard overflow-hidden b-1 cursor-pointer"
@@ -129,9 +129,9 @@
                 <div class="d-flex align-items-center justify-content-between">
                   <div class="d-flex align-items-center">
                     <h6 class="f-s-16 f-w-600">${{ productcard.base_price }}</h6>
-                    <span class="f-s-14 m-l-8 text-decoration-line-through">${{ productcard.dealPrice }}</span>
+                   <!--<span class="f-s-14 m-l-8 text-decoration-line-through">${{ productcard.dealPrice }}</span>-->
                   </div>
-                  <div class="d-flex align-items-center gap-1">
+               <!-- <div class="d-flex align-items-center gap-1">
                     @if(productcard.rating !== undefined){
                     @for (star of [1, 2, 3, 4, 5]; track star) {
                     <i-tabler name="star" class="icon-17 text-warning"
@@ -139,7 +139,7 @@
                     }
                     }
   
-                  </div>
+                  </div>-->  
                 </div>
               </mat-card-content>
             </mat-card>

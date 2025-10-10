@@ -1,87 +1,51 @@
 /* -- section 1 start */.outcomes-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background-color: #f5f9ff;
-  padding: 40px 20px;
 }
 
 .outcomes-card {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  max-width: 1000px;
-  background: transparent;
+  min-height: 432px; /* ensures both sides align vertically */
 }
 
-.outcomes-image {
-  flex: 1;
-  img {
-    width: 100%;
-    border-radius: 4px;
-    object-fit: cover;
-  }
+.outcomes-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  max-width: 480px; /* limits image size for balance */
 }
 
 .outcomes-content {
-  flex: 2;
-  padding: 0 30px;
-  line-height: 43px;
-
-  h2 {
-    font-size: 28px;
-    font-weight: 600;
-    margin-bottom: 16px;
-    color: #1f1f1f;
-  }
-
-  p {
-    font-size: 18px;
-    color: #333;
-    margin-bottom: 24px;
-    
-
-    strong {
-      font-weight: 700;
-    }
-
-    a {
-      color: #0056d2;
-      text-decoration: underline;
-
-      &:hover {
-        text-decoration: none;
-      }
-    }
-  }
-
-  .cta-btn {
-    background-color: #0056d2;
-    color: #fff;
-    padding: 12px 24px;
-    border-radius: 4px;
-    border: none;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-
-    &:hover {
-      background-color: #0041a8;
-    }
-  }
+  line-height: 1.8;
+  color: #333;
 }
 
-/* Responsive */
+.outcomes-content h2 {
+  color: #1f1f1f;
+  font-size: 28px;
+}
+
+.outcomes-content p {
+ /* font-size: 18px;*/
+  margin-bottom: 16px;
+}
+
+/* Responsive adjustments */
 @media (max-width: 768px) {
   .outcomes-card {
     flex-direction: column;
     text-align: center;
+    min-height: auto;
   }
 
   .outcomes-content {
-    padding: 20px 0 0 0;
+    padding-top: 20px;
+  }
+
+  .outcomes-image img {
+    max-width: 80%;
   }
 }
+
 
 /* section 2 end */
 

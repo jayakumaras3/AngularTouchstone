@@ -36,7 +36,7 @@ interface TimelineEvent {
 })
 export class AboutUsComponent {
    reportLink = 'https://www.coursera.org';
-  imagePath = 'assets/images/front-pages/2.jpg';
+  imagePath = 'assets/images/front-pages/Why-We-Built-DoChek.png';
   timelineEvents: TimelineEvent[] = [
     {
       year: '2016',

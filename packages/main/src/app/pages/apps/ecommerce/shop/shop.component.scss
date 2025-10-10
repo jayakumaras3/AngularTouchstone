@@ -7,7 +7,30 @@ mat-list-item span[matListItemTitle] {
   overflow: visible;
   line-height: 1.4;
 }
+.home-page-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px; /* spacing top-bottom */
+}
 
+.bgwidth {
+  width: 100%;
+  max-width: 1400px; /* Limit content width */
+  margin: 0 auto; /* Center horizontally */
+}
+
+mat-card.cardWithShadow {
+  width: 100%;
+}
+
+mat-sidenav-container.email-box {
+  width: 100%;
+}
+
+.spacing-top-bottom {
+  padding: 40px 0;
+}
 /* Keep spacing neat */
 mat-list-item {
   align-items: flex-start;
@@ -15,10 +38,10 @@ mat-list-item {
 
 .bgset{
   
-    margin: 0 auto;
+    /*margin: 0 auto;
     width: 100%;
     padding: 0px 40px;
-    background-color: var(--mat-sys-primary-fixed-dim) !important;
+    background-color: var(--mat-sys-primary-fixed-dim) !important;*/
 
 }
 .card-title {
@@ -31,7 +54,7 @@ mat-list-item {
 }
 .bgwidth
 {
- max-width: 1400px;
+ /*max-width: 1400px;*/
 }
 .spacing-top-bottom{
     padding: 40px 0;
