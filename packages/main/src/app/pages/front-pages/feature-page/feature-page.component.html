@@ -212,20 +212,119 @@
   </div> -->
 
   <mat-divider></mat-divider>
-<div class="container" id="demos2">
+    <div class="template-slider spacing-top-bottom">
+    <div class="custom-container">
+      <div class="bg-light-primary rounded-pill spacing-top-bottom template-slider-content">
+        <div class="spacing-left-right m-b-8">
+          <h2 class="f-s-40 lh-normal section-sub-title">
+            The DoChek Edge
+          </h2>
+        </div>
+        <div class="demo-slider overflow-hidden d-flex gap-30 spacing-bottom">
+          <div>
+            <div class="demo-slide">
+              <a [routerLink]="['/apps/chat']">
+                <img src="assets/images/front-pages/app-chat.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
+              </a>
+            </div>
+          </div>
+          <div>
+            <div class="demo-slide">
+              <a (click)="onImageClick('/apps/email/inbox')">
+                <img src="assets/images/front-pages/app-email.jpg" alt="slide" class="img-fluid rounded-7 sliderImg"
+                  [ngClass]="{
+                  'img-border': selectedPath === '/apps/email/inbox'
+                }" />
+              </a>
+            </div>
+          </div>
+          <div>
+            <div class="demo-slide">
+              <a (click)="onImageClick('/dashboards/dashboard1')">
+                <img src="assets/images/front-pages/demo-main.jpg" alt="slide" class="img-fluid rounded-7 sliderImg"
+                  [ngClass]="{
+                  'img-border': selectedPath === '/dashboards/dashboard1'
+                }" />
+              </a>
+            </div>
+          </div>
+          <div>
+            <div class="demo-slide">
+              <img src="assets/images/front-pages/demo-dark.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
+            </div>
+          </div>
+          <div>
+            <div class="demo-slide">
+              <a (click)="onImageClick('/front-pages/homepage')">
+                <img src="assets/images/front-pages/demo-horizontal.jpg" alt="slide"
+                  class="img-fluid rounded-7 sliderImg" [ngClass]="{
+                  'img-border': selectedPath === '/front-pages/homepage'
+                }" />
+              </a>
+            </div>
+          </div>
+          <div>
+            <div class="demo-slide">
+              <img src="assets/images/front-pages/demo-rtl.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
+            </div>
+          </div>
+          <div>
+            <div class="demo-slide">
+              <img src="assets/images/front-pages/app-chat.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
+            </div>
+          </div>
+          <div>
+            <div class="demo-slide">
+              <img src="assets/images/front-pages/app-email.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
+            </div>
+          </div>
+        </div>
+        <div class="spacing-left-right">
+          <div class="row">
+            <div class="col-md-4 text-center m-b-30">
+              <h3 class="f-s-18 m-b-16">High Customizability</h3>
+              <p class="f-s-14 m-0">
+                Tailor the dashboard to your exact needs. Customize layouts, color
+                schemes, and widgets effortlessly for a personalized user
+                experience.
+              </p>
+            </div>
+            <div class="col-md-4 text-center m-b-30">
+              <h3 class="f-s-18 m-b-16">Powerful Data Analytics</h3>
+              <p class="f-s-14 m-0">
+                Unlock the true potential of your data with our advanced analytics
+                tools. Gain valuable insights and make data-driven decisions with
+                ease.
+              </p>
+            </div>
+
+            <div class="col-md-4 text-center m-b-30">
+              <h3 class="f-s-18 m-b-16">Interactive Charts</h3>
+              <p class="f-s-14 m-0">
+                Visualize complex data sets beautifully with our interactive
+                graphs and charts. Quickly grasp trends and patterns for smarter
+                analysis.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- <div class="container" id="demos2">
         <div class="row justify-content-center">
           <div class="col-lg-6 col-sm-8">
-            <!-- <span
+            <!- <span
               class="text-primary text-uppercase d-block text-center f-w-500"
               >ALMOST COVERED EVERYTHING</span 
-            >-->
+            > ->
             <h2 class="section-title text-center m-t-16">
               The DoChek Edge
             </h2>
           </div>
         </div>
 
-        <!-- features -->
+        <!- features ->
         <div class="row m-t-24">
           @for(feature of features; track feature.title) {
           <div class="col-sm-4 col-lg-4 text-center">
@@ -241,7 +340,7 @@
           }
         </div>
       </div>
-  <!-- <div class=" key-metric">
+  <!- <div class=" key-metric">
     <div class="container">
       <div class="row justify-content-between">
         <div class="col-md-5">
@@ -272,17 +371,17 @@
         </div>
       </div>
     </div>
-  </div> -->
+  </div> ->
 
- <!--  <div class="our-leadership spacing-top p-b-48">
+ <!-  <div class="our-leadership spacing-top p-b-48">
     <app-image-slider></app-image-slider>
   </div>
-dupilcate ***********-->
+dupilcate ***********->
 
-    <!--  Career skills Start-->
+    <!-  Career skills Start->
   <div class="course-container">
   <div class="courses-grid">
-    <!-- Header as first card -->
+    <!- Header as first card ->
     <div class="course-card header-card">
       <div class="header-content">
         <h1>Access 500+ Ready-to-Deploy courses</h1>
@@ -290,17 +389,17 @@ dupilcate ***********-->
       </div>
     </div>
     
-    <!-- Course cards -->
+    <!- Course cards ->
     <div *ngFor="let course of displayedCourses" class="course-card">
       <div class="course-thumbnail">
         <img [src]="course.thumbnail" [alt]="course.title" class="thumbnail-image">
-      <!-- <div class="university-badge">{{course.universityShort}}</div> -->  
+      <!- <div class="university-badge">{{course.universityShort}}</div> ->  
       </div>
       <div class="course-content">
-       <!-- <div class="university">{{course.university}}</div>--> 
+       <!- <div class="university">{{course.university}}</div>-> 
         <h3 class="course-title">{{course.title}}</h3>
-        <!-- <div class="level">{{course.level}}</div>
-        <div class="provider" *ngIf="course.provider">{{course.provider}}</div> -->
+        <!- <div class="level">{{course.level}}</div>
+        <div class="provider" *ngIf="course.provider">{{course.provider}}</div> ->
       </div>
     </div>
   </div>
@@ -310,7 +409,7 @@ dupilcate ***********-->
       Show {{coursesToShow}} more
     </button>
   </div>
-</div>
+</div>-->
 <!--  Career skills End-->
   <!--
   <div class="spacing-top-bottom key-metric"><h1 _ngcontent-ng-c1365611484="" class="text-center spacing-bottom f-s-48 section-sub-title lh-normal">Trusted by Clients</h1>

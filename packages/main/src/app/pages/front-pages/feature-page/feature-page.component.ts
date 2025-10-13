@@ -3,6 +3,7 @@ import { IconModule } from 'src/app/icon/icon.module';
 import { MaterialModule } from 'src/app/material.module';
 import { ImageSliderComponent } from '../image-slider/image-slider.component';
 import { FooterComponent } from '../footer/footer.component';
+import { RouterModule } from '@angular/router';
 interface features {
   id: number;
   icon: string;
@@ -22,12 +23,13 @@ import {
   setupCards,
   stats,
   tclients,
+  common
   users,
 } from '../front-pagesData';
 import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-feature-page',
-   imports: [IconModule,MaterialModule ,CommonModule,ImageSliderComponent,FooterComponent,
+   imports: [IconModule,MaterialModule ,CommonModule,ImageSliderComponent,FooterComponent,RouterModule,
     //PagePricingComponent
   ],
   templateUrl: './feature-page.component.html',
