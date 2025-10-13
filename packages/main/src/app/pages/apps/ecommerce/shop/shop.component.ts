@@ -188,6 +188,7 @@ languageOptions = [
     );
     this.resetAndLoad(results);
   }
+  this.scrollToTop();
 }
 getSorted(name: string): void {
   this.selectedSortBy = name;
@@ -213,6 +214,7 @@ getSorted(name: string): void {
       break;
   }
   this.resetAndLoad(sorted);
+  this.scrollToTop();
 }
 
  /* getGender(gender: string): void {
@@ -243,8 +245,12 @@ getSorted(name: string): void {
   });
 
   this.resetAndLoad(results);
+  this.scrollToTop()
 }
 
+  scrollToTop(): void {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 
   getPricing(base_priceRange: string): void {
     this.selectedPrice = base_priceRange;
