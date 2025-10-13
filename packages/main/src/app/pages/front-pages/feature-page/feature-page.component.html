@@ -214,24 +214,48 @@
   <mat-divider></mat-divider>
     <div class="template-slider spacing-top-bottom">
     <div class="custom-container">
-      <div class="bg-light-primary rounded-pill spacing-top-bottom template-slider-content">
-        <div class="spacing-left-right m-b-8">
-          <h2 class="f-s-40 lh-normal section-sub-title">
+      <div class="spacing-left-right m-b-8 ">
+          <h2 class="f-s-40 lh-normal section-sub-title text-center">
             The DoChek Edge
           </h2>
         </div>
+      <div class="bg-light-primary rounded-pill spacing-top-bottom template-slider-content">
+         <div class="spacing-left-right">
+          <div class="row">
+            <div class="col-md-4 text-center m-b-30">
+              <h3 class="f-s-18 m-b-16">Scalable by Design</h3>
+              <p class="f-s-14 m-0">
+                Train from 10 to 10,000 learners with no slowdown, lag, or disruption.
+              </p>
+            </div>
+            <div class="col-md-4 text-center m-b-30">
+              <h3 class="f-s-18 m-b-16">Impact-driven</h3>
+              <p class="f-s-14 m-0">
+                Utilize AR/VR insights in our learning platform to refine programs and enhance user retention.
+              </p>
+            </div>
+
+            <div class="col-md-4 text-center m-b-30">
+              <h3 class="f-s-18 m-b-16">Flexible Pricing</h3>
+              <p class="f-s-14 m-0">
+                A pay-as-you-go model with no hidden fees, no heavy contracts, and complete control over your budget.
+              </p>
+            </div>
+          </div>
+        </div>
+        
         <div class="demo-slider overflow-hidden d-flex gap-30 spacing-bottom">
           <div>
             <div class="demo-slide">
               <a [routerLink]="['/apps/chat']">
-                <img src="assets/images/front-pages/app-chat.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
+                <img src="assets/images/courses/C4U73_thumbnail_400x200.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
               </a>
             </div>
           </div>
           <div>
             <div class="demo-slide">
               <a (click)="onImageClick('/apps/email/inbox')">
-                <img src="assets/images/front-pages/app-email.jpg" alt="slide" class="img-fluid rounded-7 sliderImg"
+                <img src="assets/images/courses/C4UM29_thumbnail_400x200.jpg" alt="slide" class="img-fluid rounded-7 sliderImg"
                   [ngClass]="{
                   'img-border': selectedPath === '/apps/email/inbox'
                 }" />
@@ -241,7 +265,7 @@
           <div>
             <div class="demo-slide">
               <a (click)="onImageClick('/dashboards/dashboard1')">
-                <img src="assets/images/front-pages/demo-main.jpg" alt="slide" class="img-fluid rounded-7 sliderImg"
+                <img src="assets/images/courses/C4U351_thumbnail_400x200.jpg" alt="slide" class="img-fluid rounded-7 sliderImg"
                   [ngClass]="{
                   'img-border': selectedPath === '/dashboards/dashboard1'
                 }" />
@@ -250,13 +274,13 @@
           </div>
           <div>
             <div class="demo-slide">
-              <img src="assets/images/front-pages/demo-dark.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
+              <img src="assets/images/courses/C4U136_thumbnail_400x200.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
             </div>
           </div>
           <div>
             <div class="demo-slide">
               <a (click)="onImageClick('/front-pages/homepage')">
-                <img src="assets/images/front-pages/demo-horizontal.jpg" alt="slide"
+                <img src="assets/images/courses/Track_09_L1_thumbnail_400x200.jpg" alt="slide"
                   class="img-fluid rounded-7 sliderImg" [ngClass]="{
                   'img-border': selectedPath === '/front-pages/homepage'
                 }" />
@@ -265,12 +289,12 @@
           </div>
           <div>
             <div class="demo-slide">
-              <img src="assets/images/front-pages/demo-rtl.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
+              <img src="assets/images/courses/Track_29_L2_thumbnail_400x200.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
             </div>
           </div>
           <div>
             <div class="demo-slide">
-              <img src="assets/images/front-pages/app-chat.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
+              <img src="assets/images/courses/Track_12_L4_thumbnail_400x200.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
             </div>
           </div>
           <div>
@@ -279,35 +303,7 @@
             </div>
           </div>
         </div>
-        <div class="spacing-left-right">
-          <div class="row">
-            <div class="col-md-4 text-center m-b-30">
-              <h3 class="f-s-18 m-b-16">High Customizability</h3>
-              <p class="f-s-14 m-0">
-                Tailor the dashboard to your exact needs. Customize layouts, color
-                schemes, and widgets effortlessly for a personalized user
-                experience.
-              </p>
-            </div>
-            <div class="col-md-4 text-center m-b-30">
-              <h3 class="f-s-18 m-b-16">Powerful Data Analytics</h3>
-              <p class="f-s-14 m-0">
-                Unlock the true potential of your data with our advanced analytics
-                tools. Gain valuable insights and make data-driven decisions with
-                ease.
-              </p>
-            </div>
-
-            <div class="col-md-4 text-center m-b-30">
-              <h3 class="f-s-18 m-b-16">Interactive Charts</h3>
-              <p class="f-s-14 m-0">
-                Visualize complex data sets beautifully with our interactive
-                graphs and charts. Quickly grasp trends and patterns for smarter
-                analysis.
-              </p>
-            </div>
-          </div>
-        </div>
+       
       </div>
     </div>
   </div>

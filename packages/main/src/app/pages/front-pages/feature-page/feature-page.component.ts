@@ -1,9 +1,9 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, signal,inject, } from '@angular/core';
 import { IconModule } from 'src/app/icon/icon.module';
 import { MaterialModule } from 'src/app/material.module';
 import { ImageSliderComponent } from '../image-slider/image-slider.component';
 import { FooterComponent } from '../footer/footer.component';
-import { RouterModule } from '@angular/router';
+import { Router,RouterModule } from '@angular/router';
 interface features {
   id: number;
   icon: string;
@@ -23,7 +23,7 @@ import {
   setupCards,
   stats,
   tclients,
-  common
+
   users,
 } from '../front-pagesData';
 import { CommonModule } from '@angular/common';
@@ -38,6 +38,8 @@ import { CommonModule } from '@angular/common';
   
 
 export class FeaturePageComponent {
+  selectedPath: string | null = null;
+  private router = inject(Router);
   // Component data
   reportLink = 'https://www.coursera.org';
   imagePath = 'assets/images/front-pages/2.jpg';
@@ -194,7 +196,13 @@ export class FeaturePageComponent {
       thumbnail: 'assets/images/courses/Track_13_L4_thumbnail_400x200.jpg'
     },
   ];
+onImageClick(path: string) {
+    this.selectedPath = path;
 
+    setTimeout(() => {
+      this.router.navigate([path]);
+    }, 100); // brief delay to show border
+  }
   displayedCourses: Course[] = [];
   initialCoursesCount: number = 3;
   coursesPerLoad: number = 8;
