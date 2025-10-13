@@ -968,16 +968,5 @@ export const team = [
     name: 'Vinod Chithambaram',
     position: 'EVP – LEARNING PRODUCTS AND APAC SALES',
     image: `${baseUrlPath}assets/images/front-pages/3.png`
-  },
-  {id: 4,
-    name: 'Marsha Schrage, Ph.D., SHRM-SCP',
-    position: 'Executive Director | Consulting',
-    image: `${baseUrlPath}assets/images/front-pages/4.jpg`
-  },
-  {
-    id: 5,
-    name: 'Rick Brandt, Ph.D.',
-    position: 'Executive Vice President | Consulting',
-    image: `${baseUrlPath}assets/images/front-pages/5.jpeg`
   }
 ];

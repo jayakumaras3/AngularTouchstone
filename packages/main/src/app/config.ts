@@ -13,7 +13,7 @@ export interface AppSettings {
 
 
 //localhost Root
-/**/export const baseUrlPath = '';
+export const baseUrlPath = '';
 
 export const baseUrlPathslash = '';
 

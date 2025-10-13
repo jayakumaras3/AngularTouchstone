@@ -10,7 +10,7 @@
           </button>
         </div> -->
         <h5 class="m-0 p-t-16 p-x-32 f-s-14 f-w-600">Filter by Category</h5>
-        <div class="p-16">
+        <div class="p-14">
           <mat-nav-list>
             @for(folder of folders; track folder){
             <mat-list-item role="listitem" class="m-b-2 gap-10 active-primary" [ngClass]="{
@@ -42,17 +42,21 @@
             }
           </mat-nav-list>
         </div>
-        <h5 class="m-0 p-t-16 p-x-32 f-s-14 f-w-600 b-t-1">By Gender</h5>
+        <h5 class="m-0 p-t-16 p-x-32 f-s-14 f-w-600 b-t-1">By Languages</h5>
         <div class="p-16 pricing-section">
-          <mat-radio-group [(ngModel)]="selectedGender" class="m-b-20">
-            @for (price of genderOptions; track price.value) {
-            <mat-radio-button class="custom-radio" [value]="price.value" (click)="getGender(price.value)">
-              {{ price.label | titlecase }}
+        <mat-radio-group [(ngModel)]="selectedLanguage" class="m-b-20">
+          @for (lang of languageOptions; track lang.value) {
+            <mat-radio-button
+              class="custom-radio"
+              [value]="lang.value"
+              (click)="getLanguageFilter(lang.value)"
+            >
+              {{ lang.label | titlecase }}
             </mat-radio-button>
-            }
-          </mat-radio-group>
-        </div>
-        <h5 class="m-0 p-t-16 p-x-32 f-s-14 f-w-600 b-t-1">By Pricing</h5>
+          }
+        </mat-radio-group>
+      </div>
+        <!-- <h5 class="m-0 p-t-16 p-x-32 f-s-14 f-w-600 b-t-1">By Pricing</h5>
         <div class="p-16 pricing-section">
           <mat-radio-group [(ngModel)]="selectedPrice" class="m-b-20">
             @for (price of priceOptions; track price.value) {
@@ -61,12 +65,12 @@
             </mat-radio-button>
             }
           </mat-radio-group>
-        </div>
+        </div>-->
         <div class="b-t-1 p-20">
           <button mat-flat-button class="w-100 m-y-20" (click)="getRestFilter()">
             Reset Filters
           </button>
-        </div>
+        </div> 
       </ng-scrollbar>
     </mat-sidenav>
     <mat-sidenav-content>

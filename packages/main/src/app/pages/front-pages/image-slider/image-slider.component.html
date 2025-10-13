@@ -14,19 +14,19 @@
 
         <div class="col-md-7 m-t-24 position-relative d-flex flex-column justify-content-end align-items-end">
           <div class="d-flex gap-16">
-            <button mat-icon-button class="d-flex align-items-center justify-content-center icon-48 bg-light" aria-label="Previous" (click)="prev()">
+          <!--  <button mat-icon-button class="d-flex align-items-center justify-content-center icon-48 bg-light" aria-label="Previous" (click)="prev()">
               <i-tabler name="arrow-left" class="d-flex align-items-center justify-content-center"></i-tabler>
             </button>
             <button mat-icon-button class="d-flex align-items-center justify-content-center icon-48 bg-light" aria-label="Next" (click)="next()">
               <i-tabler name="arrow-right" class="d-flex align-items-center justify-content-center"></i-tabler>
-            </button>
+            </button> -->
           </div>
         </div>
       </div>
 
       <div class="row">
         @for (member of visibleTeamMembers(); track member.id){
-        <div class="col-sm-6 col-md-3">
+        <div class="col-sm-6 col-md-4">
           <mat-card class="cardWithShadow productcard overflow-hidden rounded-8 position-relative shadow-none">
             <a routerLink="/widgets/cards">
               <img [src]="member.image" alt="imgSrc" class="w-100 h-100 rounded-7" mat-card-image />

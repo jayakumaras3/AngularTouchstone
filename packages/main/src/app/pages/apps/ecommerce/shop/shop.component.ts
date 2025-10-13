@@ -58,29 +58,43 @@ export class ShopComponent implements OnInit {
   searchText: string = '';
 
   folders: Section[] = [
-    { name: 'all', icon: 'users' },
-    { name: 'Becoming a Competent Leader', icon: 'hanger' },
-    { name: 'Business Acumen Finance', icon: 'book' },
-    { name: 'Effective Feedback', icon: 'mood-smile' },
-    { name: 'Business Power Skills', icon: 'device-laptop' },
+      { name: 'All', icon: 'apps' },
+      { name: 'Business Skills', icon: 'briefcase' },
+      { name: 'Compliance', icon: 'scale' },
+      { name: 'DEI (Diversity, Equity, and Inclusion)', icon: 'users-group' },
+      { name: 'Technology', icon: 'cpu' },
+      { name: 'Safety', icon: 'shield-check' },
+      { name: 'HealthCare', icon: 'stethoscope' },
+      { name: 'Wellness', icon: 'heart' },
   ];
   selectedCategory: string = this.folders[0].name;
 
-  notes: Section[] = [
-    { name: 'newest', icon: 'calendar' },
-    { name: 'Price: High-Low', icon: 'sort-descending' },
-    { name: 'Price: Low-High', icon: 'sort-ascending' },
-    { name: 'discounted', icon: 'percentage' },
-  ];
+ notes: Section[] = [
+  { name: 'Newest', icon: 'calendar' },
+  { name: 'Price: High-Low', icon: 'sort-descending' },
+  { name: 'Price: Low-High', icon: 'sort-ascending' },
+  { name: 'Duration', icon: 'clock' },
+];
   selectedSortBy: string = this.notes[0].name;
 
-  selectedGender: string = 'all';
+  /*selectedGender: string = 'all';
   genderOptions = [
     { label: 'All', value: 'all' },
-    { label: 'Men', value: 'men' },
-    { label: 'Women', value: 'women' },
-    { label: 'Kids', value: 'kids' },
-  ];
+    { label: 'English', value: 'english' },
+    { label: 'Spanish', value: 'spanish' },
+    { label: 'German', value: 'german' },
+    { label: 'Italian', value: 'italian' },    
+    { label: 'French', value: 'french' },
+  ];*/
+  selectedLanguage: string = 'all';
+languageOptions = [
+  { label: 'All', value: 'all' },
+  { label: 'English', value: 'English' },
+  { label: 'Spanish', value: 'Spanish' },
+  { label: 'German', value: 'German' },
+  { label: 'Italian', value: 'Italian' },
+  { label: 'French', value: 'French' },
+];
 
   selectedPrice: string = 'all';
   priceOptions = [
@@ -150,7 +164,7 @@ export class ShopComponent implements OnInit {
     this.resetAndLoad(results);
   }
 
-  getCategory(name: string): void {
+ /* getCategory(name: string): void {
     this.selectedCategory = name;
     if (name.toLowerCase() === 'all') {
       this.resetAndLoad(PRODUCT_DATA);
@@ -162,35 +176,46 @@ export class ShopComponent implements OnInit {
       );
       this.resetAndLoad(results);
     }
+  }*/
+ getCategory(name: string): void {
+  this.selectedCategory = name;
+
+  if (name.toLowerCase() === 'all') {
+    this.resetAndLoad(PRODUCT_DATA);
+  } else {
+    const results = PRODUCT_DATA.filter(
+      (card) => card.skill?.toLowerCase() === name.toLowerCase()
+    );
+    this.resetAndLoad(results);
   }
+}
+getSorted(name: string): void {
+  this.selectedSortBy = name;
+  const nameLower = name.toLowerCase();
+  let sorted = [...PRODUCT_DATA];
 
-  getSorted(name: string): void {
-    this.selectedSortBy = name;
-    const nameLower = name.toLowerCase();
-    let sorted = [...PRODUCT_DATA];
-
-    switch (nameLower) {
-      case 'newest':
-        sorted.sort((a, b) => +new Date(b.date) - +new Date(a.date));
-        break;
-      case 'price: high-low':
-        sorted.sort((a, b) => +b.base_price - +a.base_price);
-        break;
-      case 'price: low-high':
-        sorted.sort((a, b) => +a.base_price - +b.base_price);
-        break;
-      case 'discounted':
-        sorted.sort((a, b) => {
-          const discountA = +a.dealPrice - +a.base_price;
-          const discountB = +b.dealPrice - +b.base_price;
-          return discountB - discountA;
-        });
-        break;
-    }
-    this.resetAndLoad(sorted);
+  switch (nameLower) {
+    case 'newest':
+      sorted.sort((a, b) => +new Date(b.date) - +new Date(a.date));
+      break;
+    case 'price: high-low':
+      sorted.sort((a, b) => +b.base_price - +a.base_price);
+      break;
+    case 'price: low-high':
+      sorted.sort((a, b) => +a.base_price - +b.base_price);
+      break;
+    case 'duration':
+      sorted.sort((a, b) => {
+        const durA = Number(a.duration) || 0;
+        const durB = Number(b.duration) || 0;
+        return durA - durB; // ascending order (shorter first)
+      });
+      break;
   }
+  this.resetAndLoad(sorted);
+}
 
-  getGender(gender: string): void {
+ /* getGender(gender: string): void {
     if (gender.toLowerCase() === 'all') {
       this.resetAndLoad(PRODUCT_DATA);
     } else {
@@ -199,7 +224,27 @@ export class ShopComponent implements OnInit {
       );
       this.resetAndLoad(results);
     }
+  }*/
+ getLanguageFilter(language: string): void {
+  this.selectedLanguage = language;
+
+  // Normalize casing
+  const filterValue = language.trim().toLowerCase();
+
+  if (filterValue === 'all') {
+    this.resetAndLoad(PRODUCT_DATA);
+    return;
   }
+
+  // Filter using language field from PRODUCT_DATA
+  const results = PRODUCT_DATA.filter((card) => {
+    const lang = card.language?.trim().toLowerCase() || '';
+    return lang === filterValue;
+  });
+
+  this.resetAndLoad(results);
+}
+
 
   getPricing(base_priceRange: string): void {
     this.selectedPrice = base_priceRange;
@@ -243,7 +288,7 @@ export class ShopComponent implements OnInit {
 getRestFilter() {
   this.selectedCategory = this.folders[0].name;
   this.selectedSortBy = this.notes[0].name;
-  this.selectedGender = 'all';
+  this.selectedLanguage = 'all';
   this.selectedPrice = 'all';
   this.searchText = '';
 
