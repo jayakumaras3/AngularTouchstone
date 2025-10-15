@@ -212,32 +212,32 @@
   </div> -->
 
   <mat-divider></mat-divider>
-    <div class="template-slider spacing-top-bottom">
+    <div class="template-slider spacing-top">
     <div class="custom-container">
       <div class="spacing-left-right m-b-8 ">
           <h2 class="f-s-40 lh-normal section-sub-title text-center">
             The DoChek Edge
           </h2>
         </div>
-      <div class="bg-light-primary rounded-pill spacing-top-bottom template-slider-content">
+      <div class="bg-light-primary rounded-pill spacing-top template-slider-content">
          <div class="spacing-left-right">
           <div class="row">
             <div class="col-md-4 text-center m-b-30">
-              <h3 class="f-s-18 m-b-16">Scalable by Design</h3>
-              <p class="f-s-14 m-0">
+              <h2 class="title m-b-16">Scalable by Design</h2>
+              <p class="desc m-0">
                 Train from 10 to 10,000 learners with no slowdown, lag, or disruption.
               </p>
             </div>
             <div class="col-md-4 text-center m-b-30">
-              <h3 class="f-s-18 m-b-16">Impact-driven</h3>
-              <p class="f-s-14 m-0">
+              <h2 class="title m-b-16">Impact-driven</h2>
+              <p class="desc m-0">
                 Utilize AR/VR insights in our learning platform to refine programs and enhance user retention.
               </p>
             </div>
 
             <div class="col-md-4 text-center m-b-30">
-              <h3 class="f-s-18 m-b-16">Flexible Pricing</h3>
-              <p class="f-s-14 m-0">
+              <h2 class="title m-b-16">Flexible Pricing</h2>
+              <p class="desc m-0">
                 A pay-as-you-go model with no hidden fees, no heavy contracts, and complete control over your budget.
               </p>
             </div>
@@ -247,63 +247,66 @@
         <div class="demo-slider overflow-hidden d-flex gap-30 spacing-bottom">
           <div>
             <div class="demo-slide">
-              <a [routerLink]="['/apps/chat']">
+             <a (click)="onImageClick('/front-pages/catalog')" class="clickable-link">
                 <img src="assets/images/courses/C4U73_thumbnail_400x200.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
               </a>
             </div>
           </div>
           <div>
             <div class="demo-slide">
-              <a (click)="onImageClick('/apps/email/inbox')">
-                <img src="assets/images/courses/C4UM29_thumbnail_400x200.jpg" alt="slide" class="img-fluid rounded-7 sliderImg"
-                  [ngClass]="{
-                  'img-border': selectedPath === '/apps/email/inbox'
-                }" />
+             <a (click)="onImageClick('/front-pages/catalog')" class="clickable-link">
+                <img src="assets/images/courses/C4U73_thumbnail_400x200.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
+              </a>
+            </div>
+          </div>
+          <div>
+             <div class="demo-slide">
+             <a (click)="onImageClick('/front-pages/catalog')" class="clickable-link">
+                <img src="assets/images/courses/C4U73_thumbnail_400x200.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
               </a>
             </div>
           </div>
           <div>
             <div class="demo-slide">
-              <a (click)="onImageClick('/dashboards/dashboard1')">
-                <img src="assets/images/courses/C4U351_thumbnail_400x200.jpg" alt="slide" class="img-fluid rounded-7 sliderImg"
-                  [ngClass]="{
-                  'img-border': selectedPath === '/dashboards/dashboard1'
-                }" />
+             <a (click)="onImageClick('/front-pages/catalog')" class="clickable-link">
+                <img src="assets/images/courses/C4U73_thumbnail_400x200.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
+              </a>
+            </div>
+          </div>
+          <div>
+             <div class="demo-slide">
+             <a (click)="onImageClick('/front-pages/catalog')" class="clickable-link">
+                <img src="assets/images/courses/C4U73_thumbnail_400x200.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
               </a>
             </div>
           </div>
           <div>
             <div class="demo-slide">
-              <img src="assets/images/courses/C4U136_thumbnail_400x200.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
-            </div>
-          </div>
-          <div>
-            <div class="demo-slide">
-              <a (click)="onImageClick('/front-pages/homepage')">
-                <img src="assets/images/courses/Track_09_L1_thumbnail_400x200.jpg" alt="slide"
-                  class="img-fluid rounded-7 sliderImg" [ngClass]="{
-                  'img-border': selectedPath === '/front-pages/homepage'
-                }" />
+             <a (click)="onImageClick('/front-pages/catalog')" class="clickable-link">
+                <img src="assets/images/courses/C4U73_thumbnail_400x200.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
               </a>
             </div>
           </div>
           <div>
             <div class="demo-slide">
-              <img src="assets/images/courses/Track_29_L2_thumbnail_400x200.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
+             <a (click)="onImageClick('/front-pages/catalog')" class="clickable-link">
+                <img src="assets/images/courses/C4U73_thumbnail_400x200.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
+              </a>
             </div>
           </div>
           <div>
-            <div class="demo-slide">
-              <img src="assets/images/courses/Track_12_L4_thumbnail_400x200.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
-            </div>
-          </div>
-          <div>
-            <div class="demo-slide">
-              <img src="assets/images/courses/Track_11_L2_thumbnail_400x200.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
+             <div class="demo-slide">
+             <a (click)="onImageClick('/front-pages/catalog')" class="clickable-link">
+                <img src="assets/images/courses/C4U73_thumbnail_400x200.jpg" alt="slide" class="img-fluid rounded-7 sliderImg" />
+              </a>
             </div>
           </div>
         </div>
-       
+       <div class="spacing-left-right m-b-8 ">
+          <h2 class="f-s-40 lh-normal section-sub-title text-center">
+           Access 500+ Ready-to-Deploy courses
+          </h2>
+        </div>
       </div>
     </div>
   </div>

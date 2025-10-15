@@ -18,6 +18,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProductService } from 'src/app/services/apps/product/product.service';
 import { Element, PRODUCT_DATA } from '../ecommerceData';
 import { FooterComponent } from '../../../front-pages/footer/footer.component';
+import { PopupwindowComponent } from '../../../front-pages/popupwindow/popupwindow.component';
 
 export interface Section {
   name: string;
@@ -227,6 +228,20 @@ getSorted(name: string): void {
       this.resetAndLoad(results);
     }
   }*/
+ 
+ openBookDemoDialog() {
+   const dialogRef = this.dialog.open(PopupwindowComponent, {
+     width: '500px',
+     disableClose: true,
+     autoFocus: true,
+   });
+ 
+   dialogRef.afterClosed().subscribe((result) => {
+     if (result) {
+       console.log('Form submitted:', result);
+     }
+   });
+ }
  getLanguageFilter(language: string): void {
   this.selectedLanguage = language;
 

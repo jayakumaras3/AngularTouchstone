@@ -9,6 +9,10 @@
       }
     }
   }
+  .clickable-link,
+.clickable-link img {
+  cursor: pointer;
+}
 .demo-slider {
         .demo-slide {
           animation: slide3d 15s linear infinite;
@@ -73,7 +77,9 @@
       border-color: var(--mat-sys-primary); // Use your Angular Material primary variable or a custom color
     }
   }
-
+.text-center {
+    text-align: center !important;
+}
   .faq-accordion {
     .mat-expansion-panel {
       border-radius: 8px !important;
@@ -478,14 +484,16 @@
 
   .title {
     font-weight: 700;
+        font-size: 2rem;
     color: #1e293b;
     margin-bottom: 1rem;
+        line-height: 2.3rem;
   }
 
   .desc {
     color: #4b5563;
     line-height: 1.7;
-    font-size: 15px;
+        font-size: 1.05rem;
     margin-bottom: 1rem;
   }
 

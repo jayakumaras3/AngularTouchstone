@@ -7,7 +7,7 @@
         <div class="col-lg-6">
           <div class="spacing-top-bottom spacing-left left-side-content">
             <h2 class="f-s-40 m-b-24 lh-normal section-sub-title">
-             1 Platform. All Your Learning Needs. Zero Chaos.
+             One Platform. All Your Learning Needs. Zero Chaos.
             </h2>
            <h3 class="f-s-18 m-b-24 lh-normal section-sub-title"> Deliver, manage, and track training in just a few clicks, all in one simple workspace. </h3>
             <div class="m-b-24 hstack">
@@ -150,8 +150,9 @@
             </h2>
            <h3 class="f-s-14 m-b-24 d-block lh-base fontWeightnormal  section-sub-title">With DoChek’s lightweight interface, training is hassle-free. Manage multiple users and clients from a single platform, without server slowdowns. Our partners benefit from less administrative hassle, smoother delivery, and sharper insights. Just assign the courses, and let DoChek manage the rest. </h3>
             <div class="m-b-24 hstack">
-              <a [class.selected]="isActiveRoute('coursecatalog')"
-                [routerLink]="['/authentication/login']"  mat-flat-button color="primary" class="">Book Demo</a>
+              <a 
+                (click)="openBookDemoDialog()" mat-flat-button color="primary" class="">Book a Demo</a>
+                
             </div>
           </div>
         </div>
@@ -733,14 +734,14 @@
     <div class="course-card header-card">
       <div class="header-content">
         <h1>Access 500+ Ready-to-Deploy courses</h1>
-        <button class="free-trial-btn">Start 7-day Free Trial</button>
+        <button class="free-trial-btn" (click)="openBookDemoDialog()">Start 7-day Free Trial</button>
       </div>
     </div>
     
     <!-- Course cards -->
     <div *ngFor="let course of displayedCourses" class="course-card">
       <div class="course-thumbnail">
-        <img [src]="course.thumbnail" [alt]="course.title" class="thumbnail-image">
+        <img (click)="openBookDemoDialog()" [src]="course.thumbnail" [alt]="course.title" class="thumbnail-image">
       <!-- <div class="university-badge">{{course.universityShort}}</div> -->  
       </div>
       <div class="course-content">
@@ -784,7 +785,7 @@
           </mat-accordion>
         </div>
       </div>
-      <div class="d-flex justify-content-center">
+      <!-- <div class="d-flex justify-content-center">
         <div class="d-flex align-items-center justify-content-center gap-4 p-y-6 p-x-10 rounded border-dash">
           <span class="f-s-14">Still have a question?</span>
           <a target="_blank" href="https://discord.com/invite/XujgB8ww4n"
@@ -794,7 +795,7 @@
             class="text-decoration-underline text-dark f-s-14">Submit a ticket</a>
         </div>
       </div>
-    </div>
+    </div>-->
   </div>
 
   <div class="footer">
