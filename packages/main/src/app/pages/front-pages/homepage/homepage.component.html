@@ -118,38 +118,37 @@
                 About Us
               </button></mat-list-item>
             <mat-list-item role="listitem">
-              <button mat-button class="text-dark" [class.selected]="isActiveRoute('blogs')"
-                [routerLink]="['/front-pages/blog']">
-                Blogs 1
+              <button mat-button class="text-dark" [class.selected]="isActiveRoute('featurepage')"
+                [routerLink]="['/front-pages/featurepage']">
+               Feature page
               </button></mat-list-item>
             <mat-list-item role="listitem">
-              <button mat-button class="text-dark" [routerLink]="['/front-pages/portfolio']"
-                [class.selected]="isActiveRoute('portfolio')">
-                Portfolio
-                <span class="bg-light-primary text-primary rounded f-w-600 p-6 p-y-4 f-s-12">
+              <button mat-button class="text-dark" [routerLink]="['/front-pages/catalog']"
+                [class.selected]="isActiveRoute('catalog')">
+                Course Catalog
+               <!-- <span class="bg-light-primary text-primary rounded f-w-600 p-6 p-y-4 f-s-12">
                   New
-                </span>
+                </span>-->
               </button></mat-list-item>
-            <mat-list-item role="listitem">
-              <button mat-button class="text-dark" [class.selected]="isActiveRoute('dashboard')"
-                [routerLink]="['/dashboards/dashboard1']">
-                Dashboard
-              </button>
-            </mat-list-item>
             <mat-list-item role="listitem">
               <button mat-button class="text-dark" [class.selected]="isActiveRoute('pricing')"
                 [routerLink]="['/front-pages/pricing']">
                 Pricing
               </button>
             </mat-list-item>
+           <!-- <mat-list-item role="listitem">
+              <button mat-button class="text-dark" [class.selected]="isActiveRoute('pricing')"
+                [routerLink]="['/front-pages/pricing']">
+                Pricing
+              </button>
+            </mat-list-item>-->
             <mat-list-item role="listitem">
               <button mat-button class="text-dark " [class.selected]="isActiveRoute('contact')"
                 [routerLink]="['/front-pages/contact']">
                 Contact
               </button></mat-list-item>
             <mat-list-item role="listitem" class="w-100">
-              <a mat-flat-button color="primary" class="w-100" [routerLink]="'/authentication/login'">Get
-                Started</a></mat-list-item>
+              <a mat-flat-button color="primary" class="w-100" [routerLink]="'/authentication/login'">Login</a></mat-list-item>
           </mat-list>
         </div>
       </div>
