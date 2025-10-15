@@ -34,6 +34,27 @@
             }
           </mat-nav-list>
         </div>
+      <h5 class="m-0 p-t-16 p-x-32 f-s-14 f-w-600 b-t-1">By Languages</h5>
+        <div class="p-16 pricing-section">
+          <mat-radio-group [(ngModel)]="selectedLanguage" class="m-b-20">
+            @for (lang of languageOptions; track lang.value) {
+              <mat-list-item
+                role="listitem"
+                class="m-b-2 gap-10 language-item"
+                [ngClass]="{ 'active-lang': selectedLanguage === lang.value }"
+                (click)="getLanguageFilter(lang.value)"
+              >
+                <div class="lang-row">
+                  <span class="lang-label">{{ lang.label | titlecase }}</span>
+                  <span class="lang-count">({{ languageCounts[lang.label] || 0 }})</span>
+                </div>
+              </mat-list-item>
+            }
+          </mat-radio-group>
+        </div>
+
+
+
         <h5 class="m-0 p-t-16 p-x-32 f-s-14 f-w-600 b-t-1">Sort By</h5>
         <div class="p-16">
           <mat-nav-list>
@@ -50,20 +71,7 @@
             }
           </mat-nav-list>
         </div>
-        <h5 class="m-0 p-t-16 p-x-32 f-s-14 f-w-600 b-t-1">By Languages</h5>
-        <div class="p-16 pricing-section">
-        <mat-radio-group [(ngModel)]="selectedLanguage" class="m-b-20">
-          @for (lang of languageOptions; track lang.value) {
-            <mat-radio-button
-              class="custom-radio"
-              [value]="lang.value"
-              (click)="getLanguageFilter(lang.value)"
-            >
-              {{ lang.label | titlecase }}
-            </mat-radio-button>
-          }
-        </mat-radio-group>
-      </div>
+       
         <!-- <h5 class="m-0 p-t-16 p-x-32 f-s-14 f-w-600 b-t-1">By Pricing</h5>
         <div class="p-16 pricing-section">
           <mat-radio-group [(ngModel)]="selectedPrice" class="m-b-20">
@@ -85,7 +93,7 @@
       <div class="p-24">
         <div class="d-flex align-items-center justify-content-between m-b-24">
           @if(!isMobileView){
-          <h6 class="f-s-20 f-w-600">Products to Courses</h6>
+          <h6 class="f-s-20 f-w-600">500+ Courses to Sharpen Skills and On-the-Job Performance</h6>
           } @if(isMobileView){
           <button mat-mini-fab class="bg-primary text-white" aria-label="Example icon button with a delete icon"
             (click)="mailnav.toggle()">
@@ -99,7 +107,7 @@
                 searchBar: isMobileView
               }">
               <mat-icon matPrefix>search</mat-icon>
-              <input matInput placeholder="Search Product" [(ngModel)]="searchText" (ngModelChange)="filterCards()" />
+              <input matInput placeholder="Search Courses" [(ngModel)]="searchText" (ngModelChange)="filterCards()" />
               @if(searchText){
               <button matSuffix mat-icon-button aria-label="Clear" (click)="getProductList()">
                 <mat-icon>close</mat-icon>

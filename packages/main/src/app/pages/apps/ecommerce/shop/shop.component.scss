@@ -1,3 +1,41 @@
+.language-scroll-container {
+  max-height: 260px; /* adjust as needed */
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.lang-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.lang-label {
+  color: #000;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.lang-count {
+  color: #555;
+  font-size: 13px;
+}
+
+.active-primary {
+  cursor: pointer;
+}
+
+::ng-deep .mat-mdc-list-item.active-lang .mdc-list-item__primary-text,
+::ng-deep .active-lang .lang-label {
+  color: #007bff !important; /* 🔵 highlight color */
+  font-weight: 600;
+}
+
+::ng-deep .active-lang .lang-count {
+  color: #007bff !important;
+}
+
+
 /* Allow category names to wrap onto next line */
 mat-list-item .mat-mdc-list-item-title,
 mat-list-item .mat-line,

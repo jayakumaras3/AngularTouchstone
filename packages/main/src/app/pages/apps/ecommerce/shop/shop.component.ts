@@ -46,12 +46,43 @@ export class ShopComponent implements OnInit {
   private productService = inject(ProductService);
   private mediaMatcher: MediaQueryList = matchMedia(`(max-width: 1199px)`);
   isMobileView = false;
-
+  languageCounts: { [key: string]: number } = {};
   // ========================
   // Pagination properties
   // ========================
-  pageSize = 16;
+  pageSize = 8;
   currentPage = 1;
+  // ========================
+// Language Lazy Loading
+// ========================
+allLanguages: any[] = [];
+displayedLanguages: any[] = [];
+languagePageSize = 8;
+languagePageIndex = 0;
+
+loadLanguages(): void {
+  // Fill from languageOptions
+  this.allLanguages = this.languageOptions.map(lang => ({
+    ...lang,
+    count: this.languageCounts[lang.label] || 0
+  }));
+
+  // Initial 8 languages
+  this.displayedLanguages = this.allLanguages.slice(0, this.languagePageSize);
+  this.languagePageIndex = this.languagePageSize;
+}
+
+loadMoreLanguages(): void {
+  const nextLanguages = this.allLanguages.slice(
+    this.languagePageIndex,
+    this.languagePageIndex + this.languagePageSize
+  );
+
+  if (nextLanguages.length > 0) {
+    this.displayedLanguages.push(...nextLanguages);
+    this.languagePageIndex += this.languagePageSize;
+  }
+}
   allProducts: Element[] = PRODUCT_DATA;
   filteredCards: Element[] = [];
 
@@ -116,8 +147,25 @@ languageOptions = [
   }
 
   ngOnInit(): void {
-    this.loadMoreProducts(); // Load initial 16
+    this.calculateLanguageCounts();
+    this.loadMoreProducts(); // Load initial 8
+    this.loadLanguages();   
   }
+private calculateLanguageCounts(): void {
+  const counts: { [key: string]: number } = {};
+
+  // Count how many products per language
+  PRODUCT_DATA.forEach((card) => {
+    const lang = (card.language || 'All').trim();
+    if (!counts[lang]) counts[lang] = 0;
+    counts[lang]++;
+  });
+
+  // Total count for 'All'
+  counts['All'] = PRODUCT_DATA.length;
+
+  this.languageCounts = counts;
+}
 
   // ========================
   // Lazy Loading Logic
@@ -242,26 +290,22 @@ getSorted(name: string): void {
      }
    });
  }
- getLanguageFilter(language: string): void {
+getLanguageFilter(language: string): void {
   this.selectedLanguage = language;
-
-  // Normalize casing
   const filterValue = language.trim().toLowerCase();
 
   if (filterValue === 'all') {
     this.resetAndLoad(PRODUCT_DATA);
-    return;
+  } else {
+    const results = PRODUCT_DATA.filter(
+      card => (card.language?.trim().toLowerCase() || '') === filterValue
+    );
+    this.resetAndLoad(results);
   }
 
-  // Filter using language field from PRODUCT_DATA
-  const results = PRODUCT_DATA.filter((card) => {
-    const lang = card.language?.trim().toLowerCase() || '';
-    return lang === filterValue;
-  });
-
-  this.resetAndLoad(results);
-  this.scrollToTop()
+  this.scrollToTop();
 }
+
 
   scrollToTop(): void {
     window.scrollTo({ top: 0, behavior: 'smooth' });

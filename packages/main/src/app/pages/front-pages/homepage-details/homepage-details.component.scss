@@ -1,3 +1,12 @@
+.gap-48
+{
+  gap: 36px !important;
+}
+@media (max-width: 767px) {
+    .spacing-left {
+        padding: 30px;
+    }
+}
 .imgStyleDash
 {
  width: 100% ;

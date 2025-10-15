@@ -30,66 +30,66 @@
             </div>
           
 
-            @if(!isMobileView){
-            <div class="d-none d-lg-flex justify-content-between toolBarContent">
-              <button mat-button class="m-x-8 f-s-15 f-w-500 nav-item" [routerLink]="['/front-pages/about']"
-                [class.selected]="isActiveRoute('about')">
-                About Us
-              </button>
-                <button mat-button class="m-x-8 f-s-15 f-w-500 nav-item" [routerLink]="['/front-pages/featurepage']"
-                [class.selected]="isActiveRoute('featurepage')">
-                Key Features
-              </button>
-             <!--  <button mat-button class="m-x-8 f-s-14 f-w-500 nav-item" [class.selected]="isActiveRoute('blog')"
-                [routerLink]="['/front-pages/blog']">
-                Blogs
-              </button> -->
-             <!-- Course Catalog -->
-               <button mat-button class="m-x-8 f-s-14 f-w-500 nav-item" [class.selected]="isActiveRoute('catalog')"
-                [routerLink]="['/front-pages/catalog']">
-                   Course Catalog
-              </button>
-<!-- <button mat-button class="m-x-8 f-s-14 f-w-500 nav-item"
-          (click)="openExternal('https://go.touchstonelc.com/course_catalog')">
+   @if(!isMobileView){
+              <div class="d-none d-lg-flex justify-content-between toolBarContent">
+                <button mat-button class="m-x-8 f-s-15 f-w-500 nav-item" [routerLink]="['/front-pages/about']"
+                  [class.selected]="isActiveRoute('about')">
+                  About Us
+                </button>
+                  <button mat-button class="m-x-8 f-s-15 f-w-500 nav-item" [routerLink]="['/front-pages/featurepage']"
+                  [class.selected]="isActiveRoute('featurepage')">
+                  Key Features
+                </button>
+                <!--  <button mat-button class="m-x-8 f-s-14 f-w-500 nav-item" [class.selected]="isActiveRoute('blog')"
+                    [routerLink]="['/front-pages/blog']">
+                    Blogs
+                  </button> -->
+                <!-- Course Catalog -->
+                  <button mat-button class="m-x-8 f-s-14 f-w-500 nav-item" [class.selected]="isActiveRoute('catalog')"
+                    [routerLink]="['/front-pages/catalog']">
+                      Course Catalog
+                  </button>
+                    <!-- <button mat-button class="m-x-8 f-s-14 f-w-500 nav-item"
+                              (click)="openExternal('https://go.touchstonelc.com/course_catalog')">
 
-  </button>--> 
+                      </button>--> 
 
-<!-- Core Catalog 
-  <button mat-button class="m-x-8 f-s-14 f-w-500 nav-item" [class.selected]="isActiveRoute('corecatalog')"
-    [routerLink]="['/front-pages/corecatalog']">
-        Core Catalog
-  </button>-->
-             <!--  <button mat-button class="m-x-8 f-s-15 f-w-500 nav-item" [routerLink]="['/front-pages/portfolio']"
-                [class.selected]="isActiveRoute('portfolio')">
-                Portfolio
-                <span class="bg-light-primary text-primary rounded f-w-600 p-x-8 p-y-4 f-s-12 m-l-4">
-                  New
-                </span>
-              </button> --> 
-           <!--  <button mat-button class="m-x-8 f-s-15 f-w-500 nav-item" [class.selected]="isActiveRoute('dashboard')"
-                [routerLink]="['/dashboards/dashboard1']">
-                Dashboard
-              </button>-->  
+                    <!-- Core Catalog 
+                      <button mat-button class="m-x-8 f-s-14 f-w-500 nav-item" [class.selected]="isActiveRoute('corecatalog')"
+                        [routerLink]="['/front-pages/corecatalog']">
+                            Core Catalog
+                      </button>-->
+                                <!--  <button mat-button class="m-x-8 f-s-15 f-w-500 nav-item" [routerLink]="['/front-pages/portfolio']"
+                                    [class.selected]="isActiveRoute('portfolio')">
+                                    Portfolio
+                                    <span class="bg-light-primary text-primary rounded f-w-600 p-x-8 p-y-4 f-s-12 m-l-4">
+                                      New
+                                    </span>
+                                  </button> --> 
+                              <!--  <button mat-button class="m-x-8 f-s-15 f-w-500 nav-item" [class.selected]="isActiveRoute('dashboard')"
+                                    [routerLink]="['/dashboards/dashboard1']">
+                                    Dashboard
+                                  </button>-->  
 
-              <button mat-button class="m-x-8 f-s-15 f-w-500 nav-item" [class.selected]="isActiveRoute('pricing')"
-                [routerLink]="['/front-pages/pricing']">
-                Pricing
-              </button> 
+                <button mat-button class="m-x-8 f-s-15 f-w-500 nav-item" [class.selected]="isActiveRoute('pricing')"
+                  [routerLink]="['/front-pages/pricing']">
+                  Pricing
+                </button> 
 
               <button mat-button class="m-x-8 f-s-15 f-w-500 nav-item" [class.selected]="isActiveRoute('contact')"
                 [routerLink]="['/front-pages/contact']">
                 Contact
               </button>
-            </div>
-         <!--   <a mat-flat-button color="primary" class="" [routerLink]="'/authentication/login'">Login</a> https://dochek.com/--> 
-           <a mat-flat-button color="primary" class=""
-           [routerLink]="['/authentication/login']">
-            Login
-          </a>
+                          </div>
+                      <!--   <a mat-flat-button color="primary" class="" [routerLink]="'/authentication/login'">Login</a> https://dochek.com/--> 
+                        <a mat-flat-button color="primary" class=""
+                        [routerLink]="['/authentication/login']">
+                          Login
+                        </a>
 
 
 
-            } @if(isMobileView){
+        } @if(isMobileView){
             <button mat-mini-fab class="bg-light" aria-label="Example icon button with a delete icon"
               (click)="customizerRight.toggle()">
               <i-tabler class="icon-18 d-flex" name="menu"></i-tabler>
@@ -115,7 +115,7 @@
             <mat-list-item role="listitem">
               <button mat-button class="text-dark" [routerLink]="['/front-pages/about']"
                 [class.selected]="isActiveRoute('about')">
-                About Us
+                About Us1
               </button></mat-list-item>
             <mat-list-item role="listitem">
               <button mat-button class="text-dark" [class.selected]="isActiveRoute('featurepage')"
