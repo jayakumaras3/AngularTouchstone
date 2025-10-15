@@ -1,7 +1,22 @@
 .mat-drawer-content {
-      overflow: hidden;
       width: 100%;
+      overflow-x: hidden;
+      overflow-y: hidden;
   }
+
+.mat-sidenav-container {
+
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-sidebar {
+  width: 250px;
+  position: fixed !important;
+  top: 0 !important;
+  z-index: 1000;
+}
+
 .landing-page {
   .custom-container {
     max-width: 1400px;
@@ -35,9 +50,37 @@
       &:hover {
         color: var(--mat-sys-primary);
         transition: color 0.3s ease;
-      }
-    }
-
   }
+}
+
+.content-scroll {
+  padding-top: 64px; // Adjust this value based on your toolbar height
+  min-height: calc(100vh - 64px);
+  overflow-y: auto;
+  
+}
+
+.topbar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 9;
+}
+
+.fixed-topbar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 999;
+}
+
+.mat-sidenav {
+  position: fixed !important;
+  top: 0 !important;
+  height: 100vh !important;
+  z-index: 1000;
+  background-color: rgb(211, 27, 27);
+}  }
 
 }
