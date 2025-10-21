@@ -12,29 +12,31 @@ import { FeaturePageComponent } from './feature-page/feature-page.component';
 import { CorecatalogComponent } from './corecatalog/corecatalog.component';
 
 import { PrivacyComponent } from './privacy/privacy.component';
+import { TermsComponent } from './terms/terms.component';
 
 import { ShopComponent } from '../apps/ecommerce/shop/shop.component';
 
 
 export const FrontPagesRoutes: Routes = [
-    
-    {
-        path: '',
-        component: HomepageComponent, // acts as layout shell
-        children: [
-          { path: '', redirectTo: 'homepage', pathMatch: 'full' },
-          { path: 'homepage', component: HomepageDetailsComponent }, // real homepage content
-          { path: 'about', component: AboutUsComponent },
-          { path:'blog',component:BlogComponent },
-          { path: 'portfolio', component: PortfolioComponent },
-          { path: 'pricing', component: PricingComponent  },
-          { path: 'contact', component: ContactComponent },
-          { path:'coursecatalog',component:CourseCatalogComponent},
-           { path:'featurepage',component:FeaturePageComponent},
-          { path:'corecatalog',component:CorecatalogComponent},
-          { path: 'blog-details', component: BlogDetailsComponent },
-           { path: 'catalog', component: ShopComponent }, 
-           { path: 'privacy', component: PrivacyComponent },
-        ],
-      },
+
+  {
+    path: '',
+    component: HomepageComponent, // acts as layout shell
+    children: [
+      { path: '', redirectTo: 'homepage', pathMatch: 'full' },
+      { path: 'homepage', component: HomepageDetailsComponent }, // real homepage content
+      { path: 'about', component: AboutUsComponent },
+      { path: 'blog', component: BlogComponent },
+      { path: 'portfolio', component: PortfolioComponent },
+      { path: 'pricing', component: PricingComponent },
+      { path: 'contact', component: ContactComponent },
+      { path: 'coursecatalog', component: CourseCatalogComponent },
+      { path: 'featurepage', component: FeaturePageComponent },
+      { path: 'corecatalog', component: CorecatalogComponent },
+      { path: 'blog-details', component: BlogDetailsComponent },
+      { path: 'catalog', component: ShopComponent },
+      { path: 'privacy', component: PrivacyComponent },
+      { path: 'terms', component:TermsComponent },
+    ],
+  },
 ];

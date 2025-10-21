@@ -62,6 +62,9 @@ export class FooterComponent {
       this.mobileQuery.removeEventListener('change', listener);
     });
   }
+    isActiveRoute(route: string): boolean {
+    return this.router.url.includes(`/front-pages/${route}`);
+  }
    openDialog(showBackground:boolean){
       this.showBackground = showBackground;
   

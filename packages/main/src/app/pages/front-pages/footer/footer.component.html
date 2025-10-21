@@ -82,10 +82,22 @@
 
         <!-- Right side -->
         <div class="d-flex justify-content-end align-items-center">
-         <p class="f-s-16 m-0">
-    <a href="/front-pages/privacy" class="text-decoration-none text-primary">Privacy</a> | Terms
-</p>
+   <p class="f-s-16 m-0">
+      <a mat-button
+        class="m-x-8 f-s-14 f-w-500 text-primary text-decoration-none"
+        [routerLink]="['/front-pages/privacy']"
+        [class.selected]="isActiveRoute('privacy')">
+        Privacy
+      </a>
+      |
+      <a mat-button
+        class="m-x-8 f-s-14 f-w-500 text-primary text-decoration-none"
+        [routerLink]="['/front-pages/terms']"
+        [class.selected]="isActiveRoute('terms')">
+        Terms
+      </a>
         </div>
+        
       </div>
     </div>
   </div>
