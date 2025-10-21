@@ -1,11 +1,124 @@
+/* Base container */
 .bgwidth{
     width: 100%;
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
      justify-content: center;
     align-items: center;
     padding: 40px 20px;
 }/* ==== Layout Base ==== */
 .privacy-header{
-  padding-left: 6%;
+ 
+      text-align: center !important;
+}
+h1
+{
+  line-height: 35px;
+}
+section.privacy-section {
+  display: flex;
+  justify-content: center;
+  padding: 50px 20px;
+  background: #f8fafc; /* light background */
+  box-sizing: border-box;
+}
+
+.privacy-wrapper {
+  width: 100%;
+  max-width: 1400px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.05);
+  padding: 50px 60px;
+  box-sizing: border-box;
+  line-height: 1.8; /* nice line spacing */
+}
+
+/* Headings – blue color tone */
+.privacy-wrapper h1,
+.privacy-wrapper h2,
+.privacy-wrapper h3 {
+  color: #3b82f6; /* modern blue */
+  margin: 1rem 0 0.5rem 0;
+  border-bottom: 2px solid rgba(59, 130, 246, 0.2);
+  padding-bottom: 6px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* Paragraphs and inline content */
+.privacy-wrapper p {
+  color: #374151;
+  font-size: 1.05rem;
+  margin: 0.75rem 0;
+}
+
+/* Accordion buttons */
+.accordion-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background: #f1f5f9;
+  border: 1px solid #e5e7eb;
+  padding: 15px 20px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #1e293b;
+  cursor: pointer;
+  border-radius: 8px;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+}
+
+.accordion-button:hover {
+  background: #e0edff;
+}
+
+.accordion-button.active {
+  background: #3b82f6;
+  color: #ffffff;
+}
+
+/* Accordion content */
+.accordion-content {
+  display: none;
+  border-left: 3px solid #3b82f6;
+  background: #f9fafb;
+  padding: 15px 25px;
+  margin-top: 0.5rem;
+  border-radius: 0 8px 8px 0;
+  transition: all 0.3s ease;
+  line-height: 1.8;
+}
+
+/* Links (inline with text) */
+.privacy-wrapper a {
+  color: #3b82f6;
+  text-decoration: none;
+  border-bottom: 1px dotted #3b82f6;
+  transition: color 0.3s ease;
+}
+
+.privacy-wrapper a:hover {
+  color: #1d4ed8;
+  border-bottom: 1px solid #1d4ed8;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .privacy-wrapper {
+    padding: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .privacy-wrapper {
+    padding: 25px;
+  }
+
+  .accordion-button {
+    font-size: 1rem;
+    padding: 12px 15px;
+  }
 }

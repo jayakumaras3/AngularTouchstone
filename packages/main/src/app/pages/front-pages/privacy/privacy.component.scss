@@ -1,187 +1,150 @@
 /* Base container */
 .bgwidth{
     width: 100%;
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
      justify-content: center;
     align-items: center;
     padding: 40px 20px;
 }/* ==== Layout Base ==== */
 .privacy-header{
-  padding-left: 6%;
+ 
+      text-align: center !important;
 }
-
+h1
+{
+  line-height: 35px;
+}
 section.privacy-section {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  padding: 60px 20px;
-  background: linear-gradient(180deg, #eff6ff 0%, #f9fafb 100%);
-  min-height: 100vh;
+  padding: 50px 20px;
+  background: #f8fafc; /* Light neutral background */
   box-sizing: border-box;
 }
 
-/* ==== Wrapper ==== */
 .privacy-wrapper {
   width: 100%;
   max-width: 1400px;
   background: #ffffff;
-  border-radius: 20px;
-  padding: 60px 80px;
-  box-shadow: 0 12px 40px rgba(59, 130, 246, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.05);
+  padding: 50px 60px;
   box-sizing: border-box;
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  line-height: 1.8; /* Nice line spacing */
 }
 
-.privacy-wrapper:hover {
-  box-shadow: 0 15px 45px rgba(59, 130, 246, 0.15);
-  transform: translateY(-3px);
-}
-
-/* ==== Header Section ==== */
-.privacy-header {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.privacy-header h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #3b82f6;
-  margin-bottom: 10px;
-}
-
-.privacy-header p {
-  color: #6b7280;
-  font-size: 1rem;
-}
-
-/* ==== Headings & Text ==== */
+/* Headings */
+.privacy-wrapper h1,
 .privacy-wrapper h2,
 .privacy-wrapper h3 {
-  color: #3b82f6;
-  margin-top: 2rem;
-  margin-bottom: 0.75rem;
-  font-weight: 600;
+  color: #3b82f6; /* Primary blue color */
+  border-bottom: 2px solid rgba(59, 130, 246, 0.2);
+  padding-bottom: 6px;
+  font-weight: 700;
   letter-spacing: 0.5px;
 }
 
-.privacy-wrapper p,
-.privacy-wrapper li {
+/* ✅ Double line spacing for all devices */
+.privacy-wrapper h1 {
+  margin-top: 3rem !important;  /* Double space before */
+  margin-bottom: 2rem !important; /* Double space after */
+  font-size: 2rem;
+}
+
+/* Normal spacing for subheadings */
+.privacy-wrapper h2 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.privacy-wrapper h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.8rem;
+  font-size: 1.25rem;
+}
+
+/* Paragraphs */
+.privacy-wrapper p {
   color: #374151;
-  line-height: 1.8;
-  font-size: 1rem;
+  font-size: 1.05rem;
+  margin: 0.75rem 0;
 }
 
-.privacy-wrapper ul {
-  margin: 10px 0 20px 25px;
-}
-
-/* ==== Divider (optional for sections) ==== */
-.section-divider {
-  height: 2px;
-  width: 100%;
-  background: linear-gradient(90deg, #3b82f6 0%, transparent 100%);
-  margin: 30px 0;
-  border-radius: 2px;
-}
-
-/* ==== Accordion ==== */
+/* Accordion buttons */
 .accordion-button {
-  display: block;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
-  text-align: left;
   background: #f1f5f9;
-  border: 1px solid #e2e8f0;
-  padding: 16px 20px;
+  border: 1px solid #e5e7eb;
+  padding: 15px 20px;
   font-size: 1.05rem;
   font-weight: 600;
+  color: #1e293b;
   cursor: pointer;
-  border-radius: 10px;
+  border-radius: 8px;
+  margin-top: 1rem;
   transition: all 0.3s ease;
-  margin-top: 20px;
-  color: #0f172a;
 }
 
 .accordion-button:hover {
-  background: #e0ecff;
-  border-color: #3b82f6;
+  background: #e0edff;
 }
 
 .accordion-button.active {
   background: #3b82f6;
   color: #ffffff;
-  border-color: #3b82f6;
-  box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
 }
 
+/* Accordion content */
 .accordion-content {
   display: none;
-  padding: 18px 25px;
-  border-left: 4px solid #3b82f6;
-  margin-top: 10px;
-  border-radius: 8px;
-  background-color: #f9fafb;
-  line-height: 1.8;
-  color: #374151;
+  border-left: 3px solid #3b82f6;
+  background: #f9fafb;
+  padding: 15px 25px;
+  margin-top: 0.5rem;
+  border-radius: 0 8px 8px 0;
   transition: all 0.3s ease;
+  line-height: 1.8;
 }
 
-/* ==== Smooth Accordion Animation ==== */
-.accordion-content {
-  overflow: hidden;
-  max-height: 0;
-  transition: max-height 0.4s ease, padding 0.3s ease;
-}
-.accordion-content.open {
-  max-height: 600px; /* adjust as needed */
-  padding: 18px 25px;
-}
-
-/* ==== Link styling ==== */
-a {
+/* Links */
+.privacy-wrapper a {
   color: #3b82f6;
   text-decoration: none;
-  transition: color 0.2s ease;
-}
-a:hover {
-  text-decoration: underline;
-  color: #2563eb;
+  border-bottom: 1px dotted #3b82f6;
+  transition: color 0.3s ease;
 }
 
-/* ==== Responsive ==== */
+.privacy-wrapper a:hover {
+  color: #1d4ed8;
+  border-bottom: 1px solid #1d4ed8;
+}
+
+/* Responsive design */
 @media (max-width: 1024px) {
   .privacy-wrapper {
-    padding: 40px 50px;
+    padding: 40px;
   }
 }
 
 @media (max-width: 768px) {
   .privacy-wrapper {
-    padding: 25px 20px;
+    padding: 25px;
   }
 
-  .privacy-header h1 {
-    font-size: 2rem;
+  /* ✅ Keep full spacing and readable font even on mobile */
+  .privacy-wrapper h1 {
+    font-size: 1.6rem;
+    margin-top: 3rem !important;
+    margin-bottom: 2rem !important;
   }
 
   .accordion-button {
     font-size: 1rem;
-    padding: 14px 16px;
-  }
-}
-
-@media (max-width: 480px) {
-  section.privacy-section {
-    padding: 30px 10px;
-  }
-
-  .privacy-wrapper {
-    padding: 20px;
-    border-radius: 10px;
-  }
-
-  .privacy-header h1 {
-    font-size: 1.75rem;
+    padding: 12px 15px;
   }
 }

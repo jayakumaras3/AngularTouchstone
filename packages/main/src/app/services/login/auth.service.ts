@@ -10,6 +10,7 @@ export class AuthService {
   //private apiUrl = '/DOCHEKDOTCOM/landing/'; // adjust if hosted differently
   //run in local server
   private apiUrl = 'http://172.16.0.99/DOCHEKDOTCOM/landing'; // adjust if hosted differently
+   private contactapiUrl = 'http://172.16.0.99/DOCHEKDOTCOM/landing'; // adjust if hosted differently
 
   constructor(private http: HttpClient) {}
 
