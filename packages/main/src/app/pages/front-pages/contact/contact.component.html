@@ -19,101 +19,70 @@
 
   <div class="form-content">
     
-    <form>
-      <div class="container">
-        <!-- Map stays inside, but will visually float out -->
-      <!--  <div class="map-container overflow-hidden rounded">
-          <iframe class="overflow-hidden rounded"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.7054448584586!2d77.66224737483942!3d12.862291787443143!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae6de32fb42551%3A0x47e6f5cc548a8654!2sTouchstone%20Learning%20and%20Consulting!5e0!3m2!1sen!2sin!4v1748662371548!5m2!1sen!2sin"
-            width="100%" height="400" style="border: 0" allowfullscreen="" loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div> -->
-        <div class="spacing-top-bottom">
-          <div class="row">
-            <div class="col-md-8 m-b-30">
-              <div class="row ">
-                <div class="col-md-6">
-                  <!-- input -->
-                  <mat-label class="f-s-14 f-w-600 m-b-8 d-block">First Name<span>*</span></mat-label>
-                  <mat-form-field appearance="outline" class="w-100" color="primary">
-                    <input matInput type="text" placeholder="First Name" />
-                  </mat-form-field>
-                  <!-- input 
-                  <mat-label class="f-s-14 f-w-600 m-b-8 d-block">Phone Number<span>*</span></mat-label>
-                  <mat-form-field appearance="outline" class="w-100" color="primary">
-                    <input matInput type="tel" placeholder="xxx xxx xxxx" />
-                  </mat-form-field>-->
-                  <mat-label class="f-s-14 f-w-600 m-b-8 d-block">Last Name<span>*</span></mat-label>
-                  <mat-form-field appearance="outline" class="w-100" color="primary">
-                    <input matInput type="text" placeholder="Last Name" />
-                  </mat-form-field>
-                  <mat-label class="f-s-14 f-w-600 m-b-8 d-block">Email<span>*</span></mat-label>
-                  <mat-form-field appearance="outline" class="w-100" color="primary">
-                    <input matInput type="mail" placeholder="Email address" />
-                  </mat-form-field>
-                </div>
-                <div class="col-md-6">
-                  <!-- input -
-                  <mat-label class="f-s-14 f-w-600 m-b-8 d-block">Last Name<span>*</span></mat-label>
-                  <mat-form-field appearance="outline" class="w-100" color="primary">
-                    <input matInput type="text" placeholder="Last Name" />
-                  </mat-form-field>-->
-                  <!-- input 
-                  <mat-label class="f-s-14 f-w-600 m-b-8 d-block">Email<span>*</span></mat-label>
-                  <mat-form-field appearance="outline" class="w-100" color="primary">
-                    <input matInput type="mail" placeholder="Email address" />
-                  </mat-form-field>-->
-                </div>
-              </div>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+  <div class="container spacing-top-bottom">
+    <div class="row">
+      <div class="col-md-8 m-b-30">
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>First Name<span>*</span></mat-label>
+              <input matInput placeholder="First Name" formControlName="firstName" />
+            </mat-form-field>
 
-              <div class="row">
-                <div class="col-lg-12">
-                  <mat-label class="f-s-14 f-w-600 m-b-8 d-block">Enquire related to<span>*</span>
-                  </mat-label>
-                  <mat-form-field appearance="outline" class="w-100">
-                    <mat-select value="General Enquiry">
-                      <mat-option value="General Enquiry">Partnership</mat-option>
-                      <mat-option value="General Enquiry 2">Migration & Setup</mat-option>
-                      <mat-option value="General Enquiry 2">Course Content Access</mat-option>
-                      <mat-option value="General Enquiry 2">Subscription Plans</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-12">
-                  <mat-label class="f-s-14 f-w-600 m-b-8 d-block">Message</mat-label>
-                  <mat-form-field appearance="outline" class="w-100" color="primary">
-                    <textarea matInput rows="5" placeholder="Write your message here"></textarea>
-                  </mat-form-field>
-                </div>
-              </div>
-              <button mat-flat-button>Submit</button>
-            </div>
-            <div class="col-md-4 right-side-content">
-              <mat-card class="shadow-none bg-primary rounded-8 p-8">
-                <mat-card-content>
-                  <div>
-                    <h6 class="f-s-20 m-b-16 text-white">Reach Out Today</h6>
-                    <p class="f-s-14 m-0 text-white">
-                     info@touchstonelc.com
-                    </p>
-                  </div>
-                  <mat-divider class="m-y-30"></mat-divider>
-                  <div>
-                    <h6 class="f-s-20 m-b-16 text-white">Our Location</h6>
-                    <p class="f-s-14 m-0 text-white">
-                      100 Antioch Church Rd Unit 584, Talking Rock, GA 30175
-                      GA, United States.
-                    </p>
-                  </div>
-                </mat-card-content>
-              </mat-card>
-            </div>
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Last Name<span>*</span></mat-label>
+              <input matInput placeholder="Last Name" formControlName="lastName" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Email<span>*</span></mat-label>
+              <input matInput type="email" placeholder="Email address" formControlName="email" />
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Enquire related to<span>*</span></mat-label>
+              <mat-select formControlName="enquiry">
+                <mat-option value="Partnership">Partnership</mat-option>
+                <mat-option value="Migration & Setup">Migration & Setup</mat-option>
+                <mat-option value="Course Content Access">Course Content Access</mat-option>
+                <mat-option value="Subscription Plans">Subscription Plans</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Message</mat-label>
+              <textarea matInput rows="5" placeholder="Write your message here" formControlName="comment"></textarea>
+            </mat-form-field>
           </div>
         </div>
+
+        <button mat-flat-button color="primary" type="submit" [disabled]="form.invalid">Submit</button>
       </div>
-    </form>
+
+      <div class="col-md-4 right-side-content">
+        <mat-card class="shadow-none bg-primary rounded-8 p-8">
+          <mat-card-content>
+            <div>
+              <h6 class="f-s-20 m-b-16 text-white">Reach Out Today</h6>
+              <p class="f-s-14 m-0 text-white">info@touchstonelc.com</p>
+            </div>
+            <mat-divider class="m-y-30"></mat-divider>
+            <div>
+              <h6 class="f-s-20 m-b-16 text-white">Our Location</h6>
+              <p class="f-s-14 m-0 text-white">
+                100 Antioch Church Rd Unit 584, Talking Rock, GA 30175, GA, United States.
+              </p>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</form>
+
   </div>
   <div class="footer">
     <app-footer></app-footer>

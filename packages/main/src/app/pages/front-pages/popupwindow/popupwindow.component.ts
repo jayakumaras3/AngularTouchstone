@@ -5,7 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule,HttpHeaders } from '@angular/common/http';
+import { AuthService } from '../../../services/login/auth.service';
 
 @Component({
   selector: 'app-popupwindow',
@@ -13,8 +13,7 @@ import { HttpClient, HttpClientModule,HttpHeaders } from '@angular/common/http';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    HttpClientModule,
-    MatDialogModule,
+    MatDialogModule,   // ✅ Required for mat-dialog-* elements
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule
@@ -25,13 +24,10 @@ import { HttpClient, HttpClientModule,HttpHeaders } from '@angular/common/http';
 export class PopupwindowComponent {
   form: FormGroup;
 
-  // ✅ Use your CodeIgniter controller route here (not a PHP file directly)
-  private apiUrl = 'http://172.16.0.99/DOCHEKDOTCOM/landing/contact_us';
-
   constructor(
     private fb: FormBuilder,
-    private http: HttpClient,
-    private dialogRef: MatDialogRef<PopupwindowComponent>
+    private dialogRef: MatDialogRef<PopupwindowComponent>,
+    private authService: AuthService
   ) {
     this.form = this.fb.group({
       name: ['', Validators.required],
@@ -42,31 +38,28 @@ export class PopupwindowComponent {
     });
   }
 
- onSubmit() {
-  if (this.form.invalid) {
-    this.form.markAllAsTouched();
-    return;
-  }
+  onSubmit() {
+    if (this.form.valid) {
+      console.log('Submitting contact form:', this.form.value);
 
-  const formData = this.form.value;
+      this.authService.sendContact(this.form.value).subscribe({
+        next: (res: any) => {
+          console.log('Response:', res);
 
-  // ✅ Important: tell backend it's JSON
-  const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-
-  this.http.post(this.apiUrl, JSON.stringify(formData), { headers }).subscribe({
-    next: (response: any) => {
-      console.log('✅ Response:', response);
-      if (response.success) {
-        alert('✅ Your message has been sent successfully!');
-        this.dialogRef.close(response);
-      } else {
-        alert('⚠️ ' + response.message);
-      }
-    },
-    error: (error) => {
-      console.error('❌ Error:', error);
-      alert('Something went wrong. Please try again later.');
+          if (res.success) {
+            alert(res.message || '✅ Message sent successfully!');
+            this.dialogRef.close(res);
+          } else {
+            alert(res.message || '❌ Submission failed');
+          }
+        },
+        error: (err) => {
+          console.error('HTTP Error:', err);
+          alert('Server error. Please check the console.');
+        },
+      });
+    } else {
+      alert('⚠️ Please fill all required fields');
     }
-  });
-}
+  }
 }
