@@ -209,64 +209,76 @@
     </div>
   </div>
 <!--  End -->
-  <div class="features spacing-top-bottom">
+  <div class="features spacing-bottom">
     <div class="container">
       <div class="row align-items-center justify-content-between">
         <!--row-->
-       <!----> <div class="col-md-5 m-b-30">
+        <div class="col-md-5 m-b-30">
           <div class="client-margin">
             <h2 class="lh-normal f-s-40 m-b-16 section-sub-title">
               What our clients <br> think <img src="assets/images/front-pages/logoIcon.svg" alt="logo" />
               about us?
             </h2>
             <p class="m-0">
-              Our users' feedback is a testament to our commitment to quality
-              and user satisfaction. Read what they have to say about their
-              journey with us.
+             Our partners benefit from reduced administrative hassle, smoother delivery, and sharper insights, which helps their teams learn smarter, and perform better.
             </p>
           </div>
         </div>
-        <div class="col-md-5">
-          <mat-card class="cardWithShadow b-1 rounded-8 m-b-0 p-48">
-            <mat-card-content>
-              <mat-card-title class="f-s-24 f-w-600 m-b-24">Features availability</mat-card-title>
+       <div class="col-md-7">
+    <mat-card class="cardWithShadow b-1 rounded-8 m-b-0 p-48">
+    <mat-card-content>
+      <mat-card-title class="f-s-24 f-w-600 m-b-24">{{ activeFeature.question}}</mat-card-title>
 
-              <div class="d-flex align-items-center gap-16 m-b-24">
-                <div>
-                  <img [src]="currentUser().img" [alt]="currentUser().name" class="rounded-circle" width="40" />
-                </div>
-                <h6 class="f-s-14 f-w-600">{{ currentUser().name }}</h6>
-              </div>
-
-              <p class="f-s-14 m-b-16 m-t-0">
-                Our users' feedback is a testament to our commitment to quality
-                and user satisfaction. Read what they have to say about their
-                journey with us.
-              </p>
-
-              <mat-divider></mat-divider>
-
-              <div class="d-flex align-items-center gap-10 m-t-8">
-                <button class="bg-light icon-32 d-flex align-items-center justify-content-center" mat-icon-button
-                  (click)="goPrev()">
-                  <i-tabler name="chevron-left"
-                    class="icon-18 d-flex align-items-center justify-content-center"></i-tabler>
-                </button>
-
-                <span class="f-s-14">{{ displayCount() }}</span>
-
-                <button class="bg-light icon-32 d-flex align-items-center justify-content-center" mat-icon-button
-                  (click)="goNext()">
-                  <i-tabler name="chevron-right"
-                    class="icon-18 d-flex align-items-center justify-content-center"></i-tabler>
-                </button>
-              </div>
-            </mat-card-content>
-          </mat-card>
+      <!-- Profile Image + Name -->
+      <div class="d-flex align-items-center gap-16 m-b-24">
+        <div>
+          <img
+            [src]="activeFeature.img"
+            [alt]="activeFeature.title"
+            class="rounded-circle"
+            width="40"
+            height="40"
+          />
         </div>
+        <h6 class="f-s-14 f-w-600">{{ activeFeature.title }}</h6>
       </div>
-    </div>
-  </div>
+
+      <!-- Subtext -->
+      <p class="f-s-14 m-b-16 m-t-0">
+        {{ activeFeature.subtext }}
+      </p>
+
+      <mat-divider></mat-divider>
+
+      <!-- Navigation -->
+      <div class="d-flex align-items-center gap-10 m-t-8">
+        <button
+          class="bg-light icon-32 d-flex align-items-center justify-content-center"
+          mat-icon-button
+          (click)="showPrevious()"
+        >
+          <i-tabler
+            name="chevron-left"
+            class="icon-18 d-flex align-items-center justify-content-center"
+          ></i-tabler>
+        </button>
+
+        <span class="f-s-14">{{ showCounter() }}</span>
+
+        <button
+          class="bg-light icon-32 d-flex align-items-center justify-content-center"
+          mat-icon-button
+          (click)="showNext()"
+        >
+          <i-tabler
+            name="chevron-right"
+            class="icon-18 d-flex align-items-center justify-content-center"
+          ></i-tabler>
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
 
   <div class="footer">
     <app-footer></app-footer>

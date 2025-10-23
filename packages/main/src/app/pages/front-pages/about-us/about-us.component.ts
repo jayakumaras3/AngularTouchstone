@@ -114,7 +114,65 @@ export class AboutUsComponent {
   trackByYear(index: number, event: TimelineEvent): string {
     return event.year;
   }
+featureList = [
+    {
+      id: 1,
+      icon: 'camera',
+      title: 'Misha Rodriguez, L&D Lead in a leading logistics company',
+      img: `assets/images/profile/user-9.jpg`,
+         question:'“Everything we need, in one place.”',
+      subtext:
+        '“DoCheck has simplified learning management for us. Earlier, we were juggling different platforms for uploading courses, tracking progress, and managing Excel reports. Now, everything happens under one roof, and it saves us a lot of time and effort”  ',
+    },
+    {
+      id: 2,
+      icon: 'shield-lock',
+      title: 'Liam Grant, HR Manager at a global FMCG brand',
+      img: `assets/images/profile/user-1.jpg`,
+         question:'"Drives real decision-making, not memorized answers"',
 
+      subtext:
+        '“With DoCheck, we build scenarios that mirror real situations, like a conference or client meeting. Every learner gets the same setup, but their answers differ, which gives us a much clearer view of their decision-making skills.” ',
+    },
+    {
+      id: 15,
+      icon: 'code',
+      title: 'Sophie Müller, Training Coordinator in a European retail group',
+      img: `assets/images/profile/user-10.jpg`,
+         question:'“We train more people without higher costs.”',
+      subtext:
+        'Finally, a learning management platform that’s simple to use and affordable. We can train more employees without worrying about costs spiraling out of control or the system slowing down when multiple users log in. ',
+    },
+  ];
+
+  activeIndex = 0;
+
+  // 👉 Getter renamed from currentFeature → activeFeature
+  get activeFeature() {
+    return this.featureList[this.activeIndex];
+  }
+
+  // 👉 Methods renamed
+  showNext() {
+    this.activeIndex = (this.activeIndex + 1) % this.featureList.length;
+  }
+
+  showPrevious() {
+    this.activeIndex =
+      (this.activeIndex - 1 + this.featureList.length) % this.featureList.length;
+  }
+
+  showCounter() {
+    return `${this.activeIndex + 1} / ${this.featureList.length}`;
+  }
+
+  // Dummy user
+  getUser() {
+    return {
+      name: 'John Doe',
+      img: './assets/images/users/user1.jpg'
+    };
+  }
   /* popup window start */
   centered = false;
   disabled = false;
