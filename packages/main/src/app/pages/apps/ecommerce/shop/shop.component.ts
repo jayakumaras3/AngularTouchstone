@@ -49,71 +49,51 @@ export class ShopComponent implements OnInit {
   languageCounts: { [key: string]: number } = {};
 
   // ========================
-// Language Lazy Loading
-// ========================
-allLanguages: any[] = [];
-displayedLanguages: any[] = [];
-languagePageSize = 8;
-languagePageIndex = 0;
-
-loadLanguages(): void {
-  // Fill from languageOptions
-  this.allLanguages = this.languageOptions.map(lang => ({
-    ...lang,
-    count: this.languageCounts[lang.label] || 0
-  }));
-
-  // Initial 8 languages
-  this.displayedLanguages = this.allLanguages.slice(0, this.languagePageSize);
-  this.languagePageIndex = this.languagePageSize;
-}
-
-loadMoreLanguages(): void {
-  const nextLanguages = this.allLanguages.slice(
-    this.languagePageIndex,
-    this.languagePageIndex + this.languagePageSize
-  );
-
-  if (nextLanguages.length > 0) {
-    this.displayedLanguages.push(...nextLanguages);
-    this.languagePageIndex += this.languagePageSize;
-  }
-}
-
-  allProducts: Element[] = PRODUCT_DATA;
-  filteredCards: Element[] = [];
+  // Lazy Loading Properties
+  // ========================
+  private allProducts: Element[] = PRODUCT_DATA;
+  private baseFilteredProducts: Element[] = []; // Store filtered results
+  filteredCards: Element[] = []; // Currently displayed cards
+  
+  // Pagination settings
+  private readonly initialLoadCount = 8;
+  private readonly scrollLoadCount = 4;
+  private currentDisplayIndex = 0;
+  private isLoading = false;
+  private scrollListenerActive = true;
 
   durationInSeconds = 1;
   searchText: string = '';
 
   folders: Section[] = [
-      { name: 'All', icon: 'apps' },
-      { name: 'Business Skills', icon: 'briefcase' },
-      { name: 'Compliance', icon: 'scale' },
-      { name: 'DEI (Diversity, Equity, and Inclusion)', icon: 'users-group' },
-      { name: 'Technology', icon: 'cpu' },
-      { name: 'Safety', icon: 'shield-check' },
-      { name: 'HealthCare', icon: 'stethoscope' },
-      { name: 'Wellness', icon: 'heart' },
+    { name: 'All', icon: 'apps' },
+    { name: 'Business Skills', icon: 'briefcase' },
+    { name: 'Compliance', icon: 'scale' },
+    { name: 'DEI (Diversity, Equity, and Inclusion)', icon: 'users-group' },
+    { name: 'Technology', icon: 'cpu' },
+    { name: 'Safety', icon: 'shield-check' },
+    { name: 'HealthCare', icon: 'stethoscope' },
+    { name: 'Wellness', icon: 'heart' },
   ];
   selectedCategory: string = this.folders[0].name;
 
- notes: Section[] = [
-  { name: 'Newest', icon: 'calendar' },
-  { name: 'Price: High-Low', icon: 'sort-descending' },
-  { name: 'Price: Low-High', icon: 'sort-ascending' },
-  { name: 'Duration', icon: 'clock' },
-];
+  notes: Section[] = [
+    { name: 'Newest', icon: 'calendar' },
+    { name: 'Price: High-Low', icon: 'sort-descending' },
+    { name: 'Price: Low-High', icon: 'sort-ascending' },
+    { name: 'Duration', icon: 'clock' },
+  ];
   selectedSortBy: string = this.notes[0].name;
   selectedLanguage: string = 'all';
-languageOptions = [
-  { label: 'All', value: 'all' },
-  { label: 'English', value: 'English' },
-  { label: 'Spanish', value: 'Spanish' },
-  { label: 'German', value: 'German' },
-  { label: 'Italian', value: 'Italian' },
-  { label: 'French', value: 'French' },
-];
+  
+  languageOptions = [
+    { label: 'All', value: 'all' },
+    { label: 'English', value: 'English' },
+    { label: 'Spanish', value: 'Spanish' },
+    { label: 'German', value: 'German' },
+    { label: 'Italian', value: 'Italian' },
+    { label: 'French', value: 'French' },
+  ];
 
   selectedPrice: string = 'all';
   priceOptions = [
@@ -134,214 +114,244 @@ languageOptions = [
   }
 
   ngOnInit(): void {
-    /*this.calculateLanguageCounts();
-    this.loadMoreProducts(); // Load initial 8
-    this.loadLanguages();   */
     this.calculateLanguageCounts();
-  this.loadLanguages();
-  this.resetAndLoad(PRODUCT_DATA); // Load initial 8 
-  
+    this.initializeProducts();
   }
-private calculateLanguageCounts(): void {
-  const counts: { [key: string]: number } = {};
 
-  // Count how many products per language
-  PRODUCT_DATA.forEach((card) => {
-    const lang = (card.language || 'All').trim();
-    if (!counts[lang]) counts[lang] = 0;
-    counts[lang]++;
-  });
+  private calculateLanguageCounts(): void {
+    const counts: { [key: string]: number } = {};
 
-  // Total count for 'All'
-  counts['All'] = PRODUCT_DATA.length;
+    // Count how many products per language
+    PRODUCT_DATA.forEach((card) => {
+      const lang = (card.language || 'All').trim();
+      if (!counts[lang]) counts[lang] = 0;
+      counts[lang]++;
+    });
 
-  this.languageCounts = counts;
-}
+    // Total count for 'All'
+    counts['All'] = PRODUCT_DATA.length;
 
-// ========================
-// Pagination properties
-// ========================
-pageSizeInitial = 8;   // first load
-pageSizeIncrement = 4; // load +4 each scroll
-loadedCount = 0;
-baseFilteredProducts: Element[] = [];
-
+    this.languageCounts = counts;
+  }
 
   // ========================
-  // Lazy Loading Logic
+  // Lazy Loading Implementation
   // ========================
-    // ========================
-// Load Products
-// ========================
-loadInitialProducts(): void {
-  const source = this.baseFilteredProducts.length
-    ? this.baseFilteredProducts
-    : this.allProducts;
 
-  this.filteredCards = source.slice(0, this.pageSizeInitial);
-  this.loadedCount = this.pageSizeInitial;
-}
-
-loadMoreProducts(): void {
-  const source = this.baseFilteredProducts.length
-    ? this.baseFilteredProducts
-    : this.allProducts;
-
-  // Don’t load more if already loaded all
-  if (this.loadedCount >= source.length) return;
-
-  const nextBatch = source.slice(
-    this.loadedCount,
-    this.loadedCount + this.pageSizeIncrement
-  );
-
-  this.filteredCards = [...this.filteredCards, ...nextBatch];
-  this.loadedCount += nextBatch.length;
-}
-
-// ========================
-// Scroll Listener
-// ========================
-@HostListener('window:scroll', [])
-onScroll(): void {
-  const scrollPosition = window.innerHeight + window.scrollY;
-  const pageHeight = document.body.offsetHeight;
-
-  // When near the bottom (within 100px)
-  if (scrollPosition >= pageHeight - 100) {
-    this.loadMoreProducts();
+  /**
+   * Initialize products with initial load
+   */
+  private initializeProducts(): void {
+    this.baseFilteredProducts = [...this.allProducts];
+    this.currentDisplayIndex = 0;
+    this.filteredCards = [];
+    this.loadInitialProducts();
   }
-}
 
-// ========================
-// Reset and Load Helper
-// ========================
-resetAndLoad(data: Element[]): void {
-  this.baseFilteredProducts = data;
-  this.loadedCount = 0;
-  this.filteredCards = [];
-  this.loadInitialProducts();
-}
-// ========================
-// Filter and Search
-// ========================
-filterCards() {
-  const text = this.searchText.toLowerCase();
-  const results = PRODUCT_DATA.filter(
-    (card) =>
-      card.product_name.toLowerCase().includes(text) ||
-      card.categories.join(' ').toLowerCase().includes(text)
-  );
-  this.resetAndLoad(results);
-}
-
-getCategory(name: string): void {
-  this.selectedCategory = name;
-  let results: Element[] = [];
-
-  if (name.toLowerCase() === 'all') {
-    results = PRODUCT_DATA;
-  } else {
-    results = PRODUCT_DATA.filter(
-      (card) => card.skill?.toLowerCase() === name.toLowerCase()
+  /**
+   * Load initial set of products
+   */
+  private loadInitialProducts(): void {
+    const initialBatch = this.baseFilteredProducts.slice(
+      0,
+      this.initialLoadCount
     );
+    this.filteredCards = [...initialBatch];
+    this.currentDisplayIndex = this.initialLoadCount;
   }
 
-  this.resetAndLoad(results);
-  this.scrollToTop();
-}
+  /**
+   * Load more products on scroll
+   */
+  private loadMoreProductsOnScroll(): void {
+    if (this.isLoading || !this.hasMoreProducts()) {
+      return;
+    }
 
-getSorted(name: string): void {
-  this.selectedSortBy = name;
-  const nameLower = name.toLowerCase();
-  let sorted = [...PRODUCT_DATA];
+    this.isLoading = true;
 
-  switch (nameLower) {
-    case 'newest':
-      sorted.sort((a, b) => +new Date(b.date) - +new Date(a.date));
-      break;
-    case 'price: high-low':
-      sorted.sort((a, b) => +b.base_price - +a.base_price);
-      break;
-    case 'price: low-high':
-      sorted.sort((a, b) => +a.base_price - +b.base_price);
-      break;
-    case 'duration':
-      sorted.sort((a, b) => {
-        const durA = Number(a.duration) || 0;
-        const durB = Number(b.duration) || 0;
-        return durA - durB;
-      });
-      break;
-  }
-  this.resetAndLoad(sorted);
-  this.scrollToTop();
-}
-
-getLanguageFilter(language: string): void {
-  this.selectedLanguage = language;
-  const filterValue = language.trim().toLowerCase();
-
-  if (filterValue === 'all') {
-    this.resetAndLoad(PRODUCT_DATA);
-  } else {
-    const results = PRODUCT_DATA.filter(
-      (card) => (card.language?.trim().toLowerCase() || '') === filterValue
+    const nextBatch = this.baseFilteredProducts.slice(
+      this.currentDisplayIndex,
+      this.currentDisplayIndex + this.scrollLoadCount
     );
-    this.resetAndLoad(results);
-  }
-  this.scrollToTop();
-}
 
-getPricing(base_priceRange: string): void {
-  this.selectedPrice = base_priceRange;
-  let filtered: Element[] = [];
-
-  switch (base_priceRange) {
-    case '0-50':
-      filtered = PRODUCT_DATA.filter(
-        (card) => +card.base_price >= 0 && +card.base_price <= 50
-      );
-      break;
-    case '50-100':
-      filtered = PRODUCT_DATA.filter(
-        (card) => +card.base_price > 50 && +card.base_price <= 100
-      );
-      break;
-    case '100-200':
-      filtered = PRODUCT_DATA.filter(
-        (card) => +card.base_price > 100 && +card.base_price <= 200
-      );
-      break;
-    case 'over-200':
-      filtered = PRODUCT_DATA.filter((card) => +card.base_price > 200);
-      break;
-    default:
-      filtered = [...PRODUCT_DATA];
+    // Add small delay to simulate loading (optional)
+    setTimeout(() => {
+      this.filteredCards = [...this.filteredCards, ...nextBatch];
+      this.currentDisplayIndex += nextBatch.length;
+      this.isLoading = false;
+      this.cdr.detectChanges();
+    }, 100);
   }
 
-  this.resetAndLoad(filtered);
-}
+  /**
+   * Reset and apply new filter/sort with lazy loading
+   */
+  private applyFilterAndReset(data: Element[]): void {
+    this.baseFilteredProducts = [...data];
+    this.currentDisplayIndex = 0;
+    this.filteredCards = [];
+    this.scrollListenerActive = true;
+    this.loadInitialProducts();
+    this.scrollToTop();
+  }
 
-getRestFilter() {
-  this.selectedCategory = this.folders[0].name;
-  this.selectedSortBy = this.notes[0].name;
-  this.selectedLanguage = 'all';
-  this.selectedPrice = 'all';
-  this.searchText = '';
+  /**
+   * Scroll event listener for lazy loading - triggers at 80% scroll
+   */
+  @HostListener('window:scroll', [])
+  onScroll(): void {
+    if (!this.scrollListenerActive || this.isLoading || !this.hasMoreProducts()) {
+      return;
+    }
 
-  this.baseFilteredProducts = [];
-  this.filteredCards = [];
-  //this.currentPage = 1;
+    const scrollPosition = window.innerHeight + window.scrollY;
+    const pageHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+    
+    // Calculate scroll percentage
+    const scrollPercentage = (scrollPosition / pageHeight) * 100;
+    
+    // Load more when user reaches 80% of the page
+    if (scrollPercentage >= 70) {
+      this.loadMoreProductsOnScroll();
+    }
+  }
 
-  this.loadMoreProducts();
-}
-openBookDemoDialog() { const dialogRef = this.dialog.open(PopupwindowComponent, { width: '500px', disableClose: true, autoFocus: true, }); dialogRef.afterClosed().subscribe((result) => { if (result) { console.log('Form submitted:', result); } }); }
-  scrollToTop(): void { window.scrollTo({ top: 0, behavior: 'smooth' }); }
-// ========================
-  // Misc Functions
   // ========================
-  getProductList() {
+  // Filter and Search Methods
+  // ========================
+
+  filterCards(): void {
+    const text = this.searchText.toLowerCase();
+    const results = this.allProducts.filter(
+      (card) =>
+        card.product_name.toLowerCase().includes(text) ||
+        (card.categories && card.categories.join(' ').toLowerCase().includes(text)) ||
+        (card.skill && card.skill.toLowerCase().includes(text))
+    );
+    this.applyFilterAndReset(results);
+  }
+
+  getCategory(name: string): void {
+    this.selectedCategory = name;
+    let results: Element[] = [];
+
+    if (name.toLowerCase() === 'all') {
+      results = this.allProducts;
+    } else {
+      results = this.allProducts.filter(
+        (card) => card.skill?.toLowerCase() === name.toLowerCase()
+      );
+    }
+
+    this.applyFilterAndReset(results);
+  }
+
+  getSorted(name: string): void {
+    this.selectedSortBy = name;
+    const nameLower = name.toLowerCase();
+    let sorted = [...this.allProducts];
+
+    switch (nameLower) {
+      case 'newest':
+        sorted.sort((a, b) => +new Date(b.date) - +new Date(a.date));
+        break;
+      case 'price: high-low':
+        sorted.sort((a, b) => +b.base_price - +a.base_price);
+        break;
+      case 'price: low-high':
+        sorted.sort((a, b) => +a.base_price - +b.base_price);
+        break;
+      case 'duration':
+        sorted.sort((a, b) => {
+          const durA = Number(a.duration) || 0;
+          const durB = Number(b.duration) || 0;
+          return durA - durB;
+        });
+        break;
+      default:
+        // Default sorting (keep original order)
+        break;
+    }
+    this.applyFilterAndReset(sorted);
+  }
+
+  getLanguageFilter(language: string): void {
+    this.selectedLanguage = language;
+    const filterValue = language.trim().toLowerCase();
+
+    if (filterValue === 'all') {
+      this.applyFilterAndReset(this.allProducts);
+    } else {
+      const results = this.allProducts.filter(
+        (card) => (card.language?.trim().toLowerCase() || '') === filterValue
+      );
+      this.applyFilterAndReset(results);
+    }
+  }
+
+  getPricing(priceRange: string): void {
+    this.selectedPrice = priceRange;
+    let filtered: Element[] = [];
+
+    switch (priceRange) {
+      case '0-50':
+        filtered = this.allProducts.filter(
+          (card) => +card.base_price >= 0 && +card.base_price <= 50
+        );
+        break;
+      case '50-100':
+        filtered = this.allProducts.filter(
+          (card) => +card.base_price > 50 && +card.base_price <= 100
+        );
+        break;
+      case '100-200':
+        filtered = this.allProducts.filter(
+          (card) => +card.base_price > 100 && +card.base_price <= 200
+        );
+        break;
+      case 'over-200':
+        filtered = this.allProducts.filter((card) => +card.base_price > 200);
+        break;
+      default:
+        filtered = [...this.allProducts];
+    }
+
+    this.applyFilterAndReset(filtered);
+  }
+
+  getRestFilter(): void {
+    this.selectedCategory = this.folders[0].name;
+    this.selectedSortBy = this.notes[0].name;
+    this.selectedLanguage = 'all';
+    this.selectedPrice = 'all';
+    this.searchText = '';
+
+    this.applyFilterAndReset(this.allProducts);
+  }
+
+  // ========================
+  // UI Helper Methods
+  // ========================
+
+  openBookDemoDialog(): void { 
+    const dialogRef = this.dialog.open(PopupwindowComponent, { 
+      width: '500px', 
+      disableClose: true, 
+      autoFocus: true, 
+    }); 
+    dialogRef.afterClosed().subscribe((result) => { 
+      if (result) { 
+        console.log('Form submitted:', result); 
+      } 
+    }); 
+  }
+
+  scrollToTop(): void { 
+    window.scrollTo({ top: 0, behavior: 'smooth' }); 
+  }
+
+  getProductList(): void {
     this.getRestFilter();
   }
 
@@ -349,7 +359,7 @@ openBookDemoDialog() { const dialogRef = this.dialog.open(PopupwindowComponent, 
     return this.mediaMatcher.matches;
   }
 
-  getAddProductRoute() {
+  getAddProductRoute(): void {
     this.router.navigate(['apps/product/add-product']);
   }
 
@@ -368,7 +378,7 @@ openBookDemoDialog() { const dialogRef = this.dialog.open(PopupwindowComponent, 
     });
   }
 
-  getDeletedById(id: number) {
+  getDeletedById(id: number): void {
     this.filteredCards = this.filteredCards.filter(
       (product) => product.id !== id
     );
@@ -376,7 +386,7 @@ openBookDemoDialog() { const dialogRef = this.dialog.open(PopupwindowComponent, 
     this.openSnackBar('Product deleted successfully!');
   }
 
-  openSnackBar(message: string) {
+  openSnackBar(message: string): void {
     this._snackBar.open(message, 'Close', {
       duration: this.durationInSeconds * 1000,
       verticalPosition: 'top',
@@ -384,12 +394,12 @@ openBookDemoDialog() { const dialogRef = this.dialog.open(PopupwindowComponent, 
     });
   }
 
-  getviewDetails(productcardDetails: Element) {
+  getviewDetails(productcardDetails: Element): void {
     this.productService.setProduct(productcardDetails);
     this.router.navigate(['apps/product/product-details']);
   }
 
-  getEditedProduct(productcardDetails: Element) {
+  getEditedProduct(productcardDetails: Element): void {
     this.productService.setProduct(productcardDetails);
     this.router.navigate(['apps/product/edit-product']);
   }
@@ -402,5 +412,22 @@ openBookDemoDialog() { const dialogRef = this.dialog.open(PopupwindowComponent, 
     if (index < fullStars) return 'fill-warning';
     else if (index === fullStars && partialStars) return 'text-warning';
     return '';
+  }
+
+  // Helper method to check if there are more products to load
+  private hasMoreProducts(): boolean {
+    return this.currentDisplayIndex < this.baseFilteredProducts.length;
+  }
+
+  // Get remaining products count (for debugging)
+  getRemainingProductsCount(): number {
+    return Math.max(0, this.baseFilteredProducts.length - this.currentDisplayIndex);
+  }
+
+  // Get current scroll percentage (for debugging)
+  getCurrentScrollPercentage(): number {
+    const scrollPosition = window.innerHeight + window.scrollY;
+    const pageHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+    return (scrollPosition / pageHeight) * 100;
   }
 }

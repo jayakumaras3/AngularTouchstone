@@ -656,3 +656,194 @@ section {
     padding-bottom: 48px;
   }
 }
+ /* Seamless section start **/
+// dochek-landing.component.scss
+.dochek-hero-section {
+    background-color: #d3deff;
+    padding: 1rem 1.5rem;
+    margin: 2rem auto;
+}
+
+.dochek-rounded-section {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.dochek-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.dochek-content-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.dochek-text-column {
+  flex: 1;
+      margin-left: 1%;
+}
+
+.dochek-image-column {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dochek-text-content {
+  max-width: 580px;
+}
+
+.dochek-main-heading {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #1a365d;
+  line-height: 1.3;
+  margin: 0;
+}
+
+.dochek-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #4a5568;
+  margin: 0;
+}
+
+.dochek-spacing-bottom {
+  margin-bottom: 1.5rem;
+}
+
+.dochek-button-container {
+  display: flex;
+  align-items: center;
+}
+
+.dochek-primary-button {
+  background-color: #2d5bff !important;
+  color: white !important;
+  border: none;
+  padding: 0.875rem 2.5rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(45, 91, 255, 0.2);
+  
+  &:hover {
+    background-color: #1e4ae6 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(45, 91, 255, 0.3);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+  
+  &:focus {
+    outline: 2px solid #2d5bff;
+    outline-offset: 2px;
+  }
+}
+
+.dochek-feature-image {
+  margin-top: 0.6%;
+  margin-left: 2.3%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.dochek-image-hidden-mobile {
+  display: block;
+}
+
+// Tablet styles
+@media (max-width: 1024px) {
+  .dochek-hero-section {
+    padding: 2.5rem 1.5rem;
+  }
+  
+  .dochek-content-wrapper {
+    gap: 2rem;
+  }
+  
+  .dochek-main-heading {
+    font-size: 1.75rem;
+  }
+  
+  .dochek-description {
+    font-size: 1.05rem;
+  }
+}
+
+// Mobile styles
+@media (max-width: 768px) {
+  .dochek-hero-section {
+    padding: 2rem 1rem;
+    margin: 1rem auto;
+  }
+  
+  .dochek-content-wrapper {
+    flex-direction: column;
+    gap: 2rem;
+    text-align: center;
+  }
+  
+  .dochek-text-column {
+    width: 100%;
+  }
+  
+  .dochek-text-content {
+    max-width: 100%;
+  }
+  
+  .dochek-main-heading {
+    font-size: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .dochek-description {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+  }
+  
+  .dochek-button-container {
+    justify-content: center;
+  }
+  
+  .dochek-primary-button {
+    width: 100%;
+    max-width: 280px;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+  }
+  
+  .dochek-image-hidden-mobile {
+    display: none;
+  }
+}
+
+// Small mobile devices
+@media (max-width: 480px) {
+  .dochek-hero-section {
+    padding: 1.5rem 1rem;
+  }
+  
+  .dochek-main-heading {
+    font-size: 1.375rem;
+  }
+  
+  .dochek-description {
+    font-size: 0.95rem;
+  }
+  
+  .dochek-primary-button {
+    padding: 0.875rem 1.5rem;
+  }
+}
+     
+    /*Seamless section end **/

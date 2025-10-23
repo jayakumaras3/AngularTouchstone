@@ -141,14 +141,20 @@
           </div>
           }
         </div>
-        <div class="bg-light-primary rounded-8 footer-container-bookDemo overflow-hidden">
-      <div class="row">
-        <div class="col-lg-6">
-          <div class="spacing-top spacing-left left-side-content">
-            <h2 class="f-s-25 m-b-24 lh-normal section-sub-title">
-             Simple for Learners, Seamless for Admins
-            </h2>
-           <h3 class="f-s-14 m-b-24 d-block lh-base fontWeightnormal  section-sub-title">With DoChek’s lightweight interface, training is hassle-free. Manage multiple users and clients from a single platform, without server slowdowns. Our partners benefit from less administrative hassle, smoother delivery, and sharper insights. Just assign the courses, and let DoChek manage the rest. </h3>
+     <!-- >Seamless section start **/-->
+<!-- dochek-landing.component.html -->
+<div class="dochek-hero-section dochek-rounded-section">
+  <div class="dochek-container">
+    <div class="dochek-content-wrapper">
+      <div class="dochek-text-column">
+        <div class="dochek-text-content">
+          <h2 class="dochek-main-heading dochek-spacing-bottom">
+            Simple for Learners, Seamless for Admins
+          </h2>
+          <p class="dochek-description dochek-spacing-bottom">
+            With DoChek's lightweight interface, training is hassle-free. Manage multiple users and clients from a single platform, without server slowdowns. Our partners benefit from less administrative hassle, smoother delivery, and sharper insights. Just assign the courses, and let DoChek manage the rest.
+          </p>
+          <div class="dochek-button-container">
             <div class="m-b-24 hstack">
               <a 
                 (click)="openBookDemoDialog()" mat-flat-button color="primary" class="">Book a Demo</a>
@@ -156,10 +162,20 @@
             </div>
           </div>
         </div>
-        <div class="col-md-6 d-none d-lg-block">
-          <img src="assets/images/front-pages/Simple-for-Learner-Seamless-for-Admins.png" alt="bg-img" class="imgStyleDash" />
-        </div>
       </div>
+      <div class="dochek-image-column dochek-image-hidden-mobile">
+        <img 
+          src="assets/images/front-pages/Simple-for-Learner-Seamless-for-Admins.png" 
+          alt="DoChek platform interface showing seamless admin and learner experience" 
+          class="dochek-feature-image" />
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- >Seamless section end **/-->
+
+
 <div class="col-md-12">
   <mat-card class="testimonial-card-alt">
     <mat-card-content>
@@ -194,7 +210,7 @@
   </mat-card>
 </div>
 
-
+<!-->
 <div class="template-slider spacing-top-bottom">
     <div class="custom-container">
       <div class="bg-light-primary rounded-pill spacing-top-bottom template-slider-content">
@@ -360,7 +376,7 @@
       </div>
       }
     </div>
-  </div>
+  </div>-->
 
   <!-- Card animation Start
     <div class="introducing-section dashboardCards spacing-top">
@@ -668,7 +684,7 @@
           </div>
         </div>
        <div class="col-md-7">
-  <mat-card class="cardWithShadow b-1 rounded-8 m-b-0 p-48">
+    <mat-card class="cardWithShadow b-1 rounded-8 m-b-0 p-48">
     <mat-card-content>
       <mat-card-title class="f-s-24 f-w-600 m-b-24">{{ activeFeature.question}}</mat-card-title>
 
