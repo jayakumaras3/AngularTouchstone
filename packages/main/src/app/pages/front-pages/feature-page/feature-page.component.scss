@@ -436,144 +436,141 @@ h2{
 }
 /* Course Career skills end */
 /* Feature Section 1 */
+ .bespoke-learning-section {
+            background: #f8fafc;
+            padding: 2rem 0;
+        }
 
-.bespoke-learning-section {
-  background: #f8fafc;
- /* padding: 4rem 0;*/
+        .bespoke-learning-section .container {
+            max-width: 1400px;
+        }
 
-  .container {
-    max-width: 1400px;
-  }
- 
-  .image-group {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+        .image-group {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
 
-    .main-img {
-          width: 458px;
-          border-radius: 12px;
-          object-fit: cover;
-          /* box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); */
-          z-index: 2;
+        .image-group .main-img {
+            width: 100%;
+            max-width: 458px;
+            border-radius: 12px;
+            object-fit: cover;
+            z-index: 2;
+        }
 
-    }
+        .image-group .dot-pattern {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 60px;
+            height: 60px;
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 10px 10px;
+            opacity: 0.5;
+            z-index: 0;
+        }
 
-    .stats-card {
-      position: absolute;
-      top: 10%;
-      left: 55%;
-      background: #e9f0ff;
-      border-radius: 12px;
-      padding: 1rem 2rem;
-      text-align: center;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-      animation: fadeIn 1s ease-in-out;
-      h3 {
-        margin: 0;
-        font-weight: 700;
-        color: #1d4ed8;
-      }
-      p {
-        margin: 0;
-        color: #6b7280;
-        font-size: 14px;
-      }
-    }
+        .title {
+            font-weight: 700;
+            font-size: 1.75rem;
+            color: #1e293b;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
 
-    .overlay-img {
-      width: 200px;
-      border-radius: 12px;
-      object-fit: cover;
-      position: absolute;
-      bottom: -30px;
-      right: 0;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-      z-index: 1;
-      animation: slideUp 1s ease-in-out;
-    }
+        .desc {
+            color: #4b5563;
+            line-height: 1.6;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
 
-    .dot-pattern {
-      position: absolute;
-      top: -20px;
-      left: -40px;
-      width: 80px;
-      height: 80px;
-      background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
-      background-size: 10px 10px;
-      opacity: 0.5;
-      z-index: 0;
-    }
-  }
+        .btn-primary {
+            background: #2563eb;
+            color: #fff;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 8px;
+            transition: 0.3s ease;
+        }
 
-  .title {
-    font-weight: 700;
-        font-size: 2rem;
-    color: #1e293b;
-    margin-bottom: 1rem;
-        line-height: 2.3rem;
-  }
+        .btn-primary:hover {
+            background: #1e40af;
+            transform: translateY(-2px);
+        }
 
-  .desc {
-    color: #4b5563;
-    line-height: 1.7;
-        font-size: 1.05rem;
-    margin-bottom: 1rem;
-  }
+        /* Mobile-first adjustments */
+        @media (max-width: 767.98px) {
+            .bespoke-learning-section {
+                padding: 1.5rem 0;
+            }
+            
+            .image-group {
+                margin-bottom: 2rem;
+            }
+            
+            .image-group .main-img {
+                max-width: 100%;
+                height: auto;
+            }
+            
+            .image-group .dot-pattern {
+                top: -10px;
+                left: -10px;
+                width: 40px;
+                height: 40px;
+            }
+            
+            .title {
+                font-size: 1.5rem;
+                text-align: center;
+            }
+            
+            .desc {
+                text-align: center;
+                font-size: 0.95rem;
+            }
+            
+            .btn-primary {
+                display: block;
+                margin: 0 auto;
+                width: 60%;
+            }
+        }
 
-  .btn-primary {
-    background: #2563eb;
-    color: #fff;
-    border: none;
-    padding: 10px 22px;
-    border-radius: 8px;
-    transition: 0.3s ease;
-    &:hover {
-      background: #1e40af;
-      transform: translateY(-2px);
-    }
-  }
-}
-
-/* Animations */
-@keyframes slideUp {
-  from {
-    transform: translateY(30px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@media (max-width: 768px) {
-  .image-group {
-    flex-direction: column;
-    .main-img,
-    .overlay-img {
-      width: 90%;
-    }
-    .stats-card {
-      top: auto;
-      left: auto;
-      bottom: 10px;
-      right: 10px;
-    }
-  }
-}
+        /* Desktop styles */
+        @media (min-width: 768px) {
+            .bespoke-learning-section {
+                padding: 4rem 0;
+            }
+            
+            .image-group {
+                margin-bottom: 0;
+            }
+            
+            .image-group .main-img {
+                width: 458px;
+            }
+            
+            .title {
+                font-size: 2rem;
+                line-height: 2.3rem;
+                text-align: left;
+            }
+            
+            .desc {
+                text-align: left;
+                font-size: 1.05rem;
+            }
+            
+            .btn-primary {
+                display: inline-block;
+                width: auto;
+            }
+        }
 
 /* Feature Section 1 end */
 
