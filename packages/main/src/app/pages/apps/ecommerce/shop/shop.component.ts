@@ -108,16 +108,6 @@ loadMoreLanguages(): void {
   { name: 'Duration', icon: 'clock' },
 ];
   selectedSortBy: string = this.notes[0].name;
-
-  /*selectedGender: string = 'all';
-  genderOptions = [
-    { label: 'All', value: 'all' },
-    { label: 'English', value: 'english' },
-    { label: 'Spanish', value: 'spanish' },
-    { label: 'German', value: 'german' },
-    { label: 'Italian', value: 'italian' },    
-    { label: 'French', value: 'french' },
-  ];*/
   selectedLanguage: string = 'all';
 languageOptions = [
   { label: 'All', value: 'all' },
@@ -212,20 +202,6 @@ private calculateLanguageCounts(): void {
     );
     this.resetAndLoad(results);
   }
-
- /* getCategory(name: string): void {
-    this.selectedCategory = name;
-    if (name.toLowerCase() === 'all') {
-      this.resetAndLoad(PRODUCT_DATA);
-    } else {
-      const results = PRODUCT_DATA.filter((card) =>
-        card.categories.some(
-          (cat) => cat.toLowerCase() === name.toLowerCase()
-        )
-      );
-      this.resetAndLoad(results);
-    }
-  }*/
  getCategory(name: string): void {
   this.selectedCategory = name;
 
@@ -265,18 +241,6 @@ getSorted(name: string): void {
   this.resetAndLoad(sorted);
   this.scrollToTop();
 }
-
- /* getGender(gender: string): void {
-    if (gender.toLowerCase() === 'all') {
-      this.resetAndLoad(PRODUCT_DATA);
-    } else {
-      const results = PRODUCT_DATA.filter(
-        (card) => card.gender === gender.toLowerCase()
-      );
-      this.resetAndLoad(results);
-    }
-  }*/
- 
  openBookDemoDialog() {
    const dialogRef = this.dialog.open(PopupwindowComponent, {
      width: '500px',
@@ -340,16 +304,7 @@ getLanguageFilter(language: string): void {
 
     this.resetAndLoad(filtered);
   }
-//It loads 500 courses at once.
-/*  getRestFilter() {
-    this.selectedCategory = this.folders[0].name;
-    this.selectedSortBy = this.notes[0].name;
-    this.selectedGender = 'all';
-    this.selectedPrice = 'all';
-    this.searchText = '';
-    this.resetAndLoad(PRODUCT_DATA);
-  } */
- // So changed to load 16 courses at once
+
 getRestFilter() {
   this.selectedCategory = this.folders[0].name;
   this.selectedSortBy = this.notes[0].name;
