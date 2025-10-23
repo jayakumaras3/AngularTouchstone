@@ -259,7 +259,7 @@ openBookDemoDialog() {
       title: 'Switch Without the Stress',
       icon: 'bi bi-cash-coin',
       img: 'assets/images/industryImage/finance.jpg',
-      desc: 'Moving to a new LMS doesn’t have to be messy. Dochek makes migration simple by supporting industry standards (SCORM1.2I) and offering seamless data transfer from your existing LMS. '
+      desc: 'Moving to a new LMS doesn’t have to be messy. Dochek makes migration simple by supporting industry standards (SCORM 1.2) and offering seamless data transfer from your existing LMS. '
     },
     {
       title: 'Life Sciences',

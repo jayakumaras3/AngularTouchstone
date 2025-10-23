@@ -47,11 +47,7 @@ export class ShopComponent implements OnInit {
   private mediaMatcher: MediaQueryList = matchMedia(`(max-width: 1199px)`);
   isMobileView = false;
   languageCounts: { [key: string]: number } = {};
-  // ========================
-  // Pagination properties
-  // ========================
-  pageSize = 8;
-  currentPage = 1;
+
   // ========================
 // Language Lazy Loading
 // ========================
@@ -83,6 +79,7 @@ loadMoreLanguages(): void {
     this.languagePageIndex += this.languagePageSize;
   }
 }
+
   allProducts: Element[] = PRODUCT_DATA;
   filteredCards: Element[] = [];
 
@@ -137,9 +134,13 @@ languageOptions = [
   }
 
   ngOnInit(): void {
-    this.calculateLanguageCounts();
+    /*this.calculateLanguageCounts();
     this.loadMoreProducts(); // Load initial 8
-    this.loadLanguages();   
+    this.loadLanguages();   */
+    this.calculateLanguageCounts();
+  this.loadLanguages();
+  this.resetAndLoad(PRODUCT_DATA); // Load initial 8 
+  
   }
 private calculateLanguageCounts(): void {
   const counts: { [key: string]: number } = {};
@@ -157,64 +158,99 @@ private calculateLanguageCounts(): void {
   this.languageCounts = counts;
 }
 
+// ========================
+// Pagination properties
+// ========================
+pageSizeInitial = 8;   // first load
+pageSizeIncrement = 4; // load +4 each scroll
+loadedCount = 0;
+baseFilteredProducts: Element[] = [];
+
+
   // ========================
   // Lazy Loading Logic
   // ========================
-  loadMoreProducts(): void {
-    const startIndex = (this.currentPage - 1) * this.pageSize;
-    const endIndex = this.currentPage * this.pageSize;
-    const nextBatch = this.allProducts.slice(startIndex, endIndex);
-    this.filteredCards = [...this.filteredCards, ...nextBatch];
-    this.currentPage++;
-  }
+    // ========================
+// Load Products
+// ========================
+loadInitialProducts(): void {
+  const source = this.baseFilteredProducts.length
+    ? this.baseFilteredProducts
+    : this.allProducts;
 
-  loadMoreIfAvailable(): void {
-    if (this.filteredCards.length < this.allProducts.length) {
-      this.loadMoreProducts();
-    }
-  }
+  this.filteredCards = source.slice(0, this.pageSizeInitial);
+  this.loadedCount = this.pageSizeInitial;
+}
 
-  @HostListener('window:scroll', [])
-  onScroll(): void {
-    const scrollPosition = window.innerHeight + window.scrollY;
-    const pageHeight = document.body.offsetHeight;
-    if (scrollPosition >= pageHeight - 300) {
-      this.loadMoreIfAvailable();
-    }
-  }
+loadMoreProducts(): void {
+  const source = this.baseFilteredProducts.length
+    ? this.baseFilteredProducts
+    : this.allProducts;
 
-  // ========================
-  // Filter and Search
-  // ========================
-  resetAndLoad(data: Element[]) {
-    this.allProducts = data;
-    this.filteredCards = [];
-    this.currentPage = 1;
+  // Don’t load more if already loaded all
+  if (this.loadedCount >= source.length) return;
+
+  const nextBatch = source.slice(
+    this.loadedCount,
+    this.loadedCount + this.pageSizeIncrement
+  );
+
+  this.filteredCards = [...this.filteredCards, ...nextBatch];
+  this.loadedCount += nextBatch.length;
+}
+
+// ========================
+// Scroll Listener
+// ========================
+@HostListener('window:scroll', [])
+onScroll(): void {
+  const scrollPosition = window.innerHeight + window.scrollY;
+  const pageHeight = document.body.offsetHeight;
+
+  // When near the bottom (within 100px)
+  if (scrollPosition >= pageHeight - 100) {
     this.loadMoreProducts();
   }
+}
 
-  filterCards() {
-    const text = this.searchText.toLowerCase();
-    const results = PRODUCT_DATA.filter(
-      (card) =>
-        card.product_name.toLowerCase().includes(text) ||
-        card.categories.join(' ').toLowerCase().includes(text)
-    );
-    this.resetAndLoad(results);
-  }
- getCategory(name: string): void {
+// ========================
+// Reset and Load Helper
+// ========================
+resetAndLoad(data: Element[]): void {
+  this.baseFilteredProducts = data;
+  this.loadedCount = 0;
+  this.filteredCards = [];
+  this.loadInitialProducts();
+}
+// ========================
+// Filter and Search
+// ========================
+filterCards() {
+  const text = this.searchText.toLowerCase();
+  const results = PRODUCT_DATA.filter(
+    (card) =>
+      card.product_name.toLowerCase().includes(text) ||
+      card.categories.join(' ').toLowerCase().includes(text)
+  );
+  this.resetAndLoad(results);
+}
+
+getCategory(name: string): void {
   this.selectedCategory = name;
+  let results: Element[] = [];
 
   if (name.toLowerCase() === 'all') {
-    this.resetAndLoad(PRODUCT_DATA);
+    results = PRODUCT_DATA;
   } else {
-    const results = PRODUCT_DATA.filter(
+    results = PRODUCT_DATA.filter(
       (card) => card.skill?.toLowerCase() === name.toLowerCase()
     );
-    this.resetAndLoad(results);
   }
+
+  this.resetAndLoad(results);
   this.scrollToTop();
 }
+
 getSorted(name: string): void {
   this.selectedSortBy = name;
   const nameLower = name.toLowerCase();
@@ -234,26 +270,14 @@ getSorted(name: string): void {
       sorted.sort((a, b) => {
         const durA = Number(a.duration) || 0;
         const durB = Number(b.duration) || 0;
-        return durA - durB; // ascending order (shorter first)
+        return durA - durB;
       });
       break;
   }
   this.resetAndLoad(sorted);
   this.scrollToTop();
 }
- openBookDemoDialog() {
-   const dialogRef = this.dialog.open(PopupwindowComponent, {
-     width: '500px',
-     disableClose: true,
-     autoFocus: true,
-   });
- 
-   dialogRef.afterClosed().subscribe((result) => {
-     if (result) {
-       console.log('Form submitted:', result);
-     }
-   });
- }
+
 getLanguageFilter(language: string): void {
   this.selectedLanguage = language;
   const filterValue = language.trim().toLowerCase();
@@ -262,48 +286,42 @@ getLanguageFilter(language: string): void {
     this.resetAndLoad(PRODUCT_DATA);
   } else {
     const results = PRODUCT_DATA.filter(
-      card => (card.language?.trim().toLowerCase() || '') === filterValue
+      (card) => (card.language?.trim().toLowerCase() || '') === filterValue
     );
     this.resetAndLoad(results);
   }
-
   this.scrollToTop();
 }
 
+getPricing(base_priceRange: string): void {
+  this.selectedPrice = base_priceRange;
+  let filtered: Element[] = [];
 
-  scrollToTop(): void {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  switch (base_priceRange) {
+    case '0-50':
+      filtered = PRODUCT_DATA.filter(
+        (card) => +card.base_price >= 0 && +card.base_price <= 50
+      );
+      break;
+    case '50-100':
+      filtered = PRODUCT_DATA.filter(
+        (card) => +card.base_price > 50 && +card.base_price <= 100
+      );
+      break;
+    case '100-200':
+      filtered = PRODUCT_DATA.filter(
+        (card) => +card.base_price > 100 && +card.base_price <= 200
+      );
+      break;
+    case 'over-200':
+      filtered = PRODUCT_DATA.filter((card) => +card.base_price > 200);
+      break;
+    default:
+      filtered = [...PRODUCT_DATA];
   }
 
-  getPricing(base_priceRange: string): void {
-    this.selectedPrice = base_priceRange;
-    let filtered: Element[] = [];
-
-    switch (base_priceRange) {
-      case '0-50':
-        filtered = PRODUCT_DATA.filter(
-          (card) => +card.base_price >= 0 && +card.base_price <= 50
-        );
-        break;
-      case '50-100':
-        filtered = PRODUCT_DATA.filter(
-          (card) => +card.base_price > 50 && +card.base_price <= 100
-        );
-        break;
-      case '100-200':
-        filtered = PRODUCT_DATA.filter(
-          (card) => +card.base_price > 100 && +card.base_price <= 200
-        );
-        break;
-      case 'over-200':
-        filtered = PRODUCT_DATA.filter((card) => +card.base_price > 200);
-        break;
-      default:
-        filtered = [...PRODUCT_DATA];
-    }
-
-    this.resetAndLoad(filtered);
-  }
+  this.resetAndLoad(filtered);
+}
 
 getRestFilter() {
   this.selectedCategory = this.folders[0].name;
@@ -312,16 +330,15 @@ getRestFilter() {
   this.selectedPrice = 'all';
   this.searchText = '';
 
-  // Reset all product arrays and pagination
-  this.allProducts = PRODUCT_DATA;
+  this.baseFilteredProducts = [];
   this.filteredCards = [];
-  this.currentPage = 1;
+  //this.currentPage = 1;
 
-  // Load first 16 products only
   this.loadMoreProducts();
 }
-
-  // ========================
+openBookDemoDialog() { const dialogRef = this.dialog.open(PopupwindowComponent, { width: '500px', disableClose: true, autoFocus: true, }); dialogRef.afterClosed().subscribe((result) => { if (result) { console.log('Form submitted:', result); } }); }
+  scrollToTop(): void { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+// ========================
   // Misc Functions
   // ========================
   getProductList() {
