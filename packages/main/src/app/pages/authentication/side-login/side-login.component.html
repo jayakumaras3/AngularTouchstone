@@ -22,9 +22,9 @@
         <div class="row justify-content-center w-100">
           <div class="col-lg-9 max-width-form">
             <h4 class="f-w-700 f-s-24 m-0">Welcome to TouchStone</h4>
-            <span class="f-s-14 d-block f-s-14 m-t-8"
+          <!-- <span class="f-s-14 d-block f-s-14 m-t-8"
               >Your Admin Dashboard</span
-            >
+            >-->  
 
             <form class="m-t-30" [formGroup]="form" (ngSubmit)="submit()">
               <mat-label class="f-s-14 f-w-600 m-b-12 d-block"
@@ -68,12 +68,12 @@
               </mat-form-field>
 
               <div class="d-flex align-items-center m-b-12">
-                <mat-checkbox color="primary"
+               <!-- <mat-checkbox color="primary"
                   >Remember this Device</mat-checkbox
-                >
+                >-->
                 <a
                   [routerLink]="['/authentication/side-forgot-pwd']"
-                  class="text-primary f-w-600 text-decoration-none m-l-auto f-s-14"
+                  class="text-primary f-w-600 text-decoration-none f-s-14"
                   >Forgot Password ?</a
                 >
               </div>
