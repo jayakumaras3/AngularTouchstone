@@ -6,8 +6,12 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
   // Base URLs
-  private apiUrl = 'http://172.16.0.99/DOCHEKDOTCOM/landing';
-  private contactApiUrl = 'http://172.16.0.99/DOCHEKDOTCOM/landing';
+
+  //private apiUrl = 'http://172.16.0.99/DOCHEKDOTCOM/landing';
+  //private contactApiUrl = 'http://172.16.0.99/DOCHEKDOTCOM/landing';
+
+  private apiUrl = 'http://172.16.0.173/landing';
+  private contactApiUrl = 'http://172.16.0.173/landing';
 
   constructor(private http: HttpClient) {}
 

@@ -5,6 +5,7 @@ import { Router, RouterModule } from '@angular/router';
 import { MaterialModule } from '../../../material.module';
 import { BrandingComponent } from '../../../layouts/full/vertical/sidebar/branding.component';
 import { AuthService } from '../../../services/login/auth.service';
+import { LoginUrl } from '../../../config';
 
 @Component({
     selector: 'app-side-login',
@@ -13,7 +14,8 @@ import { AuthService } from '../../../services/login/auth.service';
 })
 export class AppSideLoginComponent {
 //  options = this.settings.getOptions();
-baseUrlpath:string="DOCHEKDOTCOM/app/Views/angular_view/";
+//baseUrlpath:string="DOCHEKDOTCOM/app/Views/angular_view/";
+baseUrlpath:string=LoginUrl;
   constructor(private authservice:AuthService, private router: Router) { }
 
   form = new FormGroup({

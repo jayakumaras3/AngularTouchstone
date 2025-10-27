@@ -71,7 +71,7 @@ export class HomepageDetailsComponent implements OnInit{
     {
       university: '',
       universityShort: '',
-      title: 'Data Protection and Privacy [Retired]',
+      title: 'Data Protection and Privacy',
       level: 'Beginner - Professional Certificate',
       provider: '',
       thumbnail: 'assets/images/courses/C4U351_thumbnail_400x200.jpg'
@@ -294,14 +294,14 @@ openBookDemoDialog() {
       
       title: 'Build & Customize Easily',
       subtext:
-        'Create and upload courses, package multiple trainings into a module, and export as SCORM for any LMS ',
+        'Create and upload courses, package multiple trainings into a module, and export as SCORM for any LMS. ',
     },
     {
       id: 2,
       icon: 'shield-lock',
       title: 'Engage Learners',
       subtext:
-        'Boost user retention with gamification, discussion forums, and scenario-based simulations',
+        'Boost user retention with gamification, discussion forums, and scenario-based simulations.',
     },
     {
       id: 15,
@@ -319,14 +319,14 @@ openBookDemoDialog() {
       img: `assets/images/profile/user-9.jpg`,
          question:'“Everything we need, in one place.”',
       subtext:
-        '“DoCheck has simplified learning management for us. Earlier, we were juggling different platforms for uploading courses, tracking progress, and managing Excel reports. Now, everything happens under one roof, and it saves us a lot of time and effort”  ',
+        '“DoCheck has simplified learning management for us. Earlier, we were juggling different platforms for uploading courses, tracking progress, and managing Excel reports. Now, everything happens under one roof, and it saves us a lot of time and effort.”  ',
     },
     {
       id: 2,
       icon: 'shield-lock',
       title: 'Liam Grant, HR Manager at a global FMCG brand',
       img: `assets/images/profile/user-1.jpg`,
-         question:'"Drives real decision-making, not memorized answers"',
+         question:'“Drives real decision-making, not memorized answers”',
 
       subtext:
         '“With DoCheck, we build scenarios that mirror real situations, like a conference or client meeting. Every learner gets the same setup, but their answers differ, which gives us a much clearer view of their decision-making skills.” ',
@@ -451,11 +451,7 @@ openBookDemoDialog() {
       width: '1000px',
     });
     return dialogRef.afterClosed();
-    /*dialogRef.afterClosed().subscribe((result) => {
-      if (result === false) {
-        this.showBackground = false; // Reset or take any action
-      }
-    });*/
+   
   }
 
  

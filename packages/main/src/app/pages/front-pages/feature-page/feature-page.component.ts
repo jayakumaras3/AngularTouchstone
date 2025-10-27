@@ -63,7 +63,7 @@ export class FeaturePageComponent {
     {
       university: '',
       universityShort: '',
-      title: 'Data Protection and Privacy [Retired]',
+      title: 'Data Protection and Privacy',
       level: 'Beginner - Professional Certificate',
       provider: '',
       thumbnail: 'assets/images/courses/C4U351_thumbnail_400x200.jpg'

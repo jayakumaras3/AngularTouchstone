@@ -444,7 +444,7 @@ export const pricingBanner = {
   title: 'Flexible Pricing for Every Learning Need',
   subtitle:
     'Enjoy premium features with a plan that suits your business\'s pace and budget',
-  cta: 'Choose the Right Plan For Your Team',
+  cta: 'Choose the Right Plan for Your Team',
 };
 
 export const users = [
@@ -920,7 +920,7 @@ export const stats = [
   {
     label: ' ',
     value: '2025',
-    description: 'SCORM, Assessment Builder & Course Builder v4 Rolled Out',
+    description: 'SCORM, Assessment Builder & Course Builder V4 Rolled Out',
   },
   {
     label: ' ',
