@@ -59,23 +59,30 @@ export class ContactComponent implements OnInit {
       'background-repeat': 'no-repeat'
     };
   }
+isSubmitting = false; // track submission state
 
- submit() {
-    if (this.form.valid) {
-      this.authService.sendProductEnquiry(this.form.value).subscribe({
-        next: (res) => {
-          if (res.success) {
-            alert('✅ Product enquiry submitted successfully!');
-            this.form.reset();
-          } else {
-            alert(res.message || 'Failed to submit enquiry.');
-          }
-        },
-        error: (err) => {
-          console.error('HTTP Error:', err);
-          alert('Server error. Check console for details.');
+submit() {
+  if (this.form.valid && !this.isSubmitting) {
+    this.isSubmitting = true; // disable button immediately
+
+    this.authService.sendProductEnquiry(this.form.value).subscribe({
+      next: (res) => {
+        if (res.success) {
+          alert('✅ Product enquiry submitted successfully!');
+          this.form.reset();
+        } else {
+          alert(res.message || 'Failed to submit enquiry.');
         }
-      });
-    }
+      },
+      error: (err) => {
+        console.error('HTTP Error:', err);
+        alert('Server error. Check console for details.');
+      },
+      complete: () => {
+        this.isSubmitting = false; // re-enable button after response
+      }
+    });
   }
+}
+
 }

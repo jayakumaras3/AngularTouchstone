@@ -35,5 +35,14 @@
 
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="form.invalid">Submit</button>
+  <button
+      mat-raised-button
+            color="primary"
+            (click)="onSubmit()"
+            [disabled]="form.invalid || isSubmitting"
+          >
+            {{ isSubmitting ? 'Submitting...' : 'Submit' }}
+          </button>
+
+  
 </mat-dialog-actions>

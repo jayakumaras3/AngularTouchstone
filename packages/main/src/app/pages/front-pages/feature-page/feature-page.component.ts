@@ -40,6 +40,13 @@ import { CommonModule } from '@angular/common';
 export class FeaturePageComponent {
   selectedPath: string | null = null;
   private router = inject(Router);
+   onExploreClick() {
+    console.log('Explore clicked!');
+    // Call any method or logic you want here
+
+    // Navigate to the catalog page
+    this.router.navigate(['front-pages/catalog']);
+  }
   // Component data
   reportLink = 'https://www.coursera.org';
   imagePath = 'assets/images/front-pages/2.jpg';

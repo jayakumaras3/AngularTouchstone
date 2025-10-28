@@ -38,28 +38,36 @@ export class PopupwindowComponent {
     });
   }
 
-  onSubmit() {
-    if (this.form.valid) {
-      console.log('Submitting contact form:', this.form.value);
+isSubmitting = false; // track submission state
 
-      this.authService.sendContact(this.form.value).subscribe({
-        next: (res: any) => {
-          console.log('Response:', res);
+onSubmit() {
+  if (this.form.valid && !this.isSubmitting) {
+    this.isSubmitting = true; // disable button immediately
+    console.log('Submitting contact form:', this.form.value);
 
-          if (res.success) {
-            alert(res.message || '✅ Message sent successfully!');
-            this.dialogRef.close(res);
-          } else {
-            alert(res.message || '❌ Submission failed');
-          }
-        },
-        error: (err) => {
-          console.error('HTTP Error:', err);
-          alert('Server error. Please check the console.');
-        },
-      });
-    } else {
-      alert('⚠️ Please fill all required fields');
-    }
+    this.authService.sendContact(this.form.value).subscribe({
+      next: (res: any) => {
+        console.log('Response:', res);
+
+        if (res.success) {
+          alert(res.message || '✅ Message sent successfully!');
+          this.dialogRef.close(res); // close dialog
+          this.form.reset();
+        } else {
+          alert(res.message || '❌ Submission failed');
+        }
+      },
+      error: (err) => {
+        console.error('HTTP Error:', err);
+        alert('Server error. Please check the console.');
+      },
+      complete: () => {
+        this.isSubmitting = false; // re-enable button after response
+      }
+    });
+  } else if (!this.form.valid) {
+    alert('⚠️ Please fill all required fields');
   }
+}
+
 }
