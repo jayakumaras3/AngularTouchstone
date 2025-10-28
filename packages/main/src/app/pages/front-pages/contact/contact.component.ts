@@ -51,14 +51,22 @@ export class ContactComponent implements OnInit {
     this.setBackground();
   }
 
-  setBackground() {
-    this.backgroundStyle = {
-      'background-image': `url('${baseUrlPathslash}/assets/images/backgrounds/profilebg.png')`,
-      'background-size': 'cover',
-      'background-position': 'center',
-      'background-repeat': 'no-repeat'
-    };
-  }
+
+setBackground() {
+  this.backgroundStyle = {
+    'background-image': `url('${baseUrlPathslash}/assets/images/backgrounds/profilebg.png')`,
+    'background-size': 'contain',   // ensures full image visible
+    'background-position': 'center',
+    'background-repeat': 'no-repeat',
+    
+    'height': '100%',
+    'display': 'flex',
+    'align-items': 'center',
+    'justify-content': 'center'
+  };
+}
+
+
 isSubmitting = false; // track submission state
 
 submit() {

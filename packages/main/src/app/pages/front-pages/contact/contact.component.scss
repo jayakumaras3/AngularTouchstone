@@ -1,13 +1,84 @@
-.map-container{
-    margin-top: -200px;
-}
 .container-content {
-  width: 94%;
-  margin: 0 auto;                /* Centers horizontally */
-  background-size: cover;
+  width: 92%;
+  margin: 0 auto;
+  min-height: 58vh; /* Adjust based on image ratio */
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  padding: 100px 0;
-  color: white;
-  text-align: center;            /* Centers text inside */
+  background-color: white !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: all 0.4s ease-in-out;
+}
+
+/* ✅ Large screens (Desktop) */
+@media (min-width: 1200px) {
+  .container-content {
+    background-size: cover; /* Looks better filled */
+    min-height: 64vh;
+  }
+}
+
+/* ✅ Tablets (Landscape) */
+@media (max-width: 1024px) and (orientation: landscape) {
+  .container-content {
+    min-height: 59vh;
+    background-size: contain;
+    background-position: center center;
+  }
+}
+
+/* ✅ Tablets (Portrait) */
+@media (max-width: 1024px) and (orientation: portrait) {
+  .container-content {
+    min-height: 23vh;
+    background-size: 95% auto;
+    background-position: top center;
+  }
+}
+
+/* ✅ Mobile Landscape */
+@media (max-width: 768px) and (orientation: landscape) {
+  .container-content {
+    min-height: 50vh;
+    background-size: 90% auto;
+    background-position: center center;
+  }
+}
+
+/* ✅ Mobile Portrait */
+@media (max-width: 768px) and (orientation: portrait) {
+  .container-content {
+    min-height: 27vh;
+    background-size: 100% auto;
+    background-position: top center;
+  }
+}
+
+/* ✅ Very Small Devices (Phones below 480px) */
+@media (max-width: 480px) and (orientation: portrait) {
+  .container-content {
+    min-height: 20vh;
+    background-size: 100% auto;
+    background-position: top center;
+  }
+}
+
+@media (max-width: 480px) and (orientation: landscape) {
+  .container-content {
+    min-height: 40vh;
+    background-size: contain;
+    background-position: center;
+  }
+}
+
+/* Other Sections */
+.contact-heading {
+  margin-top: 60px;
+}
+
+.form-content {
+  padding: 60px 0;
 }
