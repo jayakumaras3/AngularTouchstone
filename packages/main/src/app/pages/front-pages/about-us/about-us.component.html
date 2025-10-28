@@ -19,44 +19,10 @@
       </div>
     </div>
   </div>
-<!--
-  <div class="spacing-top-bottom setup-process">
-    <div class="container">
-      <h2 class="text-center section-sub-title m-b-48 f-s-40 lh-normal">
-        The hassle-free setup process
-      </h2>
-      <div class="row">
-        @for(topcard of setupCards; track topcard.title) {
-        <div class="col-lg-3 col-sm-6 d-flex align-items-stretch">
-          <mat-card class="shadow-none text-center w-100 bg-light-{{
-              topcard.color
-            }} rounded-8 ">
-            <mat-card-content>
-              <div class="m-t-16">
-                @if(topcard.id!==2){
-                <img [src]="topcard.img" alt="users" width="40" class="rounded-circle" />
-                }
 
-                <h6 class="f-s-16 m-t-16">
-                  {{ topcard.title }}
-                </h6>
-                <p class="f-s-14 m-t-16 m-b-0">
-                  {{ topcard.subtitle }}
-                </p>
-                @if(topcard.id===2){
-                <img [src]="topcard.imgMain" alt="image" class="img-fluid w-100 m-t-10 m-b--32" />
-                }
-              </div>
-            </mat-card-content>
-          </mat-card>
-        </div>
-        }
-      </div>
-    </div>
-  </div> -->
 
   <mat-divider></mat-divider>
-<div class="container-fluid bg-light py-5 outcomes-container">
+  <div class="container-fluid bg-light py-5 outcomes-container">
   <div class="container">
     <div class="row outcomes-card align-items-center justify-content-center">
       
@@ -84,7 +50,7 @@
 
     </div>
   </div>
-</div>
+  </div>
 
 
   <div class="spacing-top-bottom key-metric">
@@ -98,7 +64,7 @@
           </div>
         </div> -->
 
-<section class="timeline-section spacing-top-bottom">
+  <section class="timeline-section spacing-top-bottom">
   <div class="container text-center">
     <h2 class="f-s-40 m-b-40 section-sub-title lh-normal">
       Innovation Through the Years
@@ -164,7 +130,7 @@
      
     </div>
   </div>
-</section>
+  </section>
 
 
 
@@ -176,7 +142,7 @@
   <div class="our-leadership p-b-48">
     <app-image-slider></app-image-slider>
   </div>
-<!-- dupilcate ***********-->
+  <!-- dupilcate ***********-->
   <div class="key-metric"><h1 _ngcontent-ng-c1365611484="" class="text-center spacing-bottom f-s-48 section-sub-title lh-normal">Trusted by Clients</h1>
     <div class="container">
       <div class="row justify-content-between">
@@ -208,10 +174,10 @@
       </div>
     </div>
   </div>
-<!--  End -->
-  <div class="features spacing-top-bottom">
-    <div class="container">
-      <div class="row align-items-center justify-content-between">
+  <!--  End -->
+    <div class="features ">
+    <div class="container ">
+      <div class="row align-items-center justify-content-between spacing-top-bottom">
         <!--row-->
         <div class="col-md-5 m-b-30">
           <div class="client-margin">
@@ -230,58 +196,59 @@
       <mat-card-title class="f-s-24 f-w-600 m-b-24">{{ activeFeature.question}}</mat-card-title>
 
       <!-- Profile Image + Name -->
-      <div class="d-flex align-items-center gap-16 m-b-24">
-        <div>
-          <img
-            [src]="activeFeature.img"
-            [alt]="activeFeature.title"
-            class="rounded-circle"
-            width="40"
-            height="40"
-          />
-        </div>
-        <h6 class="f-s-14 f-w-600">{{ activeFeature.title }}</h6>
+            <div class="d-flex align-items-center gap-16 m-b-24">
+              <div>
+                <img
+                  [src]="activeFeature.img"
+                  [alt]="activeFeature.title"
+                  class="rounded-circle"
+                  width="40"
+                  height="40"
+                />
+              </div>
+              <h6 class="f-s-14 f-w-600">{{ activeFeature.title }}</h6>
+            </div>
+
+            <!-- Subtext -->
+            <p class="f-s-14 m-b-16 m-t-0">
+              {{ activeFeature.subtext }}
+            </p>
+
+            <mat-divider></mat-divider>
+
+            <!-- Navigation -->
+            <div class="d-flex align-items-center gap-10 m-t-8">
+              <button
+                class="bg-light icon-32 d-flex align-items-center justify-content-center"
+                mat-icon-button
+                (click)="showPrevious()"
+              >
+                <i-tabler
+                  name="chevron-left"
+                  class="icon-18 d-flex align-items-center justify-content-center"
+                ></i-tabler>
+              </button>
+
+              <span class="f-s-14">{{ showCounter() }}</span>
+
+              <button
+                class="bg-light icon-32 d-flex align-items-center justify-content-center"
+                mat-icon-button
+                (click)="showNext()"
+              >
+                <i-tabler
+                  name="chevron-right"
+                  class="icon-18 d-flex align-items-center justify-content-center"
+                ></i-tabler>
+              </button>
+            </div>
+          </mat-card-content>
+        </mat-card>
       </div>
 
-      <!-- Subtext -->
-      <p class="f-s-14 m-b-16 m-t-0">
-        {{ activeFeature.subtext }}
-      </p>
+  
 
-      <mat-divider></mat-divider>
-
-      <!-- Navigation -->
-      <div class="d-flex align-items-center gap-10 m-t-8">
-        <button
-          class="bg-light icon-32 d-flex align-items-center justify-content-center"
-          mat-icon-button
-          (click)="showPrevious()"
-        >
-          <i-tabler
-            name="chevron-left"
-            class="icon-18 d-flex align-items-center justify-content-center"
-          ></i-tabler>
-        </button>
-
-        <span class="f-s-14">{{ showCounter() }}</span>
-
-        <button
-          class="bg-light icon-32 d-flex align-items-center justify-content-center"
-          mat-icon-button
-          (click)="showNext()"
-        >
-          <i-tabler
-            name="chevron-right"
-            class="icon-18 d-flex align-items-center justify-content-center"
-          ></i-tabler>
-        </button>
+</div>
+    <div class="footer">
+        <app-footer></app-footer>
       </div>
-    </mat-card-content>
-  </mat-card>
-</div>
-
-  <div class="footer">
-    <app-footer></app-footer>
-  </div>
-
-</div>
