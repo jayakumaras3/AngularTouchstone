@@ -15,9 +15,13 @@
 {
  width: 100% ;
 }
+.container
+{
+    max-width: 1400px;
+}
 /* Course Career skills start */
 .course-container {
-  max-width: 1200px;
+
   margin: 0 auto;
   padding: 40px 20px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -454,12 +458,16 @@ section {
 
 .home-page {
   .custom-container {
+    
+    margin: 0 auto;
+    width: 100%;
+  }
+    .custom-container1homepage {
     max-width: 1400px;
     margin: 0 auto;
     width: 100%;
-    padding: 0 15px;
+    padding: 0 14px;
   }
-    
   .footer-container-bookDemo {
     height: 372px !important;    // adjust this until it matches the red line
     overflow: hidden;
