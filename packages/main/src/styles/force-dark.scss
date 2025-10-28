@@ -1,0 +1,53 @@
+// Force dark mode styles
+:root[force-dark="true"] {
+  color-scheme: dark;
+  
+  // Override background and text colors
+  background-color: #121212;
+  color: #ffffff;
+  
+  // Force images and media to adapt to dark mode
+  img, video {
+    filter: brightness(.8) contrast(1.2);
+  }
+  
+  // Invert specific elements that should be dark in dark mode
+  .invert-in-dark-mode {
+    filter: invert(1) hue-rotate(180deg);
+  }
+  
+  // Add dark mode specific variables
+  --surface-background: #121212;
+  --surface-text: #ffffff;
+  --primary-text: #ffffff;
+  --secondary-text: rgba(255, 255, 255, 0.7);
+  --disabled-text: rgba(255, 255, 255, 0.5);
+  
+  // Override Material Design components
+  .mat-app-background {
+    background-color: var(--surface-background);
+    color: var(--primary-text);
+  }
+  
+  .mat-card {
+    background-color: #1e1e1e;
+    color: var(--primary-text);
+  }
+  
+  // Adjust form fields
+  .mat-form-field {
+    .mat-input-element {
+      color: var(--primary-text);
+    }
+    .mat-form-field-label {
+      color: var(--secondary-text);
+    }
+  }
+  
+  // Adjust buttons
+  .mat-button, .mat-raised-button, .mat-stroked-button {
+    &:not([color]) {
+      color: var(--primary-text);
+    }
+  }
+}

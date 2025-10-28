@@ -1,6 +1,10 @@
+// ===============================
+// 🌗 App Settings and Theme Logic
+// ===============================
+
 export interface AppSettings {
   dir: 'ltr' | 'rtl';
-  theme: string;
+  theme: 'light' | 'dark';
   sidenavOpened: boolean;
   sidenavCollapsed: boolean;
   boxed: boolean;
@@ -9,35 +13,93 @@ export interface AppSettings {
   language: string;
   cardBorder: boolean;
   navPos: 'side' | 'top';
+  forceDark?: boolean; // manual override (true = dark, false = light, undefined = system)
 }
 
-// base URL set
-// ng build --configuration production --base-href /DOCHEKDOTCOM/app/Views/angular_view/
-//localhost Root
-export const baseUrlPath = '';
+// ===============================
+// 🌙 System Theme Detection
+// ===============================
 
-export const baseUrlPathslash = '';
-export const LoginUrl = '';
-export const logoUrl = '/';
-//webserver
+/** Detect the current system theme */
+export function getSystemTheme(): 'light' | 'dark' {
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    return 'dark';
+  }
+  return 'light';
+}
 
-//172.16.0.99
-/*export const baseUrlPath = '/DOCHEKDOTCOM/app/Views/angular_view/';
-export const baseUrlPathslash = '/DOCHEKDOTCOM/app/Views/angular_view';
+/** Detects theme based on system, browser auto-dark (#enable-force-dark), or manual override */
+export function detectColorScheme(forceDark?: boolean): 'light' | 'dark' {
+  if (forceDark === true) return 'dark';
+  if (forceDark === false) return 'light';
 
-export const logoUrl = '/DOCHEKDOTCOM/app/Views/angular_view/';*/
+  const isForceDarkActive =
+    window.matchMedia('(forced-colors: active)').matches ||
+    document.documentElement.classList.contains('force-dark-mode');
 
-//172.16.0.173
-/*export const baseUrlPath = '/app/Views/angular_view/';
-export const baseUrlPathslash = '/app/Views/angular_view';
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-export const LoginUrl = 'app/Views/angular_view/';
-export const logoUrl = '/app/Views/angular_view/';*/
+  return (isForceDarkActive || prefersDark) ? 'dark' : 'light';
+}
 
+// ===============================
+// 🎨 Theme Application
+// ===============================
+
+/** Applies the theme to the <html> element */
+export function applyTheme(theme: 'light' | 'dark'): void {
+  const root = document.documentElement;
+
+  // Remove any previous theme classes
+  root.classList.remove('light-theme', 'dark-theme');
+  // Add the new theme
+  root.classList.add(`${theme}-theme`);
+
+  // Set a data attribute for CSS or components to detect
+  root.setAttribute('force-dark', theme === 'dark' ? 'true' : 'false');
+}
+
+// ===============================
+// 🔁 Auto Theme Initialization
+// ===============================
+
+/** Initializes automatic theme handling */
+/** Initialize and listen for system or Chrome #enable-force-dark changes */
+export function initAutoTheme(forceDark?: boolean): void {
+  let lastTheme: 'light' | 'dark' = detectColorScheme(forceDark);
+  applyTheme(lastTheme);
+
+  // --- React to system-level theme change ---
+  if (window.matchMedia) {
+    const mq = window.matchMedia('(prefers-color-scheme: dark)');
+    mq.addEventListener('change', () => {
+      const newTheme = detectColorScheme(forceDark);
+      if (newTheme !== lastTheme) {
+        lastTheme = newTheme;
+        applyTheme(newTheme);
+      }
+    });
+  }
+
+  // --- React to Chrome's "Auto Dark Mode for Web Contents" ---
+  // Chrome doesn't fire prefers-color-scheme changes, so we poll occasionally.
+  setInterval(() => {
+    const newTheme = detectColorScheme(forceDark);
+    if (newTheme !== lastTheme) {
+      lastTheme = newTheme;
+      applyTheme(newTheme);
+    }
+  }, 2000); // check every 2 seconds
+}
+
+
+// ===============================
+// ⚙️ Default App Settings
+// ===============================
 
 export const defaults: AppSettings = {
   dir: 'ltr',
-  theme: 'light',
+  theme: detectColorScheme(), // type-safe: returns 'light' | 'dark'
   sidenavOpened: false,
   sidenavCollapsed: false,
   boxed: true,
@@ -46,4 +108,32 @@ export const defaults: AppSettings = {
   activeTheme: 'blue_theme',
   language: 'en-us',
   navPos: 'side',
+  forceDark: undefined // undefined = follow system
 };
+
+// Initialize theme immediately
+initAutoTheme(defaults.forceDark);
+
+// ===============================
+// 🌐 Base URL Paths
+// ===============================
+
+// Localhost Root
+export const baseUrlPath = '';
+export const baseUrlPathslash = '';
+export const LoginUrl = '';
+export const logoUrl = '/';
+
+// Example for server setups (comment/uncomment as needed)
+/*
+export const baseUrlPath = '/DOCHEKDOTCOM/app/Views/angular_view/';
+export const baseUrlPathslash = '/DOCHEKDOTCOM/app/Views/angular_view';
+export const logoUrl = '/DOCHEKDOTCOM/app/Views/angular_view/';
+*/
+
+/*
+export const baseUrlPath = '/app/Views/angular_view/';
+export const baseUrlPathslash = '/app/Views/angular_view';
+export const LoginUrl = 'app/Views/angular_view/';
+export const logoUrl = '/app/Views/angular_view/';
+*/

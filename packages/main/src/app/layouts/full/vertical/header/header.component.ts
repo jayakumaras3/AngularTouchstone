@@ -124,7 +124,7 @@ export class HeaderComponent {
   }
 
   setlightDark(theme: string) {
-    this.options.theme = theme;
+   this.options.theme = theme as 'light' | 'dark';
     this.emitOptions();
   }
 
