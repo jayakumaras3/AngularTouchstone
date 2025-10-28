@@ -7,15 +7,15 @@ import {
   OnInit,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { IconModule } from 'src/app/icon/icon.module';
-import { MaterialModule } from 'src/app/material.module';
+import { IconModule } from '../../../../icon/icon.module';
+import { MaterialModule } from '../../../../material.module';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { Router } from '@angular/router';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { DeleteDialogComponent } from '../../delete-dialog/delete-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ProductService } from 'src/app/services/apps/product/product.service';
+import { ProductService } from '../../../../services/apps/product/product.service';
 import { Element, PRODUCT_DATA } from '../ecommerceData';
 import { FooterComponent } from '../../../front-pages/footer/footer.component';
 import { PopupwindowComponent } from '../../../front-pages/popupwindow/popupwindow.component';

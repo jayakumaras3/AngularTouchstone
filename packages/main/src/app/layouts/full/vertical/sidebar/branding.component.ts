@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CoreService } from 'src/app/services/core.service';
+import { CoreService } from '../../../../services/core.service';
 import { logoUrl } from '../../../../config';
 @Component({
   selector: 'app-branding',
@@ -23,7 +23,10 @@ import { logoUrl } from '../../../../config';
   `,
 })
 export class BrandingComponent {
-  logoUrl = logoUrl; 
-  options = this.settings.getOptions();
-  constructor(private settings: CoreService) {}
+  logoUrl = logoUrl;
+  options;
+  
+  constructor(private settings: CoreService) {
+    this.options = this.settings.getOptions();
+  }
 }

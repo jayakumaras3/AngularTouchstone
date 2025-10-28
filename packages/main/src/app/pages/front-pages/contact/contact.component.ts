@@ -10,8 +10,9 @@ import { MatDividerModule } from '@angular/material/divider';
 import { AuthService } from '../../../services/login/auth.service';
 import { baseUrlPathslash } from '../../../config';
 import { FooterComponent } from '../footer/footer.component';
-import { IconModule } from 'src/app/icon/icon.module';
-import { MaterialModule } from 'src/app/material.module';
+
+import { IconModule } from '../../../icon/icon.module';
+import { MaterialModule } from '../../../material.module';
 
 @Component({
   selector: 'app-contact',

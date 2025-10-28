@@ -2,15 +2,15 @@ import { BreakpointObserver, MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { MatSidenav, MatSidenavContent } from '@angular/material/sidenav';
-import { CoreService } from 'src/app/services/core.service';
-import { AppSettings } from 'src/app/config';
+import { CoreService } from '../../services/core.service';
+import { AppSettings } from '../../config';
 import { filter } from 'rxjs/operators';
 import { NavigationEnd, Router } from '@angular/router';
 import { navItems } from './vertical/sidebar/sidebar-data';
 import { NavService } from '../../services/nav.service';
 import { AppNavItemComponent } from './vertical/sidebar/nav-item/nav-item.component';
 import { RouterModule } from '@angular/router';
-import { MaterialModule } from 'src/app/material.module';
+import { MaterialModule } from '../../material.module';
 import { CommonModule } from '@angular/common';
 import { SidebarComponent } from './vertical/sidebar/sidebar.component';
 import { NgScrollbarModule } from 'ngx-scrollbar';
@@ -67,11 +67,11 @@ export class FullComponent implements OnInit {
   
 
   @ViewChild('leftsidenav')
-  public sidenav: MatSidenav;
+  public sidenav!: MatSidenav;
   resView = false;
   @ViewChild('content', { static: true }) content!: MatSidenavContent;
-  //get options from service
-  options = this.settings.getOptions();
+  
+  options: AppSettings;
   private layoutChangesSubscription = Subscription.EMPTY;
   private isMobileScreen = false;
   private isContentWidthFixed = true;
@@ -194,8 +194,10 @@ export class FullComponent implements OnInit {
     private mediaMatcher: MediaMatcher,
     private router: Router,
     private breakpointObserver: BreakpointObserver,
-    private navService: NavService, private cdr: ChangeDetectorRef
+    private navService: NavService, 
+    private cdr: ChangeDetectorRef
   ) {
+    this.options = this.settings.getOptions();
     this.htmlElement = document.querySelector('html')!;
     this.layoutChangesSubscription = this.breakpointObserver
       .observe([MOBILE_VIEW, TABLET_VIEW, MONITOR_VIEW, BELOWMONITOR])
