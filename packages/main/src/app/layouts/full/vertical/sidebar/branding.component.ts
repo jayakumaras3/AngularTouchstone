@@ -7,7 +7,7 @@ import { logoUrl } from '../../../../config';
   template: `
     <a [href]="logoUrl" class="logodark">
       <img
-        src="./assets/images/logos/dark-logo.png"
+        src="./assets/images/logos/dark-logo.svg"
         class="align-middle m-2"
         alt="logo"
       />
