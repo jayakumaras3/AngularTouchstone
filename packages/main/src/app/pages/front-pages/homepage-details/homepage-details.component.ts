@@ -1,6 +1,6 @@
 import { Component, computed, DestroyRef, inject, OnInit, signal } from '@angular/core';
-import { IconModule } from 'src/app/icon/icon.module';
-import { MaterialModule } from 'src/app/material.module';
+import { IconModule } from '../../../icon/icon.module';
+import { MaterialModule } from '../../../material.module';
 import { paymentLogos, plans,clientLogo } from '../front-pagesData';
 import {
   faqList,

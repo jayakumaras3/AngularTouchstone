@@ -1,15 +1,24 @@
 import { Component, computed, signal,inject, } from '@angular/core';
-import { IconModule } from 'src/app/icon/icon.module';
-import { MaterialModule } from 'src/app/material.module';
+import { IconModule } from '../../../icon/icon.module';
+import { MaterialModule } from '../../../material.module';
 import { ImageSliderComponent } from '../image-slider/image-slider.component';
 import { FooterComponent } from '../footer/footer.component';
 import { Router,RouterModule } from '@angular/router';
+import { paymentLogos, plans,clientLogo } from '../front-pagesData';
 interface features {
   id: number;
   icon: string;
   title: string;
   subtext: string;
 }
+interface TemplateFeature {
+  id: number;
+  icon: string;
+  title: string;
+  subtext: string;
+}
+
+
 interface Course {
   university: string;
   universityShort: string;
@@ -40,6 +49,8 @@ import { CommonModule } from '@angular/common';
 export class FeaturePageComponent {
   selectedPath: string | null = null;
   private router = inject(Router);
+
+
    onExploreClick() {
     console.log('Explore clicked!');
     // Call any method or logic you want here
@@ -243,29 +254,30 @@ onImageClick(path: string) {
     }
   }
   /*  Courese Career skills end*/
-  features: features[] = [
+    features: features[] = [
     {
       id: 1,
-      icon: 'camera',
+      icon: 'stack-2', // represents scalability, stacking, and modular design
       title: 'Scalable by Design',
       subtext:
         'Train from 10 to 10,000 learners with no slowdown, lag, or disruption.',
     },
     {
       id: 2,
-      icon: 'shield-lock',
-      title: 'Impact-driven ',
+      icon: 'brain', // symbolizes intelligence, insights, and learning impact
+      title: 'Impact-driven',
       subtext:
         'Utilize AR/VR insights in our learning platform to refine programs and enhance user retention.',
     },
     {
-      id: 15,
-      icon: 'code',
+      id: 3,
+      icon: 'wallet', // clearly represents flexible, pay-as-you-go pricing
       title: 'Flexible Pricing',
       subtext:
         'A pay-as-you-go model with no hidden fees, no heavy contracts, and complete control over your budget.',
     },
   ];
+
   
   setupCards=setupCards;
   stats = stats;

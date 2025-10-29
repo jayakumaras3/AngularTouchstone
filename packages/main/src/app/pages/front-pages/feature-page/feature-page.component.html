@@ -169,37 +169,30 @@
 
 
   <mat-divider></mat-divider>
-    <div class="template-slider spacing-top">
+    <div class="template-slider spacing-top1">
     <div class="custom-container">
       <div class="spacing-left-right m-b-8 ">
-          <h2 class="f-s-40 lh-normal section-sub-title text-center">
+          <h2 class="f-s-40 lh-normal section-sub-title text-center m-b-16">
             The DoChek Edge
           </h2>
         </div>
-      <div class="bg-light-primary rounded-pill spacing-top template-slider-content">
-         <div class="spacing-left-right">
-          <div class="row">
-            <div class="col-md-4 text-center m-b-30">
-              <h2 class="title m-b-16">Scalable by Design</h2>
-              <p class="desc m-0">
-                Train from 10 to 10,000 learners with no slowdown, lag, or disruption.
-              </p>
-            </div>
-            <div class="col-md-4 text-center m-b-30">
-              <h2 class="title m-b-16">Impact-driven</h2>
-              <p class="desc m-0">
-                Utilize AR/VR insights in our learning platform to refine programs and enhance user retention.
-              </p>
-            </div>
-
-            <div class="col-md-4 text-center m-b-30">
-              <h2 class="title m-b-16">Flexible Pricing</h2>
-              <p class="desc m-0">
-                A pay-as-you-go model with no hidden fees, no heavy contracts, and complete control over your budget.
-              </p>
+     <div class="bg-light-primary rounded-pill  template-slider-content">
+          <div class="spacing-left-right">
+            <div class="row">
+              @for(item of features; track item.title) {
+                <div class="col-md-4 text-center m-b-30">
+                  <i-tabler
+                    [name]="item.icon"
+                    class="icon-40 text-primary m-t-16"
+                  ></i-tabler>
+                  <h2 class="title m-t-24 m-b-16">{{ item.title }}</h2>
+                  <p class="desc m-0">{{ item.subtext }}</p>
+                </div>
+              }
             </div>
           </div>
         </div>
+
          
         <div class="demo-slider overflow-hidden d-flex gap-30 ">
           <div>

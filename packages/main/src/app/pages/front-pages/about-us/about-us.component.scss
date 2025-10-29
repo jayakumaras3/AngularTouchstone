@@ -235,40 +235,66 @@
 
 /* iPad Portrait and Landscape */
 @media (min-width: 768px) and (max-width: 1024px) {
+    
     .timeline-horizontal {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        padding: 20px 10px;
+        display: block;
+        margin: 30px auto;
+        padding: 0;
+        border-top: none;
     }
-
+    
+    .timeline-horizontal::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 20px;
+        width: 3px;
+        height: 100%;
+        background: #ddd;
+        transform: none;
+    }
+    
     .timeline-item {
-        width: 45%;
-        margin-bottom: 40px;
-        text-align: center;
+        width: 100%;
+        text-align: left;
+        margin-bottom: 30px;
+        padding-left: 50px;
     }
-
+    
     .timeline-item.top, 
     .timeline-item.bottom {
+        align-self: auto;
         margin-top: 0;
-        margin-bottom: 40px;
+        margin-bottom: 30px;
     }
-
+    
+    .timeline-item::before {
+        content: "";
+        position: absolute;
+        left: 12px;
+        top: 0;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #2563eb;
+        border: 4px solid white;
+        box-shadow: 0 0 0 2px #2563eb;
+        z-index: 2;
+    }
+    
     .timeline-card {
-        padding: 16px;
-        box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+        padding: 20px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
-
+    
     .timeline-card h4 {
-        font-size: 1.3rem;
+        font-size: 1.25rem;
     }
-
+    
     .timeline-card h5 {
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
 }
 
-   .mat-mdc-button .mdc-button__label, .mat-mdc-button .mat-icon, .mat-mdc-unelevated-button .mdc-button__label, .mat-mdc-unelevated-button .mat-icon, .mat-mdc-raised-button .mdc-button__label, .mat-mdc-raised-button .mat-icon, .mat-mdc-outlined-button .mdc-button__label, .mat-mdc-outlined-button .mat-icon, .mat-tonal-button .mdc-button__label, .mat-tonal-button .mat-icon {
-
-    z-index: 0 !important;
-}
+ 
