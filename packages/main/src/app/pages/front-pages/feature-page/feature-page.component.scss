@@ -511,6 +511,10 @@ h2{
 
         /* Mobile-first adjustments */
         @media (max-width: 767.98px) {
+          .rowsuplicate{
+              margin-left: -15px !important;
+          }
+
             .bespoke-learning-section {
                 padding: 1.5rem 0;
             }
@@ -551,7 +555,7 @@ h2{
         /* Desktop styles */
         @media (min-width: 768px) {
             .bespoke-learning-section {
-                padding: 2rem 0;
+                padding: 1rem 0;
             }
             
             .image-group {
@@ -559,7 +563,7 @@ h2{
             }
             
             .image-group .main-img {
-                width: 458px;
+                width: 400px;
             }
             
             .title {
@@ -763,4 +767,7 @@ h2{
   .home-page-header {
     padding-bottom: 48px;
   }
+}
+.rowsuplicate{
+    margin-left: 18px ;
 }
