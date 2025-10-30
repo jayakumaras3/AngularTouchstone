@@ -7826,7 +7826,7 @@ export const PRODUCT_DATA: Element[] =[
     },
     {
         "id": 1268,
-        "imagePath": "https:\/\/dochek.com\/assets\/assets\/uploads\/SCORM_course_thumbnail\/1268\/C4U94_thumbnail_518x309.jpg",
+        "imagePath": "https:\/\/dochek.com\/assets\/assets\/uploads\/SCORM_course_thumbnail\/1268\/C4U85_thumbnail_518x309.jpg",
         "product_name": "Atenci\u00f3n a clientes con discapacidades",
         "skill": "DEI (Diversity, Equity, and Inclusion)",
         "categories": [

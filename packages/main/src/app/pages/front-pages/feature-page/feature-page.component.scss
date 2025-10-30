@@ -508,7 +508,20 @@ h2{
             background: #1e40af;
             transform: translateY(-2px);
         }
-
+@media (max-width: 1199px) {
+  
+    .section-sub-title1
+    {
+      font-size: 18px !important;
+    }
+        .spacingright {
+        padding-right: 60px;
+    }
+    .feature-wrapper[_ngcontent-ng-c200055379] {
+     padding-top: 0px; 
+   
+}
+}
         /* Mobile-first adjustments */
         @media (max-width: 767.98px) {
           .rowsuplicate{

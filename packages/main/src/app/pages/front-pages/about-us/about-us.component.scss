@@ -16,11 +16,11 @@
 
 .outcomes-content {
   line-height: 1.8;
-  color: #333;
+  color: var(--mat-sys-on-background)
 }
 
 .outcomes-content h2 {
-  color: #1f1f1f;
+  color:var(--mat-sys-on-background);
   font-size: 28px;
 }
 
@@ -31,6 +31,9 @@
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+  .hstack{
+    justify-content: center;
+  }
   .outcomes-card {
     flex-direction: column;
     text-align: center;
@@ -84,77 +87,129 @@
         
        /* Timeline Styles for Desktop (Default) */
 .timeline-horizontal {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 60px auto;
-    padding: 20px 0;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 60px auto;
+  padding: 0px 0;
 }
 
 .timeline-horizontal::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: #ddd;
-    transform: translateY(-50%);
+  content: "";
+  position: absolute;
+  top: 46%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #ddd;
+  z-index: 0;
 }
 
 .timeline-item {
-    position: relative;
-    width: 12%;
-    text-align: center;
-}
-
-.timeline-item.top {
-    align-self: flex-start;
-    margin-bottom: 80px;
-}
-
-.timeline-item.bottom {
-    align-self: flex-end;
-    margin-top: 80px;
+  position: relative;
+  width: 12%;
+  text-align: center;
+  z-index: 2;
 }
 
 .timeline-card {
-    background: #fff;
-    border: 1px solid #eee;
-    border-radius: 12px;
-    padding: 16px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .timeline-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.1);
 }
 
 .timeline-card h4 {
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 5px;
-    color: #2563eb;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: #2563eb;
 }
 
 .timeline-card h5 {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 6px;
-    color: #1e293b;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e293b;
 }
 
-.timeline-card p {
-    font-size: 13px;
-    color: #777;
-    margin: 0;
+/* Manual Y positions */
+.pos-20 { margin-top: 180px; }
+.pos-25 { margin-top: 6px; }
+.pos-30 { margin-top: 30px; }
+.pos-40 { margin-top: 29px; }
+.pos-50 { margin-top: 50px; }
+.pos-60 { margin-top: 60px; }
+.pos-65 { margin-top: 176px; }
+.pos-70 { margin-top: 176px; }
+.pos-75 { margin-top: 176px; }
+
+.pos-10 { margin-top: 79px; }
+@media (max-width: 959px) {
+
+ .hstack{
+    justify-content: center;
+  }
 }
+/* Responsive adjustments (mobile & tablets) */
+@media (max-width: 991px) {
+  .timeline-horizontal {
+    display: block;
+  }
+
+  .timeline-horizontal::before {
+    left: 20px;
+    width: 3px;
+    height: 100%;
+  }
+
+  .timeline-item {
+    width: 100%;
+    text-align: left;
+    padding-left: 50px;
+    margin-bottom: 40px;
+  }
+
+  .timeline-item::before {
+    content: "";
+    position: absolute;
+    left: 12px;
+    top: 18px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #2563eb;
+    border: 3px solid white;
+    box-shadow: 0 0 0 2px #2563eb;
+  }
+
+  .timeline-card {
+    padding: 18px;
+  }
+
+}
+
 
 /* Mobile Timeline Styles (iPhone / small devices) */
 @media (max-width: 767.98px) {
+      .pos-20 { margin-top: 0px; }
+.pos-25 { margin-top: 0px; }
+.pos-30 { margin-top: 0px; }
+.pos-40 { margin-top: 0px; }
+.pos-50 { margin-top: 0px; }
+.pos-60 { margin-top: 0px; }
+.pos-65 { margin-top: 0px; }
+.pos-70 { margin-top: 0px; }
+.pos-75 { margin-top:0px; }
+
+.pos-10 { margin-top: 0px; }
     .timeline-horizontal {
         display: block;
         margin: 30px auto;
@@ -235,7 +290,17 @@
 
 /* iPad Portrait and Landscape */
 @media (min-width: 768px) and (max-width: 1024px) {
-    
+    .pos-20 { margin-top: 0px; }
+.pos-25 { margin-top: 0px; }
+.pos-30 { margin-top: 0px; }
+.pos-40 { margin-top: 0px; }
+.pos-50 { margin-top: 0px; }
+.pos-60 { margin-top: 0px; }
+.pos-65 { margin-top: 0px; }
+.pos-70 { margin-top: 0px; }
+.pos-75 { margin-top:0px; }
+
+.pos-10 { margin-top: 0px; }
     .timeline-horizontal {
         display: block;
         margin: 30px auto;

@@ -11,13 +11,13 @@
 }
 
 .lang-label {
-  color: #000;
+  color: var(--mat-sys-on-background);
   cursor: pointer;
   transition: color 0.2s ease;
 }
 
 .lang-count {
-  color: #555;
+  color: var(--mat-sys-on-background);
   font-size: 13px;
 }
 
@@ -124,7 +124,11 @@ mat-list-item {
 
 
 }
-
+.no-productcl
+{
+  padding-top: 36px;
+    padding-bottom: 36px;
+}
 .cards-circle {
   width: 25px;
   height: 25px;

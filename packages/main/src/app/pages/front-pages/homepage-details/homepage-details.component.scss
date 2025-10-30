@@ -11,6 +11,18 @@
         padding: 30px;
     }
 }
+@media (max-width: 1199px) {
+    .hstack{
+        justify-content: center;
+    }
+   .spacingrignht {
+        padding-right: 60px;
+    }
+    .section-sub-title1
+    {
+      font-size: 18px !important;
+    }
+}
 .imgStyleDash
 {
  width: 100% ;

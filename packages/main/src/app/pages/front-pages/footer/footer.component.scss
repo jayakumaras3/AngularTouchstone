@@ -17,3 +17,23 @@
 .zindexreduce {
   z-index: 0 !important;
 }
+
+@media (max-width: 959px) {
+.textrightspace
+{
+  padding-right: 60px;
+}
+.hstack {
+    justify-content: center;
+  } 
+}
+@media (max-width: 1199px) {
+  .textrightspace
+{
+  padding-right: 60px;
+}
+.hstack {
+    justify-content: center;
+  } 
+
+}

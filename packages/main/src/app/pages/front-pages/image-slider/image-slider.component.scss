@@ -1,22 +1,48 @@
 .img-slider-content {
-  .img-slider {
+  text-align: center;
 
-    .mat-mdc-card {
-      margin-bottom: 0px !important;
+  .img-slider {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center; /* center all cards */
+      gap: 0px; /* space between cards */
     }
 
     .productcard {
-      position: relative;
+  position: relative;
+  overflow: visible; /* allow text box to extend below image */
+  margin-bottom: 80px; /* add space below each card so text doesn't cut off */
 
-      .info-card {
-        bottom: 42px; // controls overlap depth
-        left: 50%;
-        transform: translateX(-50%);
-        width: 90%;
-        box-shadow: 0px 6px 12px rgba(127, 145, 156, 0.12);
-        z-index: 2;
-      }
+  .info-card {
+    position: absolute;
+    bottom: -77px; /* move it below the image slightly */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    background: #fff;
+    box-shadow: 0 6px 12px rgba(127, 145, 156, 0.12);
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    z-index: 2;
+
+    h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 4px;
     }
+
+    p {
+      font-size: 13px;
+      margin: 0;
+    }
+  }
+}
 
   }
 }

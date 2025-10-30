@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CoreService } from 'src/app/services/core.service';
+import { CoreService } from '../../../services/core.service';
 import {
   FormGroup,
   FormControl,
@@ -38,6 +38,6 @@ export class AppSideForgotPasswordComponent {
 
   submit() {
     // console.log(this.form.value);
-    this.router.navigate(['/dashboards/dashboard1']);
+   // this.router.navigate(['/dashboards/dashboard1']);
   }
 }
