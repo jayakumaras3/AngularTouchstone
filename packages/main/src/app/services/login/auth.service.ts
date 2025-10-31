@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   // Base URLs
-
-  //private apiUrl = 'http://172.16.0.99/DOCHEKDOTCOM/landing';
-  //private contactApiUrl = 'http://172.16.0.99/DOCHEKDOTCOM/landing';
-
   private apiUrl = 'http://172.16.0.173/landing';
+  
+  private forgotUrl = 'http://172.16.0.173/landing';
   private contactApiUrl = 'http://172.16.0.173/landing';
 
   constructor(private http: HttpClient) {}
@@ -27,6 +26,17 @@ export class AuthService {
       }
     );
   }
+
+  // FORGOT PASSWORD - Send email to backend for password reset
+    forgotPassword(email: string): Observable<any> {
+      console.log('Sending forgot password request to:', `${this.forgotUrl}/forgotpasswordVerify`, { email });
+      return this.http.post<any>(
+        `${this.forgotUrl}/forgotpasswordVerify`,
+        { email },
+        { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
+      );
+    }
+
 
   // CONTACT US (popup form)
   sendContact(formData: any): Observable<any> {

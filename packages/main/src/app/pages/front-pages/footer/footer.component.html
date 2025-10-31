@@ -8,8 +8,9 @@
              Dochek - a Learning Platform Built for Focus, not Noise
             </h2>
             <div class="m-b-24 hstack">
-              <a href="/authentication/login"  mat-flat-button color="primary" class="zindexreduce">Member Login</a>
-              <a  target="_blank" mat-stroked-button color="primary"
+                <a [class.selected]="isActiveRoute('coursecatalog')"  
+                [routerLink]="['/authentication/login']"  mat-flat-button color="primary" class="zindexreduce">Member Login</a>
+<a  target="_blank" mat-stroked-button color="primary"
                 class="border-primary" (click)="openBookDemoDialog()" class="zindexreduce">Book a Demo</a>
             </div>
 
