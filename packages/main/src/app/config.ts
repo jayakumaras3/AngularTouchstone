@@ -119,10 +119,10 @@ initAutoTheme(defaults.forceDark);
 // ===============================
 
 // Localhost Root
-export const baseUrlPath = '';
+/*export const baseUrlPath = '';
 export const baseUrlPathslash = '';
 export const LoginUrl = '';
-export const logoUrl = '';
+export const logoUrl = '';*/
 
 // Example for server setups (comment/uncomment as needed)
 /*
@@ -131,9 +131,9 @@ export const baseUrlPathslash = '/DOCHEKDOTCOM/app/Views/angular_view';
 export const logoUrl = '/DOCHEKDOTCOM/app/Views/angular_view/';
 */
 
-/*
+/**/
 export const baseUrlPath = '/app/Views/angular_view/';
 export const baseUrlPathslash = '/app/Views/angular_view';
 export const LoginUrl = 'app/Views/angular_view/';
 export const logoUrl = '/app/Views/angular_view/';
-*/
+

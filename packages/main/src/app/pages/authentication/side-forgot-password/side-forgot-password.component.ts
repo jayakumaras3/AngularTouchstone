@@ -7,11 +7,12 @@ import { BrandingComponent } from '../../../layouts/full/vertical/sidebar/brandi
 import { AuthService } from '../../../services/login/auth.service';
 import { LoginUrl } from '../../../config';
 import { baseUrlPath } from '../../../config';
-
+import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-side-forgot-password',
-   imports: [RouterModule, MaterialModule, FormsModule, ReactiveFormsModule, BrandingComponent],
+   imports: [RouterModule, MaterialModule, FormsModule, ReactiveFormsModule, BrandingComponent,MatButtonModule,  MatProgressSpinnerModule,],
   templateUrl: './side-forgot-password.component.html',
 })
 export class AppSideForgotPasswordComponent {
@@ -30,34 +31,34 @@ export class AppSideForgotPasswordComponent {
     return this.form.controls;
   }
 
-    // Submit the form when user requests password reset
-        loading = false;
+   loading = false; // Tracks loading state
 
-        submit() {
-          if (this.form.valid) {
-            const email = this.form.value.email ?? '';
-            this.loading = true; // show spinner and disable button
+submit() {
+  if (this.form.valid) {
+    const email = this.form.value.email ?? '';
+    this.loading = true; // Show loading state and disable button
 
-            this.authService.forgotPassword(email).subscribe({
-              next: (res) => {
-                console.log('Password Reset Response:', res);
-                if (res.success) {
-                  alert('Password reset link has been sent to your email.');
-                  this.router.navigate(['/authentication/login']);
-                } else {
-                  alert(res.message || 'Failed to send reset link');
-                }
-              },
-              error: (err) => {
-                console.error('HTTP Error:', err);
-                alert('Server error, please try again later.');
-              },
-              complete: () => {
-                this.loading = false; // hide spinner after API finishes
-              },
-            });
-          }
+    this.authService.forgotPassword(email).subscribe({
+      next: (res) => {
+        console.log('Password Reset Response:', res);
+        if (res.success) {
+          alert('Password reset link has been sent to your email.');
+          this.router.navigate(['/authentication/login']);
+        } else {
+          alert(res.message || 'Failed to send reset link');
         }
+      },
+      error: (err) => {
+        console.error('HTTP Error:', err);
+        alert('Server error, please try again later.');
+      },
+      complete: () => {
+        this.loading = false; // Hide loading state and re-enable button
+      },
+    });
+  }
+}
+
 
 
 
