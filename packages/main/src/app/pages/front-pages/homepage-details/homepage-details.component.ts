@@ -21,6 +21,7 @@ import { TemplateVideoComponent } from '../template-video/template-video.compone
 import { Router, RouterModule } from '@angular/router';
 import { PopupwindowComponent } from '../popupwindow/popupwindow.component';
 
+
 interface Course {
   university: string;
   universityShort: string;
@@ -51,6 +52,7 @@ interface features {
 })
   /*  Courese Career skills start*/
 export class HomepageDetailsComponent implements OnInit{
+   private router = inject(Router);
      allCourses: Course[] = [
     {
       university: '',
@@ -238,19 +240,20 @@ export class HomepageDetailsComponent implements OnInit{
     }
   }
   /*  Courese Career skills end*/
-openBookDemoDialog() {
-  const dialogRef = this.dialog.open(PopupwindowComponent, {
-    width: '500px',
-    disableClose: true,
-    autoFocus: true,
+ openBookDemoDialog() {
+     // First navigate to contact page
+  this.router.navigate(['/contact']).then(() => {
+    // After navigation, scroll to the contact heading
+    setTimeout(() => {
+      const heading = document.querySelector('.contact-heading') as HTMLElement;
+      if (heading) {
+        heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        heading.focus();
+      }
+    }, 300); // small delay ensures DOM is loaded
   });
+  }
 
-  dialogRef.afterClosed().subscribe((result) => {
-    if (result) {
-      console.log('Form submitted:', result);
-    }
-  });
-}
 
     paymentLogos = paymentLogos;
     clientLogo=clientLogo;
@@ -383,7 +386,6 @@ openBookDemoDialog() {
   selectedIndex = 1;
 
   readonly dialog = inject(MatDialog);
-  private router = inject(Router);
   private destroyRef = inject(DestroyRef); // ✅ For automatic cleanup
   private mediaMatcher = inject(MediaMatcher); // ✅ Proper MediaMatcher injection
 

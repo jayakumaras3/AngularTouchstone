@@ -14,6 +14,10 @@ export const routes: Routes = [
         component: HomepageComponent,
         pathMatch: 'full'
       },
+      {
+        path: 'book-demo',
+        loadComponent: () => import('./pages/front-pages/book-demo/book-demo.component').then(m => m.BookDemoComponent)
+      },
       // 👇 front-pages routes moved here directly (no prefix)
       {
         path: '',

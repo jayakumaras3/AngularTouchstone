@@ -33,6 +33,17 @@ export class PagePricingComponent {
   togglePlan(period: 'monthly' | 'yearly') {
     this.selectedPlan = period;
   }
-  openBookDemoDialog() { const dialogRef = this.dialog.open(PopupwindowComponent, { width: '500px', disableClose: true, autoFocus: true, }); dialogRef.afterClosed().subscribe((result) => { if (result) { console.log('Form submitted:', result); } }); }
-  
+   openBookDemoDialog() {
+     // First navigate to contact page
+  this.router.navigate(['/contact']).then(() => {
+    // After navigation, scroll to the contact heading
+    setTimeout(() => {
+      const heading = document.querySelector('.contact-heading') as HTMLElement;
+      if (heading) {
+        heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        heading.focus();
+      }
+    }, 300); // small delay ensures DOM is loaded
+  });
+  }
 }
