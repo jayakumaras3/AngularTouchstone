@@ -6,10 +6,11 @@ import { MaterialModule } from '../../../material.module';
 import { BrandingComponent } from '../../../layouts/full/vertical/sidebar/branding.component';
 import { AuthService } from '../../../services/login/auth.service';
 import { LoginUrl } from '../../../config';
+import { FooterComponent } from '../../front-pages/footer/footer.component';
 
 @Component({
     selector: 'app-side-login',
-    imports: [RouterModule, MaterialModule, FormsModule, ReactiveFormsModule, BrandingComponent],
+    imports: [RouterModule,FooterComponent, MaterialModule, FormsModule, ReactiveFormsModule, BrandingComponent],
     templateUrl: './side-login.component.html'
 })
 export class AppSideLoginComponent {

@@ -604,7 +604,7 @@ export const navItems: NavItem[] = [
       {
         displayName: 'Side Forgot Password',
         iconName: 'point',
-        route: '/authentication/side-forgot-pwd',
+        route: '/side-forgot-pwd',
       },
       {
         displayName: 'Boxed Forgot Password',

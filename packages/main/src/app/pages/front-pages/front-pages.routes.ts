@@ -36,7 +36,7 @@ export const FrontPagesRoutes: Routes = [
       { path: 'privacy', component: PrivacyComponent },
       { path: 'terms', component:TermsComponent },      
       { path: 'login', component:AppSideLoginComponent },
-      { path: 'forgot-password', component:AppSideForgotPasswordComponent },
+      { path: 'side-forgot-pwd', component:AppSideForgotPasswordComponent },
     ],
   },
 ];
