@@ -9,7 +9,7 @@
             </h2>
             <div class="m-b-24 hstack">
                 <a [class.selected]="isActiveRoute('coursecatalog')"  
-                [routerLink]="['/authentication/login']"  mat-flat-button color="primary" class="zindexreduce">Member Login</a>
+                [routerLink]="['/login']"  mat-flat-button color="primary" class="zindexreduce">Member Login</a>
 <a  target="_blank" mat-stroked-button color="primary"
                 class="border-primary" (click)="openBookDemoDialog()" class="zindexreduce">Book a Demo</a>
             </div>
@@ -86,14 +86,14 @@
    <p class="f-s-16 m-0">
       <a mat-button
         class="m-x-8 f-s-14 f-w-500 text-primary text-decoration-none"
-        [routerLink]="['/front-pages/privacy']"
+        [routerLink]="['/privacy']"
         [class.selected]="isActiveRoute('privacy')">
         Privacy
       </a>
       |
       <a mat-button
         class="m-x-8 f-s-14 f-w-500 text-primary text-decoration-none"
-        [routerLink]="['/front-pages/terms']"
+        [routerLink]="['/terms']"
         [class.selected]="isActiveRoute('terms')">
         Terms
       </a>

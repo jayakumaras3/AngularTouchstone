@@ -1,17 +1,26 @@
 import { Routes } from '@angular/router';
 import { BlankComponent } from './layouts/blank/blank.component';
 import { FullComponent } from './layouts/full/full.component';
-import {  } from './pages/front-pages/homepage-details/homepage-details.component';
 import { HomepageComponent } from './pages/front-pages/homepage/homepage.component';
+
 export const routes: Routes = [
   {
     path: '',
     component: BlankComponent,
     children: [
+      // default route - homepage
       {
         path: '',
         component: HomepageComponent,
         pathMatch: 'full'
+      },
+      // 👇 front-pages routes moved here directly (no prefix)
+      {
+        path: '',
+        loadChildren: () =>
+          import('./pages/front-pages/front-pages.routes').then(
+            (m) => m.FrontPagesRoutes
+          ),
       },
       {
         path: 'starter',
@@ -30,13 +39,6 @@ export const routes: Routes = [
         loadChildren: () =>
           import('./pages/theme-pages/landingpage/landingpage.routes').then(
             (m) => m.LandingPageRoutes
-          ),
-      },
-      {
-        path: 'front-pages',
-        loadChildren: () =>
-          import('./pages/front-pages/front-pages.routes').then(
-            (m) => m.FrontPagesRoutes
           ),
       },
       {

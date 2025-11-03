@@ -32,13 +32,13 @@
 
    @if(!isMobileView){
               <div class="d-none d-lg-flex justify-content-between toolBarContent">
-                <button mat-button class="m-x-8 f-s-15 f-w-500 nav-item" [routerLink]="['/front-pages/about']"
+                <button mat-button class="m-x-8 f-s-15 f-w-500 nav-item" [routerLink]="['/about']"
                   [class.selected]="isActiveRoute('about')">
                   About Us
                 </button>
-                  <button mat-button class="m-x-8 f-s-15 f-w-500 nav-item" [routerLink]="['/front-pages/featurepage']"
-                  [class.selected]="isActiveRoute('featurepage')">
-                  Key Features
+                  <button mat-button class="m-x-8 f-s-15 f-w-500 nav-item" [routerLink]="['/feature']"
+                  [class.selected]="isActiveRoute('feature')">
+                  Features
                 </button>
                 <!--  <button mat-button class="m-x-8 f-s-14 f-w-500 nav-item" [class.selected]="isActiveRoute('blog')"
                     [routerLink]="['/front-pages/blog']">
@@ -46,7 +46,7 @@
                   </button> -->
                 <!-- Course Catalog -->
                   <button mat-button class="m-x-8 f-s-14 f-w-500 nav-item" [class.selected]="isActiveRoute('catalog')"
-                    [routerLink]="['/front-pages/catalog']">
+                    [routerLink]="['/catalog']">
                       Course Catalog
                   </button>
                     <!-- <button mat-button class="m-x-8 f-s-14 f-w-500 nav-item"
@@ -72,18 +72,18 @@
                                   </button>-->  
 
                 <button mat-button class="m-x-8 f-s-15 f-w-500 nav-item" [class.selected]="isActiveRoute('pricing')"
-                  [routerLink]="['/front-pages/pricing']">
+                  [routerLink]="['/pricing']">
                   Pricing
                 </button> 
 
               <button mat-button class="m-x-8 f-s-15 f-w-500 nav-item" [class.selected]="isActiveRoute('contact')"
-                [routerLink]="['/front-pages/contact']">
+                [routerLink]="['/contact']">
                 Contact
               </button>
                           </div>
                       <!--   <a mat-flat-button color="primary" class="" [routerLink]="'/authentication/login'">Login</a> https://dochek.com/--> 
                         <a mat-flat-button color="primary" class=""
-                        [routerLink]="['/authentication/login']">
+                        [routerLink]="['/login']">
                           Login
                         </a>
 
@@ -113,17 +113,17 @@
         <div class="">
           <mat-list role="list">
             <mat-list-item role="listitem">
-              <button mat-button class="text-dark" [routerLink]="['/front-pages/about']"
+              <button mat-button class="text-dark" [routerLink]="['/about']"
                 [class.selected]="isActiveRoute('about')">
                 About Us
               </button></mat-list-item>
             <mat-list-item role="listitem">
-              <button mat-button class="text-dark" [class.selected]="isActiveRoute('featurepage')"
-                [routerLink]="['/front-pages/featurepage']">
-              Key Features
+              <button mat-button class="text-dark" [class.selected]="isActiveRoute('feature')"
+                [routerLink]="['/feature']">
+              Features
               </button></mat-list-item>
             <mat-list-item role="listitem">
-              <button mat-button class="text-dark" [routerLink]="['/front-pages/catalog']"
+              <button mat-button class="text-dark" [routerLink]="['/catalog']"
                 [class.selected]="isActiveRoute('catalog')">
                 Course Catalog
                <!-- <span class="bg-light-primary text-primary rounded f-w-600 p-6 p-y-4 f-s-12">
@@ -132,7 +132,7 @@
               </button></mat-list-item>
             <mat-list-item role="listitem">
               <button mat-button class="text-dark" [class.selected]="isActiveRoute('pricing')"
-                [routerLink]="['/front-pages/pricing']">
+                [routerLink]="['/pricing']">
                 Pricing
               </button>
             </mat-list-item>
@@ -144,11 +144,11 @@
             </mat-list-item>-->
             <mat-list-item role="listitem">
               <button mat-button class="text-dark " [class.selected]="isActiveRoute('contact')"
-                [routerLink]="['/front-pages/contact']">
+                [routerLink]="['/contact']">
                 Contact
               </button></mat-list-item>
             <mat-list-item role="listitem" class="w-100">
-              <a mat-flat-button color="primary" class="w-100" [routerLink]="'/authentication/login'">Login</a></mat-list-item>
+              <a mat-flat-button color="primary" class="w-100" [routerLink]="'/login'">Login</a></mat-list-item>
           </mat-list>
         </div>
       </div>

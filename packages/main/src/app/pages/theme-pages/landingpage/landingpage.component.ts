@@ -327,7 +327,7 @@ export class AppLandingpageComponent {
     {
       id: 2,
       title: 'Authentication Design',
-      link: '/authentication/login',
+      link: '/login',
     },
     {
       id: 3,

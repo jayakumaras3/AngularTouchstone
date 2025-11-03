@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-privacy',
   templateUrl: './privacy.component.html',
-  styleUrls: ['./privacy.component.scss'] // ← fix typo: should be styleUrls[]
+  imports: [FooterComponent,],
+  styleUrls: ['./privacy.component.scss']
 })
 export class PrivacyComponent implements OnInit {
   lastUpdated: string = '2023-07-06';

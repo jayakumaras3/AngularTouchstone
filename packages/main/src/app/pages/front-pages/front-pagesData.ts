@@ -364,19 +364,6 @@ export const pricingPlans = {
       ],
       button: 'Get Started',
     },
-    {
-      title: 'Enterprise (50+ courses)',
-      price: 'Contact Sales',
-      description: 'Customized Plan for large teams',
-      features: [
-        'Certification with every course',
-        'Mobile & desktop access',
-        'Easy course upload',
-        'AR/VR insights',
-        'Dedicated success manager'
-      ],
-      button: 'Get Started',
-    },
   ],
   yearly: [
     {
@@ -421,19 +408,6 @@ export const pricingPlans = {
         'Easy course upload',
         'AR/VR insights',
         'Priority email assistance'
-      ],
-      button: 'Get Started',
-    },
-    {
-      title: 'Enterprise (50+ courses)',
-      price: 'Contact Sales',
-      description: 'Customized Plan for large teams',
-      features: [
-        'Certification with every course',
-        'Mobile & desktop access',
-        'Easy course upload',
-        'AR/VR insights',
-        'Dedicated success manager'
       ],
       button: 'Get Started',
     },

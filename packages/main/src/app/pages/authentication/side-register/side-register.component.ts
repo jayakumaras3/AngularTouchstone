@@ -44,7 +44,7 @@ export class AppSideRegisterComponent {
         console.log('Response:', res);
         if (res.success) {
           alert('User registered successfully!');
-          this.router.navigate(['/authentication/login']);
+          this.router.navigate(['/login']);
         } else {
           alert(res.message || 'Registration failed');
         }

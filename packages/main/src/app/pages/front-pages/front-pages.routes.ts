@@ -9,11 +9,11 @@ import { ContactComponent } from './contact/contact.component';
 import { BlogDetailsComponent } from './blog-details/blog-details.component';
 import { FeaturePageComponent } from './feature-page/feature-page.component';
 import { CorecatalogComponent } from './corecatalog/corecatalog.component';
-
 import { PrivacyComponent } from './privacy/privacy.component';
 import { TermsComponent } from './terms/terms.component';
-
 import { ShopComponent } from '../apps/ecommerce/shop/shop.component';
+import { AppSideLoginComponent } from '../authentication/side-login/side-login.component';
+import{AppSideForgotPasswordComponent} from '../authentication/side-forgot-password/side-forgot-password.component';
 
 
 export const FrontPagesRoutes: Routes = [
@@ -29,12 +29,14 @@ export const FrontPagesRoutes: Routes = [
       { path: 'portfolio', component: PortfolioComponent },
       { path: 'pricing', component: PricingComponent },
       { path: 'contact', component: ContactComponent },
-      { path: 'featurepage', component: FeaturePageComponent },
+      { path: 'feature', component: FeaturePageComponent },
       { path: 'corecatalog', component: CorecatalogComponent },
       { path: 'blog-details', component: BlogDetailsComponent },
       { path: 'catalog', component: ShopComponent },
       { path: 'privacy', component: PrivacyComponent },
-      { path: 'terms', component:TermsComponent },
+      { path: 'terms', component:TermsComponent },      
+      { path: 'login', component:AppSideLoginComponent },
+      { path: 'forgot-password', component:AppSideForgotPasswordComponent },
     ],
   },
 ];

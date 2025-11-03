@@ -43,7 +43,7 @@ submit() {
         console.log('Password Reset Response:', res);
         if (res.success) {
           alert('Password reset link has been sent to your email.');
-          this.router.navigate(['/authentication/login']);
+          this.router.navigate(['/login']);
         } else {
           alert(res.message || 'Failed to send reset link');
         }

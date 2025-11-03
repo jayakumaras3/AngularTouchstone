@@ -570,7 +570,7 @@ export const navItems: NavItem[] = [
       {
         displayName: 'Login',
         iconName: 'point',
-        route: '/authentication/login',
+        route: '/login',
       },
       {
         displayName: 'Boxed Login',

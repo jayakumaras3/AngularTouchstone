@@ -38,7 +38,7 @@
         <div class="p-16 pricing-section">
           <mat-radio-group [(ngModel)]="selectedLanguage" class="m-b-20">
             @for (lang of languageOptions; track lang.value) {
-              <mat-list-item
+              <mat-list-item style="cursor: pointer"
                 role="listitem"
                 class="m-b-2 gap-10 language-item"
                 [ngClass]="{ 'active-lang': selectedLanguage === lang.value }"
