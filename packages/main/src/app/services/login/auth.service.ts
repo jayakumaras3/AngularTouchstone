@@ -7,10 +7,16 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
   // Base URLs
-  private apiUrl = 'http://172.16.0.173/landing';
+  /*private apiUrl = 'http://172.16.0.173/landing';
   
   private forgotUrl = 'http://172.16.0.173/landing';
-  private contactApiUrl = 'http://172.16.0.173/landing';
+  private contactApiUrl = 'http://172.16.0.173/landing';*/
+  // Dochek
+  private apiUrl = 'https://dochek.com/landing';
+  
+  private forgotUrl = 'https://dochek.com/landing';
+  private contactApiUrl = 'https://dochek.com/landing'
+  
 
   constructor(private http: HttpClient) {}
 
