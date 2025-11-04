@@ -1,3 +1,15 @@
+.price-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.price-details .language-line {
+  display: block;
+  margin-top: 4px;
+  width: 100%;
+}
+
+
 .language-scroll-container {
   max-height: 260px; /* adjust as needed */
   overflow-y: auto;
