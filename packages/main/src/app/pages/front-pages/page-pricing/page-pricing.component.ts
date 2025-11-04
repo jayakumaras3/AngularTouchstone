@@ -33,17 +33,22 @@ export class PagePricingComponent {
   togglePlan(period: 'monthly' | 'yearly') {
     this.selectedPlan = period;
   }
-   openBookDemoDialog() {
-     // First navigate to contact page
-  this.router.navigate(['/contact']).then(() => {
-    // After navigation, scroll to the contact heading
-    setTimeout(() => {
-      const heading = document.querySelector('.contact-heading') as HTMLElement;
-      if (heading) {
-        heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        heading.focus();
+     openBookDemoDialog() {
+        // Prevent background scroll
+        document.body.style.overflow = 'hidden';
+
+        const dialogRef = this.dialog.open(PopupwindowComponent, {
+          width: '500px',
+          disableClose: true,
+          autoFocus: true,
+          hasBackdrop: true, // background still visible
+          panelClass: 'light-popup-window',
+        });
+
+        dialogRef.afterClosed().subscribe(() => {
+          // Re-enable scrolling after popup closes
+          document.body.style.overflow = 'auto';
+        });
       }
-    }, 300); // small delay ensures DOM is loaded
-  });
-  }
+
 }

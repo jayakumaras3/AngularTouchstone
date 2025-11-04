@@ -34,6 +34,8 @@ import { MaterialModule } from './material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { OverlayContainer } from '@angular/cdk/overlay';
+import { CustomOverlayContainer } from './custom-overlay-container';
 
 // code view
 import { provideHighlightOptions } from 'ngx-highlightjs';
@@ -87,6 +89,6 @@ export const appConfig: ApplicationConfig = {
           deps: [HttpClient],
         },
       })
-    ),
+    ), { provide: OverlayContainer, useClass: CustomOverlayContainer }
   ],
 };

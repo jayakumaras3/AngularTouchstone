@@ -13,16 +13,17 @@ import { AuthService } from '../../../services/login/auth.service';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    MatDialogModule,   // ✅ Required for mat-dialog-* elements
+    MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
   ],
   templateUrl: './popupwindow.component.html',
-  styleUrls: ['./popupwindow.component.scss']
+  styleUrls: ['./popupwindow.component.scss'],
 })
 export class PopupwindowComponent {
   form: FormGroup;
+  isSubmitting = false;
 
   constructor(
     private fb: FormBuilder,
@@ -34,40 +35,37 @@ export class PopupwindowComponent {
       company: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       city: ['', Validators.required],
-      message: ['']
+      message: [''],
     });
   }
 
-isSubmitting = false; // track submission state
+  onSubmit() {
+    if (this.form.valid && !this.isSubmitting) {
+      this.isSubmitting = true;
+      console.log('Submitting contact form:', this.form.value);
 
-onSubmit() {
-  if (this.form.valid && !this.isSubmitting) {
-    this.isSubmitting = true; // disable button immediately
-    console.log('Submitting contact form:', this.form.value);
+      this.authService.sendContact(this.form.value).subscribe({
+        next: (res: any) => {
+          console.log('Response:', res);
 
-    this.authService.sendContact(this.form.value).subscribe({
-      next: (res: any) => {
-        console.log('Response:', res);
-
-        if (res.success) {
-          alert(res.message || '✅ Message sent successfully!');
-          this.dialogRef.close(res); // close dialog
-          this.form.reset();
-        } else {
-          alert(res.message || '❌ Submission failed');
-        }
-      },
-      error: (err) => {
-        console.error('HTTP Error:', err);
-        alert('Server error. Please check the console.');
-      },
-      complete: () => {
-        this.isSubmitting = false; // re-enable button after response
-      }
-    });
-  } else if (!this.form.valid) {
-    alert('⚠️ Please fill all required fields');
+          if (res.success) {
+            alert(res.message || '✅ Message sent successfully!');
+            this.dialogRef.close(res);
+            this.form.reset();
+          } else {
+            alert(res.message || '❌ Submission failed');
+          }
+        },
+        error: (err) => {
+          console.error('HTTP Error:', err);
+          alert('Server error. Please check the console.');
+        },
+        complete: () => {
+          this.isSubmitting = false;
+        },
+      });
+    } else if (!this.form.valid) {
+      alert('⚠️ Please fill all required fields');
+    }
   }
-}
-
 }
