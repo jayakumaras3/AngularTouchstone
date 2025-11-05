@@ -128,20 +128,35 @@
                 <h5 class="card-title">{{ productcard.product_name }}</h5>
               </mat-card-title>
 
-             <div class="price-details">
-              <div class="d-flex align-items-center justify-content-between">
+           <div class="price-details">
+              <div class="d-flex align-items-center justify-content-between" style="padding-bottom: 4px;">
+                <!-- Left side: Language -->
                 <span class="language-text">
                   Language: <span class="language-value">{{ productcard.language }}</span>
                 </span>
+
+                <!-- Right side: Rating -->
+                <div class="d-flex  gap-1 rating-stars">
+                  @if (productcard.rating !== undefined) {
+                    @for (star of [1, 2, 3, 4, 5]; track star) {
+                      <i-tabler
+                        name="star"
+                        class="icon-17"
+                        [ngClass]="getStarClass(star, productcard.rating)"
+                      ></i-tabler>
+                    }
+                  }
+                </div>
               </div>
 
               <hr class="price-divider" />
-
               <div class="d-flex align-items-center justify-content-between price-row">
                 <h6 class="price-text"><b>$</b> {{ productcard.base_price }}</h6>
                 <span class="duration-box">Duration: {{ productcard.duration }} min</span>
               </div>
             </div>
+
+
 
 
 

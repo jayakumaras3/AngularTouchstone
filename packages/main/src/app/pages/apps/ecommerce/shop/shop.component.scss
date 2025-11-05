@@ -1,3 +1,34 @@
+.language-text {
+  font-size: 12px;
+  font-weight: 600;
+  color: #999;
+}
+
+.language-value {
+  color: #000;
+}
+
+.rating-stars {
+  justify-content: flex-end;
+}
+
+.icon-17 {
+  width: 17px;
+  height: 17px;
+  vertical-align: middle;
+  color: #ccc; /* default gray */
+}
+
+/* Colors for star states */
+.filled-star {
+  color: #ffb400; /* gold */
+}
+.half-star {
+  color: #ffc966;
+}
+.empty-star {
+  color: #ccc;
+}
 
 .card-title{
  color: #3b82f6; 
@@ -11,8 +42,8 @@
 .language-text {
   font-size: 12px;
   font-weight: 600;
-  color: #999; /* light gray for "Language:" */
-  padding-bottom: 4px;
+  color: #999; /* light gray for "Language:"
+  padding-bottom: 4px; */
 }
 
 .language-value {
