@@ -1,12 +1,82 @@
-.price-details {
-  display: flex;
-  flex-direction: column;
+
+.card-title{
+ color: #3b82f6; 
 }
 
-.price-details .language-line {
-  display: block;
-  margin-top: 4px;
+.price-details {
+ /* margin-top: 8px;*/
   width: 100%;
+}
+
+.language-text {
+  font-size: 12px;
+  font-weight: 600;
+  color: #999; /* light gray for "Language:" */
+  padding-bottom: 4px;
+}
+
+.language-value {
+  color: #000; /* normal black for language name */
+}
+
+.price-divider {
+  border: none;
+  border-top: 1px solid #ccc; /* same color as duration border */
+  margin: 6px 0;
+  width: calc(100% + 49px);
+  margin-left: -25px;
+}
+
+
+.price-row {
+  margin-top: 6px;
+}
+
+.price-text {
+  font-size: 12px;
+  margin: 0;
+}
+
+.duration-box {
+  font-size: 12px;
+  font-weight: 600;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 2px 8px;
+  background-color: #f9f9f9;
+}
+
+
+
+.language-text {
+  font-size: 12px;
+  font-weight: 600;
+  color: #999; /* light gray for "Language:" */
+}
+
+.language-value {
+  color: var(--mat-sys-on-background); /* normal black for language name */
+}
+
+.price-row {
+  margin-top: 12px;
+}
+
+.price-text {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.duration-box {
+  font-size: 12px;
+  font-weight: 600;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 2px 8px;
+  background-color: #f9f9f9;
 }
 
 
@@ -204,4 +274,7 @@ mat-list-item {
       color: white;
     }
   }
+}
+::ng-deep html .mat-mdc-card > .bottombox.mat-mdc-card-content {
+  padding: 18px 10px 15px 14px !important;
 }

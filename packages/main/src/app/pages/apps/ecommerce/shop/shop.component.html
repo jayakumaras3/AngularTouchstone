@@ -123,21 +123,28 @@
               </div>
             </a>
 
-            <mat-card-content class="p-b-24 p-t-12 position-relative">
-              <mat-card-title class="mat-headline-2 f-s-16 m-b-4 text-ellipsis text-nowrap">
+            <mat-card-content class="bottombox p-t-12 position-relative">
+              <mat-card-title class="mat-headline-2 f-s-18 m-b-4 text-ellipsis text-nowrap">
                 <h5 class="card-title">{{ productcard.product_name }}</h5>
               </mat-card-title>
 
-            <div class="price-details">
-                <div class="d-flex align-items-center justify-content-between">
-                  <h6 class="f-s-14 f-w-600">$ {{ productcard.base_price }}</h6>
-                  <span class="f-s-14 f-w-600">Duration: {{ productcard.duration }}</span>
-                </div>
-
-                <div class="language-line">
-                  <span class="f-s-14 f-w-600">Language: {{ productcard.language }}</span>
-                </div>
+             <div class="price-details">
+              <div class="d-flex align-items-center justify-content-between">
+                <span class="language-text">
+                  Language: <span class="language-value">{{ productcard.language }}</span>
+                </span>
               </div>
+
+              <hr class="price-divider" />
+
+              <div class="d-flex align-items-center justify-content-between price-row">
+                <h6 class="price-text"><b>$</b> {{ productcard.base_price }}</h6>
+                <span class="duration-box">Duration: {{ productcard.duration }} min</span>
+              </div>
+            </div>
+
+
+
 
             </mat-card-content>
           </mat-card>
