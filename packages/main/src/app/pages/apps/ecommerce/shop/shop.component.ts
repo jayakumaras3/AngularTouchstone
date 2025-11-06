@@ -39,6 +39,12 @@ export interface Section {
   styleUrl: './shop.component.scss',
 })
 export class ShopComponent implements OnInit {
+  viewMode: 'grid' | 'tile' = 'grid';
+
+setViewMode(mode: 'grid' | 'tile') {
+  this.viewMode = mode;
+}
+
   private router = inject(Router);
   readonly dialog = inject(MatDialog);
   private cdr = inject(ChangeDetectorRef);
@@ -329,23 +335,6 @@ export class ShopComponent implements OnInit {
 
     this.applyFilterAndReset(this.allProducts);
   }
-
-  // ========================
-  // UI Helper Methods
-  // ========================
-
- /* openBookDemoDialog(): void { 
-    const dialogRef = this.dialog.open(PopupwindowComponent, { 
-      width: '500px', 
-      disableClose: true, 
-      autoFocus: true, 
-    }); 
-    dialogRef.afterClosed().subscribe((result) => { 
-      if (result) { 
-        console.log('Form submitted:', result); 
-      } 
-    }); 
-  }*/
     openBookDemoDialog() {
         // Prevent background scroll
         document.body.style.overflow = 'hidden';

@@ -91,93 +91,169 @@
           </button>
           }
 
-          <div class="flex-grow-1 d-flex justify-content-end">
-            <mat-form-field class="hide-hint" appearance="outline" [ngClass]="{
-                'w-30': !isMobileView,
-                searchBar: isMobileView
-              }">
-              <mat-icon matPrefix>search</mat-icon>
-              <input matInput placeholder="Search Courses" [(ngModel)]="searchText" (ngModelChange)="filterCards()" />
-              @if(searchText){
-              <button matSuffix mat-icon-button aria-label="Clear" (click)="getProductList()">
+       <div class="flex-grow-1 d-flex justify-content-end align-items-center gap-2">
+  
+  <!-- View Toggle Buttons -->
+          <div class="view-toggle d-flex align-items-center gap-1 m-r-8">
+            <button
+              mat-icon-button
+              [color]="viewMode === 'grid' ? 'primary' : ''"
+              (click)="setViewMode('grid')"
+              matTooltip="Grid View"
+            >
+              <mat-icon>grid_view</mat-icon>
+            </button>
+
+            <button
+              mat-icon-button
+              [color]="viewMode === 'tile' ? 'primary' : ''"
+              (click)="setViewMode('tile')"
+              matTooltip="Tile View"
+            >
+              <mat-icon>view_list</mat-icon>
+            </button>
+          </div>
+
+          <!-- Existing Search Field -->
+          <mat-form-field
+            class="hide-hint"
+            appearance="outline"
+            [ngClass]="{
+              'w-30': !isMobileView,
+              searchBar: isMobileView
+            }"
+          >
+            <mat-icon matPrefix>search</mat-icon>
+            <input
+              matInput
+              placeholder="Search Courses"
+              [(ngModel)]="searchText"
+              (ngModelChange)="filterCards()"
+            />
+            @if (searchText) {
+              <button
+                matSuffix
+                mat-icon-button
+                aria-label="Clear"
+                (click)="getProductList()"
+              >
                 <mat-icon>close</mat-icon>
               </button>
-              }
-            </mat-form-field>
-          </div>
+            }
+          </mat-form-field>
         </div>
-       <div class="row">
-        @for (productcard of filteredCards; track productcard.product_name) {
-        <div class="col-sm-6 col-lg-4 p-x-12">
-          <mat-card class="cardWithShadow productcard overflow-hidden b-1 cursor-pointer">
-            <a routerLink="/widgets/cards">
-              <div class="img-wrapper position-relative">
-                <img
-                  [src]="productcard.imagePath"
-                  (click)="openBookDemoDialog()"
-                  alt="imgSrc"
-                  class="w-100"
-                  mat-card-image
-                />
-                <div class="d-flex align-items-center icon-container"></div>
+
+        </div>
+      
+         <!-- GRID VIEW -->
+          <div *ngIf="viewMode === 'grid'" class="row">
+            @for (productcard of filteredCards; track productcard.product_name) {
+              <div class="col-sm-6 col-lg-4 p-x-12">
+                <mat-card class="cardWithShadow productcard overflow-hidden b-1 cursor-pointer" (click)="openBookDemoDialog()">
+                  <a routerLink="/widgets/cards">
+                    <div class="img-wrapper position-relative">
+                      <img
+                        [src]="productcard.imagePath"
+                        
+                        alt="imgSrc"
+                        class="w-100"
+                        mat-card-image />
+                    </div>
+                  </a>
+
+                  <mat-card-content class="bottombox p-t-12 position-relative">
+                    <h5 class="card-title">{{ productcard.product_name }}</h5>
+                    <div class="price-details">
+                      <div class="d-flex align-items-center justify-content-between" style="padding-bottom: 4px;">
+                        <span class="language-text">
+                          Language: <span class="language-value">{{ productcard.language }}</span>
+                        </span>
+                        <div class="d-flex gap-1 rating-stars">
+                          @if (productcard.rating !== undefined) {
+                            @for (star of [1, 2, 3, 4, 5]; track star) {
+                              <i-tabler
+                                name="star"
+                                class="icon-17"
+                                [ngClass]="getStarClass(star, productcard.rating)">
+                              </i-tabler>
+                            }
+                          }
+                        </div>
+                      </div>
+
+                      <hr class="price-divider" />
+                      <div class="d-flex align-items-center justify-content-between price-row">
+                        <h6 class="price-text"><b>$</b> {{ productcard.base_price }}</h6>
+                        <span class="duration-box">Duration: {{ productcard.duration }} min</span>
+                      </div>
+                    </div>
+                  </mat-card-content>
+                </mat-card>
               </div>
-            </a>
-
-            <mat-card-content class="bottombox p-t-12 position-relative">
-              <mat-card-title class="mat-headline-2 f-s-18 m-b-4 text-ellipsis text-nowrap">
-                <h5 class="card-title">{{ productcard.product_name }}</h5>
-              </mat-card-title>
-
-           <div class="price-details">
-              <div class="d-flex align-items-center justify-content-between" style="padding-bottom: 4px;">
-                <!-- Left side: Language -->
-                <span class="language-text">
-                  Language: <span class="language-value">{{ productcard.language }}</span>
-                </span>
-
-                <!-- Right side: Rating -->
-                <div class="d-flex  gap-1 rating-stars">
-                  @if (productcard.rating !== undefined) {
-                    @for (star of [1, 2, 3, 4, 5]; track star) {
-                      <i-tabler
-                        name="star"
-                        class="icon-17"
-                        [ngClass]="getStarClass(star, productcard.rating)"
-                      ></i-tabler>
-                    }
-                  }
+            } @empty {
+              <div class="col-12 text-center p-4 m-t-30">
+                <img src="assets/images/products/empty-shopping-cart.svg" width="200" height="200" />
+                <div class="f-s-48 f-w-600" style="line-height: 4rem;">There is no Product</div>
+                <div class="f-s-14 f-w-500 no-productcl">
+                  The Product you are searching is no longer available.
                 </div>
+                <button mat-flat-button (click)="getProductList()" class="m-t-10">
+                  Try Again
+                </button>
               </div>
-
-              <hr class="price-divider" />
-              <div class="d-flex align-items-center justify-content-between price-row">
-                <h6 class="price-text"><b>$</b> {{ productcard.base_price }}</h6>
-                <span class="duration-box">Duration: {{ productcard.duration }} min</span>
-              </div>
-            </div>
-
-
-
-
-
-
-            </mat-card-content>
-          </mat-card>
-        </div>
-        }
-        @empty {
-        <div class="col-12 text-center p-4 m-t-30">
-          <img src="assets/images/products/empty-shopping-cart.svg" width="200" height="200" />
-          <div class="f-s-48 f-w-600" style="line-height: 4rem;">There is no Product</div>
-          <div class="f-s-14 f-w-500 no-productcl">
-            The Product you are searching is no longer available.
+            }
           </div>
-          <button mat-flat-button (click)="getProductList()" class="m-t-10">
-            Try Again
-          </button>
-        </div>
-        }
+
+      <!-- TILE VIEW -->
+      <div *ngIf="viewMode === 'tile'" class="tile-table-container">
+        <table class="tile-table">
+          <thead>
+            <tr>
+              <th class="text-center" >Id</th>
+              <th >Course Title</th>
+              <th class="text-center">Language</th>
+              <th class="text-center">Rating</th>
+              <th class="text-center">Price</th>
+              <th class="text-center">Duration</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (productcard of filteredCards; let i = $index; track productcard.product_name) {
+              <tr>
+                <td class="text-center">{{ i + 1 }}</td>
+                <td (click)="openBookDemoDialog()" class="cursor-pointer">
+                  <div class="title-cell d-flex align-items-center gap-2">
+                    <img [src]="productcard.imagePath" alt="" class="thumb" />
+                    <span class="title-text fw-semibold">{{ productcard.product_name }}</span>
+                  </div>
+                </td>
+                <td class="text-center">{{ productcard.language }}</td>
+                <td class="text-center">
+                  <div class="rating-starstable">
+                    @if (productcard.rating !== undefined) {
+                      @for (star of [1, 2, 3, 4, 5]; track star) {
+                        <i-tabler
+                          name="star"
+                          class="icon-17"
+                          [ngClass]="getStarClass(star, productcard.rating)">
+                        </i-tabler>
+                      }
+                    }
+                  </div>
+                </td>
+                <td class="text-center fw-semibold">${{ productcard.base_price }}</td>
+                <td class="text-center">{{ productcard.duration }} min</td>
+              </tr>
+            } @empty {
+              <tr>
+                <td colspan="6" class="text-center p-4">No products found.</td>
+              </tr>
+            }
+          </tbody>
+        </table>
       </div>
+
+    
 
       </div>
     </mat-sidenav-content>
