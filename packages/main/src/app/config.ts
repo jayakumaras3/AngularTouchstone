@@ -132,18 +132,24 @@ export const logoUrl = '/DOCHEKDOTCOM/app/Views/angular_view/';
 */
 
 /**/
+//Host URL path
 export const baseUrlPath = '/ang/';
 export const baseUrlPathslash = '/ang';
 export const LoginUrl = 'ang/';
 export const logoUrl = '/ang/';
 
 
+
+
+// PHP service URLs
 /*export const apiUrl = 'http://172.16.0.173/landing';
   
   export const forgotUrl = 'http://172.16.0.173/landing';
   export const contactApiUrl = 'http://172.16.0.173/landing';*/
-  // Dochek
-   export const apiUrl = 'https://dochek.com/landing';
+
+
+   // Dochek
+  export const apiUrl = 'https://dochek.com/landing';
   
   export const forgotUrl = 'https://dochek.com/landing';
   export const contactApiUrl = 'https://dochek.com/landing'

@@ -56,7 +56,7 @@ export class FeaturePageComponent {
     // Call any method or logic you want here
 
     // Navigate to the catalog page
-    this.router.navigate(['front-pages/catalog']);
+    this.router.navigate(['/catalog']);
   }
   // Component data
   reportLink = 'https://www.coursera.org';
