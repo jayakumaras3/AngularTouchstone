@@ -40,10 +40,31 @@ export interface Section {
 })
 export class ShopComponent implements OnInit {
   viewMode: 'grid' | 'tile' = 'grid';
-
-setViewMode(mode: 'grid' | 'tile') {
-  this.viewMode = mode;
+trackTileRows(index: number, item: any) {
+  return item.id || index;
 }
+  setViewMode(mode: 'grid' | 'tile') {
+    this.viewMode = mode;
+
+    if (mode === 'tile') {
+      // Disable lazy loading
+      this.scrollListenerActive = false;
+
+      // ✅ LOAD ALL COURSES for TILE VIEW
+      this.filteredCards = [...this.baseFilteredProducts];
+
+      // ✅ Reset pagination to start from first page
+      this.currentPage = 0;
+
+    } else {
+      // GRID VIEW → Enable lazy load & reinitialize
+      this.scrollListenerActive = true;
+
+      // Restore lazy-loaded initial state (first 8 items)
+      this.initializeProducts();
+    }
+  }
+
 
   private router = inject(Router);
   readonly dialog = inject(MatDialog);
@@ -123,8 +144,69 @@ setViewMode(mode: 'grid' | 'tile') {
     this.calculateLanguageCounts();
     this.initializeProducts();
   }
+  Math = Math;
+// Pagination
+pageSize = 10;
+currentPage = 0;
+pageSizeOptions = [5, 10, 20];
+
+// Sorting
+sortColumn: string = '';
+sortDirection: 'asc' | 'desc' = 'asc';
+
+// Filtered + paginated data
+get paginatedCards() {
+  const start = this.currentPage * this.pageSize;
+  const end = start + this.pageSize;
+  return this.sortedCards.slice(start, end);
+}
+
+get sortedCards() {
+  if (!this.sortColumn) return this.filteredCards;
+
+  return [...this.filteredCards].sort((a: any, b: any) => {
+    const valueA = a[this.sortColumn];
+    const valueB = b[this.sortColumn];
+
+    if (valueA < valueB) return this.sortDirection === 'asc' ? -1 : 1;
+    if (valueA > valueB) return this.sortDirection === 'asc' ? 1 : -1;
+    return 0;
+  });
+}
+
+
+toggleSort(col: string) {
+  if (this.sortColumn === col) {
+    this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+  } else {
+    this.sortColumn = col;
+    this.sortDirection = 'asc';
+  }
+  this.currentPage = 0;
+}
+
+// Pagination methods
+onPageChange(event: any) {
+  this.pageSize = event.target.value;
+  this.currentPage = 0;
+}
+
+nextPage() {
+  this.scrollListenerActive = false; // ✅ Prevent interference
+  if ((this.currentPage + 1) * this.pageSize < this.sortedCards.length) {
+    this.currentPage++;
+  }
+}
+
+prevPage() {
+  this.scrollListenerActive = false; // ✅ Prevent interference
+  if (this.currentPage > 0) {
+    this.currentPage--;
+  }
+}
 
   private calculateLanguageCounts(): void {
+    
     const counts: { [key: string]: number } = {};
 
     // Count how many products per language
@@ -193,35 +275,53 @@ setViewMode(mode: 'grid' | 'tile') {
   /**
    * Reset and apply new filter/sort with lazy loading
    */
-  private applyFilterAndReset(data: Element[]): void {
-    this.baseFilteredProducts = [...data];
-    this.currentDisplayIndex = 0;
-    this.filteredCards = [];
-    this.scrollListenerActive = true;
-    this.loadInitialProducts();
-    this.scrollToTop();
-  }
+    private applyFilterAndReset(data: Element[]): void {
+      this.baseFilteredProducts = [...data];
+      this.currentDisplayIndex = 0;
+
+      // ✅ RESET pagination ALWAYS
+      this.currentPage = 0;
+
+      if (this.viewMode === 'tile') {
+        // ✅ TILE VIEW → ALWAYS load everything
+        this.filteredCards = [...this.baseFilteredProducts];
+        this.scrollListenerActive = false; 
+      } 
+      else {
+        // ✅ GRID VIEW → use lazy loading
+        this.scrollListenerActive = true;
+        this.filteredCards = [];
+        this.loadInitialProducts();
+      }
+
+      this.scrollToTop();
+    }
 
   /**
    * Scroll event listener for lazy loading - triggers at 80% scroll
    */
-  @HostListener('window:scroll', [])
-  onScroll(): void {
-    if (!this.scrollListenerActive || this.isLoading || !this.hasMoreProducts()) {
-      return;
+    @HostListener('window:scroll', [])
+    onScroll(): void {
+      // ❌ Disable lazy loading in TILE view
+      if (this.viewMode === 'tile') {
+        return;
+      }
+
+      // ✅ Continue with your original scroll behaviour for GRID view
+      if (!this.scrollListenerActive || this.isLoading || !this.hasMoreProducts()) {
+        return;
+      }
+
+      const scrollPosition = window.innerHeight + window.scrollY;
+      const pageHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+
+      const scrollPercentage = (scrollPosition / pageHeight) * 100;
+
+      if (scrollPercentage >= 70) {
+        this.loadMoreProductsOnScroll();
+      }
     }
 
-    const scrollPosition = window.innerHeight + window.scrollY;
-    const pageHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
-    
-    // Calculate scroll percentage
-    const scrollPercentage = (scrollPosition / pageHeight) * 100;
-    
-    // Load more when user reaches 80% of the page
-    if (scrollPercentage >= 70) {
-      this.loadMoreProductsOnScroll();
-    }
-  }
 
   // ========================
   // Filter and Search Methods

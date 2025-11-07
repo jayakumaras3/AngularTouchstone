@@ -1,3 +1,121 @@
+/* COLUMN WIDTHS */
+.tile-table th:nth-child(1),
+.tile-table td:nth-child(1) {
+  width: 60px;
+  min-width: 60px;
+  text-align: center;
+}
+
+.tile-table th:nth-child(2),
+.tile-table td:nth-child(2) {
+  width: 320px;
+  min-width: 320px;
+}
+
+.tile-table th:nth-child(3),
+.tile-table td:nth-child(3) {
+  width: 140px;
+  text-align: center;
+}
+
+.tile-table th:nth-child(4),
+.tile-table td:nth-child(4) {
+  width: 124px;
+  text-align: center;
+}
+
+.tile-table th:nth-child(5),
+.tile-table td:nth-child(5) {
+  width: 110px;
+  text-align: center;
+}
+
+.tile-table th:nth-child(6),
+.tile-table td:nth-child(6) {
+  width: 130px;
+  text-align: center;
+}
+.tile-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+.tile-table th {
+  background: #f8f9fb;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 14px 18px;
+  text-align: left;
+  border-bottom: 1px solid #e6e6e6;
+  cursor: pointer;
+  white-space: nowrap;
+  position: relative;
+}
+
+.tile-table th.active {
+  color: #1976d2;
+}
+
+.tile-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid #f1f1f1;
+  font-size: 14px;
+}
+
+.tile-table tr:hover td {
+  background: #f9fbff;
+}
+
+.sort-icon {
+  display: inline-flex;
+  vertical-align: middle;
+  margin-left: 4px;
+}
+
+.title-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.title-cell .thumb {
+  width: 38px;
+  height: 38px;
+  border-radius: 6px;
+  object-fit: cover;
+  border: 1px solid #ddd;
+}
+.tile-table th {
+  cursor: pointer;
+  user-select: none;
+}
+
+.pagination-bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 12px;
+  font-size: 14px;
+}
+
+.pagination-bar select {
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.pagination-bar button {
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.pagination-bar button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
 .tile-table-container {
   width: 100%;
   margin-top: 16px;

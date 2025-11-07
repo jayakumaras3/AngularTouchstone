@@ -206,53 +206,114 @@
           </div>
 
       <!-- TILE VIEW -->
-      <div *ngIf="viewMode === 'tile'" class="tile-table-container">
-        <table class="tile-table">
-          <thead>
+        <div *ngIf="viewMode === 'tile'" class="tile-table-container">
+
+          <table class="tile-table">
+           <thead>
             <tr>
-              <th class="text-center" >Id</th>
-              <th >Course Title</th>
-              <th class="text-center">Language</th>
-              <th class="text-center">Rating</th>
-              <th class="text-center">Price</th>
-              <th class="text-center">Duration</th>
+              <th (click)="toggleSort('id')" [class.active]="sortColumn === 'id'">
+                Id 
+                <span class="sort-icon">
+                  <i-tabler *ngIf="sortColumn === 'id' && sortDirection==='asc'" name="chevron-up"></i-tabler>
+                  <i-tabler *ngIf="sortColumn === 'id' && sortDirection==='desc'" name="chevron-down"></i-tabler>
+                </span>
+              </th>
+
+              <th (click)="toggleSort('product_name')" [class.active]="sortColumn === 'product_name'">
+                Course Title
+                <span class="sort-icon">
+                  <i-tabler *ngIf="sortColumn === 'product_name' && sortDirection==='asc'" name="chevron-up"></i-tabler>
+                  <i-tabler *ngIf="sortColumn === 'product_name' && sortDirection==='desc'" name="chevron-down"></i-tabler>
+                </span>
+              </th>
+
+              <th (click)="toggleSort('language')" [class.active]="sortColumn === 'language'">
+                Language
+                <span class="sort-icon">
+                  <i-tabler *ngIf="sortColumn === 'language' && sortDirection==='asc'" name="chevron-up"></i-tabler>
+                  <i-tabler *ngIf="sortColumn === 'language' && sortDirection==='desc'" name="chevron-down"></i-tabler>
+                </span>
+              </th>
+
+              <th>Rating</th>
+
+              <th (click)="toggleSort('base_price')" [class.active]="sortColumn === 'base_price'">
+                Price
+                <span class="sort-icon">
+                  <i-tabler *ngIf="sortColumn === 'base_price' && sortDirection==='asc'" name="chevron-up"></i-tabler>
+                  <i-tabler *ngIf="sortColumn === 'base_price' && sortDirection==='desc'" name="chevron-down"></i-tabler>
+                </span>
+              </th>
+
+              <th (click)="toggleSort('duration')" [class.active]="sortColumn === 'duration'">
+                Duration
+                <span class="sort-icon">
+                  <i-tabler *ngIf="sortColumn === 'duration' && sortDirection==='asc'" name="chevron-up"></i-tabler>
+                  <i-tabler *ngIf="sortColumn === 'duration' && sortDirection==='desc'" name="chevron-down"></i-tabler>
+                </span>
+              </th>
             </tr>
           </thead>
-          <tbody>
-            @for (productcard of filteredCards; let i = $index; track productcard.product_name) {
-              <tr>
-                <td class="text-center">{{ i + 1 }}</td>
-                <td (click)="openBookDemoDialog()" class="cursor-pointer">
-                  <div class="title-cell d-flex align-items-center gap-2">
-                    <img [src]="productcard.imagePath" alt="" class="thumb" />
-                    <span class="title-text fw-semibold">{{ productcard.product_name }}</span>
-                  </div>
-                </td>
-                <td class="text-center">{{ productcard.language }}</td>
-                <td class="text-center">
-                  <div class="rating-starstable">
-                    @if (productcard.rating !== undefined) {
-                      @for (star of [1, 2, 3, 4, 5]; track star) {
-                        <i-tabler
-                          name="star"
+
+
+            <tbody>
+              @for ( productcard of paginatedCards;let i = $index;   track trackTileRows(i, productcard)                ) {
+                <tr>
+                  <td>{{ (currentPage * pageSize) + i + 1 }}</td>
+
+                  <td>
+                    <div class="title-cell">
+                      <!-- <img [src]="productcard.imagePath" class="thumb" /> -->
+                      <span class="title-text">{{ productcard.product_name }}</span>
+                    </div>
+                  </td>
+
+                  <td class="text-center">{{ productcard.language }}</td>
+
+                  <td class="text-center">
+                    <div class="rating-stars">
+                      @for(star of [1,2,3,4,5]; track star) {
+                        <i-tabler name="star" 
                           class="icon-17"
-                          [ngClass]="getStarClass(star, productcard.rating)">
-                        </i-tabler>
+                          [ngClass]="getStarClass(star, productcard.rating)"></i-tabler>
                       }
-                    }
-                  </div>
-                </td>
-                <td class="text-center fw-semibold">${{ productcard.base_price }}</td>
-                <td class="text-center">{{ productcard.duration }} min</td>
-              </tr>
-            } @empty {
-              <tr>
-                <td colspan="6" class="text-center p-4">No products found.</td>
-              </tr>
-            }
-          </tbody>
-        </table>
-      </div>
+                    </div>
+                  </td>
+
+                  <td class="text-center">${{ productcard.base_price }}</td>
+                  <td class="text-center">{{ productcard.duration }} min</td>
+                </tr>
+              } @empty {
+                <tr>
+                  <td colspan="6" class="text-center p-4">No products found.</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+
+          <!-- PAGINATION BAR -->
+          <div class="pagination-bar">
+            <span>Items per page:</span>
+            <select (change)="onPageChange($event)">
+              @for (size of pageSizeOptions; track size) {
+                <option [selected]="pageSize === size">{{ size }}</option>
+              }
+            </select>
+
+            <span class="range-text">
+              {{ currentPage * pageSize + 1 }} – 
+              {{
+                Math.min((currentPage + 1) * pageSize, sortedCards.length)
+              }} 
+              of {{ sortedCards.length }}
+            </span>
+
+            <button (click)="prevPage()" [disabled]="currentPage === 0">‹</button>
+            <button (click)="nextPage()" 
+              [disabled]="(currentPage + 1) * pageSize >= sortedCards.length">›</button>
+          </div>
+        </div>
+
 
     
 
