@@ -128,7 +128,7 @@ export class ProductDetailsComponent implements AfterViewInit {
   }
 
   getBack() {
-    this.router.navigate(['apps/product/product-list']);
+    this.router.navigate(['/catalog']);
   }
 
   toggleSelected() {

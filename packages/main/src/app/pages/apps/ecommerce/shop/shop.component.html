@@ -149,7 +149,8 @@
           <div *ngIf="viewMode === 'grid'" class="row">
             @for (productcard of filteredCards; track productcard.product_name) {
               <div class="col-sm-6 col-lg-4 p-x-12">
-                <mat-card class="cardWithShadow productcard overflow-hidden b-1 cursor-pointer" (click)="openBookDemoDialog()">
+                <!--(click)="openBookDemoDialog()"-->
+                <mat-card class="cardWithShadow productcard overflow-hidden b-1 cursor-pointer" (click)="getviewDetails(productcard)">
                   <a routerLink="/widgets/cards">
                     <div class="img-wrapper position-relative">
                       <img

@@ -12,6 +12,7 @@ import { CorecatalogComponent } from './corecatalog/corecatalog.component';
 import { PrivacyComponent } from './privacy/privacy.component';
 import { TermsComponent } from './terms/terms.component';
 import { ShopComponent } from '../apps/ecommerce/shop/shop.component';
+import { ProductDetailsComponent } from '../apps/ecommerce/product-details/product-details.component';
 import { AppSideLoginComponent } from '../authentication/side-login/side-login.component';
 import{AppSideForgotPasswordComponent} from '../authentication/side-forgot-password/side-forgot-password.component';
 
@@ -33,6 +34,7 @@ export const FrontPagesRoutes: Routes = [
       { path: 'corecatalog', component: CorecatalogComponent },
       { path: 'blog-details', component: BlogDetailsComponent },
       { path: 'catalog', component: ShopComponent },
+      { path: 'productdetails', component: ProductDetailsComponent },
       { path: 'privacy', component: PrivacyComponent },
       { path: 'terms', component:TermsComponent },      
       { path: 'login', component:AppSideLoginComponent },

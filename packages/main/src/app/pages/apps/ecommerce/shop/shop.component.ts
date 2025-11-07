@@ -402,7 +402,7 @@ setViewMode(mode: 'grid' | 'tile') {
 
   getviewDetails(productcardDetails: Element): void {
     this.productService.setProduct(productcardDetails);
-    this.router.navigate(['apps/product/product-details']);
+    this.router.navigate(['/productdetails']);
   }
 
   getEditedProduct(productcardDetails: Element): void {
