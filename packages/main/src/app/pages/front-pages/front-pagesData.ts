@@ -369,7 +369,7 @@ export const pricingPlans = {
     {
       title: 'Single Course',
       price: '$10',
-      period: 'Per Month',
+      period: 'Per Year',
       description: 'Best for one-off learners',
       features: [
         'Access to 1 course',
@@ -384,7 +384,7 @@ export const pricingPlans = {
     {
       title: '10-Course Bundle',
       price: '$77',
-      period: 'Per Month',
+      period: 'Per Year',
       description: 'Perfect for small teams',
       features: [
         'Access to 10 courses each month',
@@ -399,7 +399,7 @@ export const pricingPlans = {
     {
       title: '50-Course Bundle',
       price: '$480',
-      period: 'Per Month',
+      period: 'Per Year',
       description: 'Best for fast-growing businesses',
       features: [
         'Access to 50 courses each month',

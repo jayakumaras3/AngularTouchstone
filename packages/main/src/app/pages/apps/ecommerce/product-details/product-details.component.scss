@@ -1,5 +1,12 @@
+.price-details-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 .duration-pill {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   padding: 4px 12px;
   border: 1px solid #ccc;
   border-radius: 11px;
@@ -7,8 +14,27 @@
   font-size: 14px;
   font-weight: 500;
   color: #333;
-  white-space: nowrap;
 }
+
+.language-label {
+  font-size: 14px;
+  color: #9e9e9e;
+  font-weight: 500;
+  margin-top: 6px;
+
+  strong {
+    color: #222;
+    font-weight: 600;
+  }
+}
+
+.icon-14 {
+  width: 14px;
+  height: 14px;
+  margin-right: 5px;
+  color: #666;
+}
+
 
 /* Outer container - 1400px centered */
 .page-container {

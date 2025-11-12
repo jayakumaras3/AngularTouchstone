@@ -20,16 +20,43 @@
 
         <div class="m-t-1 f-s-14 f-w-500" [innerHTML]="product.description"></div>
 
-        <div class="d-flex align-items-center justify-content-between gap-2 m-t-10">
-            <span class="f-s-20 f-w-600 text-primary">
-              ${{ product.base_price || 9.9 }}
-            </span>
-             <span class="duration-pill">
-              Duration: {{ product.duration }} min
-            </span>
-          </div>
+                  <!-- PRICE + DURATION -->
+            <div class="d-flex align-items-center justify-content-between m-t-10">
+              <!-- Left: Price -->
+              <span class="f-s-20 f-w-600 text-primary">
+                ${{ product.base_price || 9.9 }}
+              </span>
 
-        <div class="m-y-20 d-flex align-items-center gap-2">
+              <!-- Right: Duration pill -->
+              <span class="duration-pill">
+                <i-tabler name="clock" class="icon-14 m-r-4 text-muted"></i-tabler>
+                Duration: {{ product.duration }} min
+              </span>
+            </div>
+
+            <!-- RATING + LANGUAGE -->
+            <div class="d-flex align-items-center justify-content-between m-t-10">
+              <!-- Left: Rating -->
+              <div class="d-flex align-items-center gap-1">
+                @if (product.rating !== undefined) {
+                  @for (star of [1, 2, 3, 4, 5]; track star) {
+                    <i-tabler
+                      name="star"
+                      class="icon-18 text-warning"
+                      [ngClass]="getStarClass(star, product.rating)"
+                    ></i-tabler>
+                  }
+                }
+              </div>
+
+              <!-- Right: Language -->
+              <span class="language-label">
+                Language: <strong>{{ product.language }}</strong>
+              </span>
+            </div>
+
+
+         <!-- <div class="m-y-20 d-flex align-items-center gap-2">
           @if(product.rating !== undefined){
             @for (star of [1, 2, 3, 4, 5]; track star) {
               <i-tabler
@@ -39,12 +66,12 @@
               ></i-tabler>
             }
           }
-        <!--  <a
+        <a
             href="#"
             class="text-primary f-s-14 f-w-600 text-decoration-none m-l-8"
             >236 reviews</a
-          >-->
-        </div>
+          >
+        </div>-->
 
        <!-- <mat-divider></mat-divider>
 
