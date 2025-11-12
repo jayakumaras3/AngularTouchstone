@@ -1,154 +1,195 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  inject,
-  ViewChild,
-} from '@angular/core';
-import { MaterialModule } from 'src/app/material.module';
-import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
-import { IconModule } from 'src/app/icon/icon.module';
-import { CommonModule } from '@angular/common';
+import { Component, AfterViewInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { MaterialModule } from 'src/app/material.module';
+import { IconModule } from 'src/app/icon/icon.module';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 import { ProductService } from 'src/app/services/apps/product/product.service';
-import { productcards } from '../ecommerceData';
+import { PRODUCT_DATA } from '../ecommerceData';
+import { FooterComponent } from '../../../front-pages/footer/footer.component';
+import { PopupwindowComponent } from '../../../front-pages/popupwindow/popupwindow.component';
+import { MatDialog } from '@angular/material/dialog';
+import { MediaMatcher } from '@angular/cdk/layout';
+import { DestroyRef } from '@angular/core';
+import { frameworks } from '../../../front-pages/front-pagesData';
+import { TemplateVideoComponent } from '../../../front-pages/template-video/template-video.component';
+import {  computed, signal } from '@angular/core';
+import { users } from '../../../front-pages/front-pagesData';
+import { setupCards, stats, tclients} from '../../../front-pages/front-pagesData';
+
+
 
 @Component({
   selector: 'app-product-details',
-  imports: [MaterialModule, CarouselModule, IconModule, CommonModule],
+  standalone: true,
+  imports: [CommonModule, MaterialModule, IconModule, CarouselModule, FooterComponent],
   templateUrl: './product-details.component.html',
-  styleUrl: './product-details.component.scss',
+  styleUrls: ['./product-details.component.scss'],
 })
 export class ProductDetailsComponent implements AfterViewInit {
-  @ViewChild('carouselContainer', { static: false })
-  private productService = inject(ProductService);
-  carouselContainer!: ElementRef;
-  product: any;
-  isSelected = false;
-
-  quantity: number = 1;
-  toggleValue: any = null;
-
-  selectedTabIndex = 0;
-
-  customOptions: OwlOptions = {
-    loop: true,
-    mouseDrag: false,
-    touchDrag: false,
-    pullDrag: false,
-    dots: false,
-    navSpeed: 700,
-    navText: ['', ''],
-    responsive: {
-      0: {
-        items: 1,
-      },
-      400: {
-        items: 2,
-      },
-      740: {
-        items: 3,
-      },
-      940: {
-        items: 4,
-      },
-    },
-    nav: true,
-  };
-  slides = [
-    {
-      id: 'slide-1',
-      imgUrl: 'assets/images/products/s2.jpg',
-      altText: 'Slide 1',
-      title: 'text1',
-    },
-    {
-      id: 'slide-2',
-      imgUrl: 'assets/images/products/s2.jpg',
-      altText: 'Slide 2',
-      title: 'text2',
-    },
-    {
-      id: 'slide-3',
-      imgUrl: 'path/to/image3.jpg',
-      altText: 'Slide 3',
-      title: 'text3',
-    },
-    {
-      id: 'slide-3',
-      imgUrl: 'path/to/image3.jpg',
-      altText: 'Slide 3',
-      title: 'text3',
-    },
-    // Add more slides as needed
-  ];
-
-  productcards = productcards;
-
-  ratings = [
-    { label: 1, value: 30, count: 485 },
-    { label: 2, value: 20, count: 215 },
-    { label: 3, value: 10, count: 110 },
-    { label: 4, value: 60, count: 620 },
-    { label: 5, value: 15, count: 160 },
-  ];
-
-  constructor(private router: Router) {
-    this.product = this.productService.getProduct();
-
-    if (!this.product) {
-      console.error('Product not found!');
-      // Redirect to another page if the product is not found
-      // this.router.navigate(['/apps/product']);
-    } else {
-      console.log('Received Product:', this.product);
-
+   /* popup window start */
+    centered = false;
+    disabled = false;
+    unbounded = false;
+    radius: number = 0;
+    color: string = '';
+    showBackground: boolean = false;
+    frameworks = frameworks;
+    selectedIndex = 1;
+    
+    readonly dialog = inject(MatDialog);
+    private router = inject(Router);
+    private destroyRef = inject(DestroyRef);
+    private mediaMatcher = inject(MediaMatcher);
+   
+    mobileQuery: MediaQueryList;
+    isMobileView = false;
+  
+    setupCards = setupCards;
+    stats = stats;
+    tclients = tclients;
+    currentIndex = signal(0);
+    users = users;
+    
+    currentUser = computed(() => this.users[this.currentIndex()]);
+    displayCount = computed(() => `${this.currentIndex() + 1}/${this.users.length}`);
+  
+   
+  
+    openDialog(showBackground: boolean) {
+      this.showBackground = showBackground;
+  
+      const dialogRef = this.dialog.open(TemplateVideoComponent, {
+        data: {},
+        width: '1000px',
+      });
+      
+      return dialogRef.afterClosed();
     }
-  }
+  
+     openBookDemoDialog() {
+          // Prevent background scroll
+          document.body.style.overflow = 'hidden';
+  
+          const dialogRef = this.dialog.open(PopupwindowComponent, {
+            width: '500px',
+            disableClose: true,
+            autoFocus: true,
+            hasBackdrop: true, // background still visible
+            panelClass: 'light-popup-window',
+          });
+  
+          dialogRef.afterClosed().subscribe(() => {
+            // Re-enable scrolling after popup closes
+            document.body.style.overflow = 'auto';
+          });
+        }
+    /* popup window End */
+  
+  
+  private productService: ProductService = inject(ProductService);
+  
 
-  ngOnDestroy() {
-    // Optional: Clear product data when leaving the component
-    //this.productService.clearProduct();
-  }
+  product: any;
+  relatedProducts: any[] = [];
+  allProducts = PRODUCT_DATA;
+  quantity = 1;
+  toggleValue: any = null;
 
   ngAfterViewInit(): void {}
 
-  trackById(index: number, item: any): string {
-    return item.id; // Make sure each slide has a unique 'id' property
+  constructor() {
+      this.mobileQuery = this.mediaMatcher.matchMedia('(max-width: 1199px)');
+      this.isMobileView = this.mobileQuery.matches;
+  
+      const listener = (e: MediaQueryListEvent) => {
+        this.isMobileView = e.matches;
+      };
+  
+      this.mobileQuery.addEventListener('change', listener);
+  
+      this.destroyRef.onDestroy(() => {
+        this.mobileQuery.removeEventListener('change', listener);
+      });
+
+    this.product = this.productService.getProduct();
+
+    if (!this.product) {
+      console.warn('No product found — redirecting.');
+      this.router.navigate(['/catalog']);
+      return;
+    }
+
+    this.filterRelatedProducts();
   }
 
-  increaseQty() {
+  // ✅ Increase/decrease quantity
+  increaseQty(): void {
     this.quantity++;
   }
 
-  decreaseQty() {
+  decreaseQty(): void {
     if (this.quantity > 1) {
       this.quantity--;
     }
   }
 
-  getBack() {
+  // ✅ Filter Related Products (same language or same category)
+  filterRelatedProducts(): void {
+    if (!this.product) return;
+
+    const productLanguage = this.product.language?.toLowerCase() || '';
+    const productCategories = (this.product.categories || []).map((c: string) =>
+      c.toLowerCase()
+    );
+
+    // Step 1: Filter by same language OR overlapping category
+    const filtered = this.allProducts.filter((p) => {
+      if (p.id === this.product.id) return false;
+
+      const sameLanguage =
+        (p.language || '').toLowerCase() === productLanguage;
+
+      const hasCommonCategory = (p.categories || []).some((cat: string) =>
+        productCategories.includes(cat.toLowerCase())
+      );
+
+      return sameLanguage || hasCommonCategory;
+    });
+
+    // Step 2: Randomize and limit to 10
+    this.relatedProducts = filtered
+      .sort(() => 0.5 - Math.random())
+      .slice(0, 4);
+
+    // Step 3: Fallback — If none match, show 10 random others
+    if (this.relatedProducts.length === 0) {
+      this.relatedProducts = this.allProducts
+        .filter((p) => p.id !== this.product.id)
+        .sort(() => 0.5 - Math.random())
+        .slice(0, 10);
+    }
+  }
+
+  // ✅ Navigate to another product (when clicking related)
+  navigateToProduct(item: any): void {
+    this.productService.setProduct(item);
+    this.product = item;
+    this.filterRelatedProducts();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ✅ Utilities
+  getBack(): void {
     this.router.navigate(['/catalog']);
   }
 
-  toggleSelected() {
-    this.isSelected = !this.isSelected;
-  }
-  resetToggleValue() {
-    this.toggleValue = null;
-  }
   getStarClass(index: number, rating?: number): string {
-    const safeRating = rating ?? 0; // Fallback if undefined
-    const fullStars = Math.floor(safeRating); // Full stars
-    const partialStars = safeRating % 1 !== 0; // Whether there is a partial star
-  
-    if (index < fullStars) {
-      return 'fill-warning'; // full star
-    } else if (index === fullStars && partialStars) {
-      return 'text-warning'; // partial star
-    } else {
-      return ''; // empty star, no class
-    }
+    const safeRating = rating ?? 0;
+    const fullStars = Math.floor(safeRating);
+    const partialStars = safeRating % 1 !== 0;
+    if (index < fullStars) return 'fill-warning';
+    else if (index === fullStars && partialStars) return 'text-warning';
+    return '';
   }
-  
 }

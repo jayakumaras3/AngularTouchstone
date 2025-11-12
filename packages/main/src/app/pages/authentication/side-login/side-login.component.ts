@@ -28,34 +28,39 @@ baseUrlpath:string=LoginUrl;
     return this.form.controls;
   }
 
-submit() {
-  if (this.form.valid) {
-    this.authservice.login(this.form.value.username!, this.form.value.password!)
-      .subscribe({
-        next: res => {
-          console.log('Login Response:', res);
-          if (res.success) {
-            // Save user in localStorage if needed
-            localStorage.setItem('user', JSON.stringify(res.user));
-            
-            // Redirect to the URL from response
-            if (res.redirect_url) {
-              window.location.href = res.redirect_url;
+  isSubmitting = false; // Add this property
+
+  submit() {
+    if (this.form.valid && !this.isSubmitting) {
+      this.isSubmitting = true; // Disable button
+
+      this.authservice.login(this.form.value.username!, this.form.value.password!)
+        .subscribe({
+          next: res => {
+            console.log('Login Response:', res);
+            this.isSubmitting = false; // Re-enable button
+
+            if (res.success) {
+              localStorage.setItem('user', JSON.stringify(res.user));
+
+              if (res.redirect_url) {
+                window.location.href = res.redirect_url;
+              } else {
+                console.log("error redirect");
+                // this.router.navigate(['/dashboards/dashboard1']);
+              }
             } else {
-              // Fallback to default route if no redirect_url provided
-            //  this.router.navigate(['/dashboards/dashboard1']);
-            console.log(" error redirect");
+              alert(res.message || 'Login failed');
             }
-          } else {
-            alert(res.message || 'Login failed');
+          },
+          error: err => {
+            console.error('HTTP Error:', err);
+            alert('Server error, check console for details');
+            this.isSubmitting = false; // Re-enable button even on error
           }
-        },
-        error: err => {
-          console.error('HTTP Error:', err);
-          alert('Server error, check console for details');
-        }
-      });
+        });
+    }
   }
-}
+
 
 }

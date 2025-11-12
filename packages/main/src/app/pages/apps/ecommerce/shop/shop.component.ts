@@ -505,6 +505,8 @@ prevPage() {
     this.router.navigate(['/productdetails']);
   }
 
+
+
   getEditedProduct(productcardDetails: Element): void {
     this.productService.setProduct(productcardDetails);
     this.router.navigate(['apps/product/edit-product']);

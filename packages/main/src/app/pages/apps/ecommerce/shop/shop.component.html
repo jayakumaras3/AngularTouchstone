@@ -257,13 +257,12 @@
 
 
             <tbody>
-              @for ( productcard of paginatedCards;let i = $index;   track trackTileRows(i, productcard)                ) {
-                <tr>
+              @for (productcard of paginatedCards; let i = $index; track trackTileRows(i, productcard)) {
+                <tr (click)="getviewDetails(productcard)" class="cursor-pointer">
                   <td>{{ (currentPage * pageSize) + i + 1 }}</td>
 
                   <td>
                     <div class="title-cell">
-                      <!-- <img [src]="productcard.imagePath" class="thumb" /> -->
                       <span class="title-text">{{ productcard.product_name }}</span>
                     </div>
                   </td>
@@ -272,10 +271,12 @@
 
                   <td class="text-center">
                     <div class="rating-stars">
-                      @for(star of [1,2,3,4,5]; track star) {
-                        <i-tabler name="star" 
+                      @for (star of [1, 2, 3, 4, 5]; track star) {
+                        <i-tabler
+                          name="star"
                           class="icon-17"
-                          [ngClass]="getStarClass(star, productcard.rating)"></i-tabler>
+                          [ngClass]="getStarClass(star, productcard.rating)">
+                        </i-tabler>
                       }
                     </div>
                   </td>
@@ -289,6 +290,7 @@
                 </tr>
               }
             </tbody>
+
           </table>
 
           <!-- PAGINATION BAR -->

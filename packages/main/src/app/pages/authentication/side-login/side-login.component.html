@@ -77,14 +77,15 @@
                   >Forgot Password?</a
                 >
               </div>
-              <button
-                mat-flat-button
-                color="primary"
-                class="w-100"
-                
-              >
-                Sign In
-              </button>
+            <button
+              mat-flat-button
+              color="primary"
+              class="w-100"
+              [disabled]="isSubmitting"
+            >
+              {{ isSubmitting ? 'Signing In...' : 'Sign In' }}
+            </button>
+
               <!-- input  [disabled]="!form.valid" -->
             </form>
           <!--  <span class="d-block f-w-500 d-block m-t-24"
