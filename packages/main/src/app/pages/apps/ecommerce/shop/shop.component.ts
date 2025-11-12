@@ -187,23 +187,24 @@ toggleSort(col: string) {
 
 // Pagination methods
 onPageChange(event: any) {
-  this.pageSize = event.target.value;
+  this.pageSize = Number(event.target.value); // convert to number
   this.currentPage = 0;
 }
 
 nextPage() {
-  this.scrollListenerActive = false; // ✅ Prevent interference
+  this.scrollListenerActive = false;
   if ((this.currentPage + 1) * this.pageSize < this.sortedCards.length) {
     this.currentPage++;
   }
 }
 
 prevPage() {
-  this.scrollListenerActive = false; // ✅ Prevent interference
+  this.scrollListenerActive = false;
   if (this.currentPage > 0) {
     this.currentPage--;
   }
 }
+
 
   private calculateLanguageCounts(): void {
     

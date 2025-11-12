@@ -1,3 +1,15 @@
+.duration-pill {
+  display: inline-block;
+  padding: 4px 12px;
+  border: 1px solid #ccc;
+  border-radius: 11px;
+  background-color: #f9f9f9;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  white-space: nowrap;
+}
+
 /* Outer container - 1400px centered */
 .page-container {
   max-width: 1400px;

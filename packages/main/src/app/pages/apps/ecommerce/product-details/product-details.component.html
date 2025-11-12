@@ -20,10 +20,14 @@
 
         <div class="m-t-1 f-s-14 f-w-500" [innerHTML]="product.description"></div>
 
-        <div class="d-flex align-items-center gap-2 m-t-10">
-          <del class="f-s-16 f-w-600">${{ product.dealPrice }}</del>
-          <span class="f-s-20 f-w-600">${{ product.base_price || 9.9 }}</span>
-        </div>
+        <div class="d-flex align-items-center justify-content-between gap-2 m-t-10">
+            <span class="f-s-20 f-w-600 text-primary">
+              ${{ product.base_price || 9.9 }}
+            </span>
+             <span class="duration-pill">
+              Duration: {{ product.duration }} min
+            </span>
+          </div>
 
         <div class="m-y-20 d-flex align-items-center gap-2">
           @if(product.rating !== undefined){
