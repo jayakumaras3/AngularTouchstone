@@ -134,42 +134,31 @@ export class ProductDetailsComponent implements AfterViewInit {
     }
   }
 
-  // ✅ Filter Related Products (same language or same category)
-  filterRelatedProducts(): void {
-    if (!this.product) return;
+          // ✅ Filter Related Products (same language or same category)
+        filterRelatedProducts(): void {
+            if (!this.product) return;
 
-    const productLanguage = this.product.language?.toLowerCase() || '';
-    const productCategories = (this.product.categories || []).map((c: string) =>
-      c.toLowerCase()
-    );
+            const currentCategories = this.product.categories || [];
+            const currentId = this.product.id;
 
-    // Step 1: Filter by same language OR overlapping category
-    const filtered = this.allProducts.filter((p) => {
-      if (p.id === this.product.id) return false;
+            // ✅ Find products that share at least one category
+            const related = this.allProducts.filter((p) =>
+              p.id !== currentId &&
+              p.categories?.some((cat: string) =>
+                currentCategories.includes(cat)
+              )
+            );
 
-      const sameLanguage =
-        (p.language || '').toLowerCase() === productLanguage;
+            // ✅ If no category match found, fallback to random products
+            this.relatedProducts =
+              related.length > 0
+                ? related.slice(0, 4)
+                : this.allProducts
+                    .filter((p) => p.id !== currentId)
+                    .sort(() => 0.5 - Math.random())
+                    .slice(0, 4);
+          }
 
-      const hasCommonCategory = (p.categories || []).some((cat: string) =>
-        productCategories.includes(cat.toLowerCase())
-      );
-
-      return sameLanguage || hasCommonCategory;
-    });
-
-    // Step 2: Randomize and limit to 10
-    this.relatedProducts = filtered
-      .sort(() => 0.5 - Math.random())
-      .slice(0, 4);
-
-    // Step 3: Fallback — If none match, show 10 random others
-    if (this.relatedProducts.length === 0) {
-      this.relatedProducts = this.allProducts
-        .filter((p) => p.id !== this.product.id)
-        .sort(() => 0.5 - Math.random())
-        .slice(0, 10);
-    }
-  }
 
   // ✅ Navigate to another product (when clicking related)
   navigateToProduct(item: any): void {

@@ -109,11 +109,11 @@
   </mat-card>
 
   <!-- 🧩 Related Products -->
-  <mat-card class="related-products-card">
-    <h6 class="section-title">Related Products</h6>
+ <mat-card class="related-products-card">
+  <h6 class="section-title">Related Products</h6>
 
-    <div class="row justify-content-center text-center">
-      @for (productcard of relatedProducts; track productcard.id) {
+  <div class="row justify-content-center text-center">
+    @for (productcard of relatedProducts; track productcard.id) {
       <div class="col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center">
         <mat-card
           class="cardWithShadow productcard cursor-pointer"
@@ -131,6 +131,11 @@
               {{ productcard.product_name }}
             </mat-card-title>
 
+            <!-- ✅ Show categories instead of language -->
+            <div class="categories text-muted f-s-13 m-b-6">
+              {{ productcard.categories?.join(', ') }}
+            </div>
+
             <div
               class="d-flex justify-content-center align-items-baseline gap-2"
             >
@@ -142,10 +147,10 @@
           </mat-card-content>
         </mat-card>
       </div>
-      }
-    </div>
-  </mat-card>
-</div>
+    }
+  </div>
+</mat-card>
+
  <div class="footer">
         <app-footer></app-footer>
       </div>

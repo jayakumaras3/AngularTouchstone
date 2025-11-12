@@ -209,52 +209,52 @@
         <div *ngIf="viewMode === 'tile'" class="tile-table-container">
 
           <table class="tile-table">
-           <thead>
-            <tr>
-              <th (click)="toggleSort('id')" [class.active]="sortColumn === 'id'">
-                Id 
-                <span class="sort-icon">
-                  <i-tabler *ngIf="sortColumn === 'id' && sortDirection==='asc'" name="chevron-up"></i-tabler>
-                  <i-tabler *ngIf="sortColumn === 'id' && sortDirection==='desc'" name="chevron-down"></i-tabler>
-                </span>
-              </th>
+            <thead>
+              <tr>
+                <th (click)="toggleSort('id')" [class.active]="sortColumn === 'id'">
+                  Id
+                  <span class="sort-icon">
+                    <i-tabler *ngIf="sortColumn === 'id' && sortDirection==='asc'" name="chevron-up"></i-tabler>
+                    <i-tabler *ngIf="sortColumn === 'id' && sortDirection==='desc'" name="chevron-down"></i-tabler>
+                  </span>
+                </th>
 
-              <th (click)="toggleSort('product_name')" [class.active]="sortColumn === 'product_name'">
-                Course Title
-                <span class="sort-icon">
-                  <i-tabler *ngIf="sortColumn === 'product_name' && sortDirection==='asc'" name="chevron-up"></i-tabler>
-                  <i-tabler *ngIf="sortColumn === 'product_name' && sortDirection==='desc'" name="chevron-down"></i-tabler>
-                </span>
-              </th>
+                <th (click)="toggleSort('product_name')" [class.active]="sortColumn === 'product_name'">
+                  Course Title
+                  <span class="sort-icon">
+                    <i-tabler *ngIf="sortColumn === 'product_name' && sortDirection==='asc'" name="chevron-up"></i-tabler>
+                    <i-tabler *ngIf="sortColumn === 'product_name' && sortDirection==='desc'" name="chevron-down"></i-tabler>
+                  </span>
+                </th>
 
-              <th (click)="toggleSort('language')" [class.active]="sortColumn === 'language'">
-                Language
-                <span class="sort-icon">
-                  <i-tabler *ngIf="sortColumn === 'language' && sortDirection==='asc'" name="chevron-up"></i-tabler>
-                  <i-tabler *ngIf="sortColumn === 'language' && sortDirection==='desc'" name="chevron-down"></i-tabler>
-                </span>
-              </th>
+                <th (click)="toggleSort('language')" [class.active]="sortColumn === 'language'">
+                  Language
+                  <span class="sort-icon">
+                    <i-tabler *ngIf="sortColumn === 'language' && sortDirection==='asc'" name="chevron-up"></i-tabler>
+                    <i-tabler *ngIf="sortColumn === 'language' && sortDirection==='desc'" name="chevron-down"></i-tabler>
+                  </span>
+                </th>
 
-              <th>Rating</th>
+                <!-- ✅ Categories instead of Rating -->
+                <th>Categories</th>
 
-              <th (click)="toggleSort('base_price')" [class.active]="sortColumn === 'base_price'">
-                Price
-                <span class="sort-icon">
-                  <i-tabler *ngIf="sortColumn === 'base_price' && sortDirection==='asc'" name="chevron-up"></i-tabler>
-                  <i-tabler *ngIf="sortColumn === 'base_price' && sortDirection==='desc'" name="chevron-down"></i-tabler>
-                </span>
-              </th>
+                <th (click)="toggleSort('base_price')" [class.active]="sortColumn === 'base_price'">
+                  Price
+                  <span class="sort-icon">
+                    <i-tabler *ngIf="sortColumn === 'base_price' && sortDirection==='asc'" name="chevron-up"></i-tabler>
+                    <i-tabler *ngIf="sortColumn === 'base_price' && sortDirection==='desc'" name="chevron-down"></i-tabler>
+                  </span>
+                </th>
 
-              <th (click)="toggleSort('duration')" [class.active]="sortColumn === 'duration'">
-                Duration
-                <span class="sort-icon">
-                  <i-tabler *ngIf="sortColumn === 'duration' && sortDirection==='asc'" name="chevron-up"></i-tabler>
-                  <i-tabler *ngIf="sortColumn === 'duration' && sortDirection==='desc'" name="chevron-down"></i-tabler>
-                </span>
-              </th>
-            </tr>
-          </thead>
-
+                <th (click)="toggleSort('duration')" [class.active]="sortColumn === 'duration'">
+                  Duration
+                  <span class="sort-icon">
+                    <i-tabler *ngIf="sortColumn === 'duration' && sortDirection==='asc'" name="chevron-up"></i-tabler>
+                    <i-tabler *ngIf="sortColumn === 'duration' && sortDirection==='desc'" name="chevron-down"></i-tabler>
+                  </span>
+                </th>
+              </tr>
+            </thead>
 
             <tbody>
               @for (productcard of paginatedCards; let i = $index; track trackTileRows(i, productcard)) {
@@ -269,15 +269,10 @@
 
                   <td class="text-center">{{ productcard.language }}</td>
 
+                  <!-- ✅ Categories column -->
                   <td class="text-center">
-                    <div class="rating-stars">
-                      @for (star of [1, 2, 3, 4, 5]; track star) {
-                        <i-tabler
-                          name="star"
-                          class="icon-17"
-                          [ngClass]="getStarClass(star, productcard.rating)">
-                        </i-tabler>
-                      }
+                    <div class="category-list">
+                      {{ productcard.categories?.join(', ') || '—' }}
                     </div>
                   </td>
 
@@ -290,7 +285,6 @@
                 </tr>
               }
             </tbody>
-
           </table>
 
           <!-- PAGINATION BAR -->
