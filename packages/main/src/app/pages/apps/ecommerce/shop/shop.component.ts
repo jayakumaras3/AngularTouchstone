@@ -204,6 +204,21 @@ prevPage() {
     this.currentPage--;
   }
 }
+filterByCategory(category: string, event: MouseEvent): void {
+  // Prevent the row click (so it doesn't open details)
+  event.stopPropagation();
+
+  this.selectedCategory = category;
+  
+  // Filter all products that include the clicked category
+  const results = this.allProducts.filter((card) =>
+    card.categories?.some(
+      (cat) => cat.toLowerCase() === category.toLowerCase()
+    )
+  );
+
+  this.applyFilterAndReset(results);
+}
 
 
   private calculateLanguageCounts(): void {

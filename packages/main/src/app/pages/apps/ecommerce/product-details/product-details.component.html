@@ -19,6 +19,11 @@
         <h3 class="m-t-10 f-w-600">{{ product?.product_name }}</h3>
 
         <div class="m-t-1 f-s-14 f-w-500" [innerHTML]="product.description"></div>
+        <ul class="m-t-1 f-s-14 f-w-500">
+            <li *ngFor="let obj of product.objectives">{{ obj }}</li>
+          </ul>
+
+        
 
                   <!-- PRICE + DURATION -->
             <div class="d-flex align-items-center justify-content-between m-t-10">
@@ -36,7 +41,7 @@
 
             <!-- RATING + LANGUAGE -->
             <div class="d-flex align-items-center justify-content-between m-t-10">
-              <!-- Left: Rating -->
+              <!-- Left: Rating 
               <div class="d-flex align-items-center gap-1">
                 @if (product.rating !== undefined) {
                   @for (star of [1, 2, 3, 4, 5]; track star) {
@@ -47,11 +52,11 @@
                     ></i-tabler>
                   }
                 }
-              </div>
+              </div>-->
 
               <!-- Right: Language -->
               <span class="language-label">
-                Language: <strong>{{ product.language }}</strong>
+                Language: <strong class="langcl">{{ product.language }}</strong>
               </span>
             </div>
 
@@ -99,11 +104,11 @@
           </mat-button-toggle-group>
         </div>
 
-        <mat-divider></mat-divider>
+        <mat-divider></mat-divider>-->
 
         <div class="d-flex align-items-center gap-20 m-y-20">
           <button mat-flat-button class="p-y-20" (click)="openBookDemoDialog()">Buy Now</button>
-        </div> -->
+        </div> 
       </div>
     </div>
   </mat-card>
@@ -140,9 +145,9 @@
               class="d-flex justify-content-center align-items-baseline gap-2"
             >
               <h6 class="f-s-16 f-w-600">$ {{ productcard.base_price }}</h6>
-              <span class="f-s-14 text-decoration-line-through text-muted">
+              <!-- <span class="f-s-14 text-decoration-line-through text-muted">
                 $ {{ productcard.dealPrice }}
-              </span>
+              </span> -->
             </div>
           </mat-card-content>
         </mat-card>

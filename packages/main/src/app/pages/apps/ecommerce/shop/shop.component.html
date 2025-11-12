@@ -236,7 +236,15 @@
                 </th>
 
                 <!-- ✅ Categories instead of Rating -->
-                <th>Categories</th>
+                <!-- ✅ Categories with Sorting -->
+                    <th (click)="toggleSort('categories')" [class.active]="sortColumn === 'categories'">
+                      Categories
+                      <span class="sort-icon">
+                        <i-tabler *ngIf="sortColumn === 'categories' && sortDirection === 'asc'" name="chevron-up"></i-tabler>
+                        <i-tabler *ngIf="sortColumn === 'categories' && sortDirection === 'desc'" name="chevron-down"></i-tabler>
+                      </span>
+                    </th>
+
 
                 <th (click)="toggleSort('base_price')" [class.active]="sortColumn === 'base_price'">
                   Price

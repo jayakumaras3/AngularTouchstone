@@ -10,7 +10,10 @@
   background-color: #f6f6f6;
   transition: background-color 0.2s ease;
 }
-
+.category-list
+{
+    color: #222;
+}
 .tile-table th:nth-child(2),
 .tile-table td:nth-child(2) {
   width: 320px;

@@ -15,7 +15,10 @@
   font-weight: 500;
   color: #333;
 }
-
+.langcl
+{
+   color: var(--mat-sys-on-background) !important;
+}
 .language-label {
   font-size: 14px;
   color: #9e9e9e;
