@@ -112,15 +112,25 @@ export class ProductDetailsComponent implements AfterViewInit {
         this.mobileQuery.removeEventListener('change', listener);
       });
 
-    this.product = this.productService.getProduct();
+   this.product = this.productService.getProduct();
 
-    if (!this.product) {
-      console.warn('No product found — redirecting.');
-      this.router.navigate(['/catalog']);
-      return;
-    }
+if (!this.product) {
+  console.warn('No product found — redirecting.');
+  this.router.navigate(['/catalog']);
+  return;
+}
 
-    this.filterRelatedProducts();
+// ✅ Fix: Convert objectives string into array
+if (this.product?.objectives) {
+  if (typeof this.product.objectives === 'string') {
+    this.product.objectives = this.product.objectives
+      .split('|')
+      .map((s: string) => s.trim());
+  }
+}
+
+this.filterRelatedProducts();
+
   }
 
   // ✅ Increase/decrease quantity
