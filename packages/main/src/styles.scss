@@ -7,6 +7,127 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   width: auto !important;
   overflow: visible !important;
 }
-.img-height {
-  height: auto !important;
+
+/* Default desktop size */
+.login-illustration {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  object-fit: contain;
+}
+/* Default desktop sizes */
+.col-lg-7.col-xl-8 {
+  flex: 0 0 58%;
+  max-width: 58%;
+}
+
+.col-lg-5.col-xl-4 {
+  flex: 0 0 42%;
+  max-width: 42%;
+}
+
+/* Scale down smoothly */
+@media (max-width: 1400px) {
+  .col-lg-7.col-xl-8 {
+    flex: 0 0 55%;
+    max-width: 55%;
+  }
+  .col-lg-5.col-xl-4 {
+    flex: 0 0 45%;
+    max-width: 45%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .col-lg-7.col-xl-8 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  .col-lg-5.col-xl-4 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+@media (max-width: 992px) {
+  .col-lg-7.col-xl-8 {
+    flex: 0 0 45%;
+    max-width: 45%;
+  }
+  .col-lg-5.col-xl-4 {
+    flex: 0 0 55%;
+    max-width: 55%;
+  }
+}
+
+/* Stack on mobile */
+@media (max-width: 768px) {
+  .col-lg-7.col-xl-8,
+  .col-lg-5.col-xl-4 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+.login-illustration {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  object-fit: contain;
+}
+
+@media (max-width: 1400px) {
+  .login-illustration { max-width: 420px; }
+}
+
+@media (max-width: 1200px) {
+  .login-illustration { max-width: 350px; }
+}
+
+@media (max-width: 992px) {
+  .login-illustration { max-width: 300px; }
+}
+
+@media (max-width: 768px) {
+  .login-illustration { max-width: 240px; }
+}
+
+@media (max-width: 576px) {
+  .login-illustration { max-width: 200px; }
+}
+
+
+/* When width <= 1200px, center align entire login area */
+@media (max-width: 1200px) {
+  .login-container {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  /* Stack left & right columns one below the other */
+  .col-lg-7.col-xl-8,
+  .col-lg-5.col-xl-4 {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    text-align: center;
+  }
+
+  /* Center the form container */
+  .max-width-form {
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  /* Center the image inside left container */
+  .img-height {
+    justify-content: center !important;
+    align-items: center !important;
+    display: flex !important;
+  }
+
+  .login-illustration {
+    margin: 0 auto;
+  }
 }

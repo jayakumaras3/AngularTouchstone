@@ -27,7 +27,9 @@ baseUrlpath:string=LoginUrl;
   get f() {
     return this.form.controls;
   }
-
+   isActiveRoute(route: string): boolean {
+    return this.router.url.includes(`/front-pages/${route}`);
+  }
   isSubmitting = false; // Add this property
 
   submit() {
