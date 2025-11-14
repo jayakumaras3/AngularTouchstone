@@ -16,6 +16,19 @@
       </div>
 
       <div class="col-lg-6 col-md-6 col-sm-12 text-start">
+         <div class="categories text-muted f-s-5 m-b-6">
+           <span class="info-pill1 d-flex align-items-center gap-1">
+                  Catogeries : <strong class="langcl"> {{ product.skill }} </strong>
+                </span>
+
+                <span class="info-pill1 d-flex align-items-center gap-1">
+                  
+                 Sub Catogeries : <strong class="langcl">{{ product.categories?.join(', ') }}</strong>
+                </span>
+           
+          
+             
+            </div>
         <h2 class="m-t-10 f-w-600" class="producth2">{{ product?.product_name }}</h2>
          <!-- PRICE + DURATION -->
            <div class="d-flex align-items-center justify-content-between m-t-20">
@@ -31,10 +44,11 @@
                   Language: <strong class="langcl">{{ product.language }}</strong>
                 </span>
 
-                <span class="info-pill d-flex align-items-center gap-1">
-                  <i-tabler name="clock" class="icon-14 text-muted"></i-tabler>
-                  Duration: {{ product.duration }} min
-                </span>
+                <span class="info-pill duration-pill">
+                    <i-tabler name="clock" class="icon-14 text-muted"></i-tabler>
+                    Duration: {{ product.duration }} min
+                  </span>
+
               </div>
 
 
