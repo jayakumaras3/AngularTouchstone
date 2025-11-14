@@ -121,17 +121,20 @@ if (!this.product) {
 }
 
 // ✅ Fix: Convert objectives string into array
-if (this.product?.objectives) {
-  if (typeof this.product.objectives === 'string') {
-    this.product.objectives = this.product.objectives
+this.normalizeObjectives(this.product);
+
+this.loadRelatedProducts(this.product);
+
+  }
+private normalizeObjectives(product: any) {
+  if (!product) return;
+
+  if (typeof product.objectives === 'string') {
+    product.objectives = product.objectives
       .split('|')
       .map((s: string) => s.trim());
   }
 }
-
-this.filterRelatedProducts();
-
-  }
 
   // ✅ Increase/decrease quantity
   increaseQty(): void {
@@ -172,16 +175,48 @@ this.filterRelatedProducts();
 
   // ✅ Navigate to another product (when clicking related)
   navigateToProduct(item: any): void {
-    this.productService.setProduct(item);
-    this.product = item;
-    this.filterRelatedProducts();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  this.productService.setProduct(item);
+  this.product = item;
+
+  // ✅ FIX: convert objectives string → array
+  this.normalizeObjectives(this.product);
+
+  // Load random related items
+  this.loadRelatedProducts(this.product);
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+loadRelatedProducts(currentProduct: any) {
+
+  // 1. Get products with SAME CATEGORY
+  const sameCategory = this.allProducts.filter(p =>
+    p.id !== currentProduct.id &&
+    p.categories?.some(c => currentProduct.categories?.includes(c))
+  );
+
+  // 2. Shuffle the products RANDOMLY
+  this.relatedProducts = this.shuffleArray(sameCategory);
+
+  // 3. OPTIONAL: Limit to 4 products
+  this.relatedProducts = this.relatedProducts.slice(0, 4);
+}
+
+shuffleArray(array: any[]) {
+  const arr = [...array];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
   }
+  return arr;
+}
+
 
   // ✅ Utilities
   getBack(): void {
     this.router.navigate(['/catalog']);
   }
+
 
   getStarClass(index: number, rating?: number): string {
     const safeRating = rating ?? 0;
