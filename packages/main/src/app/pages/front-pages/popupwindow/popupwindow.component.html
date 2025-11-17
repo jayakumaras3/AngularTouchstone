@@ -1,4 +1,9 @@
 <h2 mat-dialog-title>Get in Touch</h2>
+<div *ngIf="statusMessage" 
+     class="status-box" 
+     [ngClass]="statusType">
+  {{ statusMessage }}
+</div>
 <mat-dialog-content class="dialogcont">
   <form [formGroup]="form" class="form-container">
     <mat-form-field appearance="outline" class="full-width">

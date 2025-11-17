@@ -24,6 +24,8 @@ import { AuthService } from '../../../services/login/auth.service';
 export class PopupwindowComponent {
   form: FormGroup;
   isSubmitting = false;
+statusMessage: string | null = null;
+statusType: 'success' | 'error' | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -39,33 +41,53 @@ export class PopupwindowComponent {
     });
   }
 
-  onSubmit() {
-    if (this.form.valid && !this.isSubmitting) {
-      this.isSubmitting = true;
-      console.log('Submitting contact form:', this.form.value);
+      onSubmit() {
+      if (this.form.valid && !this.isSubmitting) {
+        this.isSubmitting = true;
 
-      this.authService.sendContact(this.form.value).subscribe({
-        next: (res: any) => {
-          console.log('Response:', res);
+        this.authService.sendContact(this.form.value).subscribe({
+          next: (res: any) => {
+            if (res.success) {
 
-          if (res.success) {
-            alert(res.message || '✅ Message sent successfully!');
-            this.dialogRef.close(res);
-            this.form.reset();
-          } else {
-            alert(res.message || '❌ Submission failed');
-          }
-        },
-        error: (err) => {
-          console.error('HTTP Error:', err);
-          alert('Server error. Please check the console.');
-        },
-        complete: () => {
-          this.isSubmitting = false;
-        },
-      });
-    } else if (!this.form.valid) {
-      alert('⚠️ Please fill all required fields');
+              this.statusMessage = res.message || 'Message sent successfully!';
+              this.statusType = 'success';
+
+              // Auto-close dialog after 3 sec
+              setTimeout(() => {
+                this.dialogRef.close(res);
+              }, 3000);
+
+              this.form.reset();
+
+            } else {
+              this.statusMessage = res.message || 'Submission failed';
+              this.statusType = 'error';
+            }
+          },
+
+          error: (err) => {
+            console.error('HTTP Error:', err);
+
+            this.statusMessage = 'Server error. Please try again.';
+            this.statusType = 'error';
+          },
+
+          complete: () => {
+            this.isSubmitting = false;
+
+            // Hide error message after 4 sec
+            setTimeout(() => {
+              this.statusMessage = null;
+            }, 4000);
+          },
+        });
+
+      } else {
+        this.statusMessage = '⚠️ Please fill all required fields';
+        this.statusType = 'error';
+
+        setTimeout(() => this.statusMessage = null, 3000);
+      }
     }
-  }
+
 }

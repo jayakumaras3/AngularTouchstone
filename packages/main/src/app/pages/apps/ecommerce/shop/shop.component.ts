@@ -518,7 +518,7 @@ filterByCategory(category: string, event: MouseEvent): void {
 
   getviewDetails(productcardDetails: Element): void {
     this.productService.setProduct(productcardDetails);
-    this.router.navigate(['/productdetails']);
+    this.router.navigate(['/coursedetails']);
   }
 
 

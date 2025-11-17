@@ -40,7 +40,7 @@ export const AuthenticationRoutes: Routes = [
         component: AppMaintenanceComponent,
       },
       {
-        path: 'side-forgot-pwd',
+        path: 'forgotpassword',
         component: AppSideForgotPasswordComponent,
       },
       {

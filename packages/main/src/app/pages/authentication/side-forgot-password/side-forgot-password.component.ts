@@ -6,7 +6,6 @@ import { MaterialModule } from '../../../material.module';
 import { BrandingComponent } from '../../../layouts/full/vertical/sidebar/branding.component';
 import { AuthService } from '../../../services/login/auth.service';
 import { LoginUrl } from '../../../config';
-import { baseUrlPath } from '../../../config';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FooterComponent } from '../../front-pages/footer/footer.component';
@@ -27,7 +26,8 @@ import { FooterComponent } from '../../front-pages/footer/footer.component';
   templateUrl: './side-forgot-password.component.html',
 })
 export class AppSideForgotPasswordComponent {
-  baseUrlPath = baseUrlPath;
+ baseUrlpath:string=LoginUrl;
+  
   options;
 
   constructor(private settings: CoreService, private router: Router, private authService: AuthService) {

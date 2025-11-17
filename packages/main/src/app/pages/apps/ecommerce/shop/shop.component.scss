@@ -503,6 +503,13 @@
   padding-right: 8px;
 }
 
+element.style {
+    cursor: pointer;
+}
+
+.mdc-list-item.mdc-list-item--with-one-line {
+    height: var(--mat-list-list-item-one-line-container-height, 35px);
+}
 .lang-row {
   display: flex;
   justify-content: space-between;
