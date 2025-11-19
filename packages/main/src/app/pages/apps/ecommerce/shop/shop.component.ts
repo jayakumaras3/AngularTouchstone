@@ -19,6 +19,7 @@ import { ProductService } from '../../../../services/apps/product/product.servic
 import { Element, PRODUCT_DATA } from '../ecommerceData';
 import { FooterComponent } from '../../../front-pages/footer/footer.component';
 import { PopupwindowComponent } from '../../../front-pages/popupwindow/popupwindow.component';
+import { RouterModule } from '@angular/router';
 
 export interface Section {
   name: string;
@@ -33,7 +34,7 @@ export interface Section {
     CommonModule,
     FormsModule,
     NgScrollbarModule,
-    FooterComponent,
+    FooterComponent,RouterModule,
   ],
   templateUrl: './shop.component.html',
   styleUrl: './shop.component.scss',
@@ -499,7 +500,9 @@ filterByCategory(category: string, event: MouseEvent): void {
       }
     });
   }
-
+  isActiveRoute(route: string): boolean {
+    return this.router.url.includes(`/front-pages/${route}`);
+  }
   getDeletedById(id: number): void {
     this.filteredCards = this.filteredCards.filter(
       (product) => product.id !== id

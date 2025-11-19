@@ -71,7 +71,12 @@
             }
           </mat-nav-list>
         </div>
-       
+          <div class="b-t-1 p-20">
+          <button mat-flat-button class="w-100 m-y-20" [class.selected]="isActiveRoute('coursecatalog')"
+                [routerLink]="['/coursecatalog']">
+            Course Catalog
+          </button>
+        </div> 
         <div class="b-t-1 p-20">
           <button mat-flat-button class="w-100 m-y-20" (click)="getRestFilter()">
             Reset Filters
