@@ -195,3 +195,16 @@
       }
     }
   }
+  @media (max-width: 576px) {
+  .price-section {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px;
+  }
+
+  .lang-wrap {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 6px;
+  }
+}

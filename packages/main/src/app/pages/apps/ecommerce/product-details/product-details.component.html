@@ -20,40 +20,37 @@
         <h2 class="m-t-10 f-w-600" class="producth2">{{ product?.product_name }}</h2>
         <div class="categories text-muted f-s-5 m-b-6">
            <span class="info-pill1 d-flex align-items-center gap-1">
-                  Catogeries : <strong class="langcl"> {{ product.skill }} </strong>
+                  Catogeries: <strong class="langcl"> {{ product.skill }} </strong>
                 </span>
 
                 <span class="info-pill1 d-flex align-items-center gap-1">
                   
-                 Sub Catogeries : <strong class="langcl">{{ product.categories?.join(', ') }}</strong>
+                 Sub Catogeries: <strong class="langcl">{{ product.categories?.join(', ') }}</strong>
                 </span>
            
           
              
             </div>
          <!-- PRICE + DURATION -->
-           <div class="d-flex align-items-center justify-content-between m-t-20">
+          <div class="d-flex align-items-center justify-content-between m-t-20 price-section">
 
-              <!-- LEFT: Price -->
-              <span class="f-s-30 f-w-600 text-primary">
-                ${{ product.base_price}}
-              </span>
+  <!-- LEFT: Price -->
+  <span class="f-s-30 f-w-600 text-primary">
+    ${{ product.base_price }}
+  </span>
 
-              <!-- RIGHT: Language + Duration -->
-             <div class="d-flex align-items-center gap-10">
-                <span class="info-pill d-flex align-items-center gap-1">
-                  Language: <strong class="langcl">{{ product.language }}</strong>
-                </span>
+  <!-- RIGHT: Language + Duration -->
+  <div class="d-flex align-items-center gap-10 lang-wrap">
+    <span class="info-pill d-flex align-items-center gap-1">
+      Language: <strong class="langcl">{{ product.language }}</strong>
+    </span>
 
-                <span class="info-pill duration-pill">
-                   
-                    Duration: <strong class="langcl">{{ product.duration }} min
-                  </strong></span>
+    <span class="info-pill duration-pill">
+      Duration: <strong class="langcl">{{ product.duration }} min</strong>
+    </span>
+  </div>
 
-              </div>
-
-
-            </div>
+</div>
 
             <hr class="my-divider">
             <!-- RATING + LANGUAGE -->

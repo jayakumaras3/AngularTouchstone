@@ -508,7 +508,11 @@ element.style {
 }
 
 .mdc-list-item.mdc-list-item--with-one-line {
-    height: var(--mat-list-list-item-one-line-container-height, 35px);
+    height: var(--mat-list-list-item-one-line-container-height, 45px);
+}
+.language-item
+{
+    height: var(--mat-list-list-item-one-line-container-height, 35px) !important;
 }
 .lang-row {
   display: flex;
