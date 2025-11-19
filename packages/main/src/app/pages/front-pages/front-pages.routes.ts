@@ -15,6 +15,7 @@ import { ShopComponent } from '../apps/ecommerce/shop/shop.component';
 import { ProductDetailsComponent } from '../apps/ecommerce/product-details/product-details.component';
 import { AppSideLoginComponent } from '../authentication/side-login/side-login.component';
 import{AppSideForgotPasswordComponent} from '../authentication/side-forgot-password/side-forgot-password.component';
+import{CourseCatalogComponent} from './coursecatalog/coursecatalog.component';
 
 
 export const FrontPagesRoutes: Routes = [
@@ -31,7 +32,8 @@ export const FrontPagesRoutes: Routes = [
       { path: 'pricing', component: PricingComponent },
       { path: 'contact', component: ContactComponent },
       { path: 'features', component: FeaturePageComponent },
-      { path: 'corecatalog', component: CorecatalogComponent },
+      { path: 'corecatalog', component: CorecatalogComponent },      
+      { path: 'coursecatalog', component: CourseCatalogComponent },
       { path: 'blog-details', component: BlogDetailsComponent },
       { path: 'catalog', component: ShopComponent },
       { path: 'coursedetails', component: ProductDetailsComponent },

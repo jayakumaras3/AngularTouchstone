@@ -1,0 +1,49 @@
+ <div class="row justify-content-center main-tile">
+        <div class="col-md-8">
+          <h1 class="banner-title text-center m-t-48">
+           Micro Learning
+            <span class="text-primary"> (500) </span>
+         
+          </h1>
+        </div>
+      </div>
+<!-- <div class="cc-badge">{{ subTitle }}</div> -->
+
+<section class="cc-grid m-b-80" >
+  <!-- Left Column -->
+  <div class="cc-col">
+    <ng-container *ngFor="let cat of leftColumn">
+      <div class="cc-card">
+        <h2>{{ cat.title }} ({{ cat.count }})</h2>
+        <ng-container *ngFor="let sub of cat.subCategories">
+          <h3>{{ sub.name }}</h3>
+          <ul>
+            <li *ngFor="let c of sub.courses; let i = index" [style.--index]="i">
+              {{ c.title }} <span *ngIf="c.duration">({{ c.duration }})</span>
+            </li>
+          </ul>
+        </ng-container>
+      </div>
+    </ng-container>
+  </div>
+
+  <!-- Right Column -->
+  <div class="cc-col">
+    <ng-container *ngFor="let cat of rightColumns">
+      <div class="cc-card">
+        <h2>{{ cat.title }} ({{ cat.count }})</h2>
+        <ng-container *ngFor="let sub of cat.subCategories">
+          <h3>{{ sub.name }}</h3>
+          <ul>
+            <li *ngFor="let c of sub.courses; let i = index" [style.--index]="i">
+              {{ c.title }} <span *ngIf="c.duration">({{ c.duration }})</span>
+            </li>
+          </ul>
+        </ng-container>
+      </div>
+    </ng-container>
+  </div>
+</section>
+ <div class="footer">
+    <app-footer></app-footer>
+  </div>
