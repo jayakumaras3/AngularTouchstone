@@ -78,10 +78,15 @@
           </button>
         </div> 
         <div class="b-t-1 p-20">
-          <button mat-flat-button class="w-100 m-y-20" (click)="getRestFilter()">
+          <button 
+              mat-stroked-button
+              class="w-100 m-y-20 border-primary"
+              color="primary"
+              (click)="getRestFilter()">
             Reset Filters
           </button>
-        </div> 
+        </div>
+ 
       </ng-scrollbar>
     </mat-sidenav>
     <mat-sidenav-content>
