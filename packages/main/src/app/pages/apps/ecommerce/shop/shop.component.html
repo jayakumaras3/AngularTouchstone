@@ -192,11 +192,11 @@
                         </div>--> 
                       </div>
 
-                      <hr class="price-divider" />
+                        <!-- <hr class="price-divider" />
                       <div class="d-flex align-items-center justify-content-between price-row">
-                        <h6 class="price-text"><b>$</b> {{ productcard.base_price }}</h6>
+                     <h6 class="price-text"><b>$</b> {{ productcard.base_price }}</h6>
                         <span class="duration-box">Duration: {{ productcard.duration }} min</span>
-                      </div>
+                      </div>-->
                     </div>
                   </mat-card-content>
                 </mat-card>
@@ -256,13 +256,13 @@
                     </th>
 
 
-                <th (click)="toggleSort('base_price')" [class.active]="sortColumn === 'base_price'">
+               <!-- <th (click)="toggleSort('base_price')" [class.active]="sortColumn === 'base_price'">
                   Price
                   <span class="sort-icon">
                     <i-tabler *ngIf="sortColumn === 'base_price' && sortDirection==='asc'" name="chevron-up"></i-tabler>
                     <i-tabler *ngIf="sortColumn === 'base_price' && sortDirection==='desc'" name="chevron-down"></i-tabler>
                   </span>
-                </th>
+                </th>-->
 
                 <th (click)="toggleSort('duration')" [class.active]="sortColumn === 'duration'">
                   Duration
@@ -294,7 +294,7 @@
                     </div>
                   </td>
 
-                  <td class="text-center">${{ productcard.base_price }}</td>
+                 <!-- <td class="text-center">${{ productcard.base_price }}</td> -->
                   <td class="text-center">{{ productcard.duration }} min</td>
                 </tr>
               } @empty {

@@ -17,6 +17,13 @@ import {  computed, signal } from '@angular/core';
 import { users } from '../../../front-pages/front-pagesData';
 import { setupCards, stats, tclients} from '../../../front-pages/front-pagesData';
 
+interface Product {
+  id: any;
+  categories?: string[];
+  objectives?: string | string[];
+  [key: string]: any;
+}
+
 
 
 @Component({
@@ -83,18 +90,15 @@ export class ProductDetailsComponent implements AfterViewInit {
             // Re-enable scrolling after popup closes
             document.body.style.overflow = 'auto';
           });
-        }
-    /* popup window End */
-  
-  
-  private productService: ProductService = inject(ProductService);
-  
+    }
 
   product: any;
   relatedProducts: any[] = [];
-  allProducts = PRODUCT_DATA;
+  allProducts: any[] = PRODUCT_DATA;
   quantity = 1;
   toggleValue: any = null;
+  
+  private productService: ProductService = inject(ProductService);
 
   ngAfterViewInit(): void {}
 
@@ -188,27 +192,43 @@ private normalizeObjectives(product: any) {
 }
 
 loadRelatedProducts(currentProduct: any) {
+  if (!currentProduct) return;
 
   // 1. Get products with SAME CATEGORY
-  const sameCategory = this.allProducts.filter(p =>
+  const sameCategory = this.allProducts.filter((p: any) =>
     p.id !== currentProduct.id &&
-    p.categories?.some(c => currentProduct.categories?.includes(c))
+    p.categories?.some((c: string) => currentProduct.categories?.includes(c))
   );
 
-  // 2. Shuffle the products RANDOMLY
-  this.relatedProducts = this.shuffleArray(sameCategory);
-
-  // 3. OPTIONAL: Limit to 4 products
-  this.relatedProducts = this.relatedProducts.slice(0, 4);
+  // If no related products found, get products from other categories
+  if (sameCategory.length === 0) {
+    // Get products from different categories, excluding the current product
+    this.relatedProducts = this.shuffleArray(
+      this.allProducts.filter((p: any) => p.id !== currentProduct.id)
+    ).slice(0, 4); // Limit to 8 products
+  } else {
+    // 2. Shuffle the products RANDOMLY
+    this.relatedProducts = this.shuffleArray(sameCategory);
+    // 3. Limit to 8 products
+    this.relatedProducts = this.relatedProducts.slice(0, 4);
+  }
 }
 
-shuffleArray(array: any[]) {
+shuffleArray(array: any[]): any[] {
   const arr = [...array];
   for (let i = arr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [arr[i], arr[j]] = [arr[j], arr[i]];
   }
   return arr;
+}
+
+hasMatchingCategories(): boolean {
+  if (!this.product || this.relatedProducts.length === 0) return false;
+  
+  return this.relatedProducts.some((p: any) =>
+    p.categories?.some((cat: string) => this.product.categories?.includes(cat))
+  );
 }
 
 

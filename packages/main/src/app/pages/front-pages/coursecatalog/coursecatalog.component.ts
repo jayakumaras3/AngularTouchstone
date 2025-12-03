@@ -19,9 +19,11 @@ interface Category {
   styleUrls: ['./coursecatalog.component.scss']
 })
 export class CourseCatalogComponent {
-
-  leftColumn: Category[] = [];
-  rightColumns: Category[] = [];
+  private allProducts: Element[] = PRODUCT_DATA;
+  
+  leftColumn: any[] = [];
+  rightColumns: any[] = [];
+  totalCourses: number = 0;
 
   mainTitle = 'Course Catalog';
   subTitle = 'Micro Learning (500)';
@@ -30,6 +32,11 @@ export class CourseCatalogComponent {
     const catalogData = this.mapProductDataToCatalog();
     this.leftColumn = [catalogData[0]];
     this.rightColumns = catalogData.slice(1);
+  }
+
+  ngOnInit() {
+    // Calculate total courses from PRODUCT_DATA
+    this.totalCourses = this.allProducts.length;
   }
 
   private mapProductDataToCatalog(): Category[] {
