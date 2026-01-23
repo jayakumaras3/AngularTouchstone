@@ -21,6 +21,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 import { ProductService } from 'src/app/services/apps/product/product.service';
 import { Element, PRODUCT_DATA } from './ecommerceData';
+import { ProductDataService } from 'src/app/services/product-data.service';
 
 @Component({
   selector: 'app-ecommerce',
@@ -35,6 +36,7 @@ export class ProductComponent implements AfterViewInit, OnInit {
   private _snackBar = inject(MatSnackBar);
   private router = inject(Router);
   private productService =  inject(ProductService);
+  private productDataService = inject(ProductDataService);
   readonly dialog = inject(MatDialog);
   
 
@@ -68,6 +70,16 @@ export class ProductComponent implements AfterViewInit, OnInit {
       });
   }
   ngOnInit(): void {
+    this.productDataService.getProducts({ bustCache: true }).subscribe((items) => {
+      this.dataSource.data = items;
+      if (this.paginator) {
+        this.dataSource.paginator = this.paginator;
+      }
+      if (this.table) {
+        this.table.renderRows();
+      }
+    });
+
     this.getAddedTableData();
     this.productService.productUpdated.subscribe((updatedProduct: any) => {
       // Ensure updatedProduct has an id and dataSource is an array
@@ -211,7 +223,7 @@ export class ProductComponent implements AfterViewInit, OnInit {
 
  
   getEditProduct(element?: Element) {
-    const productToEdit = element || PRODUCT_DATA[0];
+    const productToEdit = element || this.dataSource.data[0] || PRODUCT_DATA[0];
     this.productService.setProduct(productToEdit); // Store product to localStorage/service
     this.router.navigate(['apps/product/edit-product']); // Navigate to edit page
   }

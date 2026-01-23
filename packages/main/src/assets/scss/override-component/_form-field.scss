@@ -17,6 +17,18 @@ html {
     }
   }
 
+  // Remove the inner vertical seam on outlined fields (join between leading + notch).
+  // This commonly appears as a thin line inside the textbox near the left side.
+  .mat-mdc-form-field {
+    .mdc-notched-outline__leading {
+      border-right-width: 0 !important;
+    }
+
+    .mdc-notched-outline__notch {
+      border-left-width: 0 !important;
+    }
+  }
+
   .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mat-mdc-floating-label {
     top: calc(var(--mat-form-field-container-height) / 2.15);
   }

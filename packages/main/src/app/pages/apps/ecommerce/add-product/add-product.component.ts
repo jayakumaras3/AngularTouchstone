@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
 import { ProductService } from 'src/app/services/apps/product/product.service';
 import { debounceTime } from 'rxjs';
 import { NgxDropzoneModule } from 'ngx-dropzone';
-import { PRODUCT_DATA } from '../ecommerceData';
+import { ProductDataService } from 'src/app/services/product-data.service';
 import {
   NgxEditorComponent,
   NgxEditorMenuComponent,
@@ -42,6 +42,7 @@ export class AddProductComponent implements OnInit {
   private router = inject(Router);
   private productService = inject(ProductService);
   private fb = inject(FormBuilder);
+  private productDataService = inject(ProductDataService);
 
   html = '';
   editor: Editor;
@@ -146,7 +147,9 @@ export class AddProductComponent implements OnInit {
       } else {
         // Case: Direct navigation to /edit-product with no data
         this.isEditMode = true;
-        this.populateForm(PRODUCT_DATA[0]); // fallback product
+        this.productDataService.getProducts({ bustCache: true }).subscribe((items) => {
+          this.populateForm(items[0] || {}); // fallback product
+        });
       }
 
       this.productService.clearProduct(); // cleanup

@@ -16,6 +16,7 @@ import { TemplateVideoComponent } from '../../../front-pages/template-video/temp
 import {  computed, signal } from '@angular/core';
 import { users } from '../../../front-pages/front-pagesData';
 import { setupCards, stats, tclients} from '../../../front-pages/front-pagesData';
+import { ProductDataService } from 'src/app/services/product-data.service';
 
 interface Product {
   id: any;
@@ -99,6 +100,7 @@ export class ProductDetailsComponent implements AfterViewInit {
   toggleValue: any = null;
   
   private productService: ProductService = inject(ProductService);
+  private productDataService = inject(ProductDataService);
 
   ngAfterViewInit(): void {}
 
@@ -116,7 +118,7 @@ export class ProductDetailsComponent implements AfterViewInit {
         this.mobileQuery.removeEventListener('change', listener);
       });
 
-   this.product = this.productService.getProduct();
+  this.product = this.productService.getProduct();
 
 if (!this.product) {
   console.warn('No product found — redirecting.');
@@ -127,7 +129,10 @@ if (!this.product) {
 // ✅ Fix: Convert objectives string into array
 this.normalizeObjectives(this.product);
 
-this.loadRelatedProducts(this.product);
+this.productDataService.getProducts({ bustCache: true }).subscribe((items) => {
+  this.allProducts = items;
+  this.loadRelatedProducts(this.product);
+});
 
   }
 private normalizeObjectives(product: any) {

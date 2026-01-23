@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FooterComponent } from '../footer/footer.component';
 import { Element, PRODUCT_DATA } from '../../apps/ecommerce/ecommerceData';
+import { ProductDataService } from '../../../services/product-data.service';
 
 type Course = { title: string; author?: string; duration?: string };
 type SubCategory = { name: string; courses: Course[] };
@@ -19,7 +20,7 @@ interface Category {
   styleUrls: ['./coursecatalog.component.scss']
 })
 export class CourseCatalogComponent {
-  private allProducts: Element[] = PRODUCT_DATA;
+  private allProducts: Element[] = [];
   
   leftColumn: any[] = [];
   rightColumns: any[] = [];
@@ -28,21 +29,22 @@ export class CourseCatalogComponent {
   mainTitle = 'Course Catalog';
   subTitle = 'Micro Learning (500)';
 
-  constructor() {
-    const catalogData = this.mapProductDataToCatalog();
-    this.leftColumn = [catalogData[0]];
-    this.rightColumns = catalogData.slice(1);
-  }
+  constructor(private readonly productDataService: ProductDataService) {}
 
   ngOnInit() {
-    // Calculate total courses from PRODUCT_DATA
-    this.totalCourses = this.allProducts.length;
+    this.productDataService.getProducts({ bustCache: true }).subscribe((items: Element[]) => {
+      this.allProducts = items;
+      const catalogData = this.mapProductDataToCatalog();
+      this.leftColumn = catalogData.length ? [catalogData[0]] : [];
+      this.rightColumns = catalogData.slice(1);
+      this.totalCourses = this.allProducts.length;
+    });
   }
 
   private mapProductDataToCatalog(): Category[] {
     const categoryMap = new Map<string, Category>();
 
-   PRODUCT_DATA.forEach(product => {
+   this.allProducts.forEach(product => {
   const skill = product.skill ?? 'Unknown Skill';   // <-- FIXED
   const subs = product.categories || [];
 

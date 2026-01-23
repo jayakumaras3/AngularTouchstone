@@ -20,6 +20,7 @@ import { Element, PRODUCT_DATA } from '../ecommerceData';
 import { FooterComponent } from '../../../front-pages/footer/footer.component';
 import { PopupwindowComponent } from '../../../front-pages/popupwindow/popupwindow.component';
 import { RouterModule } from '@angular/router';
+import { ProductDataService } from '../../../../services/product-data.service';
 
 export interface Section {
   name: string;
@@ -72,6 +73,7 @@ trackTileRows(index: number, item: any) {
   private cdr = inject(ChangeDetectorRef);
   private _snackBar = inject(MatSnackBar);
   private productService = inject(ProductService);
+  private productDataService = inject(ProductDataService);
   private mediaMatcher: MediaQueryList = matchMedia(`(max-width: 1199px)`);
   isMobileView = false;
   languageCounts: { [key: string]: number } = {};
@@ -79,7 +81,7 @@ trackTileRows(index: number, item: any) {
   // ========================
   // Lazy Loading Properties
   // ========================
-  private allProducts: Element[] = PRODUCT_DATA;
+  private allProducts: Element[] = [];
   private baseFilteredProducts: Element[] = []; // Store filtered results
   filteredCards: Element[] = []; // Currently displayed cards
   
@@ -142,8 +144,11 @@ trackTileRows(index: number, item: any) {
   }
 
   ngOnInit(): void {
-    this.calculateLanguageCounts();
-    this.initializeProducts();
+    this.productDataService.getProducts({ bustCache: true }).subscribe((items: Element[]) => {
+      this.allProducts = items;
+      this.calculateLanguageCounts();
+      this.initializeProducts();
+    });
   }
   Math = Math;
 // Pagination
@@ -227,14 +232,14 @@ filterByCategory(category: string, event: MouseEvent): void {
     const counts: { [key: string]: number } = {};
 
     // Count how many products per language
-    PRODUCT_DATA.forEach((card) => {
+    this.allProducts.forEach((card) => {
       const lang = (card.language || 'All').trim();
       if (!counts[lang]) counts[lang] = 0;
       counts[lang]++;
     });
 
     // Total count for 'All'
-    counts['All'] = PRODUCT_DATA.length;
+    counts['All'] = this.allProducts.length;
 
     this.languageCounts = counts;
   }
