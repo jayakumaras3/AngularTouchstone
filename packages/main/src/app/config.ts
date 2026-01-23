@@ -125,33 +125,33 @@ export const LoginUrl = '';
 export const logoUrl = '';*/
 
 // Example for server setups (comment/uncomment as needed)
-/*
-export const baseUrlPath = '/DOCHEKDOTCOM/app/Views/angular_view/';
-export const baseUrlPathslash = '/DOCHEKDOTCOM/app/Views/angular_view';
-export const logoUrl = '/DOCHEKDOTCOM/app/Views/angular_view/';
-*/
+//  local URL  hhttp://172.16.0.173/DOCHEK_lms/landing
+export const baseUrlPath = '/DOCHEK_lms/ang/';
+export const baseUrlPathslash = '/DOCHEK_lms/ang/';
+export const LoginUrl = '/DOCHEK_lms/ang/';
+export const logoUrl = '/DOCHEK_lms/ang/';
+
 
 /**/
-//Host URL
-export const baseUrlPath = '/ang/';
+//Host URL dochek.com/ang
+/*export const baseUrlPath = '/ang/';
 export const baseUrlPathslash = '/ang';
 export const LoginUrl = 'ang/';
-export const logoUrl = '/ang/';
+export const logoUrl = '/ang/';*/
 
 
 
 
-/*// PHP service URLs
-export const apiUrl = 'http://172.16.0.173/landing';
+// PHP service URLs
+export const apiUrl = 'hhttp://172.16.0.173/DOCHEK_lms/landing';
   
-  export const forgotUrl = 'http://172.16.0.173/landing';
-  export const contactApiUrl = 'http://172.16.0.173/landing';
+  export const forgotUrl = 'http://172.16.0.173/DOCHEK_lms/landing';
+  export const contactApiUrl = 'http://172.16.0.173/DOCHEK_lms/landing';
 
-
-   // Dochek
- */ export const apiUrl = 'https://dochek.com/landing';
+   // Dochek Host URL dochek.com/ang
+ /* export const apiUrl = 'https://dochek.com/landing';
   
   export const forgotUrl = 'https://dochek.com/landing';
-  export const contactApiUrl = 'https://dochek.com/landing'
+  export const contactApiUrl = 'https://dochek.com/landing'*/
 
 
