@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NoCodeInputDirective } from './directives/no-code-input.directive';
 // Material Form Controls
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -45,9 +46,11 @@ import { MatTableModule } from '@angular/material/table';
 @NgModule({
   declarations: [],
   imports: [
-    
+    CommonModule,
+    NoCodeInputDirective,
   ],
   exports: [
+    NoCodeInputDirective,
     MatAutocompleteModule,
     MatCheckboxModule,
     MatDatepickerModule,

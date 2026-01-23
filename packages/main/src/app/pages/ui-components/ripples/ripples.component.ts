@@ -6,6 +6,7 @@ import {FormsModule} from '@angular/forms';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatCardModule } from '@angular/material/card';
 import { AppCodeViewComponent } from 'src/app/components/code-view/code-view.component';
+import { NoCodeInputDirective } from 'src/app/directives/no-code-input.directive';
 
 // snippets
 import { RIPPLES_HTML_SNIPPET } from './code/ripples-html-snippet';
@@ -20,6 +21,7 @@ import { HighlightLineNumbers } from 'ngx-highlightjs/line-numbers';
       Highlight,
       HighlightAuto,
       HighlightLineNumbers,
+      NoCodeInputDirective,
       AppCodeViewComponent,
     ],
     templateUrl: './ripples.component.html',

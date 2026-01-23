@@ -11,6 +11,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import { AppCodeViewComponent } from 'src/app/components/code-view/code-view.component';
+import { NoCodeInputDirective } from 'src/app/directives/no-code-input.directive';
 
 // snippets
 import { BASIC_SNACKBAR_HTML_SNIPPET, CONFIGURABLE_SNACKBAR_HTML_SNIPPET, CUSTOM_COMPONENT_SNACKBAR_HTML_SNIPPET } from './code/snackbar-html-snippet';
@@ -39,6 +40,7 @@ export class PizzaPartyComponent {}
       Highlight,
       HighlightAuto,
       HighlightLineNumbers,
+      NoCodeInputDirective,
       AppCodeViewComponent,
     ],
     templateUrl: './snackbar.component.html'

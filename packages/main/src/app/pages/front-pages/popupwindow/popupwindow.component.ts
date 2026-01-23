@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../services/login/auth.service';
+import { NoCodeInputDirective } from '../../../directives/no-code-input.directive';
 
 @Component({
   selector: 'app-popupwindow',
@@ -17,6 +18,7 @@ import { AuthService } from '../../../services/login/auth.service';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    NoCodeInputDirective,
   ],
   templateUrl: './popupwindow.component.html',
   styleUrls: ['./popupwindow.component.scss'],
