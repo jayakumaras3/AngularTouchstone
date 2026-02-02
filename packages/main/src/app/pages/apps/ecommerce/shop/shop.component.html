@@ -157,67 +157,86 @@
       
          <!-- GRID VIEW -->
           <div *ngIf="viewMode === 'grid'" class="row">
-            @for (productcard of filteredCards; track productcard.product_name) {
-              <div class="col-sm-6 col-lg-4 p-x-12">
-                <!--(click)="openBookDemoDialog()"-->
-                <mat-card class="cardWithShadow productcard overflow-hidden b-1 cursor-pointer" (click)="getviewDetails(productcard)">
-                  <a routerLink="/widgets/cards">
-                    <div class="img-wrapper position-relative">
-                      <img
-                        [src]="productcard.imagePath"
-                        
-                        alt="imgSrc"
-                        class="w-100"
-                        mat-card-image />
-                    </div>
-                  </a>
-
-                  <mat-card-content class="bottombox p-t-12 position-relative">
-                    <h5 class="card-title">{{ productcard.product_name }}</h5>
-                    <div class="price-details">
-                      <div class="d-flex align-items-center justify-content-between" style="padding-bottom: 4px;">
-                        <span class="language-text">
-                          Language: <span class="language-value">{{ productcard.language }}</span>
-                        </span>
-                       <!--<div class="d-flex gap-1 rating-stars">
-                          @if (productcard.rating !== undefined) {
-                            @for (star of [1, 2, 3, 4, 5]; track star) {
-                              <i-tabler
-                                name="star"
-                                class="icon-17"
-                                [ngClass]="getStarClass(star, productcard.rating)">
-                              </i-tabler>
-                            }
-                          }
-                        </div>--> 
-                      </div>
-
-                        <!-- <hr class="price-divider" />
-                      <div class="d-flex align-items-center justify-content-between price-row">
-                     <h6 class="price-text"><b>$</b> {{ productcard.base_price }}</h6>
-                        <span class="duration-box">Duration: {{ productcard.duration }} min</span>
-                      </div>-->
-                    </div>
-                  </mat-card-content>
-                </mat-card>
-              </div>
-            } @empty {
+            <!-- Loading State -->
+            @if (isLoading) {
               <div class="col-12 text-center p-4 m-t-30">
-                <img src="assets/images/products/empty-shopping-cart.svg" width="200" height="200" />
-                <div class="f-s-48 f-w-600" style="line-height: 4rem;">There is no Product</div>
-                <div class="f-s-14 f-w-500 no-productcl">
-                  The Product you are searching is no longer available.
-                </div>
-                <button mat-flat-button (click)="getProductList()" class="m-t-10">
-                  Try Again
-                </button>
+                <mat-spinner diameter="50" class="m-auto"></mat-spinner>
+                <div class="f-s-16 f-w-500 m-t-16">Loading courses...</div>
               </div>
+            } @else {
+              <!-- Course List -->
+              @for (productcard of filteredCards; track productcard.product_name) {
+                <div class="col-sm-6 col-lg-4 p-x-12">
+                  <!--(click)="openBookDemoDialog()"-->
+                  <mat-card class="cardWithShadow productcard overflow-hidden b-1 cursor-pointer" (click)="getviewDetails(productcard)">
+                    <a routerLink="/widgets/cards">
+                      <div class="img-wrapper position-relative">
+                        <img
+                          [src]="productcard.imagePath"
+                          
+                          alt="imgSrc"
+                          class="w-100"
+                          mat-card-image />
+                      </div>
+                    </a>
+
+                    <mat-card-content class="bottombox p-t-12 position-relative">
+                      <h5 class="card-title">{{ productcard.product_name }}</h5>
+                      <div class="price-details">
+                        <div class="d-flex align-items-center justify-content-between" style="padding-bottom: 4px;">
+                          <span class="language-text">
+                            Language: <span class="language-value">{{ productcard.language }}</span>
+                          </span>
+                        <!--<div class="d-flex gap-1 rating-stars">
+                            @if (productcard.rating !== undefined) {
+                              @for (star of [1, 2, 3, 4, 5]; track star) {
+                                <i-tabler
+                                  name="star"
+                                  class="icon-17"
+                                  [ngClass]="getStarClass(star, productcard.rating)">
+                                </i-tabler>
+                              }
+                            }
+                          </div>--> 
+                        </div>
+
+                          <!-- <hr class="price-divider" />
+                        <div class="d-flex align-items-center justify-content-between price-row">
+                      <h6 class="price-text"><b>$</b> {{ productcard.base_price }}</h6>
+                          <span class="duration-box">Duration: {{ productcard.duration }} min</span>
+                        </div>-->
+                      </div>
+                    </mat-card-content>
+                  </mat-card>
+                </div>
+              } @empty {
+                <!-- Empty State - Only show after search/filter triggered -->
+                @if (isSearchTriggered) {
+                  <div class="col-12 text-center p-4 m-t-30">
+                    <img src="assets/images/products/empty-shopping-cart.svg" width="200" height="200" />
+                    <div class="f-s-48 f-w-600" style="line-height: 4rem;">There is no Product</div>
+                    <div class="f-s-14 f-w-500 no-productcl">
+                      The Product you are searching is no longer available.
+                    </div>
+                    <button mat-flat-button (click)="getProductList()" class="m-t-10">
+                      Try Again
+                    </button>
+                  </div>
+                }
+              }
             }
           </div>
 
       <!-- TILE VIEW -->
         <div *ngIf="viewMode === 'tile'" class="tile-table-container">
 
+          <!-- Loading State for Tile View -->
+          @if (isLoading) {
+            <div class="text-center p-4 m-t-30">
+              <mat-spinner diameter="50" class="m-auto"></mat-spinner>
+              <div class="f-s-16 f-w-500 m-t-16">Loading courses...</div>
+            </div>
+          } @else {
           <table class="tile-table">
             <thead>
               <tr>
@@ -298,9 +317,11 @@
                   <td class="text-center">{{ productcard.duration }} min</td>
                 </tr>
               } @empty {
-                <tr>
-                  <td colspan="6" class="text-center p-4">No products found.</td>
-                </tr>
+                @if (isSearchTriggered) {
+                  <tr>
+                    <td colspan="6" class="text-center p-4">No products found.</td>
+                  </tr>
+                }
               }
             </tbody>
           </table>
@@ -326,6 +347,7 @@
             <button (click)="nextPage()" 
               [disabled]="(currentPage + 1) * pageSize >= sortedCards.length">›</button>
           </div>
+          }
         </div>
 
 

@@ -89,8 +89,12 @@ trackTileRows(index: number, item: any) {
   private readonly initialLoadCount = 8;
   private readonly scrollLoadCount = 4;
   private currentDisplayIndex = 0;
-  private isLoading = false;
   private scrollListenerActive = true;
+
+  // Loading state flags
+  isLoading = true;           // True while API is in progress
+  isInitialLoad = true;       // True only for first load
+  isSearchTriggered = false;  // True after user searches or filters
 
   durationInSeconds = 1;
   searchText: string = '';
@@ -144,10 +148,24 @@ trackTileRows(index: number, item: any) {
   }
 
   ngOnInit(): void {
-    this.productDataService.getProducts({ bustCache: true }).subscribe((items: Element[]) => {
-      this.allProducts = items;
-      this.calculateLanguageCounts();
-      this.initializeProducts();
+    this.isLoading = true;
+    this.isInitialLoad = true;
+    this.isSearchTriggered = false;
+
+    this.productDataService.getProducts({ bustCache: true }).subscribe({
+      next: (items: Element[]) => {
+        this.allProducts = items;
+        this.calculateLanguageCounts();
+        this.initializeProducts();
+        this.isLoading = false;
+        this.isInitialLoad = false;
+        this.cdr.detectChanges();
+      },
+      error: () => {
+        this.isLoading = false;
+        this.isInitialLoad = false;
+        this.cdr.detectChanges();
+      }
     });
   }
   Math = Math;
@@ -214,6 +232,7 @@ filterByCategory(category: string, event: MouseEvent): void {
   // Prevent the row click (so it doesn't open details)
   event.stopPropagation();
 
+  this.isSearchTriggered = true;
   this.selectedCategory = category;
   
   // Filter all products that include the clicked category
@@ -350,6 +369,7 @@ filterByCategory(category: string, event: MouseEvent): void {
   // ========================
 
   filterCards(): void {
+    this.isSearchTriggered = true;
     const text = this.searchText.toLowerCase();
     const results = this.allProducts.filter(
       (card) =>
@@ -361,6 +381,7 @@ filterByCategory(category: string, event: MouseEvent): void {
   }
 
   getCategory(name: string): void {
+    this.isSearchTriggered = true;
     this.selectedCategory = name;
     let results: Element[] = [];
 
@@ -376,6 +397,7 @@ filterByCategory(category: string, event: MouseEvent): void {
   }
 
   getSorted(name: string): void {
+    this.isSearchTriggered = true;
     this.selectedSortBy = name;
     const nameLower = name.toLowerCase();
     let sorted = [...this.allProducts];
@@ -405,6 +427,7 @@ filterByCategory(category: string, event: MouseEvent): void {
   }
 
   getLanguageFilter(language: string): void {
+    this.isSearchTriggered = true;
     this.selectedLanguage = language;
     const filterValue = language.trim().toLowerCase();
 
@@ -419,6 +442,7 @@ filterByCategory(category: string, event: MouseEvent): void {
   }
 
   getPricing(priceRange: string): void {
+    this.isSearchTriggered = true;
     this.selectedPrice = priceRange;
     let filtered: Element[] = [];
 
@@ -454,6 +478,7 @@ filterByCategory(category: string, event: MouseEvent): void {
     this.selectedLanguage = 'all';
     this.selectedPrice = 'all';
     this.searchText = '';
+    this.isSearchTriggered = false;
 
     this.applyFilterAndReset(this.allProducts);
   }
