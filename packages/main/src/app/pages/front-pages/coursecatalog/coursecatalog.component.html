@@ -18,7 +18,8 @@
           <h3>{{ sub.name }}</h3>
           <ul>
             <li *ngFor="let c of sub.courses; let i = index" [style.--index]="i">
-              {{ c.title }} <span *ngIf="c.duration">({{ c.duration }})</span>
+              {{ c.title }}
+              <span *ngIf="c.duration" class="course-duration" (click)="navigateToCourseDetails(c)">({{ c.duration }})</span>
             </li>
           </ul>
         </ng-container>
@@ -35,7 +36,8 @@
           <h3>{{ sub.name }}</h3>
           <ul>
             <li *ngFor="let c of sub.courses; let i = index" [style.--index]="i">
-              {{ c.title }} <span *ngIf="c.duration">({{ c.duration }})</span>
+              {{ c.title }}
+              <span *ngIf="c.duration" class="course-duration" (click)="navigateToCourseDetails(c)">({{ c.duration }})</span>
             </li>
           </ul>
         </ng-container>

@@ -145,6 +145,18 @@ button, .btn, .cc-button {
               font-style: italic;
             }
 
+            .course-duration {
+              color: $accent-color;
+              font-style: italic;
+              cursor: pointer;
+              transition: opacity 0.2s ease;
+
+              &:hover {
+                opacity: 0.8;
+                text-decoration: underline;
+              }
+            }
+
             &:hover {
               transform: translateX(5px);
               color: darken($secondary-color, 10%);

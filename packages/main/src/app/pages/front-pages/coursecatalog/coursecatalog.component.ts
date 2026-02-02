@@ -1,10 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { FooterComponent } from '../footer/footer.component';
 import { Element, PRODUCT_DATA } from '../../apps/ecommerce/ecommerceData';
 import { ProductDataService } from '../../../services/product-data.service';
+import { ProductService } from '../../../services/apps/product/product.service';
 
-type Course = { title: string; author?: string; duration?: string };
+type Course = { id: number; title: string; author?: string; duration?: string; product: Element };
 type SubCategory = { name: string; courses: Course[] };
 interface Category {
   title: string;
@@ -29,7 +31,11 @@ export class CourseCatalogComponent {
   mainTitle = 'Course Catalog';
   subTitle = 'Micro Learning (500)';
 
-  constructor(private readonly productDataService: ProductDataService) {}
+  constructor(
+    private readonly productDataService: ProductDataService,
+    private readonly productService: ProductService,
+    private readonly router: Router
+  ) {}
 
   ngOnInit() {
     this.productDataService.getProducts({ bustCache: true }).subscribe((items: Element[]) => {
@@ -68,13 +74,24 @@ export class CourseCatalogComponent {
     }
 
     subCategory.courses.push({
+      id: product.id,
       title: product.product_name,
-      duration: product.duration ? product.duration + ' min' : undefined
+      duration: product.duration ? product.duration + ' min' : undefined,
+      product: product
     });
   });
 });
 
 
     return Array.from(categoryMap.values());
+  }
+
+  /**
+   * Navigate to course details page
+   * Reuses the same navigation logic as the shop component
+   */
+  navigateToCourseDetails(course: Course): void {
+    this.productService.setProduct(course.product);
+    this.router.navigate(['/coursedetails']);
   }
 }
