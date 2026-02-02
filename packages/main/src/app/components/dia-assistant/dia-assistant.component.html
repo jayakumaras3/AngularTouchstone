@@ -1,0 +1,79 @@
+<div class="dia-widget">
+  <div class="dia-panel" [class.open]="isOpen" [attr.aria-hidden]="!isOpen">
+    <div class="dia-header">
+      <div class="dia-header-left">
+        <div class="dia-avatar">
+          <img src="assets/dia-ai/images/dia.svg" alt="Dia Logo" />
+        </div>
+        <div class="dia-title">
+          <h3>Dia Assistant</h3>
+          <div class="dia-status">
+            <span class="status-dot" [class.ready]="isReady"></span>
+            <span class="status-text">{{ isReady ? 'OFFLINE READY' : 'INITIALIZING...' }}</span>
+          </div>
+        </div>
+      </div>
+      <button class="dia-close" type="button" (click)="close()" aria-label="Close assistant">
+        ✕
+      </button>
+    </div>
+
+    <div class="dia-progress" *ngIf="!isReady">
+      <div class="dia-progress-bar" [style.width.%]="progress"></div>
+    </div>
+
+    <div class="dia-body">
+      <div class="dia-messages">
+        <ng-container *ngFor="let message of messages; trackBy: trackByMessage">
+          <div class="dia-message" [class.user]="message.sender === 'user'" [class.bot]="message.sender === 'bot'">
+            <div class="dia-bubble">
+              {{ message.text }}
+            </div>
+
+            <div class="dia-cards" *ngIf="message.sender === 'bot' && message.courses?.length">
+              <div class="dia-card" *ngFor="let course of message.courses; trackBy: trackByCourse">
+                <div class="dia-card-meta">
+                  <span class="dia-chip">{{ course.category }}</span>
+                  <span class="dia-meta">{{ course.duration }}m • {{ course.language }}</span>
+                </div>
+                <h4>{{ course.title }}</h4>
+                <p>{{ course.description }}</p>
+                <a [href]="formatUrl(course.url)" target="_blank" rel="noopener noreferrer">View Details</a>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+
+        <div class="dia-message bot" *ngIf="isTyping">
+          <div class="dia-bubble typing">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+        </div>
+
+        <div #scrollAnchor></div>
+      </div>
+    </div>
+
+    <form class="dia-input" (submit)="sendMessage($event)">
+      <input
+        type="text"
+        [(ngModel)]="inputText"
+        name="diaInput"
+        [placeholder]="isReady ? 'Search courses...' : 'Loading catalog...'"
+        [disabled]="!isReady"
+      />
+      <button type="submit" [disabled]="!inputText.trim() || !isReady" aria-label="Send">
+        ▲
+      </button>
+    </form>
+  </div>
+
+  <button class="dia-fab" type="button" (click)="toggle()" aria-label="Toggle Dia Assistant">
+    <span *ngIf="!isOpen">
+      <img src="assets/dia-ai/images/dia.svg" alt="Open Dia Assistant" />
+    </span>
+    <span *ngIf="isOpen">✕</span>
+  </button>
+</div>

@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { initAutoTheme, defaults } from './config';
 import { NoCodeInputGuardService } from './services/no-code-input-guard.service';
+import { DiaAssistantComponent } from './components/dia-assistant/dia-assistant.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, DiaAssistantComponent],
   templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
