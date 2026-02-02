@@ -533,7 +533,13 @@ filterByCategory(category: string, event: MouseEvent): void {
     });
   }
   isActiveRoute(route: string): boolean {
-    return this.router.url.includes(`/front-pages/${route}`);
+    const currentUrl = this.router.url;
+    // Check for exact match or path starting with the route
+    if (route === 'catalog') {
+      // Match /catalog but not /sme-catalog or /coursecatalog
+      return currentUrl === '/catalog' || currentUrl.startsWith('/catalog?');
+    }
+    return currentUrl.includes(`/${route}`);
   }
   getDeletedById(id: number): void {
     this.filteredCards = this.filteredCards.filter(

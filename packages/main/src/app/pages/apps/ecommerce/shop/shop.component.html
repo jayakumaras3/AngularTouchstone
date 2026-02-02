@@ -71,12 +71,43 @@
             }
           </mat-nav-list>
         </div>
-          <div class="b-t-1 p-20">
-          <button mat-flat-button class="w-100 m-y-20" [class.selected]="isActiveRoute('coursecatalog')"
-                [routerLink]="['/coursecatalog']">
-            Course Catalog
-          </button>
-        </div> 
+
+        <!-- Catalog Type Navigation Section -->
+        <div class="catalog-type-section b-t-1 p-20">
+          <h5 class="catalog-type-title m-0 m-b-16 f-s-14 f-w-600">Catalog Type</h5>
+          <div class="catalog-nav-tiles">
+            <!-- Course Catalog Tile -->
+            <a 
+              class="catalog-nav-tile"
+              [class.active]="isActiveRoute('coursecatalog')"
+              routerLink="/coursecatalog">
+              <div class="tile-icon-box">
+                <i-tabler name="books" class="icon-22"></i-tabler>
+              </div>
+              <div class="tile-info">
+                <span class="tile-label">Course Catalog</span>
+                <span class="tile-desc">Full catalog with filters</span>
+              </div>
+              <i-tabler name="chevron-right" class="tile-arrow icon-18"></i-tabler>
+            </a>
+
+            <!-- SME Catalog Tile -->
+            <a 
+              class="catalog-nav-tile"
+              [class.active]="isActiveRoute('sme-catalog')"
+              routerLink="/sme-catalog">
+              <div class="tile-icon-box sme">
+                <i-tabler name="building-store" class="icon-22"></i-tabler>
+              </div>
+              <div class="tile-info">
+                <span class="tile-label">SME Catalog</span>
+                <span class="tile-desc">Curated for growing businesses</span>
+              </div>
+              <i-tabler name="chevron-right" class="tile-arrow icon-18"></i-tabler>
+            </a>
+          </div>
+        </div>
+
         <div class="b-t-1 p-20">
           <button 
               mat-stroked-button

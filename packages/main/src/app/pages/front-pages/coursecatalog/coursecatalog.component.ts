@@ -98,4 +98,11 @@ export class CourseCatalogComponent {
     this.productService.setProduct(course.product);
     this.router.navigate(['/coursedetails']);
   }
+
+  /**
+   * Navigate back to main course catalog
+   */
+  navigateBackToCatalog(): void {
+    this.router.navigate(['/catalog']);
+  }
 }

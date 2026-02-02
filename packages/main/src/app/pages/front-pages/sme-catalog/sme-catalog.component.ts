@@ -21,6 +21,10 @@ export class SmeCatalogComponent {
     this.router.navigate(['/sme-catalog', categoryId]);
   }
 
+  navigateBackToCatalog(): void {
+    this.router.navigate(['/catalog']);
+  }
+
   getCourseCount(category: SmeCategory): number {
     return category.courses.length;
   }
