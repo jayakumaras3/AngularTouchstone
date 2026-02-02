@@ -45,7 +45,8 @@ export const SME_CATEGORIES: SmeCategory[] = [
       { title: 'Examples and Process of Business Transformation', level: 'advanced', group: 'Advanced (Transformation)' },
       { title: 'Managing Change: Five Key Elements of Successful Change Management', level: 'advanced', group: 'Advanced (Transformation)' },
       { title: 'Change Management Strategy and Process', level: 'advanced', group: 'Advanced (Transformation)' },
-      { title: "Kotter's 8 Step Change Model & McKinsey's 7-S Model", level: 'advanced', group: 'Advanced (Transformation)' },
+      { title: "Kotter's 8 Step Change Model", level: 'advanced', group: 'Advanced (Transformation)' },      
+      { title: " McKinsey's 7-S Model", level: 'advanced', group: 'Advanced (Transformation)' },
     ]
   },
   {
