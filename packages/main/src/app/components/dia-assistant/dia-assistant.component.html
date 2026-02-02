@@ -70,10 +70,21 @@
     </form>
   </div>
 
-  <button class="dia-fab" type="button" (click)="toggle()" aria-label="Toggle Dia Assistant">
-    <span *ngIf="!isOpen">
+  <!-- Original Chatbot FAB Button - Fixed at bottom-right -->
+  <button 
+    class="dia-fab" 
+    type="button" 
+    (click)="toggle()"
+    [class.dia-fab-active]="isOpen"
+    aria-label="Toggle Dia Assistant"
+    [attr.aria-expanded]="isOpen"
+  >
+    <!-- Original Chatbot Icon (when closed) -->
+    <span *ngIf="!isOpen" class="dia-fab-icon">
       <img src="assets/dia-ai/images/dia.svg" alt="Open Dia Assistant" />
     </span>
-    <span *ngIf="isOpen">✕</span>
+    
+    <!-- Close Icon (when open) -->
+    <span *ngIf="isOpen" class="dia-close-icon">✕</span>
   </button>
 </div>

@@ -4,6 +4,10 @@
   bottom: 24px;
   z-index: 9999;
   font-family: "Inter", "Segoe UI", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
 }
 
 .dia-panel {
@@ -302,28 +306,118 @@
   cursor: not-allowed;
 }
 
+/* Chatbot FAB Button - Fixed Position at Bottom-Right */
 .dia-fab {
-  width: 56px;
-  height: 56px;
-  border-radius: 999px;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
   border: none;
   background: #ffffff;
-  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.2);
-  display: grid;
-  place-items: center;
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  margin-top: 16px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0);
+    border-radius: 50%;
+    transition: background 0.3s ease;
+  }
+  
+  &:hover {
+    transform: translateY(-4px) scale(1.08);
+    box-shadow: 0 14px 32px rgba(59, 130, 246, 0.4);
+    
+    &::before {
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+  
+  &:active {
+    transform: translateY(-2px) scale(1.04);
+  }
 }
 
-.dia-fab img {
-  width: 28px;
-  height: 28px;
+/* Active state when chatbot is open */
+.dia-fab.dia-fab-active {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  box-shadow: 0 8px 24px rgba(239, 68, 68, 0.3);
+  
+  &:hover {
+    box-shadow: 0 14px 32px rgba(239, 68, 68, 0.4);
+  }
 }
 
-.dia-fab:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 20px 36px rgba(15, 23, 42, 0.25);
+/* FAB Icon Styling - Original dia.svg Icon */
+.dia-fab-icon {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.dia-fab-icon img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+/* Close Icon Styling */
+.dia-close-icon {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffffff;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dia-fab {
+    width: 56px;
+    height: 56px;
+    
+    &:hover {
+      transform: translateY(-2px) scale(1.05);
+    }
+  }
+  
+  .dia-fab-icon img {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* Touch device optimization */
+@media (hover: none) and (pointer: coarse) {
+  .dia-fab {
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.25);
+    
+    &:active {
+      transform: translateY(-2px) scale(1.02);
+    }
+  }
 }
 
 @keyframes typing {

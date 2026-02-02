@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { MatIconModule } from '@angular/material/icon';
 
 interface ProductDataItem {
   id: number;
@@ -43,7 +44,7 @@ const STOP_WORDS = new Set([
 @Component({
   selector: 'app-dia-assistant',
   standalone: true,
-  imports: [CommonModule, FormsModule, HttpClientModule],
+  imports: [CommonModule, FormsModule, HttpClientModule, MatIconModule],
   templateUrl: './dia-assistant.component.html',
   styleUrls: ['./dia-assistant.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
