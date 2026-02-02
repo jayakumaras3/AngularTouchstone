@@ -1,20 +1,17 @@
-<!-- Back to Catalog Button -->
-<div class="back-nav-container">
-  <button class="back-to-catalog-btn" (click)="navigateBackToCatalog()">
-    <span class="back-icon">←</span>
-    <span>Back to Course Catalog</span>
-  </button>
-</div>
-
-<div class="row justify-content-center main-tile">
-  <div class="col-md-8">
-    <h1 class="banner-title text-center m-t-48">
-      Micro Learning
-      <span class="text-primary"> ({{ totalCourses }}) </span>
-    </h1>
+<!-- Course Catalog - Hero Section (matches SME Catalog design) -->
+<section class="cc-hero-banner">
+  <div class="hero-container">
+    <button class="back-to-catalog-btn" (click)="navigateBackToCatalog()">
+      <i-tabler name="arrow-left" class="back-icon"></i-tabler>
+      <span>Back to Course Catalog</span>
+    </button>
   </div>
-</div>
-<!-- <div class="cc-badge">{{ subTitle }}</div> -->
+  <div class="hero-content">
+    <h1 class="hero-title">Course Catalog for Small & Medium Enterprises</h1>
+    <p class="hero-subtitle">Practical, job-ready learning designed for growing businesses.</p>
+    <span class="course-count-badge">{{ totalCourses }} Courses Available</span>
+  </div>
+</section>
 
 <section class="cc-grid m-b-80" >
   <!-- Left Column -->

@@ -6,6 +6,7 @@ import { Element, PRODUCT_DATA } from '../../apps/ecommerce/ecommerceData';
 import { ProductDataService } from '../../../services/product-data.service';
 import { ProductService } from '../../../services/apps/product/product.service';
 import { NavService } from '../../../services/nav.service';
+import { TablerIconsModule } from 'angular-tabler-icons';
 
 type Course = { id: number; title: string; author?: string; duration?: string; product: Element };
 type SubCategory = { name: string; courses: Course[] };
@@ -18,7 +19,7 @@ interface Category {
 @Component({
   selector: 'app-course-catalog',
   standalone: true,
-  imports: [CommonModule, FooterComponent],
+  imports: [CommonModule, FooterComponent, TablerIconsModule],
   templateUrl: './coursecatalog.component.html',
   styleUrls: ['./coursecatalog.component.scss']
 })
