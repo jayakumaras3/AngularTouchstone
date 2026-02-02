@@ -195,8 +195,8 @@
                 <div class="f-s-16 f-w-500 m-t-16">Loading courses...</div>
               </div>
             } @else {
-              <!-- Course List -->
-              @for (productcard of filteredCards; track productcard.product_name) {
+              <!-- Course List - Using trackBy with product id to prevent DOM recreation -->
+              @for (productcard of filteredCards; track productcard.id) {
                 <div class="col-sm-6 col-lg-4 p-x-12">
                   <!--(click)="openBookDemoDialog()"-->
                   <mat-card class="cardWithShadow productcard overflow-hidden b-1 cursor-pointer" (click)="getviewDetails(productcard)">

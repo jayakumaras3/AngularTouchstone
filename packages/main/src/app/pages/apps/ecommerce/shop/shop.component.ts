@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectorRef,
+  ChangeDetectionStrategy,
   Component,
   HostListener,
   inject,
@@ -40,6 +41,7 @@ export interface Section {
   ],
   templateUrl: './shop.component.html',
   styleUrl: './shop.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush, // Prevent full re-renders
 })
 export class ShopComponent implements OnInit {
   viewMode: 'grid' | 'tile' = 'grid';
@@ -292,7 +294,7 @@ filterByCategory(category: string, event: MouseEvent): void {
   }
 
   /**
-   * Load more products on scroll
+   * Load more products on scroll - uses push to prevent full DOM re-render
    */
   private loadMoreProductsOnScroll(): void {
     if (this.isLoading || !this.hasMoreProducts()) {
@@ -300,25 +302,28 @@ filterByCategory(category: string, event: MouseEvent): void {
     }
 
     this.isLoading = true;
+    this.cdr.detectChanges(); // Show loading state
 
     const nextBatch = this.baseFilteredProducts.slice(
       this.currentDisplayIndex,
       this.currentDisplayIndex + this.scrollLoadCount
     );
 
-    // Add small delay to simulate loading (optional)
-    setTimeout(() => {
-      this.filteredCards = [...this.filteredCards, ...nextBatch];
+    // Use requestAnimationFrame for smoother DOM updates
+    requestAnimationFrame(() => {
+      // Push items instead of creating new array to prevent flicker
+      nextBatch.forEach(item => this.filteredCards.push(item));
       this.currentDisplayIndex += nextBatch.length;
       this.isLoading = false;
       this.cdr.detectChanges();
-    }, 100);
+    });
   }
 
   /**
    * Reset and apply new filter/sort with lazy loading
+   * Only scrolls to top when user explicitly changes filters (not on scroll load)
    */
-    private applyFilterAndReset(data: Element[]): void {
+    private applyFilterAndReset(data: Element[], shouldScrollToTop: boolean = true): void {
       this.baseFilteredProducts = [...data];
       this.currentDisplayIndex = 0;
 
@@ -337,7 +342,10 @@ filterByCategory(category: string, event: MouseEvent): void {
         this.loadInitialProducts();
       }
 
-      this.scrollToTop();
+      // Only scroll to top when user explicitly changes filters
+      if (shouldScrollToTop) {
+        this.scrollToTop();
+      }
     }
 
   /**
@@ -589,6 +597,11 @@ filterByCategory(category: string, event: MouseEvent): void {
   // Get remaining products count (for debugging)
   getRemainingProductsCount(): number {
     return Math.max(0, this.baseFilteredProducts.length - this.currentDisplayIndex);
+  }
+
+  // TrackBy function for product cards to prevent DOM recreation
+  trackByProductId(index: number, product: Element): number {
+    return product.id;
   }
 
   // Get current scroll percentage (for debugging)
