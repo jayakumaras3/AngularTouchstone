@@ -98,7 +98,7 @@ $transition-medium: 0.3s ease;
 
 // Categories Section
 .sme-categories-section {
-  background: linear-gradient(180deg, $bg-gradient-start 0%, $bg-gradient-end 100%);
+  background: var(--mat-sys-surface-bright) !important;
   padding: 60px 24px 80px;
   min-height: calc(100vh - 300px);
 }
