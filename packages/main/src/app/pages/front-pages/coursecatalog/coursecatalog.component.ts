@@ -5,6 +5,7 @@ import { FooterComponent } from '../footer/footer.component';
 import { Element, PRODUCT_DATA } from '../../apps/ecommerce/ecommerceData';
 import { ProductDataService } from '../../../services/product-data.service';
 import { ProductService } from '../../../services/apps/product/product.service';
+import { NavService } from '../../../services/nav.service';
 
 type Course = { id: number; title: string; author?: string; duration?: string; product: Element };
 type SubCategory = { name: string; courses: Course[] };
@@ -34,6 +35,7 @@ export class CourseCatalogComponent {
   constructor(
     private readonly productDataService: ProductDataService,
     private readonly productService: ProductService,
+    private readonly navService: NavService,
     private readonly router: Router
   ) {}
 
@@ -88,9 +90,11 @@ export class CourseCatalogComponent {
 
   /**
    * Navigate to course details page
-   * Reuses the same navigation logic as the shop component
+   * Sets referrer URL for proper back navigation
    */
   navigateToCourseDetails(course: Course): void {
+    // Store current URL as referrer for back navigation
+    this.navService.setReferrerUrl(this.router.url);
     this.productService.setProduct(course.product);
     this.router.navigate(['/coursedetails']);
   }

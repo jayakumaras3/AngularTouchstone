@@ -16,6 +16,7 @@ import { DeleteDialogComponent } from '../../delete-dialog/delete-dialog.compone
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProductService } from '../../../../services/apps/product/product.service';
+import { NavService } from '../../../../services/nav.service';
 import { Element, PRODUCT_DATA } from '../ecommerceData';
 import { FooterComponent } from '../../../front-pages/footer/footer.component';
 import { PopupwindowComponent } from '../../../front-pages/popupwindow/popupwindow.component';
@@ -73,6 +74,7 @@ trackTileRows(index: number, item: any) {
   private cdr = inject(ChangeDetectorRef);
   private _snackBar = inject(MatSnackBar);
   private productService = inject(ProductService);
+  private navService = inject(NavService);
   private productDataService = inject(ProductDataService);
   private mediaMatcher: MediaQueryList = matchMedia(`(max-width: 1199px)`);
   isMobileView = false;
@@ -550,6 +552,8 @@ filterByCategory(category: string, event: MouseEvent): void {
   }
 
   getviewDetails(productcardDetails: Element): void {
+    // Store current URL as referrer for back navigation
+    this.navService.setReferrerUrl(this.router.url);
     this.productService.setProduct(productcardDetails);
     this.router.navigate(['/coursedetails']);
   }

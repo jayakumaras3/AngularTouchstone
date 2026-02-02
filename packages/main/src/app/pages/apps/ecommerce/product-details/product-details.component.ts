@@ -5,6 +5,7 @@ import { MaterialModule } from 'src/app/material.module';
 import { IconModule } from 'src/app/icon/icon.module';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { ProductService } from 'src/app/services/apps/product/product.service';
+import { NavService } from 'src/app/services/nav.service';
 import { PRODUCT_DATA } from '../ecommerceData';
 import { FooterComponent } from '../../../front-pages/footer/footer.component';
 import { PopupwindowComponent } from '../../../front-pages/popupwindow/popupwindow.component';
@@ -47,6 +48,7 @@ export class ProductDetailsComponent implements AfterViewInit {
     
     readonly dialog = inject(MatDialog);
     private router = inject(Router);
+    private navService = inject(NavService);
     private destroyRef = inject(DestroyRef);
     private mediaMatcher = inject(MediaMatcher);
    
@@ -239,7 +241,8 @@ hasMatchingCategories(): boolean {
 
   // ✅ Utilities
   getBack(): void {
-    this.router.navigate(['/catalog']);
+    const previousUrl = this.navService.getPreviousUrl('/catalog');
+    this.router.navigateByUrl(previousUrl);
   }
 
 
