@@ -1,0 +1,42 @@
+<!-- SME Course Catalog - Hero Section -->
+<section class="sme-hero">
+  <div class="hero-content">
+    <h1 class="hero-title">Course Catalog for Small & Medium Enterprises</h1>
+    <p class="hero-subtitle">Practical, job-ready learning designed for growing businesses.</p>
+  </div>
+</section>
+
+<!-- Category Tiles Grid -->
+<section class="sme-categories-section">
+  <div class="categories-grid">
+    <div 
+      *ngFor="let category of categories" 
+      class="category-tile"
+      [style.--tile-color]="category.color"
+      (click)="navigateToCategory(category.id)"
+      tabindex="0"
+      (keydown.enter)="navigateToCategory(category.id)"
+      role="button"
+      [attr.aria-label]="'View ' + category.title + ' courses'">
+      
+      <div class="tile-icon-wrapper" [style.background]="category.color + '15'">
+        <i-tabler [name]="category.icon" class="tile-icon" [style.color]="category.color"></i-tabler>
+      </div>
+      
+      <div class="tile-content">
+        <h3 class="tile-title">{{ category.title }}</h3>
+        <p class="tile-description">{{ category.focus }}</p>
+        <span class="tile-count">{{ getCourseCount(category) }} courses</span>
+      </div>
+      
+      <div class="tile-arrow">
+        <i-tabler name="chevron-right" class="arrow-icon"></i-tabler>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<div class="footer">
+  <app-footer></app-footer>
+</div>

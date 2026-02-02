@@ -1,0 +1,75 @@
+<!-- SME Category Page -->
+<ng-container *ngIf="category">
+  <!-- Header with Back Button -->
+  <section class="category-hero" [style.--category-color]="category.color">
+    <div class="hero-container">
+      <button class="back-button" (click)="navigateBack()">
+        <i-tabler name="arrow-left" class="back-icon"></i-tabler>
+        <span>Back to Categories</span>
+      </button>
+      
+      <div class="hero-content">
+        <div class="hero-icon-wrapper">
+          <i-tabler [name]="category.icon" class="hero-icon"></i-tabler>
+        </div>
+        <div class="hero-text">
+          <h1 class="hero-title">{{ category.title }}</h1>
+          <p class="hero-focus">{{ category.focus }}</p>
+          <span class="hero-count">{{ category.courses.length }} courses available</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Course Groups -->
+  <section class="courses-section">
+    <div class="courses-container">
+      <!-- Loading State -->
+      <div *ngIf="isLoading" class="loading-state">
+        <div class="loading-spinner"></div>
+        <p>Loading courses...</p>
+      </div>
+
+      <!-- Course Groups -->
+      <ng-container *ngIf="!isLoading">
+        <div *ngFor="let group of groupedCourses" class="course-group">
+          <h2 class="group-title">{{ group.groupName }}</h2>
+          
+          <div class="courses-grid">
+            <div 
+              *ngFor="let course of group.courses" 
+              class="course-card"
+              (click)="navigateToCourse(course)"
+              tabindex="0"
+              (keydown.enter)="navigateToCourse(course)"
+              role="button"
+              [attr.aria-label]="'View course: ' + course.title">
+              
+              <div class="card-header">
+                <span class="level-badge" [ngClass]="getLevelBadgeClass(course.level)">
+                  {{ getLevelLabel(course.level) }}
+                </span>
+              </div>
+              
+              <div class="card-content">
+                <h3 class="course-title">{{ course.title }}</h3>
+              </div>
+              
+              <div class="card-footer">
+                <span class="view-course">
+                  View Course
+                  <i-tabler name="arrow-right" class="arrow-icon"></i-tabler>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </section>
+</ng-container>
+
+<!-- Footer -->
+<div class="footer">
+  <app-footer></app-footer>
+</div>
