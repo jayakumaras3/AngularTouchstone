@@ -80,6 +80,7 @@ trackTileRows(index: number, item: any) {
   private productDataService = inject(ProductDataService);
   private mediaMatcher: MediaQueryList = matchMedia(`(max-width: 1199px)`);
   isMobileView = false;
+  sidebarOpen = false; // For mobile sidebar toggle
   languageCounts: { [key: string]: number } = {};
 
   // ========================
@@ -143,6 +144,15 @@ trackTileRows(index: number, item: any) {
       this.selectedPrice !== 'all' ||
       this.searchText.trim() !== ''
     );
+  }
+
+  // TrackBy functions to prevent unnecessary re-rendering
+  trackByFolderName(index: number, folder: Section): string {
+    return folder.name;
+  }
+
+  trackByLanguageValue(index: number, lang: { label: string; value: string }): string {
+    return lang.value;
   }
   priceOptions = [
     { label: 'All', value: 'all' },
@@ -397,7 +407,7 @@ filterByCategory(category: string, event: MouseEvent): void {
         (card.categories && card.categories.join(' ').toLowerCase().includes(text)) ||
         (card.skill && card.skill.toLowerCase().includes(text))
     );
-    this.applyFilterAndReset(results);
+    this.applyFilterAndReset(results, false); // Don't scroll on search
   }
 
   getCategory(name: string): void {
@@ -413,7 +423,7 @@ filterByCategory(category: string, event: MouseEvent): void {
       );
     }
 
-    this.applyFilterAndReset(results);
+    this.applyFilterAndReset(results, false); // Don't scroll on filter click
   }
 
   getSorted(name: string): void {
@@ -452,12 +462,12 @@ filterByCategory(category: string, event: MouseEvent): void {
     const filterValue = language.trim().toLowerCase();
 
     if (filterValue === 'all') {
-      this.applyFilterAndReset(this.allProducts);
+      this.applyFilterAndReset(this.allProducts, false); // Don't scroll on filter click
     } else {
       const results = this.allProducts.filter(
         (card) => (card.language?.trim().toLowerCase() || '') === filterValue
       );
-      this.applyFilterAndReset(results);
+      this.applyFilterAndReset(results, false); // Don't scroll on filter click
     }
   }
 
@@ -522,7 +532,7 @@ filterByCategory(category: string, event: MouseEvent): void {
       }
 
   scrollToTop(): void { 
-    window.scrollTo({ top: 0, behavior: 'smooth' }); 
+    window.scrollTo({ top: 0, behavior: 'instant' }); 
   }
 
   getProductList(): void {

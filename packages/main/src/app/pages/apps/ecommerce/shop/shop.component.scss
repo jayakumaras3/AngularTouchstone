@@ -1,36 +1,95 @@
 // ============================================
-// Filter Panel Enhancement Styles
+// NEW FLEXBOX CATALOG LAYOUT
 // ============================================
-::ng-deep .mail-sidebar {
-  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%) !important;
-  border-right: 1px solid #e2e8f0 !important;
-  padding-bottom: 20px;
+
+// Main Layout Container
+.catalog-layout-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 12px 20px;
+}
+
+.catalog-card {
+  width: 100%;
   overflow: visible !important;
 }
 
-.filter-scrollbar {
-  overflow: visible !important;
+// Flex Row Container - Sidebar + Content as siblings
+.catalog-flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start; // CRITICAL: Top alignment
+  gap: 0;
+  width: 100%;
+}
+
+// Left Sidebar
+.catalog-sidebar {
+  width: 240px;
+  min-width: 240px;
+  flex-shrink: 0;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  border-right: 1px solid #e2e8f0;
+  padding: 12px 0 20px 0;
   
-  ::ng-deep {
-    ng-scrollbar {
-      overflow: visible !important;
-    }
+  @media (max-width: 991px) {
+    position: fixed;
+    top: 0;
+    left: -280px;
+    height: 100vh;
+    z-index: 1000;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.15);
+    transition: left 0.3s ease;
+    overflow-y: auto;
     
-    .ng-scroll-viewport {
-      overflow-y: auto !important;
-      overflow-x: visible !important;
+    &.sidebar-open {
+      left: 0;
     }
   }
 }
 
+.sidebar-close-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 10;
+}
+
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 999;
+}
+
+// Right Main Content
+.catalog-main-content {
+  flex: 1;
+  min-width: 0; // Prevent flex item overflow
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+}
+
+// ============================================
+// Filter Panel Enhancement Styles
+// ============================================
+
 // Filter Section Container
 .filter-section {
-  margin-bottom: 24px;
-  padding-top: 20px;
+  margin-bottom: 16px;
+  padding-top: 12px;
   border-top: 1px solid #e2e8f0;
+  contain: layout style paint;
+  transform: translateZ(0);
+  position: relative;
+  isolation: isolate;
 
   &:first-child {
-    padding-top: 16px;
+    padding-top: 12px;
     border-top: none;
   }
 }
@@ -60,27 +119,33 @@
 
 .filter-content {
   padding: 0 12px;
+  transform: translateZ(0); // Hardware acceleration
 
   .mat-mdc-nav-list {
     padding: 0;
+    transform: translateZ(0);
   }
 
   .mat-mdc-list-item {
     border-radius: 8px !important;
     margin: 4px 0 !important;
     padding: 8px 12px !important;
-    transition: all 0.2s ease !important;
+    transition: background-color 0.2s ease, transform 0.2s ease !important; // Only transition specific properties
     min-height: 40px !important;
     height: auto !important;
+    will-change: auto; // Prevent unnecessary GPU layers
+    backface-visibility: hidden; // Prevent flicker
+    transform: translateZ(0); // Hardware acceleration
 
     &:hover:not(.bg-primary) {
       background: #f1f5f9 !important;
-      transform: translateX(2px);
+      transform: translateX(2px) translateZ(0);
     }
 
     &.bg-primary {
       background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important;
       box-shadow: 0 2px 8px rgba(59, 130, 246, 0.25);
+      transform: translateX(0) translateZ(0); // Reset transform when active
     }
   }
 }
@@ -90,7 +155,10 @@
   cursor: pointer;
   padding: 10px 12px !important;
   border-radius: 8px;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease !important; // Only transition background
+  will-change: auto;
+  backface-visibility: hidden; // Prevent flicker
+  transform: translateZ(0); // Hardware acceleration
 
   &:hover:not(.active-lang) {
     background: #f1f5f9 !important;
@@ -133,13 +201,35 @@
 
 // Reset Filters Button Container
 .reset-filter-container {
-  padding: 24px 16px 20px;
   display: flex;
   justify-content: center;
   border-top: 1px solid #e2e8f0;
   margin-top: 24px;
-  animation: slideDown 0.3s ease;
-  overflow: visible;
+  padding: 0;
+  max-height: 84px;
+  transition: max-height 0.3s ease, padding 0.3s ease, margin 0.3s ease, opacity 0.3s ease;
+  transform: translateZ(0); // Hardware acceleration
+  backface-visibility: hidden; // Prevent flicker
+  overflow: hidden;
+  
+  &:not(.hidden) {
+    padding: 24px 16px 20px;
+    max-height: 84px;
+  }
+  
+  &.hidden {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    max-height: 0;
+    padding: 0;
+    margin: 0;
+    border: none;
+    
+    .reset-filter-btn {
+      visibility: hidden;
+    }
+  }
 }
 
 @keyframes slideDown {
@@ -793,29 +883,20 @@ mat-list-item span[matListItemTitle] {
   overflow: visible;
   line-height: 1.4;
 }
-.home-page-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 40px 20px; /* spacing top-bottom */
+
+// Compact banner with minimal spacing
+.banner-compact {
+  padding: 50px 0;
 }
 
-.bgwidth {
-  width: 100%;
-  max-width: 1400px; /* Limit content width */
-  margin: 0 auto; /* Center horizontally */
-}
-
+// OLD STYLES - NO LONGER NEEDED (mat-sidenav removed)
+// Keeping mat-card style for backward compatibility
 mat-card.cardWithShadow {
   width: 100%;
 }
 
-mat-sidenav-container.email-box {
-  width: 100%;
-}
-
 .spacing-top-bottom {
-  padding: 40px 0;
+  padding: 20px 0;
 }
 /* Keep spacing neat */
 mat-list-item {
@@ -843,7 +924,7 @@ mat-list-item {
  /*max-width: 1400px;*/
 }
 .spacing-top-bottom{
-    padding: 40px 0;
+    padding: 20px 0; /* Reduced from 40px */
 }
 .img-wrapper {
   position: relative;
@@ -951,20 +1032,23 @@ mat-list-item {
 .top-toolbar-container {
   display: flex;
   align-items: center;
-  gap: 24px;
-  padding: 20px 24px;
+  gap: 20px;
+  padding: 12px 16px;
   background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
-  border-radius: 16px;
+  border-radius: 12px;
   box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
   border: 1px solid #e2e8f0;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
+  margin-top: 0 !important; // Prevent top margin issues
   position: relative;
+  width: 100%; // Ensure fills width
+  box-sizing: border-box; 
 
   @media (max-width: 991px) {
     flex-direction: column;
     align-items: stretch;
-    gap: 16px;
-    padding: 16px;
+    gap: 12px;
+    padding: 12px;
   }
 }
 

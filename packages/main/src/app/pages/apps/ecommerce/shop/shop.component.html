@@ -1,103 +1,87 @@
-<div class="banner-section bg-light-primary spacing-top-bottom">
+<div class="banner-section bg-light-primary banner-compact">
   <div class="container">
-
     <h2 class="text-center f-s-40 section-sub-title lh-normal">500+ Courses to Sharpen On-the-Job Performance</h2>
-    <!-- <p class="text-center">Enjoy premium features with a plan that fits your business</p> -->
- 
   </div>
-</div> 
-<div class="home-page header-container ">
-  <div class=" home-page-header spacing-top-bottom bgwidth ">
-<mat-card class="cardWithShadow overflow-hidden position-relative ">
-  <mat-sidenav-container class="email-box">
-    <mat-sidenav #mailnav [mode]="isOver() ? 'over' : 'side'" [opened]="!isOver()" class="mail-sidebar">
-      <ng-scrollbar class="position-relative filter-scrollbar" style="height: 100%; overflow: visible;">
-       <!-- <div class="p-16">
-          <button mat-flat-button color="primary" class="w-100 btn-block" (click)="getAddProductRoute()">
-            Add New Product
+</div>
+
+<!-- Main Catalog Layout - Simple Flexbox -->
+<div class="catalog-layout-container">
+  <mat-card class="cardWithShadow catalog-card">
+    <div class="catalog-flex-row">
+      
+      <!-- LEFT: Filter Sidebar -->
+      <aside class="catalog-sidebar" [class.sidebar-open]="sidebarOpen" [class.sidebar-mobile]="isOver()">
+        <!-- Mobile Close Button -->
+        @if(isOver()) {
+          <button mat-icon-button class="sidebar-close-btn" (click)="sidebarOpen = false">
+            <mat-icon>close</mat-icon>
           </button>
-        </div> -->
+        }
+        
         <div class="filter-section">
           <h5 class="filter-section-title">FILTER BY CATEGORY</h5>
-        <div class="filter-content">
-          <mat-nav-list>
-            @for(folder of folders; track folder){
-            <mat-list-item role="listitem" class="m-b-2 gap-10 active-primary" [ngClass]="{
-                'bg-primary': selectedCategory === folder.name
-              }" (click)="getCategory(folder.name)">
-              <span matListItemIcon class="m-r-0">
-                <i-tabler name="{{ folder.icon }}" class="icon-18"></i-tabler>
-              </span>
-              <span matListItemTitle class="f-w-400 f-s-14">{{
-                folder.name
-                }}</span>
-            </mat-list-item>
-            }
-          </mat-nav-list>
-        </div>
+          <div class="filter-content">
+            <mat-nav-list>
+              @for(folder of folders; track trackByFolderName($index, folder)){
+                <mat-list-item role="listitem" class="m-b-2 gap-10 active-primary" [ngClass]="{
+                    'bg-primary': selectedCategory === folder.name
+                  }" (click)="getCategory(folder.name); $event.stopPropagation()">
+                  <span matListItemIcon class="m-r-0">
+                    <i-tabler name="{{ folder.icon }}" class="icon-18"></i-tabler>
+                  </span>
+                  <span matListItemTitle class="f-w-400 f-s-14">{{ folder.name }}</span>
+                </mat-list-item>
+              }
+            </mat-nav-list>
+          </div>
         </div>
 
         <div class="filter-section">
           <h5 class="filter-section-title">BY LANGUAGES</h5>
-        <div class="filter-content">
-          <mat-radio-group [(ngModel)]="selectedLanguage" class="m-b-20">
-            @for (lang of languageOptions; track lang.value) {
-              <mat-list-item style="cursor: pointer"
-                role="listitem"
-                class="m-b-1 gap-10 language-item"
-                [ngClass]="{ 'active-lang': selectedLanguage === lang.value }"
-                (click)="getLanguageFilter(lang.value)"
-              >
-                <div class="lang-row">
-                  <span class="lang-label">{{ lang.label | titlecase }}</span>
-                  <span class="lang-count">({{ languageCounts[lang.label] || 0 }})</span>
-                </div>
-              </mat-list-item>
-            }
-          </mat-radio-group>
-        </div>
+          <div class="filter-content">
+            <mat-radio-group [(ngModel)]="selectedLanguage" class="m-b-20">
+              @for (lang of languageOptions; track trackByLanguageValue($index, lang)) {
+                <mat-list-item style="cursor: pointer"
+                  role="listitem"
+                  class="m-b-1 gap-10 language-item"
+                  [ngClass]="{ 'active-lang': selectedLanguage === lang.value }"
+                  (click)="getLanguageFilter(lang.value); $event.stopPropagation()">
+                  <div class="lang-row">
+                    <span class="lang-label">{{ lang.label | titlecase }}</span>
+                    <span class="lang-count">({{ languageCounts[lang.label] || 0 }})</span>
+                  </div>
+                </mat-list-item>
+              }
+            </mat-radio-group>
+          </div>
         </div>
 
         <!-- Reset Filters Button -->
-        @if(hasActiveFilters) {
-          <div class="reset-filter-container">
-            <button 
-              mat-stroked-button
-              class="reset-filter-btn"
-              (click)="getRestFilter()">
-              <mat-icon>restart_alt</mat-icon>
-              <span>Reset Filters</span>
-            </button>
-          </div>
-        }
+        <div class="reset-filter-container" [class.hidden]="!hasActiveFilters">
+          <button 
+            mat-stroked-button
+            class="reset-filter-btn"
+            (click)="getRestFilter()"
+            [disabled]="!hasActiveFilters">
+            <mat-icon>restart_alt</mat-icon>
+            <span>Reset Filters</span>
+          </button>
+        </div>
+      </aside>
 
-        <!-- <h5 class="m-0 p-t-16 p-x-32 f-s-14 f-w-600 b-t-1">Sort By</h5>
-        <div class="p-16">
-          <mat-nav-list>
-            @for (note of notes; track note) {
-            <mat-list-item role="listitem" class="m-b-2 gap-10 active-primary"
-              [ngClass]="{ 'bg-primary': selectedSortBy === note.name }" (click)="getSorted(note.name)">
-              <span matListItemIcon class="m-r-0">
-                <i-tabler name="{{ note.icon }}" class="icon-18"></i-tabler>
-              </span>
-              <span matListItemTitle class="f-w-400 f-s-14">{{
-                note.name | titlecase
-                }}</span>
-            </mat-list-item>
-            }
-          </mat-nav-list>
-        </div> -->
- 
-      </ng-scrollbar>
-    </mat-sidenav>
-    <mat-sidenav-content>
-      <div class="p-24">
+      <!-- Sidebar Overlay for Mobile -->
+      @if(isOver() && sidebarOpen) {
+        <div class="sidebar-overlay" (click)="sidebarOpen = false"></div>
+      }
+
+      <!-- RIGHT: Main Content Column -->
+      <main class="catalog-main-content">
         <!-- Top Toolbar: Catalog Type + Search -->
         <div class="top-toolbar-container">
           <!-- Mobile Menu Button -->
-          @if(isMobileView){
+          @if(isOver()){
             <button mat-mini-fab class="bg-primary text-white mobile-menu-btn" aria-label="Toggle filters"
-              (click)="mailnav.toggle()">
+              (click)="sidebarOpen = !sidebarOpen">
               <i-tabler class="icon-18 d-flex" name="menu"></i-tabler>
             </button>
           }
@@ -183,8 +167,8 @@
           </div>
         </div>
       
-         <!-- GRID VIEW -->
-          <div *ngIf="viewMode === 'grid'" class="row">
+        <!-- GRID VIEW -->
+        <div *ngIf="viewMode === 'grid'" class="row">
             <!-- Loading State -->
             @if (isLoading) {
               <div class="col-12 text-center p-4 m-t-30">
@@ -378,18 +362,13 @@
           }
         </div>
 
-
-    
-
-      </div>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
-</mat-card>
-</div>
-</div>  
-
-  <div class="footer">
-    <div>
-      <app-footer></app-footer>
+      </main>
     </div>
+  </mat-card>
+</div>
+
+<div class="footer">
+  <div>
+    <app-footer></app-footer>
   </div>
+</div>
