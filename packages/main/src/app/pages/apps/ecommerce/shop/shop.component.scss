@@ -754,41 +754,106 @@ mat-list-item {
 }
 
 // ============================================
-// Catalog Type Navigation Section
+// Top Toolbar: Catalog Type + Search
 // ============================================
-.catalog-type-section {
-  padding: 24px 20px !important;
-  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
-}
-
-.catalog-type-title {
-  color: #3b82f6;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  font-size: 12px !important;
-  margin-bottom: 16px;
-}
-
-.catalog-nav-tiles {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.catalog-nav-tile {
+.top-toolbar-container {
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 14px 16px;
-  background: #ffffff;
+  gap: 24px;
+  padding: 20px 24px;
+  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
   border: 1px solid #e2e8f0;
+  margin-bottom: 24px;
+  position: relative;
+
+  @media (max-width: 991px) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    padding: 16px;
+  }
+}
+
+.mobile-menu-btn {
+  position: absolute !important;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+
+  @media (max-width: 991px) {
+    position: relative !important;
+    left: 0;
+    top: 0;
+    transform: none;
+    align-self: flex-start;
+  }
+}
+
+// Catalog Type Toolbar Section
+.catalog-type-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+  min-width: 0;
+
+  &.mobile {
+    padding-left: 60px;
+
+    @media (max-width: 991px) {
+      padding-left: 0;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+  }
+
+  @media (max-width: 991px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
+
+.catalog-type-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #3b82f6;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+.catalog-type-tabs {
+  display: flex;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+
+  @media (max-width: 991px) {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+.catalog-tab {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
   border-radius: 12px;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
   position: relative;
   overflow: hidden;
+  flex: 1;
+  min-width: 0;
 
   &::before {
     content: '';
@@ -796,60 +861,54 @@ mat-list-item {
     left: 0;
     top: 0;
     bottom: 0;
-    width: 4px;
+    width: 3px;
     background: transparent;
     transition: background 0.25s ease;
-    border-radius: 0 4px 4px 0;
   }
 
   &:hover {
     border-color: #3b82f6;
     background: #f8fafc;
-    transform: translateX(4px);
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.12);
+    transform: translateY(-2px);
 
-    .tile-arrow {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    .tile-icon-box {
-      transform: scale(1.05);
+    .tab-icon-box {
+      transform: scale(1.08);
     }
   }
 
   &.active {
     border-color: #3b82f6;
     background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    box-shadow: 0 4px 16px rgba(59, 130, 246, 0.15);
 
     &::before {
       background: #3b82f6;
     }
 
-    .tile-label {
+    .tab-title {
       color: #1e40af;
       font-weight: 600;
     }
 
-    .tile-icon-box {
+    .tab-icon-box {
       background: #3b82f6;
       
       i-tabler {
         color: #ffffff;
       }
     }
+  }
 
-    .tile-arrow {
-      color: #3b82f6;
-      opacity: 1;
-    }
+  @media (max-width: 991px) {
+    width: 100%;
   }
 }
 
-.tile-icon-box {
-  width: 44px;
-  height: 44px;
-  min-width: 44px;
+.tab-icon-box {
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -870,7 +929,7 @@ mat-list-item {
   }
 }
 
-.catalog-nav-tile.active .tile-icon-box.sme {
+.catalog-tab.active .tab-icon-box.sme {
   background: #f59e0b;
 
   i-tabler {
@@ -878,29 +937,250 @@ mat-list-item {
   }
 }
 
-.tile-info {
-  flex: 1;
+.tab-content {
   display: flex;
   flex-direction: column;
   gap: 2px;
+  min-width: 0;
 }
 
-.tile-label {
-  font-size: 14px;
+.tab-title {
+  font-size: 13px;
   font-weight: 500;
   color: #1e293b;
   line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.tile-desc {
-  font-size: 11px;
+.tab-subtitle {
+  font-size: 10px;
   color: #64748b;
   line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.tile-arrow {
-  color: #94a3b8;
-  opacity: 0;
-  transform: translateX(-8px);
-  transition: all 0.25s ease;
+// Search Toolbar Section
+.search-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: flex-end;
+
+  &.mobile {
+    @media (max-width: 991px) {
+      flex-direction: column;
+      width: 100%;
+      gap: 12px;
+    }
+  }
+
+  @media (max-width: 991px) {
+    width: 100%;
+    flex-direction: column;
+  }
 }
+
+.view-toggle-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 4px;
+
+  .view-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: #f1f5f9;
+    }
+  }
+
+  @media (max-width: 991px) {
+    align-self: center;
+  }
+}
+
+.search-field {
+  width: 320px;
+  
+  ::ng-deep {
+    .mat-mdc-form-field-flex {
+      background: #ffffff;
+      border-radius: 10px;
+    }
+
+    .mat-mdc-text-field-wrapper {
+      padding: 0;
+    }
+
+    .mat-mdc-form-field-infix {
+      padding: 10px 0;
+      min-height: 42px;
+    }
+  }
+
+  @media (max-width: 991px) {
+    width: 100%;
+  }
+}
+
+// ============================================
+// Catalog Type Navigation Section (OLD - REMOVED)
+// ============================================
+// .catalog-type-section {
+//   padding: 24px 20px !important;
+//   background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+// }
+
+// .catalog-type-title {
+//   color: #3b82f6;
+//   font-weight: 600;
+//   letter-spacing: 0.02em;
+//   text-transform: uppercase;
+//   font-size: 12px !important;
+//   margin-bottom: 16px;
+// }
+
+// .catalog-nav-tiles {
+//   display: flex;
+//   flex-direction: column;
+//   gap: 12px;
+// }
+
+// .catalog-nav-tile {
+//   display: flex;
+//   align-items: center;
+//   gap: 14px;
+//   padding: 14px 16px;
+//   background: #ffffff;
+//   border: 1px solid #e2e8f0;
+//   border-radius: 12px;
+//   cursor: pointer;
+//   transition: all 0.25s ease;
+//   text-decoration: none;
+//   position: relative;
+//   overflow: hidden;
+
+//   &::before {
+//     content: '';
+//     position: absolute;
+//     left: 0;
+//     top: 0;
+//     bottom: 0;
+//     width: 4px;
+//     background: transparent;
+//     transition: background 0.25s ease;
+//     border-radius: 0 4px 4px 0;
+//   }
+
+//   &:hover {
+//     border-color: #3b82f6;
+//     background: #f8fafc;
+//     transform: translateX(4px);
+//     box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+
+//     .tile-arrow {
+//       opacity: 1;
+//       transform: translateX(0);
+//     }
+
+//     .tile-icon-box {
+//       transform: scale(1.05);
+//     }
+//   }
+
+//   &.active {
+//     border-color: #3b82f6;
+//     background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+
+//     &::before {
+//       background: #3b82f6;
+//     }
+
+//     .tile-label {
+//       color: #1e40af;
+//       font-weight: 600;
+//     }
+
+//     .tile-icon-box {
+//       background: #3b82f6;
+      
+//       i-tabler {
+//         color: #ffffff;
+//       }
+//     }
+
+//     .tile-arrow {
+//       color: #3b82f6;
+//       opacity: 1;
+//     }
+//   }
+// }
+
+// .tile-icon-box {
+//   width: 44px;
+//   height: 44px;
+//   min-width: 44px;
+//   border-radius: 10px;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   background: #e0f2fe;
+//   transition: all 0.25s ease;
+
+//   i-tabler {
+//     color: #0284c7;
+//   }
+
+//   &.sme {
+//     background: #fef3c7;
+
+//     i-tabler {
+//       color: #d97706;
+//     }
+//   }
+// }
+
+// .catalog-nav-tile.active .tile-icon-box.sme {
+//   background: #f59e0b;
+
+//   i-tabler {
+//     color: #ffffff;
+//   }
+// }
+
+// .tile-info {
+//   flex: 1;
+//   display: flex;
+//   flex-direction: column;
+//   gap: 2px;
+// }
+
+// .tile-label {
+//   font-size: 14px;
+//   font-weight: 500;
+//   color: #1e293b;
+//   line-height: 1.3;
+// }
+
+// .tile-desc {
+//   font-size: 11px;
+//   color: #64748b;
+//   line-height: 1.3;
+// }
+
+// .tile-arrow {
+//   color: #94a3b8;
+//   opacity: 0;
+//   transform: translateX(-8px);
+//   transition: all 0.25s ease;
+// }

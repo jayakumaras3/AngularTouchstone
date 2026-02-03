@@ -72,42 +72,6 @@
           </mat-nav-list>
         </div> -->
 
-        <!-- Catalog Type Navigation Section -->
-        <div class="catalog-type-section b-t-1 p-20">
-          <h5 class="catalog-type-title m-0 m-b-16 f-s-14 f-w-600">Catalog Type</h5>
-          <div class="catalog-nav-tiles">
-            <!-- Course Catalog Tile -->
-            <a 
-              class="catalog-nav-tile"
-              [class.active]="isActiveRoute('coursecatalog')"
-              routerLink="/coursecatalog">
-              <div class="tile-icon-box">
-                <i-tabler name="books" class="icon-22"></i-tabler>
-              </div>
-              <div class="tile-info">
-                <span class="tile-label">Course Catalog</span>
-                <span class="tile-desc">Full catalog with filters</span>
-              </div>
-              <i-tabler name="chevron-right" class="tile-arrow icon-18"></i-tabler>
-            </a>
-
-            <!-- SME Catalog Tile -->
-            <a 
-              class="catalog-nav-tile"
-              [class.active]="isActiveRoute('sme-catalog')"
-              routerLink="/sme-catalog">
-              <div class="tile-icon-box sme">
-                <i-tabler name="building-store" class="icon-22"></i-tabler>
-              </div>
-              <div class="tile-info">
-                <span class="tile-label">SME Catalog</span>
-                <span class="tile-desc">Curated for growing businesses</span>
-              </div>
-              <i-tabler name="chevron-right" class="tile-arrow icon-18"></i-tabler>
-            </a>
-          </div>
-        </div>
-
         <div class="b-t-1 p-20">
           <button 
               mat-stroked-button
@@ -122,68 +86,95 @@
     </mat-sidenav>
     <mat-sidenav-content>
       <div class="p-24">
-        <div class="d-flex align-items-center justify-content-between m-b-24">
-          @if(!isMobileView){
-         <!-- <h6 class="f-s-20 f-w-600">500+ Courses to Sharpen Skills and On-the-Job Performance</h6>-->
-          } @if(isMobileView){
-          <button mat-mini-fab class="bg-primary text-white" aria-label="Example icon button with a delete icon"
-            (click)="mailnav.toggle()">
-            <i-tabler class="icon-18 d-flex" name="menu"></i-tabler>
-          </button>
+        <!-- Top Toolbar: Catalog Type + Search -->
+        <div class="top-toolbar-container">
+          <!-- Mobile Menu Button -->
+          @if(isMobileView){
+            <button mat-mini-fab class="bg-primary text-white mobile-menu-btn" aria-label="Toggle filters"
+              (click)="mailnav.toggle()">
+              <i-tabler class="icon-18 d-flex" name="menu"></i-tabler>
+            </button>
           }
 
-       <div class="flex-grow-1 d-flex justify-content-end align-items-center gap-2">
-  
-  <!-- View Toggle Buttons -->
-          <div class="view-toggle d-flex align-items-center gap-1 m-r-8">
-            <button
-              mat-icon-button
-              [color]="viewMode === 'grid' ? 'primary' : ''"
-              (click)="setViewMode('grid')"
-              matTooltip="Grid View"
-            >
-              <mat-icon>grid_view</mat-icon>
-            </button>
+          <!-- Catalog Type Section (Left) -->
+          <div class="catalog-type-toolbar" [class.mobile]="isMobileView">
+            <div class="catalog-type-label">CATALOG TYPE</div>
+            <div class="catalog-type-tabs">
+              <!-- Course Catalog Tab -->
+              <a 
+                class="catalog-tab"
+                [class.active]="isActiveRoute('coursecatalog')"
+                routerLink="/coursecatalog">
+                <div class="tab-icon-box">
+                  <i-tabler name="books" class="icon-20"></i-tabler>
+                </div>
+                <div class="tab-content">
+                  <span class="tab-title">Course Catalog</span>
+                  <span class="tab-subtitle">Full catalog with filters</span>
+                </div>
+              </a>
 
-            <button
-              mat-icon-button
-              [color]="viewMode === 'tile' ? 'primary' : ''"
-              (click)="setViewMode('tile')"
-              matTooltip="Tile View"
-            >
-              <mat-icon>view_list</mat-icon>
-            </button>
+              <!-- SME Catalog Tab -->
+              <a 
+                class="catalog-tab sme-tab"
+                [class.active]="isActiveRoute('sme-catalog')"
+                routerLink="/sme-catalog">
+                <div class="tab-icon-box sme">
+                  <i-tabler name="building-store" class="icon-20"></i-tabler>
+                </div>
+                <div class="tab-content">
+                  <span class="tab-title">SME Catalog</span>
+                  <span class="tab-subtitle">Curated for growing businesses</span>
+                </div>
+              </a>
+            </div>
           </div>
 
-          <!-- Existing Search Field -->
-          <mat-form-field
-            class="hide-hint"
-            appearance="outline"
-            [ngClass]="{
-              'w-30': !isMobileView,
-              searchBar: isMobileView
-            }"
-          >
-            <mat-icon matPrefix>search</mat-icon>
-            <input
-              matInput
-              placeholder="Search Courses"
-              [(ngModel)]="searchText"
-              (ngModelChange)="filterCards()"
-            />
-            @if (searchText) {
+          <!-- Search Area (Right) -->
+          <div class="search-toolbar" [class.mobile]="isMobileView">
+            <!-- View Toggle Buttons -->
+            <div class="view-toggle-group">
               <button
-                matSuffix
                 mat-icon-button
-                aria-label="Clear"
-                (click)="getProductList()"
-              >
-                <mat-icon>close</mat-icon>
+                [color]="viewMode === 'grid' ? 'primary' : ''"
+                (click)="setViewMode('grid')"
+                matTooltip="Grid View"
+                class="view-btn">
+                <mat-icon>grid_view</mat-icon>
               </button>
-            }
-          </mat-form-field>
-        </div>
 
+              <button
+                mat-icon-button
+                [color]="viewMode === 'tile' ? 'primary' : ''"
+                (click)="setViewMode('tile')"
+                matTooltip="Tile View"
+                class="view-btn">
+                <mat-icon>view_list</mat-icon>
+              </button>
+            </div>
+
+            <!-- Search Field -->
+            <mat-form-field
+              class="search-field hide-hint"
+              appearance="outline">
+              <mat-icon matPrefix>search</mat-icon>
+              <input
+                matInput
+                placeholder="Search Courses"
+                [(ngModel)]="searchText"
+                (ngModelChange)="filterCards()"
+              />
+              @if (searchText) {
+                <button
+                  matSuffix
+                  mat-icon-button
+                  aria-label="Clear"
+                  (click)="getProductList()">
+                  <mat-icon>close</mat-icon>
+                </button>
+              }
+            </mat-form-field>
+          </div>
         </div>
       
          <!-- GRID VIEW -->
