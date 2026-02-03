@@ -11,7 +11,7 @@
 <mat-card class="cardWithShadow overflow-hidden position-relative ">
   <mat-sidenav-container class="email-box">
     <mat-sidenav #mailnav [mode]="isOver() ? 'over' : 'side'" [opened]="!isOver()" class="mail-sidebar">
-      <ng-scrollbar class="position-relative" style="height: 100%">
+      <ng-scrollbar class="position-relative filter-scrollbar" style="height: 100%; overflow: visible;">
        <!-- <div class="p-16">
           <button mat-flat-button color="primary" class="w-100 btn-block" (click)="getAddProductRoute()">
             Add New Product
