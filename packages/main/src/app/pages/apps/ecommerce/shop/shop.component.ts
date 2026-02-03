@@ -134,6 +134,16 @@ trackTileRows(index: number, item: any) {
   ];
 
   selectedPrice: string = 'all';
+
+  // Computed property to check if any filters are active
+  get hasActiveFilters(): boolean {
+    return (
+      this.selectedCategory !== this.folders[0].name || // Not 'All'
+      this.selectedLanguage !== 'all' ||
+      this.selectedPrice !== 'all' ||
+      this.searchText.trim() !== ''
+    );
+  }
   priceOptions = [
     { label: 'All', value: 'all' },
     { label: '0 – 50', value: '0-50' },
@@ -491,6 +501,7 @@ filterByCategory(category: string, event: MouseEvent): void {
     this.isSearchTriggered = false;
 
     this.applyFilterAndReset(this.allProducts);
+    this.cdr.markForCheck(); // Trigger change detection to update button visibility
   }
     openBookDemoDialog() {
         // Prevent background scroll

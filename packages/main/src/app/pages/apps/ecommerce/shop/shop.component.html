@@ -17,8 +17,9 @@
             Add New Product
           </button>
         </div> -->
-        <h5 class="m-0 p-t-16 p-x-32 f-s-14 f-w-600">Filter by Category</h5>
-        <div class="p-14">
+        <div class="filter-section">
+          <h5 class="filter-section-title">FILTER BY CATEGORY</h5>
+        <div class="filter-content">
           <mat-nav-list>
             @for(folder of folders; track folder){
             <mat-list-item role="listitem" class="m-b-2 gap-10 active-primary" [ngClass]="{
@@ -34,8 +35,11 @@
             }
           </mat-nav-list>
         </div>
-      <h5 class="m-0 p-t-16 p-x-32 f-s-14 f-w-600 b-t-1">By Languages</h5>
-        <div class="p-16 pricing-section">
+        </div>
+
+        <div class="filter-section">
+          <h5 class="filter-section-title">BY LANGUAGES</h5>
+        <div class="filter-content">
           <mat-radio-group [(ngModel)]="selectedLanguage" class="m-b-20">
             @for (lang of languageOptions; track lang.value) {
               <mat-list-item style="cursor: pointer"
@@ -52,8 +56,20 @@
             }
           </mat-radio-group>
         </div>
+        </div>
 
-
+        <!-- Reset Filters Button -->
+        @if(hasActiveFilters) {
+          <div class="reset-filter-container">
+            <button 
+              mat-stroked-button
+              class="reset-filter-btn"
+              (click)="getRestFilter()">
+              <mat-icon>restart_alt</mat-icon>
+              <span>Reset Filters</span>
+            </button>
+          </div>
+        }
 
         <!-- <h5 class="m-0 p-t-16 p-x-32 f-s-14 f-w-600 b-t-1">Sort By</h5>
         <div class="p-16">
@@ -71,16 +87,6 @@
             }
           </mat-nav-list>
         </div> -->
-
-        <div class="b-t-1 p-20">
-          <button 
-              mat-stroked-button
-              class="w-100 m-y-20 border-primary"
-              color="primary"
-              (click)="getRestFilter()">
-            Reset Filters
-          </button>
-        </div>
  
       </ng-scrollbar>
     </mat-sidenav>
