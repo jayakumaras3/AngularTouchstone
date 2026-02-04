@@ -99,18 +99,9 @@ export class CourseCatalogComponent {
   }
 
   /**
-   * Navigate back to catalog with smart fallback logic
-   * - Uses browser history if available (Location.back())
-   * - Falls back to /catalog if history is not available
-   * - Ensures clean navigation without duplication
+   * Navigate back to catalog page
    */
   navigateBackToCatalog(): void {
-    // Check if we can use browser history
-    if (window.history.length > 1) {
-      this.location.back();
-    } else {
-      // Fallback to catalog route if no history
-      this.router.navigate(['/catalog']);
-    }
+    this.router.navigate(['/catalog']);
   }
 }
