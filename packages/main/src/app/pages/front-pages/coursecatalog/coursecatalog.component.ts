@@ -25,9 +25,8 @@ interface Category {
 })
 export class CourseCatalogComponent {
   private allProducts: Element[] = [];
-  
-  leftColumn: any[] = [];
-  rightColumns: any[] = [];
+
+  categories: Category[] = [];
   totalCourses: number = 0;
 
   mainTitle = 'Course Catalog';
@@ -44,9 +43,7 @@ export class CourseCatalogComponent {
   ngOnInit() {
     this.productDataService.getProducts({ bustCache: true }).subscribe((items: Element[]) => {
       this.allProducts = items;
-      const catalogData = this.mapProductDataToCatalog();
-      this.leftColumn = catalogData.length ? [catalogData[0]] : [];
-      this.rightColumns = catalogData.slice(1);
+      this.categories = this.mapProductDataToCatalog();
       this.totalCourses = this.allProducts.length;
     });
   }
