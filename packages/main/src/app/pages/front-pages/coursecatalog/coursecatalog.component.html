@@ -11,43 +11,47 @@
   </div>
 </section>
 
-<section class="cc-grid m-b-80" >
-  <!-- Left Column -->
-  <div class="cc-col">
-    <ng-container *ngFor="let cat of leftColumn">
-      <div class="cc-card">
-        <h2>{{ cat.title }} ({{ cat.count }})</h2>
-        <ng-container *ngFor="let sub of cat.subCategories">
-          <h3>{{ sub.name }}</h3>
-          <ul>
-            <li *ngFor="let c of sub.courses; let i = index" [style.--index]="i">
-              {{ c.title }}
-              <span *ngIf="c.duration" class="course-duration" (click)="navigateToCourseDetails(c)">({{ c.duration }})</span>
-            </li>
-          </ul>
-        </ng-container>
-      </div>
-    </ng-container>
-  </div>
+<!-- Full-width background section for grid content -->
+<section class="cc-grid-section">
+  <div class="cc-grid m-b-80">
+    <!-- Left Column -->
+    <div class="cc-col">
+      <ng-container *ngFor="let cat of leftColumn">
+        <div class="cc-card">
+          <h2>{{ cat.title }} ({{ cat.count }})</h2>
+          <ng-container *ngFor="let sub of cat.subCategories">
+            <h3>{{ sub.name }}</h3>
+            <ul>
+              <li *ngFor="let c of sub.courses; let i = index" [style.--index]="i">
+                {{ c.title }}
+                <span *ngIf="c.duration" class="course-duration" (click)="navigateToCourseDetails(c)">({{ c.duration }})</span>
+              </li>
+            </ul>
+          </ng-container>
+        </div>
+      </ng-container>
+    </div>
 
-  <!-- Right Column -->
-  <div class="cc-col">
-    <ng-container *ngFor="let cat of rightColumns">
-      <div class="cc-card">
-        <h2>{{ cat.title }} ({{ cat.count }})</h2>
-        <ng-container *ngFor="let sub of cat.subCategories">
-          <h3>{{ sub.name }}</h3>
-          <ul>
-            <li *ngFor="let c of sub.courses; let i = index" [style.--index]="i">
-              {{ c.title }}
-              <span *ngIf="c.duration" class="course-duration" (click)="navigateToCourseDetails(c)">({{ c.duration }})</span>
-            </li>
-          </ul>
-        </ng-container>
-      </div>
-    </ng-container>
+    <!-- Right Column -->
+    <div class="cc-col">
+      <ng-container *ngFor="let cat of rightColumns">
+        <div class="cc-card">
+          <h2>{{ cat.title }} ({{ cat.count }})</h2>
+          <ng-container *ngFor="let sub of cat.subCategories">
+            <h3>{{ sub.name }}</h3>
+            <ul>
+              <li *ngFor="let c of sub.courses; let i = index" [style.--index]="i">
+                {{ c.title }}
+                <span *ngIf="c.duration" class="course-duration" (click)="navigateToCourseDetails(c)">({{ c.duration }})</span>
+              </li>
+            </ul>
+          </ng-container>
+        </div>
+      </ng-container>
+    </div>
   </div>
 </section>
- <div class="footer">
-    <app-footer></app-footer>
-  </div>
+
+<div class="footer">
+  <app-footer></app-footer>
+</div>

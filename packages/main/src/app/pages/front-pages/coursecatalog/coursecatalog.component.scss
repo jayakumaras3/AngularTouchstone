@@ -159,13 +159,25 @@ button, .btn, .cc-button {
   }
 }
 
-// Grid Layout - Apply header offset to prevent overlap with fixed header
+// Grid Layout - Full-width background section
+.cc-grid-section {
+  width: 100%;
+  background: var(--mat-sys-primary-fixed-dim) !important;
+}
+
+// Grid Layout - Centered container with content
 .cc-grid {
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
-  padding: 4rem 1rem;
-  background: var(--mat-sys-primary-fixed-dim) !important;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 4rem 15px;
+
+  @media (max-width: 768px) {
+    padding: 4rem 12px;
+  }
 
   .cc-col {
     flex: 1 1 45%;
