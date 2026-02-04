@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FooterComponent } from '../footer/footer.component';
@@ -37,7 +37,8 @@ export class CourseCatalogComponent {
     private readonly productDataService: ProductDataService,
     private readonly productService: ProductService,
     private readonly navService: NavService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly location: Location
   ) {}
 
   ngOnInit() {
@@ -101,9 +102,18 @@ export class CourseCatalogComponent {
   }
 
   /**
-   * Navigate back to main course catalog
+   * Navigate back to catalog with smart fallback logic
+   * - Uses browser history if available (Location.back())
+   * - Falls back to /catalog if history is not available
+   * - Ensures clean navigation without duplication
    */
   navigateBackToCatalog(): void {
-    this.router.navigate(['/catalog']);
+    // Check if we can use browser history
+    if (window.history.length > 1) {
+      this.location.back();
+    } else {
+      // Fallback to catalog route if no history
+      this.router.navigate(['/catalog']);
+    }
   }
 }
