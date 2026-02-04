@@ -1,7 +1,10 @@
+/* ================================
+   Root Widget
+================================ */
 .dia-widget {
   position: fixed;
-  right: 24px;
-  bottom: 24px;
+  right: env(safe-area-inset-right, 24px);
+  bottom: env(safe-area-inset-bottom, 24px);
   z-index: 9999;
   font-family: "Inter", "Segoe UI", sans-serif;
   display: flex;
@@ -11,9 +14,12 @@
   pointer-events: none;
 }
 
+/* ================================
+   Chat Panel
+================================ */
 .dia-panel {
-  width: 380px;
-  height: 520px;
+  width: min(380px, calc(100vw - 32px));
+  height: min(520px, calc(100vh - 120px));
   background: #ffffff;
   border-radius: 28px;
   box-shadow: 0 24px 48px rgba(15, 23, 42, 0.18);
@@ -21,11 +27,10 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  position: relative;
   opacity: 0;
   transform: translateY(16px) scale(0.98);
   pointer-events: none;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 .dia-panel.open {
@@ -34,6 +39,9 @@
   pointer-events: auto;
 }
 
+/* ================================
+   Header
+================================ */
 .dia-header {
   display: flex;
   align-items: center;
@@ -71,33 +79,6 @@
   color: #0f172a;
 }
 
-.dia-status {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 2px;
-}
-
-.status-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 999px;
-  background: #f59e0b;
-  box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.15);
-}
-
-.status-dot.ready {
-  background: #22c55e;
-  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.15);
-}
-
-.status-text {
-  font-size: 9px;
-  letter-spacing: 0.08em;
-  font-weight: 700;
-  color: #94a3b8;
-}
-
 .dia-close {
   border: none;
   background: #f8fafc;
@@ -107,7 +88,7 @@
   width: 32px;
   height: 32px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: 0.2s ease;
 }
 
 .dia-close:hover {
@@ -115,6 +96,9 @@
   color: #0f172a;
 }
 
+/* ================================
+   Progress Bar
+================================ */
 .dia-progress {
   height: 4px;
   background: #f1f5f9;
@@ -126,10 +110,14 @@
   transition: width 0.3s ease;
 }
 
+/* ================================
+   Body & Messages
+================================ */
 .dia-body {
   flex: 1;
   background: #f8fafc;
   overflow: hidden;
+  min-height: 0;
 }
 
 .dia-messages {
@@ -140,12 +128,16 @@
   flex-direction: column;
   gap: 16px;
   scrollbar-width: none;
+  overscroll-behavior: contain;
 }
 
 .dia-messages::-webkit-scrollbar {
   display: none;
 }
 
+/* ================================
+   Messages
+================================ */
 .dia-message {
   display: flex;
   flex-direction: column;
@@ -182,6 +174,7 @@
   border-top-left-radius: 6px;
 }
 
+/* Typing animation */
 .dia-bubble.typing {
   display: flex;
   gap: 6px;
@@ -191,23 +184,20 @@
   width: 6px;
   height: 6px;
   background: #cbd5f5;
-  border-radius: 999px;
+  border-radius: 50%;
   animation: typing 1.2s infinite ease-in-out;
 }
 
-.dia-bubble.typing .dot:nth-child(2) {
-  animation-delay: 0.2s;
-}
+.dia-bubble.typing .dot:nth-child(2) { animation-delay: 0.2s; }
+.dia-bubble.typing .dot:nth-child(3) { animation-delay: 0.4s; }
 
-.dia-bubble.typing .dot:nth-child(3) {
-  animation-delay: 0.4s;
-}
-
+/* ================================
+   Course Cards
+================================ */
 .dia-cards {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  width: 100%;
 }
 
 .dia-card {
@@ -220,9 +210,7 @@
 
 .dia-card-meta {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  margin-bottom: 6px;
   font-size: 10px;
   color: #64748b;
 }
@@ -234,36 +222,27 @@
   padding: 2px 6px;
   border-radius: 8px;
   font-size: 9px;
-  letter-spacing: 0.04em;
 }
 
 .dia-card h4 {
-  margin: 0 0 6px 0;
+  margin: 6px 0;
   font-size: 13px;
-  color: #0f172a;
 }
 
 .dia-card p {
-  margin: 0 0 8px 0;
+  margin: 0 0 8px;
   font-size: 11px;
   color: #64748b;
-  line-height: 1.4;
-  max-height: 32px;
-  overflow: hidden;
 }
 
 .dia-card a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   padding: 6px 10px;
   border-radius: 12px;
   background: #f1f5f9;
   font-size: 11px;
   font-weight: 700;
-  color: #0f172a;
   text-decoration: none;
-  transition: all 0.2s ease;
+  color: #0f172a;
 }
 
 .dia-card a:hover {
@@ -271,13 +250,14 @@
   color: #ffffff;
 }
 
+/* ================================
+   Input
+================================ */
 .dia-input {
   padding: 14px 16px;
   border-top: 1px solid #f1f5f9;
   display: flex;
-  align-items: center;
   gap: 8px;
-  background: #ffffff;
 }
 
 .dia-input input {
@@ -298,8 +278,6 @@
   background: #2563eb;
   color: #ffffff;
   cursor: pointer;
-  font-weight: 700;
-  transition: all 0.2s ease;
 }
 
 .dia-input button:disabled {
@@ -307,128 +285,72 @@
   cursor: not-allowed;
 }
 
-/* Chatbot FAB Button - Fixed Position at Bottom-Right */
+/* ================================
+   Floating Button (FAB)
+================================ */
 .dia-fab {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  border: none;
   background: #ffffff;
   box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
+  border: none;
+  cursor: pointer;
+  pointer-events: auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  padding: 0;
-  position: relative;
-  overflow: hidden;
-  pointer-events: auto;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
+}
+
+.dia-fab img {
+  width: 32px;
+  height: 32px;
+}
+
+.dia-fab-active {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+/* ================================
+   Mobile Responsive
+================================ */
+@media (max-width: 768px) {
+  .dia-widget {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(255, 255, 255, 0);
-    border-radius: 50%;
-    transition: background 0.3s ease;
+    align-items: center;
   }
-  
-  &:hover {
-    transform: translateY(-4px) scale(1.08);
-    box-shadow: 0 14px 32px rgba(59, 130, 246, 0.4);
-    
-    &::before {
-      background: rgba(255, 255, 255, 0.1);
-    }
+
+  .dia-panel {
+    width: 100%;
+    height: calc(100vh - 80px);
+    border-radius: 20px 20px 0 0;
   }
-  
-  &:active {
-    transform: translateY(-2px) scale(1.04);
-  }
-}
 
-/* Active state when chatbot is open */
-.dia-fab.dia-fab-active {
-  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-  box-shadow: 0 8px 24px rgba(239, 68, 68, 0.3);
-  
-  &:hover {
-    box-shadow: 0 14px 32px rgba(239, 68, 68, 0.4);
-  }
-}
-
-/* FAB Icon Styling - Original dia.svg Icon */
-.dia-fab-icon {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  position: relative;
-  z-index: 1;
-}
-
-.dia-fab-icon img {
-  width: 32px;
-  height: 32px;
-  object-fit: contain;
-}
-
-/* Close Icon Styling */
-.dia-close-icon {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  font-weight: 700;
-  color: #ffffff;
-  transition: all 0.3s ease;
-  position: relative;
-  z-index: 1;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
   .dia-fab {
-    width: 56px;
-    height: 56px;
-    
-    &:hover {
-      transform: translateY(-2px) scale(1.05);
-    }
-  }
-  
-  .dia-fab-icon img {
-    width: 28px;
-    height: 28px;
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
   }
 }
 
-/* Touch device optimization */
-@media (hover: none) and (pointer: coarse) {
-  .dia-fab {
-    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.25);
-    
-    &:active {
-      transform: translateY(-2px) scale(1.02);
-    }
+/* Small Phones */
+@media (max-width: 480px) {
+  .dia-panel {
+    height: 100vh;
+    border-radius: 0;
+  }
+
+  .dia-bubble {
+    font-size: 12px;
   }
 }
 
+/* ================================
+   Animations
+================================ */
 @keyframes typing {
-  0%, 80%, 100% {
-    transform: scale(0.6);
-    opacity: 0.5;
-  }
-  40% {
-    transform: scale(1);
-    opacity: 1;
-  }
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.5; }
+  40% { transform: scale(1); opacity: 1; }
 }
