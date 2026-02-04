@@ -1,6 +1,6 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
-import { Component, inject, ViewChild } from '@angular/core';
+import { Component, HostListener, inject, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { ActivatedRoute, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { IconModule } from 'src/app/icon/icon.module';
@@ -23,6 +23,7 @@ export class HomepageComponent {
   hideCloserBtn: boolean = true;
   public router = inject(Router)
   private mediaMatcher: MediaQueryList = matchMedia(`(max-width: 1199px)`);
+  showBackToTop: boolean;
   isTopbarFixed: boolean;
   constructor(private route: ActivatedRoute) {   
     const media = inject(MediaMatcher);
@@ -58,7 +59,12 @@ export class HomepageComponent {
     this.router.navigate(['/dashboards/dashboard1'])
   }
 
-  // Scroll-to-top feature completely removed
-  // Chatbot FAB button is now the only floating action button
-  // Topbar visibility is managed separately if needed
+  scrollToTop(): void {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.showBackToTop = window.scrollY > 300;
+    this.isTopbarFixed = scrollY > 45;
+  }
 }
