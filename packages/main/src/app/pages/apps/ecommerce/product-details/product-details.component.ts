@@ -1,11 +1,11 @@
 import { Component, AfterViewInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { MaterialModule } from 'src/app/material.module';
-import { IconModule } from 'src/app/icon/icon.module';
+import { MaterialModule } from '../../../../material.module';
+import { IconModule } from '../../../../icon/icon.module';
 import { CarouselModule } from 'ngx-owl-carousel-o';
-import { ProductService } from 'src/app/services/apps/product/product.service';
-import { NavService } from 'src/app/services/nav.service';
+import { ProductService } from '../../../../services/apps/product/product.service';
+import { NavService } from '../../../../services/nav.service';
 import { PRODUCT_DATA } from '../ecommerceData';
 import { FooterComponent } from '../../../front-pages/footer/footer.component';
 import { PopupwindowComponent } from '../../../front-pages/popupwindow/popupwindow.component';
@@ -17,7 +17,7 @@ import { TemplateVideoComponent } from '../../../front-pages/template-video/temp
 import { computed, signal } from '@angular/core';
 import { users } from '../../../front-pages/front-pagesData';
 import { setupCards, stats, tclients } from '../../../front-pages/front-pagesData';
-import { ProductDataService } from 'src/app/services/product-data.service';
+import { ProductDataService } from '../../../../services/product-data.service';
 
 interface Product {
   id: any;
@@ -121,6 +121,7 @@ export class ProductDetailsComponent implements AfterViewInit {
     });
 
     this.product = this.productService.getProduct();
+    this.normalizeObjectives(this.product);
 
     if (!this.product) {
       console.warn('No product found — redirecting.');
@@ -131,21 +132,42 @@ export class ProductDetailsComponent implements AfterViewInit {
     // ✅ Fix: Convert objectives string into array
     this.normalizeObjectives(this.product);
 
-    this.productDataService.getProducts({ bustCache: true }).subscribe((items) => {
+    this.productDataService.getProducts({ bustCache: true }).subscribe((items: any[]) => {
       this.allProducts = items;
       this.loadRelatedProducts(this.product);
     });
 
   }
-  private normalizeObjectives(product: any) {
-    if (!product) return;
+private normalizeObjectives(product: any): void {
+  if (!product) return;
 
-    if (typeof product.objectives === 'string') {
-      product.objectives = product.objectives
-        .split('|')
-        .map((s: string) => s.trim());
-    }
+  // Case 1: null / undefined
+  if (!product.objectives) {
+    product.objectives = [];
+    return;
   }
+
+  // Case 2: string → split
+  if (typeof product.objectives === 'string') {
+    product.objectives = product.objectives
+      .split('|')
+      .map((s: string) => s.trim())
+      .filter((s: string) => s.length > 0); // 🔥 IMPORTANT
+  }
+
+  // Case 3: still not array
+  if (!Array.isArray(product.objectives)) {
+    product.objectives = [];
+    return;
+  }
+
+  // Case 4: clean empty values in array
+  product.objectives = product.objectives.filter(
+    (o: string) => o && o.trim().length > 0
+  );
+}
+
+
 
   // ✅ Increase/decrease quantity
   increaseQty(): void {
@@ -295,7 +317,7 @@ export class ProductDetailsComponent implements AfterViewInit {
 
   // ✅ Utilities
   getBack(): void {
-    const previousUrl = this.navService.getPreviousUrl('/catalog');
+    const previousUrl = this.navService.getPreviousUrl('/catalog') as string;
     this.router.navigateByUrl(previousUrl);
   }
 
