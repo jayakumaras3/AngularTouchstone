@@ -1,7 +1,15 @@
 <!-- 🔙 Back button (left aligned inside 1400px container) -->
 <div class="page-container">
   <div class="back-button-wrapper">
-    <button mat-flat-button (click)="getBack()">Back</button>
+ <button
+  mat-flat-button
+  color="primary"
+  class="back-to-catalog-btn"
+  (click)="getBack()"
+>
+  <mat-icon class="back-icon">arrow_back</mat-icon>
+  Back
+</button>
   </div>
 
   <!-- 🧾 Product Details -->

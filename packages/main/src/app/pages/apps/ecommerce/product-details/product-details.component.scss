@@ -95,6 +95,24 @@
   margin-bottom: 20px;
 }
 
+.back-to-catalog-btn {
+  height: 40px;
+  padding-left: 20px;   // ✅ ≈ 2 spaces BEFORE arrow
+  padding-right: 16px;
+  border-radius: 8px;
+
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Arrow spacing control */
+.back-icon {
+  margin-right: 6px;    // ✅ ≈ 1 space AFTER arrow
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
 /* Product details card */
 .product-details-card {
   width: 100%;
