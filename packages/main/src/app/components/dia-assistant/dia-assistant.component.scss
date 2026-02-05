@@ -12,6 +12,11 @@
   align-items: flex-end;
   gap: 16px;
   pointer-events: none;
+  
+  /* Ensure smooth rendering on all devices */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  will-change: transform;
 }
 
 /* ================================
@@ -317,15 +322,117 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+  
+  /* Initial hidden state */
+  opacity: 0;
+  transform: scale(0) translateY(20px);
+  
+  /* Entrance animation when visible */
+  &.dia-fab-visible {
+    animation: fab-entrance 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+  
+  /* Idle pulse animation - only when not open and after entrance */
+  &.dia-fab-visible:not(.dia-fab-active) {
+    animation: fab-entrance 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
+               fab-pulse 4s ease-in-out 1s infinite;
+  }
+  
+  /* Glow ring effect */
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, rgba(59, 130, 246, 0) 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  
+  &.dia-fab-visible:not(.dia-fab-active)::before {
+    animation: fab-glow 4s ease-in-out 1s infinite;
+  }
+  
+  /* Ripple effect container */
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: rgba(59, 130, 246, 0.3);
+    transform: scale(0);
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  /* Hover state - keeps animation running */
+  &:hover:not(.dia-fab-active) {
+    box-shadow: 0 12px 32px rgba(59, 130, 246, 0.5), 
+                0 0 0 4px rgba(59, 130, 246, 0.15);
+    filter: brightness(1.05);
+  }
+  
+  /* Active/Click state - ripple effect */
+  &:active:not(.dia-fab-active) {
+    transform: scale(0.96);
+    
+    &::after {
+      animation: fab-ripple 0.6s ease-out;
+    }
+  }
+  
+  /* Focus state for accessibility */
+  &:focus-visible {
+    outline: 3px solid rgba(59, 130, 246, 0.5);
+    outline-offset: 2px;
+  }
 }
 
 .dia-fab img {
   width: 32px;
   height: 32px;
+  transition: transform 0.3s ease;
+  
+  .dia-fab:hover:not(.dia-fab-active) & {
+    transform: scale(1.05) rotate(3deg);
+  }
 }
 
 .dia-fab-active {
   background: linear-gradient(135deg, #ef4444, #dc2626);
+  animation: none;
+  box-shadow: 0 8px 24px rgba(239, 68, 68, 0.4);
+  
+  &::before {
+    display: none;
+  }
+  
+  &:hover {
+    transform: scale(1.05) rotate(90deg);
+    box-shadow: 0 12px 32px rgba(239, 68, 68, 0.5);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+}
+
+/* FAB Icon animations */
+.dia-fab-icon,
+.dia-close-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              opacity 0.2s ease;
+}
+
+.dia-close-icon {
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+  animation: icon-pop-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 /* ================================
@@ -349,6 +456,15 @@
     position: fixed;
     right: 16px;
     bottom: 16px;
+    
+    /* Slightly larger on mobile for easier touch */
+    width: 56px;
+    height: 56px;
+    
+    img {
+      width: 36px;
+      height: 36px;
+    }
   }
 }
 
@@ -362,12 +478,127 @@
   .dia-bubble {
     font-size: 12px;
   }
+  
+  .dia-fab {
+    /* Ensure FAB is easily tappable on small screens */
+    min-width: 56px;
+    min-height: 56px;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .dia-fab {
+    border: 2px solid currentColor;
+  }
 }
 
 /* ================================
    Animations
 ================================ */
+
+/* Typing indicator animation */
 @keyframes typing {
   0%, 80%, 100% { transform: scale(0.6); opacity: 0.5; }
   40% { transform: scale(1); opacity: 1; }
+}
+
+/* FAB Entrance animation - appears with bounce */
+@keyframes fab-entrance {
+  0% {
+    opacity: 0;
+    transform: scale(0) translateY(20px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.15) translateY(-5px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* FAB Pulse animation - gentle scale-up every 4 seconds */
+@keyframes fab-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* FAB Glow animation - synchronized with pulse */
+@keyframes fab-glow {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* FAB Ripple animation - click feedback */
+@keyframes fab-ripple {
+  0% {
+    transform: scale(0);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+/* Icon pop-in animation */
+@keyframes icon-pop-in {
+  0% {
+    transform: scale(0) rotate(-180deg);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.2) rotate(10deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+/* Accessibility: Disable animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .dia-fab {
+    animation: none !important;
+    
+    /* Instantly show FAB without animation */
+    &.dia-fab-visible {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+      animation: none;
+    }
+    
+    &::before,
+    &::after {
+      animation: none !important;
+    }
+  }
+  
+  .dia-close-icon {
+    animation: none !important;
+  }
+  
+  .dia-bubble.typing .dot {
+    animation: none;
+    opacity: 0.5;
+  }
+  
+  /* Disable all transition-based animations */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

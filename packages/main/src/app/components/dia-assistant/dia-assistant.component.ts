@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
@@ -53,13 +53,14 @@ const STOP_WORDS = new Set([
   styleUrls: ['./dia-assistant.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DiaAssistantComponent {
+export class DiaAssistantComponent implements OnInit {
   @ViewChild('scrollAnchor', { static: false }) scrollAnchor?: ElementRef<HTMLDivElement>;
 
   isOpen = false;
   isTyping = false;
   isReady = false;
   progress = 0;
+  fabVisible = false; // For entrance animation
 
   inputText = '';
   messages: ChatMessage[] = [];
@@ -73,6 +74,14 @@ export class DiaAssistantComponent {
     private readonly navService: NavService
   ) {
     this.initializeBrain();
+  }
+
+  ngOnInit(): void {
+    // Trigger FAB entrance animation after a brief delay
+    setTimeout(() => {
+      this.fabVisible = true;
+      this.cdr.markForCheck();
+    }, 500);
   }
 
   toggle(): void {
