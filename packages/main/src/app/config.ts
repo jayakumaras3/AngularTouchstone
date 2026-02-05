@@ -131,9 +131,9 @@ export const baseUrlPathslash = '/DOCHEK_lms/ang/';
 export const LoginUrl = '/DOCHEK_lms/ang/';
 export const logoUrl = '/DOCHEK_lms/ang/';*/
 
-
+//old dochek
 /*
-//Host URL*/
+//Host URL
 export const baseUrlPath = '/ang/';
 export const baseUrlPathslash = '/ang';
 export const LoginUrl = 'ang/';
@@ -143,15 +143,55 @@ export const logoUrl = '/ang/';
 
 
 // PHP service URLs
-/**/export const apiUrl = 'http://172.16.2.214/landing';
+export const apiUrl = 'http://172.16.2.214/landing';
   
   export const forgotUrl = 'http://172.16.2.214/landing';
-  export const contactApiUrl = 'http://172.16.2.214/landing';
+  export const contactApiUrl = 'http://172.16.2.214/landing';*/
+
+
+
+
+
+
+
+  // for New dochek_ultra//Host URL
+/*
+  
+export const baseUrlPath = '/dochek_ultra/ang/';
+export const baseUrlPathslash = '/dochek_ultra/ang/';
+export const LoginUrl = 'dochek_ultra/ang/';
+export const logoUrl = '/dochek_ultra/ang/';
+
+
+export const apiUrl = 'http://172.16.2.214/dochek_ultra/landing';
+  
+  export const forgotUrl = 'http://172.16.2.214/dochek_ultra/landing';
+  export const contactApiUrl = 'http://172.16.2.214/dochek_ultra/landing';*/
+
+
 
    // Dochek
- /* export const apiUrl = 'https://dochek.com/landing';
+ /* 
+ export const baseUrlPath = '/ang/';
+export const baseUrlPathslash = '/ang';
+export const LoginUrl = 'ang/';
+export const logoUrl = '/ang/';
+
+ 
+ export const apiUrl = 'https://dochek.com/landing';
   
   export const forgotUrl = 'https://dochek.com/landing';
   export const contactApiUrl = 'https://dochek.com/landing'*/
 
 
+
+    
+ export const baseUrlPath = '/ang/';
+export const baseUrlPathslash = '/ang';
+export const LoginUrl = 'ang/';
+export const logoUrl = '/ang/';
+
+export const apiUrl = 'http://172.16.2.214/dochek_ultra/landing';
+  
+  export const forgotUrl = 'http://172.16.2.214/dochek_ultra/landing';
+  export const contactApiUrl = 'http://172.16.2.214/dochek_ultra/landing';

@@ -1,3 +1,7 @@
+// ========================================
+// Add to coursecatalog.component.ts
+// ========================================
+
 import { CommonModule, Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
@@ -16,6 +20,20 @@ interface Category {
   subCategories: SubCategory[];
 }
 
+// ========================================
+// FILTER INTERFACES
+// ========================================
+interface FilterOption {
+  value: string;
+  label: string;
+  count: number;
+}
+
+interface FilterState {
+  selectedCategory: string | null;
+  selectedLanguage: string | null;
+}
+
 @Component({
   selector: 'app-course-catalog',
   standalone: true,
@@ -24,13 +42,35 @@ interface Category {
   styleUrls: ['./coursecatalog.component.scss']
 })
 export class CourseCatalogComponent {
+  // ========================================
+  // EXISTING PROPERTIES
+  // ========================================
   private allProducts: Element[] = [];
-
   categories: Category[] = [];
   totalCourses: number = 0;
-
   mainTitle = 'Course Catalog';
   subTitle = 'Micro Learning (500)';
+
+  // ========================================
+  // NEW FILTERING PROPERTIES
+  // ========================================
+  // Available filter options
+  categoryOptions: FilterOption[] = [];
+  languageOptions: FilterOption[] = [];
+
+  // Current filter state
+  filterState: FilterState = {
+    selectedCategory: null,
+    selectedLanguage: null
+  };
+
+  // Filtered products and display data
+  private filteredProducts: Element[] = [];
+  filteredCategories: Category[] = [];
+  filteredCourseCount: number = 0;
+
+  // UI state
+  showFilters: boolean = true;
 
   constructor(
     private readonly productDataService: ProductDataService,
@@ -43,75 +83,187 @@ export class CourseCatalogComponent {
   ngOnInit() {
     this.productDataService.getProducts({ bustCache: true }).subscribe((items: Element[]) => {
       this.allProducts = items;
-      this.categories = this.mapProductDataToCatalog();
       this.totalCourses = this.allProducts.length;
+      
+      // Initialize filters
+      this.initializeFilters();
+      
+      // Apply filters (initially shows all)
+      this.applyFilters();
     });
   }
 
-  private mapProductDataToCatalog(): Category[] {
-    const categoryMap = new Map<string, Category>();
+  // ========================================
+  // FILTER INITIALIZATION
+  // ========================================
+  
+  /**
+   * Extract unique categories and languages from products
+   * and build filter options with counts
+   */
+  private initializeFilters(): void {
+    const categoryMap = new Map<string, number>();
+    const languageMap = new Map<string, number>();
 
-   this.allProducts.forEach(product => {
-  const skill = product.skill ?? 'Unknown Skill';   // <-- FIXED
-  const subs = product.categories || [];
+    this.allProducts.forEach(product => {
+      // Count categories (skills)
+      const category = product.skill ?? 'Unknown';
+      categoryMap.set(category, (categoryMap.get(category) ?? 0) + 1);
 
-  if (!categoryMap.has(skill)) {
-    categoryMap.set(skill, {
-      title: skill,
-      count: 0,
-      subCategories: []
+      // Count languages
+      const language = product.language ?? 'Unknown';
+      languageMap.set(language, (languageMap.get(language) ?? 0) + 1);
     });
+
+    // Build category options (sorted alphabetically)
+    this.categoryOptions = Array.from(categoryMap.entries())
+      .map(([value, count]) => ({ value, label: value, count }))
+      .sort((a, b) => a.label.localeCompare(b.label));
+
+    // Build language options (sorted alphabetically)
+    this.languageOptions = Array.from(languageMap.entries())
+      .map(([value, count]) => ({ value, label: value, count }))
+      .sort((a, b) => a.label.localeCompare(b.label));
   }
 
-  const category = categoryMap.get(skill)!;
-  category.count++;
+  // ========================================
+  // CORE FILTERING LOGIC
+  // ========================================
+  
+  /**
+   * Main filter application function
+   * Applies both category and language filters in combination
+   */
+  applyFilters(): void {
+    const { selectedCategory, selectedLanguage } = this.filterState;
 
-  subs.forEach(sub => {
-    let subCategory = category.subCategories.find(s => s.name === sub);
+    // Start with all products
+    let filtered = [...this.allProducts];
 
-    if (!subCategory) {
-      subCategory = { name: sub, courses: [] };
-      category.subCategories.push(subCategory);
+    // Apply category filter if selected
+    if (selectedCategory) {
+      filtered = filtered.filter(product => {
+        const productCategory = product.skill ?? 'Unknown';
+        return productCategory === selectedCategory;
+      });
     }
 
-    subCategory.courses.push({
-      id: product.id,
-      title: product.product_name,
-      duration: product.duration ? product.duration + ' min' : undefined,
-      product: product
-    });
-  });
-});
+    // Apply language filter if selected
+    if (selectedLanguage) {
+      filtered = filtered.filter(product => {
+        const productLanguage = product.language ?? 'Unknown';
+        return productLanguage === selectedLanguage;
+      });
+    }
 
+    // Update filtered results
+    this.filteredProducts = filtered;
+    this.filteredCourseCount = filtered.length;
+    this.filteredCategories = this.mapProductDataToCatalog(filtered);
+
+    // Update display (use filtered or all based on active filters)
+    this.categories = this.filteredCategories;
+  }
+
+  // ========================================
+  // FILTER ACTION HANDLERS
+  // ========================================
+  
+  /**
+   * Handle category selection
+   */
+  onCategorySelect(category: string | null): void {
+    this.filterState.selectedCategory = category;
+    this.applyFilters();
+  }
+
+  /**
+   * Handle language selection
+   */
+  onLanguageSelect(language: string | null): void {
+    this.filterState.selectedLanguage = language;
+    this.applyFilters();
+  }
+
+  /**
+   * Reset all filters and show all courses
+   */
+  resetFilters(): void {
+    this.filterState = {
+      selectedCategory: null,
+      selectedLanguage: null
+    };
+    this.applyFilters();
+  }
+
+  /**
+   * Check if any filters are active
+   */
+  hasActiveFilters(): boolean {
+    return this.filterState.selectedCategory !== null || 
+           this.filterState.selectedLanguage !== null;
+  }
+
+  /**
+   * Toggle filter panel visibility
+   */
+  toggleFilters(): void {
+    this.showFilters = !this.showFilters;
+  }
+
+  // ========================================
+  // DATA MAPPING (Updated to accept filtered products)
+  // ========================================
+  
+  private mapProductDataToCatalog(products: Element[] = this.allProducts): Category[] {
+    const categoryMap = new Map<string, Category>();
+
+    products.forEach(product => {
+      const skill = product.skill ?? 'Unknown Skill';
+      const subs = product.categories || [];
+
+      if (!categoryMap.has(skill)) {
+        categoryMap.set(skill, {
+          title: skill,
+          count: 0,
+          subCategories: []
+        });
+      }
+
+      const category = categoryMap.get(skill)!;
+      category.count++;
+
+      subs.forEach(sub => {
+        let subCategory = category.subCategories.find(s => s.name === sub);
+
+        if (!subCategory) {
+          subCategory = { name: sub, courses: [] };
+          category.subCategories.push(subCategory);
+        }
+
+        subCategory.courses.push({
+          id: product.id,
+          title: product.product_name,
+          duration: product.duration ? product.duration + ' min' : undefined,
+          product: product
+        });
+      });
+    });
 
     return Array.from(categoryMap.values());
   }
 
-  /**
-   * Navigate to course details page
-   * Sets referrer URL for proper back navigation
-   */
+  // ========================================
+  // NAVIGATION (Existing methods)
+  // ========================================
+  
   navigateToCourseDetails(course: Course): void {
-    // Store current URL as referrer for back navigation
     this.navService.setReferrerUrl(this.router.url);
     this.productService.setProduct(course.product);
     this.router.navigate(['/coursedetails']);
   }
 
-  /**
-   * Navigate back to catalog with smart fallback logic
-   * - Uses browser history if available (Location.back())
-   * - Falls back to /catalog if history is not available
-   * - Ensures clean navigation without duplication
-   */
   navigateBackToCatalog(): void {
-    // Check if we can use browser history
-   /* if (window.history.length > 1) {
-      this.location.back();
-    } else {
-      // Fallback to catalog route if no history
-      this.router.navigate(['/catalog']);
-    }*/
     this.router.navigate(['/catalog']);
   }
 }
