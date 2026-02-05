@@ -3,6 +3,9 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, View
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
+import { Router } from '@angular/router';
+import { ProductService } from '../../services/apps/product/product.service';
+import { NavService } from '../../services/nav.service';
 
 interface ProductDataItem {
   id: number;
@@ -25,6 +28,7 @@ interface DiaCourse {
   objectives: string;
   url: string;
   keywords: string[];
+  product?: any; // Store the full product object for navigation
 }
 
 interface ChatMessage {
@@ -61,7 +65,13 @@ export class DiaAssistantComponent {
   messages: ChatMessage[] = [];
   private courses: DiaCourse[] = [];
 
-  constructor(private readonly http: HttpClient, private readonly cdr: ChangeDetectorRef) {
+  constructor(
+    private readonly http: HttpClient,
+    private readonly cdr: ChangeDetectorRef,
+    private readonly router: Router,
+    private readonly productService: ProductService,
+    private readonly navService: NavService
+  ) {
     this.initializeBrain();
   }
 
@@ -117,6 +127,22 @@ export class DiaAssistantComponent {
       return '#';
     }
     return url.startsWith('http') ? url : `https://${url}`;
+  }
+
+  /**
+   * Navigate to course details page using Angular Router
+   * Follows the same pattern as Course Catalog and SME Catalog
+   * @param course The course to navigate to
+   */
+  goToCourseDetails(course: DiaCourse): void {
+    if (course.product) {
+      // Store current URL as referrer for back navigation
+      this.navService.setReferrerUrl(this.router.url);
+      // Set the selected product for the details page
+      this.productService.setProduct(course.product);
+      // Navigate to course details page
+      this.router.navigate(['/coursedetails']);
+    }
   }
 
   trackByMessage(index: number, item: ChatMessage): string {
@@ -179,6 +205,7 @@ export class DiaAssistantComponent {
       objectives,
       url,
       keywords,
+      product: item as any, // Store full product object for navigation
     };
   }
 

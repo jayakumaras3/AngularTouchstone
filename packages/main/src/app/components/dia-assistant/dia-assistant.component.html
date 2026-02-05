@@ -38,7 +38,14 @@
                 </div>
                 <h4>{{ course.title }}</h4>
                 <p>{{ course.description }}</p>
-                <a [href]="formatUrl(course.url)" target="_blank" rel="noopener noreferrer">View Details</a>
+                <button 
+                  class="dia-view-details-btn"
+                  type="button"
+                  (click)="goToCourseDetails(course)"
+                  aria-label="View course details"
+                >
+                  View Details
+                </button>
               </div>
             </div>
           </div>
