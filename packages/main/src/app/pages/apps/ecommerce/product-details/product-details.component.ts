@@ -1,5 +1,5 @@
-import { Component, AfterViewInit, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, AfterViewInit, inject, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../../../../material.module';
 import { IconModule } from '../../../../icon/icon.module';
@@ -35,7 +35,7 @@ interface Product {
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.scss'],
 })
-export class ProductDetailsComponent implements AfterViewInit {
+export class ProductDetailsComponent implements AfterViewInit, OnInit {
   /* popup window start */
   centered = false;
   disabled = false;
@@ -48,9 +48,13 @@ export class ProductDetailsComponent implements AfterViewInit {
 
   readonly dialog = inject(MatDialog);
   private router = inject(Router);
+  private route = inject(ActivatedRoute);
   private navService = inject(NavService);
   private destroyRef = inject(DestroyRef);
   private mediaMatcher = inject(MediaMatcher);
+
+  // Track navigation source (chatbot, catalog, etc.)
+  private navigationSource: string | null = null;
 
   mobileQuery: MediaQueryList;
   isMobileView = false;
@@ -104,6 +108,13 @@ export class ProductDetailsComponent implements AfterViewInit {
   private productService: ProductService = inject(ProductService);
   private productDataService = inject(ProductDataService);
 
+  ngOnInit(): void {
+    // Capture navigation source from query params
+    this.route.queryParams.subscribe(params => {
+      this.navigationSource = params['source'] || null;
+    });
+  }
+
   ngAfterViewInit(): void { }
 
   constructor() {
@@ -124,8 +135,9 @@ export class ProductDetailsComponent implements AfterViewInit {
     this.normalizeObjectives(this.product);
 
     if (!this.product) {
-      console.warn('No product found — redirecting.');
-      this.router.navigate(['/catalog']);
+      console.warn('No product found — redirecting to course catalog.');
+      // Redirect to course catalog instead of main catalog
+      this.router.navigate(['/coursecatalog']);
       return;
     }
 
@@ -317,8 +329,25 @@ private normalizeObjectives(product: any): void {
 
   // ✅ Utilities
   getBack(): void {
-    const previousUrl = this.navService.getPreviousUrl('/catalog') as string;
-    this.router.navigateByUrl(previousUrl);
+    // Clear product state before navigation
+    this.productService.clearProduct();
+
+    // Determine where to navigate back to based on source
+    if (this.navigationSource === 'chatbot') {
+      // From chatbot → always go to course catalog
+      this.router.navigate(['/coursecatalog']);
+    } else {
+      // From catalog or other sources → use stored referrer or fallback
+      const previousUrl = this.navService.getPreviousUrl('/coursecatalog');
+      
+      // Ensure we're navigating to a valid catalog page
+      if (previousUrl.includes('catalog') || previousUrl.includes('sme-catalog')) {
+        this.router.navigateByUrl(previousUrl);
+      } else {
+        // Fallback to course catalog if previous URL is not a catalog page
+        this.router.navigate(['/coursecatalog']);
+      }
+    }
   }
 
 

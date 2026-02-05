@@ -144,14 +144,25 @@ export class DiaAssistantComponent implements OnInit {
    * @param course The course to navigate to
    */
   goToCourseDetails(course: DiaCourse): void {
-    if (course.product) {
-      // Store current URL as referrer for back navigation
-      this.navService.setReferrerUrl(this.router.url);
-      // Set the selected product for the details page
-      this.productService.setProduct(course.product);
-      // Navigate to course details page
-      this.router.navigate(['/coursedetails']);
+    if (!course || !course.product) {
+      console.error('Invalid course data:', course);
+      return;
     }
+
+    // Set referrer to course catalog (where user should return to)
+    this.navService.setReferrerUrl('/coursecatalog');
+    
+    // Set the selected product for the details page
+    this.productService.setProduct(course.product);
+    
+    // Navigate with source query param to track navigation origin
+    this.router.navigate(['/coursedetails'], {
+      queryParams: { source: 'chatbot' },
+      queryParamsHandling: 'merge'
+    });
+
+    // Optional: close chatbot after navigation for better UX
+    // this.close();
   }
 
   trackByMessage(index: number, item: ChatMessage): string {
