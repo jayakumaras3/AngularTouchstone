@@ -106,11 +106,12 @@ export class CourseCatalogComponent {
    */
   navigateBackToCatalog(): void {
     // Check if we can use browser history
-    if (window.history.length > 1) {
+   /* if (window.history.length > 1) {
       this.location.back();
     } else {
       // Fallback to catalog route if no history
       this.router.navigate(['/catalog']);
-    }
+    }*/
+    this.router.navigate(['/catalog']);
   }
 }
