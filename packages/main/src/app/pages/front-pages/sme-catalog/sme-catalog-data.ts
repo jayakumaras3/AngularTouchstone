@@ -84,7 +84,7 @@ export const SME_CATEGORIES: SmeCategory[] = [
       { title: 'Understanding Brand Value', level: 'intermediate', group: 'Marketing' },
       { title: 'Market Segmentation Overview', level: 'intermediate', group: 'Marketing' },
       { title: 'Brand Repositioning', level: 'advanced', group: 'Marketing' },      
-      { title: 'Extending Brand Reach', level: 'advanced', group: 'Marketing' },
+      { title: 'Extend Brand Reach', level: 'advanced', group: 'Marketing' },
       // Sales
       { title: 'Definition, Techniques, and Tips for Virtual Selling', level: 'foundational', group: 'Sales' },
       { title: 'Mastering the Cold Calling Process', level: 'foundational', group: 'Sales' },
@@ -119,8 +119,8 @@ export const SME_CATEGORIES: SmeCategory[] = [
       { title: 'Managing Performance', level: 'intermediate', group: 'Team Management' },      
       { title: 'Developing Cascading Goals', level: 'intermediate', group: 'Team Management' },
       { title: 'Giving Effective Feedback', level: 'intermediate', group: 'Team Management' },
-      { title: 'The Sandwich Method', level: 'intermediate', group: 'Team Management' },      
-      { title: 'Managing Conflict', level: 'intermediate', group: 'Team Management' },
+      { title: 'Sandwich Feedback', level: 'intermediate', group: 'Team Management' },      
+      { title: 'Situational Conflict', level: 'intermediate', group: 'Team Management' },
       { title: 'Small vs. Large Group Conflict', level: 'intermediate', group: 'Team Management' },
       { title: 'Leading Generationally Diverse Teams', level: 'intermediate', group: 'Team Management' },
       // Executive Leadership
@@ -142,10 +142,10 @@ export const SME_CATEGORIES: SmeCategory[] = [
       // Talent Acquisition
       { title: 'Creating a Successful Hiring Process', level: 'foundational', group: 'Talent Acquisition' },      
       { title: 'Recruiting', level: 'foundational', group: 'Talent Acquisition' },
-      { title: 'Interviewing Candidates', level: 'foundational', group: 'Talent Acquisition' },
+      { title: 'Interviewing Candidates for Employment', level: 'foundational', group: 'Talent Acquisition' },
       { title: 'Behavioral Interviewing', level: 'foundational', group: 'Talent Acquisition' },      
       { title: 'The Right Hire', level: 'foundational', group: 'Talent Acquisition' },
-      { title: 'Ten Tips for Successful Recruitment', level: 'foundational', group: 'Talent Acquisition' },
+      { title: 'Ten Tips for Successful Employee Recruitment', level: 'foundational', group: 'Talent Acquisition' },
       { title: 'Selection & Onboarding', level: 'foundational', group: 'Talent Acquisition' },
       // Talent Development
       { title: 'Importance of Training and Development', level: 'intermediate', group: 'Talent Development' },      
@@ -232,8 +232,8 @@ export const SME_CATEGORIES: SmeCategory[] = [
       // Cybersecurity
       { title: 'The Cybersecurity Landscape', level: 'foundational', group: 'Cybersecurity' },
       { title: 'How to Protect Yourself from Cyber Security Threats (Phishing, Malware)', level: 'foundational', group: 'Cybersecurity' },
-      { title: 'Online Safety', level: 'foundational', group: 'Cybersecurity' },
-      { title: 'Password Management', level: 'foundational', group: 'Cybersecurity' },
+      { title: 'Online Safety and Cyber Security', level: 'foundational', group: 'Cybersecurity' },
+      { title: 'Managing Passwords', level: 'foundational', group: 'Cybersecurity' },
       { title: 'Security Awareness for IT Professionals', level: 'intermediate', group: 'Cybersecurity' },
     ]
   }

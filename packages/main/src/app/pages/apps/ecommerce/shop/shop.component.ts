@@ -111,7 +111,7 @@ trackTileRows(index: number, item: any) {
     { name: 'DEI (Diversity, Equity, and Inclusion)', icon: 'users-group' },
     { name: 'Technology', icon: 'cpu' },
     { name: 'Safety', icon: 'shield-check' },
-    { name: 'HealthCare', icon: 'stethoscope' },
+    { name: 'Healthcare', icon: 'stethoscope' },
     { name: 'Wellness', icon: 'heart' },
   ];
   selectedCategory: string = this.folders[0].name;
