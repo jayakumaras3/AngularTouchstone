@@ -109,9 +109,22 @@ export class ProductDetailsComponent implements AfterViewInit, OnInit {
   private productDataService = inject(ProductDataService);
 
   ngOnInit(): void {
-    // Capture navigation source from query params
-    this.route.queryParams.subscribe(params => {
-      this.navigationSource = params['source'] || null;
+    // Load all products first
+    this.productDataService.getProducts({ bustCache: true }).subscribe((items: any[]) => {
+      this.allProducts = items;
+
+      // Listen to route param changes to reload course data
+      this.route.paramMap.subscribe(params => {
+        const courseId = params.get('courseId');
+        
+        // Capture navigation source from query params
+        this.route.queryParams.subscribe(queryParams => {
+          this.navigationSource = queryParams['source'] || null;
+        });
+
+        // Load course data based on courseId or from service
+        this.loadCourseData(courseId);
+      });
     });
   }
 
@@ -130,25 +143,43 @@ export class ProductDetailsComponent implements AfterViewInit, OnInit {
     this.destroyRef.onDestroy(() => {
       this.mobileQuery.removeEventListener('change', listener);
     });
+  }
 
-    this.product = this.productService.getProduct();
-    this.normalizeObjectives(this.product);
+  /**
+   * Load course data based on courseId or from ProductService
+   * Called on initialization and when route params change
+   */
+  private loadCourseData(courseId: string | null): void {
+    let productToLoad: any = null;
 
-    if (!this.product) {
+    if (courseId) {
+      // Load product by ID from allProducts
+      productToLoad = this.allProducts.find(p => p.id === parseInt(courseId, 10));
+      
+      if (productToLoad) {
+        // Update the service with the loaded product
+        this.productService.setProduct(productToLoad);
+      }
+    } else {
+      // Fallback: load from service (backward compatibility)
+      productToLoad = this.productService.getProduct();
+    }
+
+    if (!productToLoad) {
       console.warn('No product found — redirecting to course catalog.');
-      // Redirect to course catalog instead of main catalog
       this.router.navigate(['/coursecatalog']);
       return;
     }
 
-    // ✅ Fix: Convert objectives string into array
+    // Set the product and normalize objectives
+    this.product = productToLoad;
     this.normalizeObjectives(this.product);
 
-    this.productDataService.getProducts({ bustCache: true }).subscribe((items: any[]) => {
-      this.allProducts = items;
-      this.loadRelatedProducts(this.product);
-    });
+    // Load related products
+    this.loadRelatedProducts(this.product);
 
+    // Scroll to top smoothly
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 private normalizeObjectives(product: any): void {
   if (!product) return;
@@ -220,16 +251,19 @@ private normalizeObjectives(product: any): void {
 
   // ✅ Navigate to another product (when clicking related)
   navigateToProduct(item: any): void {
+    if (!item || !item.id) {
+      console.error('Invalid product data:', item);
+      return;
+    }
+
+    // Set product data
     this.productService.setProduct(item);
-    this.product = item;
 
-    // ✅ FIX: convert objectives string → array
-    this.normalizeObjectives(this.product);
-
-    // Load random related items
-    this.loadRelatedProducts(this.product);
-
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Navigate with courseId - this will trigger param change detection
+    this.router.navigate(['/coursedetails', item.id], {
+      queryParams: { source: this.navigationSource || 'related' },
+      queryParamsHandling: 'merge'
+    });
   }
   loadRelatedProducts(currentProduct: any) {
     if (!currentProduct) return;
@@ -334,8 +368,8 @@ private normalizeObjectives(product: any): void {
 
     // Determine where to navigate back to based on source
     if (this.navigationSource === 'chatbot') {
-      // From chatbot → always go to course catalog
-      this.router.navigate(['/coursecatalog']);
+      // From chatbot → always go to main catalog
+      this.router.navigate(['/catalog']);
     } else {
       // From catalog or other sources → use stored referrer or fallback
       const previousUrl = this.navService.getPreviousUrl('/coursecatalog');

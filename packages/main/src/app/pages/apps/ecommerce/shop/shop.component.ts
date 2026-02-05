@@ -593,8 +593,8 @@ filterByCategory(category: string, event: MouseEvent): void {
     // Set product data
     this.productService.setProduct(productcardDetails);
     
-    // Navigate with source tracking
-    this.router.navigate(['/coursedetails'], {
+    // Navigate with courseId and source tracking
+    this.router.navigate(['/coursedetails', productcardDetails.id], {
       queryParams: { source: 'catalog' },
       queryParamsHandling: 'merge'
     });

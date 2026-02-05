@@ -40,7 +40,8 @@ export const FrontPagesRoutes: Routes = [
       { path: 'sme-catalog/:category', component: SmeCategoryComponent },
       { path: 'blog-details', component: BlogDetailsComponent },
       { path: 'catalog', component: ShopComponent },
-      { path: 'coursedetails', component: ProductDetailsComponent },
+      { path: 'coursedetails/:courseId', component: ProductDetailsComponent },
+      { path: 'coursedetails', component: ProductDetailsComponent }, // Fallback for backward compatibility
       { path: 'privacy', component: PrivacyComponent },
       { path: 'terms', component:TermsComponent },      
       { path: 'login', component:AppSideLoginComponent },

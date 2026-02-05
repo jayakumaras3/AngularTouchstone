@@ -149,20 +149,22 @@ export class DiaAssistantComponent implements OnInit {
       return;
     }
 
+    const courseId = course.product.id;
+
     // Set referrer to course catalog (where user should return to)
     this.navService.setReferrerUrl('/coursecatalog');
     
     // Set the selected product for the details page
     this.productService.setProduct(course.product);
     
-    // Navigate with source query param to track navigation origin
-    this.router.navigate(['/coursedetails'], {
+    // Navigate with courseId in route and source in query params
+    this.router.navigate(['/coursedetails', courseId], {
       queryParams: { source: 'chatbot' },
       queryParamsHandling: 'merge'
     });
 
-    // Optional: close chatbot after navigation for better UX
-    // this.close();
+    // Close chatbot after navigation for better UX
+    this.close();
   }
 
   trackByMessage(index: number, item: ChatMessage): string {
