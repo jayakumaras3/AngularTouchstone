@@ -78,7 +78,7 @@ trackTileRows(index: number, item: any) {
   private productService = inject(ProductService);
   private navService = inject(NavService);
   private productDataService = inject(ProductDataService);
-  private mediaMatcher: MediaQueryList = matchMedia(`(max-width: 1199px)`);
+  private mediaMatcher: MediaQueryList = matchMedia(`(max-width: 767px)`);
   isMobileView = false;
   sidebarOpen = false; // For mobile sidebar toggle
   languageCounts: { [key: string]: number } = {};
@@ -164,7 +164,7 @@ trackTileRows(index: number, item: any) {
 
   constructor() {
     const media = inject(MediaMatcher);
-    const mobileQuery = media.matchMedia('(max-width: 1199px)');
+    const mobileQuery = media.matchMedia('(max-width: 767px)');
     this.isMobileView = mobileQuery.matches;
     mobileQuery.addEventListener('change', (e) => {
       this.isMobileView = e.matches;

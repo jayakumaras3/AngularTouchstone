@@ -280,6 +280,10 @@
   border-top: 1px solid #f1f5f9;
   display: flex;
   gap: 8px;
+  background: #ffffff;
+  flex-shrink: 0; /* Prevent input area from shrinking */
+  position: relative;
+  z-index: 10; /* Ensure input stays above other content */
 }
 
 .dia-input input {
@@ -290,9 +294,12 @@
   padding: 10px 12px;
   font-size: 13px;
   outline: none;
+  -webkit-appearance: none; /* Remove iOS default styling */
+  appearance: none;
 }
 
-.dia-input button {
+.dia-input button,
+.dia-submit-btn {
   width: 36px;
   height: 36px;
   border-radius: 12px;
@@ -300,11 +307,31 @@
   background: #2563eb;
   color: #ffffff;
   cursor: pointer;
+  flex-shrink: 0; /* Prevent button from shrinking */
+  
+  /* Critical: Ensure button is always clickable */
+  pointer-events: auto !important;
+  touch-action: manipulation; /* Prevent iOS double-tap zoom */
+  -webkit-tap-highlight-color: transparent;
+  
+  /* Ensure button stays above any overlays */
+  position: relative;
+  z-index: 11;
+  
+  transition: all 0.2s ease;
 }
 
-.dia-input button:disabled {
+.dia-input button:active,
+.dia-submit-btn:active {
+  transform: scale(0.95);
+  background: #1d4ed8;
+}
+
+.dia-input button:disabled,
+.dia-submit-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+  pointer-events: none; /* Disabled buttons should not be clickable */
 }
 
 /* ================================
@@ -335,8 +362,8 @@
     animation: fab-entrance 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
   }
   
-  /* Idle pulse animation - only when not open and after entrance */
-  &.dia-fab-visible:not(.dia-fab-active) {
+  /* Idle pulse animation - continuous */
+  &.dia-fab-visible {
     animation: fab-entrance 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
                fab-pulse 4s ease-in-out 1s infinite;
   }
@@ -353,7 +380,7 @@
     pointer-events: none;
   }
   
-  &.dia-fab-visible:not(.dia-fab-active)::before {
+  &.dia-fab-visible::before {
     animation: fab-glow 4s ease-in-out 1s infinite;
   }
   
@@ -370,14 +397,14 @@
   }
   
   /* Hover state - keeps animation running */
-  &:hover:not(.dia-fab-active) {
+  &:hover {
     box-shadow: 0 12px 32px rgba(59, 130, 246, 0.5), 
                 0 0 0 4px rgba(59, 130, 246, 0.15);
     filter: brightness(1.05);
   }
   
   /* Active/Click state - ripple effect */
-  &:active:not(.dia-fab-active) {
+  &:active {
     transform: scale(0.96);
     
     &::after {
@@ -397,42 +424,18 @@
   height: 32px;
   transition: transform 0.3s ease;
   
-  .dia-fab:hover:not(.dia-fab-active) & {
+  .dia-fab:hover & {
     transform: scale(1.05) rotate(3deg);
   }
 }
 
-.dia-fab-active {
-  background: linear-gradient(135deg, #ef4444, #dc2626);
-  animation: none;
-  box-shadow: 0 8px 24px rgba(239, 68, 68, 0.4);
-  
-  &::before {
-    display: none;
-  }
-  
-  &:hover {
-    transform: scale(1.05) rotate(90deg);
-    box-shadow: 0 12px 32px rgba(239, 68, 68, 0.5);
-    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
-}
-
-/* FAB Icon animations */
-.dia-fab-icon,
-.dia-close-icon {
+/* FAB Icon animation */
+.dia-fab-icon {
   display: flex;
   align-items: center;
   justify-content: center;
   transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
               opacity 0.2s ease;
-}
-
-.dia-close-icon {
-  font-size: 20px;
-  font-weight: 700;
-  color: #ffffff;
-  animation: icon-pop-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 /* ================================
@@ -483,6 +486,89 @@
     /* Ensure FAB is easily tappable on small screens */
     min-width: 56px;
     min-height: 56px;
+  }
+}
+
+/* ================================
+   iOS-Specific Fixes for Keyboard
+================================ */
+.dia-widget.dia-ios {
+  /* iOS-specific adjustments */
+  
+  .dia-panel {
+    /* Use maximum available viewport height */
+    max-height: 100vh;
+    max-height: 100dvh; /* Dynamic viewport height for iOS */
+    
+    /* Improve rendering performance on iOS */
+    -webkit-overflow-scrolling: touch;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+  }
+  
+  .dia-panel.open {
+    /* Ensure panel adapts to keyboard */
+    position: fixed;
+    bottom: 0;
+  }
+  
+  .dia-body {
+    /* Ensure messages area can scroll independently */
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+  
+  .dia-input {
+    /* Critical: Use sticky positioning on iOS */
+    position: sticky;
+    bottom: 0;
+    
+    /* Respect iOS safe area at bottom (for home indicator) */
+    padding-bottom: max(14px, env(safe-area-inset-bottom));
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
+    
+    /* Ensure input bar stays above content */
+    background: #ffffff;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.08);
+    
+    /* Prevent any overlays from blocking */
+    isolation: isolate;
+  }
+  
+  .dia-input input {
+    /* Prevent iOS zoom on focus */
+    font-size: 16px !important;
+  }
+  
+  .dia-submit-btn {
+    /* Ensure button is always in tap reach on iOS */
+    min-width: 44px;
+    min-height: 44px;
+    width: 44px;
+    height: 44px;
+    
+    /* iOS touch optimization */
+    -webkit-user-select: none;
+    user-select: none;
+  }
+}
+
+/* iOS small screens (iPhone SE, iPhone 8, etc.) */
+@media (max-width: 480px) {
+  .dia-widget.dia-ios {
+    .dia-panel {
+      height: 100vh;
+      height: 100dvh; /* Use dynamic viewport height */
+      border-radius: 0;
+    }
+    
+    .dia-input {
+      /* Extra padding for smaller screens */
+      padding-top: 16px;
+      padding-bottom: max(16px, env(safe-area-inset-bottom));
+    }
   }
 }
 
@@ -551,21 +637,6 @@
   }
 }
 
-/* Icon pop-in animation */
-@keyframes icon-pop-in {
-  0% {
-    transform: scale(0) rotate(-180deg);
-    opacity: 0;
-  }
-  60% {
-    transform: scale(1.2) rotate(10deg);
-  }
-  100% {
-    transform: scale(1) rotate(0deg);
-    opacity: 1;
-  }
-}
-
 /* Accessibility: Disable animations for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .dia-fab {
@@ -582,10 +653,6 @@
     &::after {
       animation: none !important;
     }
-  }
-  
-  .dia-close-icon {
-    animation: none !important;
   }
   
   .dia-bubble.typing .dot {

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, ViewChild, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, ViewChild, OnInit, OnDestroy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
@@ -53,8 +53,10 @@ const STOP_WORDS = new Set([
   styleUrls: ['./dia-assistant.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DiaAssistantComponent implements OnInit {
+export class DiaAssistantComponent implements OnInit, OnDestroy {
   @ViewChild('scrollAnchor', { static: false }) scrollAnchor?: ElementRef<HTMLDivElement>;
+  @ViewChild('diaPanel', { static: false }) diaPanel?: ElementRef<HTMLDivElement>;
+  @ViewChild('diaInput', { static: false }) diaInputField?: ElementRef<HTMLInputElement>;
 
   isOpen = false;
   isTyping = false;
@@ -66,6 +68,11 @@ export class DiaAssistantComponent implements OnInit {
   messages: ChatMessage[] = [];
   private courses: DiaCourse[] = [];
 
+  // iOS keyboard handling
+  isIOS = false;
+  keyboardHeight = 0;
+  private visualViewportHandler?: () => void;
+
   constructor(
     private readonly http: HttpClient,
     private readonly cdr: ChangeDetectorRef,
@@ -74,6 +81,7 @@ export class DiaAssistantComponent implements OnInit {
     private readonly navService: NavService
   ) {
     this.initializeBrain();
+    this.detectIOS();
   }
 
   ngOnInit(): void {
@@ -82,6 +90,19 @@ export class DiaAssistantComponent implements OnInit {
       this.fabVisible = true;
       this.cdr.markForCheck();
     }, 500);
+
+    // Setup iOS keyboard handling
+    if (this.isIOS) {
+      this.setupIOSKeyboardHandling();
+    }
+  }
+
+  ngOnDestroy(): void {
+    // Cleanup iOS keyboard listeners
+    if (this.isIOS && this.visualViewportHandler && window.visualViewport) {
+      window.visualViewport.removeEventListener('resize', this.visualViewportHandler);
+      window.visualViewport.removeEventListener('scroll', this.visualViewportHandler);
+    }
   }
 
   toggle(): void {
@@ -305,5 +326,85 @@ export class DiaAssistantComponent implements OnInit {
     requestAnimationFrame(() => {
       this.scrollAnchor?.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'end' });
     });
+  }
+
+  /**
+   * Detect if the device is iOS (iPhone/iPad)
+   */
+  private detectIOS(): void {
+    const userAgent = window.navigator.userAgent.toLowerCase();
+    this.isIOS = /iphone|ipad|ipod/.test(userAgent) || 
+                 (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  }
+
+  /**
+   * Setup iOS-specific keyboard handling using Visual Viewport API
+   * This ensures the submit button remains clickable when keyboard opens
+   */
+  private setupIOSKeyboardHandling(): void {
+    if (!window.visualViewport) {
+      return;
+    }
+
+    this.visualViewportHandler = () => {
+      if (!this.isOpen || !this.diaPanel) {
+        return;
+      }
+
+      const viewport = window.visualViewport!;
+      const windowHeight = window.innerHeight;
+      const viewportHeight = viewport.height;
+      
+      // Calculate keyboard height (difference between window and viewport)
+      const calculatedKeyboardHeight = windowHeight - viewportHeight;
+      
+      // Only adjust if keyboard is significantly open (> 150px)
+      if (calculatedKeyboardHeight > 150) {
+        this.keyboardHeight = calculatedKeyboardHeight;
+        
+        // Apply dynamic height to panel
+        const panel = this.diaPanel.nativeElement;
+        const maxPanelHeight = viewportHeight - 40; // 40px padding from top
+        panel.style.maxHeight = `${maxPanelHeight}px`;
+        panel.style.height = `${maxPanelHeight}px`;
+      } else {
+        // Keyboard closed, reset height
+        this.keyboardHeight = 0;
+        if (this.diaPanel) {
+          const panel = this.diaPanel.nativeElement;
+          panel.style.maxHeight = '';
+          panel.style.height = '';
+        }
+      }
+
+      this.cdr.markForCheck();
+    };
+
+    // Listen to viewport changes
+    window.visualViewport.addEventListener('resize', this.visualViewportHandler);
+    window.visualViewport.addEventListener('scroll', this.visualViewportHandler);
+  }
+
+  /**
+   * Handle input focus - scroll into view on iOS
+   */
+  onInputFocus(): void {
+    if (!this.isIOS) {
+      return;
+    }
+
+    // Small delay to let keyboard animation start
+    setTimeout(() => {
+      // Scroll the input container into view
+      if (this.diaInputField) {
+        this.diaInputField.nativeElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'end',
+        });
+      }
+
+      // Ensure messages area is scrolled to bottom
+      this.scrollToBottom();
+    }, 300);
   }
 }

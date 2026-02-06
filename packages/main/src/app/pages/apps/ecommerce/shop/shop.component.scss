@@ -32,7 +32,7 @@
   border-right: 1px solid #e2e8f0;
   padding: 12px 0 20px 0;
   
-  @media (max-width: 991px) {
+  @media (max-width: 767px) {
     position: fixed;
     top: 0;
     left: -280px;
@@ -1044,7 +1044,7 @@ mat-list-item {
   width: 100%; // Ensure fills width
   box-sizing: border-box; 
 
-  @media (max-width: 991px) {
+  @media (max-width: 767px) {
     flex-direction: column;
     align-items: stretch;
     gap: 12px;
@@ -1059,7 +1059,7 @@ mat-list-item {
   transform: translateY(-50%);
   z-index: 10;
 
-  @media (max-width: 991px) {
+  @media (max-width: 767px) {
     position: relative !important;
     left: 0;
     top: 0;
@@ -1079,7 +1079,7 @@ mat-list-item {
   &.mobile {
     padding-left: 60px;
 
-    @media (max-width: 991px) {
+    @media (max-width: 767px) {
       padding-left: 0;
       flex-direction: column;
       align-items: flex-start;
@@ -1087,7 +1087,7 @@ mat-list-item {
     }
   }
 
-  @media (max-width: 991px) {
+  @media (max-width: 767px) {
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
@@ -1109,7 +1109,7 @@ mat-list-item {
   flex: 1;
   min-width: 0;
 
-  @media (max-width: 991px) {
+  @media (max-width: 767px) {
     flex-direction: column;
     width: 100%;
   }
@@ -1176,7 +1176,7 @@ mat-list-item {
     }
   }
 
-  @media (max-width: 991px) {
+  @media (max-width: 767px) {
     width: 100%;
   }
 }
@@ -1247,14 +1247,14 @@ mat-list-item {
   justify-content: flex-end;
 
   &.mobile {
-    @media (max-width: 991px) {
+    @media (max-width: 767px) {
       flex-direction: column;
       width: 100%;
       gap: 12px;
     }
   }
 
-  @media (max-width: 991px) {
+  @media (max-width: 767px) {
     width: 100%;
     flex-direction: column;
   }
@@ -1280,7 +1280,7 @@ mat-list-item {
     }
   }
 
-  @media (max-width: 991px) {
+  @media (max-width: 767px) {
     align-self: center;
   }
 }
@@ -1304,7 +1304,7 @@ mat-list-item {
     }
   }
 
-  @media (max-width: 991px) {
+  @media (max-width: 767px) {
     width: 100%;
   }
 }
@@ -1460,3 +1460,376 @@ mat-list-item {
 //   transform: translateX(-8px);
 //   transition: all 0.25s ease;
 // }
+
+// ============================================
+// iPad-Specific Fixes (Safari)
+// Portrait: 768px - 834px | Landscape: 1024px - 1112px
+// ============================================
+
+/* iPad Portrait (768px - 834px) */
+@media only screen 
+  and (min-width: 768px) 
+  and (max-width: 834px) 
+  and (orientation: portrait) {
+  
+  // Container adjustments for iPad portrait
+  .catalog-layout-container {
+    max-width: 100%;
+    padding: 16px;
+  }
+
+  // Maintain sidebar for iPad (don't hide like mobile)
+  .catalog-sidebar {
+    width: 220px;
+    min-width: 220px;
+    position: relative;
+    left: 0;
+    height: auto;
+    box-shadow: none;
+    border-right: 1px solid #e2e8f0;
+  }
+
+  // Ensure sidebar doesn't become fixed
+  .catalog-sidebar.sidebar-mobile {
+    position: relative;
+    left: 0;
+    height: auto;
+  }
+
+  // Main content adjustments
+  .catalog-main-content {
+    padding: 12px 16px;
+  }
+
+  // Top toolbar stays in row layout on iPad
+  .top-toolbar-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+  }
+
+  // Hide mobile menu button on iPad
+  .mobile-menu-btn {
+    display: none !important;
+  }
+
+  // Catalog type toolbar - keep horizontal
+  .catalog-type-toolbar {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    padding-left: 0 !important;
+    flex: 1 1 100%;
+    min-width: 100%;
+  }
+
+  .catalog-type-label {
+    white-space: nowrap;
+  }
+
+  .catalog-type-tabs {
+    flex-direction: row;
+    width: auto;
+    flex: 1;
+    gap: 8px;
+  }
+
+  .catalog-tab {
+    flex: 1;
+    min-width: 0;
+    padding: 10px 12px;
+
+    .tab-title {
+      font-size: 12px;
+    }
+
+    .tab-subtitle {
+      font-size: 9px;
+    }
+
+    .tab-icon-box {
+      width: 34px;
+      height: 34px;
+      min-width: 34px;
+    }
+  }
+
+  // Search toolbar - second row on iPad portrait
+  .search-toolbar {
+    flex-direction: row;
+    width: 100%;
+    flex: 1 1 100%;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .view-toggle-group {
+    order: 1;
+  }
+
+  .search-field {
+    order: 2;
+    flex: 1;
+    max-width: 400px;
+  }
+
+  // Respect iPad safe areas
+  .catalog-flex-row {
+    padding-left: env(safe-area-inset-left, 0);
+    padding-right: env(safe-area-inset-right, 0);
+  }
+
+  // Grid adjustments for iPad portrait
+  .row {
+    margin: 0 -8px;
+  }
+
+  .col-sm-6 {
+    padding: 0 8px;
+  }
+
+  .col-lg-4 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+/* iPad Landscape (1024px - 1112px) */
+@media only screen 
+  and (min-width: 1024px) 
+  and (max-width: 1112px) 
+  and (orientation: landscape) {
+  
+  // Container adjustments for iPad landscape
+  .catalog-layout-container {
+    max-width: 100%;
+    padding: 16px 20px;
+  }
+
+  // Sidebar maintains desktop-like behavior
+  .catalog-sidebar {
+    width: 240px;
+    min-width: 240px;
+    position: relative;
+    left: 0;
+    height: auto;
+    box-shadow: none;
+  }
+
+  .catalog-sidebar.sidebar-mobile {
+    position: relative;
+    left: 0;
+    height: auto;
+  }
+
+  // Main content
+  .catalog-main-content {
+    padding: 12px 20px;
+  }
+
+  // Hide mobile menu button on iPad landscape
+  .mobile-menu-btn {
+    display: none !important;
+  }
+
+  // Top toolbar - single row with better spacing
+  .top-toolbar-container {
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 16px;
+    padding: 12px 16px;
+  }
+
+  // Catalog type toolbar
+  .catalog-type-toolbar {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    padding-left: 0 !important;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .catalog-type-tabs {
+    flex-direction: row;
+    width: auto;
+    flex: 1;
+    gap: 10px;
+  }
+
+  .catalog-tab {
+    flex: 1;
+    min-width: 0;
+    padding: 12px 14px;
+  }
+
+  // Search toolbar - same row on landscape
+  .search-toolbar {
+    flex-direction: row;
+    width: auto;
+    justify-content: flex-end;
+    gap: 12px;
+  }
+
+  .search-field {
+    width: 280px;
+  }
+
+  // Respect iPad safe areas
+  .catalog-flex-row {
+    padding-left: env(safe-area-inset-left, 0);
+    padding-right: env(safe-area-inset-right, 0);
+  }
+
+  // Grid adjustments for iPad landscape (3 columns)
+  .col-lg-4 {
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+  }
+}
+
+/* iPad Common Styles (both orientations) */
+@media only screen 
+  and (min-width: 768px) 
+  and (max-width: 1112px) {
+  
+  // Prevent layout shift on orientation change
+  .catalog-flex-row {
+    transition: none !important;
+  }
+
+  .catalog-sidebar {
+    transition: none !important;
+  }
+
+  // Ensure proper rendering on Safari
+  .catalog-card {
+    -webkit-overflow-scrolling: touch;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+  }
+
+  // Fix for Safari viewport height issues
+  .catalog-layout-container {
+    min-height: auto;
+  }
+
+  // Prevent horizontal scrolling
+  body, html {
+    overflow-x: hidden;
+  }
+
+  // Ensure filter panel doesn't overlap
+  .filter-section {
+    position: relative;
+    z-index: 1;
+  }
+
+  // Ensure toolbar elements are properly clickable
+  .top-toolbar-container {
+    position: relative;
+    z-index: 2;
+    isolation: isolate;
+  }
+
+  .catalog-tab,
+  .view-btn,
+  .search-field input {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  // Improve touch targets for iPad
+  .catalog-tab {
+    min-height: 44px;
+  }
+
+  .view-btn {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  // Prevent text selection during interaction
+  .catalog-type-toolbar,
+  .search-toolbar {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  // Fix alignment issues
+  .top-toolbar-container {
+    align-items: center !important;
+  }
+
+  .catalog-type-toolbar.mobile {
+    padding-left: 0 !important;
+  }
+
+  // Ensure sidebar overlay is hidden on iPad
+  .sidebar-overlay {
+    display: none !important;
+  }
+
+  // Filter content should not shift
+  .filter-content {
+    position: relative;
+    transform: translateZ(0);
+  }
+
+  // Card grid proper spacing
+  .productcard {
+    margin-bottom: 16px;
+  }
+
+  // Prevent zoom on input focus (Safari)
+  input[type="text"],
+  input[type="search"] {
+    font-size: 16px !important;
+  }
+
+  // Smooth scrolling for filter panel
+  .filter-section {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Handle iPad Pro 11" and 12.9" */
+@media only screen 
+  and (min-width: 834px) 
+  and (max-width: 1024px) {
+  
+  .catalog-sidebar {
+    width: 230px;
+    min-width: 230px;
+  }
+
+  .search-field {
+    width: 300px;
+  }
+
+  .catalog-tab {
+    padding: 12px 16px;
+  }
+}
+
+/* Prevent layout break during orientation change */
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) {
+  
+  * {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  // Stabilize layout during rotation
+  .catalog-layout-container,
+  .catalog-flex-row,
+  .catalog-sidebar,
+  .catalog-main-content {
+    animation: none !important;
+    transition: none !important;
+  }
+}

@@ -1,5 +1,5 @@
-<div class="dia-widget">
-  <div class="dia-panel" [class.open]="isOpen" [attr.aria-hidden]="!isOpen">
+<div class="dia-widget" [class.dia-ios]="isIOS">
+  <div class="dia-panel" [class.open]="isOpen" [attr.aria-hidden]="!isOpen" #diaPanel>
     <div class="dia-header">
       <div class="dia-header-left">
         <div class="dia-avatar">
@@ -65,34 +65,34 @@
 
     <form class="dia-input" (submit)="sendMessage($event)">
       <input
+        #diaInput
         type="text"
         [(ngModel)]="inputText"
         name="diaInput"
         [placeholder]="isReady ? 'Search courses...' : 'Loading catalog...'"
         [disabled]="!isReady"
+        (focus)="onInputFocus()"
       />
-      <button type="submit" [disabled]="!inputText.trim() || !isReady" aria-label="Send">
+      <button type="submit" [disabled]="!inputText.trim() || !isReady" aria-label="Send" class="dia-submit-btn">
         ▲
       </button>
     </form>
   </div>
 
   <!-- Original Chatbot FAB Button - Fixed at bottom-right -->
+  <!-- Only show FAB when chatbot is closed -->
   <button 
+    *ngIf="!isOpen"
     class="dia-fab" 
     type="button" 
     (click)="toggle()"
-    [class.dia-fab-active]="isOpen"
     [class.dia-fab-visible]="fabVisible"
-    aria-label="Toggle Dia Assistant"
-    [attr.aria-expanded]="isOpen"
+    aria-label="Open Dia Assistant"
+    [attr.aria-expanded]="false"
   >
-    <!-- Original Chatbot Icon (when closed) -->
-    <span *ngIf="!isOpen" class="dia-fab-icon">
+    <!-- Chatbot Icon -->
+    <span class="dia-fab-icon">
       <img src="assets/dia-ai/images/dia.svg" alt="Open Dia Assistant" />
     </span>
-    
-    <!-- Close Icon (when open) -->
-    <span *ngIf="isOpen" class="dia-close-icon">✕</span>
   </button>
 </div>
