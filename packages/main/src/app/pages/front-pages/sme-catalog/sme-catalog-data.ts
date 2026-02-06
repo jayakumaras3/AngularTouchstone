@@ -31,8 +31,10 @@ export const SME_CATEGORIES: SmeCategory[] = [
       { title: 'Six Core Organization Functions', level: 'foundational', group: 'Foundational' },
       { title: 'Principles of Lean Operations', level: 'foundational', group: 'Foundational' },
       { title: 'Introduction to Supply Chain Management', level: 'foundational', group: 'Foundational' },
-      { title: 'Inventory Control & Demand Planning', level: 'foundational', group: 'Foundational' },
-      { title: 'Order Management & Procurement', level: 'foundational', group: 'Foundational' },
+      { title: 'Inventory Control', level: 'foundational', group: 'Foundational' },      
+      { title: 'Demand Planning', level: 'foundational', group: 'Foundational' },
+      { title: 'Order Management', level: 'foundational', group: 'Foundational' },
+      { title: 'Procurement', level: 'foundational', group: 'Foundational' },
       // Intermediate (Growth & Planning)
       { title: 'Competition vs. Differentiation (SWOT Analysis)', level: 'intermediate', group: 'Intermediate (Growth & Planning)' },
       { title: 'Creating a Competitive Edge', level: 'intermediate', group: 'Intermediate' },
@@ -127,7 +129,7 @@ export const SME_CATEGORIES: SmeCategory[] = [
       { title: 'Situational Leadership Theory', level: 'advanced', group: 'Executive Leadership' },
       { title: 'Building an Effective Leadership Succession Plan', level: 'advanced', group: 'Executive Leadership' },
       { title: 'Authentic Leadership and Empathy', level: 'advanced', group: 'Executive Leadership' },
-      { title: 'Strategy: Shareholder Driven OR Stakeholder Centric?', level: 'advanced', group: 'Executive Leadership' },
+      { title: 'Leadership: Shareholder Driven OR Stakeholder Centric', level: 'advanced', group: 'Executive Leadership' },
       { title: 'Evolving Organizational Leadership: Part 1', level: 'advanced', group: 'Executive Leadership' },
       { title: 'Evolving Organizational Leadership: Part 2', level: 'advanced', group: 'Executive Leadership' },
     ]
@@ -159,7 +161,7 @@ export const SME_CATEGORIES: SmeCategory[] = [
       { title: 'An Introduction to DEI', level: 'intermediate', group: 'Diversity, Equity & Inclusion (DEI)' },
       { title: 'Unconscious Bias in Recruitment', level: 'intermediate', group: 'Diversity, Equity & Inclusion (DEI)' },
       { title: 'Respectful Workplace', level: 'intermediate', group: 'Diversity, Equity & Inclusion (DEI)' },
-      { title: 'Sexual Harassment Prevention (California Specific & General)', level: 'intermediate', group: 'Diversity, Equity & Inclusion (DEI)' },
+      { title: 'Sexual Harassment Prevention Training: California Specific', level: 'intermediate', group: 'Diversity, Equity & Inclusion (DEI)' },
       { title: 'Managing Diversity', level: 'advanced', group: 'Diversity, Equity & Inclusion (DEI)' },
     ]
   },
@@ -171,11 +173,12 @@ export const SME_CATEGORIES: SmeCategory[] = [
     color: '#06b6d4',
     courses: [
       // Communication
-      { title: 'Business Communication Skills & Writing', level: 'foundational', group: 'Communication' },
-      { title: 'Effective Resume Development & LinkedIn (Building Personal Brand)', level: 'foundational', group: 'Communication' },
+      { title: 'Business Communication Skills', level: 'foundational', group: 'Communication' },
+      { title: 'Effective Resume Development', level: 'foundational', group: 'Communication' },
       { title: 'Interpersonal Communication in the Workplace', level: 'foundational', group: 'Communication' },
       { title: 'Enhancing Listening Skills', level: 'foundational', group: 'Communication' },
-      { title: 'Delivering Effective Presentations & Elevator Pitches', level: 'intermediate', group: 'Communication' },
+      { title: 'Delivering Effective Presentations', level: 'intermediate', group: 'Communication' },      
+      { title: 'How to Give an Elevator Pitch', level: 'intermediate', group: 'Communication' },
       // Productivity & Mindset
       { title: 'Time Management: Myths and Mistakes', level: 'foundational', group: 'Productivity & Mindset' },
       { title: 'Getting Rid of Distractions at Work', level: 'foundational', group: 'Productivity & Mindset' },
@@ -200,7 +203,8 @@ export const SME_CATEGORIES: SmeCategory[] = [
       { title: 'Importance of Ethics and Code of Conduct', level: 'foundational', group: 'Compliance & Ethics' },
       { title: 'Anti-Bribery and Anti-Corruption Policies', level: 'foundational', group: 'Compliance & Ethics' },
       { title: 'POSH (Prevention of Sexual Harassment)', level: 'foundational', group: 'Compliance & Ethics' },
-      { title: 'Workplace Politics & Ethics', level: 'intermediate', group: 'Compliance & Ethics' },
+      { title: 'Effects of Workplace Politics', level: 'intermediate', group: 'Compliance & Ethics' },
+      { title: 'Workplace Ethics', level: 'intermediate', group: 'Compliance & Ethics' },
       { title: 'Data Protection and Privacy (GDPR Basics)', level: 'intermediate', group: 'Compliance & Ethics' },
       // Safety (EHS)
       { title: 'Workplace Safety Responsibilities (OSHA Basics)', level: 'foundational', group: 'Safety (EHS)' },
