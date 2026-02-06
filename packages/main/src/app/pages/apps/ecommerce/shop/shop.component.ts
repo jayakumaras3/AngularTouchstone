@@ -6,6 +6,7 @@ import {
   HostListener,
   inject,
   OnInit,
+  OnDestroy,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IconModule } from '../../../../icon/icon.module';
@@ -43,7 +44,7 @@ export interface Section {
   styleUrl: './shop.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush, // Prevent full re-renders
 })
-export class ShopComponent implements OnInit {
+export class ShopComponent implements OnInit, OnDestroy {
   viewMode: 'grid' | 'tile' = 'grid';
 trackTileRows(index: number, item: any) {
   return item.id || index;
@@ -82,6 +83,11 @@ trackTileRows(index: number, item: any) {
   isMobileView = false;
   sidebarOpen = false; // For mobile sidebar toggle
   languageCounts: { [key: string]: number } = {};
+
+  // iOS detection and handling
+  isIOS = false;
+  isIPhone = false;
+  private visualViewportHandler?: () => void;
 
   // ========================
   // Lazy Loading Properties
@@ -169,6 +175,9 @@ trackTileRows(index: number, item: any) {
     mobileQuery.addEventListener('change', (e) => {
       this.isMobileView = e.matches;
     });
+
+    // Detect iOS devices
+    this.detectIOS();
   }
 
   ngOnInit(): void {
@@ -191,6 +200,66 @@ trackTileRows(index: number, item: any) {
         this.cdr.detectChanges();
       }
     });
+
+    // Setup iOS keyboard handling if on iOS
+    if (this.isIOS) {
+      this.setupIOSKeyboardHandling();
+    }
+  }
+
+  ngOnDestroy(): void {
+    // Cleanup iOS keyboard listeners
+    if (this.isIOS && this.visualViewportHandler && window.visualViewport) {
+      window.visualViewport.removeEventListener('resize', this.visualViewportHandler);
+      window.visualViewport.removeEventListener('scroll', this.visualViewportHandler);
+    }
+  }
+
+  /**
+   * Detect if the device is iOS (iPhone/iPad)
+   */
+  private detectIOS(): void {
+    const userAgent = window.navigator.userAgent.toLowerCase();
+    this.isIOS = /iphone|ipad|ipod/.test(userAgent) || 
+                 (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    this.isIPhone = /iphone|ipod/.test(userAgent);
+  }
+
+  /**
+   * Setup iOS-specific handling for Visual Viewport API
+   * Helps with keyboard overlay issues on iPhone
+   */
+  private setupIOSKeyboardHandling(): void {
+    if (!window.visualViewport) {
+      return;
+    }
+
+    this.visualViewportHandler = () => {
+      const viewport = window.visualViewport!;
+      const windowHeight = window.innerHeight;
+      const viewportHeight = viewport.height;
+      
+      // Calculate keyboard height
+      const keyboardHeight = windowHeight - viewportHeight;
+      
+      // If keyboard is open (significant height difference)
+      if (keyboardHeight > 150) {
+        // Keyboard is open - ensure search field is visible
+        const searchField = document.querySelector('.search-field input') as HTMLElement;
+        if (searchField && document.activeElement === searchField) {
+          // Scroll into view if needed
+          setTimeout(() => {
+            searchField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }, 100);
+        }
+      }
+
+      this.cdr.detectChanges();
+    };
+
+    // Listen to viewport changes
+    window.visualViewport.addEventListener('resize', this.visualViewportHandler);
+    window.visualViewport.addEventListener('scroll', this.visualViewportHandler);
   }
   Math = Math;
 // Pagination

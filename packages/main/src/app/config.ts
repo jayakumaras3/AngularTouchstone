@@ -191,7 +191,7 @@ export const baseUrlPathslash = '/ang';
 export const LoginUrl = 'ang/';
 export const logoUrl = '/ang/';
 
-export const apiUrl = 'http://172.16.2.214/dochek_ultra/landing';
+export const apiUrl = 'http://172.16.2.214/DOCHEK/landing';
   
-  export const forgotUrl = 'http://172.16.2.214/dochek_ultra/landing';
-  export const contactApiUrl = 'http://172.16.2.214/dochek_ultra/landing';
+  export const forgotUrl = 'http://172.16.2.214/DOCHEK/landing';
+  export const contactApiUrl = 'http://172.16.2.214/DOCHEK/landing';
