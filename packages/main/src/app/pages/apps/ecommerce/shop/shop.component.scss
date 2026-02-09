@@ -1202,6 +1202,14 @@ mat-list-item {
     gap: 8px;
     padding: 10px;
   }
+
+  // iPhone LANDSCAPE ONLY: Single row, no wrapping
+  @media (max-width: 767px) and (orientation: landscape) and (max-height: 430px) {
+    flex-wrap: nowrap; // Prevent wrapping into multiple rows
+    align-items: center;
+    gap: 6px;
+    padding: 8px;
+  }
 }
 
 // Mobile menu button - PART OF FLEX FLOW on mobile
@@ -1251,6 +1259,18 @@ mat-list-item {
     min-width: 0;
     padding-left: 0 !important; // No padding - menu btn is in flow
     order: 1; // After menu button
+  }
+
+  // iPhone LANDSCAPE ONLY: Prevent button wrapping, fit in single row
+  @media (max-width: 767px) and (orientation: landscape) and (max-height: 430px) {
+    gap: 4px; // Reduce gap to fit more buttons
+    flex-wrap: nowrap; // Prevent wrapping
+    
+    .catalog-tab {
+      flex: 0 1 auto; // Flexible sizing instead of equal distribution
+      min-width: 0;
+      font-size: 11px; // Reduce font if needed
+    }
   }
 }
 
@@ -1468,6 +1488,15 @@ mat-list-item {
     align-items: center;
     gap: 8px;
   }
+
+  // iPhone LANDSCAPE ONLY: Single row layout with search input visible
+  // Fixes: Search input hidden, header misalignment, catalog buttons misaligned
+  @media (max-width: 767px) and (orientation: landscape) and (max-height: 430px) {
+    order: unset;
+    flex: 0 1 auto; // Restore normal flex sizing (don't force full width)
+    min-width: auto;
+    justify-content: flex-end;
+  }
 }
 
 .view-toggle-group {
@@ -1545,6 +1574,21 @@ mat-list-item {
       .mat-mdc-form-field-infix {
         min-height: 36px;
         padding: 6px 0;
+      }
+    }
+  }
+
+  // iPhone LANDSCAPE ONLY: Ensure search field is visible and compact
+  @media (max-width: 767px) and (orientation: landscape) and (max-height: 430px) {
+    flex: 0 1 auto;
+    width: 140px; // Compact width for landscape
+    min-width: 140px;
+    order: unset;
+    
+    ::ng-deep {
+      .mat-mdc-form-field-infix {
+        min-height: 32px;
+        padding: 4px 0;
       }
     }
   }
