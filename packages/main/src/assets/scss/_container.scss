@@ -186,18 +186,22 @@ button[color="primary"],
 }
 
 // ========================================
-// iOS Safari Landscape Mode Fix
+// iOS Safari Landscape Mode Fix - BLUE BUTTONS ONLY
 // ========================================
 // Issue: iOS Safari applies orientation-specific default styles in landscape mode,
-// overriding text color for buttons with background colors.
+// overriding text color for buttons with BLUE backgrounds.
 // Root cause: Safari's auto-styling in landscape treats colored buttons differently,
-// forcing black text for better "perceived" readability, ignoring developer styles.
-// This happens because:
-// 1. iOS Safari has aggressive auto-enhancement in landscape
-// 2. It assumes landscape = desktop-like experience needing high contrast
-// 3. It overrides color properties with internal user-agent stylesheet values
-// 
-// Solution: Force white text on ALL blue/primary buttons specifically in iOS landscape
+// forcing black text for better "perceived" readability.
+// IMPORTANT: This fix targets ONLY buttons with blue backgrounds.
+//
+// Explicitly EXCLUDED from this fix:
+// - Form submit/reset buttons
+// - Cancel buttons  
+// - Secondary/outline buttons
+// - Icon buttons without blue background
+// - Non-button elements
+//
+// Solution: Force white text on blue background buttons ONLY in iOS landscape
 // using multiple CSS properties with !important to override Safari's internal styles.
 
 @supports (-webkit-touch-callout: none) {
@@ -206,88 +210,99 @@ button[color="primary"],
   @media (orientation: landscape) {
     // Apply ONLY in landscape mode where the bug occurs
     
-    // Target all primary/blue button variants
-    button[color="primary"],
-    button.bg-primary,
-    [mat-button][color="primary"],
-    [mat-flat-button][color="primary"],
-    [mat-raised-button][color="primary"],
-    [mat-stroked-button][color="primary"],
-    .mat-mdc-button[color="primary"],
-    .mat-mdc-raised-button[color="primary"],
-    .mat-mdc-flat-button[color="primary"],
-    .mat-mdc-unelevated-button[color="primary"],
+    // ==============================================
+    // SECTION 1: Blue background buttons (.bg-primary)
+    // ==============================================
+    // These have explicit blue background - safe to target
     .bg-primary,
     a.bg-primary,
-    .btn-primary,
-    // Include nested spans and text elements
-    button[color="primary"] span,
-    button.bg-primary span,
-    [mat-flat-button][color="primary"] span,
-    .bg-primary span,
-    .mat-mdc-button[color="primary"] .mdc-button__label,
-    .mat-mdc-flat-button[color="primary"] .mdc-button__label,
-    .mat-mdc-raised-button[color="primary"] .mdc-button__label {
-      // Multiple properties for maximum compatibility
+    button.bg-primary,
+    [mat-button].bg-primary,
+    [mat-flat-button].bg-primary,
+    [mat-raised-button].bg-primary {
       color: #ffffff !important;
       -webkit-text-fill-color: #ffffff !important;
       -webkit-appearance: none !important;
       appearance: none !important;
     }
     
-    // Ensure white text persists in ALL states
-    button[color="primary"]:hover,
-    button[color="primary"]:focus,
-    button[color="primary"]:active,
-    button[color="primary"]:disabled,
-    button.bg-primary:hover,
-    button.bg-primary:focus,
-    button.bg-primary:active,
-    button.bg-primary:disabled,
-    [mat-flat-button][color="primary"]:hover,
-    [mat-flat-button][color="primary"]:focus,
-    [mat-flat-button][color="primary"]:active,
-    [mat-flat-button][color="primary"]:disabled,
+    // Blue background buttons in all states
     .bg-primary:hover,
     .bg-primary:focus,
     .bg-primary:active,
     .bg-primary:disabled,
-    .mat-mdc-button[color="primary"]:hover,
-    .mat-mdc-button[color="primary"]:focus,
+    button.bg-primary:hover,
+    button.bg-primary:focus,
+    button.bg-primary:active,
+    button.bg-primary:disabled {
+      color: #ffffff !important;
+      -webkit-text-fill-color: #ffffff !important;
+    }
+    
+    // Nested text elements within blue background buttons
+    .bg-primary span,
+    button.bg-primary span,
+    .bg-primary .mdc-button__label {
+      color: #ffffff !important;
+      -webkit-text-fill-color: #ffffff !important;
+    }
+    
+    // ==============================================
+    // SECTION 2: Material flat/raised buttons with primary color
+    // ==============================================
+    // These have blue backgrounds in Material Design
+    [mat-flat-button][color="primary"],
+    [mat-raised-button][color="primary"],
+    .mat-mdc-flat-button[color="primary"],
+    .mat-mdc-raised-button[color="primary"],
+    .mat-mdc-unelevated-button[color="primary"] {
+      color: #ffffff !important;
+      -webkit-text-fill-color: #ffffff !important;
+      -webkit-appearance: none !important;
+      appearance: none !important;
+    }
+    
+    // Material flat/raised buttons in all states
+    [mat-flat-button][color="primary"]:hover,
+    [mat-flat-button][color="primary"]:focus,
+    [mat-flat-button][color="primary"]:active,
+    [mat-flat-button][color="primary"]:disabled,
+    [mat-raised-button][color="primary"]:hover,
+    [mat-raised-button][color="primary"]:focus,
+    [mat-raised-button][color="primary"]:active,
+    [mat-raised-button][color="primary"]:disabled,
     .mat-mdc-flat-button[color="primary"]:hover,
     .mat-mdc-flat-button[color="primary"]:focus,
     .mat-mdc-raised-button[color="primary"]:hover,
-    .mat-mdc-raised-button[color="primary"]:focus,
-    // Include nested spans in states
-    button[color="primary"]:hover span,
-    button.bg-primary:hover span,
-    [mat-flat-button][color="primary"]:hover span,
-    .bg-primary:hover span,
-    .mat-mdc-button[color="primary"]:hover .mdc-button__label,
-    .mat-mdc-flat-button[color="primary"]:hover .mdc-button__label {
+    .mat-mdc-raised-button[color="primary"]:focus {
       color: #ffffff !important;
       -webkit-text-fill-color: #ffffff !important;
     }
     
-    // Additional coverage for icon buttons with primary color
-    [mat-icon-button][color="primary"],
-    [mat-mini-fab][color="primary"],
-    [mat-fab][color="primary"],
-    .mat-mdc-icon-button[color="primary"],
-    .mat-mdc-mini-fab[color="primary"],
-    .mat-mdc-fab[color="primary"],
-    mat-icon.text-white,
-    i-tabler {
+    // Nested text elements within Material buttons
+    [mat-flat-button][color="primary"] span,
+    [mat-raised-button][color="primary"] span,
+    [mat-flat-button][color="primary"] .mdc-button__label,
+    [mat-raised-button][color="primary"] .mdc-button__label,
+    .mat-mdc-flat-button[color="primary"] .mdc-button__label,
+    .mat-mdc-raised-button[color="primary"] .mdc-button__label {
       color: #ffffff !important;
       -webkit-text-fill-color: #ffffff !important;
     }
     
-    // Cover Material button ripples and overlays
-    button[color="primary"] .mat-mdc-button-persistent-ripple,
-    button[color="primary"] .mat-mdc-button-ripple,
-    [mat-flat-button][color="primary"] .mat-mdc-button-persistent-ripple,
-    [mat-flat-button][color="primary"] .mat-mdc-button-ripple {
+    // ==============================================
+    // SECTION 3: Explicit primary CTA buttons
+    // ==============================================
+    // Class-based button styles
+    .btn-primary {
       color: #ffffff !important;
+      -webkit-text-fill-color: #ffffff !important;
+    }
+    
+    .btn-primary:hover,
+    .btn-primary:focus {
+      color: #ffffff !important;
+      -webkit-text-fill-color: #ffffff !important;
     }
   }
 }
