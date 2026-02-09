@@ -74,6 +74,57 @@
   padding: 12px;
 }
 
+// iPhone-only alignment fixes for header area
+@media (max-width: 767px) {
+  // Prevent horizontal scrolling on iPhone
+  .catalog-layout-container,
+  .catalog-card,
+  .catalog-main-content {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .catalog-layout-container {
+    padding-left: calc(12px + env(safe-area-inset-left, 0));
+    padding-right: calc(12px + env(safe-area-inset-right, 0));
+  }
+
+  // Keep the close icon inside the sidebar header area
+  .catalog-sidebar.sidebar-mobile {
+    padding-top: 44px;
+  }
+
+  .sidebar-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
+  // Ensure catalog type tabs wrap and stay within the viewport
+  .top-toolbar-container {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    padding-left: calc(10px + env(safe-area-inset-left, 0));
+    padding-right: calc(10px + env(safe-area-inset-right, 0));
+  }
+
+  .catalog-type-toolbar,
+  .catalog-type-tabs {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    flex-wrap: wrap;
+  }
+
+  .catalog-tab {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: 100%;
+  }
+}
+
 // ============================================
 // Filter Panel Enhancement Styles
 // ============================================
