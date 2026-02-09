@@ -309,7 +309,6 @@ $advanced-color: #991b1b;
 
 // Footer
 .footer {
-  background: #0f172a;
   padding: 40px 0;
 }
 
@@ -333,5 +332,72 @@ $advanced-color: #991b1b;
     &:nth-child(#{$i}) {
       animation-delay: #{$i * 0.05}s;
     }
+  }
+}
+
+// ===========================
+// Light and Dark Mode Support
+// ===========================
+
+// Light Mode (default)
+:host-context(.light-theme) {
+  .courses-section {
+    background: #f8fafc;
+  }
+
+  .course-card {
+    background: #ffffff;
+    color: $primary-color;
+  }
+
+  .course-title {
+    color: $primary-color;
+  }
+
+  .group-title {
+    color: $primary-color;
+    border-bottom-color: #e2e8f0;
+  }
+
+  .card-footer {
+    border-top-color: #f1f5f9;
+  }
+
+  .footer {
+    background: #ffffff;
+  }
+}
+
+// Dark Mode
+:host-context(.dark-theme) {
+  .courses-section {
+    background: var(--mat-sys-surface);
+  }
+
+  .course-card {
+    background: var(--mat-sys-surface-container);
+    border-color: var(--mat-sys-outline-variant);
+    color: var(--mat-sys-on-surface);
+  }
+
+  .course-title {
+    color: var(--mat-sys-on-surface);
+  }
+
+  .group-title {
+    color: var(--mat-sys-on-surface);
+    border-bottom-color: var(--mat-sys-outline-variant);
+  }
+
+  .card-footer {
+    border-top-color: var(--mat-sys-outline-variant);
+  }
+
+  .view-course {
+    color: var(--mat-sys-on-surface-variant);
+  }
+
+  .footer {
+    background: var(--mat-sys-surface);
   }
 }

@@ -284,7 +284,6 @@ $transition-medium: 0.3s ease;
 
 // Footer
 .footer {
-  background: #0f172a;
   padding: 40px 0;
 }
 
@@ -313,4 +312,61 @@ $transition-medium: 0.3s ease;
 // Footer spacing
 .footer {
   margin-top: 60px;
+}
+
+// ===========================
+// Light and Dark Mode Support
+// ===========================
+
+// Light Mode (default)
+:host-context(.light-theme) {
+  .sme-categories-section {
+    background: #f2f6fa !important;
+  }
+
+  .category-tile {
+    background: #ffffff;
+    color: $primary-color;
+
+    .tile-title {
+      color: $primary-color;
+    }
+
+    .tile-description {
+      color: $secondary-color;
+    }
+  }
+
+  .footer {
+    background: #ffffff;
+  }
+}
+
+// Dark Mode
+:host-context(.dark-theme) {
+  .sme-hero {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+
+  .sme-categories-section {
+    background: var(--mat-sys-surface) !important;
+  }
+
+  .category-tile {
+    background: var(--mat-sys-surface-container);
+    border-color: var(--mat-sys-outline-variant);
+    color: var(--mat-sys-on-background);
+
+    .tile-title {
+      color: var(--mat-sys-on-surface);
+    }
+
+    .tile-description {
+      color: var(--mat-sys-on-surface-variant);
+    }
+  }
+
+  .footer {
+    background: var(--mat-sys-surface);
+  }
 }
