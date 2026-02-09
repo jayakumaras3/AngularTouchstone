@@ -152,3 +152,35 @@ td.hljs-ln-line.hljs-ln-numbers {
 .mat-drawer[style*="visibility: hidden"] {
   display: none;
 }
+
+// ========================================
+// iOS Button Text Color Fix (Minimal)
+// ========================================
+// Issue: iOS Safari forces dark text on buttons
+// Solution: Override ONLY text color using -webkit-text-fill-color
+// Does NOT change button appearance, structure, or styling
+
+button,
+[mat-button],
+[mat-flat-button],
+[mat-raised-button],
+[mat-stroked-button],
+[mat-icon-button],
+.btn,
+.mat-mdc-button,
+.mat-mdc-raised-button,
+.mat-mdc-flat-button {
+  -webkit-text-fill-color: currentColor;
+}
+
+// White text for primary/blue buttons (iOS override only)
+button[color="primary"],
+[mat-button][color="primary"],
+[mat-flat-button][color="primary"],
+[mat-raised-button][color="primary"],
+.mat-mdc-button[color="primary"],
+.mat-mdc-raised-button[color="primary"],
+.mat-mdc-flat-button[color="primary"],
+.bg-primary {
+  -webkit-text-fill-color: white;
+}

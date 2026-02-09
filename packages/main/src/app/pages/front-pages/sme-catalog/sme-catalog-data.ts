@@ -86,7 +86,7 @@ export const SME_CATEGORIES: SmeCategory[] = [
       { title: 'Understanding Brand Value', level: 'intermediate', group: 'Marketing' },
       { title: 'Market Segmentation Overview', level: 'intermediate', group: 'Marketing' },
       { title: 'Brand Repositioning', level: 'advanced', group: 'Marketing' },      
-      { title: 'Extend Brand Reach', level: 'advanced', group: 'Marketing' },
+      { title: 'Expand Brand Reach', level: 'advanced', group: 'Marketing' },
       // Sales
       { title: 'Definition, Techniques, and Tips for Virtual Selling', level: 'foundational', group: 'Sales' },
       { title: 'Mastering the Cold Calling Process', level: 'foundational', group: 'Sales' },
@@ -159,8 +159,9 @@ export const SME_CATEGORIES: SmeCategory[] = [
       { title: 'Becoming a Continuous Learning Organization', level: 'intermediate', group: 'Talent Development' },
       // Diversity, Equity & Inclusion (DEI)
       { title: 'An Introduction to DEI', level: 'intermediate', group: 'Diversity, Equity & Inclusion (DEI)' },
-      { title: 'Unconscious Bias in Recruitment', level: 'intermediate', group: 'Diversity, Equity & Inclusion (DEI)' },
-      { title: 'Respectful Workplace', level: 'intermediate', group: 'Diversity, Equity & Inclusion (DEI)' },
+      { title: 'Unconscious Bias – Bias in Talent Development and Recruitment', level: 'intermediate', group: 'Diversity, Equity & Inclusion (DEI)' },
+      { title: 'Types of Harassment and Violence Commitment', level: 'intermediate', group: 'Diversity, Equity & Inclusion (DEI)' },
+      { title: 'Complaints - Reporting and Investigation Procedures', level: 'intermediate', group: 'Diversity, Equity & Inclusion (DEI)' },
       { title: 'Sexual Harassment Prevention Training: California Specific', level: 'intermediate', group: 'Diversity, Equity & Inclusion (DEI)' },
       { title: 'Managing Diversity', level: 'advanced', group: 'Diversity, Equity & Inclusion (DEI)' },
     ]
@@ -207,7 +208,9 @@ export const SME_CATEGORIES: SmeCategory[] = [
       { title: 'Workplace Ethics', level: 'intermediate', group: 'Compliance & Ethics' },
       { title: 'Data Protection and Privacy (GDPR Basics)', level: 'intermediate', group: 'Compliance & Ethics' },
       // Safety (EHS)
-      { title: 'Workplace Safety Responsibilities (OSHA Basics)', level: 'foundational', group: 'Safety (EHS)' },
+      { title: 'Environmental Safety', level: 'foundational', group: 'Safety (EHS)' },     
+      { title: 'Equipment Safety', level: 'foundational', group: 'Safety (EHS)' },
+      { title: 'Fire Safety', level: 'foundational', group: 'Safety (EHS)' },
       { title: 'Health and Safety Manager Role in Emergency Response and Fire Safety', level: 'foundational', group: 'Safety (EHS)' },
       { title: 'Ergonomics (Implied in Equipment Safety)', level: 'foundational', group: 'Safety (EHS)' },
       { title: 'Workplace Violence Prevention (Active Shooter, Robbery)', level: 'intermediate', group: 'Safety (EHS)' },
@@ -215,7 +218,7 @@ export const SME_CATEGORIES: SmeCategory[] = [
       { title: 'Managing Stress and Emotions', level: 'foundational', group: 'Wellness' },
       { title: 'Importance of Self-Care and Staying Well at Work', level: 'foundational', group: 'Wellness' },
       { title: 'Psychological Safety at Work', level: 'intermediate', group: 'Wellness' },
-      { title: 'Burnout Prevention (Implied in Mental Wellness)', level: 'intermediate', group: 'Wellness' },
+      { title: 'Mental Wellness at the Workplace and Its Benefits', level: 'intermediate', group: 'Wellness' },
     ]
   },
   {
@@ -228,9 +231,11 @@ export const SME_CATEGORIES: SmeCategory[] = [
       // Digital Literacy
       { title: 'Basic Digital Skills', level: 'foundational', group: 'Digital Literacy' },
       { title: 'Introduction to Emotional Intelligence (Note: Often grouped with Soft Skills, but "EQ in Tech" is a trend)', level: 'foundational', group: 'Digital Literacy' },
-      { title: 'Collaboration Tools (Zoom/Teams implied via "Virtual Teams")', level: 'foundational', group: 'Digital Literacy' },
+      
       // Infrastructure & Cloud
-      { title: 'Cloud Technology: Intro to AWS, Azure, Google Cloud (Good for decision makers)', level: 'intermediate', group: 'Infrastructure & Cloud' },
+      { title: 'An Introduction to Amazon Web Services (AWS)', level: 'intermediate', group: 'Infrastructure & Cloud' },
+      { title: 'Google Cloud for Businesses', level: 'intermediate', group: 'Infrastructure & Cloud' },
+      { title: 'Introduction to Microsoft Azure', level: 'intermediate', group: 'Infrastructure & Cloud' },
       { title: 'Hybrid Cloud for Businesses', level: 'intermediate', group: 'Infrastructure & Cloud' },
       { title: 'Importance of Data Backup and Retention', level: 'foundational', group: 'Infrastructure & Cloud' },
       // Cybersecurity
