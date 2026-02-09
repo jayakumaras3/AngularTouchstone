@@ -92,6 +92,9 @@
   border-radius: 10px;
   width: 32px;
   height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   transition: 0.2s ease;
 }
@@ -332,6 +335,108 @@
   opacity: 0.5;
   cursor: not-allowed;
   pointer-events: none; /* Disabled buttons should not be clickable */
+}
+
+/* ================================
+   Dark Theme Overrides
+================================ */
+:host-context(.dark-theme) {
+  .dia-panel {
+    background: #0f172a;
+    border-color: #1f2937;
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
+  }
+
+  .dia-header {
+    background: #0f172a;
+    border-bottom-color: #1f2937;
+  }
+
+  .dia-title h3 {
+    color: #e2e8f0;
+  }
+
+  .dia-avatar {
+    background: #111827;
+  }
+
+  .dia-close {
+    background: #111827;
+    color: #cbd5f5;
+  }
+
+  .dia-close:hover {
+    background: #1f2937;
+    color: #ffffff;
+  }
+
+  .dia-progress {
+    background: #1f2937;
+  }
+
+  .dia-body {
+    background: #0b1220;
+  }
+
+  .dia-message.bot .dia-bubble {
+    background: #111827;
+    border-color: #1f2937;
+    color: #e2e8f0;
+  }
+
+  .dia-message.user .dia-bubble {
+    background: #2563eb;
+    color: #ffffff;
+  }
+
+  .dia-bubble.typing .dot {
+    background: #4b5563;
+  }
+
+  .dia-card {
+    background: #0f172a;
+    border-color: #1f2937;
+  }
+
+  .dia-card-meta,
+  .dia-card p {
+    color: #94a3b8;
+  }
+
+  .dia-card h4 {
+    color: #e2e8f0;
+  }
+
+  .dia-chip {
+    background: #1e3a8a;
+    color: #bfdbfe;
+  }
+
+  .dia-card a,
+  .dia-view-details-btn {
+    background: #111827;
+    color: #e2e8f0;
+  }
+
+  .dia-card a:hover,
+  .dia-view-details-btn:hover {
+    background: #2563eb;
+    color: #ffffff;
+  }
+
+  .dia-input {
+    background: #0f172a;
+    border-top-color: #1f2937;
+  }
+
+  .dia-input input {
+    background: #111827;
+    color: #e2e8f0;
+  }
+
+  .dia-input input::placeholder {
+    color: #94a3b8;
+  }
 }
 
 /* ================================
