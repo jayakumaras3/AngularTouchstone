@@ -1031,6 +1031,29 @@ mat-list-item {
   padding-top: 36px;
     padding-bottom: 36px;
 }
+
+// iOS-only: force white text for the "Try Again" empty-state button
+@supports (-webkit-touch-callout: none) {
+  .col-12.text-center.p-4.m-t-30 > button.m-t-10[mat-flat-button] {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+
+    &:hover,
+    &:focus,
+    &:active,
+    &:disabled {
+      color: #ffffff !important;
+      -webkit-text-fill-color: #ffffff !important;
+    }
+
+    .mdc-button__label {
+      color: #ffffff !important;
+      -webkit-text-fill-color: #ffffff !important;
+    }
+  }
+}
 .cards-circle {
   width: 25px;
   height: 25px;

@@ -239,3 +239,26 @@
   margin-bottom: 6px;
   line-height: 1.6;
 }
+
+// iOS-only: force white text for the "Enquire Now" button
+@supports (-webkit-touch-callout: none) {
+  .product-details-card .d-flex.align-items-center.gap-20.m-y-20 > button.p-y-20[mat-flat-button] {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+
+    &:hover,
+    &:focus,
+    &:active,
+    &:disabled {
+      color: #ffffff !important;
+      -webkit-text-fill-color: #ffffff !important;
+    }
+
+    .mdc-button__label {
+      color: #ffffff !important;
+      -webkit-text-fill-color: #ffffff !important;
+    }
+  }
+}
