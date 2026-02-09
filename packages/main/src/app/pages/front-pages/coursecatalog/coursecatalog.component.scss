@@ -292,7 +292,21 @@ button, .btn, .cc-button {
   }
 }
 
+// Footer
 .footer {
-  background: #0f172a;
   padding: 40px 0;
+}
+
+// Light Mode (default)
+:host-context(.light-theme) {
+  .footer {
+    background: #ffffff;
+  }
+}
+
+// Dark Mode
+:host-context(.dark-theme) {
+  .footer {
+    background: var(--mat-sys-surface);
+  }
 }

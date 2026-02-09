@@ -3012,3 +3012,22 @@ mat-list-item {
     background-color: #1b2430;
   }
 }
+
+// Footer
+.footer {
+  padding: 40px 0;
+}
+
+// Light Mode (default)
+:host-context(.light-theme) {
+  .footer {
+    background: #ffffff;
+  }
+}
+
+// Dark Mode
+:host-context(.dark-theme) {
+  .footer {
+    background: var(--mat-sys-surface);
+  }
+}
