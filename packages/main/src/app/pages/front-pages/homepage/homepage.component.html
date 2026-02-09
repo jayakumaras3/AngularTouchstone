@@ -155,11 +155,4 @@
     </mat-sidenav>
   </mat-sidenav-container>
   <app-homepage-details *ngIf="router.url === '/'"></app-homepage-details>
-  @if(showBackToTop){
-  <div
-    class="back-to-top bg-primary rounded-circle d-flex align-items-center justify-content-center shadow icon-54 cursor-pointer"
-    (click)="scrollToTop()">
-    <i-tabler name="arrow-up" class="icon-24 text-white"></i-tabler>
-  </div>
-  }
 </div>

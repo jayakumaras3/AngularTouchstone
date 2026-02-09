@@ -684,24 +684,28 @@ section {
 // dochek-landing.component.scss
 .dochek-hero-section {
     background-color: #d3deff;
-    padding: 1rem 1.5rem;
+    padding: 1rem 2rem;
     margin: 2rem auto;
+    overflow: visible;
 }
 
 .dochek-rounded-section {
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  overflow: visible;
 }
 
 .dochek-container {
   max-width: 1400px;
   margin: 0 auto;
+  overflow: visible;
 }
 
 .dochek-content-wrapper {
   display: flex;
   align-items: center;
   gap: 3rem;
+  overflow: visible;
 }
 
 .dochek-text-column {
@@ -714,6 +718,8 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: visible;
+  min-width: 0;
 }
 
 .dochek-text-content {
@@ -775,9 +781,11 @@ section {
 .dochek-feature-image {
   margin-top: 0.6%;
   margin-left: 2.3%;
-  max-width: 100%;
+  max-width: 120%;
+  width: auto;
   height: auto;
   border-radius: 8px;
+  overflow: visible;
 }
 
 .dochek-image-hidden-mobile {
@@ -788,10 +796,12 @@ section {
 @media (max-width: 1024px) {
   .dochek-hero-section {
     padding: 2.5rem 1.5rem;
+    overflow: visible;
   }
   
   .dochek-content-wrapper {
     gap: 2rem;
+    overflow: visible;
   }
   
   .dochek-main-heading {
@@ -800,6 +810,10 @@ section {
   
   .dochek-description {
     font-size: 1.05rem;
+  }
+  
+  .dochek-feature-image {
+    max-width: 130%;
   }
 }
 
