@@ -86,7 +86,7 @@ export const SME_CATEGORIES: SmeCategory[] = [
       { title: 'Understanding Brand Value', level: 'intermediate', group: 'Marketing' },
       { title: 'Market Segmentation Overview', level: 'intermediate', group: 'Marketing' },
       { title: 'Brand Repositioning', level: 'advanced', group: 'Marketing' },      
-      { title: 'Expand Brand Reach', level: 'advanced', group: 'Marketing' },
+      { title: 'Expand the Brand Reach', level: 'advanced', group: 'Marketing' },
       // Sales
       { title: 'Definition, Techniques, and Tips for Virtual Selling', level: 'foundational', group: 'Sales' },
       { title: 'Mastering the Cold Calling Process', level: 'foundational', group: 'Sales' },
