@@ -339,21 +339,71 @@ filterByCategory(category: string, event: MouseEvent): void {
 }
 
 
+  /**
+   * Calculate language counts - globally or based on selected category
+   * Updates languageCounts used by language filter UI
+   */
   private calculateLanguageCounts(): void {
-    
+    this.updateLanguageCounts(this.getCoursesForCurrentCategory());
+  }
+
+  /**
+   * Update language counts based on provided courses array
+   * Used after category selection to show language counts ONLY from that category
+   * @param courses - Courses to count languages from (filtered by category)
+   */
+  private updateLanguageCounts(courses: Element[]): void {
     const counts: { [key: string]: number } = {};
 
-    // Count how many products per language
-    this.allProducts.forEach((card) => {
-      const lang = (card.language || 'All').trim();
+    // Count languages only from the provided (filtered) courses
+    courses.forEach((card) => {
+      const lang = (card.language || 'English').trim();
       if (!counts[lang]) counts[lang] = 0;
       counts[lang]++;
     });
 
-    // Total count for 'All'
-    counts['All'] = this.allProducts.length;
+    // Total count for 'All' language option
+    counts['All'] = courses.length;
 
     this.languageCounts = counts;
+  }
+
+  /**
+   * Get courses for the currently selected category
+   * @returns Array of courses matching selected category
+   */
+  private getCoursesForCurrentCategory(): Element[] {
+    const categoryName = this.selectedCategory.toLowerCase();
+
+    if (categoryName === 'all') {
+      return this.allProducts;
+    }
+
+    return this.allProducts.filter(
+      (card) => card.skill?.toLowerCase() === categoryName
+    );
+  }
+
+  /**
+   * Apply filters based on both category AND language selections
+   * Combines both filters to show final result
+   */
+  private applyFilters(): void {
+    const categoryName = this.selectedCategory.toLowerCase();
+    const languageName = this.selectedLanguage.toLowerCase();
+
+    // Start with category filter
+    let filtered = this.getCoursesForCurrentCategory();
+
+    // Then apply language filter if not 'all'
+    if (languageName !== 'all') {
+      filtered = filtered.filter(
+        (card) => (card.language?.trim().toLowerCase() || 'english') === languageName
+      );
+    }
+
+    // Apply and reset with filtered results
+    this.applyFilterAndReset(filtered, false);
   }
 
   // ========================
@@ -479,27 +529,64 @@ filterByCategory(category: string, event: MouseEvent): void {
     this.applyFilterAndReset(results, false); // Don't scroll on search
   }
 
-  getCategory(name: string): void {
+  /**
+   * Handle category selection with dependent language filter update
+   * When category changes:
+   * 1. Update selectedCategory
+   * 2. Reset selectedLanguage to 'all'
+   * 3. Recalculate language counts based on new category
+   * 4. Apply filters to show only matching courses
+   * @param name - Selected category name
+   */
+  onCategorySelect(name: string): void {
     this.isSearchTriggered = true;
     this.selectedCategory = name;
-    let results: Element[] = [];
+    
+    // Reset language to 'all' when category changes
+    this.selectedLanguage = 'all';
+    
+    // Update language counts based on the new category
+    this.updateLanguageCounts(this.getCoursesForCurrentCategory());
+    
+    // Apply filters and display results
+    this.applyFilters();
+  }
 
-    if (name.toLowerCase() === 'all') {
-      results = this.allProducts;
-    } else {
-      results = this.allProducts.filter(
-        (card) => card.skill?.toLowerCase() === name.toLowerCase()
-      );
-    }
+  /**
+   * Handle language selection with dependent category filter
+   * Language filter depends on the currently selected category
+   * Shows only courses matching BOTH category and language
+   * @param language - Selected language value
+   */
+  onLanguageSelect(language: string): void {
+    this.isSearchTriggered = true;
+    this.selectedLanguage = language;
+    
+    // Apply both category and language filters
+    this.applyFilters();
+  }
 
-    this.applyFilterAndReset(results, false); // Don't scroll on filter click
+  /**
+   * Legacy method - redirects to new dependent filter system
+   * @deprecated Use onCategorySelect() instead
+   */
+  getCategory(name: string): void {
+    this.onCategorySelect(name);
+  }
+
+  /**
+   * Legacy method - redirects to new dependent filter system
+   * @deprecated Use onLanguageSelect() instead
+   */
+  getLanguageFilter(language: string): void {
+    this.onLanguageSelect(language);
   }
 
   getSorted(name: string): void {
     this.isSearchTriggered = true;
     this.selectedSortBy = name;
     const nameLower = name.toLowerCase();
-    let sorted = [...this.allProducts];
+    let sorted = [...this.filteredCards]; // Sort the already-filtered results
 
     switch (nameLower) {
       case 'newest':
@@ -523,21 +610,6 @@ filterByCategory(category: string, event: MouseEvent): void {
         break;
     }
     this.applyFilterAndReset(sorted);
-  }
-
-  getLanguageFilter(language: string): void {
-    this.isSearchTriggered = true;
-    this.selectedLanguage = language;
-    const filterValue = language.trim().toLowerCase();
-
-    if (filterValue === 'all') {
-      this.applyFilterAndReset(this.allProducts, false); // Don't scroll on filter click
-    } else {
-      const results = this.allProducts.filter(
-        (card) => (card.language?.trim().toLowerCase() || '') === filterValue
-      );
-      this.applyFilterAndReset(results, false); // Don't scroll on filter click
-    }
   }
 
   getPricing(priceRange: string): void {
@@ -579,6 +651,9 @@ filterByCategory(category: string, event: MouseEvent): void {
     this.searchText = '';
     this.isSearchTriggered = false;
 
+    // Reset language counts to global counts
+    this.calculateLanguageCounts();
+    
     this.applyFilterAndReset(this.allProducts);
     this.cdr.markForCheck(); // Trigger change detection to update button visibility
   }
