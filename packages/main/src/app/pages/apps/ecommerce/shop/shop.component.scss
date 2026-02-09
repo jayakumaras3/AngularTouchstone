@@ -456,6 +456,92 @@
   opacity: 0.3;
   cursor: not-allowed;
 }
+
+// ========================================
+// Mobile No Results Message
+// ========================================
+.no-results-mobile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  padding: 24px 16px;
+  width: 100%;
+}
+
+.no-results-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 12px;
+  max-width: 280px;
+}
+
+.no-results-icon {
+  font-size: 64px;
+  color: var(--mat-sys-outline-variant);
+  width: 64px;
+  height: 64px;
+  margin-bottom: 8px;
+}
+
+.no-results-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--mat-sys-on-surface);
+  margin: 0;
+  padding: 0;
+}
+
+.no-results-text {
+  font-size: 14px;
+  color: var(--mat-sys-on-surface-variant);
+  margin: 0;
+  padding: 0 8px;
+  line-height: 1.5;
+}
+
+.reset-btn {
+  margin-top: 16px;
+  width: 100%;
+}
+
+// ========================================
+// Responsive: Hide pagination on mobile when empty
+// ========================================
+@media (max-width: 768px) {
+  .pagination-bar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  // When no results, pagination is hidden by *ngIf
+  // and no-results-mobile container takes its place
+  .no-results-mobile {
+    min-height: 300px;
+    padding: 32px 16px;
+  }
+
+  .no-results-content {
+    gap: 16px;
+  }
+
+  .no-results-icon {
+    font-size: 56px;
+    width: 56px;
+    height: 56px;
+  }
+
+  .no-results-title {
+    font-size: 20px;
+  }
+}
 .tile-table-container {
   width: 100%;
   margin-top: 16px;

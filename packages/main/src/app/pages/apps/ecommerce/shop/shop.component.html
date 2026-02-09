@@ -324,7 +324,7 @@
                   <!-- ✅ Categories column -->
                   <td class="text-center">
                     <div class="category-list">
-                      {{ productcard.categories?.join(', ') || '—' }}
+                      {{ productcard.categories.join(', ') || '—' }}
                     </div>
                   </td>
 
@@ -341,27 +341,43 @@
             </tbody>
           </table>
 
-          <!-- PAGINATION BAR -->
-          <div class="pagination-bar">
-            <span>Items per page:</span>
-            <select (change)="onPageChange($event)">
-              @for (size of pageSizeOptions; track size) {
-                <option [selected]="pageSize === size">{{ size }}</option>
-              }
-            </select>
+          <!-- PAGINATION BAR - Hidden on mobile when no results -->
+          @if (filteredCards.length > 0 || !isMobileView) {
+            <div class="pagination-bar">
+              <span>Items per page:</span>
+              <select (change)="onPageChange($event)">
+                @for (size of pageSizeOptions; track size) {
+                  <option [selected]="pageSize === size">{{ size }}</option>
+                }
+              </select>
 
-            <span class="range-text">
-              {{ currentPage * pageSize + 1 }} – 
-              {{
-                Math.min((currentPage + 1) * pageSize, sortedCards.length)
-              }} 
-              of {{ sortedCards.length }}
-            </span>
+              <span class="range-text">
+                {{ currentPage * pageSize + 1 }} – 
+                {{
+                  Math.min((currentPage + 1) * pageSize, sortedCards.length)
+                }} 
+                of {{ sortedCards.length }}
+              </span>
 
-            <button (click)="prevPage()" [disabled]="currentPage === 0">‹</button>
-            <button (click)="nextPage()" 
-              [disabled]="(currentPage + 1) * pageSize >= sortedCards.length">›</button>
-          </div>
+              <button (click)="prevPage()" [disabled]="currentPage === 0">‹</button>
+              <button (click)="nextPage()" 
+                [disabled]="(currentPage + 1) * pageSize >= sortedCards.length">›</button>
+            </div>
+          }
+
+          <!-- NO RESULTS MESSAGE - Mobile only when zero results -->
+          @if (filteredCards.length === 0 && isSearchTriggered && isMobileView) {
+            <div class="no-results-mobile">
+              <div class="no-results-content">
+                <i-tabler name="search-off" class="no-results-icon"></i-tabler>
+                <h3 class="no-results-title">No results found</h3>
+                <p class="no-results-text">Try adjusting your search or filters</p>
+                <button mat-flat-button color="primary" (click)="getRestFilter()" class="reset-btn">
+                  Reset Filters
+                </button>
+              </div>
+            </div>
+          }
           }
         </div>
 
