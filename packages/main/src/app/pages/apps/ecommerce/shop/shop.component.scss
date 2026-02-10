@@ -260,6 +260,8 @@
       .mat-mdc-form-field-flex {
         height: 36px !important;
         align-items: center !important;
+        border: none !important;
+        box-shadow: none !important;
       }
 
       .mat-mdc-form-field-infix {
@@ -1583,8 +1585,13 @@ mat-list-item {
   
   // Mobile: Hide label to save space (tabs are self-explanatory)
   @media (max-width: 767px) {
-    display: none;
+    display: none !important;
   }
+}
+
+// Stronger override using the angular class binding
+.catalog-type-toolbar.mobile .catalog-type-label {
+  display: none !important;
 }
 
 .catalog-type-tabs {
@@ -1927,7 +1934,7 @@ mat-list-item {
     ::ng-deep {
       .mat-mdc-form-field-flex {
         background: #1e293b;
-        border: 1px solid #475569;
+        border: none;
       }
 
       input {
@@ -4005,6 +4012,67 @@ mat-list-item {
 // ============================================
 // CRITICAL FIX: Portrait Mode Layout (Override)
 // ============================================
+
+// Add browser-level dark mode support for these specific elements
+// (Fixes issue where .dark-theme class might be missing but system is dark)
+@media (prefers-color-scheme: dark) {
+  .catalog-tab {
+    background: #111827 !important;
+    border-color: #2e3f50 !important;
+
+    &:hover {
+      background: #0f172a !important;
+      border-color: #8ab4ff !important;
+    }
+
+    &.active {
+      background: linear-gradient(135deg, #1a2433 0%, #1f2a3c 100%) !important;
+      border-color: #8ab4ff !important;
+
+      .tab-title {
+        color: #cfe2ff !important;
+      }
+      
+      .tab-icon-box {
+          background: #3b82f6 !important;
+          i-tabler { color: white !important; }
+      }
+      
+      // Override SME yellow theme in active state
+       .tab-icon-box.sme {
+          background: #f59e0b !important;
+          i-tabler { color: #111827 !important; }
+       }
+    }
+    
+    // Default text colors for dark mode
+    .tab-title {
+        color: #e2e8f0 !important;
+    }
+    
+    .tab-subtitle {
+        color: #94a3b8 !important;
+    }
+    
+    // Icon box background
+    .tab-icon-box {
+        background: #1f2937 !important;
+        i-tabler { color: #8ab4ff !important; }
+        
+        &.sme {
+            background: #3a2a0f !important;
+            i-tabler { color: #fbbf24 !important; }
+        }
+    }
+  }
+  
+  // Also ensure filter sidebar has background
+  .catalog-sidebar {
+      background: #0f172a !important;
+      border-right-color: #1e293b !important;
+  }
+}
+
 @media (max-width: 767px) {
   // 1. Hide the colliding label
   .catalog-type-label {

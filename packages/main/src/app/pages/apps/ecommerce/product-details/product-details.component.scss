@@ -136,6 +136,11 @@
   padding: 20px;
   background: #fff;
   text-align: center;
+
+  @media (prefers-color-scheme: dark) {
+    background: #1e293b;
+    border: 1px solid #334155;
+  }
 }
 
 .section-title {
