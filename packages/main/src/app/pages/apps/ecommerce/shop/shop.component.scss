@@ -7,11 +7,26 @@
   max-width: 1400px;
   margin: 0 auto;
   padding: 12px 20px;
+
+  // iPhone Portrait Fix: Full-width layout, no centering
+  @media (max-width: 600px) {
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 8px;
+  }
 }
 
 .catalog-card {
   width: 100%;
   overflow: visible !important;
+
+  // iPhone Portrait Fix: Ensure full width
+  @media (max-width: 600px) {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 0;
+  }
 }
 
 // Flex Row Container - Sidebar + Content as siblings
@@ -127,6 +142,141 @@
     flex: 1 1 0;
     min-width: 0;
     max-width: 100%;
+  }
+}
+
+// ============================================
+// iPhone Portrait Mode Fix (≤600px)
+// Full-width layout with locked 2-row structure
+// ============================================
+@media (max-width: 600px) {
+  // --- Container overrides: full-width, no centering ---
+  .catalog-layout-container {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 8px !important;
+    box-sizing: border-box !important;
+  }
+
+  .catalog-card {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .catalog-main-content {
+    padding: 4px !important;
+    width: 100% !important;
+  }
+
+  // --- Top Toolbar: 2-row flex-wrap container ---
+  .top-toolbar-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 0 12px 0 !important;
+    padding: 10px 12px !important;
+    border-radius: 8px;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    box-sizing: border-box !important;
+  }
+
+  // Row 1: Catalog type buttons (full width → own row)
+  .catalog-type-toolbar {
+    width: 100% !important;
+    flex: 1 1 100% !important;
+    order: 1 !important;
+    justify-content: flex-start !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    padding-left: 0 !important;
+  }
+
+  // Row 2: View icons + Search input — single unified CSS Grid row
+  .search-toolbar {
+    display: grid !important;
+    grid-template-columns: auto 1fr !important;
+    gap: 8px !important;
+    width: 100% !important;
+    order: 2 !important;
+    align-items: center !important;
+    height: 40px !important; // Fixed row height for alignment
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  // View toggle icons: fixed-size block, vertically centered
+  .view-toggle-group {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 2px !important;
+    width: auto !important;
+    height: 36px !important; // Explicit height for centering
+    padding: 2px !important;
+    margin: 0 !important;
+    border-radius: 8px;
+    flex-shrink: 0 !important;
+    justify-self: start !important;
+    align-self: center !important;
+
+    .view-btn {
+      width: 32px !important;
+      height: 32px !important;
+      min-width: 32px !important;
+      min-height: 32px !important;
+      border-radius: 6px;
+      line-height: 32px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 0 !important;
+    }
+  }
+
+  // Search field: fills remaining width, matched height
+  .search-field {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    height: 36px !important; // Match view-toggle height
+    align-self: center !important;
+    margin: 0 !important;
+
+    ::ng-deep {
+      .mat-mdc-form-field-subscript-wrapper {
+        display: none !important; // Remove underline spacer
+      }
+
+      .mat-mdc-text-field-wrapper {
+        height: 36px !important;
+        padding: 0 8px !important;
+      }
+
+      .mat-mdc-form-field-flex {
+        height: 36px !important;
+        align-items: center !important;
+      }
+
+      .mat-mdc-form-field-infix {
+        min-height: 36px !important;
+        height: 36px !important;
+        padding: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+      }
+
+      input {
+        font-size: 16px !important; // Prevent iOS zoom
+        height: 36px !important;
+        line-height: 36px !important;
+        padding: 0 !important;
+      }
+    }
   }
 }
 
