@@ -248,6 +248,15 @@
     margin: 0 !important;
 
     ::ng-deep {
+      // FIX DOUBLE BORDER: Hide Material's default notched outline
+      .mdc-notched-outline,
+      .mdc-notched-outline__leading,
+      .mdc-notched-outline__notch,
+      .mdc-notched-outline__trailing {
+        display: none !important;
+        border: none !important;
+      }
+
       .mat-mdc-form-field-subscript-wrapper {
         display: none !important; // Remove underline spacer
       }
@@ -255,12 +264,15 @@
       .mat-mdc-text-field-wrapper {
         height: 36px !important;
         padding: 0 8px !important;
+        border: none !important;
       }
 
       .mat-mdc-form-field-flex {
         height: 36px !important;
         align-items: center !important;
-        border: none !important;
+        border: 1px solid #cbd5e1 !important;
+        border-radius: 10px !important;
+        background: #ffffff !important;
         box-shadow: none !important;
       }
 
@@ -270,6 +282,7 @@
         padding: 0 !important;
         display: flex !important;
         align-items: center !important;
+        border: none !important;
       }
 
       input {
@@ -277,6 +290,14 @@
         height: 36px !important;
         line-height: 36px !important;
         padding: 0 !important;
+      }
+    }
+
+    // Dark Mode Override
+    @media (prefers-color-scheme: dark) {
+      ::ng-deep .mat-mdc-form-field-flex {
+        border: 1px solid #334155 !important;
+        background: #1e293b !important;
       }
     }
   }
@@ -2819,8 +2840,29 @@ mat-list-item {
       }
 
       ::ng-deep {
+        // FIX DOUBLE BORDER: Hide Material Outline and use custom flex border
+        .mdc-notched-outline {
+            display: none !important;
+        }
+
+        .mat-mdc-form-field-flex {
+           border-radius: 10px !important;
+           padding: 0 10px !important;
+           // Default Light Mode Border
+           border: 1px solid #cbd5e1 !important; 
+           background: #ffffff !important;
+        }
+
         .mat-mdc-form-field-infix {
           min-height: 36px;
+        }
+      }
+
+      // Dark Mode Override for iPhone Portrait
+      @media (prefers-color-scheme: dark) {
+        ::ng-deep .mat-mdc-form-field-flex {
+            border: 1px solid #334155 !important;
+            background: #1e293b !important;
         }
       }
     }
@@ -2868,17 +2910,17 @@ mat-list-item {
       padding-right: max(12px, env(safe-area-inset-right));
     }
 
-    // Compact top toolbar for landscape - SINGLE ROW
+    // Top Toolbar: 2-Row Stacked Layout (Matches Reference)
     .top-toolbar-container {
       display: flex !important;
-      flex-direction: row;
-      flex-wrap: nowrap;
+      flex-direction: row !important;
+      flex-wrap: wrap !important; // Allow wrapping to 2 rows
       align-items: center;
       gap: 12px;
-      padding: 10px 12px;
-      padding-left: max(12px, env(safe-area-inset-left));
-      padding-right: max(12px, env(safe-area-inset-right));
-      min-height: 60px;
+      padding: 12px !important;
+      padding-left: max(12px, env(safe-area-inset-left)) !important;
+      padding-right: max(12px, env(safe-area-inset-right)) !important;
+      min-height: auto;
       overflow: visible;
     }
 
@@ -2905,15 +2947,20 @@ mat-list-item {
       left: 0;
     }
 
-    // Compact catalog type toolbar - HORIZONTAL LAYOUT
+    // ---------------------------------------------------------
+    // ROW 1: CATALOG TYPES (Full Width)
+    // ---------------------------------------------------------
     .catalog-type-toolbar {
-      display: flex !important; // Force visible
-      flex-direction: row;
+      display: flex !important;
+      flex-direction: row !important;
       align-items: center;
-      gap: 8px;
-      flex: 0 0 auto;
-      min-width: 0;
+      gap: 12px;
+      order: 1 !important;        // First Row
+      flex: 1 1 100% !important;  // Full Width
+      width: 100% !important;
+      min-width: 100%;
       padding-left: 0 !important;
+      margin-bottom: 4px;
 
       &.mobile {
         padding-left: 0 !important;
@@ -2923,26 +2970,28 @@ mat-list-item {
 
     .catalog-type-label {
       display: block !important;
-      font-size: 10px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
       white-space: nowrap;
       flex-shrink: 0;
+      margin-right: 4px;
     }
 
     .catalog-type-tabs {
       display: flex !important;
       flex-direction: row;
-      gap: 8px;
-      flex: 0 0 auto;
-      min-width: 0;
+      gap: 12px;
+      flex: 1;
+      width: auto;
     }
 
     .catalog-tab {
       display: flex !important;
-      flex: 0 0 auto;
-      padding: 8px 12px;
-      min-height: 44px;
-      min-width: 140px;
-      max-width: 180px;
+      flex: 1 !important; // Equal width tabs
+      padding: 10px 16px;
+      min-height: 48px;
+      max-width: none !important; // Allow expansion
 
       .tab-icon-box {
         width: 32px;
@@ -2964,16 +3013,20 @@ mat-list-item {
       }
     }
 
-    // Search toolbar - compact row on right side
+    // ---------------------------------------------------------
+    // ROW 2: SEARCH + VIEW (Full Width)
+    // ---------------------------------------------------------
     .search-toolbar {
       display: flex !important;
-      flex-direction: row;
+      flex-direction: row !important;
       align-items: center;
-      justify-content: flex-end;
-      gap: 8px;
-      flex: 1;
-      min-width: 0;
-      margin-left: auto;
+      justify-content: space-between !important;
+      gap: 12px;
+      order: 2 !important;        // Second Row
+      flex: 1 1 100% !important;  // Full Width
+      width: 100% !important;
+      min-width: 100%;
+      margin: 0 !important;
 
       &.mobile {
         flex-direction: row;
@@ -2981,15 +3034,17 @@ mat-list-item {
     }
 
     .view-toggle-group {
-      order: 1;
+      order: 1 !important; // 1. Grid/List icons FIRST
       flex-shrink: 0;
+      min-width: 72px;     // Ensure space for buttons
     }
 
     .search-field {
-      order: 2;
-      width: 200px;
-      max-width: 200px;
-      flex-shrink: 0;
+      order: 2 !important; // 2. Search box NEXT
+      flex: 1 !important;  // EXPAND to fill remainder
+      width: auto !important;
+      max-width: none !important;
+      min-width: 0;
 
       input {
         font-size: 16px !important;
@@ -3001,46 +3056,6 @@ mat-list-item {
           padding: 8px 0;
         }
       }
-    }
-
-    // Force Dark Mode Styles for iPhone Landscape (Fixes invisible text)
-    @media (prefers-color-scheme: dark) {
-        .catalog-tab {
-            background: #111827 !important;
-            border: 1px solid #2e3f50 !important;
-            
-            .tab-title { color: #e2e8f0 !important; }
-            .tab-subtitle { color: #94a3b8 !important; }
-            
-            .tab-icon-box {
-                 background: #1f2937 !important;
-                 i-tabler { color: #60a5fa !important; }
-                 
-                 &.sme {
-                     background: #451a03 !important;
-                     i-tabler { color: #fbbf24 !important; }
-                 }
-            }
-        }
-        
-        // Fix View Toggles visibility
-        .view-toggle-group {
-             background: #1e293b !important;
-             border: 1px solid #334155 !important;
-             
-             .view-btn {
-                 color: #e2e8f0 !important;
-                 
-                 &.mat-primary {
-                     color: #60a5fa !important;
-                     background: rgba(59, 130, 246, 0.15) !important;
-                 }
-             }
-        }
-        
-        .catalog-type-label {
-            color: #94a3b8 !important;
-        }
     }
 
     // Grid adjustments - 2 columns in landscape
@@ -3060,7 +3075,6 @@ mat-list-item {
         .view-toggle-group {
              background: #1e293b !important;
              border: 1px solid #334155 !important;
-             order: 1 !important; // Ensure it stays on the left
              
              .view-btn {
                  color: #e2e8f0 !important;
@@ -3080,12 +3094,34 @@ mat-list-item {
              }
         }
         
-        // Ensure Search Field is visible and ordered correctly
+        // Ensure Search Field inputs are visible
         .search-field {
-             order: 2 !important;
-             
-             ::ng-deep input {
-                 color: #e2e8f0 !important;
+             ::ng-deep {
+                 // Hide Material's default outline in dark mode
+                 .mdc-notched-outline {
+                     display: none !important;
+                 }
+                 
+                 // Apply dark background to search container
+                 .mat-mdc-form-field-flex {
+                     background: #1e293b !important;
+                     border: 1px solid #334155 !important;
+                     border-radius: 10px !important;
+                 }
+                 
+                 // Ensure input text is visible
+                 input {
+                     color: #e2e8f0 !important;
+                     
+                     &::placeholder {
+                         color: #94a3b8 !important;
+                     }
+                 }
+                 
+                 // Icon Color
+                 .mat-icon {
+                     color: #94a3b8 !important;
+                 }
              }
         }
 
