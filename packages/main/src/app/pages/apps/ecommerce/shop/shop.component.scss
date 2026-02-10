@@ -852,6 +852,119 @@
   font-weight: 600;
   color: #999;
 }
+
+// ============================================
+// TILE VIEW - Dark Mode Support
+// Browser-level dark mode detection
+// Applies ONLY to Tile View - Grid View unaffected
+// ============================================
+@media (prefers-color-scheme: dark) {
+  // Tile Table Container
+  .tile-table-container {
+    background: transparent;
+  }
+
+  // Tile Table - Dark Mode Background & Border
+  .tile-table {
+    background: #1e293b !important;
+    border: 1px solid #475569;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  // Tile Table Header - Dark Mode
+  .tile-table th {
+    background: #0f172a !important;
+    background-color: #0f172a !important;
+    color: #e2e8f0 !important;
+    border-bottom: 1px solid #475569 !important;
+  }
+
+  // Tile Table Header Active State
+  .tile-table th.active {
+    color: #60a5fa !important;
+  }
+
+  // Tile Table Thead - Dark Mode
+  .tile-table thead {
+    background: #0f172a !important;
+    border-bottom: 1px solid #475569;
+  }
+
+  // Tile Table Cells - Dark Mode
+  .tile-table td {
+    color: #cbd5e1 !important;
+    border-bottom: 1px solid #475569 !important;
+  }
+
+  // Tile Table Row Hover - Dark Mode
+  .tile-table tr:hover,
+  .tile-table tbody tr:hover,
+  .tile-table tr:hover td,
+  .tile-table tbody tr:hover td,
+  .tile-table tbody tr.cursor-pointer:hover {
+    background: #334155 !important;
+    background-color: #334155 !important;
+    color: #f1f5f9 !important;
+  }
+
+  // Tile Last Row - No Bottom Border
+  .tile-table tr:last-child td {
+    border-bottom: none !important;
+  }
+
+  // Title Cell Text - Dark Mode
+  .title-cell .title-text,
+  .title-text {
+    color: #e2e8f0 !important;
+  }
+
+  // Sub Text - Dark Mode
+  .sub-text {
+    color: #94a3b8 !important;
+  }
+
+  // Language Text - Dark Mode
+  .language-text {
+    color: #94a3b8 !important;
+  }
+
+  // Language Value - Dark Mode
+  .language-value {
+    color: #e2e8f0 !important;
+  }
+
+  // Thumbnail Border - Dark Mode
+  .tile-table .thumb,
+  .title-cell .thumb {
+    border: 1px solid #475569 !important;
+  }
+
+  // Sort Icon - Dark Mode
+  .sort-icon {
+    color: #94a3b8;
+  }
+
+  // Pagination Bar - Dark Mode
+  .pagination-bar {
+    background: #1e293b;
+    color: #e2e8f0;
+  }
+
+  .pagination-bar select {
+    background: #1e293b;
+    color: #e2e8f0;
+    border: 1px solid #475569;
+  }
+
+  .pagination-bar button {
+    color: #e2e8f0;
+  }
+
+  .pagination-bar button:disabled {
+    color: #64748b;
+  }
+}
+
 .view-toggle button {
   border-radius: 8px;
   transition: background-color 0.2s ease;
