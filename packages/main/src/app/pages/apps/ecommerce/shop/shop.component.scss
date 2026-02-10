@@ -1194,6 +1194,13 @@ mat-list-item {
   box-sizing: border-box;
   overflow: visible; // Allow content to show
 
+  // Dark Mode Styles - Browser Level
+  @media (prefers-color-scheme: dark) {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    border: 1px solid #475569;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
   // Mobile: Wrap into 2 rows like iPad
   @media (max-width: 767px) {
     flex-direction: row;
@@ -1518,6 +1525,42 @@ mat-list-item {
     &:hover {
       background: #f1f5f9;
     }
+
+    // Ensure icon visibility in light mode
+    ::ng-deep mat-icon {
+      color: #334155;
+    }
+
+    // Active state in light mode
+    &[color="primary"] ::ng-deep mat-icon {
+      color: #3b82f6;
+    }
+  }
+
+  // Dark Mode Styles - Browser Level
+  @media (prefers-color-scheme: dark) {
+    background: #1e293b;
+    border: 1px solid #475569;
+
+    .view-btn {
+      // Default state: light icons visible on dark background
+      ::ng-deep mat-icon {
+        color: #e2e8f0;
+      }
+
+      &:hover {
+        background: #334155;
+      }
+
+      // Active state: primary color icons
+      &[color="primary"] {
+        background: rgba(59, 130, 246, 0.15);
+
+        ::ng-deep mat-icon {
+          color: #60a5fa;
+        }
+      }
+    }
   }
 
   // UNIFIED: Compact sizing like iPad (scaled down for iPhone)
@@ -1555,6 +1598,35 @@ mat-list-item {
     .mat-mdc-form-field-infix {
       padding: 10px 0;
       min-height: 42px;
+    }
+  }
+
+  // Dark Mode Styles - Browser Level
+  @media (prefers-color-scheme: dark) {
+    ::ng-deep {
+      .mat-mdc-form-field-flex {
+        background: #1e293b;
+        border: 1px solid #475569;
+      }
+
+      input {
+        color: #e2e8f0;
+        caret-color: #60a5fa;
+
+        &::placeholder {
+          color: #94a3b8;
+          opacity: 1;
+        }
+      }
+
+      .mat-icon {
+        color: #94a3b8;
+      }
+
+      // Close button icon
+      button mat-icon {
+        color: #cbd5e1;
+      }
     }
   }
 
