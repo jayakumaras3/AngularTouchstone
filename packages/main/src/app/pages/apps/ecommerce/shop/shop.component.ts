@@ -63,11 +63,14 @@ trackTileRows(index: number, item: any) {
       this.currentPage = 0;
 
     } else {
-      // GRID VIEW → Enable lazy load & reinitialize
+      // GRID VIEW → Enable lazy load & preserve filtered data
       this.scrollListenerActive = true;
 
-      // Restore lazy-loaded initial state (first 8 items)
-      this.initializeProducts();
+      // ✅ FIX: Preserve filtered data (baseFilteredProducts), only reset display state
+      this.currentDisplayIndex = 0;
+      this.filteredCards = [];
+      this.loadInitialProducts();
+      this.currentPage = 0;
     }
   }
 
