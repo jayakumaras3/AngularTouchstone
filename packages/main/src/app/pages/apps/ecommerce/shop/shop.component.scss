@@ -4001,3 +4001,101 @@ mat-list-item {
     background: var(--mat-sys-surface);
   }
 }
+
+// ============================================
+// CRITICAL FIX: Portrait Mode Layout (Override)
+// ============================================
+@media (max-width: 767px) {
+  // 1. Hide the colliding label
+  .catalog-type-label {
+    display: none !important;
+  }
+
+  // 2. Adjust Toolbar Container
+  .top-toolbar-container {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    padding: 8px 12px !important;
+    gap: 8px !important;
+  }
+
+  // 3. Menu Button - Top Left
+  .mobile-menu-btn {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+    order: 1 !important;
+    display: flex !important;
+    margin-right: 4px !important;
+    min-width: 36px !important;
+    height: 36px !important;
+    width: 36px !important;
+  }
+
+  // 4. Search Toolbar - Top Right (Next to Menu)
+  .search-toolbar {
+    order: 2 !important;
+    flex: 1 !important; // Fill remaining width
+    width: auto !important; // Allow fitting on same line
+    display: flex !important; // NOT Grid, use Flex for fluidity
+    align-items: center !important;
+    gap: 8px !important;
+    margin: 0 !important;
+    min-width: 0 !important;
+    height: 36px !important;
+    grid-template-columns: none !important; // Reset grid
+    
+    // View toggles inside search toolbar
+    .view-toggle-group {
+        height: 36px !important;
+        margin-right: 4px !important;
+        grid-area: auto !important;
+        width: auto !important;
+    }
+    
+    // Search input
+    .search-field {
+        height: 36px !important;
+        flex: 1 !important; // Expand to fill
+        width: auto !important;
+        grid-area: auto !important;
+        min-width: 50px !important;
+    }
+  }
+
+  // 5. Catalog Tabs - Second Row
+  .catalog-type-toolbar {
+    order: 3 !important;
+    width: 100% !important;
+    flex: 1 1 100% !important;
+    padding-left: 0 !important;
+    margin-top: 4px !important;
+    overflow-x: auto !important; // Scroll if needed
+    
+    .catalog-type-tabs {
+        width: 100% !important;
+        justify-content: space-between !important;
+        flex-direction: row !important;
+        gap: 8px !important;
+    }
+    
+    .catalog-tab {
+        flex: 1 !important; // Even width
+        justify-content: center !important;
+        padding: 8px !important;
+        
+        .tab-title {
+           white-space: nowrap;
+           overflow: hidden;
+           text-overflow: ellipsis;
+           font-size: 13px !important;
+        }
+        
+        .tab-subtitle {
+           display: none !important; // Hide subtitle to save vertical space on mobile
+        }
+    }
+  }
+}
