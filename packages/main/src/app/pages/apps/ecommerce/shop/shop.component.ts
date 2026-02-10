@@ -735,15 +735,17 @@ filterByCategory(category: string, event: MouseEvent): void {
 
   getviewDetails(productcardDetails: Element): void {
     // Store current URL as referrer for back navigation
-    this.navService.setReferrerUrl(this.router.url);
+    const currentUrl = this.router.url;
+    this.navService.setReferrerUrl(currentUrl);
     
     // Set product data
     this.productService.setProduct(productcardDetails);
     
-    // Navigate with courseId and source tracking
+    // Navigate with courseId, source, and state for reliable back navigation
     this.router.navigate(['/coursedetails', productcardDetails.id], {
       queryParams: { source: 'catalog' },
-      queryParamsHandling: 'merge'
+      queryParamsHandling: 'merge',
+      state: { previousUrl: currentUrl }
     });
   }
 

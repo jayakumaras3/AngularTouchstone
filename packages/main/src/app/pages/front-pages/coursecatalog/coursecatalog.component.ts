@@ -258,9 +258,15 @@ export class CourseCatalogComponent {
   // ========================================
   
   navigateToCourseDetails(course: Course): void {
-    this.navService.setReferrerUrl(this.router.url);
+    const currentUrl = this.router.url;
+    this.navService.setReferrerUrl(currentUrl);
     this.productService.setProduct(course.product);
-    this.router.navigate(['/coursedetails']);
+    
+    // Pass the previous URL via navigation state for reliable back navigation
+    this.router.navigate(['/coursedetails', course.product.id], {
+      queryParams: { source: 'coursecatalog' },
+      state: { previousUrl: currentUrl }
+    });
   }
 
   navigateBackToCatalog(): void {

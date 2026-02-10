@@ -173,15 +173,17 @@ export class DiaAssistantComponent implements OnInit, OnDestroy {
     const courseId = course.product.id;
 
     // Set referrer to course catalog (where user should return to)
-    this.navService.setReferrerUrl('/coursecatalog');
+    const currentUrl = '/coursecatalog';
+    this.navService.setReferrerUrl(currentUrl);
     
     // Set the selected product for the details page
     this.productService.setProduct(course.product);
     
-    // Navigate with courseId in route and source in query params
+    // Navigate with courseId, source, and state for reliable back navigation
     this.router.navigate(['/coursedetails', courseId], {
       queryParams: { source: 'chatbot' },
-      queryParamsHandling: 'merge'
+      queryParamsHandling: 'merge',
+      state: { previousUrl: currentUrl }
     });
 
     // Close chatbot after navigation for better UX

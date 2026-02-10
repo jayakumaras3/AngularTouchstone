@@ -88,9 +88,15 @@ export class SmeCategoryComponent implements OnInit {
     
     if (matchedProduct) {
       // Store current URL for back navigation
-      this.navService.setReferrerUrl(this.router.url);
+      const currentUrl = this.router.url;
+      this.navService.setReferrerUrl(currentUrl);
       this.productService.setProduct(matchedProduct);
-      this.router.navigate(['/coursedetails']);
+      
+      // Pass the previous URL via navigation state for reliable back navigation
+      this.router.navigate(['/coursedetails', matchedProduct.id], {
+        queryParams: { source: 'sme-catalog' },
+        state: { previousUrl: currentUrl }
+      });
     } else {
       // If no exact match found, still try to navigate
       console.warn(`No matching product found for: ${course.title}`);

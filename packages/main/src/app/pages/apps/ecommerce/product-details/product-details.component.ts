@@ -122,6 +122,13 @@ export class ProductDetailsComponent implements AfterViewInit, OnInit {
           this.navigationSource = queryParams['source'] || null;
         });
 
+        // Capture previous URL from navigation state (more reliable than NavService)
+        const navigation = this.router.getCurrentNavigation();
+        if (navigation?.extras?.state?.['previousUrl']) {
+          const previousUrl = navigation.extras.state['previousUrl'];
+          this.navService.setReferrerUrl(previousUrl);
+        }
+
         // Load course data based on courseId or from service
         this.loadCourseData(courseId);
       });
@@ -259,10 +266,14 @@ private normalizeObjectives(product: any): void {
     // Set product data
     this.productService.setProduct(item);
 
+    // Get the previous URL to preserve it when navigating between related products
+    const previousUrl = this.navService.getPreviousUrl();
+
     // Navigate with courseId - this will trigger param change detection
     this.router.navigate(['/coursedetails', item.id], {
       queryParams: { source: this.navigationSource || 'related' },
-      queryParamsHandling: 'merge'
+      queryParamsHandling: 'merge',
+      state: { previousUrl: previousUrl } // Preserve the original catalog URL
     });
   }
   loadRelatedProducts(currentProduct: any) {
@@ -370,8 +381,35 @@ private normalizeObjectives(product: any): void {
     if (this.navigationSource === 'chatbot') {
       // From chatbot → always go to main catalog
       this.router.navigate(['/catalog']);
+    } else if (this.navigationSource === 'sme-catalog') {
+      // From SME catalog → use stored referrer URL
+      const previousUrl = this.navService.getPreviousUrl();
+      if (previousUrl && previousUrl.includes('sme-catalog')) {
+        this.router.navigateByUrl(previousUrl);
+      } else {
+        // Fallback to main SME catalog page
+        this.router.navigate(['/sme-catalog']);
+      }
+    } else if (this.navigationSource === 'coursecatalog') {
+      // From course catalog → use stored referrer URL
+      const previousUrl = this.navService.getPreviousUrl();
+      if (previousUrl && previousUrl.includes('coursecatalog')) {
+        this.router.navigateByUrl(previousUrl);
+      } else {
+        // Fallback to main course catalog page
+        this.router.navigate(['/coursecatalog']);
+      }
+    } else if (this.navigationSource === 'catalog') {
+      // From main catalog → use stored referrer URL
+      const previousUrl = this.navService.getPreviousUrl();
+      if (previousUrl && previousUrl.includes('catalog')) {
+        this.router.navigateByUrl(previousUrl);
+      } else {
+        // Fallback to main catalog page
+        this.router.navigate(['/catalog']);
+      }
     } else {
-      // From catalog or other sources → use stored referrer or fallback
+      // From other sources → use stored referrer or fallback to coursecatalog
       const previousUrl = this.navService.getPreviousUrl('/coursecatalog');
       
       // Ensure we're navigating to a valid catalog page
