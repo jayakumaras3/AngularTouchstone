@@ -13,6 +13,12 @@
   font-size: 14px;
   font-weight: 500;
   color: #333;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: #1e293b;
+    color: #e2e8f0;
+    border: 1px solid #334155;
+  }
 }
 
 .duration-pill i-tabler {
@@ -32,6 +38,12 @@
   align-items: center;
   gap: 6px;
   color: #333;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: #1e293b;
+    color: #e2e8f0;
+    border: 1px solid #334155;
+  }
 }
 .info-pill1 {
       margin-top: 4px;
@@ -43,6 +55,12 @@
   align-items: center;
   gap: 6px;
   color: #333;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: #1e293b;
+    color: #e2e8f0;
+    border: 1px solid #334155;
+  }
 }
 
 
