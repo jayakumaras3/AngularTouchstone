@@ -3003,6 +3003,46 @@ mat-list-item {
       }
     }
 
+    // Force Dark Mode Styles for iPhone Landscape (Fixes invisible text)
+    @media (prefers-color-scheme: dark) {
+        .catalog-tab {
+            background: #111827 !important;
+            border: 1px solid #2e3f50 !important;
+            
+            .tab-title { color: #e2e8f0 !important; }
+            .tab-subtitle { color: #94a3b8 !important; }
+            
+            .tab-icon-box {
+                 background: #1f2937 !important;
+                 i-tabler { color: #60a5fa !important; }
+                 
+                 &.sme {
+                     background: #451a03 !important;
+                     i-tabler { color: #fbbf24 !important; }
+                 }
+            }
+        }
+        
+        // Fix View Toggles visibility
+        .view-toggle-group {
+             background: #1e293b !important;
+             border: 1px solid #334155 !important;
+             
+             .view-btn {
+                 color: #e2e8f0 !important;
+                 
+                 &.mat-primary {
+                     color: #60a5fa !important;
+                     background: rgba(59, 130, 246, 0.15) !important;
+                 }
+             }
+        }
+        
+        .catalog-type-label {
+            color: #94a3b8 !important;
+        }
+    }
+
     // Grid adjustments - 2 columns in landscape
     .col-sm-6 {
       flex: 0 0 50%;
