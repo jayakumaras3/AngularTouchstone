@@ -521,6 +521,13 @@ filterByCategory(category: string, event: MouseEvent): void {
   // ========================
 
   filterCards(): void {
+    // ✅ NEW: If search is empty, reset all filters to default state
+    if (!this.searchText || this.searchText.trim() === '') {
+      this.getRestFilter();
+      return;
+    }
+
+    // Otherwise, filter by search text (existing behavior)
     this.isSearchTriggered = true;
     const text = this.searchText.toLowerCase();
     const results = this.allProducts.filter(
