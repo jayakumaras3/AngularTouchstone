@@ -72,6 +72,11 @@
   display: flex;
   flex-direction: column;
   padding: 12px;
+
+  // Mobile Portrait ≤600px: Minimize padding for full-width toolbar
+  @media (max-width: 600px) {
+    padding: 0; // Remove padding to allow toolbar to expand
+  }
 }
 
 // iPhone-only alignment fixes for header area
@@ -1201,6 +1206,16 @@ mat-list-item {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   }
 
+  // Mobile Portrait ≤600px: Full-width expansion
+  @media (max-width: 600px) {
+    width: 100%; // Fill parent container
+    max-width: 100%;
+    margin: 0 0 12px 0; // Reset margins for full-width layout
+    padding: 10px 12px; // Reduced padding for compact mobile
+    border-radius: 8px; // Maintain border radius
+    gap: 6px; // Reduce gap for tight mobile layout
+  }
+
   // Mobile: Wrap into 2 rows like iPad
   @media (max-width: 767px) {
     flex-direction: row;
@@ -1255,6 +1270,18 @@ mat-list-item {
 
   &.mobile {
     padding-left: 60px; // Space for absolute menu button on desktop
+  }
+
+  // Mobile Portrait ≤600px: Full-width, allow horizontal scroll for buttons
+  @media (max-width: 600px) {
+    width: 100%; // Full width
+    gap: 8px;
+    flex: 1 1 100%; // Full width = forces first row
+    order: 1; // First row after menu button
+    justify-content: flex-start; // Align left, no centering
+    overflow-x: auto; // Allow horizontal scroll if tabs exceed width
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch; // Smooth scroll on iOS
   }
 
   // Mobile: horizontal row, no padding needed (menu btn in flow)
@@ -1485,22 +1512,33 @@ mat-list-item {
   justify-content: flex-end;
   visibility: visible;
 
-  // Mobile: Second row (full width)
-  @media (max-width: 767px) {
+  // Mobile: Row 2 - LOCKED GRID LAYOUT (no wrapping possible)
+  @media (max-width: 600px) {
+    display: grid; // CSS Grid prevents wrapping
+    grid-template-columns: auto 1fr; // Left: icons (auto), Right: search (fluid)
+    gap: 10px;
+    align-items: center;
     order: 2; // After catalog-type-toolbar
-    flex: 1 1 100%; // Full width = forces second row
+    width: 100%; // Full width = forces second row
+    padding: 0;
+  }
+
+  // iPad and larger mobile (601px - 767px): Keep flexbox
+  @media (min-width: 601px) and (max-width: 767px) {
+    order: 2;
+    flex: 1 1 100%;
     min-width: 100%;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
+    padding: 0;
   }
 
   // iPhone LANDSCAPE ONLY: Single row layout with search input visible
-  // Fixes: Search input hidden, header misalignment, catalog buttons misaligned
   @media (max-width: 767px) and (orientation: landscape) and (max-height: 430px) {
     order: unset;
-    flex: 0 1 auto; // Restore normal flex sizing (don't force full width)
+    flex: 0 1 auto;
     min-width: auto;
     justify-content: flex-end;
   }
@@ -1563,11 +1601,31 @@ mat-list-item {
     }
   }
 
-  // UNIFIED: Compact sizing like iPad (scaled down for iPhone)
-  @media (max-width: 767px) {
-    order: 1;
-    padding: 2px;
+  // Mobile iPhone: Fixed width for grid column (no wrapping)
+  @media (max-width: 600px) {
+    padding: 3px;
     border-radius: 8px;
+    width: fit-content; // Auto-sized for grid
+    grid-column: 1; // Explicitly first column
+    align-self: center;
+    justify-self: start; // Align left in grid cell
+    
+    .view-btn {
+      min-width: 32px;
+      min-height: 32px;
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+    }
+  }
+
+  // iPad and larger mobile (601px - 767px): Flexbox behavior
+  @media (min-width: 601px) and (max-width: 767px) {
+    order: 1;
+    padding: 3px;
+    border-radius: 8px;
+    flex-shrink: 0;
+    align-self: center;
     
     .view-btn {
       min-width: 32px;
@@ -1630,13 +1688,12 @@ mat-list-item {
     }
   }
 
-  // UNIFIED: Same flex behavior as iPad (scaled down)
-  @media (max-width: 767px) {
-    width: auto;
-    flex: 1;
-    order: 2;
-    min-width: 0;
-    max-width: none;
+  // Mobile iPhone: Fluid width in grid (takes remaining space)
+  @media (max-width: 600px) {
+    width: 100%; // Fill grid cell
+    grid-column: 2; // Explicitly second column
+    min-width: 0; // Allow shrinking if needed
+    align-self: center;
     
     input {
       font-size: 16px !important; // Prevent zoom on iOS
@@ -1646,6 +1703,35 @@ mat-list-item {
       .mat-mdc-form-field-infix {
         min-height: 36px;
         padding: 6px 0;
+      }
+      
+      .mat-mdc-form-field-flex {
+        align-items: center;
+      }
+    }
+  }
+
+  // iPad and larger mobile (601px - 767px): Flexbox behavior
+  @media (min-width: 601px) and (max-width: 767px) {
+    width: auto;
+    flex: 1;
+    order: 2;
+    min-width: 0;
+    max-width: none;
+    align-self: center;
+    
+    input {
+      font-size: 16px !important;
+    }
+    
+    ::ng-deep {
+      .mat-mdc-form-field-infix {
+        min-height: 36px;
+        padding: 6px 0;
+      }
+      
+      .mat-mdc-form-field-flex {
+        align-items: center;
       }
     }
   }
