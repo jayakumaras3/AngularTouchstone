@@ -181,47 +181,57 @@
     flex-wrap: wrap !important;
     gap: 8px !important;
     box-sizing: border-box !important;
+    background: #ffffff; // Light mode default
+  }
+
+  // Dark Mode fix for toolbar container
+  @media (prefers-color-scheme: dark) {
+    .top-toolbar-container {
+      background: #0f172a !important;
+      border: 1px solid #1e293b !important;
+    }
+    
+    .catalog-card {
+      background: #0f172a !important;
+    }
   }
 
   // Row 1: Catalog type buttons (full width → own row)
   .catalog-type-toolbar {
     width: 100% !important;
     flex: 1 1 100% !important;
-    order: 1 !important;
+    order: 1 !important;  // FIRST ROW: Catalog Tabs
     justify-content: flex-start !important;
     overflow-x: auto !important;
     -webkit-overflow-scrolling: touch;
     padding-left: 0 !important;
   }
 
-  // Row 2: View icons + Search input — single unified CSS Grid row
+  // Row 2: View icons + Search input (matches landscape order)
   .search-toolbar {
-    display: grid !important;
-    grid-template-columns: auto 1fr !important;
+    display: flex !important;
+    flex-direction: row !important;
     gap: 8px !important;
     width: 100% !important;
-    order: 2 !important;
+    order: 2 !important;  // SECOND ROW: Search Toolbar
     align-items: center !important;
-    height: 40px !important; // Fixed row height for alignment
+    height: 40px !important;
     padding: 0 !important;
     margin: 0 !important;
   }
 
-  // View toggle icons: fixed-size block, vertically centered
+  // View toggle icons: LEFT side (matches landscape)
   .view-toggle-group {
-    grid-column: 1 !important;
-    grid-row: 1 !important;
+    order: 1 !important;  // 1. Grid/List icons FIRST
     display: flex !important;
     align-items: center !important;
     gap: 2px !important;
     width: auto !important;
-    height: 36px !important; // Explicit height for centering
+    height: 36px !important;
     padding: 2px !important;
     margin: 0 !important;
     border-radius: 8px;
     flex-shrink: 0 !important;
-    justify-self: start !important;
-    align-self: center !important;
 
     .view-btn {
       width: 32px !important;
@@ -237,13 +247,13 @@
     }
   }
 
-  // Search field: fills remaining width, matched height
+  // Search field: RIGHT side, fills remaining width (matches landscape)
   .search-field {
-    grid-column: 2 !important;
-    grid-row: 1 !important;
-    width: 100% !important;
+    order: 2 !important;  // 2. Search box NEXT
+    flex: 1 !important;   // Expand to fill
+    width: auto !important;
     min-width: 0 !important;
-    height: 36px !important; // Match view-toggle height
+    height: 36px !important;
     align-self: center !important;
     margin: 0 !important;
 
@@ -2743,6 +2753,19 @@ mat-list-item {
       gap: 8px;
       padding: 10px;
       padding-top: max(10px, env(safe-area-inset-top));
+      background: #ffffff; // Light mode
+    }
+
+    // Dark Mode: Fix white background on toolbar and card
+    @media (prefers-color-scheme: dark) {
+      .top-toolbar-container {
+        background: #0f172a !important;
+        border: 1px solid #1e293b !important;
+      }
+      
+      .catalog-card {
+        background: #0f172a !important;
+      }
     }
 
     // Mobile menu button - positioned same as iPad
@@ -2755,15 +2778,16 @@ mat-list-item {
       height: 32px;
     }
 
-    // Catalog type - SAME row layout as iPad
+    // Catalog type - FIRST ROW (matches landscape order)
     .catalog-type-toolbar {
       display: flex !important;
-      flex-direction: row; // SAME as iPad
+      flex-direction: row;
       align-items: center;
       gap: 6px;
       flex: 1 1 100%;
       min-width: 100%;
       padding-left: 0;
+      order: 1 !important;  // ROW 1: Catalog Tabs
 
       &.mobile {
         padding-left: 40px;
@@ -2806,14 +2830,15 @@ mat-list-item {
       }
     }
 
-    // Search toolbar - SAME row layout as iPad (second row)
+    // Search toolbar - SECOND ROW (matches landscape order)
     .search-toolbar {
       display: flex !important;
-      flex-direction: row; // SAME as iPad
+      flex-direction: row;
       flex: 1 1 100%;
       min-width: 100%;
       gap: 6px;
-      justify-content: space-between;
+      justify-content: flex-start;
+      order: 2 !important;  // ROW 2: Search Toolbar
 
       &.mobile {
         flex-direction: row;
@@ -2821,7 +2846,8 @@ mat-list-item {
     }
 
     .view-toggle-group {
-      order: 1;
+      order: 1 !important;  // LEFT: Grid/List icons first
+      flex-shrink: 0;
       
       .view-btn {
         min-width: 32px;
@@ -2832,8 +2858,8 @@ mat-list-item {
     }
 
     .search-field {
-      order: 2;
-      flex: 1;
+      order: 2 !important;  // RIGHT: Search box next
+      flex: 1;              // Expand to fill
 
       input {
         font-size: 16px !important; // Prevent iOS zoom
