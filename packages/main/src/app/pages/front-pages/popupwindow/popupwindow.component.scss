@@ -29,3 +29,16 @@
   color: #d32f2f;
   border-left: 4px solid #d32f2f;
 }
+/* 🔥 FIX: Submit button visually disappearing */
+::ng-deep .mat-mdc-raised-button.mat-primary {
+  background-color: #1976d2 !important;  /* Material primary blue */
+  color: #ffffff !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.25) !important;
+}
+
+/* Disabled state – still visible */
+::ng-deep .mat-mdc-raised-button.mat-primary:disabled {
+  background-color: #90caf9 !important;
+  color: #ffffff !important;
+  opacity: 0.8 !important;
+}
