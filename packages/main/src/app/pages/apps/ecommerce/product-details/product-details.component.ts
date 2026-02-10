@@ -55,6 +55,12 @@ export class ProductDetailsComponent implements AfterViewInit, OnInit {
 
   // Track navigation source (chatbot, catalog, etc.)
   private navigationSource: string | null = null;
+  
+  // ✅ PRESERVE ORIGINAL navigation source and URL through related product navigation
+  // These are set once when first entering coursedetails and never overwritten
+  private originalNavigationSource: string | null = null;
+  private originalPreviousUrl: string | null = null;
+  private isFirstPageLoad = true;
 
   mobileQuery: MediaQueryList;
   isMobileView = false;
@@ -109,6 +115,34 @@ export class ProductDetailsComponent implements AfterViewInit, OnInit {
   private productDataService = inject(ProductDataService);
 
   ngOnInit(): void {
+    // ✅ CAPTURE navigation state ONCE on initialization
+    // This logic runs only when the component is first created.
+    // For related product navigation (component reuse), the instance variables persist.
+    if (this.isFirstPageLoad) {
+      const navigation = this.router.getCurrentNavigation();
+      const statePreviousUrl = navigation?.extras?.state?.['previousUrl'];
+      const initialSource = this.route.snapshot.queryParams['source'];
+
+      // 1. Establish the Original Source
+      this.originalNavigationSource = initialSource || 'catalog';
+
+      // 2. Establish the Original Previous URL (The "Anchor" for Back button)
+      if (statePreviousUrl) {
+        this.originalPreviousUrl = statePreviousUrl;
+      } else {
+        // If no state provided (e.g., refresh), derive safe fallback from source
+        this.originalPreviousUrl = this.getFallbackUrl(this.originalNavigationSource);
+      }
+
+      // Sync NavService for consistency (though we won't rely on it for getBack)
+      if (this.originalPreviousUrl) {
+        this.navService.setReferrerUrl(this.originalPreviousUrl);
+      }
+      
+      this.isFirstPageLoad = false;
+    }
+
+    
     // Load all products first
     this.productDataService.getProducts({ bustCache: true }).subscribe((items: any[]) => {
       this.allProducts = items;
@@ -117,22 +151,31 @@ export class ProductDetailsComponent implements AfterViewInit, OnInit {
       this.route.paramMap.subscribe(params => {
         const courseId = params.get('courseId');
         
-        // Capture navigation source from query params
+        // Note: On component reuse (Related Products), isFirstPageLoad is false.
+        // We purposefully DO NOT update originalPreviousUrl/Source here.
+        // We rely on the preserved instance variables to maintain the "Entry Point".
+
+        // Capture current navigation source from query params for local state if needed
+        // but we rely on originalNavigationSource for back button
         this.route.queryParams.subscribe(queryParams => {
           this.navigationSource = queryParams['source'] || null;
         });
-
-        // Capture previous URL from navigation state (more reliable than NavService)
-        const navigation = this.router.getCurrentNavigation();
-        if (navigation?.extras?.state?.['previousUrl']) {
-          const previousUrl = navigation.extras.state['previousUrl'];
-          this.navService.setReferrerUrl(previousUrl);
-        }
 
         // Load course data based on courseId or from service
         this.loadCourseData(courseId);
       });
     });
+  }
+
+  // Helper to determine fallback URL based on source
+  private getFallbackUrl(source: string | null): string {
+    switch (source) {
+      case 'sme-catalog': return '/sme-catalog';
+      case 'coursecatalog': return '/coursecatalog';
+      case 'chatbot': return '/catalog';
+      case 'catalog': return '/catalog';
+      default: return '/catalog';
+    }
   }
 
   ngAfterViewInit(): void { }
@@ -266,17 +309,29 @@ private normalizeObjectives(product: any): void {
     // Set product data
     this.productService.setProduct(item);
 
-    // Get the previous URL to preserve it when navigating between related products
-    const previousUrl = this.navService.getPreviousUrl();
+    // ✅ IMPORTANT: Use ORIGINAL source to preserve it through related product navigation
+    // This prevents the source from changing to 'related' when navigating between products
+    const sourceToPreserve = this.originalNavigationSource || this.navigationSource || 'related';
+    
+    // ✅ CRITICAL: Use ONLY originalPreviousUrl, NOT navService
+    // navService gets auto-updated on every navigation, so it contains the WRONG previousUrl
+    // (it would be the previous coursedetails page, creating a loop)
+    const previousUrl = this.originalPreviousUrl;
 
     // Navigate with courseId - this will trigger param change detection
     this.router.navigate(['/coursedetails', item.id], {
-      queryParams: { source: this.navigationSource || 'related' },
+      queryParams: { source: sourceToPreserve }, // Preserve ORIGINAL source, don't use 'related'
       queryParamsHandling: 'merge',
       state: { previousUrl: previousUrl } // Preserve the original catalog URL
     });
   }
   loadRelatedProducts(currentProduct: any) {
+    // ✅ Mark as subsequent load so originalNavigationSource and originalPreviousUrl don't get overwritten
+    // This also ensures isFirstPageLoad is always false after first load, even if no navigation state was available
+    if (this.isFirstPageLoad) {
+      this.isFirstPageLoad = false;
+    }
+    
     if (!currentProduct) return;
 
     const currentId = currentProduct.id;
@@ -377,46 +432,48 @@ private normalizeObjectives(product: any): void {
     // Clear product state before navigation
     this.productService.clearProduct();
 
-    // Determine where to navigate back to based on source
-    if (this.navigationSource === 'chatbot') {
-      // From chatbot → always go to main catalog
+    // ✅ USE ORIGINAL navigation source preserved from first page load
+    // If null, we default to 'catalog' as a safe bet
+    const sourceToUse = this.originalNavigationSource || 'catalog';
+    
+    // ✅ CRITICAL: Use ORIGINAL Previous URL stored at entry point
+    // We do NOT use navService.getPreviousUrl() here because it contains the 
+    // immediate previous page (which could be another product), causing loops.
+    // If originalPreviousUrl is somehow missing, we derive a destination from source.
+    let targetUrl = this.originalPreviousUrl;
+
+    if (!targetUrl) {
+      targetUrl = this.getFallbackUrl(sourceToUse);
+    }
+
+    // Determine where to navigate back to
+    // We prioritize the explicit URL if it matches the source context
+    if (sourceToUse === 'chatbot') {
       this.router.navigate(['/catalog']);
-    } else if (this.navigationSource === 'sme-catalog') {
-      // From SME catalog → use stored referrer URL
-      const previousUrl = this.navService.getPreviousUrl();
-      if (previousUrl && previousUrl.includes('sme-catalog')) {
-        this.router.navigateByUrl(previousUrl);
+    } else if (sourceToUse === 'sme-catalog') {
+      if (targetUrl.includes('sme-catalog')) {
+        this.router.navigateByUrl(targetUrl);
       } else {
-        // Fallback to main SME catalog page
         this.router.navigate(['/sme-catalog']);
       }
-    } else if (this.navigationSource === 'coursecatalog') {
-      // From course catalog → use stored referrer URL
-      const previousUrl = this.navService.getPreviousUrl();
-      if (previousUrl && previousUrl.includes('coursecatalog')) {
-        this.router.navigateByUrl(previousUrl);
+    } else if (sourceToUse === 'coursecatalog') {
+      if (targetUrl.includes('coursecatalog')) {
+        this.router.navigateByUrl(targetUrl);
       } else {
-        // Fallback to main course catalog page
         this.router.navigate(['/coursecatalog']);
       }
-    } else if (this.navigationSource === 'catalog') {
-      // From main catalog → use stored referrer URL
-      const previousUrl = this.navService.getPreviousUrl();
-      if (previousUrl && previousUrl.includes('catalog')) {
-        this.router.navigateByUrl(previousUrl);
+    } else if (sourceToUse === 'catalog') {
+      if (targetUrl.includes('catalog')) {
+        this.router.navigateByUrl(targetUrl);
       } else {
-        // Fallback to main catalog page
         this.router.navigate(['/catalog']);
       }
     } else {
-      // From other sources → use stored referrer or fallback to coursecatalog
-      const previousUrl = this.navService.getPreviousUrl('/coursecatalog');
-      
+      // Generic fallback
       // Ensure we're navigating to a valid catalog page
-      if (previousUrl.includes('catalog') || previousUrl.includes('sme-catalog')) {
-        this.router.navigateByUrl(previousUrl);
+      if (targetUrl.includes('catalog') || targetUrl.includes('sme-catalog')) {
+        this.router.navigateByUrl(targetUrl);
       } else {
-        // Fallback to course catalog if previous URL is not a catalog page
         this.router.navigate(['/coursecatalog']);
       }
     }
