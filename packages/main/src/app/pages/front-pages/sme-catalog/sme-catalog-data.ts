@@ -36,7 +36,7 @@ export const SME_CATEGORIES: SmeCategory[] = [
       { title: 'Order Management', level: 'foundational', group: 'Foundational' },
       { title: 'Procurement', level: 'foundational', group: 'Foundational' },
       // Intermediate (Growth & Planning)
-      { title: 'Competition vs. Differentiation (SWOT Analysis)', level: 'intermediate', group: 'Intermediate (Growth & Planning)' },
+      { title: 'Competition vs. Differentiation (SWOT Analysis)', level: 'intermediate', group: 'Intermediate' },
       { title: 'Creating a Competitive Edge', level: 'intermediate', group: 'Intermediate' },
       { title: 'How to Create and Present a Business Growth Plan', level: 'intermediate', group: 'Intermediate' },
       { title: 'Fostering a Culture of Risk Taking', level: 'intermediate', group: 'Intermediate' },
