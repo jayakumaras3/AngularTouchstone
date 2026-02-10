@@ -80,4 +80,27 @@
 
 .form-content {
   padding: 60px 0;
+
+  button[type="submit"] {
+    // Enabled State
+    &:not(:disabled) {
+      background-color: var(--mat-sys-primary);
+      color: #ffffff;
+      cursor: pointer;
+
+      &:hover {
+        background-color: color-mix(in srgb, var(--mat-sys-primary), black 10%);
+      }
+    }
+
+    // Disabled State
+    &:disabled {
+      background-color: #b0c4de !important; // Light grey-blue (soft, muted blue tone)
+      color: #ffffff !important;
+      cursor: not-allowed !important;
+      pointer-events: auto !important; // Ensure cursor shows as not-allowed
+      box-shadow: none !important;
+      animation: none !important;
+    }
+  }
 }
