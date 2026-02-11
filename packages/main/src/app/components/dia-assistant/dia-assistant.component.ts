@@ -175,10 +175,10 @@ export class DiaAssistantComponent implements OnInit, OnDestroy {
     // Set referrer to course catalog (where user should return to)
     const currentUrl = '/coursecatalog';
     this.navService.setReferrerUrl(currentUrl);
-    
+
     // Set the selected product for the details page
     this.productService.setProduct(course.product);
-    
+
     // Navigate with courseId, source, and state for reliable back navigation
     this.router.navigate(['/coursedetails', courseId], {
       queryParams: { source: 'chatbot' },
@@ -226,14 +226,25 @@ export class DiaAssistantComponent implements OnInit, OnDestroy {
       ];
     }
   }
-
+  private decodeHtmlEntities(text: string): string {
+    const textarea = document.createElement('textarea');
+    textarea.innerHTML = text;
+    return textarea.value;
+  }
   private mapToDiaCourse(item: ProductDataItem): DiaCourse {
     const title = item.product_name ?? 'Untitled Course';
     const category = item.skill ?? (item.categories?.[0] ?? 'General');
     const duration = Number(item.duration ?? 0);
     const language = item.language ?? 'English';
-    const description = this.stripHtml(item.description ?? '');
-    const objectives = this.stripHtml(item.objectives ?? '');
+
+    const description = this.decodeHtmlEntities(
+      this.stripHtml(item.description ?? '')
+    );
+
+    const objectives = this.decodeHtmlEntities(
+      this.stripHtml(item.objectives ?? '')
+    );
+
     const url = `www.docheck.com/courses/${item.id}`;
 
     const keywords = this.tokenize(
@@ -250,9 +261,10 @@ export class DiaAssistantComponent implements OnInit, OnDestroy {
       objectives,
       url,
       keywords,
-      product: item as any, // Store full product object for navigation
+      product: item as any,
     };
   }
+
 
   private generateResponse(query: string): { message: string; courses: DiaCourse[] } {
     if (!this.isReady || this.courses.length === 0) {
@@ -335,8 +347,8 @@ export class DiaAssistantComponent implements OnInit, OnDestroy {
    */
   private detectIOS(): void {
     const userAgent = window.navigator.userAgent.toLowerCase();
-    this.isIOS = /iphone|ipad|ipod/.test(userAgent) || 
-                 (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    this.isIOS = /iphone|ipad|ipod/.test(userAgent) ||
+      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
   }
 
   /**
@@ -356,14 +368,14 @@ export class DiaAssistantComponent implements OnInit, OnDestroy {
       const viewport = window.visualViewport!;
       const windowHeight = window.innerHeight;
       const viewportHeight = viewport.height;
-      
+
       // Calculate keyboard height (difference between window and viewport)
       const calculatedKeyboardHeight = windowHeight - viewportHeight;
-      
+
       // Only adjust if keyboard is significantly open (> 150px)
       if (calculatedKeyboardHeight > 150) {
         this.keyboardHeight = calculatedKeyboardHeight;
-        
+
         // Apply dynamic height to panel
         const panel = this.diaPanel.nativeElement;
         const maxPanelHeight = viewportHeight - 40; // 40px padding from top
