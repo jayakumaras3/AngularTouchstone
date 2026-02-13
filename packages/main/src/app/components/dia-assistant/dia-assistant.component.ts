@@ -200,7 +200,7 @@ export class DiaAssistantComponent implements OnInit, OnDestroy {
 
   private initializeBrain(): void {
     this.progress = 10;
-    this.seedWelcomeMessage('Hi, I\'m Dia! I\'m your offline learning assistant. How can I help you today?');
+    this.seedWelcomeMessage('Hi! I\'m Dia, your learning assistant. Enter a subject, skill, or interest (e.g., safety, marketing, health etc.) to see related course instantly');
 
     this.http.get<ProductDataItem[]>('assets/data/product-data.json').subscribe({
       next: (items) => {
