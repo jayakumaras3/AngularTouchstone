@@ -5,12 +5,13 @@
   position: fixed;
   right: 20px !important;
   bottom: 20px !important;
-  z-index: 9999;
+  z-index: 999;
   font-family: "Inter", "Segoe UI", sans-serif;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   gap: 16px;
+  pointer-events: none;
   
   /* Ensure smooth rendering on all devices */
   -webkit-font-smoothing: antialiased;
@@ -34,13 +35,17 @@
   opacity: 0;
   transform: translateY(16px) scale(0.98);
   pointer-events: none;
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  visibility: hidden;
+  z-index: 1001;
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s 0.25s;
 }
 
 .dia-panel.open {
   opacity: 1;
   transform: translateY(0) scale(1);
   pointer-events: auto;
+  visibility: visible;
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s;
 }
 
 /* ================================
@@ -332,7 +337,7 @@
 .dia-input button:disabled,
 .dia-submit-btn:disabled {
   opacity: 0.5;
-  cursor: not-allowed;
+  cursor: default;
   pointer-events: none; /* Disabled buttons should not be clickable */
 }
 
@@ -573,18 +578,19 @@
    Floating Button (FAB)
 ================================ */
 .dia-fab {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   background: #ffffff;
   box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
   border: none;
   cursor: pointer;
-  pointer-events: auto;
+  pointer-events: auto !important;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
+  z-index: 999;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   transform-origin: center;
   
@@ -735,26 +741,29 @@
 ================================ */
 @media (max-width: 768px) {
   .dia-widget {
-    left: 0;
-    right: 0;
-    bottom: 0;
     align-items: center;
+    pointer-events: none;
   }
 
   .dia-panel {
     width: 100%;
     height: calc(100vh - 80px);
     border-radius: 20px 20px 0 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
   }
 
   .dia-fab {
     position: fixed;
     right: 16px;
     bottom: 16px;
+    pointer-events: auto !important;
     
     /* Slightly larger on mobile for easier touch */
-    width: 56px;
-    height: 56px;
+    width: 60px;
+    height: 60px;
     
     img {
       width: 36px;
@@ -776,8 +785,8 @@
   
   .dia-fab {
     /* Ensure FAB is easily tappable on small screens */
-    min-width: 56px;
-    min-height: 56px;
+    min-width: 60px;
+    min-height: 60px;
   }
 }
 
