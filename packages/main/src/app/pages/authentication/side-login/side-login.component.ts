@@ -9,21 +9,21 @@ import { LoginUrl } from '../../../config';
 import { FooterComponent } from '../../front-pages/footer/footer.component';
 
 @Component({
-    selector: 'app-side-login',
-    imports: [RouterModule,FooterComponent, MaterialModule, FormsModule, ReactiveFormsModule, BrandingComponent],
-    templateUrl: './side-login.component.html'
+  selector: 'app-side-login',
+  imports: [RouterModule, FooterComponent, MaterialModule, FormsModule, ReactiveFormsModule, BrandingComponent],
+  templateUrl: './side-login.component.html'
 })
 export class AppSideLoginComponent implements AfterViewInit {
-//  options = this.settings.getOptions();
-//baseUrlpath:string="DOCHEKDOTCOM/app/Views/angular_view/";
-baseUrlpath:string=LoginUrl;
+  //  options = this.settings.getOptions();
+  //baseUrlpath:string="DOCHEKDOTCOM/app/Views/angular_view/";
+  baseUrlpath: string = LoginUrl;
 
   // Template references for autofill workaround (Edge IE mode compatibility)
   @ViewChild('usernameInput') usernameInput!: ElementRef<HTMLInputElement>;
   @ViewChild('passwordInput') passwordInput!: ElementRef<HTMLInputElement>;
 
   constructor(
-    private authservice: AuthService, 
+    private authservice: AuthService,
     private router: Router,
     private ngZone: NgZone
   ) { }
@@ -106,7 +106,13 @@ baseUrlpath:string=LoginUrl;
                 // this.router.navigate(['/dashboards/dashboard1']);
               }
             } else {
-              alert(res.message || 'Login failed');
+              if (res.errors) {
+                const errorMessage = Object.values(res.errors).join('\n');
+                alert(errorMessage);
+              } else {
+                alert('Invalid username or password');
+              }
+
             }
           },
           error: err => {
