@@ -32,10 +32,6 @@
 
             <div class="dia-cards" *ngIf="message.sender === 'bot' && message.courses?.length">
               <div class="dia-card" *ngFor="let course of message.courses; trackBy: trackByCourse">
-                <div class="dia-card-meta">
-                  <span class="dia-chip">{{ course.category }}</span>
-                  <span class="dia-meta">{{ course.duration }}m • {{ course.language }}</span>
-                </div>
                 <h4>{{ course.title }}</h4>
                 <p>{{ course.description }}</p>
                 <button 

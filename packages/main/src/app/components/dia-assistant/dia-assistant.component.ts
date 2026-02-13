@@ -226,6 +226,25 @@ export class DiaAssistantComponent implements OnInit, OnDestroy {
       ];
     }
   }
+
+  /**
+   * Clean and normalize description text for chatbot display
+   * Removes:
+   * - Non-breaking spaces (&nbsp;)
+   * - Multiple consecutive spaces
+   * - Extra line breaks and newlines
+   * - Leading and trailing whitespace
+   */
+  private cleanDescription(text: string): string {
+    if (!text) return '';
+    
+    return text
+      .replace(/&nbsp;/g, ' ')           // Replace non-breaking spaces with regular spaces
+      .replace(/\s+/g, ' ')              // Replace multiple spaces with single space
+      .replace(/\n+/g, ' ')              // Replace line breaks with space
+      .trim();                           // Remove leading and trailing spaces
+  }
+
   private decodeHtmlEntities(text: string): string {
     const textarea = document.createElement('textarea');
     textarea.innerHTML = text;
@@ -237,8 +256,10 @@ export class DiaAssistantComponent implements OnInit, OnDestroy {
     const duration = Number(item.duration ?? 0);
     const language = item.language ?? 'English';
 
-    const description = this.decodeHtmlEntities(
-      this.stripHtml(item.description ?? '')
+    const description = this.cleanDescription(
+      this.decodeHtmlEntities(
+        this.stripHtml(item.description ?? '')
+      )
     );
 
     const objectives = this.decodeHtmlEntities(
