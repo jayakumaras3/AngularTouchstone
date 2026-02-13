@@ -110,6 +110,16 @@ export class ProductDetailsComponent implements AfterViewInit, OnInit {
   allProducts: any[] = PRODUCT_DATA;
   quantity = 1;
   toggleValue: any = null;
+  selectedLanguage: string = 'en';
+
+  // Multilingual objectives title map
+  objectivesTitleMap = {
+    en: 'By the end of this course, you will be able to:',
+    de: 'Am Ende dieses Kurses werden Sie in der Lage sein:',
+    it: 'Al termine di questo corso sarai in grado di:',
+    es: 'Al finalizar este curso, será capaz de:',
+    fr: 'À la fin de ce cours, vous serez capable de:'
+  };
 
   private productService: ProductService = inject(ProductService);
   private productDataService = inject(ProductDataService);
@@ -142,7 +152,10 @@ export class ProductDetailsComponent implements AfterViewInit, OnInit {
       this.isFirstPageLoad = false;
     }
 
-    
+    // Initialize selected language from localStorage or default to 'en'
+    const savedLanguage = localStorage.getItem('selectedLanguage');
+    this.selectedLanguage = savedLanguage || 'en';
+
     // Load all products first
     this.productDataService.getProducts({ bustCache: true }).subscribe((items: any[]) => {
       this.allProducts = items;
@@ -165,6 +178,21 @@ export class ProductDetailsComponent implements AfterViewInit, OnInit {
         this.loadCourseData(courseId);
       });
     });
+
+    // Listen to language changes from localStorage
+    window.addEventListener('storage', (event) => {
+      if (event.key === 'selectedLanguage' && event.newValue) {
+        this.selectedLanguage = event.newValue;
+      }
+    });
+  }
+
+  /**
+   * Get objectives title in current language
+   * Fallback to English if language not found
+   */
+  getObjectivesTitle(): string {
+    return this.objectivesTitleMap[this.selectedLanguage as keyof typeof this.objectivesTitleMap] || this.objectivesTitleMap['en'];
   }
 
   // Helper to determine fallback URL based on source
@@ -196,6 +224,24 @@ export class ProductDetailsComponent implements AfterViewInit, OnInit {
   }
 
   /**
+   * Map language name to language code
+   * Converts full language names to 2-letter codes
+   */
+  private getLanguageCode(languageName: string): string {
+    const languageMap: { [key: string]: string } = {
+      'english': 'en',
+      'german': 'de',
+      'italian': 'it',
+      'spanish': 'es',
+      'french': 'fr'
+    };
+    
+    if (!languageName) return 'en';
+    const code = languageMap[languageName.toLowerCase()];
+    return code || 'en'; // Fallback to English
+  }
+
+  /**
    * Load course data based on courseId or from ProductService
    * Called on initialization and when route params change
    */
@@ -224,6 +270,11 @@ export class ProductDetailsComponent implements AfterViewInit, OnInit {
     // Set the product and normalize objectives
     this.product = productToLoad;
     this.normalizeObjectives(this.product);
+
+    // Update language based on product's language property
+    if (this.product.language) {
+      this.selectedLanguage = this.getLanguageCode(this.product.language);
+    }
 
     // Load related products
     this.loadRelatedProducts(this.product);
