@@ -59,6 +59,7 @@
                     formControlName="username"
                     name="username"
                     autocomplete="username"
+                    (input)="clearErrorMessage()"
                     #usernameInput />
                   @if(f['username'].touched && f['username'].invalid) {
                     <mat-hint class="m-b-16 error-msg">
@@ -83,6 +84,7 @@
                     formControlName="password"
                     name="password"
                     autocomplete="current-password"
+                    (input)="clearErrorMessage()"
                     #passwordInput />
                   @if(f['password'].touched && f['password'].invalid) {
                     <mat-hint class="m-b-16 error-msg">
@@ -92,6 +94,13 @@
                     </mat-hint>
                   }
                 </mat-form-field>
+
+                <!-- Login Error Message -->
+                @if(errorMessage) {
+                  <div class="alert alert-danger m-b-16" style="color: #dc3545; padding: 12px; border: 1px solid #f5c2c7; border-radius: 4px; background-color: #f8d7da;">
+                    {{ errorMessage }}
+                  </div>
+                }
 
                 <div class="d-flex align-items-center m-b-12">
                   <a [routerLink]="['/forgotpassword']"

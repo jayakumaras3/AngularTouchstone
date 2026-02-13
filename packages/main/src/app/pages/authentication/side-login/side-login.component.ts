@@ -18,6 +18,9 @@ export class AppSideLoginComponent implements AfterViewInit {
   //baseUrlpath:string="DOCHEKDOTCOM/app/Views/angular_view/";
   baseUrlpath: string = LoginUrl;
 
+  // Error message handling
+  errorMessage: string = '';
+
   // Template references for autofill workaround (Edge IE mode compatibility)
   @ViewChild('usernameInput') usernameInput!: ElementRef<HTMLInputElement>;
   @ViewChild('passwordInput') passwordInput!: ElementRef<HTMLInputElement>;
@@ -83,12 +86,21 @@ export class AppSideLoginComponent implements AfterViewInit {
   }
   isSubmitting = false; // Add this property
 
+  /**
+   * Clears the error message from the form.
+   * Called when user starts typing in username or password fields.
+   */
+  clearErrorMessage(): void {
+    this.errorMessage = '';
+  }
+
   submit() {
     // Sync autofill values one more time before submission
     this.syncAutofillValues();
 
     if (this.form.valid && !this.isSubmitting) {
       this.isSubmitting = true; // Disable button
+      this.errorMessage = ''; // Clear any previous error messages
 
       this.authservice.login(this.form.value.username!, this.form.value.password!)
         .subscribe({
@@ -97,6 +109,7 @@ export class AppSideLoginComponent implements AfterViewInit {
             this.isSubmitting = false; // Re-enable button
 
             if (res.success) {
+              this.errorMessage = ''; // Clear error on successful login
               localStorage.setItem('user', JSON.stringify(res.user));
 
               if (res.redirect_url) {
@@ -107,17 +120,15 @@ export class AppSideLoginComponent implements AfterViewInit {
               }
             } else {
               if (res.errors) {
-                const errorMessage = Object.values(res.errors).join('\n');
-                alert(errorMessage);
+                this.errorMessage = Object.values(res.errors).join(' ');
               } else {
-                alert('Invalid username or password');
+                this.errorMessage = 'Username or Password don\'t match.';
               }
-
             }
           },
           error: err => {
             console.error('HTTP Error:', err);
-            alert('Server error, check console for details');
+            this.errorMessage = 'Server error, check console for details';
             this.isSubmitting = false; // Re-enable button even on error
           }
         });
