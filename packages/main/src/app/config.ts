@@ -132,7 +132,7 @@ export const LoginUrl = '/DOCHEK_lms/ang/';
 export const logoUrl = '/DOCHEK_lms/ang/';*/
 
 //old dochek
-/*
+/**/
 //Host URL
 export const baseUrlPath = '/ang/';
 export const baseUrlPathslash = '/ang';
@@ -143,10 +143,10 @@ export const logoUrl = '/ang/';
 
 
 // PHP service URLs
-export const apiUrl = 'http://172.16.2.214/landing';
+export const apiUrl = 'http://172.16.0.173/DOCHEK/landing';
   
-  export const forgotUrl = 'http://172.16.2.214/landing';
-  export const contactApiUrl = 'http://172.16.2.214/landing';*/
+  export const forgotUrl = 'http://172.16.0.173/DOCHEK/landing';
+  export const contactApiUrl = 'http://172.16.0.173/DOCHEK/landing';
 
 
 
@@ -185,7 +185,7 @@ export const logoUrl = '/ang/';
 
 
 
-    /**/
+    /*
 export const baseUrlPath = '/ang/';
 export const baseUrlPathslash = '/ang';
 export const LoginUrl = 'ang/';
@@ -194,4 +194,4 @@ export const logoUrl = '/ang/';
 export const apiUrl = 'http://172.16.2.214/DOCHEK/landing';
 
 export const forgotUrl = 'http://172.16.2.214/DOCHEK/landing';
-export const contactApiUrl = 'http://172.16.2.214/DOCHEK/landing';
+export const contactApiUrl = 'http://172.16.2.214/DOCHEK/landing';*/
