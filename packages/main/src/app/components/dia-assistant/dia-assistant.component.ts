@@ -315,7 +315,7 @@ export class DiaAssistantComponent implements OnInit, OnDestroy {
 
     if (scored.length === 0) {
       return {
-        message: 'I couldn\'t find any courses matching your specific search. Try broader keywords like "Cyber Security", "ESG", or "Leadership".',
+        message: 'I couldn’t find any courses matching your specific search. Try using broader keywords like "Cyber Security," "ESG," or "Leadership."',
         courses: [],
       };
     }
