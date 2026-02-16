@@ -1,9 +1,3 @@
-<div class="banner-section bg-light-primary banner-compact">
-  <div class="container">
-    <h2 class="text-center f-s-40 section-sub-title lh-normal">500+ Courses to Sharpen On-the-Job Performance</h2>
-  </div>
-</div>
-
 <!-- Main Catalog Layout - Simple Flexbox -->
 <div class="catalog-layout-container">
   <mat-card class="cardWithShadow catalog-card">
@@ -76,8 +70,8 @@
 
       <!-- RIGHT: Main Content Column -->
       <main class="catalog-main-content">
-        <!-- Top Toolbar: Catalog Type + Search -->
-        <div class="top-toolbar-container">
+        <!-- Top Toolbar: Search -->
+        <div class="top-toolbar-container" style="display: flex; justify-content: space-between; align-items: center;">
           <!-- Mobile Menu Button -->
           @if(isOver()){
             <button mat-mini-fab class="bg-primary text-white mobile-menu-btn" aria-label="Toggle filters"
@@ -86,42 +80,8 @@
             </button>
           }
 
-          <!-- Catalog Type Section (Left) -->
-          <div class="catalog-type-toolbar" [class.mobile]="isMobileView">
-            <div class="catalog-type-label">CATALOG TYPE</div>
-            <div class="catalog-type-tabs">
-              <!-- Course Catalog Tab -->
-              <a 
-                class="catalog-tab"
-                [class.active]="isActiveRoute('coursecatalog')"
-                routerLink="/coursecatalog">
-                <div class="tab-icon-box">
-                  <i-tabler name="books" class="icon-20"></i-tabler>
-                </div>
-                <div class="tab-content">
-                  <span class="tab-title">Complete Course Library</span>
-                  <span class="tab-subtitle">Browse the full list of courses</span>
-                </div>
-              </a>
-
-              <!-- SME Catalog Tab -->
-              <a 
-                class="catalog-tab sme-tab"
-                [class.active]="isActiveRoute('sme-catalog')"
-                routerLink="/sme-catalog">
-                <div class="tab-icon-box sme">
-                  <i-tabler name="building-store" class="icon-20"></i-tabler>
-                </div>
-                <div class="tab-content">
-                  <span class="tab-title">SME Learning Pathways</span>
-                  <span class="tab-subtitle">Structured learning by level</span>
-                </div>
-              </a>
-            </div>
-          </div>
-
-          <!-- Search Area (Right) -->
-          <div class="search-toolbar" [class.mobile]="isMobileView">
+          <!-- Search Area -->
+          <div class="search-toolbar" [class.mobile]="isMobileView" style="margin-left: auto;">
             <!-- View Toggle Buttons -->
             <div class="view-toggle-group">
               <button
@@ -384,10 +344,4 @@
       </main>
     </div>
   </mat-card>
-</div>
-
-<div class="footer">
-  <div>
-    <app-footer></app-footer>
-  </div>
 </div>

@@ -16,6 +16,7 @@ interface ProductDataItem {
   language?: string;
   description?: string;
   objectives?: string;
+  Keywords?: string;
 }
 
 interface DiaCourse {
@@ -27,8 +28,7 @@ interface DiaCourse {
   description: string;
   objectives: string;
   url: string;
-  keywords: string[];
-  product?: any; // Store the full product object for navigation
+   product: any;
 }
 
 interface ChatMessage {
@@ -237,7 +237,7 @@ export class DiaAssistantComponent implements OnInit, OnDestroy {
    */
   private cleanDescription(text: string): string {
     if (!text) return '';
-    
+
     return text
       .replace(/&nbsp;/g, ' ')           // Replace non-breaking spaces with regular spaces
       .replace(/\s+/g, ' ')              // Replace multiple spaces with single space
@@ -268,10 +268,6 @@ export class DiaAssistantComponent implements OnInit, OnDestroy {
 
     const url = `www.docheck.com/courses/${item.id}`;
 
-    const keywords = this.tokenize(
-      [title, category, language, description, objectives, ...(item.categories ?? [])].join(' ')
-    );
-
     return {
       id: item.id,
       title,
@@ -281,10 +277,11 @@ export class DiaAssistantComponent implements OnInit, OnDestroy {
       description,
       objectives,
       url,
-      keywords,
-      product: item as any,
+      product: item as any
     };
   }
+
+
 
 
   private generateResponse(query: string): { message: string; courses: DiaCourse[] } {
@@ -328,22 +325,46 @@ export class DiaAssistantComponent implements OnInit, OnDestroy {
 
   private calculateScore(tokens: string[], course: DiaCourse): number {
     let score = 0;
-    const category = course.category.toLowerCase();
+
     const title = course.title.toLowerCase();
+    const category = course.category.toLowerCase();
     const description = course.description.toLowerCase();
     const objectives = course.objectives.toLowerCase();
-    const keywordSet = new Set(course.keywords);
+    const language = course.language.toLowerCase();
 
-    tokens.forEach((token) => {
-      if (keywordSet.has(token)) score += 15;
-      if (category.includes(token)) score += 10;
-      if (title.includes(token)) score += 8;
-      if (description.includes(token)) score += 2;
-      if (objectives.includes(token)) score += 2;
+    tokens.forEach(token => {
+
+      // Strong match - Title
+      if (title.includes(token)) {
+        score += 40;
+      }
+
+      // Medium match - Category
+      if (category.includes(token)) {
+        score += 25;
+      }
+
+      // Medium match - Language
+      if (language.includes(token)) {
+        score += 15;
+      }
+
+      // Light match - Description
+      if (description.includes(token)) {
+        score += 10;
+      }
+
+      // Light match - Objectives
+      if (objectives.includes(token)) {
+        score += 10;
+      }
     });
 
     return score;
   }
+
+
+
 
   private tokenize(text: string): string[] {
     return text

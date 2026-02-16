@@ -5,7 +5,6 @@
 import { CommonModule, Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { FooterComponent } from '../footer/footer.component';
 import { Element, PRODUCT_DATA } from '../../apps/ecommerce/ecommerceData';
 import { ProductDataService } from '../../../services/product-data.service';
 import { ProductService } from '../../../services/apps/product/product.service';
@@ -37,7 +36,7 @@ interface FilterState {
 @Component({
   selector: 'app-course-catalog',
   standalone: true,
-  imports: [CommonModule, FooterComponent, TablerIconsModule],
+  imports: [CommonModule, TablerIconsModule],
   templateUrl: './coursecatalog.component.html',
   styleUrls: ['./coursecatalog.component.scss']
 })

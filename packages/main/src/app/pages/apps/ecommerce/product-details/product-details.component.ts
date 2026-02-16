@@ -7,7 +7,6 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { ProductService } from '../../../../services/apps/product/product.service';
 import { NavService } from '../../../../services/nav.service';
 import { PRODUCT_DATA } from '../ecommerceData';
-import { FooterComponent } from '../../../front-pages/footer/footer.component';
 import { PopupwindowComponent } from '../../../front-pages/popupwindow/popupwindow.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MediaMatcher } from '@angular/cdk/layout';
@@ -31,7 +30,7 @@ interface Product {
 @Component({
   selector: 'app-product-details',
   standalone: true,
-  imports: [CommonModule, MaterialModule, IconModule, CarouselModule, FooterComponent],
+  imports: [CommonModule, MaterialModule, IconModule, CarouselModule],
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.scss'],
 })

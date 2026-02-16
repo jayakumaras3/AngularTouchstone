@@ -1,123 +1,31 @@
 import { Routes } from '@angular/router';
-import { BlankComponent } from './layouts/blank/blank.component';
-import { FullComponent } from './layouts/full/full.component';
-import { HomepageComponent } from './pages/front-pages/homepage/homepage.component';
-import { CourseCatalogComponent } from './pages/front-pages/coursecatalog/coursecatalog.component';
+import { ShopComponent } from './pages/apps/ecommerce/shop/shop.component';
 import { ProductDetailsComponent } from './pages/apps/ecommerce/product-details/product-details.component';
+import { MarketplaceLayoutComponent } from './layouts/marketplace-layout/marketplace-layout.component';
 
 export const routes: Routes = [
+  // Marketplace routes ONLY (embedded in PHP dashboard - no header/footer)
   {
     path: '',
-    component: BlankComponent,
+    component: MarketplaceLayoutComponent,
     children: [
-      // default route - homepage
       {
         path: '',
-        component: HomepageComponent,
+        redirectTo: 'dashboard-catalog',
         pathMatch: 'full'
       },
       {
         path: 'dashboard-catalog',
-        component: CourseCatalogComponent,
+        component: ShopComponent,
       },
       {
         path: 'dashboard-course/:id',
         component: ProductDetailsComponent,
       },
       {
-        path: 'book-demo',
-        loadComponent: () => import('./pages/front-pages/book-demo/book-demo.component').then(m => m.BookDemoComponent)
-      },
-      // 👇 front-pages routes moved here directly (no prefix)
-      {
-        path: '',
-        loadChildren: () =>
-          import('./pages/front-pages/front-pages.routes').then(
-            (m) => m.FrontPagesRoutes
-          ),
-      },
-      {
-        path: 'starter',
-        loadChildren: () =>
-          import('./pages/pages.routes').then((m) => m.PagesRoutes),
-      },
-      {
-        path: 'authentication',
-        loadChildren: () =>
-          import('./pages/authentication/authentication.routes').then(
-            (m) => m.AuthenticationRoutes
-          ),
-      },
-      {
-        path: 'landingpage',
-        loadChildren: () =>
-          import('./pages/theme-pages/landingpage/landingpage.routes').then(
-            (m) => m.LandingPageRoutes
-          ),
-      },
-      {
-        path: 'forms',
-        loadChildren: () =>
-          import('./pages/forms/forms.routes').then((m) => m.FormsRoutes),
-      },
-      {
-        path: 'charts',
-        loadChildren: () =>
-          import('./pages/charts/charts.routes').then((m) => m.ChartsRoutes),
-      },
-      {
-        path: 'apps',
-        loadChildren: () =>
-          import('./pages/apps/apps.routes').then((m) => m.AppsRoutes),
-      },
-      {
-        path: 'widgets',
-        loadChildren: () =>
-          import('./pages/widgets/widgets.routes').then((m) => m.WidgetsRoutes),
-      },
-      {
-        path: 'tables',
-        loadChildren: () =>
-          import('./pages/tables/tables.routes').then((m) => m.TablesRoutes),
-      },
-      {
-        path: 'datatable',
-        loadChildren: () =>
-          import('./pages/datatable/datatable.routes').then(
-            (m) => m.DatatablesRoutes
-          ),
-      },
-      {
-        path: 'theme-pages',
-        loadChildren: () =>
-          import('./pages/theme-pages/theme-pages.routes').then(
-            (m) => m.ThemePagesRoutes
-          ),
-      },
-      {
-        path: 'ui-components',
-        loadChildren: () =>
-          import('./pages/ui-components/ui-components.routes').then(
-            (m) => m.UiComponentsRoutes
-          ),
-      },
+        path: '**',
+        redirectTo: 'dashboard-catalog'
+      }
     ],
-  },
-  {
-    path: '',
-    component: FullComponent,
-    children: [
-      {
-        path: 'dashboards',
-        loadChildren: () =>
-          import('./pages/dashboards/dashboards.routes').then(
-            (m) => m.DashboardsRoutes
-          ),
-      },
-    ],
-  },
-  {
-    path: '**',
-    redirectTo: 'authentication/error',
-  },
+  }
 ];

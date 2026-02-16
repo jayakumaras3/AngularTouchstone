@@ -20,7 +20,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProductService } from '../../../../services/apps/product/product.service';
 import { NavService } from '../../../../services/nav.service';
 import { Element, PRODUCT_DATA } from '../ecommerceData';
-import { FooterComponent } from '../../../front-pages/footer/footer.component';
 import { PopupwindowComponent } from '../../../front-pages/popupwindow/popupwindow.component';
 import { RouterModule } from '@angular/router';
 import { ProductDataService } from '../../../../services/product-data.service';
@@ -38,7 +37,7 @@ export interface Section {
     CommonModule,
     FormsModule,
     NgScrollbarModule,
-    FooterComponent,RouterModule,
+    RouterModule,
   ],
   templateUrl: './shop.component.html',
   styleUrl: './shop.component.scss',
