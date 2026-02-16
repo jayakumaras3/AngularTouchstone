@@ -162,7 +162,7 @@ export class ProductDetailsComponent implements AfterViewInit, OnInit {
 
       // Listen to route param changes to reload course data
       this.route.paramMap.subscribe(params => {
-        const courseId = params.get('courseId');
+        const courseId = params.get('courseId') ?? params.get('id');
         
         // Note: On component reuse (Related Products), isFirstPageLoad is false.
         // We purposefully DO NOT update originalPreviousUrl/Source here.

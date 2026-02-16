@@ -2,6 +2,8 @@ import { Routes } from '@angular/router';
 import { BlankComponent } from './layouts/blank/blank.component';
 import { FullComponent } from './layouts/full/full.component';
 import { HomepageComponent } from './pages/front-pages/homepage/homepage.component';
+import { CourseCatalogComponent } from './pages/front-pages/coursecatalog/coursecatalog.component';
+import { ProductDetailsComponent } from './pages/apps/ecommerce/product-details/product-details.component';
 
 export const routes: Routes = [
   {
@@ -13,6 +15,14 @@ export const routes: Routes = [
         path: '',
         component: HomepageComponent,
         pathMatch: 'full'
+      },
+      {
+        path: 'dashboard-catalog',
+        component: CourseCatalogComponent,
+      },
+      {
+        path: 'dashboard-course/:id',
+        component: ProductDetailsComponent,
       },
       {
         path: 'book-demo',

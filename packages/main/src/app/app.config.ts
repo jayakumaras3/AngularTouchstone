@@ -13,6 +13,7 @@ import {
   provideRouter,
   withComponentInputBinding,
   withInMemoryScrolling,
+  withHashLocation,
 } from '@angular/router';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideClientHydration } from '@angular/platform-browser';
@@ -65,6 +66,7 @@ export const appConfig: ApplicationConfig = {
         scrollPositionRestoration: 'enabled',
         anchorScrolling: 'enabled',
       }),
+      withHashLocation(),
       withComponentInputBinding()
     ),
     provideHttpClient(withInterceptorsFromDi()),
