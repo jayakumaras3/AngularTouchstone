@@ -114,7 +114,7 @@ export class ProductDetailsComponent implements AfterViewInit, OnInit {
 
   // Multilingual objectives title map
   objectivesTitleMap = {
-    en: 'By the end of this course, you will be able to:',
+    en: 'At the end of this course, you will be able to:',
     de: 'Am Ende dieses Kurses werden Sie in der Lage sein:',
     it: 'Al termine di questo corso sarai in grado di:',
     es: 'Al finalizar este curso, será capaz de:',
