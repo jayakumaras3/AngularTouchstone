@@ -361,21 +361,24 @@
   }
 
   .dia-avatar {
-    background: #111827;
+    background: transparent;
   }
 
   .dia-avatar img {
-    filter: brightness(0) invert(1);
+    filter: none;
   }
 
   .dia-close {
-    background: #111827;
-    color: #cbd5f5;
+    background: #1e293b;
+    color: #e2e8f0;
+    border: 1px solid #334155;
+    font-weight: 600;
   }
 
   .dia-close:hover {
-    background: #1f2937;
+    background: #334155;
     color: #ffffff;
+    border-color: #475569;
   }
 
   .dia-progress {
@@ -445,6 +448,21 @@
   .dia-input input::placeholder {
     color: #94a3b8;
   }
+
+  .dia-fab {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+  }
+
+  .dia-fab img {
+    filter: none;
+  }
+
+  .dia-fab:hover {
+    background: transparent;
+    box-shadow: none;
+  }
 }
 
 /* ================================
@@ -469,22 +487,25 @@
     }
 
     .dia-avatar {
-      background: #1f2937;
-      border: 1px solid #374151;
+      background: transparent;
+      border: none;
     }
 
     .dia-avatar img {
-      filter: brightness(0) invert(1);
+      filter: none;
     }
 
     .dia-close {
-      background: #1f2937;
-      color: #cbd5f5;
+      background: #1e293b;
+      color: #e2e8f0;
+      border: 1px solid #334155;
+      font-weight: 600;
     }
 
     .dia-close:hover {
-      background: #374151;
+      background: #334155;
       color: #ffffff;
+      border-color: #475569;
     }
 
     .dia-progress {
@@ -676,7 +697,7 @@
     }
 
     .dia-fab img {
-      filter: brightness(0) invert(1);
+      filter: none;
     }
 
     .dia-fab:hover {
@@ -698,24 +719,11 @@
     .dia-fab img {
       filter: none;
     }
-  }
-}
-
-/* Dark theme class overrides for FAB */
-:host-context(.dark-theme) {
-  .dia-fab {
-    background: transparent;
-    border: none;
-    box-shadow: none;
-  }
-
-  .dia-fab img {
-    filter: brightness(0) invert(1);
-  }
-
-  .dia-fab:hover {
-    background: transparent;
-    box-shadow: none;
+    
+    .dia-fab:hover {
+      background: transparent;
+      box-shadow: none;
+    }
   }
 }
 
