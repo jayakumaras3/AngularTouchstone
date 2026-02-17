@@ -101,6 +101,9 @@
   justify-content: center;
   cursor: pointer;
   transition: 0.2s ease;
+  line-height: 1;
+  padding: 0;
+  text-align: center;
 }
 
 .dia-close:hover {
@@ -586,7 +589,7 @@
   :host-context(:not(.dark-theme)) {
     .dia-avatar {
       background: #f8fafc;
-      border: 1px solid #e2e8f0;
+     /* border: 1px solid #e2e8f0;*/
     }
 
     .dia-avatar img {
