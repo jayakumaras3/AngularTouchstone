@@ -73,33 +73,36 @@
           </div>
           }
         </div>
-     <!-- >Seamless section start **/-->
-<!-- dochek-landing.component.html -->
-<div class="dochek-hero-section dochek-rounded-section">
-  <div class="dochek-container">
-    <div class="dochek-content-wrapper">
-      <div class="dochek-text-column">
-        <div class="dochek-text-content">
-          <h2 class="dochek-main-heading dochek-spacing-bottom">
-            Simple for Learners, Seamless for Admins
-          </h2>
-          <p class="dochek-description dochek-spacing-bottom">
-            With DoChek's lightweight interface, training is hassle-free. Manage multiple users and clients from a single platform, without server slowdowns. Our partners benefit from less administrative hassle, smoother delivery, and sharper insights. Just assign the courses, and let DoChek manage the rest.
-          </p>
-          <div class="dochek-button-container">
-            <div class="m-b-24 hstack">
-              <a 
-                (click)="openBookDemoDialog()" mat-flat-button color="primary" class="zindexreduce">Book a Demo</a>
-                
-            </div>
-          </div>
-        </div>
+     <!-- Hero Section Start -->
+<div class="hero-section">
+  <div class="hero-container">
+    <div class="hero-content">
+      <!-- Left Column: Text Content -->
+      <div class="hero-text-column">
+        <h1 class="hero-heading">
+          <span class="hero-highlight">SIMPLE</span> <span class="hero-normal">For Learners</span><br>
+          <span class="hero-highlight">SEAMLESS</span> <span class="hero-normal">For Admins</span>
+        </h1>
+        <p class="hero-description">
+          With DoChek's lightweight interface, training is hassle-free. Manage multiple users and clients from a single platform, without server slowdowns. Our partners benefit from less administrative hassle, smoother delivery, and sharper insights. Just assign the courses, and let DoChek manage the rest.
+        </p>
+        <button 
+          class="hero-cta-button"
+          (click)="openBookDemoDialog()">
+          Book A Demo
+          <span class="button-arrow">→</span>
+        </button>
       </div>
-      <div class="dochek-image-column dochek-image-hidden-mobile">
-        <img 
-          src="assets/images/front-pages/Simple-for-Learner-Seamless-for-Admins.png" 
-          alt="DoChek platform interface showing seamless admin and learner experience" 
-          class="dochek-feature-image" />
+      
+      <!-- Right Column: Image with Circle -->
+      <div class="hero-image-column">
+        <div class="hero-image-circle">
+          <img 
+            src="assets/images/front-pages/Simple-for-Learner-Seamless-for-Admins.png" 
+            alt="DoChek platform professional"
+            class="hero-image" />
+          <div class="hero-typographic-badge">Typographic<br>options</div>
+        </div>
       </div>
     </div>
   </div>

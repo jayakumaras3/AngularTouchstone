@@ -67,18 +67,18 @@
 }
 
 .dia-avatar {
-  width: 36px;
+ /* width: 36px;
   height: 36px;
   border-radius: 12px;
-  background: #f8fafc;
+  background: #f8fafc;*/
   display: grid;
   place-items: center;
   box-shadow: 0 6px 12px rgba(15, 23, 42, 0.08);
 }
 
 .dia-avatar img {
-  width: 22px;
-  height: 22px;
+  width: 30px;
+  height: 30px;
 }
 
 .dia-title h3 {
@@ -578,11 +578,11 @@
    Floating Button (FAB)
 ================================ */
 .dia-fab {
-  width: 50px;
-  height: 50px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
-  background: #ffffff;
-  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
+  background: transparent;
+  box-shadow: none;
   border: none;
   cursor: pointer;
   pointer-events: auto !important;
@@ -609,38 +609,23 @@
                fab-pulse 4s ease-in-out 1s infinite;
   }
   
-  /* Glow ring effect */
+  /* Glow ring effect - disabled */
   &::before {
-    content: '';
-    position: absolute;
-    inset: -4px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, rgba(59, 130, 246, 0) 70%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
+    display: none;
   }
   
   &.dia-fab-visible::before {
-    animation: fab-glow 4s ease-in-out 1s infinite;
+    display: none;
   }
   
-  /* Ripple effect container */
+  /* Ripple effect container - disabled */
   &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    background: rgba(59, 130, 246, 0.3);
-    transform: scale(0);
-    opacity: 0;
-    pointer-events: none;
+    display: none;
   }
   
   /* Hover state - keeps animation running */
   &:hover {
-    box-shadow: 0 12px 32px rgba(59, 130, 246, 0.5), 
-                0 0 0 4px rgba(59, 130, 246, 0.15);
+    box-shadow: none;
     filter: brightness(1.05);
   }
   
@@ -661,8 +646,8 @@
 }
 
 .dia-fab img {
-  width: 32px;
-  height: 32px;
+  width: 56px;
+  height: 56px;
   transition: transform 0.3s ease;
   
   .dia-fab:hover & {
@@ -685,9 +670,9 @@
 @media (prefers-color-scheme: dark) {
   :host-context(:not(.dark-theme)) {
     .dia-fab {
-      background: #1f2937;
-      border: 1px solid #374151;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+      background: transparent;
+      border: none;
+      box-shadow: none;
     }
 
     .dia-fab img {
@@ -695,9 +680,8 @@
     }
 
     .dia-fab:hover {
-      background: #374151;
-      box-shadow: 0 12px 32px rgba(59, 130, 246, 0.3),
-                  0 0 0 4px rgba(59, 130, 246, 0.1);
+      background: transparent;
+      box-shadow: none;
     }
   }
 }
@@ -706,9 +690,9 @@
 @media (prefers-color-scheme: light) {
   :host-context(:not(.dark-theme)) {
     .dia-fab {
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
-      box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
+      background: transparent;
+      border: none;
+      box-shadow: none;
     }
 
     .dia-fab img {
@@ -720,9 +704,9 @@
 /* Dark theme class overrides for FAB */
 :host-context(.dark-theme) {
   .dia-fab {
-    background: #1f2937;
-    border: 1px solid #374151;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    background: transparent;
+    border: none;
+    box-shadow: none;
   }
 
   .dia-fab img {
@@ -730,9 +714,8 @@
   }
 
   .dia-fab:hover {
-    background: #374151;
-    box-shadow: 0 12px 32px rgba(59, 130, 246, 0.3),
-                0 0 0 4px rgba(59, 130, 246, 0.1);
+    background: transparent;
+    box-shadow: none;
   }
 }
 
@@ -886,7 +869,7 @@
 /* High contrast mode support */
 @media (prefers-contrast: high) {
   .dia-fab {
-    border: 2px solid currentColor;
+    border: none;
   }
 }
 

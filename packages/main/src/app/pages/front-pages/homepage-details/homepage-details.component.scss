@@ -680,218 +680,206 @@ section {
     padding-bottom: 48px;
   }
 }
- /* Seamless section start **/
-// dochek-landing.component.scss
-.dochek-hero-section {
-    background-color: #d3deff;
-    padding: 1rem 2rem;
-    margin: 2rem auto;
-    overflow: visible;
+/* Hero Section Start */
+.hero-section {
+  background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf4 100%);
+  padding: 4rem 2rem;
+  margin: 2rem auto;
+  border-radius: 24px;
+  overflow: hidden;
 }
 
-.dochek-rounded-section {
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  overflow: visible;
-}
-
-.dochek-container {
+.hero-container {
   max-width: 1400px;
   margin: 0 auto;
-  overflow: visible;
 }
 
-.dochek-content-wrapper {
-  display: flex;
+.hero-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
   align-items: center;
-  gap: 3rem;
-  overflow: visible;
 }
 
-.dochek-text-column {
-  flex: 1;
-      margin-left: 1%;
+.hero-text-column {
+  padding-right: 2rem;
 }
 
-.dochek-image-column {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: visible;
-  min-width: 0;
-}
-
-.dochek-text-content {
-  max-width: 580px;
-}
-
-.dochek-main-heading {
-  font-size: 1.7rem;
+.hero-heading {
+  font-size: 3rem;
   font-weight: 700;
-  color: #1a365d;
-  line-height: 1.3;
-  margin: 0;
-}
-
-.dochek-description {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #4a5568;
-  margin: 0;
-}
-
-.dochek-spacing-bottom {
+  line-height: 1.2;
   margin-bottom: 1.5rem;
 }
 
-.dochek-button-container {
-  display: flex;
-  align-items: center;
+.hero-highlight {
+  color: #ff6b35;
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: -0.5px;
 }
 
-.dochek-primary-button {
-  background-color: #2d5bff !important;
-  color: white !important;
+.hero-normal {
+  color: #2c3e50;
+  font-weight: 400;
+}
+
+.hero-description {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: #546e7a;
+  margin-bottom: 2rem;
+  max-width: 540px;
+}
+
+.hero-cta-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
   border: none;
-  padding: 0.875rem 2.5rem;
+  padding: 1rem 2.5rem;
   font-size: 1.125rem;
   font-weight: 600;
-  border-radius: 8px;
+  border-radius: 50px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(45, 91, 255, 0.2);
-  
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+
   &:hover {
-    background-color: #1e4ae6 !important;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(45, 91, 255, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(102, 126, 234, 0.4);
   }
-  
+
   &:active {
-    transform: translateY(0);
-  }
-  
-  &:focus {
-    outline: 2px solid #2d5bff;
-    outline-offset: 2px;
+    transform: translateY(-1px);
   }
 }
 
-.dochek-feature-image {
-  margin-top: 0.6%;
-  margin-left: 2.3%;
-  max-width: 120%;
-  width: auto;
-  height: auto;
-  border-radius: 8px;
-  overflow: visible;
+.button-arrow {
+  transition: transform 0.3s ease;
 }
 
-.dochek-image-hidden-mobile {
-  display: block;
+.hero-cta-button:hover .button-arrow {
+  transform: translateX(4px);
 }
 
-// Tablet styles
+.hero-image-column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.hero-image-circle {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(124, 58, 237, 0.3);
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero-typographic-badge {
+  position: absolute;
+  top: 20px;
+  right: -20px;
+  background: #c6f6d5;
+  color: #22543d;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.3;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Tablet */
 @media (max-width: 1024px) {
-  .dochek-hero-section {
-    padding: 2.5rem 1.5rem;
-    overflow: visible;
+  .hero-content {
+    gap: 3rem;
   }
-  
-  .dochek-content-wrapper {
-    gap: 2rem;
-    overflow: visible;
+
+  .hero-heading {
+    font-size: 2.5rem;
   }
-  
-  .dochek-main-heading {
-    font-size: 1.75rem;
-  }
-  
-  .dochek-description {
-    font-size: 1.05rem;
-  }
-  
-  .dochek-feature-image {
-    max-width: 130%;
+
+  .hero-image-circle {
+    width: 400px;
+    height: 400px;
   }
 }
 
-// Mobile styles
+/* Mobile */
 @media (max-width: 768px) {
-  .dochek-hero-section {
-    padding: 2rem 1rem;
+  .hero-section {
+    padding: 3rem 1.5rem;
     margin: 1rem auto;
   }
-  
-  .dochek-content-wrapper {
-    flex-direction: column;
-    gap: 2rem;
+
+  .hero-content {
+    grid-template-columns: 1fr;
+    gap: 3rem;
     text-align: center;
   }
-  
-  .dochek-text-column {
-    width: 100%;
+
+  .hero-text-column {
+    padding-right: 0;
   }
-  
-  .dochek-text-content {
+
+  .hero-heading {
+    font-size: 2rem;
+  }
+
+  .hero-description {
+    font-size: 1rem;
     max-width: 100%;
   }
-  
-  .dochek-main-heading {
-    font-size: 1.5rem;
-    margin-bottom: 1.25rem;
-  }
-  
-  .dochek-description {
-    font-size: 1rem;
-    line-height: 1.5;
-    margin-bottom: 1.5rem;
-  }
-  
-  .dochek-button-container {
+
+  .hero-cta-button {
+    width: 100%;
+    max-width: 300px;
     justify-content: center;
   }
-  
-  .dochek-primary-button {
-    width: 100%;
-    max-width: 280px;
-    padding: 1rem 2rem;
-    font-size: 1rem;
+
+  .hero-image-circle {
+    width: 320px;
+    height: 320px;
   }
-  
-  .dochek-image-hidden-mobile {
-    display: none;
+
+  .hero-typographic-badge {
+    right: 10px;
+    font-size: 0.75rem;
+    padding: 0.5rem 1rem;
   }
 }
 
-// Small mobile devices
+/* Small Mobile */
 @media (max-width: 480px) {
-  .dochek-hero-section {
-    padding: 1.5rem 1rem;
+  .hero-heading {
+    font-size: 1.75rem;
   }
-  
-  .dochek-main-heading {
-    font-size: 1.375rem;
-  }
-  
-  .dochek-description {
+
+  .hero-description {
     font-size: 0.95rem;
   }
-  
-  .dochek-primary-button {
-    padding: 0.875rem 1.5rem;
+
+  .hero-image-circle {
+    width: 280px;
+    height: 280px;
   }
 }
-     @media (max-width: 1280px) {
-
-
-  .imgStyleDash {
-    width: 100% !important;
-    height: auto !important;
-    object-fit: contain !important;
-    display: none;
-  }
-  
-}
-    /*Seamless section end **/
+/* Hero Section End */
