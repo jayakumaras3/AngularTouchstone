@@ -36,6 +36,7 @@ interface features {
   icon: string;
   title: string;
   subtext: string;
+  image?: string; // optional image path for custom icons
 }
 @Component({
   selector: 'app-homepage-details',
@@ -298,7 +299,7 @@ export class HomepageDetailsComponent implements OnInit{
     {
       id: 1,
       icon: 'camera',
-      
+        image: 'assets/images/homepage/build icon.svg',
       title: 'Build & Customize Easily',
       subtext:
         'Create and upload courses, package multiple trainings into a module, and export as SCORM for any LMS. ',
@@ -306,6 +307,7 @@ export class HomepageDetailsComponent implements OnInit{
     {
       id: 2,
       icon: 'shield-lock',
+      image: 'assets/images/homepage/engage icon.svg',
       title: 'Engage Learners',
       subtext:
         'Boost user retention with gamification, discussion forums, and scenario-based simulations.',
@@ -313,6 +315,7 @@ export class HomepageDetailsComponent implements OnInit{
     {
       id: 15,
       icon: 'code',
+      image: 'assets/images/homepage/track icon.svg',
       title: 'Track Progress',
       subtext:
         'Measure learning outcomes with real-time reports and advanced activity tracking.',

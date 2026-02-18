@@ -59,17 +59,29 @@
         </div>
 
         <!-- features -->
-       <div class="row m-t-24 spacing-bottom">
+       <div class="row m-t-24 spacing-bottom feature-grid">
           @for(feature of features; track feature.title) {
-          <div class="col-12 col-sm-6 col-lg-4 text-center">
-            <i-tabler
-              [name]="feature.icon"
-              class="icon-40 text-primary m-t-16"
-            ></i-tabler>
-            <h6 class="m-0 f-s-18 f-w-600 m-b-8 m-t-24">{{ feature.title }}</h6>
-            <span class="f-s-14 m-b-24 d-block lh-base">{{
-              feature.subtext
-            }}</span>
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="feature-card h-100 text-center p-24 position-relative overflow-hidden">
+              <div class="feature-icon-wrapper m-b-24">
+                @if (feature.image) {
+                  <img
+                    [src]="feature.image"
+                    [alt]="feature.title"
+                    class="feature-img"
+                  />
+                } @else {
+                  <i-tabler
+                    [name]="feature.icon"
+                    class="feature-icon text-primary"
+                  ></i-tabler>
+                }
+              </div>
+              <h6 class="feature-title m-0 f-s-20 f-w-700 m-b-12">{{ feature.title }}</h6>
+              <p class="feature-text f-s-15 m-b-0 lh-base text-muted">{{
+                feature.subtext
+              }}</p>
+            </div>
           </div>
           }
         </div>

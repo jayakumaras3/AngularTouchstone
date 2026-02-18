@@ -883,3 +883,62 @@ section {
   }
 }
 /* Hero Section End */
+/* Modern Feature Cards Section */
+.feature-grid {
+  row-gap: 30px;
+}
+
+.feature-card {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  background: linear-gradient(145deg, #ffffff, #f9faff); /* Subtle depth */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03); /* Soft initial shadow */
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy spring transition */
+  cursor: default;
+  z-index: 1;
+
+  &:hover {
+    transform: translateY(-8px); /* Lift up */
+    box-shadow: 0 15px 35px rgba(93, 135, 255, 0.15); /* Stronger driven shadow on hover */
+    border-color: rgba(93, 135, 255, 0.2);
+
+    .feature-icon-wrapper {
+      transform: scale(1.1) rotate(3deg);
+      background: rgba(93, 135, 255, 0.1);
+    }
+  }
+}
+
+.feature-icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #f4f7fb;
+  margin: 0 auto;
+  transition: all 0.4s ease;
+
+  img.feature-img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+  }
+
+  .feature-icon {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.feature-title {
+  color: #2a3547;
+  letter-spacing: -0.3px;
+}
+
+.feature-text {
+  color: #5a6a85;
+}
+
