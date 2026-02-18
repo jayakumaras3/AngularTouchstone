@@ -10,6 +10,7 @@ import { ProductDataService } from '../../../services/product-data.service';
 import { ProductService } from '../../../services/apps/product/product.service';
 import { NavService } from '../../../services/nav.service';
 import { TablerIconsModule } from 'angular-tabler-icons';
+import { CourseService } from '../../../services/apps/course/course.service';
 
 type Course = { id: number; title: string; author?: string; duration?: string; product: Element };
 type SubCategory = { name: string; courses: Course[] };
@@ -76,7 +77,8 @@ export class CourseCatalogComponent {
     private readonly productService: ProductService,
     private readonly navService: NavService,
     private readonly router: Router,
-    private readonly location: Location
+    private readonly location: Location,
+    private readonly courseService: CourseService
   ) {}
 
   ngOnInit() {
@@ -260,11 +262,21 @@ export class CourseCatalogComponent {
     const currentUrl = this.router.url;
     this.navService.setReferrerUrl(currentUrl);
     this.productService.setProduct(course.product);
-    
-    // Pass the previous URL via navigation state for reliable back navigation
-    this.router.navigate(['/coursedetails', course.product.id], {
-      queryParams: { source: 'coursecatalog' },
-      state: { previousUrl: currentUrl }
+
+    this.courseService.readMore(course.id).subscribe({
+      next: () => {
+        this.router.navigate(['/coursedetails', course.product.id], {
+          queryParams: { source: 'coursecatalog' },
+          state: { previousUrl: currentUrl },
+        });
+      },
+      error: () => {
+        // On error, still navigate to course details
+        this.router.navigate(['/coursedetails', course.product.id], {
+          queryParams: { source: 'coursecatalog' },
+          state: { previousUrl: currentUrl },
+        });
+      },
     });
   }
 

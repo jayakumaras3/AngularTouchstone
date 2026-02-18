@@ -23,6 +23,7 @@ import { Element, PRODUCT_DATA } from '../ecommerceData';
 import { PopupwindowComponent } from '../../../front-pages/popupwindow/popupwindow.component';
 import { RouterModule } from '@angular/router';
 import { ProductDataService } from '../../../../services/product-data.service';
+import { CourseService } from '../../../../services/apps/course/course.service';
 
 export interface Section {
   name: string;
@@ -81,6 +82,7 @@ trackTileRows(index: number, item: any) {
   private productService = inject(ProductService);
   private navService = inject(NavService);
   private productDataService = inject(ProductDataService);
+  private courseService = inject(CourseService);
   private mediaMatcher: MediaQueryList = matchMedia(`(max-width: 767px)`);
   isMobileView = false;
   sidebarOpen = false; // For mobile sidebar toggle
@@ -740,19 +742,31 @@ filterByCategory(category: string, event: MouseEvent): void {
   }
 
   getviewDetails(productcardDetails: Element): void {
-    // Store current URL as referrer for back navigation
-    const currentUrl = this.router.url;
-    this.navService.setReferrerUrl(currentUrl);
-    
-    // Set product data
-    this.productService.setProduct(productcardDetails);
-    
-    // Navigate with courseId, source, and state for reliable back navigation
-    this.router.navigate(['/coursedetails', productcardDetails.id], {
-      queryParams: { source: 'catalog' },
-      queryParamsHandling: 'merge',
-      state: { previousUrl: currentUrl }
+    // Only call POST API with course id
+    this.courseService.readMore(productcardDetails.id).subscribe({
+      next: (res) => {
+        console.log('read_more success', res);
+        if (res.redirect_url) {
+                window.location.href = res.redirect_url;
+              } else {
+                console.log("error redirect");
+                // this.router.navigate(['/dashboards/dashboard1']);
+              }
+      },
+      error: (err) => {
+        console.error('read_more error', err);
+      },
     });
+
+    // Previous navigation logic (intentionally disabled)
+    // const currentUrl = this.router.url;
+    // this.navService.setReferrerUrl(currentUrl);
+    // this.productService.setProduct(productcardDetails);
+    // this.router.navigate(['/coursedetails', productcardDetails.id], {
+    //   queryParams: { source: 'catalog' },
+    //   queryParamsHandling: 'merge',
+    //   state: { previousUrl: currentUrl },
+    // });
   }
 
 
