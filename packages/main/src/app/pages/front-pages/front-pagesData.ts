@@ -820,15 +820,15 @@ export const followercardThird: followercards[] = [
 
 export const topcardsGrid = [
   { title: 'Stress-free Switch', subtitle: 'Dochek makes migration simple by supporting industry standards (SCORM 1.2) and seamless data transfer from your existing LMS.',
-     img: `${baseUrlPathslash}/assets/images/svgs/icon-briefcase.svg`, color: 'warning' },
+     img: `assets/images/svgs/home/stress-free-switch-icon.svg`, color: 'warning' },
   { title: 'Build Courses within 24 Hours', subtitle: 'Our course builder feature enables you to create modules inside the platform and export them as SCORM packages.',
-    img: `${baseUrlPath}/assets/images/landingpage/background/feature-apps.png`, color: 'secondary',imgMain: `${baseUrlPathslash}/assets/images/landingpage/background/feature-apps.png`, },
+    img: `assets/images/svgs/home/build-24-hours.svg`, color: 'secondary',imgMain: `assets/images/svgs/home/build-24-hours.svg`, },
   { title: 'Fast. Reliable. Scalable.', subtitle: 'A single platform that stays smooth, even as your learners grow from dozens to thousands.', 
-    img: `${baseUrlPathslash}/assets/images/front-pages/logoIcon.svg`, color: 'primary',imgMain: `${baseUrlPathslash}/assets/images/landingpage/background/screen1.png` },
+    img: `assets/images/front-pages/logoIcon.svg`, color: 'primary',imgMain: `assets/images/landingpage/background/screen1.png` },
   { title: 'Track What Matters', subtitle: 'Get to know the time spent per module, learner behavior patterns, assessment performance, and drop-off points.', 
-    img: `${baseUrlPathslash}/assets/images/front-pages/icon-speech-bubble.svg`, color: 'success' },
+    img: `assets/images/svgs/home/track-what-matters.svg`, color: 'success' },
   { title: 'Manage Feedback, Better', subtitle: 'Reviewers can leave timestamped comments right inside your courses, so developers can course correct instantly. No confusion, just continuous improvement.', 
-    img: `${baseUrlPathslash}/assets/images/front-pages/icon-favorites.svg`, color: 'error' },
+    img: `assets/images/svgs/home/manage-feedback.svg`, color: 'error' },
 ];
 
 export const  setupCards:setupCards[] = [

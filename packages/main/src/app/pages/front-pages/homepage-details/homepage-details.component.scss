@@ -777,12 +777,13 @@ section {
   width: 500px;
   height: 500px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 100%);
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  box-shadow: 0 20px 60px rgba(124, 58, 237, 0.3);
+  overflow: hidden !important;
+  box-shadow: none;
+  isolation: isolate;
 }
 
 .hero-image {
@@ -790,6 +791,8 @@ section {
   height: 100%;
   object-fit: cover;
   object-position: center;
+  border-radius: 50%;
+  display: block;
 }
 
 .hero-typographic-badge {
@@ -820,6 +823,7 @@ section {
   .hero-image-circle {
     width: 400px;
     height: 400px;
+    overflow: hidden !important;
   }
 }
 
@@ -858,6 +862,7 @@ section {
   .hero-image-circle {
     width: 320px;
     height: 320px;
+    overflow: hidden !important;
   }
 
   .hero-typographic-badge {
@@ -880,6 +885,7 @@ section {
   .hero-image-circle {
     width: 280px;
     height: 280px;
+    overflow: hidden !important;
   }
 }
 /* Hero Section End */
@@ -896,7 +902,7 @@ section {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03); /* Soft initial shadow */
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy spring transition */
   cursor: default;
-  z-index: 1;
+  /*z-index: 1;*/
 
   &:hover {
     transform: translateY(-8px); /* Lift up */

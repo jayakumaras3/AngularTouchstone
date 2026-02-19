@@ -92,8 +92,8 @@
       <!-- Left Column: Text Content -->
       <div class="hero-text-column">
         <h1 class="hero-heading">
-          <span class="hero-highlight">SIMPLE</span> <span class="hero-normal">For Learners</span><br>
-          <span class="hero-highlight">SEAMLESS</span> <span class="hero-normal">For Admins</span>
+          <span class="hero-highlight">SIMPLE </span> <span class="hero-normal">For Learners</span><br>
+          <span class="hero-highlight">SEAMLESS </span> <span class="hero-normal">For Admins</span>
         </h1>
         <p class="hero-description">
           With DoChek's lightweight interface, training is hassle-free. Manage multiple users and clients from a single platform, without server slowdowns. Our partners benefit from less administrative hassle, smoother delivery, and sharper insights. Just assign the courses, and let DoChek manage the rest.
@@ -113,7 +113,6 @@
             src="assets/images/front-pages/Simple-for-Learner-Seamless-for-Admins.png" 
             alt="DoChek platform professional"
             class="hero-image" />
-          <div class="hero-typographic-badge">Typographic<br>options</div>
         </div>
       </div>
     </div>
@@ -143,14 +142,9 @@
             @if (topcard.title === 'Stress-free Switch' || topcard.title.includes('Build')) {
             <mat-card class="shadow-none text-center rounded-12 bg-light-{{ topcard.color }} card-box p-x-30 p-y-44">
               <mat-card-content>
-                @if (topcard.title === 'Stress-free Switch') {
                 <img [src]="topcard.img" alt="icon" width="40" />
-                }
                 <h6 class="f-s-16 m-t-16">{{ topcard.title }}</h6>
                 <p class="f-s-14 m-t-16">{{ topcard.subtitle }}</p>
-                @if (topcard.title.includes('Build')) {
-                <img [src]="topcard.imgMain" alt="image" class="img-fluid w-100 m-t-16 m-b--48" />
-                }
               </mat-card-content>
             </mat-card>
             }
