@@ -42,6 +42,14 @@
 .courses-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+
+.topcard-icon-home {
+  width: 80px !important;
+  height: 80px !important;
+  min-width: 80px !important;
+  max-width: 80px !important;
+  object-fit: contain;
+}
   gap: 24px;
   margin-bottom: 40px;
 }
@@ -314,6 +322,24 @@
 .clientlogo_
 {
   height: 40px;
+}
+
+.homepage-testimonial-logo {
+  width: 30px !important;
+  height: 30px !important;
+  min-width: 30px !important;
+  max-width: 30px !important;
+  object-fit: contain;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 6px;
+}
+
+.client-margin .section-sub-title img.homepage-testimonial-logo {
+  width: 30px !important;
+  height: 30px !important;
+  min-width: 30px !important;
+  max-width: 30px !important;
 }
 .fontWeightnormal{
 font-weight: normal;

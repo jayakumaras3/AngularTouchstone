@@ -1,4 +1,13 @@
 // Force dark mode styles
+:root {
+  .no-dark-image-filter,
+  .no-dark-image-filter img {
+    filter: none !important;
+    -webkit-filter: none !important;
+    forced-color-adjust: none;
+  }
+}
+
 :root[force-dark="true"] {
   color-scheme: dark;
   
@@ -9,6 +18,12 @@
   // Force images and media to adapt to dark mode
   img, video {
     filter: brightness(.8) contrast(1.2);
+  }
+
+  // Keep selected icons/images untouched in dark mode
+  img.no-dark-image-filter,
+  .no-dark-image-filter img {
+    filter: none !important;
   }
   
   // Invert specific elements that should be dark in dark mode

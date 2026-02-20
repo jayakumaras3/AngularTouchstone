@@ -68,7 +68,7 @@
                   <img
                     [src]="feature.image"
                     [alt]="feature.title"
-                    class="feature-img"
+                    class="feature-img no-dark-image-filter"
                   />
                 } @else {
                   <i-tabler
@@ -142,7 +142,7 @@
             @if (topcard.title === 'Stress-free Switch' || topcard.title.includes('Build')) {
             <mat-card class="shadow-none text-center rounded-12 bg-light-{{ topcard.color }} card-box p-x-30 p-y-44">
               <mat-card-content>
-                <img [src]="topcard.img" alt="icon" width="40" />
+                <img [src]="topcard.img" alt="icon" width="80" height="80" class="no-dark-image-filter topcard-icon-home" />
                 <h6 class="f-s-16 m-t-16">{{ topcard.title }}</h6>
                 <p class="f-s-14 m-t-16">{{ topcard.subtitle }}</p>
               </mat-card-content>
@@ -161,7 +161,7 @@
           topcard.color
         }} card-box tall-card p-x-30 p-y-48">
               <mat-card-content>
-                <img [src]="topcard.img" alt="icon" width="40" class="" />
+                <img [src]="topcard.img" alt="icon" width="80" height="80" class="no-dark-image-filter topcard-icon-home" />
                 <h2 class="f-s-40 m-t-48 lh-lg section-sub-title">{{ topcard.title }}</h2>
                 <p class="f-s-14 m-t-20 m-b-0" [innerHTML]="topcard.subtitle"></p>
                 <img src="assets/images/landingpage/background/screen1.png" alt="demo" class="img-fluid w-100 m-t-48" />
@@ -178,7 +178,7 @@
             @if (topcard.title.includes('Track What Matters') || topcard.title.includes('Manage Feedback, Better')) {
             <mat-card class="shadow-none text-center rounded-12 bg-light-{{ topcard.color }} card-box p-x-30 p-y-48">
               <mat-card-content>
-                <img [src]="topcard.img" alt="icon" width="40" />
+                <img [src]="topcard.img" alt="icon" width="80" height="80" class="no-dark-image-filter topcard-icon-home" />
                 <h6 class="f-s-16 m-t-16">{{ topcard.title }}</h6>
                 <p class="f-s-14 m-t-16">{{ topcard.subtitle }}</p>
               </mat-card-content>
@@ -199,7 +199,7 @@
         <mat-card class="shadow-none text-center rounded-12 bg-light-{{ topcard.color }} card-box p-x-24 p-y-32">
           <mat-card-content>
             @if (!topcard.title.includes('12+')) {
-            <img [src]="topcard.img" alt="icon" width="40" />
+            <img [src]="topcard.img" alt="icon" width="80" height="80" class="no-dark-image-filter topcard-icon-home" />
             }
             <h6 class="f-s-16 m-t-16">{{ topcard.title }}</h6>
             <p class="f-s-14 m-t-16">{{ topcard.subtitle }}</p>
@@ -223,7 +223,7 @@
         topcard.color
       }} card-box tall-card p-x-32 p-y-48">
           <mat-card-content>
-            <img [src]="topcard.img" alt="icon" width="40" class="" />
+            <img [src]="topcard.img" alt="icon" width="80" height="80" class="no-dark-image-filter topcard-icon-home" />
             <h6 class="f-s-40 m-t-32 tall-card-title section-sub-title">{{ topcard.title }}</h6>
             <p class="f-s-14 m-t-20" [innerHTML]="topcard.subtitle"></p>
             <img src="assets/images/landingpage/background/screen1.png" alt="demo" class="img-fluid w-100 m-t-30" />
@@ -245,7 +245,7 @@
         <div class="col-md-5 m-b-30">
           <div class="client-margin" style="text-align: center;">
             <h2 class="lh-normal f-s-40 m-b-16 section-sub-title">
-              What our clients <br> think <img src="assets/images/front-pages/logoIcon.svg" alt="logo" />
+              What our clients <br> think <img src="assets/images/front-pages/logoIcon.svg" alt="logo" class="no-dark-image-filter homepage-testimonial-logo" width="30" height="30" />
               about us?
             </h2>
             <p class="m-0">
