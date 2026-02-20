@@ -151,10 +151,10 @@ export const apiUrl = 'http://172.16.0.173/DOCHEK/landing';
 
 
 
-/*export const baseUrlPath = '';
-export const baseUrlPathslash = '';
-export const LoginUrl = '';
-export const logoUrl = '';
+/*export const baseUrlPath = '/ang/';
+export const baseUrlPathslash = '/ang';
+export const LoginUrl = 'ang/';
+export const logoUrl = '/ang/';
 
 
 
