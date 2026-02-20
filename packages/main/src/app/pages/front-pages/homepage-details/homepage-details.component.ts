@@ -336,7 +336,7 @@ export class HomepageDetailsComponent implements OnInit{
       icon: 'shield-lock',
       title: 'Liam Grant, HR Manager at a global FMCG brand',
       img: `assets/images/profile/user-1.jpg`,
-         question:'“Drives real decision-making, not memorized answers”',
+         question:'“Drives real decision-making, not memorized answers.”',
 
       subtext:
         '“With DoCheck, we build scenarios that mirror real situations, like a conference or client meeting. Every learner gets the same setup, but their answers differ, which gives us a much clearer view of their decision-making skills.” ',
