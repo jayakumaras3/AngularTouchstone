@@ -38,6 +38,25 @@
   z-index: 0 !important;
 }
 
+/* Footer logo dark mode switching */
+.footer-logo {
+  width: 20px;
+  height: auto;
+  object-fit: contain;
+}
+
+.footer-logo-dark {
+  display: none;
+}
+
+:host-context(.dark-theme) .footer-logo-light {
+  display: none;
+}
+
+:host-context(.dark-theme) .footer-logo-dark {
+  display: inline-block;
+}
+
 @media (max-width: 959px) {
 .hstack {
     justify-content: center;
