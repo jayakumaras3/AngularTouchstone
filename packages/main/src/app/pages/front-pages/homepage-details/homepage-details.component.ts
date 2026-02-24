@@ -322,10 +322,11 @@ export class HomepageDetailsComponent implements OnInit{
     },
   ];
    featureList = [
+    
     {
       id: 1,
       icon: 'camera',
-      title: 'Misha Rodriguez, L&D Lead in a leading logistics company',
+      title: 'L&D Lead, Logistics Company',
       img: `assets/images/profile/user-9.jpg`,
          question:'“Everything we need, in one place.”',
       subtext:
@@ -334,7 +335,7 @@ export class HomepageDetailsComponent implements OnInit{
     {
       id: 2,
       icon: 'shield-lock',
-      title: 'Liam Grant, HR Manager at a global FMCG brand',
+      title: 'HR Manager, Global FMCG Brand',
       img: `assets/images/profile/user-1.jpg`,
          question:'“Drives real decision-making, not memorized answers.”',
 
@@ -344,12 +345,13 @@ export class HomepageDetailsComponent implements OnInit{
     {
       id: 15,
       icon: 'code',
-      title: 'Sophie Müller, Training Coordinator in a European retail group',
+      title: 'Training Coordinator, European Retail Group',
       img: `assets/images/profile/user-10.jpg`,
          question:'“We train more people without higher costs.”',
       subtext:
         'Finally, a learning management platform that’s simple to use and affordable. We can train more employees without worrying about costs spiraling out of control or the system slowing down when multiple users log in. ',
     },
+  
   ];
 
   activeIndex = 0;

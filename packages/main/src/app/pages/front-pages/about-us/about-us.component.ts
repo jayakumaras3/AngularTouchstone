@@ -118,7 +118,7 @@ featureList = [
     {
       id: 1,
       icon: 'camera',
-      title: 'Misha Rodriguez, L&D Lead in a leading logistics company',
+      title: 'L&D Lead, Logistics Company',
       img: `assets/images/profile/user-9.jpg`,
          question:'“Everything we need, in one place.”',
       subtext:
@@ -127,7 +127,7 @@ featureList = [
     {
       id: 2,
       icon: 'shield-lock',
-      title: 'Liam Grant, HR Manager at a global FMCG brand',
+      title: 'HR Manager, Global FMCG Brand',
       img: `assets/images/profile/user-1.jpg`,
          question:'“Drives real decision-making, not memorized answers.”',
 
@@ -137,7 +137,7 @@ featureList = [
     {
       id: 15,
       icon: 'code',
-      title: 'Sophie Müller, Training Coordinator in a European retail group',
+      title: 'Training Coordinator, European Retail Group',
       img: `assets/images/profile/user-10.jpg`,
          question:'“We train more people without higher costs.”',
       subtext:
