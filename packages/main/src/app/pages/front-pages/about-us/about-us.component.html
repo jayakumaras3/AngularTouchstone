@@ -169,76 +169,79 @@
     </div>
   </div>
   <!--  End -->
-    <div class="features ">
-    <div class="container ">
-      <div class="row align-items-center justify-content-between spacing-top-bottom">
-        <!--row-->
-        <div class="col-md-5 m-b-30">
-          <div class="client-margin" style="text-align: center;">
-            <h2 class="lh-normal f-s-40 m-b-16 section-sub-title">
-              What our clients <br> think <img src="assets/images/front-pages/logoIcon.svg" alt="logo" class="no-dark-image-filter testimonial-logo-icon" width="28" height="28" />
-              about us?
-            </h2>
-            <p class="m-0">
-             Our partners benefit from reduced administrative hassle, smoother delivery, and sharper insights, which help their teams learn smarter, and perform better.
-            </p>
-          </div>
-        </div>
-       <div class="col-md-7">
-    <mat-card class="cardWithShadow b-1 rounded-8 m-b-0 p-48">
-    <mat-card-content>
-      <mat-card-title class="f-s-24 f-w-600 m-b-24">{{ activeFeature.question}}</mat-card-title>
-
-      <!-- Profile Image + Name -->
-          <!--   --><div class="d-flex align-items-center gap-16 m-b-24">
-            <div>
-                <img
-                  [src]="activeFeature.img"
-                  [alt]="activeFeature.title"
-                  class="rounded-circle"
-                  width="40"
-                  height="40"
-                />
-              </div>
-              <h6 class="f-s-14 f-w-600">{{ activeFeature.title }}</h6>
-            </div> 
-
-            <!-- Subtext -->
-            <p class="f-s-14 m-b-16 m-t-0">
-              {{ activeFeature.subtext }}
-            </p>
-
-            <mat-divider></mat-divider>
-
-            <!-- Navigation -->
-            <div class="d-flex align-items-center gap-10 m-t-8">
-              <button
-                class="bg-light icon-32 d-flex align-items-center justify-content-center"
-                mat-icon-button
-                (click)="showPrevious()"
-              >
-                <i-tabler
-                  name="chevron-left"
-                  class="icon-18 d-flex align-items-center justify-content-center"
-                ></i-tabler>
-              </button>
-
-              <span class="f-s-14">{{ showCounter() }}</span>
-
-              <button
-                class="bg-light icon-32 d-flex align-items-center justify-content-center"
-                mat-icon-button
-                (click)="showNext()"
-              >
-                <i-tabler
-                  name="chevron-right"
-                  class="icon-18 d-flex align-items-center justify-content-center"
-                ></i-tabler>
-              </button>
+   <div class="features spacing-bottom">
+      <div class="container">
+        <div class="row align-items-center justify-content-between">
+          <!--row-->
+          <div class="col-lg-4 col-md-6 m-b-30">
+            <div class="client-margin" style="text-align: center;">
+              <h2 class="lh-normal f-s-40 m-b-16 section-sub-title">
+                What our clients <br> think <img src="assets/images/front-pages/logoIcon.svg" alt="logo" class="no-dark-image-filter homepage-testimonial-logo" width="30" height="30" />
+                about us?
+              </h2>
+              <p class="m-0">
+              Our partners benefit from reduced administrative hassle, smoother delivery, and sharper insights, which help their teams learn smarter, and perform better.
+              </p>
             </div>
-          </mat-card-content>
+          </div>
+        <div class="col-lg-8 col-md-7">
+      <mat-card class="cardWithShadow b-1 rounded-8 m-b-0 p-48">
+      <mat-card-content>
+        <mat-card-title class="f-s-24 f-w-600 m-b-24">{{ activeFeature.question}}</mat-card-title>
+
+        <!-- Profile Image + Name -->
+        <div class="d-flex align-items-center gap-16 m-b-24">
+          <div>
+            <img
+              [src]="activeFeature.img"
+              [alt]="activeFeature.title"
+              class="rounded-circle"
+              width="40"
+              height="40"
+            />
+          </div>
+          <h6 class="f-s-14 f-w-600">{{ activeFeature.title }}</h6>
+        </div>
+
+        <!-- Subtext -->
+        <p class="f-s-14 m-b-16 m-t-0">
+          {{ activeFeature.subtext }}
+        </p>
+
+        <mat-divider></mat-divider>
+
+        <!-- Navigation -->
+        <div class="d-flex align-items-center gap-10 m-t-8">
+          <button
+            class="bg-light icon-32 d-flex align-items-center justify-content-center"
+            mat-icon-button
+            (click)="showPrevious()"
+          >
+            <i-tabler
+              name="chevron-left"
+              class="icon-18 d-flex align-items-center justify-content-center"
+            ></i-tabler>
+          </button>
+
+          <span class="f-s-14">{{ showCounter() }}</span>
+
+          <button
+            class="bg-light icon-32 d-flex align-items-center justify-content-center"
+            mat-icon-button
+            (click)="showNext()"
+          >
+            <i-tabler
+              name="chevron-right"
+              class="icon-18 d-flex align-items-center justify-content-center"
+            ></i-tabler>
+          </button>
+        </div>
+        </mat-card-content>
         </mat-card>
       </div>
+
+      </div>
+    </div>
 
   
 

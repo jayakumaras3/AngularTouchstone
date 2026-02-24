@@ -405,7 +405,7 @@ export class HomepageDetailsComponent implements OnInit{
   tiles = tiles;
   hideCloserBtn: boolean = true;
   users = users;
-  expandedIndex: number | null = null;
+  openFaqIndex: number | null = null;
   currentIndex = signal(0); // Starting from 0
   faqList = faqList;
   selectedPath: string | null = null;
@@ -472,5 +472,13 @@ export class HomepageDetailsComponent implements OnInit{
     setTimeout(() => {
       this.router.navigate([path]);
     }, 100); // brief delay to show border
+  }
+
+  toggleFaq(index: number): void {
+    this.openFaqIndex = this.openFaqIndex === index ? null : index;
+  }
+
+  isFaqOpen(index: number): boolean {
+    return this.openFaqIndex === index;
   }
 }

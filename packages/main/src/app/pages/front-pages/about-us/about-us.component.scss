@@ -69,6 +69,7 @@
   .features {
 
     .cardWithShadow {
+      width: 100%;
       mat-card-content {
         padding: 0px !important;
       }
@@ -79,38 +80,38 @@
             padding: 40px 0;
         }
 
-.testimonial-logo-icon {
-  width: 28px !important;
-  height: 28px !important;
-  min-width: 28px !important;
-  max-width: 28px !important;
+.homepage-testimonial-logo {
+  width: 30px !important;
+  height: 30px !important;
+  min-width: 30px !important;
+  max-width: 30px !important;
   object-fit: contain;
   display: inline-block;
   vertical-align: middle;
   margin: 0 6px;
 }
 
-.client-margin .section-sub-title img.testimonial-logo-icon {
-  width: 28px !important;
-  height: 28px !important;
-  min-width: 28px !important;
-  max-width: 28px !important;
+.client-margin .section-sub-title img.homepage-testimonial-logo {
+  width: 30px !important;
+  height: 30px !important;
+  min-width: 30px !important;
+  max-width: 30px !important;
 }
 
 @media (max-width: 767.98px) {
-  .testimonial-logo-icon {
-    width: 24px !important;
-    height: 24px !important;
-    min-width: 24px !important;
-    max-width: 24px !important;
+  .homepage-testimonial-logo {
+    width: 30px !important;
+    height: 30px !important;
+    min-width: 30px !important;
+    max-width: 30px !important;
     margin: 0 4px;
   }
 
-  .client-margin .section-sub-title img.testimonial-logo-icon {
-    width: 24px !important;
-    height: 24px !important;
-    min-width: 24px !important;
-    max-width: 24px !important;
+  .client-margin .section-sub-title img.homepage-testimonial-logo {
+    width: 30px !important;
+    height: 30px !important;
+    min-width: 30px !important;
+    max-width: 30px !important;
   }
 }
         
