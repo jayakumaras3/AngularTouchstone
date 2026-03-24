@@ -7,6 +7,8 @@ import { BrandingComponent } from '../../../layouts/full/vertical/sidebar/brandi
 import { AuthService } from '../../../services/login/auth.service';
 import { LoginUrl } from '../../../config';
 import { FooterComponent } from '../../front-pages/footer/footer.component';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-side-login',
@@ -28,13 +30,22 @@ export class AppSideLoginComponent implements AfterViewInit {
   constructor(
     private authservice: AuthService,
     private router: Router,
-    private ngZone: NgZone
+    private ngZone: NgZone,
+    private sanitizer: DomSanitizer  // Add this
   ) { }
 
   // Form controls created synchronously (not in ngOnInit) for browser autofill detection
   form = new FormGroup({
-    username: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required, Validators.minLength(0)])
+    username: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+      // Allow alphanumeric, dots, underscores, hyphens, and @ for emails
+      Validators.pattern(/^[a-zA-Z0-9._@-]+$/)
+    ]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(6)  // ✅ Require at least 6 characters
+    ])
   });
 
   get f() {
@@ -84,7 +95,11 @@ export class AppSideLoginComponent implements AfterViewInit {
   isActiveRoute(route: string): boolean {
     return this.router.url.includes(`/front-pages/${route}`);
   }
-  isSubmitting = false; // Add this property
+  isSubmitting = false;
+  loginAttempts = 0;
+  maxLoginAttempts = 5;
+  lockoutTime = 5 * 60 * 1000; // 5 minutes
+  lastAttemptTime = 0;
 
   /**
    * Clears the error message from the form.
@@ -94,42 +109,75 @@ export class AppSideLoginComponent implements AfterViewInit {
     this.errorMessage = '';
   }
 
+  private isValidRedirectUrl(url: string): boolean {
+    try {
+      const parsedUrl = new URL(url, window.location.href);
+      // Only allow same-origin redirects
+      return parsedUrl.origin === window.location.origin;
+    } catch {
+      return false;
+    }
+  }
+
   submit() {
-    // Sync autofill values one more time before submission
+    // Check rate limiting
+    if (this.loginAttempts >= this.maxLoginAttempts) {
+      const timeSinceLastAttempt = Date.now() - this.lastAttemptTime;
+      if (timeSinceLastAttempt < this.lockoutTime) {
+        this.errorMessage = `Too many attempts. Try again in ${Math.ceil((this.lockoutTime - timeSinceLastAttempt) / 1000)} seconds.`;
+        return;
+      }
+      this.loginAttempts = 0; // Reset after lockout period
+    }
+
     this.syncAutofillValues();
 
     if (this.form.valid && !this.isSubmitting) {
-      this.isSubmitting = true; // Disable button
-      this.errorMessage = ''; // Clear any previous error messages
+      this.isSubmitting = true;
+      this.errorMessage = '';
+      this.lastAttemptTime = Date.now();
 
       this.authservice.login(this.form.value.username!, this.form.value.password!)
         .subscribe({
           next: res => {
-            console.log('Login Response:', res);
-            this.isSubmitting = false; // Re-enable button
+            this.isSubmitting = false;
 
             if (res.success) {
-              this.errorMessage = ''; // Clear error on successful login
-              localStorage.setItem('user', JSON.stringify(res.user));
+              this.loginAttempts = 0;
+              this.errorMessage = '';
 
-              if (res.redirect_url) {
+              // ❌ DON'T store sensitive data
+              // localStorage.setItem('user', JSON.stringify(res.user));
+
+              // ✅ ONLY store non-sensitive data in sessionStorage
+              if (res.user && res.user.id) {
+                sessionStorage.setItem('userId', res.user.id);
+              }
+
+              // ✅ Token should be stored in httpOnly cookie by backend
+              // (Backend needs to set this header: Set-Cookie: token=xxx; HttpOnly; Secure; SameSite=Strict)
+
+              if (res.redirect_url && this.isValidRedirectUrl(res.redirect_url)) {
                 window.location.href = res.redirect_url;
               } else {
-                console.log("error redirect");
-                // this.router.navigate(['/dashboards/dashboard1']);
+                this.router.navigate(['/home']);
               }
             } else {
+              this.loginAttempts++;
               if (res.errors) {
-                this.errorMessage = Object.values(res.errors).join(' ');
+                // Get error text and sanitize it
+                const errorText = Object.values(res.errors).join(' ');
+                // This ensures only plain text, no HTML/JS execution
+                this.errorMessage = this.sanitizer.sanitize(1, errorText) || 'Login failed';
               } else {
                 this.errorMessage = 'Username or Password don\'t match.';
               }
             }
           },
           error: err => {
-            console.error('HTTP Error:', err);
-            this.errorMessage = 'Server error, check console for details';
-            this.isSubmitting = false; // Re-enable button even on error
+            this.loginAttempts++;
+            this.isSubmitting = false;
+            this.errorMessage = 'Server error. Please try again later.';
           }
         });
     }

@@ -135,85 +135,29 @@ export const logoUrl = '/DOCHEK_lms/ang/';*/
 /*
 */
 //Host URL
-/**//*export const baseUrlPath = '/ang/';
-export const baseUrlPathslash = '/ang';
-export const LoginUrl = 'ang/';
-export const logoUrl = '/ang/';
-
-export const baseUrlPath = '';
-export const baseUrlPathslash = '';
-export const LoginUrl = '';
-export const logoUrl = '';
-
-
-// PHP service URLs
-export const apiUrl = 'http://172.16.0.173/DOCHEK/landing';
-  
-  export const forgotUrl = 'http://172.16.0.173/DOCHEK/landing';
-  export const contactApiUrl = 'http://172.16.0.173/DOCHEK/landing';
-
-*/
-
-
-/*export const baseUrlPath = '/ang/';
-export const baseUrlPathslash = '/ang';
-export const LoginUrl = 'ang/';
-export const logoUrl = '/ang/';
-
-
-
-
-// PHP service URLs
-export const apiUrl = 'http://www.go.touchstonelc.com/landing';
-  
-  export const forgotUrl = 'http://www.go.touchstonelc.com/landing';
-  export const contactApiUrl = 'http://www.go.touchstonelc.com/landing';
-
-
-*/
-
-  // for New dochek_ultra//Host URL
-/*
-  
-export const baseUrlPath = '/dochek_ultra/ang/';
-export const baseUrlPathslash = '/dochek_ultra/ang/';
-export const LoginUrl = 'dochek_ultra/ang/';
-export const logoUrl = '/dochek_ultra/ang/';
-
-
-export const apiUrl = 'http://172.16.2.214/dochek_ultra/landing';
-  
-  export const forgotUrl = 'http://172.16.2.214/dochek_ultra/landing';
-  export const contactApiUrl = 'http://172.16.2.214/dochek_ultra/landing';
-*/
-
-
-   // Dochek
- /*
- export const baseUrlPath = '';
-export const baseUrlPathslash = '';
-export const LoginUrl = '';
-export const logoUrl = '';*/
-
- export const baseUrlPath = '/ang/';
-export const baseUrlPathslash = '/ang';
-export const LoginUrl = 'ang/';
-export const logoUrl = '/ang/';
-
- export const apiUrl = 'https://dochek.com/landing';
-  
-  export const forgotUrl = 'https://dochek.com/landing';
-  export const contactApiUrl = 'https://dochek.com/landing' 
-
-
-
-    /*
+/**//**/
+// 
 export const baseUrlPath = '/ang/';
 export const baseUrlPathslash = '/ang';
 export const LoginUrl = 'ang/';
 export const logoUrl = '/ang/';
 
-export const apiUrl = 'http://172.16.2.214/DOCHEK/landing';
+/*export const baseUrlPath = '';
+export const baseUrlPathslash = '';
+export const LoginUrl = '';
+export const logoUrl = '';*/
 
-export const forgotUrl = 'http://172.16.2.214/DOCHEK/landing';
-export const contactApiUrl = 'http://172.16.2.214/DOCHEK/landing';*/
+
+// PHP service URLs
+/*export const apiUrl = 'http://172.16.0.173/DOCHEK/landing';
+  
+  export const forgotUrl = 'http://172.16.0.173/DOCHEK/landing';
+  export const contactApiUrl = 'http://172.16.0.173/DOCHEK/landing';*/
+
+
+// ✅ Use environment-based URLs (will be auto-selected)
+// These are imported from environment.ts/environment.prod.ts
+import { environment } from '../environments/environment';
+export const apiUrl = environment.apiUrl;
+export const forgotUrl = environment.forgotUrl;
+export const contactApiUrl = environment.contactApiUrl;

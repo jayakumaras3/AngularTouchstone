@@ -7,6 +7,7 @@ import {
   HttpClient,
   provideHttpClient,
   withInterceptorsFromDi,
+  HTTP_INTERCEPTORS,
 } from '@angular/common/http';
 import { routes } from './app.routes';
 import {
@@ -36,6 +37,7 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { CustomOverlayContainer } from './custom-overlay-container';
+import { SecurityHttpInterceptor } from './interceptors/security.interceptor';
 
 // code view
 import { provideHighlightOptions } from 'ngx-highlightjs';
@@ -68,6 +70,12 @@ export const appConfig: ApplicationConfig = {
       withComponentInputBinding()
     ),
     provideHttpClient(withInterceptorsFromDi()),
+    // 🔐 Add Security HTTP Interceptor
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SecurityHttpInterceptor,
+      multi: true
+    },
     provideClientHydration(),
     provideAnimationsAsync(),
     importProvidersFrom(
