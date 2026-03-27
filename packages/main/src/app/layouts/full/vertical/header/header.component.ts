@@ -4,6 +4,9 @@ import {
   EventEmitter,
   Input,
   ViewEncapsulation,
+  OnInit,
+  OnDestroy,
+  HostListener,
 } from '@angular/core';
 import { CoreService } from 'src/app/services/core.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -58,14 +61,14 @@ interface quicklinks {
     templateUrl: './header.component.html',
     encapsulation: ViewEncapsulation.None
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit, OnDestroy {
   @Input() showToggle = true;
   @Input() toggleChecked = false;
   @Output() toggleMobileNav = new EventEmitter<void>();
   @Output() toggleMobileFilterNav = new EventEmitter<void>();
   @Output() toggleCollapsed = new EventEmitter<void>();
 
-  showFiller = false;
+  isScrolled = false;
 
   public selectedLanguage: any = {
     language: 'English',
@@ -107,6 +110,20 @@ export class HeaderComponent {
     private translate: TranslateService
   ) {
     translate.setDefaultLang('en');
+  }
+
+  ngOnInit(): void {
+    this.onScroll();
+  }
+
+  ngOnDestroy(): void {
+    // HostListener handles window subscription lifecycle.
+  }
+
+  @HostListener('window:scroll')
+  onScroll(): void {
+    const scrollPosition = window.scrollY || document.documentElement.scrollTop;
+    this.isScrolled = scrollPosition > 0;
   }
 
   options = this.settings.getOptions();

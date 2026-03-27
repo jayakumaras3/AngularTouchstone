@@ -1,4 +1,4 @@
-<mat-toolbar class="topbar horizontal-topbar">
+<mat-toolbar class="topbar horizontal-topbar" [ngClass]="{ 'header-scrolled': isScrolled }">
   <div class="container">
     <div class="d-none d-sm-flex branding">
       <app-branding></app-branding>

@@ -61,13 +61,11 @@
                     autocomplete="username"
                     (input)="clearErrorMessage()"
                     #usernameInput />
-                  @if(f['username'].touched && f['username'].invalid) {
-                    <mat-hint class="m-b-16 error-msg">
-                      @if(f['username'].errors?.['required']) {
-                        <div class="text-error">username is required.</div>
-                      }
-                    </mat-hint>
-                  }
+                  <mat-error>
+                    @if(f['username'].errors?.['required']) {
+                      Username is required.
+                    }
+                  </mat-error>
                 </mat-form-field>
 
                 <!-- Password -->
@@ -80,19 +78,36 @@
                   -->
                   <input 
                     matInput 
-                    type="password" 
+                    [type]="showPassword ? 'text' : 'password'"
                     formControlName="password"
+                    class="no-native-password-toggle"
                     name="password"
                     autocomplete="current-password"
                     (input)="clearErrorMessage()"
                     #passwordInput />
-                  @if(f['password'].touched && f['password'].invalid) {
-                    <mat-hint class="m-b-16 error-msg">
-                      @if(f['password'].errors?.['required']) {
-                        <div class="text-error">Password is required.</div>
-                      }
-                    </mat-hint>
-                  }
+                  <button
+                    mat-icon-button
+                    matSuffix
+                    (click)="togglePasswordVisibility()"
+                    type="button"
+                    tabindex="-1"
+                    class="eye-toggle-btn"
+                  >
+                    <svg *ngIf="!showPassword" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                      <circle cx="12" cy="12" r="3" />
+                      <line x1="22" y1="2" x2="2" y2="22" stroke="currentColor" stroke-width="2" />
+                    </svg>
+                    <svg *ngIf="showPassword" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg>
+                  </button>
+                  <mat-error>
+                    @if(f['password'].errors?.['required']) {
+                      Password is required.
+                    }
+                  </mat-error>
                 </mat-form-field>
 
                 <!-- Login Error Message -->

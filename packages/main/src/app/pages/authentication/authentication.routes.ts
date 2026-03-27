@@ -4,12 +4,14 @@ import { AppBoxedForgotPasswordComponent } from './boxed-forgot-password/boxed-f
 import { AppBoxedLoginComponent } from './boxed-login/boxed-login.component';
 import { AppBoxedRegisterComponent } from './boxed-register/boxed-register.component';
 import { AppBoxedTwoStepsComponent } from './boxed-two-steps/boxed-two-steps.component';
+import { AppBoxedResetPasswordComponent } from './boxed-reset-password/boxed-reset-password.component';
 import { AppErrorComponent } from './error/error.component';
 import { AppMaintenanceComponent } from './maintenance/maintenance.component';
 import { AppSideForgotPasswordComponent } from './side-forgot-password/side-forgot-password.component';
 import { AppSideLoginComponent } from './side-login/side-login.component';
 import { AppSideRegisterComponent } from './side-register/side-register.component';
 import { AppSideTwoStepsComponent } from './side-two-steps/side-two-steps.component';
+import { AppSideResetPasswordComponent } from './side-reset-password/side-reset-password.component';
 
 export const AuthenticationRoutes: Routes = [
   {
@@ -18,6 +20,10 @@ export const AuthenticationRoutes: Routes = [
       {
         path: 'boxed-forgot-pwd',
         component: AppBoxedForgotPasswordComponent,
+      },
+      {
+        path: 'boxed-reset-password',
+        component: AppBoxedResetPasswordComponent,
       },
       {
         path: 'boxed-login',
@@ -42,6 +48,10 @@ export const AuthenticationRoutes: Routes = [
       {
         path: 'forgotpassword',
         component: AppSideForgotPasswordComponent,
+      },
+      {
+        path: 'reset-password',
+        component: AppSideResetPasswordComponent,
       },
       {
         path: 'login',

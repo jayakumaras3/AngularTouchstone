@@ -22,6 +22,9 @@ import { SmeCategoryComponent } from './sme-catalog/sme-category.component';
 
 export const FrontPagesRoutes: Routes = [
 
+  { path: 'login', component:AppSideLoginComponent },
+  { path: 'forgotpassword', component:AppSideForgotPasswordComponent },
+
   {
     path: '',
     component: HomepageComponent, // acts as layout shell
@@ -44,8 +47,6 @@ export const FrontPagesRoutes: Routes = [
       { path: 'coursedetails', component: ProductDetailsComponent }, // Fallback for backward compatibility
       { path: 'privacy', component: PrivacyComponent },
       { path: 'terms', component:TermsComponent },      
-      { path: 'login', component:AppSideLoginComponent },
-      { path: 'forgotpassword', component:AppSideForgotPasswordComponent },
     ],
   },
 ];

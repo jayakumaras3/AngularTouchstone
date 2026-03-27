@@ -2,8 +2,8 @@ import { Component, AfterViewInit, ViewChild, ElementRef, NgZone } from '@angula
 //import { CoreService } from 'src/app/services/core.service';
 import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../../../material.module';
-import { BrandingComponent } from '../../../layouts/full/vertical/sidebar/branding.component';
 import { AuthService } from '../../../services/login/auth.service';
 import { LoginUrl } from '../../../config';
 import { FooterComponent } from '../../front-pages/footer/footer.component';
@@ -12,7 +12,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-side-login',
-  imports: [RouterModule, FooterComponent, MaterialModule, FormsModule, ReactiveFormsModule, BrandingComponent],
+  imports: [CommonModule, RouterModule, FooterComponent, MaterialModule, FormsModule, ReactiveFormsModule],
   templateUrl: './side-login.component.html'
 })
 export class AppSideLoginComponent implements AfterViewInit {
@@ -22,6 +22,7 @@ export class AppSideLoginComponent implements AfterViewInit {
 
   // Error message handling
   errorMessage: string = '';
+  showPassword: boolean = false;
 
   // Template references for autofill workaround (Edge IE mode compatibility)
   @ViewChild('usernameInput') usernameInput!: ElementRef<HTMLInputElement>;
@@ -107,6 +108,10 @@ export class AppSideLoginComponent implements AfterViewInit {
    */
   clearErrorMessage(): void {
     this.errorMessage = '';
+  }
+
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
   }
 
   private isValidRedirectUrl(url: string): boolean {

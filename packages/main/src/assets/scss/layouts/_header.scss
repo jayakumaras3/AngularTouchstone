@@ -5,6 +5,8 @@ html .topbar {
   top: 0;
   z-index: 9;
   height: $header-height;
+  background-color: rgba(93, 135, 255, 0.15);
+  transition: all 0.3s ease;
 
   .notification-badge{
     .mat-badge-content{
@@ -14,6 +16,16 @@ html .topbar {
       height: 16px;
     }
   }
+
+  &.header-scrolled {
+    background-color: #ffffff !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+}
+
+html.dark-theme .topbar.header-scrolled {
+  background-color: #000000 !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
 }
 
 .topbar-dd {
@@ -59,6 +71,16 @@ html .topbar {
 
     .mdc-button {
       --mat-button-text-label-text-color: $dark-text-secondary !important;
+    }
+
+    &.header-scrolled {
+      .mat-mdc-icon-button {
+        color: #ffffff !important;
+      }
+
+      .mdc-button {
+        --mat-button-text-label-text-color: #ffffff !important;
+      }
     }
   }
 }

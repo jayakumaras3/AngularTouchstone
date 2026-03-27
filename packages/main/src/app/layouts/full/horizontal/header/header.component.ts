@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { Component, Output, EventEmitter, Input, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { CoreService } from 'src/app/services/core.service';
 import { MatDialog } from '@angular/material/dialog';
 import { navItems } from '../../vertical/sidebar/sidebar-data';
@@ -9,6 +9,7 @@ import { MaterialModule } from 'src/app/material.module';
 import { BrandingComponent } from '../../vertical/sidebar/branding.component';
 import { FormsModule } from '@angular/forms';
 import { AppSettings } from 'src/app/config';
+import { CommonModule } from '@angular/common';
 
 interface notifications {
   id: number;
@@ -41,17 +42,17 @@ interface quicklinks {
 
 @Component({
     selector: 'app-horizontal-header',
-    imports: [RouterModule, TablerIconsModule, MaterialModule, BrandingComponent],
+  imports: [RouterModule, TablerIconsModule, MaterialModule, BrandingComponent, CommonModule],
     templateUrl: './header.component.html'
 })
-export class AppHorizontalHeaderComponent {
+export class AppHorizontalHeaderComponent implements OnInit, OnDestroy {
   @Input() showToggle = true;
   @Input() toggleChecked = false;
   @Output() toggleMobileNav = new EventEmitter<void>();
   @Output() toggleMobileFilterNav = new EventEmitter<void>();
   @Output() toggleCollapsed = new EventEmitter<void>();
 
-  showFiller = false;
+  isScrolled = false;
 
   public selectedLanguage: any = {
     language: 'English',
@@ -93,6 +94,20 @@ export class AppHorizontalHeaderComponent {
     private translate: TranslateService
   ) {
     translate.setDefaultLang('en');
+  }
+
+  ngOnInit(): void {
+    this.onScroll();
+  }
+
+  ngOnDestroy(): void {
+    // HostListener handles window subscription lifecycle.
+  }
+
+  @HostListener('window:scroll')
+  onScroll(): void {
+    const scrollPosition = window.scrollY || document.documentElement.scrollTop;
+    this.isScrolled = scrollPosition > 0;
   }
 
   options = this.settings.getOptions();

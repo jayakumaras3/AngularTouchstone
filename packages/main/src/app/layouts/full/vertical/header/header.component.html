@@ -1,4 +1,4 @@
-<mat-toolbar class="topbar">
+<mat-toolbar class="topbar" [ngClass]="{ 'header-scrolled': isScrolled }">
   <!-- --------------------------------------------------------------- -->
   <!-- Desktop Menu -->
   @if(showToggle) {

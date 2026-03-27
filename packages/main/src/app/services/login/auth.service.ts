@@ -26,12 +26,54 @@ export class AuthService {
     );
   }
 
+  /**
+   * ✅ Send password reset link to user email
+   * API: POST /api/forgot_password
+   */
   forgotPassword(email: string): Observable<any> {
     const csrfToken = this.getCsrfToken();
     
     return this.http.post<any>(
-      `${this.forgotUrl}/forgotpasswordVerify`,
+      `${this.forgotUrl}/api/forgot_password`,
       { email },
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': csrfToken
+        })
+      }
+    );
+  }
+
+  /**
+   * ✅ Verify reset token validity
+   * API: GET /api/verify_token
+   */
+  verifyResetToken(token: string): Observable<any> {
+    const csrfToken = this.getCsrfToken();
+    
+    return this.http.get<any>(
+      `${this.forgotUrl}/api/verify_token`,
+      {
+        params: { token },
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': csrfToken
+        })
+      }
+    );
+  }
+
+  /**
+   * ✅ Reset password with token and new password
+   * API: POST /api/reset_password
+   */
+  resetPassword(token: string, password: string): Observable<any> {
+    const csrfToken = this.getCsrfToken();
+    
+    return this.http.post<any>(
+      `${this.forgotUrl}/api/reset_password`,
+      { token, password },
       {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
