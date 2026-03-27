@@ -20,13 +20,21 @@
           {{ successMessage }}
         </div>
 
-        <!-- Error Message -->
-        <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+        <!-- Token-level error (invalid / expired / missing link) -->
+        <!-- Link-level error (invalid / expired demo ID) -->
+        <div *ngIf="idError" class="alert alert-danger" role="alert">
+          <strong>Access Denied</strong>
+          <p>{{ idError }}</p>
+          <p class="mt-2 mb-0">Please contact support or use the original demo link.</p>
+        </div>
+
+        <!-- Password error (wrong password) -->
+        <div *ngIf="errorMessage && !idError" class="alert alert-danger" role="alert">
           {{ errorMessage }}
         </div>
 
-        <!-- Quick Access Form -->
-        <div *ngIf="username && !errorMessage">
+        <!-- Quick Access Form — only shown when a valid demo ID is present -->
+        <div *ngIf="demoId && !idError && !successMessage">
           <form [formGroup]="form" (ngSubmit)="submit()">
             <h1>Quick Access</h1>
 
@@ -38,7 +46,7 @@
                 formControlName="password"
                 placeholder="Password"
                 [class.is-invalid]="submitted && f['password'].errors"
-                [disabled]="loading"
+                [attr.disabled]="loading ? true : null"
               />
               <div
                 *ngIf="submitted && f['password'].errors"
@@ -69,11 +77,6 @@
               </button>
             </div>
           </form>
-        </div>
-
-        <!-- Invalid Access Message -->
-        <div *ngIf="!username" class="alert alert-warning" role="alert">
-          Invalid access link. Please contact support.
         </div>
 
         <!-- Footer -->

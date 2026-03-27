@@ -28,7 +28,13 @@ export class QuickAccessComponent implements OnInit {
   form: FormGroup;
   loading = false;
   submitted = false;
-  username: string = '';
+
+  /** Numeric demo ID from the route parameter (/authentication/quickaccess/:id) */
+  demoId: string = '';
+
+  /** Set when the :id param is structurally invalid */
+  idError: string = '';
+
   errorMessage: string = '';
   successMessage: string = '';
 
@@ -43,13 +49,22 @@ export class QuickAccessComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Get username from route params or query params
-    this.route.queryParams.subscribe((params) => {
-      this.username = params['username'] || '';
-      if (!this.username) {
-        this.errorMessage = 'Username not provided. Invalid access link.';
-      }
-    });
+    // Read demo ID from route segment first, then query params for backward compatibility.
+    // Supports:
+    //  - /authentication/quickaccess/44272
+    //  - /authentication/quickaccess?demoid=44272
+    //  - /authentication/quickaccess?id=44272
+    const id =
+      this.route.snapshot.paramMap.get('id') ||
+      this.route.snapshot.queryParamMap.get('demoid') ||
+      this.route.snapshot.queryParamMap.get('id') ||
+      '';
+
+    if (/^\d+$/.test(id) && parseInt(id, 10) > 0) {
+      this.demoId = id;
+    } else {
+      this.idError = 'Invalid or missing access link. Please use the original demo link.';
+    }
   }
 
   get f() {
@@ -59,46 +74,45 @@ export class QuickAccessComponent implements OnInit {
   submit(): void {
     this.submitted = true;
 
-    if (this.form.invalid || !this.username) {
+    if (this.form.invalid || !this.demoId) {
       return;
     }
 
     this.loading = true;
+    this.errorMessage = '';
     const password = this.form.get('password')?.value;
 
     this.authService
-      .quickAccessLogin(this.username, password)
+      .quickAccessAuthenticate(this.demoId, password)
       .subscribe(
         (response: any) => {
           this.loading = false;
           if (response.success) {
             this.successMessage = response.message || 'Login successful!';
-            
-            // Store session/token if provided
+
             if (response.user) {
               sessionStorage.setItem('userId', response.user.id_user);
-              sessionStorage.setItem('username', response.user.username);
               sessionStorage.setItem('userName', response.user.name);
             }
-            
-            // Redirect to the URL provided by backend, or dashboard
+
+            // Hard-navigate so CodeIgniter session cookie is sent correctly
             setTimeout(() => {
-              if (response.redirectUrl) {
-                // If backend provides redirect URL, use it
-                window.location.href = response.redirectUrl;
-              } else {
-                // Otherwise navigate to dashboard
-                this.router.navigate(['/dashboards/dashboard1']);
-              }
-            }, 1500);
+              window.location.href = response.redirectUrl || '/';
+            }, 1000);
           } else {
             this.errorMessage = response.message || 'Login failed. Please try again.';
           }
         },
         (error: any) => {
           this.loading = false;
-          this.errorMessage =
-            error?.error?.message || 'An error occurred. Please try again.';
+          const msg = error?.error?.message || '';
+          // Link-level errors (expired / invalid demo ID) → hide the form
+          if (error?.status === 401 && msg.toLowerCase().includes('link')) {
+            this.idError = msg;
+            this.demoId = '';  // clear so form disappears
+          } else {
+            this.errorMessage = msg || 'An error occurred. Please try again.';
+          }
         }
       );
   }

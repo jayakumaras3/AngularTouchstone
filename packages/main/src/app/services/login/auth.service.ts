@@ -29,13 +29,52 @@ export class AuthService {
   }
 
   /**
-   * ✅ Quick Access Login - for demo/quickaccess links
-   * API: POST /api/quickaccess/login
+   * Quick Access Login — legacy endpoint (token-based flow preferred)
    */
   quickAccessLogin(username: string, password: string): Observable<any> {
     return this.http.post<any>(
       `${this.baseUrl}/api/quickaccess/login`,
       { username, password },
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': this.getCsrfToken()
+        }),
+      }
+    );
+  }
+
+  /**
+   * Validate a one-time quickaccess token and authenticate the demo user.
+   * API: POST /api/quickaccess/validate-token
+   * Body: { token, password }
+   * The token is server-issued and maps to the user internally — no sensitive
+   * data is ever stored in or read from the URL.
+   */
+  validateQuickAccessToken(token: string, password: string): Observable<any> {
+    return this.http.post<any>(
+      `${this.baseUrl}/api/quickaccess/validate-token`,
+      { token, password },
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': this.getCsrfToken()
+        }),
+      }
+    );
+  }
+
+  /**
+   * Authenticate a demo user using the numeric demo ID and their password.
+   * API: POST /api/quickaccess/authenticate
+   * Body: { demoid: number, password: string }
+   * Backend derives the username from demoid and validates the cart — Angular
+   * never sees or sends the username.
+   */
+  quickAccessAuthenticate(demoid: string, password: string): Observable<any> {
+    return this.http.post<any>(
+      `${this.baseUrl}/api/quickaccess/authenticate`,
+      { demoid: Number(demoid), password },
       {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
