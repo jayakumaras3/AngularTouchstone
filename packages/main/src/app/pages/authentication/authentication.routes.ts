@@ -12,6 +12,7 @@ import { AppSideLoginComponent } from './side-login/side-login.component';
 import { AppSideRegisterComponent } from './side-register/side-register.component';
 import { AppSideTwoStepsComponent } from './side-two-steps/side-two-steps.component';
 import { AppSideResetPasswordComponent } from './side-reset-password/side-reset-password.component';
+import { QuickAccessComponent } from './quickaccess/quickaccess.component';
 
 export const AuthenticationRoutes: Routes = [
   {
@@ -64,6 +65,10 @@ export const AuthenticationRoutes: Routes = [
       {
         path: 'side-two-steps',
         component: AppSideTwoStepsComponent,
+      },
+      {
+        path: 'quickaccess',
+        component: QuickAccessComponent,
       },
     ],
   },

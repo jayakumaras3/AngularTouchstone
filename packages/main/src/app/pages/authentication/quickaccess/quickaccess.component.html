@@ -1,0 +1,98 @@
+<div class="login-container">
+  <div class="login_wrapper">
+    <div class="animate form login_form">
+      <section class="login_content">
+        <div class="head">
+          <div class="user">
+            <div class="info user-change">
+              <img
+                src="assets/images/logos/dark-logo.svg"
+                alt="Logo"
+                class="img-square img-thumbnail"
+              />
+            </div>
+          </div>
+        </div>
+        <br />
+
+        <!-- Success Message -->
+        <div *ngIf="successMessage" class="alert alert-success" role="alert">
+          {{ successMessage }}
+        </div>
+
+        <!-- Error Message -->
+        <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+          {{ errorMessage }}
+        </div>
+
+        <!-- Quick Access Form -->
+        <div *ngIf="username && !errorMessage">
+          <form [formGroup]="form" (ngSubmit)="submit()">
+            <h1>Quick Access</h1>
+
+            <!-- Password Field -->
+            <div class="form-group">
+              <input
+                type="password"
+                class="form-control"
+                formControlName="password"
+                placeholder="Password"
+                [class.is-invalid]="submitted && f['password'].errors"
+                [disabled]="loading"
+              />
+              <div
+                *ngIf="submitted && f['password'].errors"
+                class="invalid-feedback"
+              >
+                <div *ngIf="f['password'].errors['required']">
+                  Password is required
+                </div>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-group">
+              <button
+                type="submit"
+                class="btn btn-primary btn-block"
+                [disabled]="loading"
+              >
+                <span *ngIf="!loading">Login</span>
+                <span *ngIf="loading">
+                  <span
+                    class="spinner-border spinner-border-sm mr-2"
+                    role="status"
+                    aria-hidden="true"
+                  ></span>
+                  Logging in...
+                </span>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Invalid Access Message -->
+        <div *ngIf="!username" class="alert alert-warning" role="alert">
+          Invalid access link. Please contact support.
+        </div>
+
+        <!-- Footer -->
+        <div class="separator">
+          <div>
+            <p>
+              Copyright &copy; DoChek
+              {{ 'now' | date: 'yyyy' }}. All rights reserved.
+            </p>
+          </div>
+          <div>
+            <p>
+              <a [routerLink]="['/privacy']">Privacy Information</a>
+              |&nbsp;
+              <a [routerLink]="['/terms']">Terms of Use</a>
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

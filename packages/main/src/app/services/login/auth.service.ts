@@ -10,12 +10,31 @@ export class AuthService {
   private apiUrl = environment.apiUrl;
   private forgotUrl = environment.forgotUrl;
   private contactApiUrl = environment.contactApiUrl;
+  // Base URL without endpoint path for API calls
+  private baseUrl = environment.apiUrl.replace('/landing', '');
 
   constructor(private http: HttpClient) {}
 
   login(username: string, password: string): Observable<any> {
     return this.http.post<any>(
       `${this.apiUrl}/login_register`,
+      { username, password },
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': this.getCsrfToken()
+        }),
+      }
+    );
+  }
+
+  /**
+   * ✅ Quick Access Login - for demo/quickaccess links
+   * API: POST /api/quickaccess/login
+   */
+  quickAccessLogin(username: string, password: string): Observable<any> {
+    return this.http.post<any>(
+      `${this.baseUrl}/api/quickaccess/login`,
       { username, password },
       {
         headers: new HttpHeaders({
