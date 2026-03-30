@@ -2,33 +2,78 @@
   <div class="bg-light-primary home-page-header">
     <div class="header-container-content custom-container m-x-auto">
     <div class="custom-container1homepage footer-dashboard">
-    <div class="bg-light-primary rounded-8 footer-container overflow-hidden">
-      <div class="row">
-        <div class="col-lg-6">
-          <div class="spacing-top-bottom spacing-left left-side-content spacingrignht">
-            <h2 class="f-s-40 m-b-24 lh-normal section-sub-title">
-             One Platform. All Your Learning Needs. Zero Chaos.
-            </h2>
-           <h3 class="f-s-18 m-b-24 lh-normal section-sub-title section-sub-title1"> Deliver, manage, and track training in just a few clicks – all in one simple workspace. </h3>
-            <div class="m-b-24 hstack">
-              <a [class.selected]="isActiveRoute('coursecatalog')"  
-                [routerLink]="['/login']"  mat-flat-button color="primary" class="zindexreduce">Member Login</a>
+    <div class="bg-light-primary rounded-8 footer-container overflow-hidden hero-carousel"
+      (mouseenter)="pauseHeroAutoSlide()"
+      (mouseleave)="resumeHeroAutoSlide()">
+      <div class="hero-carousel-track" [style.transform]="'translateX(-' + (activeHeroSlide * 100) + '%)'">
+        <div
+          class="hero-carousel-slide"
+          *ngFor="let slide of heroSlides; let i = index"
+          [attr.aria-hidden]="i !== activeHeroSlide"
+          [class.is-active]="i === activeHeroSlide"
+          [class.hero-slide-saas]="slide.variant === 'saas'">
+          <div class="row h-100 hero-slide-content">
+            <div class="col-lg-6">
+              <div class="spacing-top-bottom spacing-left left-side-content spacingrignht">
+                <h2 class="f-s-40 m-b-24 lh-normal section-sub-title hero-slide-title">{{ slide.title }}</h2>
+                <h3 class="f-s-18 m-b-24 lh-normal section-sub-title section-sub-title1 hero-slide-description">
+                  {{ slide.description }}
+                </h3>
+                <div class="m-b-24 hstack hero-slide-actions" [class.single-cta]="slide.showDefaultActions === false">
+                  <ng-container *ngIf="slide.showDefaultActions !== false; else heroSingleCta">
+                    <a
+                      [class.selected]="isActiveRoute('coursecatalog')"
+                      [routerLink]="['/login']"
+                      mat-flat-button
+                      color="primary"
+                      class="zindexreduce"
+                    >
+                      Member Login
+                    </a>
 
-             <a mat-stroked-button 
-            color="primary" 
-            class="border-primary" 
-            [class.selected]="isActiveRoute('side-register')" 
-            (click)="openBookDemoDialog()" class="zindexreduce">
-            Book a Demo
-                </a>
+                    <a
+                      mat-stroked-button
+                      color="primary"
+                      class="border-primary zindexreduce"
+                      [class.selected]="isActiveRoute('side-register')"
+                      (click)="openBookDemoDialog()"
+                    >
+                      Book a Demo
+                    </a>
+                  </ng-container>
 
+                  <ng-template #heroSingleCta>
+                    <button
+                      type="button"
+                      class="hero-single-cta-btn"
+                      [class.outline]="slide.ctaStyle === 'outline'"
+                      (click)="onHeroSlideCtaClick(slide)">
+                      {{ slide.ctaLabel || 'Get started now' }}
+                    </button>
+                  </ng-template>
+                </div>
+              </div>
             </div>
 
+            <div class="col-12 col-lg-6 d-flex imgStyleDashDiv align-items-end justify-content-center justify-content-lg-end">
+              <div class="hero-image-wrap" [class.hero-image-wrap-saas]="slide.variant === 'saas'">
+                <img [src]="slide.image" [alt]="slide.imageAlt" class="imgStyleDash hero-slide-image" />
+                <div class="hero-monitor-shadow" *ngIf="slide.variant === 'saas'"></div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="col-md-6 d-none d-lg-block imgStyleDashDiv" >
-          <img src="assets/images/front-pages/design-collection.png" alt="bg-img" class="imgStyleDash" />
-        </div>
+      </div>
+
+      <div class="hero-carousel-dots" *ngIf="heroSlides.length > 1">
+        <button
+          type="button"
+          *ngFor="let slide of heroSlides; let i = index"
+          class="hero-carousel-dot"
+          [class.active]="i === activeHeroSlide"
+          [attr.aria-label]="'Go to slide ' + (i + 1)"
+          (click)="goToHeroSlide(i)">
+        </button>
       </div>
     </div>
   </div>
@@ -102,7 +147,7 @@
           class="hero-cta-button"
           (click)="openBookDemoDialog()">
           Book A Demo
-          <span class="button-arrow">→</span>
+          <span class="button-arrow">&rarr;</span>
         </button>
       </div>
       
@@ -358,7 +403,7 @@
               <button type="button" class="faq-trigger" (click)="toggleFaq(i)" [attr.aria-expanded]="isFaqOpen(i)"
                 [attr.aria-controls]="'faq-answer-' + i">
                 <span class="faq-question f-s-18">{{ item.question }}</span>
-                <span class="faq-icon" aria-hidden="true">{{ isFaqOpen(i) ? '−' : '+' }}</span>
+                <span class="faq-icon" aria-hidden="true">{{ isFaqOpen(i) ? '-' : '+' }}</span>
               </button>
 
               <div class="faq-content-wrapper" [id]="'faq-answer-' + i" [class.open]="isFaqOpen(i)">

@@ -1,4 +1,4 @@
-import { Component, computed, DestroyRef, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, DestroyRef, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import { IconModule } from '../../../icon/icon.module';
 import { MaterialModule } from '../../../material.module';
 import { paymentLogos, plans,clientLogo } from '../front-pagesData';
@@ -38,6 +38,18 @@ interface features {
   subtext: string;
   image?: string; // optional image path for custom icons
 }
+
+interface HeroSlide {
+  title: string;
+  description: string;
+  image: string;
+  imageAlt: string;
+  variant?: 'default' | 'saas';
+  showDefaultActions?: boolean;
+  ctaLabel?: string;
+  ctaStyle?: 'outline' | 'filled';
+  ctaAction?: 'login' | 'demo' | 'catalog';
+}
 @Component({
   selector: 'app-homepage-details',
   imports: [
@@ -52,8 +64,35 @@ interface features {
   styleUrl: './homepage-details.component.scss',
 })
   /*  Courese Career skills start*/
-export class HomepageDetailsComponent implements OnInit{
+export class HomepageDetailsComponent implements OnInit, OnDestroy{
    private router = inject(Router);
+  heroSlides: HeroSlide[] = [
+    {
+      title: 'One Platform. All Your Learning Needs. Zero Chaos.',
+      description:
+        'Deliver, manage, and track training in just a few clicks - all in one simple workspace.',
+      image: 'assets/images/front-pages/design-collection.png',
+      imageAlt: 'DoChek learning platform overview',
+      variant: 'default',
+      showDefaultActions: true,
+    },
+    {
+      title: 'Make your team more digitally productive.',
+      description:
+        'We added 7 new courses that can help your teams build smarter digital capabilities, faster.',
+      image: 'assets/images/front-pages/main banner_image 3.png',
+      imageAlt: 'Desktop monitor showing DoChek learning dashboard',
+      variant: 'saas',
+      showDefaultActions: false,
+      ctaLabel: 'Get started now',
+      ctaStyle: 'outline',
+      ctaAction: 'catalog',
+    },
+  ];
+  activeHeroSlide = 0;
+  private readonly heroSlideInterval = 5000;
+  private heroSlideTimerId: number | null = null;
+
      allCourses: Course[] = [
     {
       university: '',
@@ -215,6 +254,11 @@ export class HomepageDetailsComponent implements OnInit{
 
   ngOnInit() {
     this.loadInitialCourses();
+    this.startHeroAutoSlide();
+  }
+
+  ngOnDestroy(): void {
+    this.stopHeroAutoSlide();
   }
 
   get hasMoreCourses(): boolean {
@@ -239,6 +283,66 @@ export class HomepageDetailsComponent implements OnInit{
     } else {
       this.displayedCourses = this.allCourses.slice(0, this.currentDisplayCount);
     }
+  }
+
+  nextHeroSlide(): void {
+    if (!this.heroSlides.length) {
+      return;
+    }
+
+    this.activeHeroSlide = (this.activeHeroSlide + 1) % this.heroSlides.length;
+  }
+
+  goToHeroSlide(index: number): void {
+    if (index < 0 || index >= this.heroSlides.length) {
+      return;
+    }
+
+    this.activeHeroSlide = index;
+    this.startHeroAutoSlide();
+  }
+
+  onHeroSlideCtaClick(slide: HeroSlide): void {
+    if (slide.ctaAction === 'login') {
+      this.router.navigate(['/login']);
+      return;
+    }
+
+    if (slide.ctaAction === 'catalog') {
+      this.router.navigate(['/catalog']);
+      return;
+    }
+
+    this.openBookDemoDialog();
+  }
+
+  pauseHeroAutoSlide(): void {
+    this.stopHeroAutoSlide();
+  }
+
+  resumeHeroAutoSlide(): void {
+    this.startHeroAutoSlide();
+  }
+
+  private startHeroAutoSlide(): void {
+    this.stopHeroAutoSlide();
+
+    if (this.heroSlides.length <= 1) {
+      return;
+    }
+
+    this.heroSlideTimerId = window.setInterval(() => {
+      this.nextHeroSlide();
+    }, this.heroSlideInterval);
+  }
+
+  private stopHeroAutoSlide(): void {
+    if (this.heroSlideTimerId === null) {
+      return;
+    }
+
+    window.clearInterval(this.heroSlideTimerId);
+    this.heroSlideTimerId = null;
   }
   /*  Courese Career skills end*/
   openBookDemoDialog() {
