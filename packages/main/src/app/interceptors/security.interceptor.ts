@@ -54,8 +54,11 @@ export class SecurityHttpInterceptor implements HttpInterceptor {
 
     return next.handle(secureRequest).pipe(
       catchError((error: HttpErrorResponse) => {
-        // ✅ Handle 401 Unauthorized (expired token)
-        if (error.status === 401) {
+        // ✅ Allow quickaccess API errors to pass through to component for proper error handling
+        const isQuickAccessRequest = req.url.includes('/api/quickaccess/authenticate');
+        
+        // ✅ Handle 401 Unauthorized (expired token) — but NOT for quickaccess
+        if (error.status === 401 && !isQuickAccessRequest) {
           this.router.navigate(['/authentication/side-login']);
         }
         

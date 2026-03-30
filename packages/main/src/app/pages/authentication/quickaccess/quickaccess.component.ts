@@ -106,6 +106,13 @@ export class QuickAccessComponent implements OnInit {
         (error: any) => {
           this.loading = false;
           const msg = error?.error?.message || '';
+          const debug = error?.error?.debug;
+          
+          // ✅ Log debug info to browser console for troubleshooting
+          if (debug) {
+            console.log('🔍 Quickaccess Debug Info:', debug);
+          }
+          
           // Link-level errors (expired / invalid demo ID) → hide the form
           if (error?.status === 401 && msg.toLowerCase().includes('link')) {
             this.idError = msg;
