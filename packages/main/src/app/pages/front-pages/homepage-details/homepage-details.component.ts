@@ -77,9 +77,9 @@ export class HomepageDetailsComponent implements OnInit, OnDestroy{
       showDefaultActions: true,
     },
     {
-      title: 'Improve your team’s digital productivity. ',
+      title: 'Improve your team’s digital productivity.',
       description:
-        'We added 7 new courses that can help you built smarter teams.',
+        'We added 7 new courses to help you build smarter teams.',
       image: 'assets/images/front-pages/main banner_image 3.png',
       imageAlt: 'Improve your team’s digital productivity.',
       variant: 'saas',
