@@ -23,7 +23,7 @@
       font-size: 18px !important;
     }
     .hero-carousel .imgStyleDashDiv {
-      padding: 0 24px 40px;
+      padding: 0 24px 0;
       justify-content: center !important;
     }
 
@@ -68,7 +68,7 @@
   flex: 0 0 100%;
   min-width: 100%;
   height: 100%;
-  padding-bottom: 56px;
+  padding-bottom: 0;
   position: relative;
 }
 
@@ -136,6 +136,13 @@
 .hero-carousel .imgStyleDash {
   max-height: 395px;
   object-fit: contain;
+  object-position: center bottom;
+  display: block;
+}
+
+.hero-carousel .imgStyleDashDiv {
+  padding-bottom: 0 !important;
+  align-self: flex-end;
 }
 
 .hero-image-wrap {
@@ -145,15 +152,21 @@
   align-items: flex-end;
   position: relative;
   padding-right: 8px;
+  line-height: 0;
 }
 
 .hero-slide-image {
   transition: transform 620ms ease, filter 620ms ease;
+  display: block;
+}
+
+.hero-carousel-slide:not(.hero-slide-saas) .hero-slide-image {
+  transform: translateY(22px);
 }
 
 .hero-image-wrap-saas .hero-slide-image {
   max-height: 430px;
-  transform: rotate(-2.1deg) translateY(-6px);
+  transform: rotate(-2.1deg) translateY(16px);
   filter: drop-shadow(0 14px 26px rgba(8, 16, 38, 0.42));
 }
 
@@ -183,7 +196,7 @@
 .hero-carousel-dots {
   position: absolute;
   left: 50%;
-  bottom: 18px;
+  bottom: 12px;
   transform: translateX(-50%);
   display: flex;
   align-items: center;
@@ -697,7 +710,7 @@ section {
     margin-bottom: 0 !important;
   }
   .footer-container {
-    height: 445px !important;    // adjust this until it matches the red line
+    height: 420px !important;    // adjust this until it matches the red line
     overflow: hidden;
     margin-bottom: 0 !important;
   }
@@ -964,6 +977,10 @@ section {
 
   .hero-monitor-shadow {
     height: 26px;
+  }
+
+  .hero-carousel-slide:not(.hero-slide-saas) .hero-slide-image {
+    transform: translateY(8px);
   }
 }
 

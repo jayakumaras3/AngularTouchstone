@@ -77,11 +77,11 @@ export class HomepageDetailsComponent implements OnInit, OnDestroy{
       showDefaultActions: true,
     },
     {
-      title: 'Make your team more digitally productive.',
+      title: 'Improve your team’s digital productivity. ',
       description:
-        'We added 7 new courses that can help your teams build smarter digital capabilities, faster.',
+        'We added 7 new courses that can help you built smarter teams.',
       image: 'assets/images/front-pages/main banner_image 3.png',
-      imageAlt: 'Desktop monitor showing DoChek learning dashboard',
+      imageAlt: 'Improve your team’s digital productivity.',
       variant: 'saas',
       showDefaultActions: false,
       ctaLabel: 'Get started now',
