@@ -55,6 +55,7 @@
 .hero-carousel {
   position: relative;
   background: linear-gradient(135deg, #2b3f74 0%, #324a86 100%);
+  z-index: 0;
 }
 
 .hero-carousel-track {
@@ -201,7 +202,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  z-index: 3;
+  z-index: 0;
 }
 
 .hero-carousel-dot {
@@ -713,6 +714,8 @@ section {
     height: 420px !important;    // adjust this until it matches the red line
     overflow: hidden;
     margin-bottom: 0 !important;
+    position: relative;
+    z-index: 0;
   }
     .homefooter-container {
     height: 360px !important;    // adjust this until it matches the red line
