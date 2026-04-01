@@ -1,6 +1,6 @@
 <div class="banner-section bg-light-primary banner-compact">
   <div class="container">
-    <h2 class="text-center f-s-40 section-sub-title lh-normal">500+ Courses to Sharpen On-the-Job Performance</h2>
+    <h2 class="text-center f-s-40 section-sub-title lh-normal">{{ catalogHeadline }}</h2>
   </div>
 </div>
 
@@ -229,7 +229,7 @@
                 @if (isSearchTriggered) {
                   <div class="col-12 text-center p-4 m-t-30">
                     <img src="assets/images/products/empty-shopping-cart.svg" width="200" height="200" />
-                    <div class="f-s-38 f-w-600" style="line-height: 4rem;">Thank you for your interest. Unfortunately, this course is not available right now.</div>
+                    <div class="f-s-38 f-w-600" style="line-height: 4rem;">{{ noCoursesMessage }}</div>
                   <!--  <div class="f-s-14 f-w-500 no-productcl">
                       Try searching for another course. 
                     </div> -->
@@ -334,7 +334,7 @@
               } @empty {
                 @if (isSearchTriggered) {
                   <tr>
-                    <td colspan="6" class="text-center p-4">No products found.</td>
+                    <td colspan="6" class="text-center p-4">{{ noCoursesMessage }}</td>
                   </tr>
                 }
               }

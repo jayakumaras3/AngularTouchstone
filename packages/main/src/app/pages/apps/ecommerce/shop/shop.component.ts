@@ -25,6 +25,17 @@ import { PopupwindowComponent } from '../../../front-pages/popupwindow/popupwind
 import { RouterModule } from '@angular/router';
 import { ProductDataService } from '../../../../services/product-data.service';
 
+// Static list of Digital Productivity courses
+const DIGITAL_PRODUCTIVITY_COURSES = [
+  'Fundamentals of Meeting Note Formatting',
+  'Archiving Best Practices in Shared Drives',
+  'Managing Keyboard Shortcuts Across Operating Systems',
+  'Introduction to Document Version History in Cloud Drives',
+  'Advanced File Naming Conventions for Teams',
+  'Intermediate Page Margin Settings in Microsoft Word',
+  'Legacy System Navigation for Obsolete Software'
+];
+
 export interface Section {
   name: string;
   icon: string;
@@ -119,6 +130,7 @@ trackTileRows(index: number, item: any) {
     { name: 'Compliance', icon: 'scale' },
     { name: 'DEI (Diversity, Equity, and Inclusion)', icon: 'users-group' },
     { name: 'Technology', icon: 'cpu' },
+    { name: 'Digital Productivity', icon: 'lightbulb' },
     { name: 'Safety', icon: 'shield-check' },
     { name: 'Healthcare', icon: 'stethoscope' },
     { name: 'Wellness', icon: 'heart' },
@@ -153,6 +165,19 @@ trackTileRows(index: number, item: any) {
       this.selectedPrice !== 'all' ||
       this.searchText.trim() !== ''
     );
+  }
+
+  // Dynamic headline based on selected category
+  get catalogHeadline(): string {
+    if (this.selectedCategory === 'Digital Productivity') {
+      return 'Take control of your digital workspace';
+    }
+    return '500+ Courses to Sharpen On-the-Job Performance';
+  }
+
+  // Get display message for empty results
+  get noCoursesMessage(): string {
+    return `No courses available for ${this.selectedCategory}`;
   }
 
   // TrackBy functions to prevent unnecessary re-rendering
@@ -373,6 +398,7 @@ filterByCategory(category: string, event: MouseEvent): void {
 
   /**
    * Get courses for the currently selected category
+   * Handles special case for Digital Productivity (filters by product_name)
    * @returns Array of courses matching selected category
    */
   private getCoursesForCurrentCategory(): Element[] {
@@ -382,6 +408,17 @@ filterByCategory(category: string, event: MouseEvent): void {
       return this.allProducts;
     }
 
+    // Special handling for Digital Productivity category
+    if (categoryName === 'digital productivity') {
+      return this.allProducts.filter((card) =>
+        DIGITAL_PRODUCTIVITY_COURSES.some(
+          (title) =>
+            card.product_name?.toLowerCase().trim() === title.toLowerCase().trim()
+        )
+      );
+    }
+
+    // Standard category filtering by skill field
     return this.allProducts.filter(
       (card) => card.skill?.toLowerCase() === categoryName
     );
