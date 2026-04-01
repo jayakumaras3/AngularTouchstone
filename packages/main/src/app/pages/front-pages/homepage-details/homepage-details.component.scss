@@ -6,19 +6,9 @@
   z-index: 0 !important;
 }
 
-// Root component padding for proper mobile display
-:host {
-  display: block;
-  padding-bottom: 80px;
-}
-
 @media (max-width: 767px) {
     .spacing-left {
         padding: 30px;
-    }
-    
-    :host {
-      padding-bottom: 100px;
     }
 }
 @media (max-width: 1199px) {
@@ -959,9 +949,28 @@ section {
 
 
 @media (max-width: 768px) {
+  .hero-carousel {
+    min-height: auto;
+  }
+
+  .hero-carousel-slide {
+    min-height: auto;
+    height: auto;
+  }
+
+  .hero-carousel .imgStyleDash {
+    max-height: 300px;
+  }
+
   .hero-carousel .spacing-top-bottom {
-    padding-top: 32px;
-    padding-bottom: 64px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    min-height: auto;
+  }
+
+  /* Extra space for slides with two buttons */
+  .hero-carousel-slide:nth-child(2) {
+    min-height: auto;
   }
 
   .hero-slide-title {
