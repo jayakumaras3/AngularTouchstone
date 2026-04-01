@@ -6,19 +6,9 @@
   z-index: 0 !important;
 }
 
-// Root component padding for proper mobile display
-:host {
-  display: block;
-  padding-bottom: 80px;
-}
-
 @media (max-width: 767px) {
     .spacing-left {
         padding: 30px;
-    }
-    
-    :host {
-      padding-bottom: 100px;
     }
 }
 @media (max-width: 1199px) {
