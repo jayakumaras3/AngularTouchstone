@@ -309,7 +309,10 @@ export class HomepageDetailsComponent implements OnInit, OnDestroy{
     }
 
     if (slide.ctaAction === 'catalog') {
-      this.router.navigate(['/catalog']);
+      // Navigate to catalog with Digital Productivity category
+      this.router.navigate(['/catalog'], {
+        queryParams: { category: 'Digital Productivity' }
+      });
       return;
     }
 

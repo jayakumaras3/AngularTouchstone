@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { IconModule } from '../../../../icon/icon.module';
 import { MaterialModule } from '../../../../material.module';
 import { NgScrollbarModule } from 'ngx-scrollbar';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { DeleteDialogComponent } from '../../delete-dialog/delete-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -87,6 +87,7 @@ trackTileRows(index: number, item: any) {
 
 
   private router = inject(Router);
+  private route = inject(ActivatedRoute);
   readonly dialog = inject(MatDialog);
   private cdr = inject(ChangeDetectorRef);
   private _snackBar = inject(MatSnackBar);
@@ -130,7 +131,7 @@ trackTileRows(index: number, item: any) {
     { name: 'Compliance', icon: 'scale' },
     { name: 'DEI (Diversity, Equity, and Inclusion)', icon: 'users-group' },
     { name: 'Technology', icon: 'cpu' },
-    { name: 'Digital Productivity', icon: 'lightbulb' },
+    { name: 'Digital Productivity', icon: 'bulb' },
     { name: 'Safety', icon: 'shield-check' },
     { name: 'Healthcare', icon: 'stethoscope' },
     { name: 'Wellness', icon: 'heart' },
@@ -170,7 +171,7 @@ trackTileRows(index: number, item: any) {
   // Dynamic headline based on selected category
   get catalogHeadline(): string {
     if (this.selectedCategory === 'Digital Productivity') {
-      return 'Take control of your digital workspace';
+      return 'Take Control of Your Digital Workspace';
     }
     return '500+ Courses to Sharpen On-the-Job Performance';
   }
@@ -213,14 +214,32 @@ trackTileRows(index: number, item: any) {
     this.isInitialLoad = true;
     this.isSearchTriggered = false;
 
+    // Check for category query parameter from navigation
+    this.route.queryParams.subscribe(params => {
+      if (params['category']) {
+        this.selectedCategory = params['category'];
+        this.isSearchTriggered = true;
+      }
+    });
+
     this.productDataService.getProducts({ bustCache: true }).subscribe({
       next: (items: Element[]) => {
         this.allProducts = items;
         this.calculateLanguageCounts();
         this.initializeProducts();
+        
+        // Apply category filter if query param exists
+        if (this.selectedCategory !== 'All') {
+          this.updateLanguageCounts(this.getCoursesForCurrentCategory());
+          this.applyFilters();
+        }
+        
         this.isLoading = false;
         this.isInitialLoad = false;
         this.cdr.detectChanges();
+        
+        // Scroll to top after loading
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       },
       error: () => {
         this.isLoading = false;

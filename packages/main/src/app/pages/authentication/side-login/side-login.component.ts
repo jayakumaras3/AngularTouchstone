@@ -175,14 +175,17 @@ export class AppSideLoginComponent implements AfterViewInit {
                 // This ensures only plain text, no HTML/JS execution
                 this.errorMessage = this.sanitizer.sanitize(1, errorText) || 'Login failed';
               } else {
-                this.errorMessage = 'Username or Password don\'t match.';
+               // this.errorMessage = 'Username or Password don\'t match.';
+               
+               this.errorMessage = res?.message || 'Username or Password don\'t match.';
               }
             }
           },
           error: err => {
             this.loginAttempts++;
             this.isSubmitting = false;
-            this.errorMessage = 'Server error. Please try again later.';
+          //  this.errorMessage = 'Server error. Please try again later.';
+              this.errorMessage = err.error?.message || 'Server error. Please try again later.';
           }
         });
     }
