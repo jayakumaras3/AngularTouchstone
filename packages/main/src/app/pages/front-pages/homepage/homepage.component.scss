@@ -179,13 +179,15 @@
 
 .content-scroll {
   padding-top: 70px;
- 
+  padding-bottom: 40px;
   overflow-y: auto;
+  min-height: 100vh;
 }
 
 @media (max-width: 767px) {
   .content-scroll {
     padding-top: 70px;
+    padding-bottom: 60px;
   }
 }
 
