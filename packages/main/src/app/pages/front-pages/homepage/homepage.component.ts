@@ -2,7 +2,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
 import { Component, HostListener, inject, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
-import { ActivatedRoute, Router, RouterLink, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { IconModule } from 'src/app/icon/icon.module';
 import { BrandingComponent } from 'src/app/layouts/full/vertical/sidebar/branding.component';
 import { MaterialModule } from 'src/app/material.module';
@@ -10,8 +10,8 @@ import { HomepageDetailsComponent } from '../homepage-details/homepage-details.c
 
 @Component({
   selector: 'app-homepage',
-  imports: [MaterialModule, BrandingComponent, RouterLink,
-    IconModule, RouterOutlet, CommonModule,HomepageDetailsComponent],
+  imports: [MaterialModule, BrandingComponent, RouterLink, RouterLinkActive,
+    IconModule, RouterOutlet, CommonModule, HomepageDetailsComponent],
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.scss'
 })

@@ -33,11 +33,11 @@
    @if(!isMobileView){
               <div class="d-none d-lg-flex justify-content-between toolBarContent">
                 <button mat-button class="m-x-8 f-s-15 f-w-500 nav-item" [routerLink]="['/about']"
-                  [class.selected]="isActiveRoute('about')">
+                  routerLinkActive="active">
                   About Us
                 </button>
                   <button mat-button class="m-x-8 f-s-15 f-w-500 nav-item" [routerLink]="['/features']"
-                  [class.selected]="isActiveRoute('features')">
+                  routerLinkActive="active">
                   Features
                 </button>
                 <!--  <button mat-button class="m-x-8 f-s-14 f-w-500 nav-item" [class.selected]="isActiveRoute('blog')"
@@ -45,7 +45,7 @@
                     Blogs
                   </button> -->
                 <!-- Course Catalog -->
-                  <button mat-button class="m-x-8 f-s-14 f-w-500 nav-item" [class.selected]="isActiveRoute('catalog')"
+                  <button mat-button class="m-x-8 f-s-14 f-w-500 nav-item" routerLinkActive="active"
                     [routerLink]="['/catalog']">
                       Course Catalog
                   </button>
@@ -76,7 +76,7 @@
                   Pricing
                 </button> -->
 
-              <button mat-button class="m-x-8 f-s-15 f-w-500 nav-item" [class.selected]="isActiveRoute('contact')"
+              <button mat-button class="m-x-8 f-s-15 f-w-500 nav-item" routerLinkActive="active"
                 [routerLink]="['/contact']">
                 Contact
               </button>
@@ -113,18 +113,18 @@
         <div class="">
           <mat-list role="list">
             <mat-list-item role="listitem">
-              <button mat-button class="text-dark" [routerLink]="['/about']"
-                [class.selected]="isActiveRoute('about')">
+              <button mat-button class="text-dark mobile-nav-item" [routerLink]="['/about']"
+                routerLinkActive="active">
                 About Us
               </button></mat-list-item>
             <mat-list-item role="listitem">
-              <button mat-button class="text-dark" [class.selected]="isActiveRoute('features')"
+              <button mat-button class="text-dark mobile-nav-item" routerLinkActive="active"
                 [routerLink]="['/features']">
               Features
               </button></mat-list-item>
             <mat-list-item role="listitem">
-              <button mat-button class="text-dark" [routerLink]="['/catalog']"
-                [class.selected]="isActiveRoute('catalog')">
+              <button mat-button class="text-dark mobile-nav-item" [routerLink]="['/catalog']"
+                routerLinkActive="active">
                 Course Catalog
                <!-- <span class="bg-light-primary text-primary rounded f-w-600 p-6 p-y-4 f-s-12">
                   New
@@ -143,7 +143,7 @@
               </button>
             </mat-list-item>-->
             <mat-list-item role="listitem">
-              <button mat-button class="text-dark " [class.selected]="isActiveRoute('contact')"
+              <button mat-button class="text-dark mobile-nav-item" routerLinkActive="active"
                 [routerLink]="['/contact']">
                 Contact
               </button></mat-list-item>
