@@ -1,7 +1,7 @@
-import { Component, AfterViewInit, ViewChild, ElementRef, NgZone } from '@angular/core';
+import { Component, AfterViewInit, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 //import { CoreService } from 'src/app/services/core.service';
 import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../../../material.module';
 import { AuthService } from '../../../services/login/auth.service';
@@ -15,7 +15,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   imports: [CommonModule, RouterModule, FooterComponent, MaterialModule, FormsModule, ReactiveFormsModule],
   templateUrl: './side-login.component.html'
 })
-export class AppSideLoginComponent implements AfterViewInit {
+export class AppSideLoginComponent implements AfterViewInit, OnInit {
   //  options = this.settings.getOptions();
   //baseUrlpath:string="DOCHEKDOTCOM/app/Views/angular_view/";
   baseUrlpath: string = LoginUrl;
@@ -30,6 +30,7 @@ export class AppSideLoginComponent implements AfterViewInit {
 
   constructor(
     private authservice: AuthService,
+    private route: ActivatedRoute,
     private router: Router,
     private ngZone: NgZone,
     private sanitizer: DomSanitizer  // Add this
@@ -68,6 +69,16 @@ export class AppSideLoginComponent implements AfterViewInit {
     setTimeout(() => {
       this.syncAutofillValues();
     }, 500);
+  }
+
+  ngOnInit(): void {
+    this.route.queryParamMap.subscribe(params => {
+      const message = params.get('message');
+
+      if (message) {
+        this.errorMessage = message;
+      }
+    });
   }
 
   /**

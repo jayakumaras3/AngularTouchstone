@@ -57,14 +57,34 @@ export class SecurityHttpInterceptor implements HttpInterceptor {
         // ✅ Allow quickaccess API errors to pass through to component for proper error handling
         const isQuickAccessRequest = req.url.includes('/api/quickaccess/authenticate');
         
+        // ✅ Check if response has redirect URL in the body
+        if (error.error?.redirect || error.error?.redirect_url) {
+          const redirectUrl = error.error.redirect || error.error.redirect_url;
+          console.warn('🔄 Redirecting to:', redirectUrl);
+          window.location.href = redirectUrl;
+          return throwError(() => error);
+        }
+        
         // ✅ Handle 401 Unauthorized (expired token) — but NOT for quickaccess
         if (error.status === 401 && !isQuickAccessRequest) {
-          this.router.navigate(['/authentication/side-login']);
+          console.warn('🔄 401 Unauthorized - Redirecting to login');
+          this.router.navigate(['/authentication/login'], {
+            queryParams: {
+              reason: 'session-expired',
+              message: error.error?.message || 'Session expired. Please login again.'
+            }
+          });
         }
         
         // ✅ Handle 403 Forbidden
         if (error.status === 403) {
-          this.router.navigate(['authentication/side-login']);
+          console.warn('🔄 403 Forbidden - Redirecting to login');
+          this.router.navigate(['/authentication/login'], {
+            queryParams: {
+              reason: 'access-denied',
+              message: error.error?.message || 'You do not have permission.'
+            }
+          });
         }
 
         return throwError(() => error);
