@@ -59,8 +59,14 @@ export class AppBoxedForgotPasswordComponent {
         next: (res) => {
           console.log('Forgot Password Response:', res);
 
-          // Handle success response (status: true)
-          if (res.status === true || res.success === true) {
+          // API may return boolean success flags or string status values.
+          const isSuccess =
+            res?.status === true ||
+            res?.success === true ||
+            res?.status === 'success' ||
+            res?.status === 'ok';
+
+          if (isSuccess) {
             this.resetLinkSent = true;
             this.successMessage = res.message || 'Reset link has been sent to your email.';
             this.form.reset();

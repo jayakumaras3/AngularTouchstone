@@ -29,6 +29,7 @@ export class AppBoxedResetPasswordComponent implements OnInit {
   submitting: boolean = false;
   tokenValid: boolean = false;
   tokenExpired: boolean = false;
+  linkStatusTitle: string = 'Reset Link Invalid';
   showPassword: boolean = false;
   showConfirmPassword: boolean = false;
   successMessage: string = '';
@@ -79,39 +80,57 @@ export class AppBoxedResetPasswordComponent implements OnInit {
       if (this.token) {
         this.verifyToken();
       } else {
-        this.tokenExpired = true;
-        this.errorMessage = 'No reset token provided. Please request a new password reset link.';
+        this.setTokenError('No reset token provided. Please request a new password reset link.');
       }
     });
+  }
+
+  private setTokenError(message: string): void {
+    const normalized = (message || '').toLowerCase();
+    this.tokenExpired = true;
+    this.tokenValid = false;
+    this.loading = false;
+    this.errorMessage = message;
+    this.linkStatusTitle = normalized.includes('expired') || normalized.includes('session')
+      ? 'Session Expired'
+      : 'Reset Link Invalid';
+  }
+
+  private getVerifyTokenErrorMessage(err: any): string {
+    const rawMessage = err?.error?.message || err?.message || '';
+    const normalized = String(rawMessage).toLowerCase();
+
+    if (normalized.includes('expired')) {
+      return 'Session expired. This reset link is no longer valid. Please request a new reset link.';
+    }
+
+    if (normalized.includes('invalid') || normalized.includes('already used')) {
+      return 'This reset link is invalid or already used. Please request a new reset link.';
+    }
+
+    return 'Unable to verify reset link. Please request a new password reset.';
   }
 
   verifyToken(): void {
     this.loading = true;
     this.errorMessage = '';
     console.log('Verifying token:', this.token);
-    
+
     this.authService.verifyResetToken(this.token).subscribe({
       next: (res) => {
         console.log('Token verification response:', res);
         if (res && (res.status === true || res.status === 'valid' || res.success === true)) {
           this.tokenValid = true;
           this.tokenExpired = false;
+          this.loading = false;
           this.errorMessage = '';
         } else {
-          this.tokenExpired = true;
-          this.tokenValid = false;
-          this.errorMessage = res?.message || 'Reset link has expired or is invalid. Please request a new password reset.';
+          this.setTokenError(res?.message || 'Reset link has expired or is invalid. Please request a new password reset.');
           console.warn('Token validation failed:', this.errorMessage);
         }
       },
       error: (err) => {
-        this.tokenExpired = true;
-        this.tokenValid = false;
-        let errorMsg = 'Unable to verify reset link. Please request a new password reset.';
-        if (err?.error?.message) {
-          errorMsg = err.error.message;
-        }
-        this.errorMessage = errorMsg;
+        this.setTokenError(this.getVerifyTokenErrorMessage(err));
         console.error('Token verification error:', err);
       },
       complete: () => {
