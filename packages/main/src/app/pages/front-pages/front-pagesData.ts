@@ -819,7 +819,7 @@ export const followercardThird: followercards[] = [
 ];
 
 export const topcardsGrid = [
-  { title: 'Stress-free Switch', subtitle: 'Dochek makes migration simple by supporting industry standards (SCORM 1.2) and seamless data transfer from your existing LMS.',
+  { title: 'Stress-free Switch', subtitle: 'DoChek makes migration simple by supporting industry standards (SCORM 1.2) and seamless data transfer from your existing LMS.',
      img: `assets/images/svgs/home/stress-free-switch-icon.svg`, color: 'warning' },
   { title: 'Build Courses within 24 Hours', subtitle: 'Our course builder feature enables you to create modules inside the platform and export them as SCORM packages.',
     img: `assets/images/svgs/home/build-24-hours.svg`, color: 'secondary',imgMain: `assets/images/svgs/home/build-24-hours.svg`, },
