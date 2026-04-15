@@ -5,7 +5,10 @@
 .zindexreduce {
   z-index: 0 !important;
 }
-
+.spacing-top
+{
+  padding-top: 15px !important;
+}
 @media (max-width: 767px) {
     .spacing-left {
         padding: 30px;
