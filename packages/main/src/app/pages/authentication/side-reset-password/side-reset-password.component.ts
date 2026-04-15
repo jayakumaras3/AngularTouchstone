@@ -64,7 +64,7 @@ export class AppSideResetPasswordComponent implements OnInit {
   form = new FormGroup({
     password: new FormControl<string>('', [
       Validators.required,
-      Validators.minLength(8),
+      Validators.minLength(3),
       Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]/)
     ]),
     confirmPassword: new FormControl<string>('', [

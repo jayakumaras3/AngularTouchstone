@@ -1,0 +1,52 @@
+# Disable directory browsing
+Options -Indexes
+
+# Block direct access to .env
+<Files ".env">
+    Require all denied
+</Files>
+
+# Block any hidden files (.git, .env, etc.)
+<FilesMatch "\.(env|ini|log|sh|sql|bak|yml|yaml|git|htaccess)$">
+    Require all denied
+</FilesMatch>
+
+# ------------------------------------------------------------
+# Rewrite Engine
+# ------------------------------------------------------------
+<IfModule mod_rewrite.c>
+    Options +FollowSymlinks
+    RewriteEngine On
+
+    # If DOCHEK is not server root
+    # Uncomment if needed
+    # RewriteBase /DOCHEK
+
+    # Redirect Trailing Slashes
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)/$ /$1 [L,R=301]
+
+    # Remove www prefix
+    RewriteCond %{HTTPS} !=on
+    RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+    RewriteRule ^ http://%1%{REQUEST_URI} [R=301,L]
+
+    # ------------------------------------------------------------
+    # Angular SPA routes
+    # ------------------------------------------------------------
+    RewriteCond %{REQUEST_URI} ^/ang
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ang/(.*)$ /ang/index.html [L]
+
+    # ------------------------------------------------------------
+    # CodeIgniter routes
+    # ------------------------------------------------------------
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php/$1 [L]
+
+    # Preserve Authorization header
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+</IfModule>

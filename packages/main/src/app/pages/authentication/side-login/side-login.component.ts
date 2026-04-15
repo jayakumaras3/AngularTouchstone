@@ -46,7 +46,7 @@ export class AppSideLoginComponent implements AfterViewInit, OnInit {
     ]),
     password: new FormControl('', [
       Validators.required,
-      Validators.minLength(6)  // ✅ Require at least 6 characters
+      Validators.minLength(3)  // ✅ Require at least 3 characters
     ])
   });
 

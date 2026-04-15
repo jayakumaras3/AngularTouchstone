@@ -8,17 +8,17 @@
 
 /**/
 // Alternative Staging
-export const environment = {
+/*export const environment = {
   production: true,
   apiUrl: 'https://staging.dochek.com/DOCHEK/landing',
   forgotUrl: 'https://staging.dochek.com/DOCHEK/landing',
   contactApiUrl: 'https://staging.dochek.com/DOCHEK/landing'
 };
+*/
 
-/*
 export const environment = {
   production: true,
-  apiUrl: 'https://staging.dochek.com/landing',
-  forgotUrl: 'https://staging.dochek.com/landing',
-  contactApiUrl: 'https://staging.dochek.com/landing'
-}*/
+  apiUrl: 'https://dochek.com/landing',
+  forgotUrl: 'https://dochek.com/landing',
+  contactApiUrl: 'https://dochek.com/landing'
+}
