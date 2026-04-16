@@ -15,7 +15,7 @@
   contactApiUrl: 'https://staging.dochek.com/DOCHEK/landing'
 };
 */
-
+/**/
 export const environment = {
   production: true,
   apiUrl: 'https://dochek.com/landing',

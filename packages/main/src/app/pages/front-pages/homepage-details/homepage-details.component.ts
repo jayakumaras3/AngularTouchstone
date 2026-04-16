@@ -72,7 +72,7 @@ export class HomepageDetailsComponent implements OnInit, OnDestroy{
       description:
         'Deliver, manage, and track training in just a few clicks - all in one simple workspace.',
       image: 'assets/images/front-pages/design-collection.png',
-      imageAlt: 'DoChek learning platform overview',
+      imageAlt: 'DOCHEK learning platform overview',
       variant: 'default',
       showDefaultActions: true,
     },
@@ -374,7 +374,7 @@ export class HomepageDetailsComponent implements OnInit, OnDestroy{
       title: 'Switch Without the Stress',
       icon: 'bi bi-cash-coin',
       img: 'assets/images/industryImage/finance.jpg',
-      desc: 'Moving to a new LMS doesn’t have to be messy. DoChek makes migration simple by supporting industry standards (SCORM 1.2) and offering seamless data transfer from your existing LMS. '
+      desc: 'Moving to a new LMS doesn’t have to be messy. DOCHEK makes migration simple by supporting industry standards (SCORM 1.2) and offering seamless data transfer from your existing LMS. '
     },
     {
       title: 'Life Sciences',
@@ -437,7 +437,7 @@ export class HomepageDetailsComponent implements OnInit, OnDestroy{
       img: `assets/images/profile/user-9.jpg`,
          question:'“Everything we need, in one place.”',
       subtext:
-        '“DoCheck has simplified learning management for us. Earlier, we were juggling different platforms for uploading courses, tracking progress, and managing Excel reports. Now, everything happens under one roof, and it saves us a lot of time and effort.”  ',
+        '“DOCHEK has simplified learning management for us. Earlier, we were juggling different platforms for uploading courses, tracking progress, and managing Excel reports. Now, everything happens under one roof, and it saves us a lot of time and effort.”  ',
     },
     {
       id: 2,
@@ -447,7 +447,7 @@ export class HomepageDetailsComponent implements OnInit, OnDestroy{
          question:'“Drives real decision-making, not memorized answers.”',
 
       subtext:
-        '“With DoCheck, we build scenarios that mirror real situations, like a conference or client meeting. Every learner gets the same setup, but their answers differ, which gives us a much clearer view of their decision-making skills.” ',
+        '“With DOCHEK, we build scenarios that mirror real situations, like a conference or client meeting. Every learner gets the same setup, but their answers differ, which gives us a much clearer view of their decision-making skills.” ',
     },
     {
       id: 15,

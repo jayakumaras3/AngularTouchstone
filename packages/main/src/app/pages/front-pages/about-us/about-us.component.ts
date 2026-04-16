@@ -122,7 +122,7 @@ featureList = [
       img: `assets/images/profile/user-9.jpg`,
          question:'“Everything we need, in one place.”',
       subtext:
-        '“DoChek has simplified learning management for us. Earlier, we were juggling different platforms for uploading courses, tracking progress, and managing Excel reports. Now, everything happens under one roof, and it saves us a lot of time and effort.”  ',
+        '“DOCHEK has simplified learning management for us. Earlier, we were juggling different platforms for uploading courses, tracking progress, and managing Excel reports. Now, everything happens under one roof, and it saves us a lot of time and effort.”  ',
     },
     {
       id: 2,
@@ -132,7 +132,7 @@ featureList = [
          question:'“Drives real decision-making, not memorized answers.”',
 
       subtext:
-        '“With DoChek, we build scenarios that mirror real situations, like a conference or client meeting. Every learner gets the same setup, but their answers differ, which gives us a much clearer view of their decision-making skills.” ',
+        '“With DOCHEK, we build scenarios that mirror real situations, like a conference or client meeting. Every learner gets the same setup, but their answers differ, which gives us a much clearer view of their decision-making skills.” ',
     },
     {
       id: 15,
