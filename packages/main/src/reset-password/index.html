@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Password - DOCHEK</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <img class="logo-icon" src="../assets/images/front-pages/logoIcon.svg" alt="DOCHEK logo icon">
+                <span class="logo-text">DOCHEK</span>
+            </div>
+            <ul class="navbar-menu">
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#catalog">Course Catalog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="login-btn">Login</button>
+        </div>
+    </nav>
+
+    <main class="main-container">
+        <div class="left-section">
+            <div class="illustration-frame">
+                <img
+                    class="security-image"
+                    src="../assets/images/backgrounds/login-bg.svg"
+                    alt="Security illustration – lock and key"
+                />
+            </div>
+        </div>
+
+        <div class="right-section">
+            <div class="form-card">
+                <h2 class="form-title">Reset Your Password</h2>
+
+                <form id="resetPasswordForm" novalidate>
+
+                    <!-- New Password -->
+                    <div class="form-group">
+                        <label for="newPassword" class="form-label">New Password</label>
+                        <div class="input-wrapper">
+                            <input
+                                type="password"
+                                id="newPassword"
+                                class="form-input"
+                                placeholder="Enter new password"
+                                autocomplete="new-password"
+                            />
+                            <!-- Eye toggle – hidden / visible SVG swap via JS -->
+                            <button type="button" class="eye-btn" id="toggleNew" aria-label="Show / hide password">
+                                <!-- eye-off icon (default – password hidden) -->
+                                <svg id="eyeOffNew" class="eye-svg" viewBox="0 0 24 24" fill="none"
+                                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/>
+                                    <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/>
+                                    <line x1="1" y1="1" x2="23" y2="23"/>
+                                </svg>
+                                <!-- eye-on icon (shown when password is visible) -->
+                                <svg id="eyeOnNew" class="eye-svg hidden" viewBox="0 0 24 24" fill="none"
+                                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <!-- Per-field hint shown below the New Password input only -->
+                        <p class="helper-text">
+                            <span class="chk">&#10003;</span> Min 8 chars
+                            &nbsp;|&nbsp;
+                            <span class="chk">&#10003;</span> Letters, numbers &amp; special chars
+                        </p>
+                    </div>
+
+                    <!-- Confirm Password -->
+                    <div class="form-group">
+                        <label for="confirmPassword" class="form-label">Confirm Password</label>
+                        <div class="input-wrapper">
+                            <input
+                                type="password"
+                                id="confirmPassword"
+                                class="form-input"
+                                placeholder="Re-enter password"
+                                autocomplete="new-password"
+                            />
+                            <button type="button" class="eye-btn" id="toggleConfirm" aria-label="Show / hide confirm password">
+                                <svg id="eyeOffConfirm" class="eye-svg" viewBox="0 0 24 24" fill="none"
+                                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/>
+                                    <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/>
+                                    <line x1="1" y1="1" x2="23" y2="23"/>
+                                </svg>
+                                <svg id="eyeOnConfirm" class="eye-svg hidden" viewBox="0 0 24 24" fill="none"
+                                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="btn-group">
+                        <button type="submit" class="btn btn-primary" id="resetBtn" disabled>
+                            Reset Password
+                        </button>
+                        <button type="button" class="btn btn-outline" id="backBtn">
+                            Back to Login
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
