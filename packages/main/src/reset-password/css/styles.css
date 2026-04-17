@@ -379,7 +379,7 @@ form {
     }
 
     .logo-img {
-        content: url('../../assets/images/logos/light-logo.svg');
+        content: url('../assets/images/logos/light-logo.svg');
     }
 
     .header {
