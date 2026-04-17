@@ -52,88 +52,113 @@ html, body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* ── 2. Navbar ────────────────────────────────────────────── */
-.navbar {
-    height: var(--nav-h);
-    background: var(--nav-bg);
+/* ── 2. Header ────────────────────────────────────────────── */
+.header {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    height: var(--nav-h);
+    padding: 0 40px;
+    background: var(--nav-bg);
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: 0 1px 3px rgba(0,0,0,.08);
+    margin-bottom: 0;
+    box-shadow: 0 2px 6px rgba(0,0,0,.05);
+    transition: background-color .2s ease, box-shadow .2s ease;
 }
 
-.navbar-container {
+.header.is-scrolled {
+    background: #ffffff;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+}
+
+/* Left – logo */
+.header-left {
+    flex: 1;
     display: flex;
     align-items: center;
-    width: 100%;
-    padding: 0 36px;
-    gap: 28px;
 }
 
-/* Logo */
-.navbar-logo {
-    display: flex;
+.header-logo {
+    display: inline-flex;
     align-items: center;
-    gap: 8px;
-    flex-shrink: 0;
+    text-decoration: none;
 }
 
-.logo-icon {
-    width: 32px;
-    height: 32px;
+.logo-img {
+    height: 30px;
+    width: auto;
+    display: block;
     object-fit: contain;
 }
 
-.logo-text {
-    font-size: 20px;          /* ← correct: was 46px */
-    font-weight: 700;
-    color: #111827;
-    letter-spacing: .4px;
-}
-
-/* Menu */
-.navbar-menu {
+/* Center – nav links, always perfectly centered */
+.header-center {
+    flex: 1;
     display: flex;
-    list-style: none;
-    gap: 28px;
-    margin-left: auto;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
 }
 
-.navbar-menu a {
-    font-size: 15px;          /* ← correct: was 38px */
+.header-center a {
+    font-size: 15px;
     font-weight: 500;
-    color: #2a3f63;
+    color: #2c3e50;
     text-decoration: none;
     white-space: nowrap;
-    transition: color .2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    padding: 0 18px;
+    border-radius: 10px;
+    transition: color .2s, background-color .15s;
 }
 
-.navbar-menu a:hover { color: var(--primary); }
+.header-center a:hover,
+.header-center a:focus-visible {
+    color: #2f3d55;
+    background: #d6deef;
+    outline: none;
+}
 
-/* Login button */
+/* Right – login button */
+.header-right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
 .login-btn {
-    height: 36px;
-    padding: 0 20px;
+    height: 38px;
+    padding: 0 22px;
     border-radius: 8px;
     border: none;
-    background: var(--primary);
+    background: rgb(93, 135, 255);
     color: #fff;
     font-family: inherit;
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
-    flex-shrink: 0;
-    transition: background .2s;
+    letter-spacing: .2px;
+    box-shadow: 0 2px 8px rgba(91,132,245,.35);
+    transition: opacity .2s, box-shadow .2s;
 }
 
-.login-btn:hover { background: var(--primary-dark); }
+.login-btn:hover {
+    opacity: 1;
+    background: linear-gradient(135deg, #517bf0 0%, #416be3 100%);
+    box-shadow: 0 4px 12px rgba(91,132,245,.45);
+}
 
 /* ── 3. Two-column layout ─────────────────────────────────── */
 .main-container {
     display: flex;
-    min-height: calc(100vh - var(--nav-h));
+    margin-top: 32px;
+    min-height: calc(100vh - var(--nav-h) - 32px);
 }
 
 /* Left – illustration */
@@ -146,7 +171,7 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: calc(100vh - var(--nav-h));
+    min-height: calc(100vh - var(--nav-h) - 32px);
     padding: 40px 32px;
 }
 
@@ -311,11 +336,19 @@ form {
 
 /* ── 7. Responsive ────────────────────────────────────────── */
 @media (max-width: 900px) {
-    .navbar-menu { display: none; }
+    .header-center { display: none; }
+    /* Collapse: logo left, login right with no center gap */
+    .header-left,
+    .header-right { flex: 0 0 auto; }
+    .header { justify-content: space-between; }
 }
 
 @media (max-width: 768px) {
-    .main-container { flex-direction: column; }
+    .main-container {
+        flex-direction: column;
+        margin-top: 24px;
+        min-height: calc(100vh - var(--nav-h) - 24px);
+    }
 
     .left-section {
         flex: none;

@@ -10,6 +10,7 @@
 (function () {
     'use strict';
 
+    var header         = document.querySelector('.header');
     var form           = document.getElementById('resetPasswordForm');
     var newInput       = document.getElementById('newPassword');
     var confInput      = document.getElementById('confirmPassword');
@@ -44,9 +45,18 @@
         onIcon.classList.toggle('hidden', !isHidden);
     }
 
+    function updateHeaderState() {
+        if (!header) {
+            return;
+        }
+
+        header.classList.toggle('is-scrolled', window.scrollY > 8);
+    }
+
     // ── Event listeners ──────────────────────────────────────
     newInput.addEventListener('input', validate);
     confInput.addEventListener('input', validate);
+    window.addEventListener('scroll', updateHeaderState, { passive: true });
 
     btnToggleNew.addEventListener('click', function () {
         toggle(newInput, eyeOffNew, eyeOnNew);
@@ -68,48 +78,6 @@
         }
     });
 
+    updateHeaderState();
+
 }());
-
-/**
- * Enable the reset button only when:
- * 1) both fields have content
- * 2) both values match exactly
- */
-function updateResetButtonState() {
-    const newPassword = newPasswordInput.value;
-    const confirmPassword = confirmPasswordInput.value;
-    const isValid =
-        newPassword.trim().length > 0 &&
-        confirmPassword.trim().length > 0 &&
-        newPassword === confirmPassword;
-
-    resetBtn.disabled = !isValid;
-}
-
-/**
- * Toggle a password field between hidden and plain text.
- */
-function toggleVisibility(input) {
-    input.type = input.type === 'password' ? 'text' : 'password';
-}
-
-// Input listeners keep button state in sync while typing
-newPasswordInput.addEventListener('input', updateResetButtonState);
-confirmPasswordInput.addEventListener('input', updateResetButtonState);
-
-// Eye icon click handlers
-toggleNewPasswordBtn.addEventListener('click', function () {
-    toggleVisibility(newPasswordInput);
-});
-
-toggleConfirmPasswordBtn.addEventListener('click', function () {
-    toggleVisibility(confirmPasswordInput);
-});
-
-// Keep this as a normal HTML demo page: prevent actual submit
-resetForm.addEventListener('submit', function (event) {
-    event.preventDefault();
-});
-
-// Initial state
-updateResetButtonState();
