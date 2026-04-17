@@ -583,17 +583,17 @@ export const paymentLogos = [
 
 export const faqList = [
   {
-    question: 'What makes DoChek different from other LMS platforms?',
+    question: 'What makes DOCHEK different from other LMS platforms?',
     answer:
-      'Unlike complex learning platforms, that overwhelm users, DoChek focuses on simplicity. Learners just attend courses, while admins can manage, assign, and track training in a few clicks. It’s built to be powerful but uncluttered.',
+      'Unlike complex learning platforms, that overwhelm users, DOCHEK focuses on simplicity. Learners just attend courses, while admins can manage, assign, and track training in a few clicks. It’s built to be powerful but uncluttered.',
   },
   {
-    question: 'Can DoChek handle large numbers of users? ',
+    question: 'Can DOCHEK handle large numbers of users? ',
     answer:
-      'Yes. DoChek is designed to scale. It manages multiple clients and partners from a single platform, and ensures smooth performance without slowdowns. ',
+      'Yes. DOCHEK is designed to scale. It manages multiple clients and partners from a single platform, and ensures smooth performance without slowdowns. ',
   },
   {
-    question: 'Can we build my own courses in DoChek?  ',
+    question: 'Can we build my own courses in DOCHEK?  ',
     answer:
       'Yes. With the course builder, you can create and customize training modules, add assessments (MCQs, SCQs, simulations), and even export them as SCORM packages to use in other LMS platforms. ',
   },
@@ -601,17 +601,17 @@ export const faqList = [
     question:
       'What kind of pre-built courses are available? ',
     answer:
-      'Through the DoChek Marketplace, you get access to 500+ ready-to-use courses covering compliance, communication, leadership, workplace safety, and more. You can deploy them immediately or customize them to fit your needs. ',
+      'Through the DOCHEK Marketplace, you get access to 500+ ready-to-use courses covering compliance, communication, leadership, workplace safety, and more. You can deploy them immediately or customize them to fit your needs. ',
   },
   {
     question:
       'Can we migrate from our existing learning platform without losing data? ',
     answer:
-      'Yes. DoChek supports industry standards like SCORM 1.2 and makes migration seamless. Your courses, learner data, and progress can be transferred smoothly, allowing your teams to pick up right where they left off. ',
+      'Yes. DOCHEK supports industry standards like SCORM 1.2 and makes migration seamless. Your courses, learner data, and progress can be transferred smoothly, allowing your teams to pick up right where they left off. ',
   },
   {
     question:
-      'How does DoChek keep learners engaged? ',
+      'How does DOCHEK keep learners engaged? ',
     answer:
       'DoCheck offers gamification, discussion forums, and scenario-based simulations to make learning interactive. This leads to higher participation, better completion rates, and stronger knowledge retention.',
   },
@@ -619,13 +619,13 @@ export const faqList = [
     question:
       'Can I track more than just course completions in the DoCheck learning platform?',
     answer:
-      'Yes. DoChek’s analytics go beyond “completed/not completed.” In our eLearning platform, you can view time spent per module, learner behavior patterns, drop-off points, and assessment performance. This can help you improve your training strategy. ',
+      'Yes. DOCHEK’s analytics go beyond “completed/not completed.” In our eLearning platform, you can view time spent per module, learner behavior patterns, drop-off points, and assessment performance. This can help you improve your training strategy. ',
   },
   {
     question:
-      'Does DoChek work on mobile devices? ',
+      'Does DOCHEK work on mobile devices? ',
     answer:
-      'Yes. DoChek is fully responsive and mobile-first, so learners can access training anytime, anywhere, whether they’re in the office, at home, or on the go. ',
+      'Yes. DOCHEK is fully responsive and mobile-first, so learners can access training anytime, anywhere, whether they’re in the office, at home, or on the go. ',
   },
 ];
 
@@ -819,7 +819,7 @@ export const followercardThird: followercards[] = [
 ];
 
 export const topcardsGrid = [
-  { title: 'Stress-free Switch', subtitle: 'DoChek makes migration simple by supporting industry standards (SCORM 1.2) and seamless data transfer from your existing LMS.',
+  { title: 'Stress-free Switch', subtitle: 'DOCHEK makes migration simple by supporting industry standards (SCORM 1.2) and seamless data transfer from your existing LMS.',
      img: `assets/images/svgs/home/stress-free-switch-icon.svg`, color: 'warning' },
   { title: 'Build Courses within 24 Hours', subtitle: 'Our course builder feature enables you to create modules inside the platform and export them as SCORM packages.',
     img: `assets/images/svgs/home/build-24-hours.svg`, color: 'secondary',imgMain: `assets/images/svgs/home/build-24-hours.svg`, },
