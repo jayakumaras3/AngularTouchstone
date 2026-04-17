@@ -1,9 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="theme-dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
     <title>Reset Password - DOCHEK</title>
+    <script>
+        (function () {
+            var root = document.documentElement;
+            function getQueryParam(name) {
+                var query = window.location.search || '';
+                if (!query || query.length < 2) {
+                    return null;
+                }
+
+                var parts = query.substring(1).split('&');
+                for (var i = 0; i < parts.length; i++) {
+                    var pair = parts[i].split('=');
+                    if (decodeURIComponent(pair[0] || '') === name) {
+                        return decodeURIComponent((pair[1] || '').replace(/\+/g, ' '));
+                    }
+                }
+                return null;
+            }
+
+            var forced = getQueryParam('theme');
+            var mediaQuery = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+            var prefersDark = mediaQuery ? mediaQuery.matches : false;
+
+            function safeGet(keys) {
+                try {
+                    for (var i = 0; i < keys.length; i++) {
+                        var v = localStorage.getItem(keys[i]);
+                        if (v !== null && v !== '') {
+                            return v;
+                        }
+                    }
+                } catch (e) {
+                    // Some file:// or strict privacy modes can block localStorage.
+                }
+                return '';
+            }
+
+            var savedRaw = safeGet(['theme', 'color-theme', 'app-theme', 'isDarkMode']);
+            var saved = String(savedRaw).toLowerCase();
+
+            var forcedDark = forced === 'dark';
+            var forcedLight = forced === 'light';
+            var savedDark = saved === 'dark' || saved === 'true' || saved === '1' || saved === 'on' || saved === 'enabled';
+            var savedLight = saved === 'light' || saved === 'false' || saved === '0' || saved === 'off' || saved === 'disabled';
+
+            // Default to dark for this standalone page unless user explicitly selects light.
+            var shouldUseDark = forcedDark || savedDark || (!forcedLight && !savedLight) || prefersDark;
+
+            if (shouldUseDark) {
+                root.classList.add('theme-dark');
+            } else {
+                root.classList.remove('theme-dark');
+            }
+
+            if (mediaQuery && !forcedDark && !forcedLight && !savedDark && !savedLight) {
+                var onChange = function (e) {
+                    if (e.matches) {
+                        root.classList.add('theme-dark');
+                    } else {
+                        root.classList.remove('theme-dark');
+                    }
+                };
+
+                if (typeof mediaQuery.addEventListener === 'function') {
+                    mediaQuery.addEventListener('change', onChange);
+                } else if (typeof mediaQuery.addListener === 'function') {
+                    mediaQuery.addListener(onChange);
+                }
+            }
+        }());
+    </script>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>

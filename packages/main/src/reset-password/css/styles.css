@@ -41,7 +41,12 @@
 }
 
 /* ── 1. Base ──────────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
 
 html, body {
     height: 100%;
@@ -365,4 +370,84 @@ form {
     .right-section { padding: 36px 20px 48px; }
 
     .form-title { font-size: 22px; }
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background: #0b1220;
+        color: #e5e7eb;
+    }
+
+    .logo-img {
+        content: url('../../assets/images/logos/light-logo.svg');
+    }
+
+    .header {
+        background: #0f213a;
+    }
+
+    .header.is-scrolled {
+        background: #0f213a;
+    }
+
+    .main-container,
+    .left-section,
+    .right-section {
+        background: #0b1220;
+    }
+
+    .form-card {
+        background: #111827;
+    }
+
+    .form-title,
+    .form-label,
+    .header-center a,
+    .eye-btn,
+    .btn-outline {
+        color: #e5e7eb;
+    }
+
+    .form-input,
+    input {
+        background: #1f2937;
+        border-color: #374151;
+        color: #e5e7eb;
+    }
+
+    .form-input:focus,
+    input:focus {
+        background: #1f2937;
+        border-color: #374151;
+        box-shadow: none;
+    }
+
+    .form-input::placeholder,
+    input::placeholder,
+    .helper-text,
+    .chk,
+    .btn-primary:disabled,
+    #resetBtn:disabled {
+        color: #9ca3af;
+    }
+
+    .btn-primary:disabled,
+    #resetBtn:disabled {
+        background: #374151;
+        border-color: #374151;
+    }
+
+    .header-center a:hover,
+    .header-center a:focus-visible {
+        background: #1f2937;
+        color: #e5e7eb;
+    }
+
+    .btn-outline {
+        border-color: #374151;
+    }
+
+    .btn-outline:hover {
+        background: #1f2937;
+    }
 }
