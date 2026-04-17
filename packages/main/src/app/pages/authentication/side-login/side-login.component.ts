@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
+import { Component, AfterViewInit, OnInit, OnDestroy, ViewChild, ElementRef, NgZone } from '@angular/core';
 //import { CoreService } from 'src/app/services/core.service';
 import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
@@ -15,14 +15,16 @@ import { DomSanitizer } from '@angular/platform-browser';
   imports: [CommonModule, RouterModule, FooterComponent, MaterialModule, FormsModule, ReactiveFormsModule],
   templateUrl: './side-login.component.html'
 })
-export class AppSideLoginComponent implements AfterViewInit, OnInit {
+export class AppSideLoginComponent implements AfterViewInit, OnInit, OnDestroy {
   //  options = this.settings.getOptions();
   //baseUrlpath:string="DOCHEKDOTCOM/app/Views/angular_view/";
   baseUrlpath: string = LoginUrl;
 
   // Error message handling
   errorMessage: string = '';
+  successMessage: string = '';
   showPassword: boolean = false;
+  private successTimer: ReturnType<typeof setTimeout> | null = null;
 
   // Template references for autofill workaround (Edge IE mode compatibility)
   @ViewChild('usernameInput') usernameInput!: ElementRef<HTMLInputElement>;
@@ -74,11 +76,25 @@ export class AppSideLoginComponent implements AfterViewInit, OnInit {
   ngOnInit(): void {
     this.route.queryParamMap.subscribe(params => {
       const message = params.get('message');
-
       if (message) {
         this.errorMessage = message;
       }
+
+      const success = params.get('success');
+      if (success) {
+        this.successMessage = success;
+        // Auto-dismiss after 5 seconds
+        this.successTimer = setTimeout(() => {
+          this.successMessage = '';
+        }, 5000);
+      }
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.successTimer !== null) {
+      clearTimeout(this.successTimer);
+    }
   }
 
   /**
