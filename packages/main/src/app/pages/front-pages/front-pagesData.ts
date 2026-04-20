@@ -613,11 +613,11 @@ export const faqList = [
     question:
       'How does DOCHEK keep learners engaged? ',
     answer:
-      'DoCheck offers gamification, discussion forums, and scenario-based simulations to make learning interactive. This leads to higher participation, better completion rates, and stronger knowledge retention.',
+      'DOCHEK offers gamification, discussion forums, and scenario-based simulations to make learning interactive. This leads to higher participation, better completion rates, and stronger knowledge retention.',
   },
   {
     question:
-      'Can I track more than just course completions in the DoCheck learning platform?',
+      'Can I track more than just course completions in the DOCHEK learning platform?',
     answer:
       'Yes. DOCHEK’s analytics go beyond “completed/not completed.” In our eLearning platform, you can view time spent per module, learner behavior patterns, drop-off points, and assessment performance. This can help you improve your training strategy. ',
   },
