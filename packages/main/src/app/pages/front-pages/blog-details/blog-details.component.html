@@ -1,20 +1,352 @@
+<!-- ============================================================ -->
+<!-- DOCHEK Blog Details (id === 100)                            -->
+<!-- ============================================================ -->
+@if(blogDetail()?.id === 100) {
+
+<article class="dochek-blog">
+
+  <!-- ═══════════════════════════════════════════ HERO ══ -->
+  <div class="db-hero position-relative">
+    <img [src]="blogDetail()?.imgSrc" class="db-hero__img" alt="DOCHEK – Smart Learning Platform" />
+    <div class="db-hero__tint"></div>
+    <div class="db-hero__overlay db-container">
+      <div class="db-hero__content-card">
+        <div class="db-hero__badge">Learning &amp; Development</div>
+        <h1 class="db-hero__title">DOCHEK's Approach to Learning in the Flow of Work</h1>
+        <p class="db-hero__subtitle">Why Modern Work Needs Integrated Learning, Not More Training</p>
+        <div class="db-hero__meta">
+          <span><i-tabler name="calendar" class="icon-16"></i-tabler>April 22, 2026</span>
+          <span><i-tabler name="clock" class="icon-16"></i-tabler>5 min read</span>
+          <span><i-tabler name="eye" class="icon-16"></i-tabler>4,200 views</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════ BREADCRUMB ══ -->
+  <div class="db-breadcrumb-bar">
+    <div class="db-container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item">
+            <a [routerLink]="['/homepage']" class="text-primary text-decoration-none">Home</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a [routerLink]="['/blog']" class="text-primary text-decoration-none">Blogs</a>
+          </li>
+          <li class="breadcrumb-item active text-muted" aria-current="page">Smart Learning with DOCHEK</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ MAIN CONTENT LAYOUT ══ -->
+  <div class="db-container db-layout">
+
+    <!-- LEFT: Article body -->
+    <main class="db-article">
+
+      <!-- ── Opening tagline ── -->
+      <p class="db-lead">
+        Modern work moves fast. Training needs to keep up.
+      </p>
+
+      <!-- ── Section 1 ── -->
+      <section class="db-section" id="section-why">
+        <h2 class="db-section__title">
+          <span class="db-section__accent"></span>
+          Why Modern Work Needs Integrated Learning
+        </h2>
+
+        <p class="db-para">
+          Across industries, teams are asked to perform, adapt, and upskill at the same time. Yet most employees
+          are still stuck in outdated learning models — pausing work to attend long sessions, switching between
+          multiple tools, and digging through clunky systems just to find a course.
+        </p>
+
+        <p class="db-para">
+          That fragmented experience has real consequences. When learning is hard to access, motivation drops.
+          When administrative work piles up, managers lose clarity.
+        </p>
+
+        <!-- Highlight callout -->
+        <div class="db-callout db-callout--highlight">
+          <div class="db-callout__icon">
+            <i-tabler name="trending-up" class="icon-28"></i-tabler>
+          </div>
+          <div>
+            <p class="db-callout__text">
+              Research shows <strong>employee engagement can rise by 40%</strong> when teams get a simpler,
+              more unified learning experience. This isn't a future prediction — organizations are actively
+              experiencing this shift today.
+            </p>
+          </div>
+        </div>
+
+        <p class="db-para">
+          The solution isn't "more training." It's <em>better-integrated</em> training. Learning shouldn't sit
+          outside work. It should blend into everyday workflows so seamlessly that employees learn while they
+          work, not after.
+        </p>
+      </section>
+
+      <!-- ── Section 2 – Imagine a workday ── -->
+      <section class="db-section" id="section-imagine">
+        <h2 class="db-section__title">
+          <span class="db-section__accent"></span>
+          Imagine a Workday Where…
+        </h2>
+
+        <!-- Image -->
+        <figure class="db-figure">
+          <img src="/assets/images/blog/shutterstock_285248537.jpg"
+               class="db-figure__img" alt="Team collaborating around a laptop" />
+        </figure>
+
+        <!-- Feature cards grid -->
+        <div class="db-cards-grid">
+          <div class="db-feature-card">
+            <div class="db-feature-card__icon">
+              <i-tabler name="bolt" class="icon-22"></i-tabler>
+            </div>
+            <p class="db-feature-card__text">A field technician receives a micro-module the moment a new process updates.</p>
+          </div>
+          <div class="db-feature-card">
+            <div class="db-feature-card__icon">
+              <i-tabler name="headset" class="icon-22"></i-tabler>
+            </div>
+            <p class="db-feature-card__text">A customer support agent levels up through bite-sized simulations between calls.</p>
+          </div>
+          <div class="db-feature-card">
+            <div class="db-feature-card__icon">
+              <i-tabler name="message-circle" class="icon-22"></i-tabler>
+            </div>
+            <p class="db-feature-card__text">Every task a marketing associate uploads comes with immediate, in-platform feedback to help them improve faster.</p>
+          </div>
+          <div class="db-feature-card">
+            <div class="db-feature-card__icon">
+              <i-tabler name="chart-bar" class="icon-22"></i-tabler>
+            </div>
+            <p class="db-feature-card__text">A manager tracks learning progress without exporting three different Excel reports.</p>
+          </div>
+        </div>
+
+        <!-- Pull quote -->
+        <blockquote class="db-blockquote">
+          This is the direction modern L&amp;D is heading toward: <strong>learning as a natural extension of
+          action,</strong> not a separate event.
+        </blockquote>
+
+        <p class="db-para">
+          Platforms like <strong>DOCHEK by Touchstone</strong> show how this can look in practice: lightweight,
+          clutter-free workflows that allow uploading, tracking, reviewing, and engaging learners in one smooth
+          space, without system lag or tool fatigue.
+        </p>
+      </section>
+
+      <!-- ── Section 3 – Stats ── -->
+      <section class="db-section" id="section-impact">
+        <h2 class="db-section__title">
+          <span class="db-section__accent"></span>
+          The Numbers That Back It Up
+        </h2>
+
+        <p class="db-para">
+          Organizations that rethink on-the-job learning start seeing training not as a cost center, but as an
+          accelerator. The numbers support it:
+        </p>
+
+        <!-- Stats row -->
+        <div class="db-stats">
+          <div class="db-stat">
+            <div class="db-stat__number">25<span class="db-stat__pct">%</span></div>
+            <div class="db-stat__arrow"><i-tabler name="trending-down" class="icon-18"></i-tabler></div>
+            <p class="db-stat__label">Decrease in employee turnover when learning becomes continuous rather than interrupted.</p>
+          </div>
+          <div class="db-stat db-stat--mid">
+            <div class="db-stat__number">40<span class="db-stat__pct">%</span></div>
+            <div class="db-stat__arrow"><i-tabler name="coin" class="icon-18"></i-tabler></div>
+            <p class="db-stat__label">Savings in HR spend when multiple tools merge into one coherent workflow.</p>
+          </div>
+          <div class="db-stat">
+            <div class="db-stat__number">100<span class="db-stat__pct">%</span></div>
+            <div class="db-stat__arrow"><i-tabler name="brain" class="icon-18"></i-tabler></div>
+            <p class="db-stat__label">Improvement in talent intelligence when training data flows through the same system as performance insights.</p>
+          </div>
+        </div>
+
+        <!-- Platform screenshot -->
+        <figure class="db-figure db-figure--screenshot m-t-32">
+          <img src="/assets/images/blog/dochek.jpg"
+               class="db-figure__img" alt="DOCHEK Platform screenshot" />
+          <figcaption class="db-figure__caption">DOCHEK — One unified platform for all your learning needs</figcaption>
+        </figure>
+
+        <p class="db-para">
+          When people learn in the flow of work, they stay curious, confident, and better equipped to solve real
+          problems. Gamified tasks keep them engaged, discussion forums keep them connected, and scenario-based
+          simulations sharpen decision-making without halting productivity.
+        </p>
+
+        <p class="db-para">
+          And for the L&amp;D team, this means no more juggling between platforms, reports, and manual checks.
+          Tools like DOCHEK demonstrate how much simpler learning delivery can become when the ecosystem itself
+          stays lightweight.
+        </p>
+      </section>
+
+      <!-- ── Section 4 – Better Workflows ── -->
+      <section class="db-section" id="section-workflows">
+        <h2 class="db-section__title">
+          <span class="db-section__accent"></span>
+          Better Workflows, Better Learning
+        </h2>
+
+        <!-- Image -->
+        <figure class="db-figure">
+          <img src="/assets/images/blog/shutterstock_2223351451.jpg"
+               class="db-figure__img" alt="Professional learner engaged at laptop" />
+        </figure>
+
+        <p class="db-para">
+          Every organization wants smarter, faster learners, but the real change begins by redesigning the
+          environment they learn in. Start by asking:
+        </p>
+
+        <!-- Checklist -->
+        <ul class="db-checklist">
+          <li class="db-checklist__item">
+            <span class="db-checklist__icon"><i-tabler name="circle-check" class="icon-20"></i-tabler></span>
+            Where does learning currently interrupt work?
+          </li>
+          <li class="db-checklist__item">
+            <span class="db-checklist__icon"><i-tabler name="circle-check" class="icon-20"></i-tabler></span>
+            Which tasks can turn into teachable moments?
+          </li>
+          <li class="db-checklist__item">
+            <span class="db-checklist__icon"><i-tabler name="circle-check" class="icon-20"></i-tabler></span>
+            Which redundant workflows can be merged into one cleaner platform?
+          </li>
+          <li class="db-checklist__item">
+            <span class="db-checklist__icon"><i-tabler name="circle-check" class="icon-20"></i-tabler></span>
+            How can learners engage without jumping through tools?
+          </li>
+        </ul>
+
+        <p class="db-para">
+          The future of training is not more content. It's <strong>better workflows.</strong>
+        </p>
+
+        <p class="db-para">
+          <strong>Workflows</strong> that teach while work happens, support curiosity at the moment of need,
+          and turn every task into an opportunity to grow.
+        </p>
+      </section>
+
+      <!-- ── Section 5 – CTA ── -->
+      <section class="db-section db-section--last" id="section-cta">
+        <div class="db-cta-banner">
+          <div class="db-cta-banner__glow"></div>
+          <div class="db-cta-banner__body">
+            <h3 class="db-cta-banner__heading">Ready to Transform Your L&amp;D?</h3>
+            <p class="db-cta-banner__text">
+              If your teams are feeling the weight of scattered systems or disengaged learning, exploring
+              clutter-free platforms like <strong>Touchstone's DOCHEK</strong> might be the spark that sets a
+              new learning culture in motion.
+            </p>
+            <p class="db-cta-banner__closing">
+              The workplace won't slow down. <strong>Learning shouldn't either.</strong>
+            </p>
+            <div class="db-cta-banner__actions">
+              <a mat-flat-button color="primary" [routerLink]="['/contact']">
+                Book a Demo
+              </a>
+              <a mat-flat-button color="primary" [routerLink]="['/blog']">
+                ← Back to Blogs
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- RIGHT: Sticky sidebar -->
+    <aside class="db-sidebar">
+
+      <!-- Table of contents -->
+      <div class="db-toc">
+        <h4 class="db-toc__title">In this Article</h4>
+        <ul class="db-toc__list">
+          <li><a href="#section-why" class="db-toc__link" (click)="scrollToSection($event, 'section-why')">Why Integrated Learning?</a></li>
+          <li><a href="#section-imagine" class="db-toc__link" (click)="scrollToSection($event, 'section-imagine')">Imagine a Workday</a></li>
+          <li><a href="#section-impact" class="db-toc__link" (click)="scrollToSection($event, 'section-impact')">The Numbers</a></li>
+          <li><a href="#section-workflows" class="db-toc__link" (click)="scrollToSection($event, 'section-workflows')">Better Workflows</a></li>
+          <li><a href="#section-cta" class="db-toc__link" (click)="scrollToSection($event, 'section-cta')">Ready to Transform?</a></li>
+        </ul>
+      </div>
+
+      <!-- Author card -->
+      <div class="db-author-card">
+        <div class="db-author-card__avatar">
+          <i-tabler name="building" class="icon-28"></i-tabler>
+        </div>
+        <div>
+          <div class="db-author-card__name">Touchstone</div>
+          <div class="db-author-card__role">L&amp;D Platform Team</div>
+        </div>
+      </div>
+
+      <!-- Tags -->
+      <div class="db-tags">
+        <span class="db-tag">Learning &amp; Development</span>
+        <span class="db-tag">Workflow</span>
+        <span class="db-tag">DOCHEK</span>
+        <span class="db-tag">Employee Engagement</span>
+        <span class="db-tag">L&amp;D Strategy</span>
+        <span class="db-tag">Training</span>
+      </div>
+
+      <!-- Share -->
+      <div class="db-share">
+        <p class="db-share__label">Share this article</p>
+        <div class="db-share__icons">
+          <a href="javascript:void(0)" class="db-share__btn" aria-label="Share on LinkedIn">
+            <i-tabler name="brand-linkedin" class="icon-20"></i-tabler>
+          </a>
+          <a href="javascript:void(0)" class="db-share__btn" aria-label="Share on Twitter">
+            <i-tabler name="brand-twitter" class="icon-20"></i-tabler>
+          </a>
+          <a href="javascript:void(0)" class="db-share__btn" aria-label="Share on Facebook">
+            <i-tabler name="brand-facebook" class="icon-20"></i-tabler>
+          </a>
+        </div>
+      </div>
+
+    </aside>
+
+  </div><!-- /db-layout -->
+
+</article><!-- /dochek-blog -->
+
+}
+
+<!-- ============================================================ -->
+<!-- Standard Blog Details (all other blogs)                     -->
+<!-- ============================================================ -->
+@if(blogDetail() && blogDetail()?.id !== 100) {
+
 <div class="banner-section bg-light-primary spacing-top-bottom">
   <div class="container">
-    <p class="text-primary text-center text-uppercase f-s-14 m-t-0">
-      Blog Page
-    </p>
-    <h1 class="text-center f-s-48 section-sub-title lh-normal">Latest blog & news</h1>
+    <p class="text-primary text-center text-uppercase f-s-14 m-t-0">Blog Page</p>
+    <h1 class="text-center f-s-48 section-sub-title lh-normal">Latest blog &amp; news</h1>
   </div>
 </div>
 
 <div class="blog-details-content spacing-top-bottom">
   <div class="container">
-    <!-- ----------------------------------------------------------------- -->
-    <!-- If Blog is available -->
-    <!-- ----------------------------------------------------------------- -->
-    @if(blogDetail()) {
     <mat-card class="cardWithShadow">
-      <img mat-card-image src="{{ blogDetail()?.imgSrc }}" alt="Photo of a Shiba Inu" height="440" />
+      <img mat-card-image src="{{ blogDetail()?.imgSrc }}" alt="Blog post" height="440" />
       <div class="detail-card-overlay h-100 d-flex align-items-end justify-content-end">
         <span class="f-s-12 m-y-16 f-w-600 bg-white rounded-pill p-x-8 m-r-16">2 mins Read</span>
       </div>
@@ -26,54 +358,25 @@
           <span class="f-s-12 m-y-16 f-w-600 rounded-pill p-x-8 p-y-4 d-inline-block text-dark bg-light">{{
             blogDetail()?.category }}</span>
         </div>
-
-        <mat-card-title class="f-s-36 lh-normal section-sub-title">{{
-          blogDetail()?.title }}
-        </mat-card-title>
-        <div class="d-flex align-items-center justify-content-center m-t-24 justify-content-between">
+        <mat-card-title class="f-s-36 lh-normal section-sub-title">{{ blogDetail()?.title }}</mat-card-title>
+        <div class="d-flex align-items-center m-t-24 justify-content-between">
           <div class="d-flex align-items-center gap-24">
-            <span class="f-s-14 d-flex align-items-center gap-8"><i-tabler name="eye" class="icon-18"></i-tabler>{{
-              blogDetail()?.views }}</span>
-            <span class="f-s-14 d-flex align-items-center gap-8"><i-tabler name="message-2"
-                class="icon-18"></i-tabler>4</span>
+            <span class="f-s-14 d-flex align-items-center gap-8"><i-tabler name="eye" class="icon-18"></i-tabler>{{ blogDetail()?.views }}</span>
+            <span class="f-s-14 d-flex align-items-center gap-8"><i-tabler name="message-2" class="icon-18"></i-tabler>4</span>
           </div>
           <span class="f-s-14 d-flex align-items-center">
-            <i-tabler name="point" class="icon-18"></i-tabler>
-            {{ blogDetail()?.date }}
+            <i-tabler name="point" class="icon-18"></i-tabler>{{ blogDetail()?.date }}
           </span>
         </div>
       </mat-card-content>
       <mat-card-content class="heading-section">
-        <h2 class="f-s-28 lh-normal m-y-12 section-sub-title">Main Heading & Points</h2>
-        <p class="f-s-14">
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-          industry's standard dummy text ever since
-          the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It
-          has survived not only five centuries,
-          but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the
-        </p>
+        <h2 class="f-s-28 lh-normal m-y-12 section-sub-title">Main Heading &amp; Points</h2>
+        <p class="f-s-14">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
         <ul>
           <li class="f-s-14">Vivamus eu lacus scelerisque, placerat commodo lectus.</li>
           <li class="f-s-14">Etiam et ante at ex porta fringilla.</li>
           <li class="f-s-14">Nullam dignissim sem eu magna aliquet, sit amet volutpat tellus</li>
         </ul>
-        <p class="f-s-14">
-          Unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not
-          only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was
-          popularised in the
-        </p>
-        <mat-divider></mat-divider>
-        <p class="f-s-14">
-          We are a dedicated team of passionate product managers, developers, UX/UI designers, QA engineers experts
-          helping businesses from new startups
-        </p>
-        <mat-divider></mat-divider>
-        <p class="f-s-14">
-          There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in
-          some form, by injected humour, or randomised words which don't look even slightly believable making this the
-          first true generator on the Internet. It uses a dictionary
-        </p>
         <mat-divider class="m-b-16"></mat-divider>
         <h2 class="f-s-21 lh-normal">Tags</h2>
         <ul>
@@ -81,7 +384,6 @@
           <li class="f-s-14">Design</li>
           <li class="f-s-14">Research</li>
         </ul>
-
         <mat-divider class="m-b-16"></mat-divider>
         <h2 class="f-s-21 lh-normal">Share</h2>
         <ul class="text-primary">
@@ -89,27 +391,25 @@
           <li class="f-s-14"><a class="text-primary text-decoration-none" href="javascript:void(0)">Twitter</a></li>
           <li class="f-s-14"><a class="text-primary text-decoration-none" href="javascript:void(0)">Linkedin</a></li>
         </ul>
-
-        <mat-divider class="m-b-16"></mat-divider>
-        <h2 class="f-s-21 lh-normal">Join our newsletter</h2>
-        <p class="f-s-14">Email address : <a href="javascript:void(0)" class="f-s-14 text-primary text-decoration-none">Subscribe</a></p>
       </mat-card-content>
     </mat-card>
-    }
-
-    <!-- ----------------------------------------------------------------- -->
-    <!-- If Blog isn't available -->
-    <!-- ----------------------------------------------------------------- -->
-
-    @if (!blogDetail() || blogDetail().length === 0) {
-    <mat-card class="cardWithShadow">
-      <mat-card-content>
-        <p>No blog post available.</p>
-      </mat-card-content>
-    </mat-card>
-    }
   </div>
 </div>
+
+}
+
+<!-- ============================================================ -->
+<!-- No blog fallback                                            -->
+<!-- ============================================================ -->
+@if (!blogDetail()) {
+<div class="spacing-top-bottom">
+  <div class="container">
+    <mat-card class="cardWithShadow">
+      <mat-card-content><p>No blog post available.</p></mat-card-content>
+    </mat-card>
+  </div>
+</div>
+}
 
 <div class="footer">
   <app-footer></app-footer>

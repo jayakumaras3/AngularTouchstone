@@ -3,12 +3,12 @@ import { IconModule } from 'src/app/icon/icon.module';
 import { MaterialModule } from 'src/app/material.module';
 import { cardimgs } from '../front-pagesData';
 import { FooterComponent } from '../footer/footer.component';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { FrontEndService } from 'src/app/services/apps/front-pages/front-end.service';
 
 @Component({
   selector: 'app-blog',
-  imports: [IconModule, MaterialModule, FooterComponent,],
+  imports: [IconModule, MaterialModule, FooterComponent, RouterModule],
   templateUrl: './blog.component.html',
   styleUrl: './blog.component.scss'
 })
@@ -19,14 +19,27 @@ export class BlogComponent implements OnInit {
   cardimgs = cardimgs;
 
   ngOnInit() {
-    console.log(cardimgs, 'cardimgs');
+    this.cardimgs = cardimgs.map((cardimg) => ({
+      ...cardimg,
+      imgSrc: this.normalizeAssetPath(cardimg.imgSrc),
+      user: this.normalizeAssetPath(cardimg.user),
+    }));
+  }
+
+  private normalizeAssetPath(path: string): string {
+    if (!path) return path;
+    const marker = '/assets/';
+    const markerIndex = path.indexOf(marker);
+    return markerIndex >= 0 ? path.substring(markerIndex) : path;
   }
 
   getNavigate(cardimg: any) {
-    console.log('cardimg--->', cardimg);
     this.frontendService.setBlog(cardimg);
-    this.router.navigate(['front-pages/blog-details'])
-
+    if (cardimg.id === 100) {
+      this.router.navigate(['/blog-details']);
+    } else {
+      this.router.navigate(['front-pages/blog-details']);
+    }
   }
 
 }

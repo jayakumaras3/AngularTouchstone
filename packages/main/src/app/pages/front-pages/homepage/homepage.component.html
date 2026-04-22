@@ -49,6 +49,11 @@
                     [routerLink]="['/catalog']">
                       Course Catalog
                   </button>
+                <!-- Blogs -->
+                  <button mat-button class="m-x-8 f-s-15 f-w-500 nav-item" routerLinkActive="active"
+                    [routerLink]="['/blog']">
+                      Blogs
+                  </button>
                     <!-- <button mat-button class="m-x-8 f-s-14 f-w-500 nav-item"
                               (click)="openExternal('https://go.touchstonelc.com/course_catalog')">
 
@@ -129,6 +134,11 @@
                <!-- <span class="bg-light-primary text-primary rounded f-w-600 p-6 p-y-4 f-s-12">
                   New
                 </span>-->
+              </button></mat-list-item>
+            <mat-list-item role="listitem">
+              <button mat-button class="text-dark mobile-nav-item" [routerLink]="['/blog']"
+                routerLinkActive="active">
+                Blogs
               </button></mat-list-item>
           <!--  <mat-list-item role="listitem">
               <button mat-button class="text-dark" [class.selected]="isActiveRoute('pricing')"

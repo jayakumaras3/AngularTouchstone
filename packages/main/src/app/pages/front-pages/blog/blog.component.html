@@ -1,54 +1,46 @@
-<div class="banner-section bg-light-primary spacing-top-bottom">
-  <div class="container">
-    <p class="text-primary text-center text-uppercase f-s-14 m-t-0">
-      Blog Page
-    </p>
-    <h1 class="text-center f-s-48 section-sub-title lh-normal">Latest blog & news</h1>
+<section class="blogs-hero">
+  <div class="container blogs-hero__container">
+    <h1 class="blogs-title">Blogs</h1>
+    <p class="blogs-subtitle">Fresh ideas on learning in the flow of work, built for modern teams.</p>
   </div>
-</div>
+</section>
 
-<div class="spacing-top-bottom">
+<section class="blogs-main">
   <div class="container">
-    <div class="row">
-      @for(cardimg of cardimgs; track cardimg.imgSrc) {
-      <div class="col-sm-6 col-lg-4">
-        <mat-card class="cardWithShadow card2 position-relative card-hover cursor-pointer" (click)="getNavigate(cardimg)">
-          <img mat-card-image src="{{ cardimg.imgSrc }}" alt="Photo of a Shiba Inu" />
-          <div class="card-overlay h-100 d-flex align-items-end justify-content-end">
-            <mat-chip class="m-r-16 bg-white">{{
-              cardimg.time
-              }}</mat-chip>
+
+    <!-- Featured DOCHEK Blog Card -->
+    @for(cardimg of cardimgs; track cardimg.id) {
+      @if(cardimg.id === 100) {
+        <article class="featured-blog-card" (click)="getNavigate(cardimg)">
+          <div class="featured-blog-card__media">
+            <img [src]="cardimg.imgSrc" class="featured-blog-img" alt="Smart Learning with DOCHEK" />
           </div>
-
-          <mat-card-content class="p-y-24">
-            <div class="user-category">
-              <div>
-                <img src="{{ cardimg.user }}" class="rounded-circle" width="40" />
-              </div>
-              <mat-chip class="m-y-16 bg-light">{{
-                cardimg.category
-                }}</mat-chip>
+          <div class="featured-blog-card__content">
+            <mat-chip class="featured-chip">
+                  {{ cardimg.category }}
+            </mat-chip>
+            <h2 class="featured-title">{{ cardimg.title }}</h2>
+            @if(cardimg.subtitle) {
+              <p class="featured-subtitle">{{ cardimg.subtitle }}</p>
+            }
+            @if(cardimg.description) {
+              <p class="featured-description">{{ cardimg.description }}</p>
+            }
+            <div class="featured-meta">
+              <span><i-tabler name="clock" class="icon-16"></i-tabler>{{ cardimg.time }}</span>
+              <span><i-tabler name="eye" class="icon-16"></i-tabler>{{ cardimg.views }}</span>
+              <span><i-tabler name="calendar" class="icon-16"></i-tabler>{{ cardimg.date }}</span>
             </div>
-            <mat-card-title>{{ cardimg.title }}</mat-card-title>
-            <div class="d-flex align-items-center justify-content-center m-t-24">
-              <div class="d-flex align-items-center">
-                <span class="m-r-12 f-s-14 d-flex align-items-center"><i-tabler name="eye"
-                    class="icon-18 m-r-4"></i-tabler>{{ cardimg.views }}</span>
-                <span class="f-s-14 d-flex align-items-center"><i-tabler name="message-2"
-                    class="icon-18 m-r-4"></i-tabler>{{ cardimg.comments }}</span>
-              </div>
-              <span class="m-l-auto f-s-14 d-flex align-items-center">
-                <i-tabler name="point" class="icon-14 m-r-4 d-flex"></i-tabler>
-                {{ cardimg.date }}
-              </span>
-            </div>
-          </mat-card-content>
-        </mat-card>
-      </div>
+            <button mat-flat-button color="primary" class="read-more-btn" (click)="getNavigate(cardimg); $event.stopPropagation()">
+              Read More
+            </button>
+          </div>
+        </article>
       }
-    </div>
+    }
+
   </div>
-</div>
+</section>
 
 <div class="footer">
   <app-footer></app-footer>

@@ -4,6 +4,8 @@ interface cardimgs {
   imgSrc: string;
   user: string;
   title: string;
+  subtitle?: string;
+  description?: string;
   views: string;
   category: string;
   comments: number;
@@ -41,6 +43,19 @@ interface setupCards {
 }
 import { baseUrlPath, baseUrlPathslash} from "../../config";
 export const cardimgs: cardimgs[] = [
+  {
+    id: 100,
+    time: '5 mins Read',
+    imgSrc: '/assets/images/blog/dochek.jpg',
+    user: '/assets/images/front-pages/user1.jpg',
+    title: 'Smart Learning with DOCHEK',
+    subtitle: 'Learning in the Flow of Work',
+    description: 'Modern work demands learning that happens seamlessly within workflows, not outside them.',
+    views: '4,200',
+    category: 'Learning & Development',
+    comments: 5,
+    date: 'Tue, Apr 22',
+  },
   {
     id: 1,
     time: '2 mins Read',
