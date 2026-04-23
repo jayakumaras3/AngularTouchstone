@@ -6,14 +6,10 @@
 <article class="dochek-blog">
 
   <!-- ═══════════════════════════════════════════ HERO ══ -->
-  <div class="db-hero position-relative">
-    <img [src]="blogDetail()?.imgSrc" class="db-hero__img" alt="DOCHEK – Smart Learning Platform" />
-    <div class="db-hero__tint"></div>
-    <div class="db-hero__overlay db-container">
+  <div class="db-hero">
+    <div class="db-container">
       <div class="db-hero__content-card">
-        <div class="db-hero__badge">Learning &amp; Development</div>
         <h1 class="db-hero__title">DOCHEK's Approach to Learning in the Flow of Work</h1>
-        <p class="db-hero__subtitle">Why Modern Work Needs Integrated Learning, Not More Training</p>
         <div class="db-hero__meta">
           <span><i-tabler name="calendar" class="icon-16"></i-tabler>April 22, 2026</span>
           <span><i-tabler name="clock" class="icon-16"></i-tabler>5 min read</span>
@@ -99,7 +95,7 @@
 
         <!-- Image -->
         <figure class="db-figure">
-          <img src="/assets/images/blog/shutterstock_285248537.jpg"
+          <img src="assets/images/blog/shutterstock_285248537.jpg"
                class="db-figure__img" alt="Team collaborating around a laptop" />
         </figure>
 
@@ -177,7 +173,7 @@
 
         <!-- Platform screenshot -->
         <figure class="db-figure db-figure--screenshot m-t-32">
-          <img src="/assets/images/blog/dochek.jpg"
+          <img src="assets/images/blog/dochek.jpg"
                class="db-figure__img" alt="DOCHEK Platform screenshot" />
           <figcaption class="db-figure__caption">DOCHEK — One unified platform for all your learning needs</figcaption>
         </figure>
@@ -204,7 +200,7 @@
 
         <!-- Image -->
         <figure class="db-figure">
-          <img src="/assets/images/blog/shutterstock_2223351451.jpg"
+          <img src="assets/images/blog/shutterstock_2223351451.jpg"
                class="db-figure__img" alt="Professional learner engaged at laptop" />
         </figure>
 
@@ -258,7 +254,7 @@
               The workplace won't slow down. <strong>Learning shouldn't either.</strong>
             </p>
             <div class="db-cta-banner__actions">
-              <a mat-flat-button color="primary" [routerLink]="['/contact']">
+              <a mat-flat-button color="primary" (click)="openBookDemoDialog()">
                 Book a Demo
               </a>
               <a mat-flat-button color="primary" [routerLink]="['/blog']">

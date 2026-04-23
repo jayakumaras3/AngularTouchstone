@@ -19,18 +19,7 @@ export class BlogComponent implements OnInit {
   cardimgs = cardimgs;
 
   ngOnInit() {
-    this.cardimgs = cardimgs.map((cardimg) => ({
-      ...cardimg,
-      imgSrc: this.normalizeAssetPath(cardimg.imgSrc),
-      user: this.normalizeAssetPath(cardimg.user),
-    }));
-  }
-
-  private normalizeAssetPath(path: string): string {
-    if (!path) return path;
-    const marker = '/assets/';
-    const markerIndex = path.indexOf(marker);
-    return markerIndex >= 0 ? path.substring(markerIndex) : path;
+    this.cardimgs = cardimgs;
   }
 
   getNavigate(cardimg: any) {

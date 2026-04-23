@@ -204,8 +204,8 @@ button[mat-icon-button][matSuffix] {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background-color: rgba(93, 135, 255, 0.15);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  background: var(--mat-sys-primary-fixed-dim);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
 
   .mdc-button {
     --mat-button-text-label-text-color: #1f2937 !important;
@@ -216,8 +216,17 @@ button[mat-icon-button][matSuffix] {
   }
 
   &.header-scrolled {
-    background-color: #ffffff !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background: #ffffff !important;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.1) !important;
+  }
+}
+
+html .topbar.auth-sticky-header {
+  background: var(--mat-sys-primary-fixed-dim) !important;
+
+  &.header-scrolled {
+    background: #ffffff !important;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.1) !important;
   }
 }
 

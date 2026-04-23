@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit, signal } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { IconModule } from 'src/app/icon/icon.module';
 import { MaterialModule } from 'src/app/material.module';
 import { FooterComponent } from '../footer/footer.component';
+import { PopupwindowComponent } from '../popupwindow/popupwindow.component';
 import { FrontEndService } from 'src/app/services/apps/front-pages/front-end.service';
 import { RouterModule } from '@angular/router';
 
@@ -17,6 +19,7 @@ import { RouterModule } from '@angular/router';
 export class BlogDetailsComponent implements OnInit {
   blogDetail = signal<any>(null);
   private frontendService = inject(FrontEndService);
+  readonly dialog = inject(MatDialog);
 
   ngOnInit(): void {
     const selected = this.frontendService.getBlog()();
@@ -28,8 +31,8 @@ export class BlogDetailsComponent implements OnInit {
       const defaultBlog = {
         id: 100,
         time: '5 mins Read',
-        imgSrc: '/assets/images/blog/dochek.jpg',
-        user: '/assets/images/front-pages/user1.jpg',
+        imgSrc: 'assets/images/blog/dochek.jpg',
+        user: 'assets/images/front-pages/user1.jpg',
         title: 'Smart Learning with DOCHEK',
         subtitle: 'Learning in the Flow of Work',
         description: 'Modern work demands learning that happens seamlessly within workflows, not outside them.',
@@ -57,6 +60,24 @@ export class BlogDetailsComponent implements OnInit {
     window.scrollTo({
       top: targetTop,
       behavior: 'smooth',
+    });
+  }
+
+  openBookDemoDialog(): void {
+    // Prevent background scroll
+    document.body.style.overflow = 'hidden';
+
+    const dialogRef = this.dialog.open(PopupwindowComponent, {
+      width: '500px',
+      disableClose: true,
+      autoFocus: true,
+      hasBackdrop: true,
+      panelClass: 'light-popup-window',
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      // Re-enable scrolling after popup closes
+      document.body.style.overflow = 'auto';
     });
   }
 }

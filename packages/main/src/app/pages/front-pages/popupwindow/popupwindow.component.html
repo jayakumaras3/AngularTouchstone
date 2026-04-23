@@ -1,4 +1,5 @@
-<h2 mat-dialog-title>Get in Touch</h2>
+<h2 mat-dialog-title>See DOCHEK in Action</h2>
+<p class="popup-subtitle">Share a few details below, and we'll set up a personalized demo for you.</p>
 <div *ngIf="statusMessage" 
      class="status-box" 
      [ngClass]="statusType">
@@ -12,23 +13,23 @@
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Company</mat-label>
+      <mat-label>Organization</mat-label>
       <input matInput formControlName="company" required />
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Email ID</mat-label>
+      <mat-label>Email Address</mat-label>
       <input matInput formControlName="email" type="email" required />
     </mat-form-field>
-<!--
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Contact Number (optional)</mat-label>
-      <input matInput formControlName="contact" type="tel" />
-    </mat-form-field>-->
 
     <mat-form-field appearance="outline" class="full-width">
-      <mat-label>City</mat-label>
+      <mat-label>Country</mat-label>
       <input matInput formControlName="city" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Phone Number (optional)</mat-label>
+      <input matInput formControlName="phone" type="tel" />
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="full-width">

@@ -39,6 +39,7 @@ statusType: 'success' | 'error' | null = null;
       company: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       city: ['', Validators.required],
+      phone: [''],
       message: [''],
     });
   }

@@ -46,8 +46,8 @@ export const cardimgs: cardimgs[] = [
   {
     id: 100,
     time: '5 mins Read',
-    imgSrc: '/assets/images/blog/dochek.jpg',
-    user: '/assets/images/front-pages/user1.jpg',
+    imgSrc: 'assets/images/blog/dochek.jpg',
+    user: 'assets/images/front-pages/user1.jpg',
     title: 'Smart Learning with DOCHEK',
     subtitle: 'Learning in the Flow of Work',
     description: 'Modern work demands learning that happens seamlessly within workflows, not outside them.',
