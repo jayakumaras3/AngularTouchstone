@@ -32,7 +32,7 @@ export const FrontPagesRoutes: Routes = [
       { path: '', redirectTo: 'homepage', pathMatch: 'full' },
       { path: 'homepage', component: HomepageDetailsComponent }, // real homepage content
       { path: 'about', component: AboutUsComponent },
-      { path: 'blog', component: BlogComponent },
+      { path: 'blogs', component: BlogComponent },
       { path: 'portfolio', component: PortfolioComponent },
       { path: 'pricing', component: PricingComponent },
       { path: 'contact', component: ContactComponent },
