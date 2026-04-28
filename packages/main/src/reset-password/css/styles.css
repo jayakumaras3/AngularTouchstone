@@ -203,12 +203,55 @@ html, body {
     max-width: 380px;
 }
 
+.form-card.is-status-view {
+    max-width: 520px;
+}
+
 .form-title {
     font-size: 26px;          /* ← correct: was 58px */
     font-weight: 700;
     color: var(--ink);
     margin-bottom: 28px;
     line-height: 1.25;
+}
+
+.form-card.is-status-view .form-title {
+    text-align: center;
+}
+
+.status-card {
+    width: 100%;
+    padding: 18px 20px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    text-align: left;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+}
+
+.status-card--error {
+    color: #c53030;
+    background: #fff5f5;
+    border-color: #feb2b2;
+}
+
+.status-card__title {
+    display: block;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.status-card__message {
+    margin-top: 8px;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.status-card__action {
+    margin-top: 16px;
+}
+
+.is-hidden {
+    display: none !important;
 }
 
 /* ── 5. Fields ────────────────────────────────────────────── */
@@ -240,7 +283,7 @@ form {
     border: 1.5px solid var(--field-border);
     border-radius: 8px;
     background: var(--field-bg);
-    padding: 0 46px 0 14px;
+    padding: 0 14px;
     font-family: inherit;
     font-size: 14px;
     color: var(--body-text);
@@ -398,6 +441,16 @@ form {
 
     .form-card {
         background: #111827;
+    }
+
+    .status-card {
+        box-shadow: none;
+    }
+
+    .status-card--error {
+        background: rgba(127, 29, 29, 0.22);
+        border-color: rgba(248, 113, 113, 0.45);
+        color: #fecaca;
     }
 
     .form-title,

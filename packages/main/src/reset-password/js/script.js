@@ -11,19 +11,68 @@
     'use strict';
 
     var header         = document.querySelector('.header');
+    var formCard       = document.querySelector('.form-card');
+    var formTitle      = document.getElementById('formTitle');
+    var statusCard     = document.getElementById('statusCard');
+    var statusTitle    = document.getElementById('statusTitle');
+    var statusMessage  = document.getElementById('statusMessage');
+    var requestLinkBtn = document.getElementById('requestLinkBtn');
     var form           = document.getElementById('resetPasswordForm');
     var newInput       = document.getElementById('newPassword');
     var confInput      = document.getElementById('confirmPassword');
     var resetBtn       = document.getElementById('resetBtn');
     var backBtn        = document.getElementById('backBtn');
 
-    var btnToggleNew   = document.getElementById('toggleNew');
-    var btnToggleConf  = document.getElementById('toggleConfirm');
+    function getQueryParam(name) {
+        var query = window.location.search || '';
+        if (!query || query.length < 2) {
+            return '';
+        }
 
-    var eyeOffNew      = document.getElementById('eyeOffNew');
-    var eyeOnNew       = document.getElementById('eyeOnNew');
-    var eyeOffConf     = document.getElementById('eyeOffConfirm');
-    var eyeOnConf      = document.getElementById('eyeOnConfirm');
+        var parts = query.substring(1).split('&');
+        for (var i = 0; i < parts.length; i++) {
+            var pair = parts[i].split('=');
+            if (decodeURIComponent(pair[0] || '') === name) {
+                return decodeURIComponent((pair[1] || '').replace(/\+/g, ' '));
+            }
+        }
+
+        return '';
+    }
+
+    function showInvalidState(title, message) {
+        if (!formCard || !statusCard || !form || !formTitle) {
+            return;
+        }
+
+        formCard.classList.add('is-status-view');
+        formTitle.textContent = title;
+        statusTitle.textContent = title;
+        statusMessage.textContent = message;
+        statusCard.classList.remove('is-hidden');
+        form.classList.add('is-hidden');
+    }
+
+    function initLinkState() {
+        var status = String(getQueryParam('status') || '').toLowerCase();
+        var error = String(getQueryParam('error') || '').toLowerCase();
+        var message = getQueryParam('message');
+
+        if (status === 'expired' || error === 'expired') {
+            showInvalidState(
+                'Session Expired',
+                message || 'This password reset link has expired. Please request a new reset link.'
+            );
+            return;
+        }
+
+        if (status === 'invalid' || error === 'invalid' || status === 'used' || error === 'used') {
+            showInvalidState(
+                'Reset Link Invalid',
+                message || 'This password reset link is no longer valid.'
+            );
+        }
+    }
 
     // ── Validation ──────────────────────────────────────────
     // Enable Reset button only when:
@@ -35,14 +84,6 @@
         var cp = confInput.value;
         var ok = np.length >= 8 && cp.length > 0 && np === cp;
         resetBtn.disabled = !ok;
-    }
-
-    // ── Eye toggle helper ────────────────────────────────────
-    function toggle(inputEl, offIcon, onIcon) {
-        var isHidden = inputEl.type === 'password';
-        inputEl.type = isHidden ? 'text' : 'password';
-        offIcon.classList.toggle('hidden', isHidden);
-        onIcon.classList.toggle('hidden', !isHidden);
     }
 
     function updateHeaderState() {
@@ -58,16 +99,12 @@
     confInput.addEventListener('input', validate);
     window.addEventListener('scroll', updateHeaderState, { passive: true });
 
-    btnToggleNew.addEventListener('click', function () {
-        toggle(newInput, eyeOffNew, eyeOnNew);
-    });
-
-    btnToggleConf.addEventListener('click', function () {
-        toggle(confInput, eyeOffConf, eyeOnConf);
-    });
-
     backBtn.addEventListener('click', function () {
         window.history.back();
+    });
+
+    requestLinkBtn.addEventListener('click', function () {
+        window.location.href = '../index.html#/authentication/forgotpassword';
     });
 
     form.addEventListener('submit', function (e) {
@@ -79,5 +116,6 @@
     });
 
     updateHeaderState();
+    initLinkState();
 
 }());
