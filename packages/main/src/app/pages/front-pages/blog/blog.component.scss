@@ -171,3 +171,68 @@
     padding: 0.35rem 0.75rem;
   }
 }
+
+// ===========================
+// Dark Mode (Blogs page)
+// ===========================
+
+@mixin blogs-dark-mode {
+  .blogs-hero {
+    background: linear-gradient(180deg, #0f172a 0%, #111827 100%);
+    border-bottom-color: rgba(148, 163, 184, 0.22);
+
+    .blogs-title {
+      color: #e5e7eb;
+    }
+
+    .blogs-subtitle {
+      color: #cbd5e1;
+    }
+  }
+
+  .blogs-main {
+    background: #0b1220;
+  }
+
+  .featured-blog-card {
+    background: #111827;
+    border-color: rgba(148, 163, 184, 0.26);
+    box-shadow: 0 16px 38px rgba(2, 6, 23, 0.55);
+
+    &:hover {
+      box-shadow: 0 20px 42px rgba(2, 6, 23, 0.62);
+    }
+
+    .featured-chip {
+      background: rgba(59, 130, 246, 0.2);
+      color: #bfdbfe;
+    }
+
+    .featured-title {
+      color: #f3f4f6;
+    }
+
+    .featured-subtitle {
+      color: #93c5fd;
+    }
+
+    .featured-description {
+      color: #cbd5e1;
+    }
+
+    .featured-meta span {
+      color: #94a3b8;
+    }
+  }
+}
+
+:host-context(.dark-theme),
+:host-context([force-dark='true']) {
+  @include blogs-dark-mode;
+}
+
+@media (prefers-color-scheme: dark) {
+  :host-context(:not(.light-theme)) {
+    @include blogs-dark-mode;
+  }
+}
