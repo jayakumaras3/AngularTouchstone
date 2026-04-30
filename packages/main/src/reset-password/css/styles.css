@@ -415,6 +415,7 @@ form {
     .form-title { font-size: 22px; }
 }
 
+/* ── Dark mode: triggered by OS preference OR .theme-dark class ── */
 @media (prefers-color-scheme: dark) {
     body {
         background: #0b1220;
@@ -503,4 +504,96 @@ form {
     .btn-outline:hover {
         background: #1f2937;
     }
+}
+
+/* ── Dark mode via .theme-dark class (JS-forced, no OS dependency) ── */
+.theme-dark body,
+html.theme-dark {
+    background: #0b1220;
+    color: #e5e7eb;
+}
+
+html.theme-dark .logo-img {
+    content: url('../assets/images/logos/light-logo.svg');
+}
+
+html.theme-dark .header {
+    background: #0f213a;
+}
+
+html.theme-dark .header.is-scrolled {
+    background: #0f213a;
+}
+
+html.theme-dark .main-container,
+html.theme-dark .left-section,
+html.theme-dark .right-section {
+    background: #0b1220;
+}
+
+html.theme-dark .form-card {
+    background: #111827;
+}
+
+html.theme-dark .status-card {
+    box-shadow: none;
+}
+
+html.theme-dark .status-card--error {
+    background: rgba(127, 29, 29, 0.22);
+    border-color: rgba(248, 113, 113, 0.45);
+    color: #fecaca;
+}
+
+html.theme-dark .form-title,
+html.theme-dark .form-label,
+html.theme-dark .header-center a,
+html.theme-dark .eye-btn,
+html.theme-dark .btn-outline {
+    color: #e5e7eb;
+}
+
+html.theme-dark .form-input,
+html.theme-dark input {
+    background: #1f2937;
+    border-color: #374151;
+    color: #e5e7eb;
+}
+
+html.theme-dark .form-input:focus,
+html.theme-dark input:focus {
+    background: #1f2937;
+    border-color: #374151;
+    box-shadow: none;
+}
+
+html.theme-dark .form-input::placeholder,
+html.theme-dark input::placeholder {
+    color: #9ca3af;
+}
+
+html.theme-dark .helper-text,
+html.theme-dark .chk {
+    color: #9ca3af;
+}
+
+html.theme-dark .btn-primary:disabled,
+html.theme-dark #resetBtn:disabled {
+    background: #374151;
+    border-color: #374151;
+    color: #9ca3af;
+}
+
+html.theme-dark .header-center a:hover,
+html.theme-dark .header-center a:focus-visible {
+    background: #1f2937;
+    color: #e5e7eb;
+}
+
+html.theme-dark .btn-outline {
+    border-color: #374151;
+}
+
+html.theme-dark .btn-outline:hover {
+    background: #1f2937;
 }
