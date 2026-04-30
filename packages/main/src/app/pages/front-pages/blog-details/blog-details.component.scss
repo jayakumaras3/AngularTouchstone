@@ -274,9 +274,7 @@ $radius:    14px;
     object-fit: cover;
     max-height: 400px;
     box-shadow: 0 8px 32px rgba(0,0,0,.1);
-    transition: transform .3s ease;
-
-    &:hover { transform: scale(1.01); }
+    transition: none;
   }
 
   &__caption {
@@ -293,6 +291,14 @@ $radius:    14px;
     border: 1px solid $border;
     background: $bg-subtle;
   }
+}
+
+// Keep blog detail images visible during hover/focus interactions.
+.blog-details-content img[mat-card-image],
+.blog-details-content .user-category img {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
 }
 
 // ── Feature cards grid ───────────────────────────────────
