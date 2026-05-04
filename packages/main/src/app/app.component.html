@@ -1,35 +1,7 @@
-@if (showAuthHeader) {
-	<mat-toolbar class="topbar front-topbar topbar-xl m-auto auth-sticky-header p-y-8" [ngClass]="{ 'header-scrolled': isAuthHeaderScrolled }">
-		<div class="custom-container full-width auth-header-container">
-			<div class="auth-header-inner">
-				<div class="branding p-x-0">
-					<app-branding></app-branding>
-				</div>
-
-				<div class="d-none d-lg-flex align-items-center toolBarContent auth-header-nav">
-					<button mat-button class="m-x-8 f-s-15 f-w-500 nav-item" [routerLink]="['/about']">
-						About Us
-					</button>
-					<button mat-button class="m-x-8 f-s-15 f-w-500 nav-item" [routerLink]="['/features']">
-						Features
-					</button>
-					<button mat-button class="m-x-8 f-s-15 f-w-500 nav-item" [routerLink]="['/catalog']">
-						Course Catalog
-					</button>
-					<button mat-button class="m-x-8 f-s-15 f-w-500 nav-item" [routerLink]="['/blogs']">
-						Blogs
-					</button>
-					<button mat-button class="m-x-8 f-s-15 f-w-500 nav-item" [routerLink]="['/contact']">
-						Contact
-					</button>
-				</div>
-
-				<a mat-flat-button color="primary" class="auth-header-login" [routerLink]="['/authentication/login']">
-					Login
-				</a>
-			</div>
-		</div>
-	</mat-toolbar>
+@if (showPublicHeader) {
+  <div [class.auth-header-align-fix]="isAuthPublicPage">
+    <app-header></app-header>
+  </div>
 }
 
 <router-outlet></router-outlet>

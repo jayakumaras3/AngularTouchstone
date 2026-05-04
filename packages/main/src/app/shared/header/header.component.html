@@ -1,0 +1,52 @@
+<!-- Fixed header bar -->
+<mat-toolbar class="public-header" [class.header-scrolled]="isScrolled">
+  <div class="public-header-container">
+    <div class="public-header-inner">
+      <div class="public-header-logo">
+        <app-branding></app-branding>
+      </div>
+
+      @if (!isMobileView) {
+        <nav class="public-header-nav" aria-label="Primary navigation">
+          <a mat-button class="nav-item" [routerLink]="['/about']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">About Us</a>
+          <a mat-button class="nav-item" [routerLink]="['/features']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Features</a>
+          <a mat-button class="nav-item" [routerLink]="['/catalog']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Course Catalog</a>
+          <a mat-button class="nav-item" [routerLink]="['/blogs']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Blogs</a>
+          <a mat-button class="nav-item" [routerLink]="['/contact']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Contact Us</a>
+        </nav>
+        <a mat-flat-button color="primary" class="public-header-login" [routerLink]="['/login']">Login</a>
+      } @else {
+        <button mat-icon-button type="button" class="mobile-menu-btn" aria-label="Open navigation menu" (click)="toggleMobileNav()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      }
+    </div>
+  </div>
+</mat-toolbar>
+
+<!-- Spacer so page content starts below the fixed header -->
+<div class="public-header-spacer"></div>
+
+<!-- Mobile nav overlay -->
+@if (isMobileView) {
+  <!-- Backdrop -->
+  <div class="mobile-nav-backdrop" [class.open]="mobileNavOpen" (click)="closeMobileNav()"></div>
+
+  <!-- Slide-in panel -->
+  <nav class="mobile-nav-panel" [class.open]="mobileNavOpen" aria-label="Mobile navigation">
+    <div class="mobile-nav-header">
+      <app-branding></app-branding>
+      <button mat-icon-button type="button" aria-label="Close navigation" (click)="closeMobileNav()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <ul class="mobile-nav-list">
+      <li><a [routerLink]="['/about']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeMobileNav()">About Us</a></li>
+      <li><a [routerLink]="['/features']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeMobileNav()">Features</a></li>
+      <li><a [routerLink]="['/catalog']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeMobileNav()">Course Catalog</a></li>
+      <li><a [routerLink]="['/blogs']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeMobileNav()">Blogs</a></li>
+      <li><a [routerLink]="['/contact']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeMobileNav()">Contact Us</a></li>
+    </ul>
+    <a mat-flat-button color="primary" class="mobile-login-btn" [routerLink]="['/login']" (click)="closeMobileNav()">Login</a>
+  </nav>
+}
