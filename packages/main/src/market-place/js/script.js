@@ -130,7 +130,6 @@ const state = {
   scrollLoadCount: 4,
   currentDisplayIndex: 0,
   scrollListenerActive: true,
-  activeCatalogTab: "library",
   languageCounts: {},
 };
 
@@ -173,8 +172,8 @@ function getCategoryIcon(name) {
     "DEI (Diversity, Equity, and Inclusion)": "groups",
     Technology: "memory",
     "Digital Productivity": "wb_incandescent",
-    Safety: "health_and_safety",
-    Healthcare: "stethoscope",
+    Safety: "verified_user",
+    Healthcare: "medical_services",
     Wellness: "favorite",
   };
 
@@ -592,10 +591,6 @@ function renderList() {
 function renderToolbarState() {
   els.clearSearchBtn.classList.toggle("visible", state.searchText.trim().length > 0);
 
-  document.querySelectorAll(".catalog-tab").forEach((button) => {
-    button.classList.toggle("active", button.dataset.type === state.activeCatalogTab);
-  });
-
   document.querySelectorAll(".view-btn").forEach((button) => {
     const target = button.dataset.view === "list" ? "tile" : button.dataset.view;
     button.classList.toggle("active", target === state.viewMode);
@@ -727,13 +722,6 @@ function attachEvents() {
 
   els.resetFiltersBtn.addEventListener("click", resetFilters);
   els.emptyResetBtn.addEventListener("click", resetFilters);
-
-  document.querySelectorAll(".catalog-tab").forEach((button) => {
-    button.addEventListener("click", () => {
-      state.activeCatalogTab = button.dataset.type || "library";
-      renderToolbarState();
-    });
-  });
 
   document.querySelectorAll(".view-btn").forEach((button) => {
     button.addEventListener("click", () => {
