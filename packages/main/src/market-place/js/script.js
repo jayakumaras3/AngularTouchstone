@@ -524,6 +524,7 @@ function buildGridCards(courses, startIndex = 0) {
     const card = document.createElement("article");
     card.className = "course-card";
     card.style.animationDelay = `${(startIndex + index) * 20}ms`;
+    card.style.cursor = "pointer";
     card.innerHTML = `
       <div class="card-media">
         <img src="${course.imagePath}" alt="${course.product_name}" loading="lazy" decoding="async" />
@@ -536,6 +537,10 @@ function buildGridCards(courses, startIndex = 0) {
         </div>
       </div>
     `;
+
+    card.addEventListener("click", () => {
+      console.log("Course clicked with ID: " + course.id);
+    });
 
     fragment.appendChild(card);
   });
@@ -560,7 +565,7 @@ function renderList() {
   const rows = pageItems.map((course, idx) => {
     const rank = state.currentPage * state.pageSize + idx + 1;
     return `
-      <tr>
+      <tr data-course-id="${course.id}" style="cursor: pointer;">
         <td>${rank}</td>
         <td class="title-cell">${course.product_name}</td>
         <td>${course.language}</td>
@@ -571,6 +576,14 @@ function renderList() {
   }).join("");
 
   els.listTableBody.innerHTML = rows;
+
+  // Add click handlers to list rows
+  document.querySelectorAll(".tile-table tbody tr").forEach((row) => {
+    row.addEventListener("click", () => {
+      const courseId = row.getAttribute("data-course-id");
+      console.log("Course clicked with ID: " + courseId);
+    });
+  });
 
   const sortedLength = sortCourses(state.filteredCards).length;
   const from = sortedLength ? state.currentPage * state.pageSize + 1 : 0;
