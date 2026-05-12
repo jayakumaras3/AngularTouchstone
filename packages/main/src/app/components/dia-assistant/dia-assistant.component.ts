@@ -85,11 +85,8 @@ export class DiaAssistantComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // Trigger FAB entrance animation after a brief delay
-    setTimeout(() => {
-      this.fabVisible = true;
-      this.cdr.markForCheck();
-    }, 500);
+    this.fabVisible = true;
+    this.cdr.markForCheck();
 
     // Setup iOS keyboard handling
     if (this.isIOS) {
@@ -107,6 +104,17 @@ export class DiaAssistantComponent implements OnInit, OnDestroy {
 
   toggle(): void {
     this.isOpen = !this.isOpen;
+    this.cdr.markForCheck();
+    this.scrollToBottom();
+  }
+
+  open(event?: Event): void {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    this.isOpen = true;
     this.cdr.markForCheck();
     this.scrollToBottom();
   }

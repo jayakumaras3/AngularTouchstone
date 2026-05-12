@@ -7,7 +7,7 @@
         "categories": [
             "General"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -26,7 +26,7 @@
         "categories": [
             "General"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -45,7 +45,7 @@
         "categories": [
             "General"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -64,7 +64,7 @@
         "categories": [
             "General"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -83,7 +83,7 @@
         "categories": [
             "General"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -102,7 +102,7 @@
         "categories": [
             "General"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -121,7 +121,7 @@
         "categories": [
             "General"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -140,7 +140,7 @@
         "categories": [
             "General"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -159,7 +159,7 @@
         "categories": [
             "General"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -178,7 +178,7 @@
         "categories": [
             "General"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -197,7 +197,7 @@
         "categories": [
             "General"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -209,6 +209,44 @@
         "duration": "15"
     },
     {
+        "id": 2162,
+        "imagePath": "https:\/\/dochek.com\/assets\/assets\/uploads\/SCORM_course_thumbnail\/2162\/C4U455_thumbnail_518x309.jpg",
+        "product_name": "Understanding the Legal Terminology in Cookie Pop-ups",
+        "skill": "General",
+        "categories": [
+            "General"
+        ],
+        "date": "Tue, May 12 2026",
+        "status": true,
+        "base_price": 10,
+        "dealPrice": 12,
+        "discountPercent": 17,
+        "rating": 0,
+        "language": "English",
+        "description": "<p>As we browse websites daily, cookie pop-ups have become almost impossible to ignore. While many users quickly click &ldquo;Accept&rdquo; or &ldquo;Reject&rdquo; just to move on, these pop-ups often contain legal terminology that explains how personal data&nbsp;is collected, stored,&nbsp;and used. Understanding this language is essential for making informed privacy choices online.&nbsp;<\/p>\r\n\r\n<p>This course will help you break down the common legal terms used in cookie consent pop-ups. By the end of this module, you will feel more confident reading cookie notices and understanding what you are agreeing to when you interact with them.<\/p>\r\n",
+        "objectives": "Explain why cookie pop-ups use legal terminology | Identify common legal terms found in cookie consent notices| Apply informed decision-making when managing cookie preferences",
+        "duration": "15"
+    },
+    {
+        "id": 539,
+        "imagePath": "https:\/\/dochek.com\/assets\/assets\/uploads\/SCORM_course_thumbnail\/539\/",
+        "product_name": "Consequences of Actions Impulsive Behavior at the Workplace",
+        "skill": "General",
+        "categories": [
+            "General"
+        ],
+        "date": "Tue, May 12 2026",
+        "status": true,
+        "base_price": 10,
+        "dealPrice": 12,
+        "discountPercent": 17,
+        "rating": 0,
+        "language": "English",
+        "description": "",
+        "objectives": "",
+        "duration": "20"
+    },
+    {
         "id": 2075,
         "imagePath": "https:\/\/dochek.com\/assets\/assets\/uploads\/SCORM_course_thumbnail\/2075\/C4U436_thumbnail_518x309.jpg",
         "product_name": "Psychology of Post-It Note Placement in Team Spaces",
@@ -216,7 +254,7 @@
         "categories": [
             "General"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -235,7 +273,7 @@
         "categories": [
             "General"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -254,7 +292,7 @@
         "categories": [
             "General"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -273,7 +311,7 @@
         "categories": [
             "General"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -292,7 +330,7 @@
         "categories": [
             "General"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -311,7 +349,7 @@
         "categories": [
             "General"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -330,7 +368,7 @@
         "categories": [
             "General"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -349,7 +387,7 @@
         "categories": [
             "Cyber Security"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -368,7 +406,7 @@
         "categories": [
             "ESG"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -387,7 +425,7 @@
         "categories": [
             "Leadership"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -406,7 +444,7 @@
         "categories": [
             "Workplace Wellness"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -425,7 +463,7 @@
         "categories": [
             "Workplace Wellness"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -444,7 +482,7 @@
         "categories": [
             "Workplace Productivity"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -463,7 +501,7 @@
         "categories": [
             "Compliance"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -482,7 +520,7 @@
         "categories": [
             "Compliance"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -501,7 +539,7 @@
         "categories": [
             "Workplace Safety"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -520,7 +558,7 @@
         "categories": [
             "Self Development"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -540,7 +578,7 @@
             "Compliance",
             "Technology"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -559,7 +597,7 @@
         "categories": [
             "Workplace Productivity"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -578,7 +616,7 @@
         "categories": [
             "Workplace Productivity"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -597,7 +635,7 @@
         "categories": [
             "Workplace Wellness"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -616,7 +654,7 @@
         "categories": [
             "Workplace Productivity"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -636,7 +674,7 @@
             "Leading Teams",
             "Workplace Productivity"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -655,7 +693,7 @@
         "categories": [
             "Workplace Safety"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -674,7 +712,7 @@
         "categories": [
             "Finance"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -693,7 +731,7 @@
         "categories": [
             "Workplace Safety"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -712,7 +750,7 @@
         "categories": [
             "Finance"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -732,7 +770,7 @@
             "Interpersonal Skills and Empathy",
             "Self Development"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -751,7 +789,7 @@
         "categories": [
             "Workplace Wellness"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -770,7 +808,7 @@
         "categories": [
             "Workplace Wellness"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -789,7 +827,7 @@
         "categories": [
             "Self Development"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -809,7 +847,7 @@
             "Critical Thinking and Decision Making",
             "Self Development"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -828,7 +866,7 @@
         "categories": [
             "Self Development"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -848,7 +886,7 @@
             "Interpersonal Skills and Empathy",
             "Workplace Wellness"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -868,7 +906,7 @@
             "Leading Change",
             "Workplace Productivity"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -887,7 +925,7 @@
         "categories": [
             "Modern Finance"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -907,7 +945,7 @@
             "Business Skills",
             "Self Development"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -927,7 +965,7 @@
             "Leading People",
             "Workplace Productivity"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -946,7 +984,7 @@
         "categories": [
             "Workplace Wellness"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -965,7 +1003,7 @@
         "categories": [
             "Self Development"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -984,7 +1022,7 @@
         "categories": [
             "Innovation"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1003,7 +1041,7 @@
         "categories": [
             "Gig Working"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1022,7 +1060,7 @@
         "categories": [
             "Cyber Security"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1041,7 +1079,7 @@
         "categories": [
             "DEI at Workplace"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1060,7 +1098,7 @@
         "categories": [
             "Adaptability and Continuous Learning"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1079,7 +1117,7 @@
         "categories": [
             "Technology"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1098,7 +1136,7 @@
         "categories": [
             "Workplace Wellness"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1117,7 +1155,7 @@
         "categories": [
             "Workplace Wellness"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1136,7 +1174,7 @@
         "categories": [
             "Finance"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1155,7 +1193,7 @@
         "categories": [
             "Workplace Wellness"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1174,7 +1212,7 @@
         "categories": [
             "Technology"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1193,7 +1231,7 @@
         "categories": [
             "Workplace Wellness"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1212,7 +1250,7 @@
         "categories": [
             "DEI at Workplace"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1231,7 +1269,7 @@
         "categories": [
             "DEI at Workplace"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1252,7 +1290,7 @@
             "Interpersonal Effectiveness",
             "Interpersonal Skills and Empathy"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1271,7 +1309,7 @@
         "categories": [
             "DEI at Workplace"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1290,7 +1328,7 @@
         "categories": [
             "Critical Thinking and Decision Making"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1309,7 +1347,7 @@
         "categories": [
             "DEI at Workplace"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1328,7 +1366,7 @@
         "categories": [
             "DEI at Workplace"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1347,7 +1385,7 @@
         "categories": [
             "POSH"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1367,7 +1405,7 @@
             "Business Communication Skills",
             "Business Writing"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1386,7 +1424,7 @@
         "categories": [
             "Modern Finance"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1405,7 +1443,7 @@
         "categories": [
             "Workplace Wellness"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1424,7 +1462,7 @@
         "categories": [
             "Modern Finance"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1443,7 +1481,7 @@
         "categories": [
             "Technology"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1462,7 +1500,7 @@
         "categories": [
             "Courageous Conversations"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1481,7 +1519,7 @@
         "categories": [
             "Courageous Conversations"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1500,7 +1538,7 @@
         "categories": [
             "Courageous Conversations"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1519,7 +1557,7 @@
         "categories": [
             "DEI at Workplace"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1538,7 +1576,7 @@
         "categories": [
             "Adapting to New Workstyle"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1557,7 +1595,7 @@
         "categories": [
             "Leading People"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1576,7 +1614,7 @@
         "categories": [
             "Digital Transformation"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1595,7 +1633,7 @@
         "categories": [
             "Digital Transformation"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1614,7 +1652,7 @@
         "categories": [
             "Sales Leadership"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1635,7 +1673,7 @@
             "Effective Presentations",
             "Sales Leadership"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1654,7 +1692,7 @@
         "categories": [
             "Sales Effectiveness"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1673,7 +1711,7 @@
         "categories": [
             "Business Strategy"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1692,7 +1730,7 @@
         "categories": [
             "Adapting to New Workstyle"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1711,7 +1749,7 @@
         "categories": [
             "Digital Transformation"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1730,7 +1768,7 @@
         "categories": [
             "Courageous Conversations"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1749,7 +1787,7 @@
         "categories": [
             "Digital Transformation"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1768,7 +1806,7 @@
         "categories": [
             "Cyber Security"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1787,7 +1825,7 @@
         "categories": [
             "Cyber Security"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1806,7 +1844,7 @@
         "categories": [
             "Cyber Security"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1825,7 +1863,7 @@
         "categories": [
             "Cyber Security"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1844,7 +1882,7 @@
         "categories": [
             "Cyber Security"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1863,7 +1901,7 @@
         "categories": [
             "AI"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1883,7 +1921,7 @@
             "Critical Thinking and Decision Making",
             "Judgment and Complex Decision-Making"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1902,7 +1940,7 @@
         "categories": [
             "Ability to Think Creatively"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1921,7 +1959,7 @@
         "categories": [
             "Leadership and Management"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1940,7 +1978,7 @@
         "categories": [
             "Interpersonal Skills and Empathy"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1959,7 +1997,7 @@
         "categories": [
             "DEI at Workplace"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1978,7 +2016,7 @@
         "categories": [
             "Finance and Accounting"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -1998,7 +2036,7 @@
             "Building Online and Offline Business Networks",
             "Business Skills"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2017,7 +2055,7 @@
         "categories": [
             "Judgment and Complex Decision-Making"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2037,7 +2075,7 @@
             "Becoming a Competent Leader",
             "Leadership"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2057,7 +2095,7 @@
             "Respectful Workplace-DEI",
             "Workplace Harassment"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2076,7 +2114,7 @@
         "categories": [
             "Building Online and Offline Business Networks"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2095,7 +2133,7 @@
         "categories": [
             "Contractor training"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2115,7 +2153,7 @@
             "Leading Change",
             "Managing Change"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2134,7 +2172,7 @@
         "categories": [
             "Software Usage and Compliance"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2153,7 +2191,7 @@
         "categories": [
             "Ability to Think Creatively"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2172,7 +2210,7 @@
         "categories": [
             "Finance and Accounting"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2191,7 +2229,7 @@
         "categories": [
             "Building Online and Offline Business Networks"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2210,7 +2248,7 @@
         "categories": [
             "Resilience in Business"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2230,7 +2268,7 @@
             "Lead Through an Environment of Change and Uncertainty",
             "Leading Change"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2250,7 +2288,7 @@
             "Personal Development",
             "Self Development"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2269,7 +2307,7 @@
         "categories": [
             "Agile Release Management"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2288,7 +2326,7 @@
         "categories": [
             "ESG"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2307,7 +2345,7 @@
         "categories": [
             "Safety and EHS Orientation"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2326,7 +2364,7 @@
         "categories": [
             "Lead Remotely with Dispersed Teams"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2345,7 +2383,7 @@
         "categories": [
             "Gender Diversity"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2364,7 +2402,7 @@
         "categories": [
             "Agile Requirements Gathering"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2383,7 +2421,7 @@
         "categories": [
             "Compliance"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2402,7 +2440,7 @@
         "categories": [
             "Unconscious Bias"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2421,7 +2459,7 @@
         "categories": [
             "Agile Estimation"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2440,7 +2478,7 @@
         "categories": [
             "Building Online and Offline Business Networks"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2459,7 +2497,7 @@
         "categories": [
             "Resilience at Work"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2479,7 +2517,7 @@
             "Respectful Workplaces",
             "Workplace Harassment"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2498,7 +2536,7 @@
         "categories": [
             "Respectful Workplaces"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2517,7 +2555,7 @@
         "categories": [
             "Agile Release Management"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2536,7 +2574,7 @@
         "categories": [
             "Agile Requirements Gathering"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2555,7 +2593,7 @@
         "categories": [
             "Safety and EHS Orientation"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2574,7 +2612,7 @@
         "categories": [
             "DEI"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2593,7 +2631,7 @@
         "categories": [
             "Emotional Intelligence"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2612,7 +2650,7 @@
         "categories": [
             "Leadership and Management"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2631,7 +2669,7 @@
         "categories": [
             "Emotional Intelligence"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2650,7 +2688,7 @@
         "categories": [
             "Emotional Intelligence"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2669,7 +2707,7 @@
         "categories": [
             "Cyber Security"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2688,7 +2726,7 @@
         "categories": [
             "Becoming a Competent Leader"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2707,7 +2745,7 @@
         "categories": [
             "Emotional Intelligence"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2726,7 +2764,7 @@
         "categories": [
             "Becoming a Competent Leader"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2745,7 +2783,7 @@
         "categories": [
             "Cyber Security"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2764,7 +2802,7 @@
         "categories": [
             "Becoming a Competent Leader"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2783,7 +2821,7 @@
         "categories": [
             "Becoming a Competent Leader"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2802,7 +2840,7 @@
         "categories": [
             "Effective Coaching"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2821,7 +2859,7 @@
         "categories": [
             "Cyber Security"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2841,7 +2879,7 @@
             "Interpersonal Effectiveness",
             "Interpersonal Skills and Empathy"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2860,7 +2898,7 @@
         "categories": [
             "Leading Teams"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2879,7 +2917,7 @@
         "categories": [
             "Becoming a Competent Leader"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2898,7 +2936,7 @@
         "categories": [
             "Managing Performance"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2917,7 +2955,7 @@
         "categories": [
             "Adaptability and Continuous Learning"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2936,7 +2974,7 @@
         "categories": [
             "Business Power Skills"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2955,7 +2993,7 @@
         "categories": [
             "Healthcare"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2975,7 +3013,7 @@
             "Customer Focus",
             "Customer Satisfaction"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -2994,7 +3032,7 @@
         "categories": [
             "Adaptability and Continuous Learning"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3013,7 +3051,7 @@
         "categories": [
             "Situational Leadership"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3032,7 +3070,7 @@
         "categories": [
             "Becoming a Competent Leader"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3051,7 +3089,7 @@
         "categories": [
             "Situational Leadership"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3070,7 +3108,7 @@
         "categories": [
             "Business Acumen Finance"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3089,7 +3127,7 @@
         "categories": [
             "Leading Innovation"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3108,7 +3146,7 @@
         "categories": [
             "Managing Conflict"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3127,7 +3165,7 @@
         "categories": [
             "Leadership and Management"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3146,7 +3184,7 @@
         "categories": [
             "Effective Feedback"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3165,7 +3203,7 @@
         "categories": [
             "Business Power Skills"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3185,7 +3223,7 @@
             "Business Communication Skills",
             "Business Writing"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3204,7 +3242,7 @@
         "categories": [
             "Business Power Skills"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3223,7 +3261,7 @@
         "categories": [
             "Adapting to New Workstyle"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3243,7 +3281,7 @@
             "Building Relationships",
             "Interpersonal Skills and Empathy"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3262,7 +3300,7 @@
         "categories": [
             "Situational Leadership"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3281,7 +3319,7 @@
         "categories": [
             "Talent Acquisition"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3300,7 +3338,7 @@
         "categories": [
             "Cyber Security"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3319,7 +3357,7 @@
         "categories": [
             "Customer Focus"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3338,7 +3376,7 @@
         "categories": [
             "Cyber Security"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3357,7 +3395,7 @@
         "categories": [
             "Critical Thinking and Decision Making"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3376,7 +3414,7 @@
         "categories": [
             "DEI at Workplace"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3395,7 +3433,7 @@
         "categories": [
             "Adaptability and Continuous Learning"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3414,7 +3452,7 @@
         "categories": [
             "Leading Teams"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3433,7 +3471,7 @@
         "categories": [
             "Becoming a Competent Leader"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3452,7 +3490,7 @@
         "categories": [
             "Workplace Violence"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3471,7 +3509,7 @@
         "categories": [
             "Managing Performance"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3490,7 +3528,7 @@
         "categories": [
             "Leading People"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3509,7 +3547,7 @@
         "categories": [
             "Creative Thinking & Problem Solving"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3528,7 +3566,7 @@
         "categories": [
             "Hiring Practices"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3548,7 +3586,7 @@
             "Becoming a Competent Leader",
             "DEI"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3567,7 +3605,7 @@
         "categories": [
             "DEI"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3586,7 +3624,7 @@
         "categories": [
             "DEI"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3605,7 +3643,7 @@
         "categories": [
             "Leadership and Management"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3624,7 +3662,7 @@
         "categories": [
             "Effective Feedback"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3643,7 +3681,7 @@
         "categories": [
             "Emotional Intelligence"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3662,7 +3700,7 @@
         "categories": [
             "Leadership and Management"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3681,7 +3719,7 @@
         "categories": [
             "Emotional Intelligence"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3700,7 +3738,7 @@
         "categories": [
             "Emotional Intelligence"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3719,7 +3757,7 @@
         "categories": [
             "Cyber Security"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3738,7 +3776,7 @@
         "categories": [
             "Emotional Intelligence"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3757,7 +3795,7 @@
         "categories": [
             "Cyber Security"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3776,7 +3814,7 @@
         "categories": [
             "Emotional Intelligence"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3795,7 +3833,7 @@
         "categories": [
             "Emotional Intelligence"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3814,7 +3852,7 @@
         "categories": [
             "Becoming a Competent Leader"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3833,7 +3871,7 @@
         "categories": [
             "Emotional Intelligence"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3852,7 +3890,7 @@
         "categories": [
             "Becoming a Competent Leader"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3871,7 +3909,7 @@
         "categories": [
             "Cyber Security"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3890,7 +3928,7 @@
         "categories": [
             "Becoming a Competent Leader"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3909,7 +3947,7 @@
         "categories": [
             "Cyber Security"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3928,7 +3966,7 @@
         "categories": [
             "Becoming a Competent Leader"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3947,7 +3985,7 @@
         "categories": [
             "Emotional Intelligence"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3966,7 +4004,7 @@
         "categories": [
             "Effective Feedback"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -3985,7 +4023,7 @@
         "categories": [
             "Effective Feedback"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4004,7 +4042,7 @@
         "categories": [
             "Technical Skills"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4023,7 +4061,7 @@
         "categories": [
             "Becoming a Competent Leader"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4042,7 +4080,7 @@
         "categories": [
             "Cyber Security"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4061,7 +4099,7 @@
         "categories": [
             "Technical Skills"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4080,7 +4118,7 @@
         "categories": [
             "Managing Performance"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4099,7 +4137,7 @@
         "categories": [
             "Managing Performance"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4118,7 +4156,7 @@
         "categories": [
             "Emotional Intelligence"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4137,7 +4175,7 @@
         "categories": [
             "Leadership and Management"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4156,7 +4194,7 @@
         "categories": [
             "Emotional Intelligence"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4175,7 +4213,7 @@
         "categories": [
             "Emotional Intelligence"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4194,7 +4232,7 @@
         "categories": [
             "Cyber Security"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4213,7 +4251,7 @@
         "categories": [
             "Managing Teams"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4232,7 +4270,7 @@
         "categories": [
             "Leadership and Management"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4251,7 +4289,7 @@
         "categories": [
             "Finance and Accounting"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4270,7 +4308,7 @@
         "categories": [
             "Business Skills"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4289,7 +4327,7 @@
         "categories": [
             "Business Power Skills"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4308,7 +4346,7 @@
         "categories": [
             "Becoming a Competent Leader"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4327,7 +4365,7 @@
         "categories": [
             "DEI"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4346,7 +4384,7 @@
         "categories": [
             "Business Strategy"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4365,7 +4403,7 @@
         "categories": [
             "Effective Communications"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4384,7 +4422,7 @@
         "categories": [
             "Cyber Security"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4403,7 +4441,7 @@
         "categories": [
             "Cyber Security"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4422,7 +4460,7 @@
         "categories": [
             "Cyber Security"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4441,7 +4479,7 @@
         "categories": [
             "Cyber Security"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4460,7 +4498,7 @@
         "categories": [
             "Cyber Security"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4479,7 +4517,7 @@
         "categories": [
             "Cyber Security"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4498,7 +4536,7 @@
         "categories": [
             "Cyber Security"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4517,7 +4555,7 @@
         "categories": [
             "Cyber Security"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4536,7 +4574,7 @@
         "categories": [
             "DEI"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4555,7 +4593,7 @@
         "categories": [
             "Agile Estimation"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4574,7 +4612,7 @@
         "categories": [
             "DEI"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4593,7 +4631,7 @@
         "categories": [
             "DEI"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4613,7 +4651,7 @@
             "Customer Focus",
             "Customer Service"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4633,7 +4671,7 @@
             "Healthcare",
             "Safety"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4652,7 +4690,7 @@
         "categories": [
             "Cyber Security"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4671,7 +4709,7 @@
         "categories": [
             "Cyber Security"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4690,7 +4728,7 @@
         "categories": [
             "Cyber Security"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4709,7 +4747,7 @@
         "categories": [
             "Cyber Security"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4728,7 +4766,7 @@
         "categories": [
             "Cyber Security"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4747,7 +4785,7 @@
         "categories": [
             "General"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4766,7 +4804,7 @@
         "categories": [
             "General"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4785,7 +4823,7 @@
         "categories": [
             "General"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4804,7 +4842,7 @@
         "categories": [
             "General"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4823,7 +4861,7 @@
         "categories": [
             "General"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4842,7 +4880,7 @@
         "categories": [
             "General"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4861,7 +4899,7 @@
         "categories": [
             "General"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4880,7 +4918,7 @@
         "categories": [
             "General"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4899,7 +4937,7 @@
         "categories": [
             "General"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4918,7 +4956,7 @@
         "categories": [
             "General"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4937,7 +4975,7 @@
         "categories": [
             "General"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4956,7 +4994,7 @@
         "categories": [
             "General"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4975,7 +5013,7 @@
         "categories": [
             "General"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -4994,7 +5032,7 @@
         "categories": [
             "General"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5013,7 +5051,7 @@
         "categories": [
             "General"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5032,7 +5070,7 @@
         "categories": [
             "Becoming a Competent Leader"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5051,7 +5089,7 @@
         "categories": [
             "Becoming a Competent Leader"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5071,7 +5109,7 @@
             "Becoming a Competent Leader",
             "Leadership"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5090,7 +5128,7 @@
         "categories": [
             "Becoming a Competent Leader"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5109,7 +5147,7 @@
         "categories": [
             "Becoming a Competent Leader"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5128,7 +5166,7 @@
         "categories": [
             "Business Acumen Finance"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5147,7 +5185,7 @@
         "categories": [
             "Becoming a Competent Leader"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5167,7 +5205,7 @@
             "Becoming a Competent Leader",
             "Effective Feedback"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5186,7 +5224,7 @@
         "categories": [
             "Becoming a Competent Leader"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5205,7 +5243,7 @@
         "categories": [
             "Becoming a Competent Leader"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5224,7 +5262,7 @@
         "categories": [
             "Becoming a Competent Leader"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5243,7 +5281,7 @@
         "categories": [
             "Becoming a Competent Leader"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5262,7 +5300,7 @@
         "categories": [
             "Building a Strong Sales Team"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5281,7 +5319,7 @@
         "categories": [
             "Building a Strong Sales Team"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5301,7 +5339,7 @@
             "Building Relationships",
             "Interpersonal Skills and Empathy"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5320,7 +5358,7 @@
         "categories": [
             "Adaptability and Continuous Learning"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5339,7 +5377,7 @@
         "categories": [
             "Business Acumen Finance"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5358,7 +5396,7 @@
         "categories": [
             "Business Acumen Finance"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5377,7 +5415,7 @@
         "categories": [
             "Business Acumen Finance"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5396,7 +5434,7 @@
         "categories": [
             "Business Communication Skills"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5416,7 +5454,7 @@
             "Becoming a Competent Leader",
             "Business Power Skills"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5436,7 +5474,7 @@
             "Business Communication Skills",
             "Business Power Skills"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5456,7 +5494,7 @@
             "Business Power Skills",
             "Customer Focus"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5476,7 +5514,7 @@
             "Business Power Skills",
             "Effective Presentations"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5495,7 +5533,7 @@
         "categories": [
             "Business Power Skills"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5515,7 +5553,7 @@
             "Business Power Skills",
             "Project Management"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5534,7 +5572,7 @@
         "categories": [
             "Business Strategy"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5553,7 +5591,7 @@
         "categories": [
             "Business Strategy"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5572,7 +5610,7 @@
         "categories": [
             "Business Strategy"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5591,7 +5629,7 @@
         "categories": [
             "Business Strategy"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5610,7 +5648,7 @@
         "categories": [
             "Business Communication Skills"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5629,7 +5667,7 @@
         "categories": [
             "Creative Thinking & Problem Solving"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5648,7 +5686,7 @@
         "categories": [
             "Customer Focus"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5668,7 +5706,7 @@
             "Customer Focus",
             "Customer-Centric Marketing"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5687,7 +5725,7 @@
         "categories": [
             "Customer Focus"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5706,7 +5744,7 @@
         "categories": [
             "Digital Transformation"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5725,7 +5763,7 @@
         "categories": [
             "Business Strategy"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5744,7 +5782,7 @@
         "categories": [
             "Business Strategy"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5763,7 +5801,7 @@
         "categories": [
             "Effective Coaching"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5782,7 +5820,7 @@
         "categories": [
             "Effective Coaching"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5801,7 +5839,7 @@
         "categories": [
             "Effective Coaching"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5820,7 +5858,7 @@
         "categories": [
             "Effective Coaching"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5839,7 +5877,7 @@
         "categories": [
             "Effective Coaching"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5858,7 +5896,7 @@
         "categories": [
             "Effective Communications"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5877,7 +5915,7 @@
         "categories": [
             "Effective Communications"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5896,7 +5934,7 @@
         "categories": [
             "Effective Communications"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5915,7 +5953,7 @@
         "categories": [
             "Effective Communications"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5934,7 +5972,7 @@
         "categories": [
             "Effective Feedback"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5953,7 +5991,7 @@
         "categories": [
             "Effective Feedback"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5972,7 +6010,7 @@
         "categories": [
             "Effective Feedback"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -5991,7 +6029,7 @@
         "categories": [
             "Effective Meetings"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6010,7 +6048,7 @@
         "categories": [
             "Effective Meetings"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6029,7 +6067,7 @@
         "categories": [
             "Effective Meetings"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6048,7 +6086,7 @@
         "categories": [
             "Effective Presentations"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6067,7 +6105,7 @@
         "categories": [
             "Emotional Intelligence"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6086,7 +6124,7 @@
         "categories": [
             "Emotional Intelligence"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6105,7 +6143,7 @@
         "categories": [
             "Emotional Intelligence"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6124,7 +6162,7 @@
         "categories": [
             "Emotional Intelligence"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6144,7 +6182,7 @@
             "Interpersonal Effectiveness",
             "Interpersonal Skills and Empathy"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6164,7 +6202,7 @@
             "Interpersonal Effectiveness",
             "Interpersonal Skills and Empathy"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6183,7 +6221,7 @@
         "categories": [
             "Leadership"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6202,7 +6240,7 @@
         "categories": [
             "Leadership"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6221,7 +6259,7 @@
         "categories": [
             "Leading Change"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6240,7 +6278,7 @@
         "categories": [
             "Leading Change"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6259,7 +6297,7 @@
         "categories": [
             "Leading Change"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6278,7 +6316,7 @@
         "categories": [
             "Leading Innovation"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6297,7 +6335,7 @@
         "categories": [
             "Leading Innovation"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6316,7 +6354,7 @@
         "categories": [
             "Leading Innovation"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6336,7 +6374,7 @@
             "Becoming a Competent Leader",
             "Leading People"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6356,7 +6394,7 @@
             "Becoming a Competent Leader",
             "Leading People"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6376,7 +6414,7 @@
             "Becoming a Competent Leader",
             "Leading People"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6396,7 +6434,7 @@
             "Becoming a Competent Leader",
             "Leading People"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6415,7 +6453,7 @@
         "categories": [
             "Leading Teams"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6434,7 +6472,7 @@
         "categories": [
             "Leading Teams"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6453,7 +6491,7 @@
         "categories": [
             "Leading Teams"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6472,7 +6510,7 @@
         "categories": [
             "Leading Teams"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6491,7 +6529,7 @@
         "categories": [
             "Leading Teams"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6510,7 +6548,7 @@
         "categories": [
             "Managing Conflict"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6529,7 +6567,7 @@
         "categories": [
             "Managing Conflict"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6548,7 +6586,7 @@
         "categories": [
             "Managing Conflict"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6567,7 +6605,7 @@
         "categories": [
             "Managing Performance"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6586,7 +6624,7 @@
         "categories": [
             "Managing Performance"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6605,7 +6643,7 @@
         "categories": [
             "Managing Performance"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6624,7 +6662,7 @@
         "categories": [
             "Managing Performance"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6643,7 +6681,7 @@
         "categories": [
             "Managing Performance"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6662,7 +6700,7 @@
         "categories": [
             "Situational Leadership"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6681,7 +6719,7 @@
         "categories": [
             "Situational Leadership"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6700,7 +6738,7 @@
         "categories": [
             "Situational Leadership"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6719,7 +6757,7 @@
         "categories": [
             "Situational Leadership"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6738,7 +6776,7 @@
         "categories": [
             "Situational Leadership"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6757,7 +6795,7 @@
         "categories": [
             "Talent Acquisition"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6776,7 +6814,7 @@
         "categories": [
             "Talent Acquisition"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6795,7 +6833,7 @@
         "categories": [
             "Talent Acquisition"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6814,7 +6852,7 @@
         "categories": [
             "Talent Acquisition"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6833,7 +6871,7 @@
         "categories": [
             "Managing a Diverse Workplace"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6852,7 +6890,7 @@
         "categories": [
             "Project Management"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6871,7 +6909,7 @@
         "categories": [
             "Project Management"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6890,7 +6928,7 @@
         "categories": [
             "Project Management"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6909,7 +6947,7 @@
         "categories": [
             "Supply Chain"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6928,7 +6966,7 @@
         "categories": [
             "Supply Chain"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6947,7 +6985,7 @@
         "categories": [
             "Supply Chain"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6966,7 +7004,7 @@
         "categories": [
             "Supply Chain"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6985,7 +7023,7 @@
         "categories": [
             "Supply Chain"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -6998,13 +7036,13 @@
     },
     {
         "id": 798,
-        "imagePath": "https:\/\/dochek.com\/assets\/assets\/uploads\/SCORM_course_thumbnail\/798\/C4U09_thumbnail_518x309.jpg",
+        "imagePath": "https:\/\/dochek.com\/assets\/assets\/uploads\/SCORM_course_thumbnail\/798\/Legal%20Contracting.jpg",
         "product_name": "Legal Contracting",
         "skill": "Business Skills",
         "categories": [
             "Supply Chain"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7017,13 +7055,13 @@
     },
     {
         "id": 799,
-        "imagePath": "https:\/\/dochek.com\/assets\/assets\/uploads\/SCORM_course_thumbnail\/799\/C4U10_thumbnail_518x309.jpg",
+        "imagePath": "https:\/\/dochek.com\/assets\/assets\/uploads\/SCORM_course_thumbnail\/799\/Supply%20Planning.jpg",
         "product_name": "Supply Planning",
         "skill": "Business Skills",
         "categories": [
             "Supply Chain"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7036,13 +7074,13 @@
     },
     {
         "id": 800,
-        "imagePath": "https:\/\/dochek.com\/assets\/assets\/uploads\/SCORM_course_thumbnail\/800\/C4U11_thumbnail_518x309.jpg",
+        "imagePath": "https:\/\/dochek.com\/assets\/assets\/uploads\/SCORM_course_thumbnail\/800\/Warehousing.jpg",
         "product_name": "Warehousing",
         "skill": "Business Skills",
         "categories": [
             "Supply Chain"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7055,13 +7093,13 @@
     },
     {
         "id": 801,
-        "imagePath": "https:\/\/dochek.com\/assets\/assets\/uploads\/SCORM_course_thumbnail\/801\/C4U12_thumbnail_518x309.jpg",
+        "imagePath": "https:\/\/dochek.com\/assets\/assets\/uploads\/SCORM_course_thumbnail\/801\/Downstream%20and%20Upstream%20Procurement.jpg",
         "product_name": "Downstream and Upstream Procurement",
         "skill": "Business Skills",
         "categories": [
             "Supply Chain"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7074,13 +7112,13 @@
     },
     {
         "id": 802,
-        "imagePath": "https:\/\/dochek.com\/assets\/assets\/uploads\/SCORM_course_thumbnail\/802\/C4U13_thumbnail_518x309.jpg",
+        "imagePath": "https:\/\/dochek.com\/assets\/assets\/uploads\/SCORM_course_thumbnail\/802\/Negotiating%20Purchasing.jpg",
         "product_name": "Negotiating\/Purchasing",
         "skill": "Business Skills",
         "categories": [
             "Supply Chain"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7100,7 +7138,7 @@
             "Digital Marketing",
             "Marketing"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7119,7 +7157,7 @@
         "categories": [
             "Cyber Security"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7138,7 +7176,7 @@
         "categories": [
             "Workplace Harassment"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7157,7 +7195,7 @@
         "categories": [
             "Workplace Harassment"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7176,7 +7214,7 @@
         "categories": [
             "Workplace Harassment"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7195,7 +7233,7 @@
         "categories": [
             "Workplace Harassment"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7214,7 +7252,7 @@
         "categories": [
             "Self Development"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7233,7 +7271,7 @@
         "categories": [
             "Small Business"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7252,7 +7290,7 @@
         "categories": [
             "Small Business"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7271,7 +7309,7 @@
         "categories": [
             "Small Business"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7290,7 +7328,7 @@
         "categories": [
             "DEI at Workplace"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7310,7 +7348,7 @@
             "Effective Presentations",
             "Self Development"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7329,7 +7367,7 @@
         "categories": [
             "Workplace Violence"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7348,7 +7386,7 @@
         "categories": [
             "Workplace Violence"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7367,7 +7405,7 @@
         "categories": [
             "Workplace Violence"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7386,7 +7424,7 @@
         "categories": [
             "Workplace Violence"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7405,7 +7443,7 @@
         "categories": [
             "Workplace Violence"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7425,7 +7463,7 @@
             "Customer Focus",
             "Supply Chain"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7445,7 +7483,7 @@
             "Effective Presentations",
             "Self Development"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7464,7 +7502,7 @@
         "categories": [
             "DEI at Workplace"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7483,7 +7521,7 @@
         "categories": [
             "Self Development"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7502,7 +7540,7 @@
         "categories": [
             "DEI at Workplace"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7521,7 +7559,7 @@
         "categories": [
             "Workplace Violence"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7540,7 +7578,7 @@
         "categories": [
             "DEI at Workplace"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7559,7 +7597,7 @@
         "categories": [
             "Workplace Violence"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7578,7 +7616,7 @@
         "categories": [
             "DEI at Workplace"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7597,7 +7635,7 @@
         "categories": [
             "DEI at Workplace"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7616,7 +7654,7 @@
         "categories": [
             "DEI at Workplace"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7635,7 +7673,7 @@
         "categories": [
             "Pandemic Management"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7654,7 +7692,7 @@
         "categories": [
             "Pandemic Management"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7673,7 +7711,7 @@
         "categories": [
             "Pandemic Management"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7692,7 +7730,7 @@
         "categories": [
             "DEI at Workplace"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7711,7 +7749,7 @@
         "categories": [
             "DEI at Workplace"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7730,7 +7768,7 @@
         "categories": [
             "Pandemic Management"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7749,7 +7787,7 @@
         "categories": [
             "Innovation"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7768,7 +7806,7 @@
         "categories": [
             "Innovation"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7787,7 +7825,7 @@
         "categories": [
             "Pandemic Management"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7806,7 +7844,7 @@
         "categories": [
             "Cloud Technology"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7825,7 +7863,7 @@
         "categories": [
             "Business Skills"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7845,7 +7883,7 @@
             "Business Skills",
             "Customer Focus"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7864,7 +7902,7 @@
         "categories": [
             "Healthcare"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7883,7 +7921,7 @@
         "categories": [
             "Pandemic Management"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7902,7 +7940,7 @@
         "categories": [
             "Workplace Wellness"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7921,7 +7959,7 @@
         "categories": [
             "Cloud Technology"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7940,7 +7978,7 @@
         "categories": [
             "Healthcare"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7959,7 +7997,7 @@
         "categories": [
             "Healthcare"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7978,7 +8016,7 @@
         "categories": [
             "Cloud Technology"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -7997,7 +8035,7 @@
         "categories": [
             "ESG"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8016,7 +8054,7 @@
         "categories": [
             "Technology"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8035,7 +8073,7 @@
         "categories": [
             "ESG"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8054,7 +8092,7 @@
         "categories": [
             "ESG"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8074,7 +8112,7 @@
             "Customer Focus",
             "Customer Satisfaction"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8093,7 +8131,7 @@
         "categories": [
             "ESG"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8112,7 +8150,7 @@
         "categories": [
             "ESG"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8131,7 +8169,7 @@
         "categories": [
             "ESG"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8150,7 +8188,7 @@
         "categories": [
             "Healthcare"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8169,7 +8207,7 @@
         "categories": [
             "Healthcare"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8188,7 +8226,7 @@
         "categories": [
             "Cyber Security"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8207,7 +8245,7 @@
         "categories": [
             "Cyber Security"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8226,7 +8264,7 @@
         "categories": [
             "Cyber Security"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8245,7 +8283,7 @@
         "categories": [
             "Cloud Technology"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8264,7 +8302,7 @@
         "categories": [
             "DEI at Workplace"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8283,7 +8321,7 @@
         "categories": [
             "Safety"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8302,7 +8340,7 @@
         "categories": [
             "Safety"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8321,7 +8359,7 @@
         "categories": [
             "Cyber Security"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8340,7 +8378,7 @@
         "categories": [
             "DEI at Workplace"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8359,7 +8397,7 @@
         "categories": [
             "Workplace Politics"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8378,7 +8416,7 @@
         "categories": [
             "Workplace Violence"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8397,7 +8435,7 @@
         "categories": [
             "Safety"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8416,7 +8454,7 @@
         "categories": [
             "DEI at Workplace"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8435,7 +8473,7 @@
         "categories": [
             "DEI at Workplace"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8454,7 +8492,7 @@
         "categories": [
             "DEI at Workplace"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8473,7 +8511,7 @@
         "categories": [
             "Business Skills"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8492,7 +8530,7 @@
         "categories": [
             "DEI at Workplace"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8511,7 +8549,7 @@
         "categories": [
             "DEI at Workplace"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8530,7 +8568,7 @@
         "categories": [
             "Self Development"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8549,7 +8587,7 @@
         "categories": [
             "Brand Management"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8568,7 +8606,7 @@
         "categories": [
             "Brand Management"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8587,7 +8625,7 @@
         "categories": [
             "Brand Management"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8606,7 +8644,7 @@
         "categories": [
             "Brand Management"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8625,7 +8663,7 @@
         "categories": [
             "ESG"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8644,7 +8682,7 @@
         "categories": [
             "Customer Focus"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8663,7 +8701,7 @@
         "categories": [
             "Technology"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8682,7 +8720,7 @@
         "categories": [
             "Customer Focus"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8701,7 +8739,7 @@
         "categories": [
             "Customer Focus"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8720,7 +8758,7 @@
         "categories": [
             "Customer Focus"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8739,7 +8777,7 @@
         "categories": [
             "Customer Focus"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8758,7 +8796,7 @@
         "categories": [
             "Generational Diversity"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8777,7 +8815,7 @@
         "categories": [
             "Generational Diversity"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8796,7 +8834,7 @@
         "categories": [
             "Generational Diversity"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8816,7 +8854,7 @@
             "Family Status",
             "Generational Diversity"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8835,7 +8873,7 @@
         "categories": [
             "Healthcare"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8854,7 +8892,7 @@
         "categories": [
             "Generational Diversity"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8873,7 +8911,7 @@
         "categories": [
             "Generational Diversity"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8892,7 +8930,7 @@
         "categories": [
             "Assistive Technology"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8911,7 +8949,7 @@
         "categories": [
             "Emotional Intelligence"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8930,7 +8968,7 @@
         "categories": [
             "Customer Focus"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8949,7 +8987,7 @@
         "categories": [
             "Customer Focus"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8969,7 +9007,7 @@
             "Family Status",
             "Generational Diversity"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -8988,7 +9026,7 @@
         "categories": [
             "Customer Focus"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9007,7 +9045,7 @@
         "categories": [
             "Brand Management"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9026,7 +9064,7 @@
         "categories": [
             "Brand Management"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9045,7 +9083,7 @@
         "categories": [
             "Brand Management"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9064,7 +9102,7 @@
         "categories": [
             "Brand Management"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9083,7 +9121,7 @@
         "categories": [
             "Brand Management"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9102,7 +9140,7 @@
         "categories": [
             "Brand Management"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9121,7 +9159,7 @@
         "categories": [
             "Brand Management"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9140,7 +9178,7 @@
         "categories": [
             "Marketing"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9159,7 +9197,7 @@
         "categories": [
             "Marketing"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9178,7 +9216,7 @@
         "categories": [
             "Marketing"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9197,7 +9235,7 @@
         "categories": [
             "Marketing"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9216,7 +9254,7 @@
         "categories": [
             "Leadership"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9235,7 +9273,7 @@
         "categories": [
             "Leadership"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9254,7 +9292,7 @@
         "categories": [
             "Marketing"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9273,7 +9311,7 @@
         "categories": [
             "Leadership"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9292,7 +9330,7 @@
         "categories": [
             "Leadership"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9311,7 +9349,7 @@
         "categories": [
             "Leadership"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9330,7 +9368,7 @@
         "categories": [
             "Marketing"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9349,7 +9387,7 @@
         "categories": [
             "Leadership"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9369,7 +9407,7 @@
             "4 \u2018A\u2019s of Marketing Awareness and Accessibility",
             "Marketing"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9388,7 +9426,7 @@
         "categories": [
             "Customer Focus"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9407,7 +9445,7 @@
         "categories": [
             "4 \u2018A\u2019s of Marketing Awareness and Accessibility"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9426,7 +9464,7 @@
         "categories": [
             "Shareholder Driven Companies"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9445,7 +9483,7 @@
         "categories": [
             "4 \u2018A\u2019s of Marketing Awareness and Accessibility"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9464,7 +9502,7 @@
         "categories": [
             "Critical Thinking and Decision Making"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9483,7 +9521,7 @@
         "categories": [
             "Critical Thinking and Decision Making"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9502,7 +9540,7 @@
         "categories": [
             "Adaptability and Continuous Learning"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9521,7 +9559,7 @@
         "categories": [
             "Adaptability and Continuous Learning"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9540,7 +9578,7 @@
         "categories": [
             "Critical Thinking and Decision Making"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9559,7 +9597,7 @@
         "categories": [
             "Critical Thinking and Decision Making"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9578,7 +9616,7 @@
         "categories": [
             "Self Development"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9597,7 +9635,7 @@
         "categories": [
             "Gig Working"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9616,7 +9654,7 @@
         "categories": [
             "Critical Thinking and Decision Making"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9635,7 +9673,7 @@
         "categories": [
             "Workplace Ethics"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9655,7 +9693,7 @@
             "Interpersonal Skills",
             "Interpersonal Skills and Empathy"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9674,7 +9712,7 @@
         "categories": [
             "Finance"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9693,7 +9731,7 @@
         "categories": [
             "Workplace Productivity"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9712,7 +9750,7 @@
         "categories": [
             "Compliance"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9731,7 +9769,7 @@
         "categories": [
             "Workplace Productivity"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9750,7 +9788,7 @@
         "categories": [
             "Workplace Productivity"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9769,7 +9807,7 @@
         "categories": [
             "Leading Change"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9788,7 +9826,7 @@
         "categories": [
             "Workplace Productivity"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9807,7 +9845,7 @@
         "categories": [
             "Workplace Productivity"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9826,7 +9864,7 @@
         "categories": [
             "Workplace Ethics"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9845,7 +9883,7 @@
         "categories": [
             "Hiring Practices"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9864,7 +9902,7 @@
         "categories": [
             "Hiring Practices"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9883,7 +9921,7 @@
         "categories": [
             "Hiring Practices"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9902,7 +9940,7 @@
         "categories": [
             "Hiring Practices"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9921,7 +9959,7 @@
         "categories": [
             "Finance"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9940,7 +9978,7 @@
         "categories": [
             "Hiring Practices"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9959,7 +9997,7 @@
         "categories": [
             "Leadership"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9978,7 +10016,7 @@
         "categories": [
             "Workplace Ethics"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -9997,7 +10035,7 @@
         "categories": [
             "Hiring Practices"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -10016,7 +10054,7 @@
         "categories": [
             "Self Development"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -10035,7 +10073,7 @@
         "categories": [
             "Workplace Wellness"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -10055,7 +10093,7 @@
             "Customer Focus",
             "Customer Service"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -10074,7 +10112,7 @@
         "categories": [
             "Innovation"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -10093,7 +10131,7 @@
         "categories": [
             "Workplace Wellness"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -10112,7 +10150,7 @@
         "categories": [
             "Workplace Productivity"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -10131,7 +10169,7 @@
         "categories": [
             "Workplace Wellness"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -10150,7 +10188,7 @@
         "categories": [
             "Workplace Wellness"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -10169,7 +10207,7 @@
         "categories": [
             "Workplace Wellness"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -10189,7 +10227,7 @@
             "Leading People",
             "Workplace Productivity"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
@@ -10208,7 +10246,7 @@
         "categories": [
             "Workplace Wellness"
         ],
-        "date": "Mon, Apr 13 2026",
+        "date": "Tue, May 12 2026",
         "status": true,
         "base_price": 10,
         "dealPrice": 12,
