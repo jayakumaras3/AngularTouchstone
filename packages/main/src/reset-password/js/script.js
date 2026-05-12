@@ -20,6 +20,12 @@
     var form           = document.getElementById('resetPasswordForm');
     var newInput       = document.getElementById('newPassword');
     var confInput      = document.getElementById('confirmPassword');
+    var toggleNew      = document.getElementById('toggleNew');
+    var toggleConfirm  = document.getElementById('toggleConfirm');
+    var eyeOffNew      = document.getElementById('eyeOffNew');
+    var eyeOnNew       = document.getElementById('eyeOnNew');
+    var eyeOffConfirm  = document.getElementById('eyeOffConfirm');
+    var eyeOnConfirm   = document.getElementById('eyeOnConfirm');
     var resetBtn       = document.getElementById('resetBtn');
     var backBtn        = document.getElementById('backBtn');
 
@@ -95,8 +101,25 @@
     }
 
     // ── Event listeners ──────────────────────────────────────
+    function bindPasswordToggle(button, input, eyeOff, eyeOn, labelPrefix) {
+        if (!button || !input || !eyeOff || !eyeOn) {
+            return;
+        }
+
+        button.addEventListener('click', function () {
+            var willShow = input.type === 'password';
+            input.type = willShow ? 'text' : 'password';
+            eyeOff.classList.toggle('hidden', willShow);
+            eyeOn.classList.toggle('hidden', !willShow);
+            button.setAttribute('aria-label', (willShow ? 'Hide ' : 'Show ') + labelPrefix);
+            input.focus();
+        });
+    }
+
     newInput.addEventListener('input', validate);
     confInput.addEventListener('input', validate);
+    bindPasswordToggle(toggleNew, newInput, eyeOffNew, eyeOnNew, 'new password');
+    bindPasswordToggle(toggleConfirm, confInput, eyeOffConfirm, eyeOnConfirm, 'confirm password');
     window.addEventListener('scroll', updateHeaderState, { passive: true });
 
     backBtn.addEventListener('click', function () {
