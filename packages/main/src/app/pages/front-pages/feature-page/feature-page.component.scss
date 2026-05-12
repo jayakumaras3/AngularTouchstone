@@ -829,3 +829,89 @@ h2{
     display: none;
   }
 }
+
+@media (prefers-color-scheme: dark) {
+  :host {
+    color: #e5e7eb;
+  }
+
+  :host ::ng-deep .bg-light-primary,
+  :host ::ng-deep .home-page-header,
+  :host ::ng-deep .feature-wrapper,
+  :host ::ng-deep .bespoke-learning-section,
+  :host ::ng-deep .template-slider-content,
+  :host ::ng-deep .footer-container,
+  :host ::ng-deep .footer-container-bookDemo,
+  :host ::ng-deep .homefooter-container,
+  :host ::ng-deep .feature-block,
+  :host ::ng-deep .course-card,
+  :host ::ng-deep .course-container {
+    background-color: #0f1724 !important;
+    border-color: #1f2937 !important;
+  }
+
+  :host ::ng-deep .feature-block {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45) !important;
+  }
+
+  :host ::ng-deep .section-sub-title,
+  :host ::ng-deep .section-sub-title1,
+  :host ::ng-deep .title,
+  :host ::ng-deep .desc,
+  :host ::ng-deep .text-muted,
+  :host ::ng-deep .explore-title,
+  :host ::ng-deep .feature-block h2,
+  :host ::ng-deep .feature-block p,
+  :host ::ng-deep .university,
+  :host ::ng-deep .level,
+  :host ::ng-deep .provider {
+    color: #e5e7eb !important;
+  }
+
+  :host ::ng-deep .feature-block h2 span,
+  :host ::ng-deep .btn-primary,
+  :host ::ng-deep .arrow-icon,
+  :host ::ng-deep .free-trial-btn,
+  :host ::ng-deep .show-more-btn {
+    color: #ffffff !important;
+  }
+
+  :host ::ng-deep .feature-block h2 span {
+    color: #60a5fa !important;
+  }
+
+  :host ::ng-deep .btn-primary {
+    background: #2563eb !important;
+  }
+
+  :host ::ng-deep .btn-primary:hover {
+    background: #1d4ed8 !important;
+  }
+
+  :host ::ng-deep .arrow-icon {
+    background-color: #2563eb !important;
+    color: #ffffff !important;
+  }
+
+  :host ::ng-deep .image-group .main-img,
+  :host ::ng-deep .imgStyleDash,
+  :host ::ng-deep .demo-slide img,
+  :host ::ng-deep .sliderImg {
+    filter: brightness(0.95) contrast(1.05) !important;
+  }
+
+  :host ::ng-deep .border-dash {
+    border-color: #374151 !important;
+  }
+
+  :host ::ng-deep .feature-block .text-primary,
+  :host ::ng-deep .icon-40.text-primary {
+    color: #60a5fa !important;
+  }
+
+  :host ::ng-deep .bg-light-primary {
+    background-color: #0f1724 !important;
+  }
+}
+
+

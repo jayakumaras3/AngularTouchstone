@@ -228,40 +228,7 @@ async function fetchJsonFromPaths(paths) {
 }
 
 function getMarketplaceAssetCandidates() {
-  const candidates = new Set();
-  const currentScript = document.currentScript || document.querySelector('script[src$="js/script.js"]');
-
-  if (currentScript && currentScript.src) {
-    try {
-      const scriptUrl = new URL(currentScript.src, window.location.href);
-      const marketplaceRoot = new URL("../", scriptUrl);
-      candidates.add(new URL("assets/product-data.json", marketplaceRoot).toString());
-    } catch (error) {
-      // Fall through to other candidate generation.
-    }
-  }
-
-  try {
-    const pageUrl = new URL(window.location.href);
-    candidates.add(new URL("assets/product-data.json", pageUrl).toString());
-    candidates.add(new URL("./market-place/assets/product-data.json", pageUrl).toString());
-    candidates.add(new URL("/market-place/assets/product-data.json", pageUrl.origin).toString());
-    candidates.add(new URL("/assets/data/product-data.json", pageUrl.origin).toString());
-  } catch (error) {
-    // Ignore malformed runtime URL edge cases.
-  }
-
-  candidates.add("./assets/product-data.json");
-  candidates.add("/market-place/assets/product-data.json");
-  candidates.add("market-place/assets/product-data.json");
-  candidates.add("./market-place/assets/product-data.json");
-  candidates.add("../market-place/assets/product-data.json");
-  candidates.add("../assets/data/product-data.json");
-  candidates.add("/assets/data/product-data.json");
-  candidates.add("../../assets/data/product-data.json");
-  candidates.add("./assets/data/product-data.json");
-
-  return Array.from(candidates);
+  return ["../../../../ang/assets/data/product-data.json"];
 }
 
 async function loadProductsFromJson() {
@@ -517,6 +484,36 @@ function renderLanguages() {
   els.languageList.appendChild(fragment);
 }
 
+// function buildGridCards(courses, startIndex = 0) {
+//   const fragment = document.createDocumentFragment();
+
+//   courses.forEach((course, index) => {
+//     const card = document.createElement("article");
+//     card.className = "course-card";
+//     card.style.animationDelay = `${(startIndex + index) * 20}ms`;
+//     card.style.cursor = "pointer";
+//     card.innerHTML = `
+//       <div class="card-media">
+//         <img src="${course.imagePath}" alt="${course.product_name}" loading="lazy" decoding="async" />
+//       </div>
+//       <div class="card-body">
+//         <h3 class="card-title">${course.product_name}</h3>
+//         <div class="card-meta">
+//           <span class="language-text">Language: <span class="language-value">${course.language}</span></span>
+//           <span class="duration-box">Duration: ${course.duration} min</span>
+//         </div>
+//       </div>
+//     `;
+
+//     card.addEventListener("click", () => {
+//       console.log("Course clicked with ID: " + course.id);
+//     });
+
+//     fragment.appendChild(card);
+//   });
+
+//   return fragment;
+// }
 function buildGridCards(courses, startIndex = 0) {
   const fragment = document.createDocumentFragment();
 
@@ -525,6 +522,7 @@ function buildGridCards(courses, startIndex = 0) {
     card.className = "course-card";
     card.style.animationDelay = `${(startIndex + index) * 20}ms`;
     card.style.cursor = "pointer";
+
     card.innerHTML = `
       <div class="card-media">
         <img src="${course.imagePath}" alt="${course.product_name}" loading="lazy" decoding="async" />
@@ -532,14 +530,45 @@ function buildGridCards(courses, startIndex = 0) {
       <div class="card-body">
         <h3 class="card-title">${course.product_name}</h3>
         <div class="card-meta">
-          <span class="language-text">Language: <span class="language-value">${course.language}</span></span>
-          <span class="duration-box">Duration: ${course.duration} min</span>
+          <span class="language-text">
+            Language: <span class="language-value">${course.language}</span>
+          </span>
+          <span class="duration-box">
+            Duration: ${course.duration} min
+          </span>
         </div>
       </div>
     `;
 
     card.addEventListener("click", () => {
-      console.log("Course clicked with ID: " + course.id);
+
+      //  console.log("Course clicked with ID: " + course.id);
+      // Create form
+      const form = document.createElement("form");
+      form.method = "POST";
+      form.action = BASE_URL + "my_training/read_more";
+
+      // Hidden fields
+      const fields = {
+        crid: course.id,
+        detail_type: 5,
+        tab: 1
+      };
+
+      // Append hidden inputs
+      Object.keys(fields).forEach(key => {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = key;
+        input.value = fields[key];
+        form.appendChild(input);
+      });
+
+      // Append form to body
+      document.body.appendChild(form);
+
+      // Submit form
+      form.submit();
     });
 
     fragment.appendChild(card);
