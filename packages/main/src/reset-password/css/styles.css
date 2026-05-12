@@ -434,6 +434,7 @@ form {
 
 /* ── Dark mode: triggered by OS preference OR .theme-dark class ── */
 @media (prefers-color-scheme: dark) {
+  html:not(.theme-light) {
     body {
         background: #0b1220;
         color: #e5e7eb;
@@ -521,6 +522,7 @@ form {
     .btn-outline:hover {
         background: #1f2937;
     }
+  }
 }
 
 /* ── Dark mode via .theme-dark class (JS-forced, no OS dependency) ── */

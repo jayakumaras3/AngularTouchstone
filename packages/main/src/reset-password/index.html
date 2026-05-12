@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="theme-dark">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -50,21 +50,24 @@
             var savedDark = saved === 'dark' || saved === 'true' || saved === '1' || saved === 'on' || saved === 'enabled';
             var savedLight = saved === 'light' || saved === 'false' || saved === '0' || saved === 'off' || saved === 'disabled';
 
-            // Default to dark for this standalone page unless user explicitly selects light.
-            var shouldUseDark = forcedDark || savedDark || (!forcedLight && !savedLight) || prefersDark;
+            var shouldUseDark = forcedDark || savedDark || (!forcedLight && !savedLight && prefersDark);
 
             if (shouldUseDark) {
                 root.classList.add('theme-dark');
+                root.classList.remove('theme-light');
             } else {
                 root.classList.remove('theme-dark');
+                root.classList.add('theme-light');
             }
 
             if (mediaQuery && !forcedDark && !forcedLight && !savedDark && !savedLight) {
                 var onChange = function (e) {
                     if (e.matches) {
                         root.classList.add('theme-dark');
+                        root.classList.remove('theme-light');
                     } else {
                         root.classList.remove('theme-dark');
+                        root.classList.add('theme-light');
                     }
                 };
 
