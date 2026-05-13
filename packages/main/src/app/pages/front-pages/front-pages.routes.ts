@@ -30,19 +30,67 @@ export const FrontPagesRoutes: Routes = [
     component: HomepageComponent, // acts as layout shell
     children: [
       { path: '', redirectTo: 'homepage', pathMatch: 'full' },
-      { path: 'homepage', component: HomepageDetailsComponent }, // real homepage content
-      { path: 'about', component: AboutUsComponent },
+      {
+        path: 'homepage',
+        component: HomepageDetailsComponent,
+        data: {
+          title: 'Launch Courses in Minutes | Cloud-based LMS',
+          description:
+            'Create academic and corporate training programs, certifications, engaging gamification experiences, and track learning progress with no lags through our learning platform. Sign up today!',
+        },
+      }, // real homepage content
+      {
+        path: 'about',
+        component: AboutUsComponent,
+        data: {
+          title: 'About DOCHEK: Built for Focus, not Noise',
+          description:
+            'Discover more about DOCHEK and the team behind the platform simplifying learning management for modern organizations.',
+        },
+      },
       { path: 'blogs', component: BlogComponent },
       { path: 'portfolio', component: PortfolioComponent },
       { path: 'pricing', component: PricingComponent },
-      { path: 'contact', component: ContactComponent },
-      { path: 'features', component: FeaturePageComponent },
+      {
+        path: 'contact',
+        component: ContactComponent,
+        data: {
+          title: 'Contact DOCHEK | Cloud-based LMS',
+          description:
+            'Looking for a hassle-free way to manage learning? Contact DOCHEK to book a demo, explore features, and discuss scalable eLearning solutions for your team.',
+        },
+      },
+      {
+        path: 'features',
+        component: FeaturePageComponent,
+        data: {
+          title: 'DOCHEK | Lightweight Learning Platform',
+          description:
+            'Create courses in minutes, manage learner tracking, certifications, gamification, and reporting with a lightweight learning management platform. Sign up today!',
+        },
+      },
       { path: 'corecatalog', component: CorecatalogComponent },      
-      { path: 'coursecatalog', component: CourseCatalogComponent },
+      {
+        path: 'coursecatalog',
+        component: CourseCatalogComponent,
+        data: {
+          title: 'DOCHEK | Online Courses for Professional Development',
+          description:
+            'Explore leadership, business, compliance, cybersecurity, and soft skills training courses through DOCHEK\'s online learning catalog for modern organizations.',
+        },
+      },
       { path: 'sme-catalog', component: SmeCatalogComponent },
       { path: 'sme-catalog/:category', component: SmeCategoryComponent },
       { path: 'blog-details', component: BlogDetailsComponent },
-      { path: 'catalog', component: ShopComponent },
+      {
+        path: 'catalog',
+        component: ShopComponent,
+        data: {
+          title: 'DOCHEK | Online Courses for Professional Development',
+          description:
+            'Explore leadership, business, compliance, cybersecurity, and workplace learning courses through DOCHEK\'s online course catalog for modern organizations.',
+        },
+      },
       { path: 'coursedetails/:courseId', component: ProductDetailsComponent },
       { path: 'coursedetails', component: ProductDetailsComponent }, // Fallback for backward compatibility
       { path: 'privacy', component: PrivacyComponent },
