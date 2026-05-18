@@ -88,7 +88,7 @@ body {
 .catalog-sidebar {
   width: 290px;
   min-width: 290px;
-  padding: 12px 0 14px;
+  padding: 0 0 14px;
   background: var(--bg-sidebar);
   border-right: 1px solid var(--line);
   position: sticky;
@@ -98,17 +98,20 @@ body {
 }
 
 .sidebar-close-btn {
-  display: none;
+  display: none !important;
 }
 
 .filter-section {
   padding-top: 12px;
   margin-bottom: 12px;
-  border-top: 1px solid var(--line);
+  border-top: none;
+   
+    border-bottom: 1px solid var(--line);
 }
 
-.filter-section:first-child {
+.catalog-sidebar .filter-section:first-of-type {
   border-top: 0;
+  padding-top: 19px;
 }
 
 .filter-section-title {
@@ -797,7 +800,7 @@ body {
     background: transparent;
     width: 34px;
     height: 34px;
-    display: inline-grid;
+    display: inline-grid !important;
     place-items: center;
     position: absolute;
     right: 8px;
