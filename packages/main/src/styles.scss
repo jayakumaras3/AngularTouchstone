@@ -189,3 +189,44 @@ button[mat-icon-button][matSuffix] {
   margin-left: auto;
 }
 
+.cc-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: min-height 0.3s ease, opacity 0.25s ease;
+}
+
+.cc-text {
+  width: 100%;
+  min-height: 48px;
+  opacity: 1;
+  visibility: visible;
+  text-align: center;
+  direction: rtl;
+  unicode-bidi: plaintext;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.cc-text.hidden,
+.cc-text:empty {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.cc-placeholder {
+  width: 100%;
+  min-height: 48px;
+  visibility: hidden;
+}
+
+.cc-text:not(.hidden):not(:empty) + .cc-placeholder {
+  position: absolute;
+  inset: 0;
+}
+
