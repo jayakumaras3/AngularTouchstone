@@ -24,7 +24,7 @@ export class BlogComponent implements OnInit {
 
   getNavigate(cardimg: any) {
     this.frontendService.setBlog(cardimg);
-    if (cardimg.id === 100) {
+    if (cardimg.id >= 100) {
       this.router.navigate(['/blog-details']);
     } else {
       this.router.navigate(['front-pages/blog-details']);

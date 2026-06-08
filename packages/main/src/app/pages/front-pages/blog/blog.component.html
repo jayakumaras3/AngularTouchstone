@@ -10,7 +10,7 @@
 
     <!-- Featured DOCHEK Blog Card -->
     @for(cardimg of cardimgs; track cardimg.id) {
-      @if(cardimg.id === 100) {
+      @if(cardimg.id === 100 || cardimg.id === 101) {
         <article class="featured-blog-card" (click)="getNavigate(cardimg)">
           <div class="featured-blog-card__media">
             <img [src]="cardimg.imgSrc" class="featured-blog-img" alt="Smart Learning with DOCHEK" />

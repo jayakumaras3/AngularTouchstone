@@ -302,9 +302,272 @@
 }
 
 <!-- ============================================================ -->
+<!-- Hidden Cost Blog Details (id === 101)                       -->
+<!-- ============================================================ -->
+@if(blogDetail()?.id === 101) {
+
+<article class="dochek-blog">
+
+  <!-- ═══════════════════════════════════════════ HERO ══ -->
+  <div class="db-hero">
+    <div class="db-container">
+      <div class="db-hero__content-card">
+        <h1 class="db-hero__title">The Hidden Cost of Clunky Learning Platforms</h1>
+        <div class="db-hero__meta">
+          <span><i-tabler name="calendar" class="icon-16"></i-tabler>June 5, 2026</span>
+          <span><i-tabler name="clock" class="icon-16"></i-tabler>5 min read</span>
+          <span><i-tabler name="eye" class="icon-16"></i-tabler>3,800 views</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════ BREADCRUMB ══ -->
+  <div class="db-breadcrumb-bar">
+    <div class="db-container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item">
+            <a [routerLink]="['/homepage']" class="text-primary text-decoration-none">Home</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a [routerLink]="['/blogs']" class="text-primary text-decoration-none">Blogs</a>
+          </li>
+          <li class="breadcrumb-item active text-muted" aria-current="page">The Hidden Cost of Clunky Learning Platforms</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ MAIN CONTENT LAYOUT ══ -->
+  <div class="db-container db-layout">
+
+    <!-- LEFT: Article body -->
+    <main class="db-article">
+
+      <!-- ── Opening ── -->
+      <p class="db-lead">
+        It's a Tuesday afternoon. There is a new cohort starting next week. The content is ready,
+        your learning program has been designed and the course is supposed to go live.
+        But&hellip;this is going to consume the next three days of your life.
+      </p>
+
+      <p class="db-para">
+        Credentials to be sent out, learning paths pending to be configured. And Reports&hellip;where
+        are the reports?! Leadership would be asking for them first!!
+      </p>
+
+      <blockquote class="db-blockquote">
+        Sound familiar? Most learning managers have lived this Tuesday.
+        <strong>Some of them live it every month.</strong>
+      </blockquote>
+
+      <!-- ── Hero image ── -->
+      <figure class="db-figure">
+        <img src="assets/images/blog/Boy_tension.jpg"
+             class="db-figure__img" alt="Overwhelmed learning manager buried in admin work" />
+      </figure>
+
+      <!-- ── Section 1 – Admin problem ── -->
+      <section class="db-section" id="hc-section-admin">
+        <h2 class="db-section__title">
+          <span class="db-section__accent"></span>
+          Admin Problem
+        </h2>
+
+        <p class="db-para">
+          Nobody wakes up one day and decides to spend half their week doing manual admin. It just&hellip; happens.
+        </p>
+
+        <p class="db-para">
+          First it's a small task. Then a spreadsheet that lives alongside the learning platform because your
+          LMS doesn't quite cut it. Then a reporting process that somehow became your problem to do manually
+          every single month.
+        </p>
+
+        <p class="db-para">
+          Each thing on its own feels fine. Together, they take over the entire job.
+        </p>
+
+        <div class="db-callout db-callout--highlight">
+          <div class="db-callout__icon">
+            <i-tabler name="alert-triangle" class="icon-28"></i-tabler>
+          </div>
+          <div>
+            <p class="db-callout__text">
+              The person who was hired to build learning culture is spending most of their time
+              <strong>just keeping the lights on.</strong> And it's scary because it starts to feel normal.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Section 2 – Learners feel it too ── -->
+      <section class="db-section" id="hc-section-learners">
+        <h2 class="db-section__title">
+          <span class="db-section__accent"></span>
+          Learners Feel the Frustration Too
+        </h2>
+
+        <p class="db-para">
+          This is not just a behind-the-scenes problem. It shows up in the learner experience as well.
+        </p>
+
+        <figure class="db-figure">
+          <img src="assets/images/blog/lady_tension.jpg"
+               class="db-figure__img" alt="Frustrated learner struggling with a clunky platform" />
+        </figure>
+
+        <p class="db-para">
+          Learners experience slow loading, slow navigation, a homepage that looks like someone threw forty
+          courses at a wall and called it a curriculum. Three clicks to get somewhere that should take one.
+        </p>
+
+        <blockquote class="db-blockquote">
+          By the time a learner actually reaches the content, they're already a little frustrated. And when
+          completion rates are low, everyone looks at the content.
+          <strong>Nobody looks at the platform that made getting there feel like a chore.</strong>
+        </blockquote>
+      </section>
+
+      <!-- ── Section 3 – The one question ── -->
+      <section class="db-section" id="hc-section-question">
+        <h2 class="db-section__title">
+          <span class="db-section__accent"></span>
+          The One Question That Matters
+        </h2>
+
+        <p class="db-para">
+          Before you sign anything or renew anything, ask this:
+          <strong>how many hours a week does this platform cost us to run?</strong>
+        </p>
+
+        <p class="db-para">
+          Not in licensing fees, but in time. In the Tuesday afternoons that keep you frustrated for the rest
+          of the week. In the workarounds that have become habits. In the energy your team spends on the system
+          instead of on the people the system is supposed to serve.
+        </p>
+
+        <div class="db-callout db-callout--highlight">
+          <div class="db-callout__icon">
+            <i-tabler name="receipt-off" class="icon-28"></i-tabler>
+          </div>
+          <div>
+            <p class="db-callout__text">
+              A platform that consumes your team's best hours is not a neutral tool.
+              <strong>It is expensive in ways that never show up on an invoice.</strong>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Section 4 – DOCHEK solution ── -->
+      <section class="db-section" id="hc-section-dochek">
+        <h2 class="db-section__title">
+          <span class="db-section__accent"></span>
+          The Best Platforms Have Figured This Out
+        </h2>
+
+        <p class="db-para">
+          Fast to set up. Lightweight. Easy to manage. The kind where the technology gets out of the way and
+          the learning finally gets to be the point.
+        </p>
+
+        <p class="db-para">
+          That's the philosophy behind <strong>DOCHEK</strong>. We built DOCHEK because we had seen enough
+          Tuesdays like that one.
+        </p>
+
+        <p class="db-para">
+          DOCHEK is a lightweight learning management platform designed to remove the operational weight that
+          sits between your team and the actual work of learning.
+        </p>
+
+        <figure class="db-figure db-figure--screenshot">
+          <img src="assets/images/blog/dochek.jpg"
+               class="db-figure__img" alt="DOCHEK Platform screenshot" />
+          <figcaption class="db-figure__caption">DOCHEK — One Platform. All Your Learning Needs. Zero Chaos.</figcaption>
+        </figure>
+
+        <p class="db-para">
+          You can launch a course in a day. Enroll learners without a workflow to navigate. Build certification
+          programs with structured modules, track progress at every level, and hand out certificates, including
+          externally accredited ones.
+        </p>
+
+        <p class="db-para">
+          Gamification keeps learners engaged without requiring you to build an engagement strategy from scratch.
+          Analytics show you what is working without you having to dig for it. And when your organization grows
+          from fifty learners to five thousand, DOCHEK scales with you without the chaos that usually comes with
+          that territory.
+        </p>
+
+        <blockquote class="db-blockquote">
+          Because the hidden cost of a clunky platform was never in the price tag.
+          <strong>It was in everything your team could have built instead.</strong>
+        </blockquote>
+      </section>
+
+      <!-- ── Section 5 – CTA ── -->
+      <section class="db-section db-section--last" id="hc-section-cta">
+        <div class="db-cta-banner">
+          <div class="db-cta-banner__glow"></div>
+          <div class="db-cta-banner__body">
+            <h3 class="db-cta-banner__heading">How much time is your LMS costing your team?</h3>
+            <p class="db-cta-banner__text">
+              See how <strong>DOCHEK</strong> helps organizations reduce admin overload and simplify
+              learning management.
+            </p>
+            <div class="db-cta-banner__actions">
+              <a mat-flat-button color="primary" (click)="openBookDemoDialog()">
+                Book a Demo
+              </a>
+              <a mat-flat-button color="primary" [routerLink]="['/blogs']">
+                &larr; Back to Blogs
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- RIGHT: Sticky sidebar -->
+    <aside class="db-sidebar">
+
+      <div class="db-toc">
+        <h4 class="db-toc__title">In this Article</h4>
+        <ul class="db-toc__list">
+          <li><a href="#hc-section-admin" class="db-toc__link" (click)="scrollToSection($event, 'hc-section-admin')">Admin Problem</a></li>
+          <li><a href="#hc-section-learners" class="db-toc__link" (click)="scrollToSection($event, 'hc-section-learners')">Learners Feel It Too</a></li>
+          <li><a href="#hc-section-question" class="db-toc__link" (click)="scrollToSection($event, 'hc-section-question')">The One Question</a></li>
+          <li><a href="#hc-section-dochek" class="db-toc__link" (click)="scrollToSection($event, 'hc-section-dochek')">The DOCHEK Solution</a></li>
+          <li><a href="#hc-section-cta" class="db-toc__link" (click)="scrollToSection($event, 'hc-section-cta')">How Much Is It Costing?</a></li>
+        </ul>
+      </div>
+
+      <div class="db-author-card">
+        <div class="db-author-card__avatar">
+          <i-tabler name="building" class="icon-28"></i-tabler>
+        </div>
+        <div>
+          <div class="db-author-card__name">Touchstone</div>
+          <div class="db-author-card__role">L&amp;D Platform Team</div>
+        </div>
+      </div>
+
+    </aside>
+
+  </div><!-- /db-layout -->
+
+</article><!-- /hidden-cost-blog -->
+
+}
+
+<!-- ============================================================ -->
 <!-- Standard Blog Details (all other blogs)                     -->
 <!-- ============================================================ -->
-@if(blogDetail() && blogDetail()?.id !== 100) {
+@if(blogDetail() && blogDetail()?.id !== 100 && blogDetail()?.id !== 101) {
 
 <div class="banner-section bg-light-primary spacing-top-bottom">
   <div class="container">
