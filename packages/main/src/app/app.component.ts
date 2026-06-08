@@ -74,14 +74,14 @@ export class AppComponent implements OnInit {
       /^\/sme-catalog\/.+/,
       /^\/coursedetails(?:\/.+)?$/,
       /^\/(login|forgotpassword)$/,
-      /^\/authentication\/(login|forgotpassword|reset-password)$/,
+      /^\/authentication\/(login|forgotpassword|reset-password|signup)$/,
     ];
 
     this.showPublicHeader = publicHeaderPatterns.some((pattern) => pattern.test(cleanUrl));
 
     this.isAuthPublicPage = [
       /^\/(login|forgotpassword)$/,
-      /^\/authentication\/(login|forgotpassword)$/,
+      /^\/authentication\/(login|forgotpassword|signup)$/,
     ].some((pattern) => pattern.test(cleanUrl));
   }
 }

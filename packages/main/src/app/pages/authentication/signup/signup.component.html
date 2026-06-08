@@ -1,0 +1,303 @@
+<!-- MAIN WRAPPER WITH FULL PAGE HEIGHT -->
+<div class="blank-layout-container d-flex flex-column min-vh-100">
+
+  <!-- CENTER SIGNUP CONTENT SECTION -->
+  <div class="login-container flex-grow-1 d-flex align-items-start align-items-lg-center justify-content-center w-100">
+
+    <div class="row w-100 mx-auto" style="max-width: 1400px;">
+
+      <!-- LEFT IMAGE -->
+      <div class="col-lg-7 col-xl-8 bg-gredient p-0 d-none d-lg-block">
+        <div class="p-24 d-flex justify-content-center align-items-center h-100">
+          <div class="img-height d-none d-lg-flex justify-content-center align-items-center w-100">
+            <img
+              [src]="'/' + baseUrlpath + 'assets/images/backgrounds/login-bg.svg'"
+              alt="signup"
+              class="login-illustration"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT SIGNUP FORM -->
+      <div class="col-lg-5 col-xl-4 p-0">
+        <div class="p-32 d-flex justify-content-center align-items-start h-100">
+
+          <div class="row justify-content-center w-100">
+            <div class="col-lg-9 max-width-form">
+
+              <h4 class="f-w-700 f-s-24 m-0">Create Your Account</h4>
+              <p class="f-s-14 m-t-8 m-b-0 signup-subtitle">Register to access DOCHEK learning platform</p>
+
+              <form class="m-t-24" [formGroup]="form" (ngSubmit)="submit()" autocomplete="off" novalidate>
+
+                <!-- Success Message -->
+                @if (successMessage()) {
+                  <div class="signup-alert signup-alert--success m-b-16"
+                       role="alert"
+                       aria-live="polite">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2.5"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                    <span>{{ successMessage() }}</span>
+                  </div>
+                }
+
+                <!-- Error Message -->
+                @if (errorMessage()) {
+                  <div class="signup-alert signup-alert--danger m-b-16"
+                       role="alert"
+                       aria-live="assertive">
+                    {{ errorMessage() }}
+                  </div>
+                }
+
+                <!-- ─── Personal Information ─── -->
+
+                <!-- First Name -->
+                <mat-label class="f-s-14 f-w-600 m-b-12 d-block" for="firstName">
+                  First Name <span class="req-star" aria-hidden="true">*</span>
+                </mat-label>
+                <mat-form-field appearance="outline" class="w-100" color="primary">
+                  <input
+                    matInput
+                    id="firstName"
+                    formControlName="firstName"
+                    autocomplete="given-name"
+                    aria-required="true"
+                  />
+                  <mat-error>
+                    @if (f['firstName'].errors?.['required']) {
+                      First name is required.
+                    } @else if (f['firstName'].errors?.['minlength']) {
+                      Minimum 2 characters required.
+                    }
+                  </mat-error>
+                </mat-form-field>
+
+                <!-- Last Name -->
+                <mat-label class="f-s-14 f-w-600 m-b-12 d-block" for="lastName">
+                  Last Name <span class="req-star" aria-hidden="true">*</span>
+                </mat-label>
+                <mat-form-field appearance="outline" class="w-100" color="primary">
+                  <input
+                    matInput
+                    id="lastName"
+                    formControlName="lastName"
+                    autocomplete="family-name"
+                    aria-required="true"
+                  />
+                  <mat-error>
+                    @if (f['lastName'].errors?.['required']) {
+                      Last name is required.
+                    } @else if (f['lastName'].errors?.['minlength']) {
+                      Minimum 2 characters required.
+                    }
+                  </mat-error>
+                </mat-form-field>
+
+                <!-- ─── Account Information ─── -->
+
+                <!-- Email Address -->
+                <mat-label class="f-s-14 f-w-600 m-b-12 d-block" for="email">
+                  Email Address <span class="req-star" aria-hidden="true">*</span>
+                </mat-label>
+                <mat-form-field appearance="outline" class="w-100" color="primary">
+                  <input
+                    matInput
+                    id="email"
+                    type="email"
+                    formControlName="email"
+                    autocomplete="email"
+                    aria-required="true"
+                  />
+                  <mat-error>
+                    @if (f['email'].errors?.['required']) {
+                      Email is required.
+                    } @else if (f['email'].errors?.['email']) {
+                      Please enter a valid email address.
+                    }
+                  </mat-error>
+                </mat-form-field>
+
+                <!-- Confirm Email Address -->
+                <mat-label class="f-s-14 f-w-600 m-b-12 d-block" for="confirmEmail">
+                  Confirm Email Address <span class="req-star" aria-hidden="true">*</span>
+                </mat-label>
+                <mat-form-field appearance="outline" class="w-100" color="primary">
+                  <input
+                    matInput
+                    id="confirmEmail"
+                    type="email"
+                    formControlName="confirmEmail"
+                    autocomplete="email"
+                    aria-required="true"
+                    aria-describedby="confirmEmailHint"
+                  />
+                  <mat-error id="confirmEmailHint">
+                    @if (f['confirmEmail'].errors?.['required']) {
+                      Please confirm your email address.
+                    } @else if (f['confirmEmail'].errors?.['email']) {
+                      Please enter a valid email address.
+                    } @else if (f['confirmEmail'].errors?.['mismatch']) {
+                      Email addresses do not match.
+                    }
+                  </mat-error>
+                </mat-form-field>
+
+                <!-- ─── Security ─── -->
+
+                <!-- Password -->
+                <mat-label class="f-s-14 f-w-600 m-b-12 d-block" for="password">
+                  Password <span class="req-star" aria-hidden="true">*</span>
+                </mat-label>
+                <mat-form-field appearance="outline" class="w-100" color="primary">
+                  <input
+                    matInput
+                    id="password"
+                    [type]="showPassword() ? 'text' : 'password'"
+                    formControlName="password"
+                    class="no-native-password-toggle"
+                    autocomplete="new-password"
+                    aria-required="true"
+                    aria-describedby="pwChecklist"
+                  />
+                  <button
+                    mat-icon-button
+                    matSuffix
+                    type="button"
+                    (click)="togglePassword()"
+                    tabindex="-1"
+                    class="eye-toggle-btn"
+                    [attr.aria-label]="showPassword() ? 'Hide password' : 'Show password'"
+                  >
+                    @if (!showPassword()) {
+                      <svg viewBox="0 0 24 24" width="24" height="24" fill="none"
+                           stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                        <circle cx="12" cy="12" r="3"/>
+                        <line x1="22" y1="2" x2="2" y2="22" stroke="currentColor" stroke-width="2"/>
+                      </svg>
+                    } @else {
+                      <svg viewBox="0 0 24 24" width="24" height="24" fill="none"
+                           stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                        <circle cx="12" cy="12" r="3"/>
+                      </svg>
+                    }
+                  </button>
+                  <mat-error>
+                    @if (f['password'].errors?.['required']) {
+                      Password is required.
+                    } @else {
+                      Password does not meet all requirements below.
+                    }
+                  </mat-error>
+                </mat-form-field>
+
+                <!-- Password Strength Checklist -->
+                <div class="password-checklist m-b-16" id="pwChecklist" aria-label="Password requirements">
+                  @for (rule of passwordRules; track rule.key) {
+                    <div
+                      class="checklist-item"
+                      [class.valid]="rule.check(passwordValue())"
+                      [attr.aria-label]="rule.label + ': ' + (rule.check(passwordValue()) ? 'met' : 'not met')"
+                    >
+                      <svg viewBox="0 0 24 24" width="16" height="16" fill="none"
+                           stroke="currentColor" stroke-width="2.5"
+                           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <polyline points="20 6 9 17 4 12"/>
+                      </svg>
+                      <span>{{ rule.label }}</span>
+                    </div>
+                  }
+                </div>
+
+                <!-- Confirm Password -->
+                <mat-label class="f-s-14 f-w-600 m-b-12 d-block" for="confirmPassword">
+                  Confirm Password <span class="req-star" aria-hidden="true">*</span>
+                </mat-label>
+                <mat-form-field appearance="outline" class="w-100" color="primary">
+                  <input
+                    matInput
+                    id="confirmPassword"
+                    [type]="showConfirmPassword() ? 'text' : 'password'"
+                    formControlName="confirmPassword"
+                    class="no-native-password-toggle"
+                    autocomplete="new-password"
+                    aria-required="true"
+                    aria-describedby="confirmPwHint"
+                  />
+                  <button
+                    mat-icon-button
+                    matSuffix
+                    type="button"
+                    (click)="toggleConfirmPassword()"
+                    tabindex="-1"
+                    class="eye-toggle-btn"
+                    [attr.aria-label]="showConfirmPassword() ? 'Hide password' : 'Show password'"
+                  >
+                    @if (!showConfirmPassword()) {
+                      <svg viewBox="0 0 24 24" width="24" height="24" fill="none"
+                           stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                        <circle cx="12" cy="12" r="3"/>
+                        <line x1="22" y1="2" x2="2" y2="22" stroke="currentColor" stroke-width="2"/>
+                      </svg>
+                    } @else {
+                      <svg viewBox="0 0 24 24" width="24" height="24" fill="none"
+                           stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                        <circle cx="12" cy="12" r="3"/>
+                      </svg>
+                    }
+                  </button>
+                  <mat-error id="confirmPwHint">
+                    @if (f['confirmPassword'].errors?.['required']) {
+                      Please confirm your password.
+                    } @else if (f['confirmPassword'].errors?.['mismatch']) {
+                      Passwords do not match.
+                    }
+                  </mat-error>
+                </mat-form-field>
+
+                <!-- Create Account Button -->
+                <button
+                  mat-flat-button
+                  color="primary"
+                  class="w-100 m-t-8"
+                  type="submit"
+                  [disabled]="isSubmitting()"
+                  aria-label="Create account"
+                >
+                  {{ isSubmitting() ? 'Creating Account...' : 'Create Account' }}
+                </button>
+
+              </form>
+
+              <!-- Sign In Link -->
+              <span class="d-block f-w-500 m-t-24 f-s-14">
+                Already have an account?
+                <a
+                  [routerLink]="['/authentication/login']"
+                  class="text-primary f-w-600 text-decoration-none f-s-14"
+                >
+                  Sign In
+                </a>
+              </span>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+<div class="footer">
+  <app-footer></app-footer>
+</div>
