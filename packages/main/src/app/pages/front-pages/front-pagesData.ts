@@ -59,10 +59,10 @@ export const cardimgs: cardimgs[] = [
   {
     id: 101,
     time: '5 mins Read',
-    imgSrc: `${baseUrlPathslash}/assets/images/blog/Boy_tension.jpg`,
+    imgSrc: `assets/images/blog/Boy_tension.jpg`,
     user: 'assets/images/front-pages/user1.jpg',
     title: 'The Hidden Cost of Clunky Learning Platforms',
-    subtitle: 'Learning problem → Admin problem',
+    subtitle: 'Admin problem',
     description: 'Nobody wakes up one day and decides to spend half their week doing manual admin. It just... happens.',
     views: '3,800',
     category: 'Learning & Development',
@@ -72,8 +72,8 @@ export const cardimgs: cardimgs[] = [
   {
     id: 1,
     time: '2 mins Read',
-    imgSrc: `${baseUrlPathslash}/assets/images/blog/blog-img1.jpg`,
-    user: `${baseUrlPathslash}/assets/images/profile/user-1.jpg`,
+    imgSrc: `assets/images/blog/blog-img1.jpg`,
+    user: `assets/images/profile/user-1.jpg`,
     title: 'As yen tumbles, gadget-loving Japan goes for secondhand iPhones',
     views: '9,125',
     category: 'Social',
@@ -83,8 +83,8 @@ export const cardimgs: cardimgs[] = [
   {
     id: 2,
     time: '3 mins Read',
-    imgSrc: `${baseUrlPathslash}/assets/images/blog/blog-img2.jpg`,
-    user: `${baseUrlPathslash}/assets/images/profile/user-2.jpg`,
+    imgSrc: `assets/images/blog/blog-img2.jpg`,
+    user: `assets/images/profile/user-2.jpg`,
     title:
       'Intel loses bid to revive antitrust case against patent foe Fortress',
     views: '9,125',
@@ -95,8 +95,8 @@ export const cardimgs: cardimgs[] = [
   {
     id: 3,
     time: '4 mins Read',
-    imgSrc: `${baseUrlPathslash}/assets/images/blog/blog-img3.jpg`,
-    user: `${baseUrlPathslash}/assets/images/profile/user-3.jpg`,
+    imgSrc: `assets/images/blog/blog-img3.jpg`,
+    user: `assets/images/profile/user-3.jpg`,
     title: 'COVID outbreak deepens as more lockdowns loom in China',
     views: '9,125',
     category: 'Health',
@@ -106,8 +106,8 @@ export const cardimgs: cardimgs[] = [
   {
     id: 4,
     time: '2 mins Read',
-    imgSrc: `${baseUrlPathslash}/assets/images/blog/blog-img4.jpg`,
-    user: `${baseUrlPathslash}/assets/images/profile/user-1.jpg`,
+    imgSrc: `assets/images/blog/blog-img4.jpg`,
+    user: `assets/images/profile/user-1.jpg`,
     title: 'As yen tumbles, gadget-loving Japan goes for secondhand iPhones',
     views: '9,125',
     category: 'Social',
@@ -117,8 +117,8 @@ export const cardimgs: cardimgs[] = [
   {
     id: 5,
     time: '3 mins Read',
-    imgSrc: `${baseUrlPathslash}/assets/images/blog/blog-img5.jpg`,
-    user: `${baseUrlPathslash}/assets/images/profile/user-2.jpg`,
+    imgSrc: `assets/images/blog/blog-img5.jpg`,
+    user: `assets/images/profile/user-2.jpg`,
     title:
       'Intel loses bid to revive antitrust case against patent foe Fortress',
     views: '9,125',
@@ -129,8 +129,8 @@ export const cardimgs: cardimgs[] = [
   {
     id: 6,
     time: '4 mins Read',
-    imgSrc: `${baseUrlPathslash}/assets/images/blog/blog-img6.jpg`,
-    user: `${baseUrlPathslash}/assets/images/profile/user-3.jpg`,
+    imgSrc: `assets/images/blog/blog-img6.jpg`,
+    user: `assets/images/profile/user-3.jpg`,
     title: 'COVID outbreak deepens as more lockdowns loom in China',
     views: '9,125',
     category: 'Health',
@@ -140,8 +140,8 @@ export const cardimgs: cardimgs[] = [
   {
     id: 7,
     time: '2 mins Read',
-    imgSrc: `${baseUrlPathslash}/assets/images/blog/blog-img10.jpg`,
-    user: `${baseUrlPathslash}/assets/images/profile/user-1.jpg`,
+    imgSrc: `assets/images/blog/blog-img10.jpg`,
+    user: `assets/images/profile/user-1.jpg`,
     title: 'As yen tumbles, gadget-loving Japan goes for secondhand iPhones',
     views: '9,125',
     category: 'Social',
@@ -151,8 +151,8 @@ export const cardimgs: cardimgs[] = [
   {
     id: 8,
     time: '3 mins Read',
-    imgSrc: `${baseUrlPathslash}/assets/images/blog/blog-img8.jpg`,
-    user: `${baseUrlPathslash}/assets/images/profile/user-2.jpg`,
+    imgSrc: `assets/images/blog/blog-img8.jpg`,
+    user: `assets/images/profile/user-2.jpg`,
     title:
       'Intel loses bid to revive antitrust case against patent foe Fortress',
     views: '9,125',
@@ -163,8 +163,8 @@ export const cardimgs: cardimgs[] = [
   {
     id: 9,
     time: '4 mins Read',
-    imgSrc: `${baseUrlPathslash}/assets/images/blog/blog-img9.jpg`,
-    user: `${baseUrlPathslash}/assets/images/profile/user-3.jpg`,
+    imgSrc: `assets/images/blog/blog-img9.jpg`,
+    user: `assets/images/profile/user-3.jpg`,
     title: 'COVID outbreak deepens as more lockdowns loom in China',
     views: '9,125',
     category: 'Health',
