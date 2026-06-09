@@ -40,7 +40,7 @@ export class CertificationsCatalogComponent implements OnInit {
 
   ngOnInit(): void {
     this.http
-      .get<Certification[]>('/assets/data/certificationsPage.json')
+      .get<Certification[]>('assets/data/certificationsPage.json')
       .subscribe((data) => {
         const viewModels: CertificationCardViewModel[] = data
           .map((cert) => {

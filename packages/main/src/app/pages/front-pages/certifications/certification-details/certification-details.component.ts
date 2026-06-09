@@ -64,8 +64,8 @@ export class CertificationDetailsComponent implements OnInit {
     }
 
     forkJoin({
-      certs: this.http.get<Certification[]>('/assets/data/certificationsPage.json'),
-      products: this.http.get<CourseProduct[]>('/assets/data/product-data.json'),
+      certs: this.http.get<Certification[]>('assets/data/certificationsPage.json'),
+      products: this.http.get<CourseProduct[]>('assets/data/product-data.json'),
     }).subscribe(({ certs, products }) => {
       const map = new Map<number, CourseProduct>();
       for (const p of products) {
