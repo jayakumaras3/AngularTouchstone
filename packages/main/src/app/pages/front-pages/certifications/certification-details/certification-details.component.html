@@ -35,8 +35,7 @@
           <div class="banner-icon-wrapper" [style.background]="cfg.color + '22'">
             <i-tabler [name]="cfg.icon" class="banner-icon" [style.color]="cfg.color"></i-tabler>
           </div>
-          <span class="banner-short-name" [style.color]="cfg.color">{{ cfg.shortName }}</span>
-          <span class="banner-cert-label">Professional Certification</span>
+          <span class="banner-cert-name" [style.color]="cfg.color">{{ cert.certificate_name }}</span>
         </div>
 
         <div class="quick-stats-card">

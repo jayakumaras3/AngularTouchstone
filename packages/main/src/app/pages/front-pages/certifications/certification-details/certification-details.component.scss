@@ -152,18 +152,12 @@ $transition: 0.3s ease;
   }
 }
 
-.banner-short-name {
-  font-size: 1.5rem;
-  font-weight: 800;
-  letter-spacing: 0.05em;
-}
-
-.banner-cert-label {
-  font-size: 0.8rem;
-  color: $secondary-color;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+.banner-cert-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.5;
+  text-align: center;
+  word-break: break-word;
 }
 
 .quick-stats-card {
@@ -556,11 +550,17 @@ $transition: 0.3s ease;
     background: var(--mat-sys-surface-container);
     box-shadow: none;
     border: 1px solid var(--mat-sys-outline-variant);
+
+    .qs-icon  { color: var(--mat-sys-on-surface-variant); }
+    .qs-label { color: var(--mat-sys-on-surface-variant); }
+    .qs-value { color: var(--mat-sys-on-surface); }
   }
 
   .cert-banner {
     background: var(--mat-sys-surface-container);
     border-color: var(--mat-sys-outline-variant);
+
+    .banner-cert-name { color: inherit; }
   }
 
   .lp-tabs {
@@ -625,5 +625,16 @@ $transition: 0.3s ease;
   .signup-cta {
     background: var(--mat-sys-surface-container);
     border-color: var(--mat-sys-outline-variant);
+
+    .cta-price-label { color: var(--mat-sys-on-surface-variant); }
+    .cta-price-value  { color: inherit; }
   }
+
+  .not-found {
+    h2 { color: var(--mat-sys-on-surface); }
+    p  { color: var(--mat-sys-on-surface-variant); }
+  }
+
+  .lp-detail-title    { color: var(--mat-sys-on-surface); }
+  .lp-courses-header  { color: var(--mat-sys-on-surface); }
 }

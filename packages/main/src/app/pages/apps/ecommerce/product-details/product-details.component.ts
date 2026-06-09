@@ -1,6 +1,6 @@
 import { Component, AfterViewInit, inject, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { Location, CommonModule } from '@angular/common';
 import { MaterialModule } from '../../../../material.module';
 import { IconModule } from '../../../../icon/icon.module';
 import { CarouselModule } from 'ngx-owl-carousel-o';
@@ -49,6 +49,7 @@ export class ProductDetailsComponent implements AfterViewInit, OnInit {
   readonly dialog = inject(MatDialog);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
+  private location = inject(Location);
   private navService = inject(NavService);
   private destroyRef = inject(DestroyRef);
   private mediaMatcher = inject(MediaMatcher);
@@ -550,9 +551,12 @@ private normalizeObjectives(product: any): void {
     }
 
     // Determine where to navigate back to
-    // We prioritize the explicit URL if it matches the source context
     if (sourceToUse === 'certification') {
-      if (this.originalCertificateId) {
+      // Use browser history — guarantees Course Details → Certification Details (correct LP tab still active).
+      // Fallback to explicit route only when there is no history entry (direct URL open).
+      if (window.history.length > 1) {
+        this.location.back();
+      } else if (this.originalCertificateId) {
         this.router.navigate(['/certification-details', this.originalCertificateId]);
       } else {
         this.router.navigate(['/certifications']);
