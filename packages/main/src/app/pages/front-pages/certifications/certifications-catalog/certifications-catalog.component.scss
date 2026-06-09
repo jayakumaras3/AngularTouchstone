@@ -317,6 +317,18 @@ $transition:     0.3s ease;
   overflow-wrap: break-word;
 }
 
+// ── Description preview — 3-line clamp ───────────────────────────────────────
+.card-desc {
+  font-size: 0.8rem;
+  color: $text-secondary;
+  line-height: 1.55;
+  margin: 0 0 14px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 // ── Price — second most visible ───────────────────────────────────────────────
 .card-price {
   font-size: 2rem;     // 32 px — prominent without overwhelming the card
@@ -422,6 +434,10 @@ $transition:     0.3s ease;
 
   .card-title {
     color: var(--mat-sys-on-surface);
+  }
+
+  .card-desc {
+    color: var(--mat-sys-on-surface-variant);
   }
 
   .meta-text {

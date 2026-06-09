@@ -82,4 +82,9 @@ export class CertificationsCatalogComponent implements OnInit {
   trackByCardId(_index: number, card: CertificationCardViewModel): number {
     return card.certification.certificate_id;
   }
+
+  stripHtml(html: string): string {
+    if (!html) return '';
+    return html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+  }
 }

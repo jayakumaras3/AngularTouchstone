@@ -55,12 +55,22 @@ export class ProductDetailsComponent implements AfterViewInit, OnInit {
 
   // Track navigation source (chatbot, catalog, etc.)
   private navigationSource: string | null = null;
-  
+
   // ✅ PRESERVE ORIGINAL navigation source and URL through related product navigation
   // These are set once when first entering coursedetails and never overwritten
   private originalNavigationSource: string | null = null;
   private originalPreviousUrl: string | null = null;
   private isFirstPageLoad = true;
+
+  // Certification-journey context (set when arriving from Certification Details)
+  isCertificationSource = false;
+  private originalCertificateId: number | null = null;
+  certificationState: {
+    certificateId?: number;
+    certificateName?: string;
+    price?: string;
+    shortName?: string;
+  } | null = null;
 
   mobileQuery: MediaQueryList;
   isMobileView = false;
@@ -130,25 +140,52 @@ export class ProductDetailsComponent implements AfterViewInit, OnInit {
     // For related product navigation (component reuse), the instance variables persist.
     if (this.isFirstPageLoad) {
       const navigation = this.router.getCurrentNavigation();
+      const stateSource = navigation?.extras?.state?.['source'];
       const statePreviousUrl = navigation?.extras?.state?.['previousUrl'];
-      const initialSource = this.route.snapshot.queryParams['source'];
+      const querySource = this.route.snapshot.queryParams['source'];
 
-      // 1. Establish the Original Source
-      this.originalNavigationSource = initialSource || 'catalog';
+      const initialSource = stateSource || querySource || 'catalog';
+      this.originalNavigationSource = initialSource;
 
-      // 2. Establish the Original Previous URL (The "Anchor" for Back button)
-      if (statePreviousUrl) {
-        this.originalPreviousUrl = statePreviousUrl;
+      if (initialSource === 'certification') {
+        // Arrived from Certification Details — set certification context
+        this.isCertificationSource = true;
+        const rawCertId = navigation?.extras?.state?.['certificateId'];
+        this.originalCertificateId = rawCertId != null ? Number(rawCertId) : null;
+
+        if (this.originalCertificateId) {
+          this.originalPreviousUrl = `/certification-details/${this.originalCertificateId}`;
+        } else if (statePreviousUrl) {
+          // Related product navigation within certification journey
+          this.originalPreviousUrl = statePreviousUrl;
+          const match = statePreviousUrl.match(/certification-details\/(\d+)/);
+          this.originalCertificateId = match ? parseInt(match[1], 10) : null;
+        } else {
+          this.originalPreviousUrl = '/certifications';
+        }
+
+        const certName = navigation?.extras?.state?.['certificateName'];
+        if (certName) {
+          this.certificationState = {
+            certificateId: this.originalCertificateId ?? undefined,
+            certificateName: certName,
+            price: navigation?.extras?.state?.['price'] ?? undefined,
+            shortName: navigation?.extras?.state?.['shortName'] ?? undefined,
+          };
+        }
       } else {
-        // If no state provided (e.g., refresh), derive safe fallback from source
-        this.originalPreviousUrl = this.getFallbackUrl(this.originalNavigationSource);
+        // Standard catalog / chatbot / sme-catalog journey
+        if (statePreviousUrl) {
+          this.originalPreviousUrl = statePreviousUrl;
+        } else {
+          this.originalPreviousUrl = this.getFallbackUrl(this.originalNavigationSource);
+        }
+
+        if (this.originalPreviousUrl) {
+          this.navService.setReferrerUrl(this.originalPreviousUrl);
+        }
       }
 
-      // Sync NavService for consistency (though we won't rely on it for getBack)
-      if (this.originalPreviousUrl) {
-        this.navService.setReferrerUrl(this.originalPreviousUrl);
-      }
-      
       this.isFirstPageLoad = false;
     }
 
@@ -198,6 +235,7 @@ export class ProductDetailsComponent implements AfterViewInit, OnInit {
   // Helper to determine fallback URL based on source
   private getFallbackUrl(source: string | null): string {
     switch (source) {
+      case 'certification': return '/certifications';
       case 'sme-catalog': return '/sme-catalog';
       case 'coursecatalog': return '/coursecatalog';
       case 'chatbot': return '/catalog';
@@ -370,11 +408,25 @@ private normalizeObjectives(product: any): void {
     const previousUrl = this.originalPreviousUrl;
 
     // Navigate with courseId - this will trigger param change detection
-    this.router.navigate(['/coursedetails', item.id], {
-      queryParams: { source: sourceToPreserve }, // Preserve ORIGINAL source, don't use 'related'
-      queryParamsHandling: 'merge',
-      state: { previousUrl: previousUrl } // Preserve the original catalog URL
-    });
+    if (sourceToPreserve === 'certification') {
+      // Preserve full certification context so Sign Up / Back keep working on related courses
+      this.router.navigate(['/coursedetails', item.id], {
+        queryParams: { source: 'certification' },
+        state: {
+          source: 'certification',
+          certificateId: this.originalCertificateId,
+          certificateName: this.certificationState?.certificateName ?? null,
+          price: this.certificationState?.price ?? null,
+          shortName: this.certificationState?.shortName ?? null,
+        },
+      });
+    } else {
+      this.router.navigate(['/coursedetails', item.id], {
+        queryParams: { source: sourceToPreserve }, // Preserve ORIGINAL source, don't use 'related'
+        queryParamsHandling: 'merge',
+        state: { previousUrl: previousUrl }, // Preserve the original catalog URL
+      });
+    }
   }
   loadRelatedProducts(currentProduct: any) {
     // ✅ Mark as subsequent load so originalNavigationSource and originalPreviousUrl don't get overwritten
@@ -499,7 +551,13 @@ private normalizeObjectives(product: any): void {
 
     // Determine where to navigate back to
     // We prioritize the explicit URL if it matches the source context
-    if (sourceToUse === 'chatbot') {
+    if (sourceToUse === 'certification') {
+      if (this.originalCertificateId) {
+        this.router.navigate(['/certification-details', this.originalCertificateId]);
+      } else {
+        this.router.navigate(['/certifications']);
+      }
+    } else if (sourceToUse === 'chatbot') {
       this.router.navigate(['/catalog']);
     } else if (sourceToUse === 'sme-catalog') {
       if (targetUrl.includes('sme-catalog')) {
@@ -530,6 +588,24 @@ private normalizeObjectives(product: any): void {
     }
   }
 
+
+  navigateSignUp(): void {
+    const signupState: any = {};
+    if (this.certificationState) {
+      signupState.certification = {
+        certificateId: this.certificationState.certificateId,
+        certificateName: this.certificationState.certificateName,
+        shortName: this.certificationState.shortName,
+        price: this.certificationState.price,
+        totalCourses: 0,
+      };
+    }
+    if (this.product?.id) {
+      signupState.courseId = this.product.id;
+      signupState.courseName = this.product.product_name;
+    }
+    this.router.navigate(['/authentication/signup'], { state: signupState });
+  }
 
   getStarClass(index: number, rating?: number): string {
     const safeRating = rating ?? 0;

@@ -29,7 +29,7 @@
   <section class="details-main">
     <div class="details-container details-layout">
 
-      <!-- LEFT: Banner Image -->
+      <!-- LEFT: Certificate badge + quick stats -->
       <div class="details-left">
         <div class="cert-banner" [style.background]="cfg.color + '15'">
           <div class="banner-icon-wrapper" [style.background]="cfg.color + '22'">
@@ -39,7 +39,6 @@
           <span class="banner-cert-label">Professional Certification</span>
         </div>
 
-        <!-- Quick Stats Card -->
         <div class="quick-stats-card">
           <div class="qs-row">
             <i-tabler name="clock" class="qs-icon"></i-tabler>
@@ -72,64 +71,77 @@
         </div>
       </div>
 
-      <!-- RIGHT: Content -->
+      <!-- RIGHT: Learning Path content -->
       <div class="details-right">
 
-        <!-- Certificate Name -->
-        <h1 class="cert-name">{{ cert.certificate_name }}</h1>
-
-        <!-- Description -->
-        <div class="cert-description" [innerHTML]="cert.certificate_description"></div>
-
-        <!-- Learning Paths Accordion -->
-        <div class="lp-section">
-          <h2 class="lp-section-title">
-            <i-tabler name="layout-list" class="lp-section-icon"></i-tabler>
-            Learning Paths Included
-          </h2>
-
-          <div class="lp-accordion">
-            @for (lp of cert.learning_paths; track lp.lp_id) {
-              <div class="lp-item" [class.lp-expanded]="isPathExpanded(lp.lp_id)">
-                <!-- Accordion Header -->
-                <button
-                  class="lp-header"
-                  type="button"
-                  (click)="togglePath(lp.lp_id)"
-                  [attr.aria-expanded]="isPathExpanded(lp.lp_id)"
-                  [style.--lp-color]="cfg.color"
-                >
-                  <div class="lp-header-left">
-                    <span class="lp-number">{{ $index + 1 }}</span>
-                    <span class="lp-name">{{ lp.lp_name }}</span>
-                  </div>
-                  <div class="lp-header-right">
-                    <span class="lp-course-count">{{ lp.courses.length }} Courses</span>
-                    <i-tabler
-                      name="chevron-down"
-                      class="lp-chevron"
-                      [class.rotated]="isPathExpanded(lp.lp_id)"
-                    ></i-tabler>
-                  </div>
-                </button>
-
-                <!-- Accordion Body -->
-                @if (isPathExpanded(lp.lp_id)) {
-                  <div class="lp-body">
-                    <ul class="course-list">
-                      @for (course of lp.courses; track course.course_id) {
-                        <li class="course-item">
-                          <i-tabler name="player-play" class="course-play-icon" [style.color]="cfg.color"></i-tabler>
-                          <span class="course-name">{{ course.course_name }}</span>
-                        </li>
-                      }
-                    </ul>
-                  </div>
-                }
-              </div>
-            }
-          </div>
+        <!-- LP Tab Selector -->
+        <div class="lp-tabs" role="tablist">
+          @for (lp of cert.learning_paths; track lp.lp_id) {
+            <button
+              class="lp-tab"
+              type="button"
+              role="tab"
+              [class.lp-tab--active]="selectedLpId() === lp.lp_id"
+              [style.--tab-color]="cfg.color"
+              (click)="selectLp(lp.lp_id)"
+              [attr.aria-label]="'View learning path: ' + lp.lp_name"
+              [attr.aria-selected]="selectedLpId() === lp.lp_id"
+            >
+              <span class="lp-tab-num">{{ $index + 1 }}</span>
+              <span class="lp-tab-name">{{ lp.lp_name }}</span>
+            </button>
+          }
         </div>
+
+        <!-- LP Detail Panel -->
+        @if (selectedLp()) {
+          @let lp = selectedLp()!;
+
+          <!-- LP Banner -->
+          @if (lp.lp_banner) {
+            <div class="lp-banner-wrap">
+              <img [src]="lp.lp_banner" [alt]="lp.lp_name" class="lp-banner-img" />
+            </div>
+          }
+
+          <!-- LP Title -->
+          <h2 class="lp-detail-title">{{ lp.lp_name }}</h2>
+
+          <!-- LP Description -->
+          @if (lp.lp_description) {
+            <div class="lp-detail-desc" [innerHTML]="lp.lp_description"></div>
+          }
+
+          <!-- Courses Included -->
+          <div class="lp-courses-section">
+            <div class="lp-courses-header">
+              <i-tabler name="list-check" class="lp-courses-icon" [style.color]="cfg.color"></i-tabler>
+              Courses Included
+            </div>
+            <div class="lp-course-cards">
+              @for (course of lp.courses; track course.course_id) {
+                <button
+                  class="lp-course-card"
+                  type="button"
+                  (click)="navigateToCourse(course.course_id)"
+                  [attr.aria-label]="'Open course: ' + course.course_name"
+                  [style.--course-color]="cfg.color"
+                >
+                  <div class="lcc-info">
+                    <span class="lcc-name">{{ course.course_name }}</span>
+                    @if (getCourseDuration(course.course_id)) {
+                      <span class="lcc-duration">
+                        <i-tabler name="clock" class="lcc-dur-icon"></i-tabler>
+                        {{ getCourseDuration(course.course_id) }} min
+                      </span>
+                    }
+                  </div>
+                  <i-tabler name="arrow-right" class="lcc-arrow"></i-tabler>
+                </button>
+              }
+            </div>
+          </div>
+        }
 
         <!-- Sign Up CTA -->
         <div class="signup-cta">

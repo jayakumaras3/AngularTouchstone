@@ -74,6 +74,9 @@
           <!-- Primary: Certification Title -->
           <h3 class="card-title">{{ card.certification.certificate_name }}</h3>
 
+          <!-- Description preview — 3-line clamp -->
+          <p class="card-desc">{{ stripHtml(card.certification.certificate_description) }}</p>
+
           <!-- Secondary: Price -->
           <div class="card-price" [style.color]="card.config.color">{{ card.config.price }}</div>
 
