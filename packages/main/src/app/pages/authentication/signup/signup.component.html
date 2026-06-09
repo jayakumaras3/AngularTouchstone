@@ -26,6 +26,34 @@
           <div class="row justify-content-center w-100">
             <div class="col-lg-9 max-width-form">
 
+              <!-- Certification Summary Card (shown only when arriving from certification details) -->
+              @if (selectedCertification()) {
+                @let cert = selectedCertification()!;
+                <div class="cert-summary-card m-b-24">
+                  <div class="cert-summary-header">
+                    <span class="cert-summary-label">Selected Certification</span>
+                  </div>
+                  <div class="cert-summary-body">
+                    <p class="cert-summary-name">{{ cert.shortName }} Certification</p>
+                    <div class="cert-summary-stats">
+                      <span class="cert-stat">
+                        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                          <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                        {{ cert.duration }}
+                      </span>
+                      <span class="cert-stat">
+                        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                        </svg>
+                        {{ cert.totalCourses }} Courses
+                      </span>
+                      <span class="cert-price">{{ cert.price }}</span>
+                    </div>
+                  </div>
+                </div>
+              }
+
               <h4 class="f-w-700 f-s-24 m-0">Create Your Account</h4>
               <p class="f-s-14 m-t-8 m-b-0 signup-subtitle">Register to access DOCHEK learning platform</p>
 

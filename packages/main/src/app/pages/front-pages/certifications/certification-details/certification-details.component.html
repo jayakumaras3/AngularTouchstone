@@ -1,0 +1,159 @@
+@if (isNotFound()) {
+  <!-- Not Found State -->
+  <div class="not-found">
+    <i-tabler name="certificate-off" class="nf-icon"></i-tabler>
+    <h2>Certification Not Found</h2>
+    <p>The certification you are looking for does not exist.</p>
+    <button class="back-btn" (click)="goBack()">
+      <i-tabler name="arrow-left"></i-tabler>
+      Back to Certifications
+    </button>
+  </div>
+}
+
+@if (!isNotFound() && certification()) {
+  @let cert = certification()!;
+  @let cfg = config()!;
+
+  <!-- Hero / Back -->
+  <section class="details-hero" [style.--hero-color]="cfg.color">
+    <div class="details-container">
+      <button class="back-btn" (click)="goBack()">
+        <i-tabler name="arrow-left" class="back-icon"></i-tabler>
+        <span>Back to Certifications</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="details-main">
+    <div class="details-container details-layout">
+
+      <!-- LEFT: Banner Image -->
+      <div class="details-left">
+        <div class="cert-banner" [style.background]="cfg.color + '15'">
+          <div class="banner-icon-wrapper" [style.background]="cfg.color + '22'">
+            <i-tabler [name]="cfg.icon" class="banner-icon" [style.color]="cfg.color"></i-tabler>
+          </div>
+          <span class="banner-short-name" [style.color]="cfg.color">{{ cfg.shortName }}</span>
+          <span class="banner-cert-label">Professional Certification</span>
+        </div>
+
+        <!-- Quick Stats Card -->
+        <div class="quick-stats-card">
+          <div class="qs-row">
+            <i-tabler name="clock" class="qs-icon"></i-tabler>
+            <div>
+              <span class="qs-label">Duration</span>
+              <span class="qs-value">{{ cfg.duration }}</span>
+            </div>
+          </div>
+          <div class="qs-row">
+            <i-tabler name="route" class="qs-icon"></i-tabler>
+            <div>
+              <span class="qs-label">Learning Paths</span>
+              <span class="qs-value">{{ cert.learning_paths.length }}</span>
+            </div>
+          </div>
+          <div class="qs-row">
+            <i-tabler name="book" class="qs-icon"></i-tabler>
+            <div>
+              <span class="qs-label">Total Courses</span>
+              <span class="qs-value">{{ totalCourses() }}</span>
+            </div>
+          </div>
+          <div class="qs-row">
+            <i-tabler name="currency-rupee" class="qs-icon"></i-tabler>
+            <div>
+              <span class="qs-label">Price</span>
+              <span class="qs-value price-highlight" [style.color]="cfg.color">{{ cfg.price }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Content -->
+      <div class="details-right">
+
+        <!-- Certificate Name -->
+        <h1 class="cert-name">{{ cert.certificate_name }}</h1>
+
+        <!-- Description -->
+        <div class="cert-description" [innerHTML]="cert.certificate_description"></div>
+
+        <!-- Learning Paths Accordion -->
+        <div class="lp-section">
+          <h2 class="lp-section-title">
+            <i-tabler name="layout-list" class="lp-section-icon"></i-tabler>
+            Learning Paths Included
+          </h2>
+
+          <div class="lp-accordion">
+            @for (lp of cert.learning_paths; track lp.lp_id) {
+              <div class="lp-item" [class.lp-expanded]="isPathExpanded(lp.lp_id)">
+                <!-- Accordion Header -->
+                <button
+                  class="lp-header"
+                  type="button"
+                  (click)="togglePath(lp.lp_id)"
+                  [attr.aria-expanded]="isPathExpanded(lp.lp_id)"
+                  [style.--lp-color]="cfg.color"
+                >
+                  <div class="lp-header-left">
+                    <span class="lp-number">{{ $index + 1 }}</span>
+                    <span class="lp-name">{{ lp.lp_name }}</span>
+                  </div>
+                  <div class="lp-header-right">
+                    <span class="lp-course-count">{{ lp.courses.length }} Courses</span>
+                    <i-tabler
+                      name="chevron-down"
+                      class="lp-chevron"
+                      [class.rotated]="isPathExpanded(lp.lp_id)"
+                    ></i-tabler>
+                  </div>
+                </button>
+
+                <!-- Accordion Body -->
+                @if (isPathExpanded(lp.lp_id)) {
+                  <div class="lp-body">
+                    <ul class="course-list">
+                      @for (course of lp.courses; track course.course_id) {
+                        <li class="course-item">
+                          <i-tabler name="player-play" class="course-play-icon" [style.color]="cfg.color"></i-tabler>
+                          <span class="course-name">{{ course.course_name }}</span>
+                        </li>
+                      }
+                    </ul>
+                  </div>
+                }
+              </div>
+            }
+          </div>
+        </div>
+
+        <!-- Sign Up CTA -->
+        <div class="signup-cta">
+          <div class="cta-price-info">
+            <span class="cta-price-label">Enroll for</span>
+            <span class="cta-price-value" [style.color]="cfg.color">{{ cfg.price }}</span>
+          </div>
+          <button
+            class="signup-now-btn"
+            type="button"
+            [style.background]="cfg.color"
+            (click)="signUpNow()"
+          >
+            Sign Up Now
+            <i-tabler name="arrow-right" class="signup-arrow"></i-tabler>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+}
+
+<!-- Footer -->
+<div class="footer">
+  <app-footer></app-footer>
+</div>

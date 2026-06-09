@@ -1,0 +1,430 @@
+// ── Design tokens ─────────────────────────────────────────────────────────────
+$text-primary:   #0f172a;
+$text-secondary: #64748b;
+$card-bg:        #ffffff;
+$shadow-rest:    0 2px 12px rgba(0, 0, 0, 0.07);
+$shadow-hover:   0 20px 44px rgba(0, 0, 0, 0.13);
+$radius-card:    20px;
+$radius-icon:    14px;
+$radius-btn:     12px;
+$transition:     0.3s ease;
+
+// ── Hero ──────────────────────────────────────────────────────────────────────
+.cert-hero {
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 50%, rgba(102, 126, 234, 0.55) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 70% at 80% 20%, rgba(118, 75, 162, 0.65) 0%, transparent 60%),
+    linear-gradient(145deg, #1a1040 0%, #2d1b69 40%, #5b21b6 75%, #7c3aed 100%);
+  padding: 72px 24px 96px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+
+  // Noise texture overlay
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    opacity: 0.6;
+    z-index: 0;
+  }
+}
+
+// Decorative blobs
+.hero-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(72px);
+  pointer-events: none;
+  z-index: 0;
+
+  &--tl {
+    width: 420px;
+    height: 420px;
+    background: rgba(139, 92, 246, 0.35);
+    top: -140px;
+    left: -100px;
+  }
+
+  &--br {
+    width: 360px;
+    height: 360px;
+    background: rgba(99, 102, 241, 0.3);
+    bottom: -100px;
+    right: -80px;
+  }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+// Pill badge
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 100px;
+  padding: 6px 18px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  backdrop-filter: blur(8px);
+}
+
+.hero-badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #a78bfa;
+  box-shadow: 0 0 6px 2px rgba(167, 139, 250, 0.7);
+  animation: pulse-dot 2s ease infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.6; transform: scale(1.3); }
+}
+
+.hero-title {
+  font-size: 3.2rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 20px;
+  line-height: 1.18;
+  letter-spacing: -0.03em;
+
+  @media (max-width: 768px) {
+    font-size: 2.1rem;
+    br { display: none; }
+  }
+}
+
+.hero-subtitle {
+  font-size: 1.15rem;
+  color: rgba(255, 255, 255, 0.72);
+  margin: 0 0 40px;
+  font-weight: 400;
+  line-height: 1.7;
+  max-width: 580px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (max-width: 768px) { font-size: 0.975rem; }
+}
+
+// Stats strip
+.hero-stats {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 16px;
+  padding: 18px 32px;
+  backdrop-filter: blur(12px);
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px 28px;
+  }
+}
+
+.hero-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 28px;
+
+  @media (max-width: 480px) { padding: 0; }
+
+  .hero-stat-value {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-stat-label {
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 4px;
+  }
+}
+
+.hero-stat-divider {
+  width: 1px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+
+  @media (max-width: 480px) {
+    width: 40px;
+    height: 1px;
+  }
+}
+
+// Curved wave separator
+.hero-wave {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  line-height: 0;
+
+  svg {
+    display: block;
+    width: 100%;
+    height: 60px;
+  }
+}
+
+// ── Cards section ─────────────────────────────────────────────────────────────
+.cert-cards-section {
+  background: var(--mat-sys-surface-bright, #f1f5f9);
+  padding: 56px 24px 80px;
+  min-height: calc(100vh - 280px);
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: stretch;
+
+  @media (max-width: 900px)  { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 600px)  { grid-template-columns: 1fr; gap: 16px; }
+}
+
+// ── Certification Card ────────────────────────────────────────────────────────
+.cert-card {
+  background: $card-bg;
+  border-radius: $radius-card;
+  box-shadow: $shadow-rest;
+  border: 1.5px solid #e9eef5;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  text-align: left;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    transform     $transition,
+    box-shadow    $transition,
+    border-color  $transition;
+
+  // Staggered fade-in
+  animation: fadeInUp 0.5s ease both;
+  @for $i from 1 through 7 {
+    &:nth-child(#{$i}) { animation-delay: #{$i * 0.07}s; }
+  }
+
+  // ── Hover ──────────────────────────────────────────────────────
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: $shadow-hover;
+    border-color: var(--card-color);
+
+    .card-accent-bar { transform: scaleX(1); }
+    .card-icon-wrapper { transform: scale(1.1); }
+    .signup-btn {
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+      filter: brightness(1.06);
+    }
+  }
+
+  // ── Keyboard focus ─────────────────────────────────────────────
+  &:focus-visible {
+    outline: 3px solid var(--card-color);
+    outline-offset: 3px;
+    box-shadow: $shadow-hover;
+    border-color: var(--card-color);
+
+    .card-accent-bar { transform: scaleX(1); }
+  }
+}
+
+// ── Top colour accent ─────────────────────────────────────────────────────────
+.card-accent-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--card-color);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform $transition;
+}
+
+// ── Card body (grows to fill height, pushes CTA to bottom) ───────────────────
+.card-body {
+  padding: 24px 24px 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 0;
+}
+
+// ── Icon ──────────────────────────────────────────────────────────────────────
+.card-icon-wrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: $radius-icon;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-bottom: 16px;
+  transition: transform $transition;
+
+  .card-icon {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+// ── Title — primary hierarchy ─────────────────────────────────────────────────
+.card-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: $text-primary;
+  line-height: 1.5;
+  margin: 0 0 18px;
+  // No clamp — wider 3-col cards have room for full title.
+  // Grid row stretching keeps all cards in a row equal height.
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+// ── Price — second most visible ───────────────────────────────────────────────
+.card-price {
+  font-size: 2rem;     // 32 px — prominent without overwhelming the card
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  margin-bottom: 18px;
+}
+
+// ── Metadata — vertical icon + label rows ────────────────────────────────────
+.card-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin-bottom: 4px;
+}
+
+.meta-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  .meta-icon {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+    opacity: 0.85;
+  }
+
+  .meta-text {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: $text-secondary;
+    line-height: 1.3;
+  }
+}
+
+// ── CTA — pinned to bottom ────────────────────────────────────────────────────
+.card-cta {
+  padding: 0 24px 24px;
+}
+
+.signup-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 48px;
+  background: var(--btn-color);
+  color: #ffffff;
+  border: none;
+  border-radius: $radius-btn;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: filter $transition, box-shadow $transition, transform $transition;
+
+  &:hover {
+    filter: brightness(1.08);
+    transform: translateY(-1px);
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--btn-color);
+    outline-offset: 2px;
+  }
+}
+
+// ── Footer ────────────────────────────────────────────────────────────────────
+.footer { margin-top: 60px; }
+
+// ── Fade-in animation ─────────────────────────────────────────────────────────
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+// ── Light theme ───────────────────────────────────────────────────────────────
+:host-context(.light-theme) {
+  .cert-hero          { --hero-wave-fill: #f1f5f9; }
+  .cert-cards-section { background: #f1f5f9 !important; }
+  .cert-card          { background: #ffffff; }
+  .card-title         { color: $text-primary; }
+}
+
+// ── Dark theme ────────────────────────────────────────────────────────────────
+:host-context(.dark-theme) {
+  .cert-hero          { --hero-wave-fill: #0f172a; }
+  .cert-cards-section {
+    background: var(--mat-sys-surface) !important;
+  }
+
+  .cert-card {
+    background: var(--mat-sys-surface-container);
+    border-color: var(--mat-sys-outline-variant);
+
+    &:hover,
+    &:focus-visible {
+      border-color: var(--card-color);
+    }
+  }
+
+  .card-title {
+    color: var(--mat-sys-on-surface);
+  }
+
+  .meta-text {
+    color: var(--mat-sys-on-surface-variant);
+  }
+}

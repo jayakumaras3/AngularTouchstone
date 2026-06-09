@@ -18,6 +18,8 @@ import{AppSideForgotPasswordComponent} from '../authentication/side-forgot-passw
 import{CourseCatalogComponent} from './coursecatalog/coursecatalog.component';
 import { SmeCatalogComponent } from './sme-catalog/sme-catalog.component';
 import { SmeCategoryComponent } from './sme-catalog/sme-category.component';
+import { CertificationsCatalogComponent } from './certifications/certifications-catalog/certifications-catalog.component';
+import { CertificationDetailsComponent } from './certifications/certification-details/certification-details.component';
 
 
 export const FrontPagesRoutes: Routes = [
@@ -81,6 +83,23 @@ export const FrontPagesRoutes: Routes = [
       },
       { path: 'sme-catalog', component: SmeCatalogComponent },
       { path: 'sme-catalog/:category', component: SmeCategoryComponent },
+      {
+        path: 'certifications',
+        component: CertificationsCatalogComponent,
+        data: {
+          title: 'Professional Certification Programs | DOCHEK',
+          description:
+            'Explore industry-focused certification programs designed to accelerate careers and build professional credibility.',
+        },
+      },
+      {
+        path: 'certification-details/:certificateId',
+        component: CertificationDetailsComponent,
+        data: {
+          title: 'Certification Details | DOCHEK',
+          description: 'View certification details, learning paths, and courses.',
+        },
+      },
       { path: 'blog-details', component: BlogDetailsComponent },
       {
         path: 'catalog',

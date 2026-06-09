@@ -1,0 +1,122 @@
+<!-- Certifications Catalog — Hero Section -->
+<section class="cert-hero">
+  <!-- Decorative blobs -->
+  <div class="hero-blob hero-blob--tl" aria-hidden="true"></div>
+  <div class="hero-blob hero-blob--br" aria-hidden="true"></div>
+
+  <div class="hero-content">
+    <!-- Badge -->
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      7 Professional Certifications
+    </div>
+
+    <h1 class="hero-title">Professional Certification<br>Programs</h1>
+
+    <p class="hero-subtitle">
+      Industry-focused certification programs designed to accelerate careers
+      and build professional credibility.
+    </p>
+
+    <!-- Stats strip -->
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-value">7</span>
+        <span class="hero-stat-label">Certifications</span>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <span class="hero-stat-value">200+</span>
+        <span class="hero-stat-label">Courses</span>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <span class="hero-stat-value">37</span>
+        <span class="hero-stat-label">Learning Paths</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Curved bottom separator -->
+  <div class="hero-wave" aria-hidden="true">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,40 C360,80 1080,0 1440,40 L1440,60 L0,60 Z" fill="var(--hero-wave-fill, #f1f5f9)"/>
+    </svg>
+  </div>
+</section>
+
+<!-- Certification Cards Grid -->
+<section class="cert-cards-section">
+  <div class="cards-grid">
+    @for (card of cards(); track trackByCardId($index, card)) {
+
+      <div
+        class="cert-card"
+        [style.--card-color]="card.config.color"
+        role="button"
+        tabindex="0"
+        [attr.aria-label]="'View details for ' + card.certification.certificate_name"
+        (click)="viewDetails(card.certification.certificate_id)"
+        (keydown.enter)="viewDetails(card.certification.certificate_id)"
+        (keydown.space)="$event.preventDefault(); viewDetails(card.certification.certificate_id)"
+      >
+        <!-- Top color bar -->
+        <div class="card-accent-bar"></div>
+
+        <!-- Scrollable body — grows to fill height -->
+        <div class="card-body">
+
+          <!-- Icon -->
+          <div class="card-icon-wrapper" [style.background]="card.config.color + '15'">
+            <i-tabler [name]="card.config.icon" class="card-icon" [style.color]="card.config.color"></i-tabler>
+          </div>
+
+          <!-- Primary: Certification Title -->
+          <h3 class="card-title">{{ card.certification.certificate_name }}</h3>
+
+          <!-- Secondary: Price -->
+          <div class="card-price" [style.color]="card.config.color">{{ card.config.price }}</div>
+
+          <!-- Tertiary: Metadata (vertical, icon + label) -->
+          <div class="card-meta">
+            <div class="meta-row">
+              <i-tabler name="clock" class="meta-icon" [style.color]="card.config.color"></i-tabler>
+              <span class="meta-text">{{ card.config.duration }}</span>
+            </div>
+            <div class="meta-row">
+              <i-tabler name="book" class="meta-icon" [style.color]="card.config.color"></i-tabler>
+              <span class="meta-text">{{ card.totalCourses }} Courses</span>
+            </div>
+            <div class="meta-row">
+              <i-tabler name="route" class="meta-icon" [style.color]="card.config.color"></i-tabler>
+              <span class="meta-text">{{ card.certification.learning_paths.length }} Learning Paths</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- CTA — always pinned to bottom -->
+        <div class="card-cta">
+          <button
+            class="signup-btn"
+            type="button"
+            [style.--btn-color]="card.config.color"
+            (click)="$event.stopPropagation(); signUpNow(card)"
+            (keydown.enter)="$event.stopPropagation(); signUpNow(card)"
+            (keydown.space)="$event.stopPropagation(); $event.preventDefault(); signUpNow(card)"
+            [attr.aria-label]="'Sign up for ' + card.certification.certificate_name"
+          >
+            Sign Up
+          </button>
+        </div>
+
+      </div>
+
+    }
+  </div>
+</section>
+
+<!-- Footer -->
+<div class="footer">
+  <app-footer></app-footer>
+</div>

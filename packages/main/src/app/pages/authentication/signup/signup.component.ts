@@ -15,12 +15,13 @@ import {
   ValidatorFn,
   Validators
 } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../../../material.module';
 import { FooterComponent } from '../../front-pages/footer/footer.component';
 import { LoginUrl } from '../../../config';
 import { Subscription } from 'rxjs';
+import { CertificationSignupState } from '../../front-pages/certifications/certifications.model';
 
 function passwordStrengthValidator(control: AbstractControl): ValidationErrors | null {
   const v: string = control.value ?? '';
@@ -69,6 +70,8 @@ export class SignupComponent implements OnDestroy {
   readonly successMessage = signal('');
   readonly passwordValue = signal('');
 
+  readonly selectedCertification = signal<CertificationSignupState | null>(null);
+
   readonly passwordRules = [
     { key: 'minLength',   label: 'Minimum 8 characters',        check: (v: string) => v.length >= 8 },
     { key: 'uppercase',   label: 'One uppercase letter',         check: (v: string) => /[A-Z]/.test(v) },
@@ -79,6 +82,7 @@ export class SignupComponent implements OnDestroy {
 
   private readonly fb = inject(FormBuilder);
   private readonly cdr = inject(ChangeDetectorRef);
+  private readonly router = inject(Router);
   private readonly subs = new Subscription();
 
   readonly form = this.fb.group({
@@ -93,6 +97,13 @@ export class SignupComponent implements OnDestroy {
   get f() { return this.form.controls; }
 
   constructor() {
+    // Read certification context passed via router navigation state
+    const nav = this.router.getCurrentNavigation();
+    const certState = nav?.extras?.state?.['certification'] as CertificationSignupState | undefined;
+    if (certState) {
+      this.selectedCertification.set(certState);
+    }
+
     // Re-validate confirmEmail when email changes
     this.subs.add(
       this.f.email.valueChanges.subscribe(() => {

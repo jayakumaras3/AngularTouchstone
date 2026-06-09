@@ -91,6 +91,81 @@
 }
 
 
+// ── Certification Summary Card ─────────────────────────────────────────────────
+.cert-summary-card {
+  border: 1px solid #c7d7fd;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #eef2ff;
+
+  .cert-summary-header {
+    background: #4f46e5;
+    padding: 8px 14px;
+
+    .cert-summary-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.9);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+  }
+
+  .cert-summary-body {
+    padding: 12px 14px;
+
+    .cert-summary-name {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin: 0 0 8px;
+    }
+
+    .cert-summary-stats {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .cert-stat {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.78rem;
+      color: #475569;
+      font-weight: 500;
+
+      svg {
+        flex-shrink: 0;
+        color: #64748b;
+      }
+    }
+
+    .cert-price {
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: #4f46e5;
+      margin-left: auto;
+    }
+  }
+}
+
+// ── Dark mode support for cert card ───────────────────────────────────────────
+:host-context(.dark-theme) .cert-summary-card {
+  background: rgba(79, 70, 229, 0.12);
+  border-color: rgba(79, 70, 229, 0.35);
+
+  .cert-summary-body {
+    .cert-summary-name {
+      color: #e2e8f0;
+    }
+    .cert-stat {
+      color: #94a3b8;
+    }
+  }
+}
+
 @media (max-width: 767px) {
   .col-lg-5,
   .col-lg-7 {

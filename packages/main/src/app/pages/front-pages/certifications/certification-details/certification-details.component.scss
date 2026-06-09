@@ -1,0 +1,564 @@
+$primary-color: #1e293b;
+$secondary-color: #475569;
+$border-color: #e2e8f0;
+$card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+$border-radius: 16px;
+$transition: 0.3s ease;
+
+// ── Not Found ─────────────────────────────────────────────────────────────────
+.not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  gap: 16px;
+  text-align: center;
+  padding: 40px 24px;
+
+  .nf-icon {
+    width: 64px;
+    height: 64px;
+    color: #94a3b8;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: $primary-color;
+    margin: 0;
+  }
+
+  p {
+    color: $secondary-color;
+    margin: 0;
+  }
+}
+
+// ── Hero / Back Strip ─────────────────────────────────────────────────────────
+.details-hero {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 28px 24px;
+
+  .details-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+}
+
+// ── Shared Back Button ────────────────────────────────────────────────────────
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 8px;
+  padding: 10px 18px;
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all $transition;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateX(-4px);
+  }
+
+  .back-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  // Dark outlined variant (not-found state)
+  &:not(.details-hero .back-btn) {
+    background: transparent;
+    border-color: $border-color;
+    color: $primary-color;
+
+    &:hover {
+      background: #f8fafc;
+    }
+  }
+}
+
+// ── Main Content Layout ───────────────────────────────────────────────────────
+.details-main {
+  background: var(--mat-sys-surface-bright, #f8fafc);
+  padding: 48px 24px 80px;
+}
+
+.details-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.details-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 40px;
+  align-items: start;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 280px 1fr;
+    gap: 28px;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+// ── Left Panel ────────────────────────────────────────────────────────────────
+.details-left {
+  position: sticky;
+  top: 90px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  @media (max-width: 768px) {
+    position: static;
+  }
+}
+
+.cert-banner {
+  border-radius: $border-radius;
+  padding: 40px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  border: 1px solid $border-color;
+  background: #f8fafc;
+}
+
+.banner-icon-wrapper {
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .banner-icon {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.banner-short-name {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+.banner-cert-label {
+  font-size: 0.8rem;
+  color: $secondary-color;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.quick-stats-card {
+  background: $card-shadow;
+  background: #ffffff;
+  border-radius: $border-radius;
+  padding: 20px 24px;
+  box-shadow: $card-shadow;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.qs-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  .qs-icon {
+    width: 20px;
+    height: 20px;
+    color: $secondary-color;
+    flex-shrink: 0;
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .qs-label {
+    font-size: 0.72rem;
+    color: $secondary-color;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+  }
+
+  .qs-value {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: $primary-color;
+
+    &.price-highlight {
+      font-size: 1.1rem;
+    }
+  }
+}
+
+// ── Right Panel ───────────────────────────────────────────────────────────────
+.details-right {
+  background: #ffffff;
+  border-radius: $border-radius;
+  padding: 36px 40px;
+  box-shadow: $card-shadow;
+
+  @media (max-width: 768px) {
+    padding: 24px 20px;
+  }
+}
+
+.cert-name {
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: $primary-color;
+  margin: 0 0 20px;
+  line-height: 1.35;
+
+  @media (max-width: 768px) {
+    font-size: 1.25rem;
+  }
+}
+
+.cert-description {
+  font-size: 0.95rem;
+  color: $secondary-color;
+  line-height: 1.7;
+  margin-bottom: 32px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid $border-color;
+
+  ::ng-deep p {
+    margin: 0 0 12px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// ── Learning Paths Accordion ──────────────────────────────────────────────────
+.lp-section {
+  margin-bottom: 36px;
+}
+
+.lp-section-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: $primary-color;
+  margin: 0 0 20px;
+
+  .lp-section-icon {
+    width: 22px;
+    height: 22px;
+    color: #667eea;
+  }
+}
+
+.lp-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lp-item {
+  border-radius: 10px;
+  border: 1px solid $border-color;
+  overflow: hidden;
+  transition: border-color $transition;
+
+  &.lp-expanded {
+    border-color: var(--lp-color, #667eea);
+  }
+}
+
+.lp-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: #f8fafc;
+  border: none;
+  cursor: pointer;
+  transition: background $transition;
+  text-align: left;
+  gap: 12px;
+
+  &:hover {
+    background: #f1f5f9;
+  }
+
+  &[aria-expanded='true'] {
+    background: color-mix(in srgb, var(--lp-color, #667eea) 8%, white);
+  }
+}
+
+.lp-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.lp-number {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--lp-color, #667eea);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.lp-name {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: $primary-color;
+  line-height: 1.3;
+}
+
+.lp-header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.lp-course-count {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--lp-color, #667eea);
+  white-space: nowrap;
+  background: color-mix(in srgb, var(--lp-color, #667eea) 12%, white);
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
+.lp-chevron {
+  width: 18px;
+  height: 18px;
+  color: $secondary-color;
+  transition: transform $transition;
+
+  &.rotated {
+    transform: rotate(180deg);
+  }
+}
+
+.lp-body {
+  padding: 4px 18px 16px;
+  background: #ffffff;
+  animation: slideDown 0.25s ease;
+}
+
+.course-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.course-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid #f1f5f9;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  .course-play-icon {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .course-name {
+    font-size: 0.875rem;
+    color: $secondary-color;
+    line-height: 1.45;
+  }
+}
+
+// ── Sign Up CTA ───────────────────────────────────────────────────────────────
+.signup-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 28px;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid $border-color;
+  gap: 16px;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.cta-price-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+
+  .cta-price-label {
+    font-size: 0.75rem;
+    color: $secondary-color;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+  }
+
+  .cta-price-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    line-height: 1;
+  }
+}
+
+.signup-now-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  border-radius: 10px;
+  padding: 13px 28px;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all $transition;
+  white-space: nowrap;
+
+  &:hover {
+    opacity: 0.88;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .signup-arrow {
+    width: 18px;
+    height: 18px;
+    transition: transform $transition;
+  }
+
+  &:hover .signup-arrow {
+    transform: translateX(4px);
+  }
+}
+
+// ── Footer ────────────────────────────────────────────────────────────────────
+.footer {
+  margin-top: 60px;
+}
+
+// ── Animations ────────────────────────────────────────────────────────────────
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ── Dark Mode ─────────────────────────────────────────────────────────────────
+:host-context(.dark-theme) {
+  .details-main {
+    background: var(--mat-sys-surface) !important;
+  }
+
+  .details-right {
+    background: var(--mat-sys-surface-container);
+    box-shadow: none;
+    border: 1px solid var(--mat-sys-outline-variant);
+  }
+
+  .quick-stats-card {
+    background: var(--mat-sys-surface-container);
+    box-shadow: none;
+    border: 1px solid var(--mat-sys-outline-variant);
+  }
+
+  .cert-banner {
+    background: var(--mat-sys-surface-container);
+    border-color: var(--mat-sys-outline-variant);
+  }
+
+  .cert-name {
+    color: var(--mat-sys-on-surface);
+  }
+
+  .cert-description {
+    color: var(--mat-sys-on-surface-variant);
+    border-color: var(--mat-sys-outline-variant);
+  }
+
+  .lp-item {
+    border-color: var(--mat-sys-outline-variant);
+  }
+
+  .lp-header {
+    background: var(--mat-sys-surface-container-high);
+
+    &:hover {
+      background: var(--mat-sys-surface-container-highest);
+    }
+  }
+
+  .lp-name {
+    color: var(--mat-sys-on-surface);
+  }
+
+  .lp-body {
+    background: var(--mat-sys-surface-container);
+  }
+
+  .course-item {
+    border-color: var(--mat-sys-outline-variant);
+
+    .course-name {
+      color: var(--mat-sys-on-surface-variant);
+    }
+  }
+
+  .signup-cta {
+    background: var(--mat-sys-surface-container);
+    border-color: var(--mat-sys-outline-variant);
+  }
+}
