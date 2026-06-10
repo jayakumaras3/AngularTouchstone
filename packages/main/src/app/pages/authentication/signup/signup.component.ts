@@ -27,7 +27,7 @@ import { LoginUrl } from '../../../config';
 import { Subscription } from 'rxjs';
 import { CertificationSignupState } from '../../front-pages/certifications/certifications.model';
 
-const TURNSTILE_SITE_KEY = '1x00000000000000000000AA'; // Replace with your Cloudflare Turnstile site key
+const TURNSTILE_SITE_KEY = '0x4AAAAAADh_GIYrBeeJ7VaM';
 
 function passwordStrengthValidator(control: AbstractControl): ValidationErrors | null {
   const v: string = control.value ?? '';
