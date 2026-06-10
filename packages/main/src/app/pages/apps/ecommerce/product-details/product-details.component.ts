@@ -71,6 +71,8 @@ export class ProductDetailsComponent implements AfterViewInit, OnInit {
     certificateName?: string;
     price?: string;
     shortName?: string;
+    duration?: string;
+    totalCourses?: number;
   } | null = null;
 
   mobileQuery: MediaQueryList;
@@ -141,8 +143,11 @@ export class ProductDetailsComponent implements AfterViewInit, OnInit {
     // For related product navigation (component reuse), the instance variables persist.
     if (this.isFirstPageLoad) {
       const navigation = this.router.getCurrentNavigation();
-      const stateSource = navigation?.extras?.state?.['source'];
-      const statePreviousUrl = navigation?.extras?.state?.['previousUrl'];
+      // Fallback: Angular's getCurrentNavigation() returns null after navigation completes
+      // on deployed servers. history.state persists and is always available.
+      const navState = navigation?.extras?.state ?? (history.state as Record<string, any>) ?? {};
+      const stateSource = navState['source'];
+      const statePreviousUrl = navState['previousUrl'];
       const querySource = this.route.snapshot.queryParams['source'];
 
       const initialSource = stateSource || querySource || 'catalog';
@@ -151,7 +156,7 @@ export class ProductDetailsComponent implements AfterViewInit, OnInit {
       if (initialSource === 'certification') {
         // Arrived from Certification Details — set certification context
         this.isCertificationSource = true;
-        const rawCertId = navigation?.extras?.state?.['certificateId'];
+        const rawCertId = navState['certificateId'];
         this.originalCertificateId = rawCertId != null ? Number(rawCertId) : null;
 
         if (this.originalCertificateId) {
@@ -165,13 +170,15 @@ export class ProductDetailsComponent implements AfterViewInit, OnInit {
           this.originalPreviousUrl = '/certifications';
         }
 
-        const certName = navigation?.extras?.state?.['certificateName'];
+        const certName = navState['certificateName'];
         if (certName) {
           this.certificationState = {
             certificateId: this.originalCertificateId ?? undefined,
             certificateName: certName,
-            price: navigation?.extras?.state?.['price'] ?? undefined,
-            shortName: navigation?.extras?.state?.['shortName'] ?? undefined,
+            price: navState['price'] ?? undefined,
+            shortName: navState['shortName'] ?? undefined,
+            duration: navState['duration'] ?? undefined,
+            totalCourses: navState['totalCourses'] != null ? Number(navState['totalCourses']) : undefined,
           };
         }
       } else {
@@ -601,7 +608,8 @@ private normalizeObjectives(product: any): void {
         certificateName: this.certificationState.certificateName,
         shortName: this.certificationState.shortName,
         price: this.certificationState.price,
-        totalCourses: 0,
+        duration: this.certificationState.duration ?? '',
+        totalCourses: this.certificationState.totalCourses ?? 0,
       };
     }
     if (this.product?.id) {

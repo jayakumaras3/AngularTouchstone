@@ -53,12 +53,6 @@
       <div
         class="cert-card"
         [style.--card-color]="card.config.color"
-        role="button"
-        tabindex="0"
-        [attr.aria-label]="'View details for ' + card.certification.certificate_name"
-        (click)="viewDetails(card.certification.certificate_id)"
-        (keydown.enter)="viewDetails(card.certification.certificate_id)"
-        (keydown.space)="$event.preventDefault(); viewDetails(card.certification.certificate_id)"
       >
         <!-- Top color bar -->
         <div class="card-accent-bar"></div>
@@ -101,12 +95,19 @@
         <!-- CTA — always pinned to bottom -->
         <div class="card-cta">
           <button
+            class="details-btn"
+            type="button"
+            [style.--btn-color]="card.config.color"
+            (click)="viewDetails(card.certification.certificate_id)"
+            [attr.aria-label]="'View details for ' + card.certification.certificate_name"
+          >
+            View Details
+          </button>
+          <button
             class="signup-btn"
             type="button"
             [style.--btn-color]="card.config.color"
-            (click)="$event.stopPropagation(); signUpNow(card)"
-            (keydown.enter)="$event.stopPropagation(); signUpNow(card)"
-            (keydown.space)="$event.stopPropagation(); $event.preventDefault(); signUpNow(card)"
+            (click)="signUpNow(card)"
             [attr.aria-label]="'Sign up for ' + card.certification.certificate_name"
           >
             Sign Up

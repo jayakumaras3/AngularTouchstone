@@ -107,6 +107,8 @@ export class CertificationDetailsComponent implements OnInit {
         certificateName: cert?.certificate_name ?? null,
         price: cfg?.price ?? null,
         shortName: cfg?.shortName ?? null,
+        duration: cfg?.duration ?? null,
+        totalCourses: this.totalCourses(),
       },
     });
   }
