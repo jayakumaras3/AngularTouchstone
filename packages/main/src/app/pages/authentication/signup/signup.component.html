@@ -291,13 +291,23 @@
                   </mat-error>
                 </mat-form-field>
 
+                <!-- Cloudflare Turnstile CAPTCHA -->
+                <div class="turnstile-wrapper m-t-16">
+                  <div #turnstileContainer></div>
+                  @if (f['captchaVerified'].touched && f['captchaVerified'].invalid) {
+                    <div class="captcha-error-msg" role="alert">
+                      Please complete CAPTCHA verification.
+                    </div>
+                  }
+                </div>
+
                 <!-- Create Account Button -->
                 <button
                   mat-flat-button
                   color="primary"
-                  class="w-100 m-t-8"
+                  class="w-100 m-t-16"
                   type="submit"
-                  [disabled]="isSubmitting()"
+                  [disabled]="form.invalid || isSubmitting()"
                   aria-label="Create account"
                 >
                   {{ isSubmitting() ? 'Creating Account...' : 'Create Account' }}

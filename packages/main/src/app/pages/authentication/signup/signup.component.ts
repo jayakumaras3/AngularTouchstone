@@ -2,7 +2,11 @@ import {
   Component,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
+  OnInit,
+  AfterViewInit,
   OnDestroy,
+  ElementRef,
+  ViewChild,
   signal,
   inject
 } from '@angular/core';
@@ -22,6 +26,8 @@ import { FooterComponent } from '../../front-pages/footer/footer.component';
 import { LoginUrl } from '../../../config';
 import { Subscription } from 'rxjs';
 import { CertificationSignupState } from '../../front-pages/certifications/certifications.model';
+
+const TURNSTILE_SITE_KEY = '1x00000000000000000000AA'; // Replace with your Cloudflare Turnstile site key
 
 function passwordStrengthValidator(control: AbstractControl): ValidationErrors | null {
   const v: string = control.value ?? '';
@@ -60,8 +66,11 @@ function matchFieldValidator(matchTo: string): ValidatorFn {
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss'
 })
-export class SignupComponent implements OnDestroy {
+export class SignupComponent implements OnInit, AfterViewInit, OnDestroy {
   readonly baseUrlpath = LoginUrl;
+
+  @ViewChild('turnstileContainer') private turnstileContainer!: ElementRef;
+  private turnstileWidgetId: string | null = null;
 
   readonly showPassword = signal(false);
   readonly showConfirmPassword = signal(false);
@@ -83,7 +92,7 @@ export class SignupComponent implements OnDestroy {
   private readonly fb = inject(FormBuilder);
   private readonly cdr = inject(ChangeDetectorRef);
   private readonly router = inject(Router);
-  private readonly subs = new Subscription();
+private readonly subs = new Subscription();
 
   readonly form = this.fb.group({
     firstName:       ['', [Validators.required, Validators.minLength(2)]],
@@ -92,6 +101,7 @@ export class SignupComponent implements OnDestroy {
     confirmEmail:    ['', [Validators.required, Validators.email, matchFieldValidator('email')]],
     password:        ['', [Validators.required, passwordStrengthValidator]],
     confirmPassword: ['', [Validators.required, matchFieldValidator('password')]],
+    captchaVerified: [false, Validators.requiredTrue],
   });
 
   get f() { return this.form.controls; }
@@ -121,8 +131,37 @@ export class SignupComponent implements OnDestroy {
     );
   }
 
+  ngOnInit(): void { /* script loaded via index.html */ }
+
+  ngAfterViewInit(): void {
+    this.waitForTurnstile();
+  }
+
+  private waitForTurnstile(attempts = 0): void {
+    const turnstile = (window as any).turnstile;
+    if (turnstile) {
+      this.turnstileWidgetId = turnstile.render(this.turnstileContainer.nativeElement, {
+        sitekey: TURNSTILE_SITE_KEY,
+        theme: 'auto',
+        callback: () => {
+          this.form.patchValue({ captchaVerified: true });
+          this.cdr.markForCheck();
+        },
+        'expired-callback': () => {
+          this.form.patchValue({ captchaVerified: false });
+          this.cdr.markForCheck();
+        },
+      });
+    } else if (attempts < 30) {
+      setTimeout(() => this.waitForTurnstile(attempts + 1), 200);
+    }
+  }
+
   ngOnDestroy(): void {
     this.subs.unsubscribe();
+    if (this.turnstileWidgetId !== null && (window as any).turnstile) {
+      (window as any).turnstile.remove(this.turnstileWidgetId);
+    }
   }
 
   togglePassword(): void { this.showPassword.update(v => !v); }
@@ -130,6 +169,7 @@ export class SignupComponent implements OnDestroy {
 
   submit(): void {
     this.form.markAllAsTouched();
+    this.cdr.markForCheck();
     if (this.form.invalid || this.isSubmitting()) return;
 
     this.isSubmitting.set(true);
