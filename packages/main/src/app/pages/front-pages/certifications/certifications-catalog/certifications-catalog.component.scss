@@ -1,13 +1,6 @@
 // ── Design tokens ─────────────────────────────────────────────────────────────
-$text-primary:   #0f172a;
-$text-secondary: #64748b;
-$card-bg:        #ffffff;
-$shadow-rest:    0 2px 12px rgba(0, 0, 0, 0.07);
-$shadow-hover:   0 20px 44px rgba(0, 0, 0, 0.13);
-$radius-card:    20px;
-$radius-icon:    14px;
-$radius-btn:     12px;
-$transition:     0.3s ease;
+$radius-btn: 12px;
+$transition: 0.3s ease;
 
 // ── Hero ──────────────────────────────────────────────────────────────────────
 .cert-hero {
@@ -20,7 +13,6 @@ $transition:     0.3s ease;
   position: relative;
   overflow: hidden;
 
-  // Noise texture overlay
   &::after {
     content: '';
     position: absolute;
@@ -32,7 +24,6 @@ $transition:     0.3s ease;
   }
 }
 
-// Decorative blobs
 .hero-blob {
   position: absolute;
   border-radius: 50%;
@@ -41,19 +32,14 @@ $transition:     0.3s ease;
   z-index: 0;
 
   &--tl {
-    width: 420px;
-    height: 420px;
+    width: 420px; height: 420px;
     background: rgba(139, 92, 246, 0.35);
-    top: -140px;
-    left: -100px;
+    top: -140px; left: -100px;
   }
-
   &--br {
-    width: 360px;
-    height: 360px;
+    width: 360px; height: 360px;
     background: rgba(99, 102, 241, 0.3);
-    bottom: -100px;
-    right: -80px;
+    bottom: -100px; right: -80px;
   }
 }
 
@@ -64,7 +50,6 @@ $transition:     0.3s ease;
   margin: 0 auto;
 }
 
-// Pill badge
 .hero-badge {
   display: inline-flex;
   align-items: center;
@@ -83,8 +68,7 @@ $transition:     0.3s ease;
 }
 
 .hero-badge-dot {
-  width: 7px;
-  height: 7px;
+  width: 7px; height: 7px;
   border-radius: 50%;
   background: #a78bfa;
   box-shadow: 0 0 6px 2px rgba(167, 139, 250, 0.7);
@@ -113,21 +97,17 @@ $transition:     0.3s ease;
 .hero-subtitle {
   font-size: 1.15rem;
   color: rgba(255, 255, 255, 0.72);
-  margin: 0 0 40px;
+  margin: 0 auto 40px;
   font-weight: 400;
   line-height: 1.7;
   max-width: 580px;
-  margin-left: auto;
-  margin-right: auto;
 
   @media (max-width: 768px) { font-size: 0.975rem; }
 }
 
-// Stats strip
 .hero-stats {
   display: inline-flex;
   align-items: center;
-  gap: 0;
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 16px;
@@ -168,241 +148,214 @@ $transition:     0.3s ease;
 }
 
 .hero-stat-divider {
-  width: 1px;
-  height: 36px;
+  width: 1px; height: 36px;
   background: rgba(255, 255, 255, 0.2);
   flex-shrink: 0;
 
-  @media (max-width: 480px) {
-    width: 40px;
-    height: 1px;
-  }
+  @media (max-width: 480px) { width: 40px; height: 1px; }
 }
 
-// Curved wave separator
 .hero-wave {
   position: absolute;
-  bottom: -1px;
-  left: 0;
-  right: 0;
+  bottom: -1px; left: 0; right: 0;
   z-index: 1;
   line-height: 0;
 
-  svg {
-    display: block;
-    width: 100%;
-    height: 60px;
-  }
+  svg { display: block; width: 100%; height: 60px; }
 }
 
 // ── Cards section ─────────────────────────────────────────────────────────────
 .cert-cards-section {
   background: var(--mat-sys-surface-bright, #f1f5f9);
-  padding: 56px 24px 80px;
-  min-height: calc(100vh - 280px);
+  padding: 52px 24px 80px;
 }
 
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 28px;
+  gap: 32px;
   max-width: 1280px;
   margin: 0 auto;
-  align-items: stretch;
+  align-items: start;
 
-  @media (max-width: 600px)  { grid-template-columns: 1fr; gap: 16px; }
+  @media (max-width: 600px) { grid-template-columns: 1fr; gap: 20px; }
 }
 
 // ── Certification Card ────────────────────────────────────────────────────────
 .cert-card {
-  background: $card-bg;
-  border-radius: $radius-card;
-  box-shadow: $shadow-rest;
-  border: 1.5px solid #e9eef5;
   display: flex;
   flex-direction: column;
-  position: relative;
+  background: #ffffff;
+  border-radius: 20px;
   overflow: hidden;
-  text-align: left;
-  transition:
-    transform     $transition,
-    box-shadow    $transition,
-    border-color  $transition;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+  border: 1px solid #eef2f7;
+  transition: transform $transition, box-shadow $transition;
 
-  // Staggered fade-in
+  // Accent line top — uses each card's theme color
+  &::before {
+    content: '';
+    display: block;
+    height: 4px;
+    background: var(--card-color);
+    flex-shrink: 0;
+  }
+
   animation: fadeInUp 0.5s ease both;
   @for $i from 1 through 7 {
     &:nth-child(#{$i}) { animation-delay: #{$i * 0.07}s; }
   }
 
-  // Subtle lift on hover (card is no longer a click target — buttons handle actions)
   &:hover {
-    transform: translateY(-4px);
-    box-shadow: $shadow-hover;
-    border-color: var(--card-color);
-
-    .card-accent-bar { transform: scaleX(1); }
-    .card-icon-wrapper { transform: scale(1.08); }
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.13);
   }
 }
 
-// ── Top colour accent ─────────────────────────────────────────────────────────
-.card-accent-bar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: var(--card-color);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform $transition;
+// ── Hero Image — full 16:9 ratio, no fixed height crop ───────────────────────
+.card-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    transition: transform 0.45s ease;
+  }
+
+  .cert-card:hover & img { transform: scale(1.04); }
 }
 
-// ── Card body (grows to fill height, pushes CTA to bottom) ───────────────────
+// ── Card Body ─────────────────────────────────────────────────────────────────
 .card-body {
-  padding: 24px 24px 20px;
+  padding: 24px 28px 28px;
   display: flex;
   flex-direction: column;
   flex: 1;
-  gap: 0;
 }
 
-// ── Icon ──────────────────────────────────────────────────────────────────────
-.card-icon-wrapper {
-  width: 48px;
-  height: 48px;
-  border-radius: $radius-icon;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  margin-bottom: 16px;
-  transition: transform $transition;
-
-  .card-icon {
-    width: 24px;
-    height: 24px;
-  }
-}
-
-// ── Title — primary hierarchy ─────────────────────────────────────────────────
-.card-title {
-  font-size: 1.05rem;
+// ── Title — full, no clamp ────────────────────────────────────────────────────
+.cert-title {
+  font-size: 1.15rem;
   font-weight: 700;
-  color: $text-primary;
-  line-height: 1.5;
-  margin: 0 0 18px;
-  // No clamp — wider 3-col cards have room for full title.
-  // Grid row stretching keeps all cards in a row equal height.
-  word-break: break-word;
-  overflow-wrap: break-word;
+  color: #0f172a;
+  line-height: 1.45;
+  margin: 0 0 12px;
 }
 
-// ── Description — full text, no clamp ────────────────────────────────────────
-.card-desc {
-  font-size: 0.875rem;
-  color: $text-secondary;
-  line-height: 1.65;
-  margin: 0 0 18px;
+// ── Description — full, no clamp ─────────────────────────────────────────────
+.cert-desc {
+  font-size: 0.925rem;
+  line-height: 1.75;
+  color: #64748b;
+  margin: 0;
 }
 
-// ── Price — second most visible ───────────────────────────────────────────────
-.card-price {
-  font-size: 2rem;     // 32 px — prominent without overwhelming the card
+// ── Price ─────────────────────────────────────────────────────────────────────
+.cert-price {
+  font-size: 2.2rem;
   font-weight: 800;
   line-height: 1;
-  letter-spacing: -0.01em;
-  margin-bottom: 18px;
+  letter-spacing: -0.02em;
+  margin-top: 18px;
 }
 
-// ── Metadata — vertical icon + label rows ────────────────────────────────────
-.card-meta {
+// ── Stats Row — pill chips ────────────────────────────────────────────────────
+.stats-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 10px;
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.stat-item {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 9px;
-  margin-bottom: 4px;
-}
-
-.meta-row {
-  display: flex;
   align-items: center;
-  gap: 9px;
+  justify-content: center;
+  gap: 6px;
+  background: #f8fafc;
+  border: 1px solid #eef2f7;
+  border-radius: 12px;
+  padding: 10px 8px;
+  transition: background $transition, border-color $transition;
 
-  .meta-icon {
-    width: 15px;
-    height: 15px;
-    flex-shrink: 0;
-    opacity: 0.85;
+  .cert-card:hover & {
+    background: color-mix(in srgb, var(--card-color) 6%, white);
+    border-color: color-mix(in srgb, var(--card-color) 25%, white);
   }
 
-  .meta-text {
-    font-size: 0.82rem;
-    font-weight: 500;
-    color: $text-secondary;
-    line-height: 1.3;
+  .stat-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+
+  .stat-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #475569;
+    text-align: center;
+    line-height: 1.25;
   }
 }
 
-// ── CTA — two buttons side by side ───────────────────────────────────────────
-.card-cta {
-  padding: 0 24px 24px;
+// ── Card Footer — pinned to bottom ────────────────────────────────────────────
+.card-footer {
+  margin-top: 22px;
   display: flex;
   gap: 12px;
-  justify-content: center;
 }
 
-// Shared base for both CTA buttons
-%cta-base {
+// ── Buttons ───────────────────────────────────────────────────────────────────
+%btn-base {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 44px;
+  height: 46px;
   flex: 1;
   border-radius: $radius-btn;
-  font-size: 0.88rem;
+  font-size: 0.9rem;
   font-weight: 700;
   letter-spacing: 0.02em;
   cursor: pointer;
   transition: filter $transition, box-shadow $transition, transform $transition, background $transition;
 
-  &:hover   { transform: translateY(-1px); }
-  &:active  { transform: translateY(0); }
+  &:hover  { transform: translateY(-1px); }
+  &:active { transform: translateY(0); }
 }
 
-// Outlined — View Details
 .details-btn {
-  @extend %cta-base;
+  @extend %btn-base;
   background: transparent;
   border: 2px solid var(--btn-color);
   color: var(--btn-color);
 
-  &:hover {
-    background: color-mix(in srgb, var(--btn-color) 10%, white);
-  }
-
-  &:focus-visible {
-    outline: 3px solid var(--btn-color);
-    outline-offset: 2px;
-  }
+  &:hover { background: color-mix(in srgb, var(--btn-color) 10%, transparent); }
+  &:focus-visible { outline: 3px solid var(--btn-color); outline-offset: 2px; }
 }
 
-// Filled — Sign Up
 .signup-btn {
-  @extend %cta-base;
+  @extend %btn-base;
   background: var(--btn-color);
   border: 2px solid transparent;
   color: #ffffff;
 
   &:hover {
-    filter: brightness(1.08);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+    filter: brightness(1.1);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
   }
-
-  &:focus-visible {
-    outline: 3px solid var(--btn-color);
-    outline-offset: 2px;
-  }
+  &:focus-visible { outline: 3px solid var(--btn-color); outline-offset: 2px; }
 }
 
 // ── Footer ────────────────────────────────────────────────────────────────────
@@ -410,7 +363,7 @@ $transition:     0.3s ease;
 
 // ── Fade-in animation ─────────────────────────────────────────────────────────
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(22px); }
+  from { opacity: 0; transform: translateY(24px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
@@ -418,36 +371,88 @@ $transition:     0.3s ease;
 :host-context(.light-theme) {
   .cert-hero          { --hero-wave-fill: #f1f5f9; }
   .cert-cards-section { background: #f1f5f9 !important; }
-  .cert-card          { background: #ffffff; }
-  .card-title         { color: $text-primary; }
 }
 
-// ── Dark theme ────────────────────────────────────────────────────────────────
+// ── Angular dark-theme class ──────────────────────────────────────────────────
 :host-context(.dark-theme) {
   .cert-hero          { --hero-wave-fill: #0f172a; }
-  .cert-cards-section {
-    background: var(--mat-sys-surface) !important;
-  }
+  .cert-cards-section { background: var(--mat-sys-surface) !important; }
 
   .cert-card {
     background: var(--mat-sys-surface-container);
     border-color: var(--mat-sys-outline-variant);
 
+    &:hover { box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4); }
+  }
+
+  .cert-title  { color: var(--mat-sys-on-surface); }
+  .cert-desc   { color: var(--mat-sys-on-surface-variant); }
+  .stats-row   { border-top-color: var(--mat-sys-outline-variant); }
+
+  .stat-item {
+    background: var(--mat-sys-surface-variant);
+    border-color: var(--mat-sys-outline-variant);
+
+    .stat-label { color: var(--mat-sys-on-surface-variant); }
+  }
+}
+
+// ── Browser / OS dark mode (prefers-color-scheme) ─────────────────────────────
+@media (prefers-color-scheme: dark) {
+  .cert-cards-section {
+    background: #0f172a !important;
+  }
+
+  .cert-card {
+    background: #1e293b !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+
+    &:hover {
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5) !important;
+    }
+
+    // accent bar stays as-is (uses var(--card-color))
+    &::before { opacity: 1; }
+  }
+
+  .cert-title {
+    color: #f1f5f9 !important;
+  }
+
+  .cert-desc {
+    color: #94a3b8 !important;
+  }
+
+  .cert-price {
+    // color already set via [style.color] binding — no override needed
+  }
+
+  .stats-row {
+    border-top-color: rgba(255, 255, 255, 0.08) !important;
+  }
+
+  .stat-item {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+
     &:hover,
-    &:focus-visible {
-      border-color: var(--card-color);
+    .cert-card:hover & {
+      background: rgba(255, 255, 255, 0.1) !important;
+      border-color: rgba(255, 255, 255, 0.2) !important;
+    }
+
+    .stat-label {
+      color: #94a3b8 !important;
     }
   }
 
-  .card-title {
-    color: var(--mat-sys-on-surface);
-  }
+  .details-btn {
+    color: var(--btn-color) !important;
+    border-color: var(--btn-color) !important;
+    background: transparent !important;
 
-  .card-desc {
-    color: var(--mat-sys-on-surface-variant);
-  }
-
-  .meta-text {
-    color: var(--mat-sys-on-surface-variant);
+    &:hover {
+      background: color-mix(in srgb, var(--btn-color) 15%, transparent) !important;
+    }
   }
 }

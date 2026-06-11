@@ -1,8 +1,8 @@
 [
     {
         "certificate_id": 1,
-        "certificate_name": "Certification in Cloud, Cybersecurity and Digital Transformation (CCD-Tech Certification) ",
-        "certificate_description": "<p>The CCD-Tech Certification equips professionals with foundational and advanced knowledge in Cloud Technologies, Cybersecurity, and Digital Transformation. Participants gain hands-on awareness, practical insights, and strategic understanding of modern enterprise technologies.<\/p>\r\n",
+        "certificate_name": "Certification in Cloud, Cybersecurity, and Digital Transformation (CCD-Tech Certification)",
+        "certificate_description": "<p>The CCD-Tech Certification equips professionals with foundational and advanced knowledge in Cloud Technologies, Cybersecurity, and Digital Transformation. Participants gain hands-on awareness, practical insights, and strategic understanding of modern enterprise technologies.<\/p>",
         "price": "₹799",
         "duration": "7 Hours 10 Minutes",
         "total_courses": 27,
@@ -145,7 +145,7 @@
     {
         "certificate_id": 2,
         "certificate_name": "Certification in Human-Centric Leadership and Inclusive Culture (HC-LC Certification)",
-        "certificate_description": "<p>The HC-LC Certification is designed to cultivate the mindset and skills needed to lead with empathy, inclusivity, and emotional intelligence in today&rsquo;s evolving workplace. This program integrates key human-centric competencies, from interpersonal effectiveness and creative problem-solving to diversity, equity, and inclusion (DEI) leadership.<\/p>\r\n",
+        "certificate_description": "<p>The HC-LC Certification is designed to cultivate the mindset and skills needed to lead with empathy, inclusivity, and emotional intelligence in today’s evolving workplace. This program integrates key human-centric competencies, from interpersonal effectiveness and creative problem-solving to diversity, equity, and inclusion (DEI) leadership.<\/p>",
         "price": "₹899",
         "duration": "9 Hours",
         "total_courses": 38,
@@ -154,7 +154,7 @@
             {
                 "lp_id": 8,
                 "lp_name": "Interpersonal Skills and Empathy",
-                "lp_description": "<p>The HC-LC Certification is designed to cultivate the mindset and skills needed to lead with empathy, inclusivity, and emotional intelligence in today&rsquo;s evolving workplace. This program integrates key human-centric competencies &mdash; from interpersonal effectiveness and creative problem-solving to diversity, equity, and inclusion (DEI) leadership. Through structured modules, participants will learn how to foster trust, resolve conflicts, inspire collaboration, and build inclusive cultures that drive organizational performance and employee well-being.<\/p>\r\n",
+                "lp_description": "<p>The HC-LC Certification is designed to cultivate the mindset and skills needed to lead with empathy, inclusivity, and emotional intelligence in today’s evolving workplace. This program integrates key human-centric competencies — from interpersonal effectiveness and creative problem-solving to diversity, equity, and inclusion (DEI) leadership. Through structured modules, participants will learn how to foster trust, resolve conflicts, inspire collaboration, and build inclusive cultures that drive organizational performance and employee well-being.<\/p>\r\n",
                 "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
                 "courses": [
                     {
@@ -714,7 +714,7 @@
     {
         "certificate_id": 5,
         "certificate_name": "Certification in Strategic Marketing and Brand Leadership (CSMBL Certification)",
-        "certificate_description": "<p>The CSMBL Certification is designed to provide a holistic understanding of modern marketing, customer behavior, branding, and innovation strategies that drive global business success. Participants will gain global perspectives through modules developed around Dr. Jagdish N. Sheth&rsquo;s marketing insights, ensuring real-world relevance and strategic application.<\/p>\r\n",
+        "certificate_description": "<p>The CSMBL Certification is designed to provide a holistic understanding of modern marketing, customer behavior, branding, and innovation strategies that drive global business success. Participants will gain global perspectives through modules developed around Dr. Jagdish N. Sheth's marketing insights, ensuring real-world relevance and strategic application.<\/p>",
         "price": "₹899",
         "duration": "10 Hours",
         "total_courses": 47,
@@ -960,7 +960,7 @@
     },
     {
         "certificate_id": 6,
-        "certificate_name": "Certification in Transformational Leadership & Team Excellence (CTLTE Certification)",
+        "certificate_name": "Certification in Transformational Leadership and Team Excellence (CTLTE Certification)",
         "certificate_description": "<p>This certification equips professionals with the knowledge and skills to lead teams effectively, manage people, drive innovation, and implement organizational change. Participants will learn proven leadership models, team dynamics strategies, and change management frameworks for modern workplaces.<\/p>\r\n",
         "price": "₹599",
         "duration": "5 Hours 28 Minutes",
@@ -1107,7 +1107,7 @@
     },
     {
         "certificate_id": 7,
-        "certificate_name": "Certification in Strategic Finance & Business Acumen (CSFBA Certification)",
+        "certificate_name": "Certification in Strategic Finance and Business Acumen (CSFBA Certification)",
         "certificate_description": "<p>The CSFBA Certification is designed for professionals seeking a deep understanding of modern financial systems, strategic decision-making, and digital transformation in finance. This program bridges core accounting principles, financial analytics, and business acumen, equipping learners to navigate both traditional finance and emerging fintech landscapes.<\/p>\r\n",
         "price": "₹499",
         "duration": "4.2 Hours",

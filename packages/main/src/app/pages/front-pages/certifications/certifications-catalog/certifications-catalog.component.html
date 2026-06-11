@@ -50,68 +50,65 @@
   <div class="cards-grid">
     @for (card of cards(); track trackByCardId($index, card)) {
 
-      <div
-        class="cert-card"
-        [style.--card-color]="card.config.color"
-      >
-        <!-- Top color bar -->
-        <div class="card-accent-bar"></div>
+      <div class="cert-card" [style.--card-color]="card.config.color">
 
-        <!-- Scrollable body — grows to fill height -->
-        <div class="card-body">
-
-          <!-- Icon -->
-          <div class="card-icon-wrapper" [style.background]="card.config.color + '15'">
-            <i-tabler [name]="card.config.icon" class="card-icon" [style.color]="card.config.color"></i-tabler>
-          </div>
-
-          <!-- Primary: Certification Title -->
-          <h3 class="card-title">{{ card.certification.certificate_name }}</h3>
-
-          <!-- Description preview — 3-line clamp -->
-          <p class="card-desc">{{ stripHtml(card.certification.certificate_description) }}</p>
-
-          <!-- Secondary: Price -->
-          <div class="card-price" [style.color]="card.config.color">{{ card.config.price }}</div>
-
-          <!-- Tertiary: Metadata (vertical, icon + label) -->
-          <div class="card-meta">
-            <div class="meta-row">
-              <i-tabler name="clock" class="meta-icon" [style.color]="card.config.color"></i-tabler>
-              <span class="meta-text">{{ card.config.duration }}</span>
-            </div>
-            <div class="meta-row">
-              <i-tabler name="book" class="meta-icon" [style.color]="card.config.color"></i-tabler>
-              <span class="meta-text">{{ card.totalCourses }} Courses</span>
-            </div>
-            <div class="meta-row">
-              <i-tabler name="route" class="meta-icon" [style.color]="card.config.color"></i-tabler>
-              <span class="meta-text">{{ card.certification.learning_paths.length }} Learning Paths</span>
-            </div>
-          </div>
-
+        <!-- Hero Image -->
+        <div class="card-image">
+          <img
+            [src]="getCertificationImage(card.config.shortName)"
+            [alt]="card.certification.certificate_name"
+            loading="lazy"
+            (error)="onImageError($event)"
+          />
         </div>
 
-        <!-- CTA — always pinned to bottom -->
-        <div class="card-cta">
-          <button
-            class="details-btn"
-            type="button"
-            [style.--btn-color]="card.config.color"
-            (click)="viewDetails(card.certification.certificate_id)"
-            [attr.aria-label]="'View details for ' + card.certification.certificate_name"
-          >
-            View Details
-          </button>
-          <button
-            class="signup-btn"
-            type="button"
-            [style.--btn-color]="card.config.color"
-            (click)="signUpNow(card)"
-            [attr.aria-label]="'Sign up for ' + card.certification.certificate_name"
-          >
-            Sign Up
-          </button>
+        <!-- Card Content -->
+        <div class="card-body">
+
+          <h3 class="cert-title">{{ card.certification.certificate_name }}</h3>
+
+          <p class="cert-desc">{{ stripHtml(card.certification.certificate_description) }}</p>
+
+          <div class="cert-price" [style.color]="card.config.color">{{ card.config.price }}</div>
+
+          <!-- Stats Row -->
+          <div class="stats-row">
+            <div class="stat-item">
+              <i-tabler name="clock" class="stat-icon" [style.color]="card.config.color"></i-tabler>
+              <span class="stat-label">{{ card.config.duration }}</span>
+            </div>
+            <div class="stat-item">
+              <i-tabler name="book" class="stat-icon" [style.color]="card.config.color"></i-tabler>
+              <span class="stat-label">{{ card.totalCourses }} Courses</span>
+            </div>
+            <div class="stat-item">
+              <i-tabler name="route" class="stat-icon" [style.color]="card.config.color"></i-tabler>
+              <span class="stat-label">{{ card.certification.learning_paths.length }} Learning Paths</span>
+            </div>
+          </div>
+
+          <!-- Buttons — pinned to bottom -->
+          <div class="card-footer">
+            <button
+              class="details-btn"
+              type="button"
+              [style.--btn-color]="card.config.color"
+              (click)="viewDetails(card.certification.certificate_id)"
+              [attr.aria-label]="'View details for ' + card.certification.certificate_name"
+            >
+              View Details
+            </button>
+            <button
+              class="signup-btn"
+              type="button"
+              [style.--btn-color]="card.config.color"
+              (click)="signUpNow(card)"
+              [attr.aria-label]="'Sign up for ' + card.certification.certificate_name"
+            >
+              Sign Up
+            </button>
+          </div>
+
         </div>
 
       </div>

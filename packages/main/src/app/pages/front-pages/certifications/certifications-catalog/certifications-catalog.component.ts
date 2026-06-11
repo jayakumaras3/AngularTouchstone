@@ -83,8 +83,28 @@ export class CertificationsCatalogComponent implements OnInit {
     return card.certification.certificate_id;
   }
 
+  onImageError(event: Event): void {
+    const img = event.target as HTMLImageElement;
+    img.style.display = 'none';
+  }
+
+  getCertificationImage(shortName: string): string {
+    const imageMap: Record<string, string> = {
+      'CCD-Tech': 'assets/images/certification/Cloud,%20Cybersecurity%20and%20Digital%20Transformation.jpg',
+      'HC-LC':    'assets/images/certification/Human-Centric%20Leadership%20and%20Inclusive%20Culture.jpg',
+      'SDBPS':    'assets/images/certification/Self-Development%20and%20Business%20Power%20Skills.jpg',
+      'WRWEI':    'assets/images/certification/Workplace%20Wellness.jpg',
+      'CSMBL':    'assets/images/certification/Strategic%20Marketing%20and%20Brand%20Leadership.jpg',
+      'CTLTE':    'assets/images/certification/Transformational%20Leadership.jpg',
+      'CSFBA':    'assets/images/certification/Strategic%20Finance.jpg',
+    };
+    return imageMap[shortName] ?? '';
+  }
+
   stripHtml(html: string): string {
     if (!html) return '';
-    return html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+    const div = document.createElement('div');
+    div.innerHTML = html;
+    return (div.textContent || div.innerText || '').replace(/\s+/g, ' ').trim();
   }
 }
