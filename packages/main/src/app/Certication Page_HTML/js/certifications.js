@@ -101,8 +101,8 @@ function renderCard(vm, index) {
           </button>
           <button class="signup-btn" style="--btn-color:${config.color}"
                   data-action="signup" data-cert-id="${cert.certificate_id}"
-                  aria-label="Sign up for ${escHtml(cert.certificate_name)}">
-            Sign Up
+                  aria-label="Buy now for ${escHtml(cert.certificate_name)}">
+            Buy Now
           </button>
         </div>
       </div>

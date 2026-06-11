@@ -639,3 +639,131 @@
     justify-content: center;
   }
 }
+
+/* ── Dark Mode ────────────────────────────────────────────────────────────── */
+@media (prefers-color-scheme: dark) {
+
+  /* ── Certification Details ── */
+  .details-main  { background: #0f172a !important; }
+
+  .details-right {
+    background:   #1e293b;
+    box-shadow:   none;
+    border:       1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  /* Left panel */
+  .quick-stats-card {
+    background:  #1e293b;
+    box-shadow:  none;
+    border:      1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .qs-icon  { color: #94a3b8; }
+  .qs-label { color: #94a3b8; }
+  .qs-value { color: #f1f5f9; }
+
+  .cert-banner {
+    background:   rgba(255, 255, 255, 0.03) !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+  }
+
+  /* LP tabs */
+  .lp-tabs { border-bottom-color: rgba(255, 255, 255, 0.08); }
+
+  .lp-tab {
+    background:   rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+    color:        #94a3b8;
+  }
+
+  .lp-tab-num {
+    background: rgba(255, 255, 255, 0.1);
+    color:      #94a3b8;
+  }
+
+  .lp-tab:hover {
+    background:   color-mix(in srgb, var(--tab-color, #667eea) 12%, rgba(255,255,255,0.05));
+    border-color: var(--tab-color, #667eea);
+    color:        var(--tab-color, #667eea);
+  }
+
+  .lp-tab:hover .lp-tab-num {
+    background: color-mix(in srgb, var(--tab-color, #667eea) 18%, rgba(255,255,255,0.08));
+    color:      var(--tab-color, #667eea);
+  }
+
+  .lp-tab.lp-tab--active .lp-tab-num {
+    background: rgba(255, 255, 255, 0.25);
+    color:      #ffffff;
+  }
+
+  /* LP detail content */
+  .lp-banner-wrap  { border-color: rgba(255, 255, 255, 0.08); }
+  .lp-detail-title { color: #f1f5f9; }
+  .lp-detail-desc  { color: #94a3b8; border-bottom-color: rgba(255, 255, 255, 0.08); }
+
+  /* Courses section */
+  .lp-courses-header { color: #f1f5f9; }
+
+  .lp-course-card {
+    background:   rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+
+  .lcc-name     { color: #f1f5f9; }
+  .lcc-duration { color: #94a3b8; }
+
+  .lp-course-card:hover {
+    background:   color-mix(in srgb, var(--course-color, #667eea) 10%, #1e293b) !important;
+    border-color: var(--course-color, #667eea) !important;
+    box-shadow:   none;
+  }
+
+  .lp-course-card:hover .lcc-name {
+    color: var(--course-color, #667eea) !important;
+  }
+
+  /* Sign-up CTA */
+  .signup-cta {
+    background:   rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+
+  .cta-price-label { color: #94a3b8; }
+
+  /* ── Course Details ── */
+  .course-main { background: #0f172a !important; }
+
+  .course-image-wrap { border-color: rgba(255, 255, 255, 0.08); }
+
+  .course-img-placeholder {
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+    color:      #4b5563;
+  }
+
+  .course-info-panel {
+    background:  #1e293b;
+    box-shadow:  none;
+    border:      1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .course-title { color: #f1f5f9; }
+
+  .meta-chip {
+    background:   rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .meta-chip-label { color: #64748b; }
+  .meta-chip-value { color: #f1f5f9; }
+
+  .section-title  { color: #64748b; }
+  .course-desc    { color: #94a3b8; }
+
+  .objectives-list li         { color: #94a3b8; }
+  .objectives-list li::before { background: #5d87ff; }
+
+  .course-signup-cta { border-top-color: rgba(255, 255, 255, 0.08); }
+  .cta-price-label   { color: #94a3b8; }
+}

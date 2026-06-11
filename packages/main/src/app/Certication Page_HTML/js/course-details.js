@@ -80,7 +80,7 @@ function buildCoursePage(product, courseName, courseId, certId, cert, config, ac
           <div class="course-signup-cta">
             ${certPrice ? `<div class="cta-price-info"><span class="cta-price-label">Part of certification at</span><span class="cta-price-value" style="color:${accent}">${certPrice}</span></div>` : ''}
             <button class="course-signup-btn" style="background:${accent}" id="courseSignupBtn">
-              Sign Up Now ${getIcon('arrow-right', 18)}
+              Buy Now ${getIcon('arrow-right', 18)}
             </button>
           </div>
         </div>

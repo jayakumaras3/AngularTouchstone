@@ -96,3 +96,23 @@ ul   { list-style: none; }
 }
 
 .back-btn-dark:hover { background: #f8fafc; }
+
+/* ── Dark Mode ────────────────────────────────────────────────────────────── */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #0f172a;
+    color: #e2e8f0;
+  }
+
+  .not-found h2        { color: #e2e8f0; }
+  .not-found p         { color: #94a3b8; }
+  .not-found svg       { color: #4b5563; }
+  .state-loading       { color: #94a3b8; }
+  .spinner             { border-color: rgba(255,255,255,0.1); border-top-color: #5d87ff; }
+
+  .back-btn-dark {
+    border-color: rgba(255,255,255,0.15);
+    color: #e2e8f0;
+  }
+  .back-btn-dark:hover { background: rgba(255,255,255,0.06); }
+}

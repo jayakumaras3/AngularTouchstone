@@ -371,3 +371,50 @@
     height: 1px;
   }
 }
+
+/* ── Dark Mode ────────────────────────────────────────────────────────────── */
+@media (prefers-color-scheme: dark) {
+
+  /* Wave separator — match the dark page background */
+  .hero-wave path { fill: #0f172a; }
+
+  /* Cards section background */
+  .cert-cards-section { background: #0f172a !important; }
+
+  /* Individual card */
+  .cert-card {
+    background: #1e293b !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+  }
+
+  .cert-card:hover {
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5) !important;
+  }
+
+  /* Card body text */
+  .cert-title { color: #f1f5f9 !important; }
+  .cert-desc  { color: #94a3b8 !important; }
+
+  /* Stats row */
+  .stats-row {
+    border-top-color: rgba(255, 255, 255, 0.08) !important;
+  }
+
+  .stat-item {
+    background:    rgba(255, 255, 255, 0.05) !important;
+    border-color:  rgba(255, 255, 255, 0.1)  !important;
+  }
+
+  .cert-card:hover .stat-item {
+    background:   rgba(255, 255, 255, 0.1) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+  }
+
+  .stat-label { color: #94a3b8 !important; }
+
+  /* Outline (View Details) button — keep color, transparent bg */
+  .details-btn {
+    background: transparent !important;
+    /* --btn-color and border/text color are already set via inline style */
+  }
+}

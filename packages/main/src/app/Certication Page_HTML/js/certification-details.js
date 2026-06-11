@@ -115,7 +115,7 @@ function buildDetailsPage(cert, config, selectedLpId, productMap) {
               <span class="cta-price-value" style="color:${config.color}">${config.price}</span>
             </div>
             <button class="signup-now-btn" type="button" style="background:${config.color}">
-              Sign Up Now ${getIcon('arrow-right', 18)}
+              Buy Now ${getIcon('arrow-right', 18)}
             </button>
           </div>
         </div>
