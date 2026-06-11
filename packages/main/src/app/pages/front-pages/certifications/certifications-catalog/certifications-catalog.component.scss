@@ -2,6 +2,13 @@
 $radius-btn: 12px;
 $transition: 0.3s ease;
 
+// ── Inherit theme font (Plus Jakarta Sans) from global Material theme ─────────
+:host {
+  font-family: var(--mat-sys-body-medium-font, "Plus Jakarta Sans", sans-serif);
+  font-variant-ligatures: no-common-ligatures;
+  font-feature-settings: "liga" 0, "clig" 0;
+}
+
 // ── Hero ──────────────────────────────────────────────────────────────────────
 .cert-hero {
   background:
@@ -185,11 +192,11 @@ $transition: 0.3s ease;
 .cert-card {
   display: flex;
   flex-direction: column;
-  background: #ffffff;
+  background: var(--mat-sys-surface-container-lowest, #ffffff);
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
-  border: 1px solid #eef2f7;
+  border: 1px solid var(--mat-sys-outline-variant, #eef2f7);
   transition: transform $transition, box-shadow $transition;
 
   // Accent line top — uses each card's theme color
@@ -244,7 +251,7 @@ $transition: 0.3s ease;
 .cert-title {
   font-size: 1.15rem;
   font-weight: 700;
-  color: #0f172a;
+  color: var(--mat-sys-on-surface, #0f172a);
   line-height: 1.45;
   margin: 0 0 12px;
 }
@@ -252,8 +259,9 @@ $transition: 0.3s ease;
 // ── Description — full, no clamp ─────────────────────────────────────────────
 .cert-desc {
   font-size: 0.925rem;
+  font-weight: 400;
   line-height: 1.75;
-  color: #64748b;
+  color: #475569;
   margin: 0;
 }
 
@@ -274,7 +282,7 @@ $transition: 0.3s ease;
   gap: 10px;
   margin-top: 20px;
   padding-top: 18px;
-  border-top: 1px solid #f1f5f9;
+  border-top: 1px solid var(--mat-sys-outline-variant, #f1f5f9);
 }
 
 .stat-item {
@@ -284,15 +292,15 @@ $transition: 0.3s ease;
   align-items: center;
   justify-content: center;
   gap: 6px;
-  background: #f8fafc;
-  border: 1px solid #eef2f7;
+  background: var(--mat-sys-surface-container-high, #f8fafc);
+  border: 1px solid var(--mat-sys-outline-variant, #eef2f7);
   border-radius: 12px;
   padding: 10px 8px;
   transition: background $transition, border-color $transition;
 
   .cert-card:hover & {
-    background: color-mix(in srgb, var(--card-color) 6%, white);
-    border-color: color-mix(in srgb, var(--card-color) 25%, white);
+    background: color-mix(in srgb, var(--card-color) 6%, var(--mat-sys-surface-container-lowest, white));
+    border-color: color-mix(in srgb, var(--card-color) 25%, var(--mat-sys-outline-variant, white));
   }
 
   .stat-icon {
@@ -304,7 +312,7 @@ $transition: 0.3s ease;
   .stat-label {
     font-size: 0.72rem;
     font-weight: 600;
-    color: #475569;
+    color: var(--mat-sys-on-surface-variant, #475569);
     text-align: center;
     line-height: 1.25;
   }
@@ -374,26 +382,14 @@ $transition: 0.3s ease;
 }
 
 // ── Angular dark-theme class ──────────────────────────────────────────────────
+// Text colors, borders, and stat-item backgrounds use --mat-sys-* tokens
+// throughout, so they automatically adapt. Only structural/shadow overrides needed.
 :host-context(.dark-theme) {
   .cert-hero          { --hero-wave-fill: #0f172a; }
   .cert-cards-section { background: var(--mat-sys-surface) !important; }
 
   .cert-card {
-    background: var(--mat-sys-surface-container);
-    border-color: var(--mat-sys-outline-variant);
-
     &:hover { box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4); }
-  }
-
-  .cert-title  { color: var(--mat-sys-on-surface); }
-  .cert-desc   { color: var(--mat-sys-on-surface-variant); }
-  .stats-row   { border-top-color: var(--mat-sys-outline-variant); }
-
-  .stat-item {
-    background: var(--mat-sys-surface-variant);
-    border-color: var(--mat-sys-outline-variant);
-
-    .stat-label { color: var(--mat-sys-on-surface-variant); }
   }
 }
 
