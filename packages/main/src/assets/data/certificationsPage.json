@@ -2,7 +2,11 @@
     {
         "certificate_id": 1,
         "certificate_name": "Certification in Cloud, Cybersecurity and Digital Transformation (CCD-Tech Certification) ",
-        "certificate_description": "<p>The CCD-Tech Certification equips professionals with foundational and advanced knowledge in Cloud Technologies, Cybersecurity, and Digital Transformation. This program is designed for IT professionals, business leaders, and managers seeking to leverage technology for business innovation, secure operations, and strategic transformation. Participants gain hands-on awareness, practical insights, and strategic understanding of modern enterprise technologies.<\/p>\r\n",
+        "certificate_description": "<p>The CCD-Tech Certification equips professionals with foundational and advanced knowledge in Cloud Technologies, Cybersecurity, and Digital Transformation. Participants gain hands-on awareness, practical insights, and strategic understanding of modern enterprise technologies.<\/p>\r\n",
+        "price": "₹799",
+        "duration": "7 Hours 10 Minutes",
+        "total_courses": 27,
+        "total_learning_paths": 3,
         "learning_paths": [
             {
                 "lp_id": 5,
@@ -141,7 +145,11 @@
     {
         "certificate_id": 2,
         "certificate_name": "Certification in Human-Centric Leadership and Inclusive Culture (HC-LC Certification)",
-        "certificate_description": "<p>The HC-LC Certification is designed to cultivate the mindset and skills needed to lead with empathy, inclusivity, and emotional intelligence in today&rsquo;s evolving workplace. This program integrates key human-centric competencies &mdash; from interpersonal effectiveness and creative problem-solving to diversity, equity, and inclusion (DEI) leadership. Through structured modules, participants will learn how to foster trust, resolve conflicts, inspire collaboration, and build inclusive cultures that drive organizational performance and employee well-being.<\/p>\r\n",
+        "certificate_description": "<p>The HC-LC Certification is designed to cultivate the mindset and skills needed to lead with empathy, inclusivity, and emotional intelligence in today&rsquo;s evolving workplace. This program integrates key human-centric competencies, from interpersonal effectiveness and creative problem-solving to diversity, equity, and inclusion (DEI) leadership.<\/p>\r\n",
+        "price": "₹899",
+        "duration": "9 Hours",
+        "total_courses": 38,
+        "total_learning_paths": 4,
         "learning_paths": [
             {
                 "lp_id": 8,
@@ -205,7 +213,7 @@
             },
             {
                 "lp_id": 10,
-                "lp_name": "Creative Thinking and Problem Solving",
+                "lp_name": "Creative Thinking and Problem-Solving",
                 "lp_description": "<p>The HC-LC Certification is designed to cultivate the mindset and skills needed to lead with empathy, inclusivity, and emotional intelligence in today&rsquo;s evolving workplace. This program integrates key human-centric competencies &mdash; from interpersonal effectiveness and creative problem-solving to diversity, equity, and inclusion (DEI) leadership. Through structured modules, participants will learn how to foster trust, resolve conflicts, inspire collaboration, and build inclusive cultures that drive organizational performance and employee well-being.<\/p>\r\n",
                 "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
                 "courses": [
@@ -221,7 +229,7 @@
             },
             {
                 "lp_id": 11,
-                "lp_name": "Diversity, Equity & Inclusion at Workplace",
+                "lp_name": "Diversity, Equity, and Inclusion at Workplace",
                 "lp_description": "<p>The HC-LC Certification is designed to cultivate the mindset and skills needed to lead with empathy, inclusivity, and emotional intelligence in today&rsquo;s evolving workplace. This program integrates key human-centric competencies &mdash; from interpersonal effectiveness and creative problem-solving to diversity, equity, and inclusion (DEI) leadership. Through structured modules, participants will learn how to foster trust, resolve conflicts, inspire collaboration, and build inclusive cultures that drive organizational performance and employee well-being.<\/p>\r\n",
                 "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
                 "courses": [
@@ -332,7 +340,11 @@
     {
         "certificate_id": 3,
         "certificate_name": "Certification in Self-Development and Business Power Skills (SDBPS Certification)",
-        "certificate_description": "<p>The SDBPS Certification is designed to equip professionals with critical self-development, communication, leadership, and business skills to excel in the modern workplace. This program provides practical tools for effective communication, performance management, presentations, business writing, and interpersonal effectiveness. Participants will gain actionable insights, hands-on skills, and frameworks to enhance personal and professional effectiveness.<\/p>\r\n",
+        "certificate_description": "<p>This program provides practical tools for effective communication, performance management, presentations, business writing, and interpersonal effectiveness. Participants will gain actionable insights, hands-on skills, and frameworks to enhance personal and professional effectiveness.<\/p>\r\n",
+        "price": "₹799",
+        "duration": "8 Hours 37 Minutes",
+        "total_courses": 42,
+        "total_learning_paths": 6,
         "learning_paths": [
             {
                 "lp_id": 12,
@@ -555,7 +567,11 @@
     {
         "certificate_id": 4,
         "certificate_name": "Certification in Workplace Resilience, Wellness, and Emotional Intelligence (WRWEI Certification)",
-        "certificate_description": "<p>The WRWEI Certification equips professionals with essential skills to build resilience, promote mental wellness, and develop emotional intelligence in the workplace. This program provides practical strategies for personal and team well-being, navigating workplace politics, and fostering psychologically safe work environments. Participants will gain actionable insights and frameworks to improve workplace performance, relationships, and overall well-being.<\/p>\r\n",
+        "certificate_description": "<p>The WRWEI Certification equips professionals with essential skills to build resilience, promote mental wellness, and develop emotional intelligence in the workplace. Participants will gain actionable insights and frameworks to improve workplace performance, relationships, and overall well-being.<\/p>\r\n",
+        "price": "₹599",
+        "duration": "5 Hours 29 Minutes",
+        "total_courses": 26,
+        "total_learning_paths": 4,
         "learning_paths": [
             {
                 "lp_id": 18,
@@ -698,7 +714,11 @@
     {
         "certificate_id": 5,
         "certificate_name": "Certification in Strategic Marketing and Brand Leadership (CSMBL Certification)",
-        "certificate_description": "<p>The CSMBL Certification is designed to provide a holistic understanding of modern marketing, customer behavior, branding, and innovation strategies that drive global business success. This program equips learners with strategic marketing frameworks, customer insight models, and leadership tools to effectively manage brands, enhance customer engagement, and lead high-performing sales and marketing teams. Participants will gain global perspectives through modules developed around Dr. Jagdish N. Sheth&rsquo;s marketing insights, ensuring real-world relevance and strategic application.<\/p>\r\n",
+        "certificate_description": "<p>The CSMBL Certification is designed to provide a holistic understanding of modern marketing, customer behavior, branding, and innovation strategies that drive global business success. Participants will gain global perspectives through modules developed around Dr. Jagdish N. Sheth&rsquo;s marketing insights, ensuring real-world relevance and strategic application.<\/p>\r\n",
+        "price": "₹899",
+        "duration": "10 Hours",
+        "total_courses": 47,
+        "total_learning_paths": 6,
         "learning_paths": [
             {
                 "lp_id": 22,
@@ -942,6 +962,10 @@
         "certificate_id": 6,
         "certificate_name": "Certification in Transformational Leadership & Team Excellence (CTLTE Certification)",
         "certificate_description": "<p>This certification equips professionals with the knowledge and skills to lead teams effectively, manage people, drive innovation, and implement organizational change. Participants will learn proven leadership models, team dynamics strategies, and change management frameworks for modern workplaces.<\/p>\r\n",
+        "price": "₹599",
+        "duration": "5 Hours 28 Minutes",
+        "total_courses": 24,
+        "total_learning_paths": 5,
         "learning_paths": [
             {
                 "lp_id": 28,
@@ -1085,10 +1109,14 @@
         "certificate_id": 7,
         "certificate_name": "Certification in Strategic Finance & Business Acumen (CSFBA Certification)",
         "certificate_description": "<p>The CSFBA Certification is designed for professionals seeking a deep understanding of modern financial systems, strategic decision-making, and digital transformation in finance. This program bridges core accounting principles, financial analytics, and business acumen, equipping learners to navigate both traditional finance and emerging fintech landscapes.<\/p>\r\n",
+        "price": "₹499",
+        "duration": "4.2 Hours",
+        "total_courses": 18,
+        "total_learning_paths": 5,
         "learning_paths": [
             {
                 "lp_id": 33,
-                "lp_name": "Core Accounting & Finance",
+                "lp_name": "Core Accounting and Finance",
                 "lp_description": "<p>The CSFBA Certification is designed for professionals seeking a deep understanding of modern financial systems, strategic decision-making, and digital transformation in finance. This program bridges core accounting principles, financial analytics, and business acumen, equipping learners to navigate both traditional finance and emerging fintech landscapes.<\/p>\r\n",
                 "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
                 "courses": [

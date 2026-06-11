@@ -26,6 +26,7 @@ import { FooterComponent } from '../../front-pages/footer/footer.component';
 import { LoginUrl } from '../../../config';
 import { Subscription } from 'rxjs';
 import { CertificationSignupState } from '../../front-pages/certifications/certifications.model';
+import { AuthService } from '../../../services/login/auth.service';
 
 const TURNSTILE_SITE_KEY = '0x4AAAAAADh_GIYrBeeJ7VaM';
 
@@ -92,6 +93,7 @@ export class SignupComponent implements OnInit, AfterViewInit, OnDestroy {
   private readonly fb = inject(FormBuilder);
   private readonly cdr = inject(ChangeDetectorRef);
   private readonly router = inject(Router);
+  private readonly authService = inject(AuthService);
 private readonly subs = new Subscription();
 
   readonly form = this.fb.group({
@@ -176,13 +178,34 @@ private readonly subs = new Subscription();
     this.errorMessage.set('');
     this.successMessage.set('');
 
-    // TODO: wire to AuthService.register()
-    console.log('Signup payload:', this.form.value);
+    const { firstName, lastName, email, confirmEmail, password, confirmPassword } = this.form.value;
 
-    setTimeout(() => {
-      this.isSubmitting.set(false);
-      this.successMessage.set('Account created successfully! Please sign in.');
-      this.cdr.markForCheck();
-    }, 1000);
+    this.subs.add(
+      this.authService.register({
+        firstName:       firstName!,
+        lastName:        lastName!,
+        email:           email!,
+        confirmEmail:    confirmEmail!,
+        password:        password!,
+        confirmPassword: confirmPassword!
+      }).subscribe({
+        next: (res) => {
+          this.isSubmitting.set(false);
+          this.successMessage.set(res?.message ?? 'Registration successful! Please sign in.');
+          this.cdr.markForCheck();
+          //setTimeout(() => this.router.navigate(['/authentication/login']), 2500);
+        },
+        error: (err) => {
+          this.isSubmitting.set(false);
+          const body = err?.error;
+          if (body?.errors) {
+            this.errorMessage.set(Object.values(body.errors).join(' '));
+          } else {
+            this.errorMessage.set(body?.message ?? 'Registration failed. Please try again.');
+          }
+          this.cdr.markForCheck();
+        }
+      })
+    );
   }
 }

@@ -187,11 +187,23 @@ export class AuthService {
     return this.http.delete<any>(`${this.apiUrl}/user/${id}`);
   }
 
-  register(data: any): Observable<any> {
+  register(payload: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    confirmEmail: string;
+    password: string;
+    confirmPassword: string;
+  }): Observable<any> {
     return this.http.post<any>(
-      'http://localhost/AngularCRUD_PHP/user/register.php',
-      data,
-      { headers: { 'Content-Type': 'application/json' } }
+      `${this.apiUrl}/signup`,
+      payload,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': this.getCsrfToken()
+        })
+      }
     );
   }
 

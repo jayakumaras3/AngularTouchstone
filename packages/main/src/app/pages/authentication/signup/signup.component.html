@@ -57,30 +57,22 @@
               <h4 class="f-w-700 f-s-24 m-0">Create Your Account</h4>
               <p class="f-s-14 m-t-8 m-b-0 signup-subtitle">Register to access DOCHEK learning platform</p>
 
-              <form class="m-t-24" [formGroup]="form" (ngSubmit)="submit()" autocomplete="off" novalidate>
-
-                <!-- Success Message -->
-                @if (successMessage()) {
-                  <div class="signup-alert signup-alert--success m-b-16"
-                       role="alert"
-                       aria-live="polite">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                         fill="none" stroke="currentColor" stroke-width="2.5"
+              @if (successMessage()) {
+                <!-- ─── Registration Success Panel ─── -->
+                <div class="signup-success-panel" role="alert" aria-live="polite">
+                  <div class="signup-success-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2"
                          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                      <polyline points="20 6 9 17 4 12"/>
+                      <circle cx="12" cy="12" r="10"/>
+                      <polyline points="9 12 11 14 15 10"/>
                     </svg>
-                    <span>{{ successMessage() }}</span>
                   </div>
-                }
-
-                <!-- Error Message -->
-                @if (errorMessage()) {
-                  <div class="signup-alert signup-alert--danger m-b-16"
-                       role="alert"
-                       aria-live="assertive">
-                    {{ errorMessage() }}
-                  </div>
-                }
+                  <h5 class="signup-success-title">{{ successMessage() }}</h5>
+                <!--  <p class="signup-success-sub">Redirecting you to Sign In&hellip;</p>-->
+                </div>
+              } @else {
+              <form class="m-t-24" [formGroup]="form" (ngSubmit)="submit()" autocomplete="off" novalidate>
 
                 <!-- ─── Personal Information ─── -->
 
@@ -301,6 +293,22 @@
                   }
                 </div>
 
+                <!-- Server-side Error Message -->
+                @if (errorMessage()) {
+                  <div class="signup-alert signup-alert--danger m-b-12"
+                       role="alert"
+                       aria-live="assertive">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2.5"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10"/>
+                      <line x1="12" y1="8" x2="12" y2="12"/>
+                      <line x1="12" y1="16" x2="12.01" y2="16"/>
+                    </svg>
+                    <span>{{ errorMessage() }}</span>
+                  </div>
+                }
+
                 <!-- Create Account Button -->
                 <button
                   mat-flat-button
@@ -314,6 +322,7 @@
                 </button>
 
               </form>
+              } <!-- end @else -->
 
               <!-- Sign In Link -->
               <span class="d-block f-w-500 m-t-24 f-s-14">
