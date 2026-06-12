@@ -1,0 +1,114 @@
+/* ── Test Panel — Remove before production ─────────────────────────────────── */
+#testPanel {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 270px;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 14px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  z-index: 9999;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+  color: #f1f5f9;
+  overflow: hidden;
+}
+
+#testPanelHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 11px 14px;
+  background: #0f172a;
+  border-bottom: 1px solid #334155;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #a78bfa;
+}
+
+#testPanelToggle {
+  background: none;
+  border: none;
+  color: #64748b;
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 1;
+  padding: 0 2px;
+}
+
+#testPanelToggle:hover { color: #f1f5f9; }
+
+#testPanelBody {
+  padding: 6px 0;
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+.tp-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+}
+
+.tp-row:hover { background: rgba(255,255,255,0.04); }
+
+.tp-name {
+  flex: 1;
+  font-size: 12px;
+  font-weight: 600;
+  color: #cbd5e1;
+}
+
+.tp-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 100px;
+  min-width: 62px;
+  text-align: center;
+  transition: background 0.2s;
+}
+
+.tp-badge.paid     { background: #10b981; color: #fff; }
+.tp-badge.not-paid { background: #3b82f6; color: #fff; }
+
+.tp-btn {
+  background: #334155;
+  border: none;
+  color: #f1f5f9;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 11px;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.tp-btn:hover { background: #475569; }
+
+#testPanelFooter {
+  display: flex;
+  gap: 8px;
+  padding: 10px 14px;
+  border-top: 1px solid #334155;
+  background: #0f172a;
+}
+
+#testPanelFooter button {
+  flex: 1;
+  padding: 7px;
+  border: none;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: filter 0.2s;
+}
+
+#testPanelFooter button:first-child { background: #10b981; color: #fff; }
+#testPanelFooter button:last-child  { background: #3b82f6; color: #fff; }
+#testPanelFooter button:hover { filter: brightness(1.15); }

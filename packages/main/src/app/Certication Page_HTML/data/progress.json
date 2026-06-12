@@ -1,0 +1,140 @@
+{
+  "1": {
+    "certificationProgress": 40,
+    "completedCourses": 10,
+    "totalCourses": 27,
+    "completedLearningPaths": 1,
+    "totalLearningPaths": 3,
+    "nextCourse": "Relationship Between Data Protection and Privacy",
+    "learningPaths": [
+      { "lp_id": 5, "completed": true  },
+      { "lp_id": 6, "completed": false },
+      { "lp_id": 7, "completed": false }
+    ],
+    "courses": [
+      { "course_id": 840,  "status": "completed"   },
+      { "course_id": 846,  "status": "completed"   },
+      { "course_id": 849,  "status": "completed"   },
+      { "course_id": 863,  "status": "completed"   },
+      { "course_id": 804,  "status": "completed"   },
+      { "course_id": 860,  "status": "completed"   },
+      { "course_id": 861,  "status": "completed"   },
+      { "course_id": 862,  "status": "completed"   },
+      { "course_id": 867,  "status": "completed"   },
+      { "course_id": 967,  "status": "completed"   },
+      { "course_id": 1008, "status": "in_progress" },
+      { "course_id": 1163, "status": "not_started" },
+      { "course_id": 1166, "status": "not_started" },
+      { "course_id": 1170, "status": "not_started" },
+      { "course_id": 1171, "status": "not_started" },
+      { "course_id": 1172, "status": "not_started" },
+      { "course_id": 1814, "status": "not_started" },
+      { "course_id": 1839, "status": "not_started" },
+      { "course_id": 1842, "status": "not_started" },
+      { "course_id": 1846, "status": "not_started" },
+      { "course_id": 1847, "status": "not_started" },
+      { "course_id": 1849, "status": "not_started" },
+      { "course_id": 720,  "status": "not_started" },
+      { "course_id": 1093, "status": "not_started" },
+      { "course_id": 1094, "status": "not_started" },
+      { "course_id": 1137, "status": "not_started" },
+      { "course_id": 1139, "status": "not_started" }
+    ]
+  },
+  "2": {
+    "certificationProgress": 0,
+    "completedCourses": 0,
+    "totalCourses": 38,
+    "completedLearningPaths": 0,
+    "totalLearningPaths": 4,
+    "nextCourse": "Interpersonal Relationships",
+    "learningPaths": [
+      { "lp_id": 8,  "completed": false },
+      { "lp_id": 9,  "completed": false },
+      { "lp_id": 10, "completed": false },
+      { "lp_id": 11, "completed": false }
+    ],
+    "courses": []
+  },
+  "3": {
+    "certificationProgress": 0,
+    "completedCourses": 0,
+    "totalCourses": 42,
+    "completedLearningPaths": 0,
+    "totalLearningPaths": 6,
+    "nextCourse": "Effective Resume Development",
+    "learningPaths": [
+      { "lp_id": 12, "completed": false },
+      { "lp_id": 13, "completed": false },
+      { "lp_id": 14, "completed": false },
+      { "lp_id": 15, "completed": false },
+      { "lp_id": 16, "completed": false },
+      { "lp_id": 17, "completed": false }
+    ],
+    "courses": []
+  },
+  "4": {
+    "certificationProgress": 0,
+    "completedCourses": 0,
+    "totalCourses": 26,
+    "completedLearningPaths": 0,
+    "totalLearningPaths": 4,
+    "nextCourse": "How to Boost Resilience at Work",
+    "learningPaths": [
+      { "lp_id": 18, "completed": false },
+      { "lp_id": 19, "completed": false },
+      { "lp_id": 20, "completed": false },
+      { "lp_id": 21, "completed": false }
+    ],
+    "courses": []
+  },
+  "5": {
+    "certificationProgress": 0,
+    "completedCourses": 0,
+    "totalCourses": 47,
+    "completedLearningPaths": 0,
+    "totalLearningPaths": 6,
+    "nextCourse": "Introduction to Digital Marketing",
+    "learningPaths": [
+      { "lp_id": 22, "completed": false },
+      { "lp_id": 23, "completed": false },
+      { "lp_id": 24, "completed": false },
+      { "lp_id": 25, "completed": false },
+      { "lp_id": 26, "completed": false },
+      { "lp_id": 27, "completed": false }
+    ],
+    "courses": []
+  },
+  "6": {
+    "certificationProgress": 0,
+    "completedCourses": 0,
+    "totalCourses": 24,
+    "completedLearningPaths": 0,
+    "totalLearningPaths": 5,
+    "nextCourse": "Employee Motivation – Intrinsic vs. Extrinsic Motivation",
+    "learningPaths": [
+      { "lp_id": 28, "completed": false },
+      { "lp_id": 29, "completed": false },
+      { "lp_id": 30, "completed": false },
+      { "lp_id": 31, "completed": false },
+      { "lp_id": 32, "completed": false }
+    ],
+    "courses": []
+  },
+  "7": {
+    "certificationProgress": 0,
+    "completedCourses": 0,
+    "totalCourses": 18,
+    "completedLearningPaths": 0,
+    "totalLearningPaths": 5,
+    "nextCourse": "Basics of Financial Accounting",
+    "learningPaths": [
+      { "lp_id": 33, "completed": false },
+      { "lp_id": 34, "completed": false },
+      { "lp_id": 35, "completed": false },
+      { "lp_id": 36, "completed": false },
+      { "lp_id": 37, "completed": false }
+    ],
+    "courses": []
+  }
+}

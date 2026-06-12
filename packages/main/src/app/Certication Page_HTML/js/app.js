@@ -1,17 +1,21 @@
-// ── Certification Config Data ─────────────────────────────────────────────────
-const CERTIFICATION_CONFIGS = [
-  { certificate_id: 1, shortName: 'CCD-Tech',  duration: '7 Hours 10 Minutes',  price: '₹799', priceValue: 799,  color: '#3b82f6', icon: 'cloud'     },
-  { certificate_id: 2, shortName: 'HC-LC',     duration: '9 Hours',             price: '₹899', priceValue: 899,  color: '#8b5cf6', icon: 'users'     },
-  { certificate_id: 3, shortName: 'SDBPS',     duration: '8 Hours 37 Minutes',  price: '₹799', priceValue: 799,  color: '#10b981', icon: 'brain'     },
-  { certificate_id: 4, shortName: 'WRWEI',     duration: '5 Hours 29 Minutes',  price: '₹599', priceValue: 599,  color: '#f59e0b', icon: 'heart'     },
-  { certificate_id: 5, shortName: 'CSMBL',     duration: '10 Hours',            price: '₹899', priceValue: 899,  color: '#ec4899', icon: 'chart-bar' },
-  { certificate_id: 6, shortName: 'CTLTE',     duration: '5 Hours 28 Minutes',  price: '₹599', priceValue: 599,  color: '#06b6d4', icon: 'award'     },
-  { certificate_id: 7, shortName: 'CSFBA',     duration: '4.2 Hours',           price: '₹499', priceValue: 499,  color: '#ef4444', icon: 'coins'     },
-];
+// ── Certification cache — populated by loadCertifications() ──────────────────
+// CodeIgniter: replace with data injected by the controller (no fetch needed).
+let _certificationsCache = null;
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
+// Builds the config object from fields now stored directly in the JSON.
 function getConfigById(id) {
-  return CERTIFICATION_CONFIGS.find(c => c.certificate_id === id) || null;
+  const cert = _certificationsCache?.find(c => c.certificate_id === id);
+  if (!cert) return null;
+  return {
+    certificate_id: cert.certificate_id,
+    shortName:  cert.short_name,
+    duration:   cert.duration,
+    price:      cert.price,
+    priceValue: cert.price_value,
+    color:      cert.color,
+    icon:       cert.icon,
+  };
 }
 
 function getTotalCourses(learningPaths) {
@@ -45,9 +49,23 @@ function getQueryParam(name) {
 
 // ── Data Loading ──────────────────────────────────────────────────────────────
 async function loadCertifications() {
+  if (_certificationsCache) return _certificationsCache;
   const res = await fetch('data/certifications.json');
   if (!res.ok) throw new Error(`Failed to load certifications (${res.status})`);
-  return res.json();
+  _certificationsCache = await res.json();
+  return _certificationsCache;
+}
+
+// CodeIgniter: replace with an API call to /api/progress/{certId}
+async function loadProgress(certId) {
+  try {
+    const res = await fetch('data/progress.json');
+    if (res.ok) {
+      const data = await res.json();
+      return data[String(certId)] || null;
+    }
+  } catch (_) {}
+  return null;
 }
 
 async function loadProducts() {
@@ -77,6 +95,8 @@ const ICONS = {
   route: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></svg>`,
   'arrow-left': `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>`,
   'arrow-right': `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>`,
+  check: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`,
+  play: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="5 3 19 12 5 21 5 3"/></svg>`,
   'list-check': `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/><path d="M13 6h8"/><path d="M13 12h8"/><path d="M13 18h8"/></svg>`,
   'currency-rupee': `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12"/><path d="M6 8h12"/><path d="m6 13 8.5 8"/><path d="M6 13h3"/><path d="M9 13c6.667 0 6.667-10 0-10"/></svg>`,
   'certificate-off': `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="2" x2="22" y2="22"/><path d="M7 7H4a2 2 0 0 0-2 2v3a7 7 0 0 0 4.5 6.5L8 19.9"/><path d="M10.5 7H20a2 2 0 0 1 2 2v3a7 7 0 0 1-4.5 6.5L16 19.9"/></svg>`,

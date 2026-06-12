@@ -433,13 +433,18 @@
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
 }
 
-.course-image-wrap {
+.course-image-col {
   flex: 0 0 50%;
   max-width: 50%;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #e2e8f0;
+}
+
+.course-image-wrap {
+  flex: 0 0 auto;
   overflow: hidden;
   background: #ffffff;
-  border-top-left-radius: 16px;
-  border-bottom-left-radius: 16px;
   padding: 16px;
 }
 
@@ -633,6 +638,39 @@
 .course-signup-btn svg { transition: transform 0.3s; }
 .course-signup-btn:hover svg { transform: translateX(4px); }
 
+/* ── Course Launch CTA (left column, below image) ─────────────────────────── */
+.course-launch-cta {
+  display: flex;
+  justify-content: center;
+  padding: 16px 20px;
+  border-top: 1px solid #e2e8f0;
+  background: #ffffff;
+}
+
+.course-launch-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 32px;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.3s, transform 0.3s, box-shadow 0.3s;
+  white-space: nowrap;
+}
+
+.course-launch-btn:hover {
+  opacity: 0.88;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+.course-launch-btn svg { transition: transform 0.3s; }
+.course-launch-btn:hover svg { transform: scale(1.15); }
+
 /* ── Responsive ───────────────────────────────────────────────────────────── */
 @media (max-width: 1024px) {
   .details-layout {
@@ -646,16 +684,16 @@
     flex-direction: column;
   }
 
-  .course-image-wrap {
+  .course-image-col {
     flex: none;
     width: 100%;
     max-width: 100%;
-    padding: 12px;
-    border-radius: 16px 16px 0 0;
+    border-right: none;
+    border-bottom: 1px solid #e2e8f0;
   }
 
-  .course-info-panel {
-    border-radius: 0 0 16px 16px;
+  .course-image-wrap {
+    padding: 12px;
   }
 
   .course-img        { min-height: 240px; }
@@ -702,6 +740,156 @@
     width: 100%;
     justify-content: center;
   }
+}
+
+/* ── Progress Card ────────────────────────────────────────────────────────── */
+.cert-progress-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px 24px;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cpg-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cpg-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #1e293b;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.cpg-pct {
+  font-size: 1.6rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.progress-track {
+  height: 10px;
+  background: #e2e8f0;
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 100px;
+  background: var(--bar-color, #3b82f6);
+  width: 0;
+  transition: width 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cpg-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.cpg-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+.cpg-stat-val {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1;
+}
+
+.cpg-stat-lbl {
+  font-size: 0.67rem;
+  font-weight: 500;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+}
+
+.cpg-next {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 12px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.cpg-next-lbl {
+  font-size: 0.67rem;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.cpg-next-course {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #334155;
+  line-height: 1.45;
+}
+
+/* ── LP Tab Done State ────────────────────────────────────────────────────── */
+.lp-tab-num--done {
+  background: #10b981;
+  color: #ffffff;
+}
+
+.lp-tab-num--done svg { width: 11px; height: 11px; }
+
+.lp-tab.lp-tab--done.lp-tab--active {
+  background:   #10b981;
+  border-color: #10b981;
+}
+
+/* ── Course Status Dots ───────────────────────────────────────────────────── */
+.lcc-status {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lcc-status--completed {
+  background: #10b981;
+  color: #ffffff;
+}
+
+.lcc-status--completed svg { width: 11px; height: 11px; }
+
+.lcc-status--in_progress {
+  background: #3b82f6;
+}
+
+.lcc-status--in_progress::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: #ffffff;
+  border-radius: 50%;
+}
+
+.lcc-status--not_started {
+  border: 2px solid #cbd5e1;
+  background: transparent;
 }
 
 /* ── Dark Mode ────────────────────────────────────────────────────────────── */
@@ -788,6 +976,30 @@
     color: var(--course-color, #667eea) !important;
   }
 
+  /* Progress card */
+  .cert-progress-card {
+    background:   #1e293b;
+    box-shadow:   none;
+    border:       1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .cpg-title    { color: #f1f5f9; }
+  .cpg-stat     { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); }
+  .cpg-stat-val { color: #f1f5f9; }
+  .cpg-stat-lbl { color: #94a3b8; }
+  .progress-track { background: rgba(255,255,255,0.12); }
+  .cpg-next     { border-top-color: rgba(255,255,255,0.08); }
+  .cpg-next-course { color: #cbd5e1; }
+
+  /* LP tab done state */
+  .lp-tab.lp-tab--done.lp-tab--active {
+    background:   #059669;
+    border-color: #059669;
+  }
+
+  /* Course status dots */
+  .lcc-status--not_started { border-color: rgba(255,255,255,0.2); }
+
   /* Sign-up CTA */
   .signup-cta {
     background:   rgba(255, 255, 255, 0.04);
@@ -842,6 +1054,9 @@
   .objectives-list li         { color: #94a3b8 !important; }
   .objectives-list li::before { background: #5d87ff; }
 
-  .course-signup-cta { border-top-color: rgba(255, 255, 255, 0.08); }
-  .cta-price-label   { color: #94a3b8; }
+  .course-signup-cta  { border-top-color: rgba(255, 255, 255, 0.08); }
+  .cta-price-label    { color: #94a3b8; }
+
+  .course-image-col   { border-right-color: rgba(255, 255, 255, 0.08); }
+  .course-launch-cta  { border-top-color: rgba(255, 255, 255, 0.08); background: #1e293b; }
 }

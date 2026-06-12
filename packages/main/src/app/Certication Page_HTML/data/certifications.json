@@ -1,6 +1,10 @@
 [
     {
         "certificate_id": 1,
+        "short_name": "CCD-Tech",
+        "color": "#3b82f6",
+        "icon": "cloud",
+        "price_value": 799,
         "certificate_name": "Certification in Cloud, Cybersecurity, and Digital Transformation (CCD-Tech Certification)11",
         "certificate_description": "<p>The CCD-Tech Certification equips professionals with foundational and advanced knowledge in Cloud Technologies, Cybersecurity, and Digital Transformation. Participants gain hands-on awareness, practical insights, and strategic understanding of modern enterprise technologies.<\/p>",
         "price": "₹799",
@@ -144,6 +148,10 @@
     },
     {
         "certificate_id": 2,
+        "short_name": "HC-LC",
+        "color": "#8b5cf6",
+        "icon": "users",
+        "price_value": 899,
         "certificate_name": "Certification in Human-Centric Leadership and Inclusive Culture (HC-LC Certification)",
         "certificate_description": "<p>The HC-LC Certification is designed to cultivate the mindset and skills needed to lead with empathy, inclusivity, and emotional intelligence in today’s evolving workplace. This program integrates key human-centric competencies, from interpersonal effectiveness and creative problem-solving to diversity, equity, and inclusion (DEI) leadership.<\/p>",
         "price": "₹899",
@@ -339,6 +347,10 @@
     },
     {
         "certificate_id": 3,
+        "short_name": "SDBPS",
+        "color": "#10b981",
+        "icon": "brain",
+        "price_value": 799,
         "certificate_name": "Certification in Self-Development and Business Power Skills (SDBPS Certification)",
         "certificate_description": "<p>This program provides practical tools for effective communication, performance management, presentations, business writing, and interpersonal effectiveness. Participants will gain actionable insights, hands-on skills, and frameworks to enhance personal and professional effectiveness.<\/p>\r\n",
         "price": "₹799",
@@ -566,6 +578,10 @@
     },
     {
         "certificate_id": 4,
+        "short_name": "WRWEI",
+        "color": "#f59e0b",
+        "icon": "heart",
+        "price_value": 599,
         "certificate_name": "Certification in Workplace Resilience, Wellness, and Emotional Intelligence (WRWEI Certification)",
         "certificate_description": "<p>The WRWEI Certification equips professionals with essential skills to build resilience, promote mental wellness, and develop emotional intelligence in the workplace. Participants will gain actionable insights and frameworks to improve workplace performance, relationships, and overall well-being.<\/p>\r\n",
         "price": "₹599",
@@ -713,6 +729,10 @@
     },
     {
         "certificate_id": 5,
+        "short_name": "CSMBL",
+        "color": "#ec4899",
+        "icon": "chart-bar",
+        "price_value": 899,
         "certificate_name": "Certification in Strategic Marketing and Brand Leadership (CSMBL Certification)",
         "certificate_description": "<p>The CSMBL Certification is designed to provide a holistic understanding of modern marketing, customer behavior, branding, and innovation strategies that drive global business success. Participants will gain global perspectives through modules developed around Dr. Jagdish N. Sheth's marketing insights, ensuring real-world relevance and strategic application.<\/p>",
         "price": "₹899",
@@ -960,6 +980,10 @@
     },
     {
         "certificate_id": 6,
+        "short_name": "CTLTE",
+        "color": "#06b6d4",
+        "icon": "award",
+        "price_value": 599,
         "certificate_name": "Certification in Transformational Leadership and Team Excellence (CTLTE Certification)",
         "certificate_description": "<p>This certification equips professionals with the knowledge and skills to lead teams effectively, manage people, drive innovation, and implement organizational change. Participants will learn proven leadership models, team dynamics strategies, and change management frameworks for modern workplaces.<\/p>\r\n",
         "price": "₹599",
@@ -1107,6 +1131,10 @@
     },
     {
         "certificate_id": 7,
+        "short_name": "CSFBA",
+        "color": "#ef4444",
+        "icon": "coins",
+        "price_value": 499,
         "certificate_name": "Certification in Strategic Finance and Business Acumen (CSFBA Certification)",
         "certificate_description": "<p>The CSFBA Certification is designed for professionals seeking a deep understanding of modern financial systems, strategic decision-making, and digital transformation in finance. This program bridges core accounting principles, financial analytics, and business acumen, equipping learners to navigate both traditional finance and emerging fintech landscapes.<\/p>\r\n",
         "price": "₹499",

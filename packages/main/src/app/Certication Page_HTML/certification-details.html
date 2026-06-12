@@ -11,7 +11,149 @@
   <link rel="stylesheet" href="css/details.css">
 </head>
 <body>
-  <div id="pageRoot"></div>
+
+  <div id="pageRoot" hidden>
+
+    <!-- Hero -->
+    <section class="details-hero" id="detailsHero">
+      <div class="details-container">
+        <button class="back-btn" type="button" id="backBtn">
+          <span>Back to Certifications</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Main -->
+    <section class="details-main">
+      <div class="details-container details-layout">
+
+        <!-- Left panel -->
+        <div class="details-left">
+
+          <div class="cert-banner" id="certBanner">
+            <div class="banner-icon-wrapper" id="bannerIconWrapper"></div>
+            <span class="banner-cert-name" id="bannerCertName"></span>
+          </div>
+
+          <div class="quick-stats-card">
+            <div class="qs-row">
+              <span class="qs-icon" id="iconDuration"></span>
+              <div>
+                <span class="qs-label">Duration</span>
+                <span class="qs-value" id="valDuration"></span>
+              </div>
+            </div>
+            <div class="qs-row">
+              <span class="qs-icon" id="iconPaths"></span>
+              <div>
+                <span class="qs-label">Learning Paths</span>
+                <span class="qs-value" id="valPaths"></span>
+              </div>
+            </div>
+            <div class="qs-row">
+              <span class="qs-icon" id="iconCourses"></span>
+              <div>
+                <span class="qs-label">Total Courses</span>
+                <span class="qs-value" id="valCourses"></span>
+              </div>
+            </div>
+            <div class="qs-row">
+              <span class="qs-icon" id="iconPrice"></span>
+              <div>
+                <span class="qs-label">Price</span>
+                <span class="qs-value price-highlight" id="valPrice"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Progress card — hidden until cert is purchased -->
+          <div class="cert-progress-card" id="progressCard" hidden>
+            <div class="cpg-header">
+              <span class="cpg-title">Your Progress</span>
+              <span class="cpg-pct" id="progressPct"></span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="cpg-stats">
+              <div class="cpg-stat">
+                <span class="cpg-stat-val" id="statCompletedCourses"></span>
+                <span class="cpg-stat-lbl">Courses Completed</span>
+              </div>
+              <div class="cpg-stat">
+                <span class="cpg-stat-val" id="statCompletedPaths"></span>
+                <span class="cpg-stat-lbl">Paths Completed</span>
+              </div>
+            </div>
+            <div class="cpg-next" id="progressNext" hidden>
+              <span class="cpg-next-lbl">Next Up</span>
+              <span class="cpg-next-course" id="progressNextCourse"></span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right panel -->
+        <div class="details-right">
+
+          <div class="lp-tabs" id="lpTabs" role="tablist">
+            <!-- LP tab buttons injected by JS -->
+          </div>
+
+          <div id="lpPanel">
+            <!-- LP panel content injected by JS -->
+          </div>
+
+          <div class="signup-cta">
+            <div class="cta-price-info">
+              <span class="cta-price-label" id="ctaPriceLabel"></span>
+              <span class="cta-price-value" id="ctaPriceValue"></span>
+            </div>
+            <button class="signup-now-btn" type="button" id="ctaBtn"></button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Template: LP tab button -->
+  <template id="tplLpTab">
+    <button class="lp-tab" type="button" role="tab">
+      <span class="lp-tab-num"></span>
+      <span class="lp-tab-name"></span>
+    </button>
+  </template>
+
+  <!-- Template: LP panel content (banner, title, description, course list) -->
+  <template id="tplLpPanel">
+    <div class="lp-banner-wrap">
+      <img class="lp-banner-img" alt="">
+    </div>
+    <h2 class="lp-detail-title"></h2>
+    <div class="lp-detail-desc"></div>
+    <div class="lp-courses-section">
+      <div class="lp-courses-header">
+        <span class="lp-header-icon"></span>
+        Courses Included
+      </div>
+      <div class="lp-course-cards"></div>
+    </div>
+  </template>
+
+  <!-- Template: Course card button -->
+  <template id="tplCourseCard">
+    <button class="lp-course-card" type="button">
+      <div class="lcc-info">
+        <span class="lcc-name"></span>
+        <span class="lcc-duration"></span>
+      </div>
+      <span class="lcc-arrow"></span>
+    </button>
+  </template>
+
   <script src="js/app.js"></script>
   <script src="js/certification-details.js"></script>
 </body>
