@@ -19,43 +19,6 @@
 // ── Render Catalog ────────────────────────────────────────────────────────────
 function renderCatalog(viewModels) {
   return `
-    <section class="cert-hero">
-      <div class="hero-blob hero-blob--tl" aria-hidden="true"></div>
-      <div class="hero-blob hero-blob--br" aria-hidden="true"></div>
-      <div class="hero-content">
-        <div class="hero-badge">
-          <span class="hero-badge-dot"></span>
-          7 Professional Certifications
-        </div>
-        <h1 class="hero-title">Professional Certification<br>Programs</h1>
-        <p class="hero-subtitle">
-          Industry-focused certification programs designed to accelerate careers
-          and build professional credibility
-        </p>
-        <div class="hero-stats">
-          <div class="hero-stat">
-            <span class="hero-stat-value">7</span>
-            <span class="hero-stat-label">Certifications</span>
-          </div>
-          <div class="hero-stat-divider"></div>
-          <div class="hero-stat">
-            <span class="hero-stat-value">200+</span>
-            <span class="hero-stat-label">Courses</span>
-          </div>
-          <div class="hero-stat-divider"></div>
-          <div class="hero-stat">
-            <span class="hero-stat-value">37</span>
-            <span class="hero-stat-label">Learning Paths</span>
-          </div>
-        </div>
-      </div>
-      <div class="hero-wave" aria-hidden="true">
-        <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0,40 C360,80 1080,0 1440,40 L1440,60 L0,60 Z" fill="#f1f5f9"/>
-        </svg>
-      </div>
-    </section>
-
     <section class="cert-cards-section">
       <div class="cards-grid">
         ${viewModels.map((vm, i) => renderCard(vm, i)).join('')}
