@@ -85,12 +85,6 @@ function buildCoursePage(product, courseName, courseId, certId, cert, config, ac
               <ul class="objectives-list">${objItems}</ul>
             ` : ''}
 
-            <div class="course-signup-cta">
-              <button class="course-signup-btn" style="background:${accent}" id="courseSignupBtn">
-                Buy Now ${getIcon('arrow-right', 18)}
-              </button>
-            </div>
-
           </div>
         </div>
       </div>
@@ -101,12 +95,6 @@ function attachListeners() {
   document.getElementById('courseBackBtn')?.addEventListener('click', () => {
     if (document.referrer) history.back();
     else window.location.href = 'index.html';
-  });
-  document.getElementById('courseSignupBtn')?.addEventListener('click', () => {
-    const certId = getQueryParam('certId');
-    window.location.href = certId
-      ? `../../authentication/signup?certId=${certId}`
-      : `../../authentication/signup`;
   });
   const img = document.getElementById('courseImg');
   if (img) {

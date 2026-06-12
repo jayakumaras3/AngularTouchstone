@@ -300,7 +300,9 @@
 }
 
 .details-btn,
-.signup-btn {
+.signup-btn,
+.buy-now-btn,
+.assessment-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -315,7 +317,9 @@
 }
 
 .details-btn:hover,
-.signup-btn:hover { transform: translateY(-1px); }
+.signup-btn:hover,
+.buy-now-btn:hover,
+.assessment-btn:hover { transform: translateY(-1px); }
 
 .details-btn {
   background: transparent;
@@ -336,6 +340,29 @@
 .signup-btn:hover {
   filter: brightness(1.1);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+/* ── Purchase Action Buttons ──────────────────────────────────────────────── */
+.buy-now-btn {
+  background: #3b82f6;
+  border: 2px solid transparent;
+  color: #ffffff;
+}
+
+.buy-now-btn:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.4);
+}
+
+.assessment-btn {
+  background: #10b981;
+  border: 2px solid transparent;
+  color: #ffffff;
+}
+
+.assessment-btn:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.4);
 }
 
 /* ── Fade In Animation ────────────────────────────────────────────────────── */

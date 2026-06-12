@@ -1,7 +1,9 @@
 // ── Certification Details Page ────────────────────────────────────────────────
 (async function () {
-  const root   = document.getElementById('pageRoot');
-  const certId = parseInt(getQueryParam('id'), 10);
+  const root          = document.getElementById('pageRoot');
+  const certId        = parseInt(getQueryParam('id'), 10);
+  // CodeIgniter: replace getQueryParam with the DB field value injected by the controller
+  const paymentStatus = getQueryParam('payment_status') || 'NOT_PAID';
 
   if (isNaN(certId)) { showNotFound(root); return; }
 
@@ -18,7 +20,7 @@
   let selectedLpId = cert.learning_paths[0]?.lp_id ?? null;
 
   function render() {
-    root.innerHTML = buildDetailsPage(cert, config, selectedLpId, productMap);
+    root.innerHTML = buildDetailsPage(cert, config, selectedLpId, productMap, paymentStatus);
     attachListeners();
   }
 
@@ -38,7 +40,12 @@
     });
 
     root.querySelector('.signup-now-btn')?.addEventListener('click', () => {
-      window.location.href = `../../authentication/signup?certId=${certId}&name=${encodeURIComponent(cert.certificate_name)}&price=${encodeURIComponent(config.price)}`;
+      const action = root.querySelector('.signup-now-btn')?.dataset.ctaAction;
+      if (action === 'assessment') {
+        window.location.href = `../../assessment/start?certId=${certId}`;
+      } else {
+        window.location.href = `../../authentication/signup?certId=${certId}&name=${encodeURIComponent(cert.certificate_name)}&price=${encodeURIComponent(config.price)}`;
+      }
     });
 
     root.querySelector('.back-btn')?.addEventListener('click', () => {
@@ -51,9 +58,10 @@
 })();
 
 // ── Build Page ────────────────────────────────────────────────────────────────
-function buildDetailsPage(cert, config, selectedLpId, productMap) {
+function buildDetailsPage(cert, config, selectedLpId, productMap, paymentStatus) {
   const totalCourses = getTotalCourses(cert.learning_paths);
   const selectedLp   = cert.learning_paths.find(lp => lp.lp_id === selectedLpId) || cert.learning_paths[0];
+  const isPaid       = paymentStatus === 'PAID';
 
   return `
     <section class="details-hero" style="--hero-color:${config.color}">
@@ -111,11 +119,13 @@ function buildDetailsPage(cert, config, selectedLpId, productMap) {
 
           <div class="signup-cta">
             <div class="cta-price-info">
-              <span class="cta-price-label">Enroll for</span>
+              <span class="cta-price-label">${isPaid ? 'Enrolled for' : 'Enroll for'}</span>
               <span class="cta-price-value" style="color:${config.color}">${config.price}</span>
             </div>
-            <button class="signup-now-btn" type="button" style="background:${config.color}">
-              Buy Now ${getIcon('arrow-right', 18)}
+            <button class="signup-now-btn" type="button"
+                    data-cta-action="${isPaid ? 'assessment' : 'signup'}"
+                    style="background:${isPaid ? '#10b981' : config.color}">
+              ${isPaid ? 'Take Assessment' : 'Buy Now'} ${getIcon('arrow-right', 18)}
             </button>
           </div>
         </div>
