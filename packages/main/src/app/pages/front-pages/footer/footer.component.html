@@ -73,33 +73,45 @@
           </div>
         </div>
       </div> -->
-      <div class="d-flex align-items-center justify-content-between p-y-30 b-t-1 flex-wrap">
-        <!-- Left side -->
-        <div class="d-flex align-items-center gap-4">
-          <img src="assets/images/landingpage/favicon.png" alt="logo" class="footer-logo footer-logo-light" />
-          <img src="assets/images/landingpage/favicon__.png" alt="logo" class="footer-logo footer-logo-dark" />
-          <h6 class="f-s-16 f-w-500">© 2026 DOCHEK |  <a href="https://www.touchstonelc.com/" target="_blank" class="text-decoration-none text-primary">
-              Touchstone Product</a></h6>
+      <div class="footer-bottom-bar b-t-1">
+
+        <!-- Left: branding -->
+        <div class="footer-col footer-col-brand">
+          <div class="d-flex align-items-center gap-4 m-b-4">
+            <img src="assets/images/landingpage/favicon.png" alt="logo" class="footer-logo footer-logo-light" />
+            <img src="assets/images/landingpage/favicon__.png" alt="logo" class="footer-logo footer-logo-dark" />
+            <span class="f-s-16 f-w-600">DOCHEK</span>
+          </div>
+          <p class="f-s-13 m-0 footer-muted">© 2026 DOCHEK</p>
+          <p class="f-s-13 m-0 footer-muted">
+            <a href="https://www.touchstonelc.com/" target="_blank" class="text-decoration-none text-primary">
+              Touchstone Product
+            </a>
+          </p>
         </div>
 
-        <!-- Right side -->
-        <div class="d-flex justify-content-end align-items-center">
-   <p class="f-s-16 m-0">
-      <a mat-button
-        class="m-x-8 f-s-14 f-w-500 text-primary text-decoration-none"
-        [routerLink]="['/privacy']"
-        [class.selected]="isActiveRoute('privacy')">
-        Privacy
-      </a>
-      |
-      <a mat-button
-        class="m-x-8 f-s-14 f-w-500 text-primary text-decoration-none"
-        [routerLink]="['/terms']"
-        [class.selected]="isActiveRoute('terms')">
-        Terms
-      </a>
+        <!-- Center: Quick Links -->
+        <div class="footer-col footer-col-links">
+          <h6 class="f-s-13 f-w-700 footer-col-heading m-b-8">Quick Links</h6>
+          <a class="footer-link d-block m-b-4"
+            [routerLink]="['/blogs']"
+            [class.selected]="isActiveRoute('blogs')">Blogs</a>
+          <a class="footer-link d-block"
+            [routerLink]="['/contact']"
+            [class.selected]="isActiveRoute('contact')">Contact Us</a>
         </div>
-        
+
+        <!-- Right: Legal -->
+        <div class="footer-col footer-col-legal">
+          <h6 class="f-s-13 f-w-700 footer-col-heading m-b-8">Legal</h6>
+          <a class="footer-link d-block m-b-4"
+            [routerLink]="['/privacy']"
+            [class.selected]="isActiveRoute('privacy')">Privacy</a>
+          <a class="footer-link d-block"
+            [routerLink]="['/terms']"
+            [class.selected]="isActiveRoute('terms')">Terms</a>
+        </div>
+
       </div>
     </div>
   </div>
