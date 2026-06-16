@@ -45,6 +45,120 @@
 :host-context(.dark-theme) .footer-logo-dark  { display: inline-block; }
 
 /* ══════════════════════════════════════════
+   Dark theme overrides
+══════════════════════════════════════════ */
+:host-context(.dark-theme) {
+
+  .footer-wrapper {
+    background: #1c252e;
+    border-top-color: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.87);
+  }
+
+  .footer-brand-name {
+    color: rgba(255, 255, 255, 0.92);
+  }
+
+  .footer-brand-desc {
+    color: rgba(255, 255, 255, 0.87);
+    opacity: 0.55;
+  }
+
+  .social-btn {
+    border-color: rgba(255, 255, 255, 0.18);
+    color: rgba(255, 255, 255, 0.6);
+
+    img { filter: invert(1); opacity: 0.6; }
+
+    &:hover {
+      border-color: #5d87ff;
+      color: #5d87ff;
+      background: rgba(93, 135, 255, 0.12);
+      img { filter: none; opacity: 1; }
+    }
+  }
+
+  .footer-col-heading {
+    color: rgba(255, 255, 255, 0.87);
+    opacity: 0.45;
+  }
+
+  .footer-link {
+    color: rgba(255, 255, 255, 0.75);
+    opacity: 1;
+
+    &:hover, &:focus-visible {
+      color: #5d87ff;
+      opacity: 1;
+    }
+
+    &.selected {
+      color: #5d87ff;
+    }
+  }
+
+  .footer-contact-col {
+    border-left-color: rgba(255, 255, 255, 0.08);
+  }
+
+  .contact-card {
+    background: #141a21;
+    border-color: rgba(93, 135, 255, 0.15);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+
+    &:hover {
+      box-shadow: 0 6px 20px rgba(93, 135, 255, 0.18);
+    }
+  }
+
+  .contact-card-value {
+    color: rgba(255, 255, 255, 0.87);
+    &:hover { color: #5d87ff; }
+  }
+
+  .contact-card-sub {
+    color: rgba(255, 255, 255, 0.87);
+    opacity: 0.45;
+  }
+
+  .footer-strip {
+    border-top-color: rgba(255, 255, 255, 0.08);
+  }
+
+  .footer-strip-copy {
+    color: rgba(255, 255, 255, 0.87);
+    opacity: 0.45;
+  }
+
+  .footer-strip-pipe {
+    color: rgba(255, 255, 255, 0.87);
+    opacity: 0.2;
+  }
+
+  .footer-strip-nav {
+    color: rgba(255, 255, 255, 0.6);
+    opacity: 1;
+
+    &:hover {
+      color: #5d87ff;
+      opacity: 1;
+    }
+  }
+
+  .footer-status {
+    color: rgba(255, 255, 255, 0.65);
+    opacity: 1;
+  }
+
+  /* Mobile border flip */
+  @media (max-width: 959px) {
+    .footer-contact-col {
+      border-top-color: rgba(255, 255, 255, 0.08);
+    }
+  }
+}
+
+/* ══════════════════════════════════════════
    Wrapper + container
 ══════════════════════════════════════════ */
 .footer-wrapper {
