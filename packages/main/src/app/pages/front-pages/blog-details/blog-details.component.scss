@@ -111,7 +111,7 @@ $radius:    14px;
 
     span {
       display: inline-flex;
-      align-items: center;
+      
       gap: 6px;
       white-space: nowrap;
       background: rgba(255, 255, 255, 0.1);
@@ -120,7 +120,11 @@ $radius:    14px;
       padding: 4px 10px;
     }
 
-    tabler-icon { vertical-align: middle; }
+    tabler-icon {
+      display: inline-flex;
+      align-items: center;
+      line-height: 1;
+    }
   }
 }
 
