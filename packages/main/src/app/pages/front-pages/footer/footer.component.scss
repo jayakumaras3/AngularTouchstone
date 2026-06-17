@@ -51,7 +51,6 @@
 
   .footer-wrapper {
     background: #1c252e;
-    border-top-color: rgba(255, 255, 255, 0.08);
     color: rgba(255, 255, 255, 0.87);
   }
 
@@ -161,9 +160,14 @@
 /* ══════════════════════════════════════════
    Wrapper + container
 ══════════════════════════════════════════ */
+.footer-wrapper-container {
+  margin-top: 16px;
+}
+
 .footer-wrapper {
   background: #f5f7ff;
-  border-top: 1px solid rgba(93, 135, 255, 0.18);
+  border-radius: 24px;
+  overflow: hidden;
 }
 
 .footer-inner {
@@ -496,7 +500,7 @@
     .textrightspace     { padding-right: 20px; }
   }
 
-  .footer-inner { padding: 36px 24px 0; }
+  .footer-inner { padding: 36px 16px 0; }
 
   .footer-main {
     flex-direction: column;
