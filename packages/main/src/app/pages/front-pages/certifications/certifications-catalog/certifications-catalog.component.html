@@ -69,13 +69,13 @@
 
           <p class="cert-desc">{{ stripHtml(card.certification.certificate_description) }}</p>
 
-          <div class="cert-price" [style.color]="card.config.color">{{ card.config.price }}</div>
+          <div class="cert-price" [style.color]="card.config.color">{{ card.certification.price }}</div>
 
           <!-- Stats Row -->
           <div class="stats-row">
             <div class="stat-item">
               <i-tabler name="clock" class="stat-icon" [style.color]="card.config.color"></i-tabler>
-              <span class="stat-label">{{ card.config.duration }}</span>
+              <span class="stat-label">{{ card.certification.duration }}</span>
             </div>
             <div class="stat-item">
               <i-tabler name="book" class="stat-icon" [style.color]="card.config.color"></i-tabler>

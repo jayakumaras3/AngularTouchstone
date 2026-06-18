@@ -1,10 +1,10 @@
 export interface CertificationCourse {
-  course_id: number;
+  course_id: string;
   course_name: string;
 }
 
 export interface CertificationLearningPath {
-  lp_id: number;
+  lp_id: string;
   lp_name: string;
   lp_description: string;
   lp_banner: string;
@@ -12,18 +12,19 @@ export interface CertificationLearningPath {
 }
 
 export interface Certification {
-  certificate_id: number;
+  certificate_id: string;
   certificate_name: string;
   certificate_description: string;
+  price: string;
+  duration: string;
+  total_courses: string;
+  total_learning_paths: string;
   learning_paths: CertificationLearningPath[];
 }
 
 export interface CertificationConfig {
-  certificate_id: number;
+  certificate_id: string;
   shortName: string;
-  duration: string;
-  price: string;
-  priceValue: number;
   color: string;
   icon: string;
 }
@@ -35,7 +36,7 @@ export interface CertificationCardViewModel {
 }
 
 export interface CertificationSignupState {
-  certificateId: number;
+  certificateId: string;
   certificateName: string;
   shortName: string;
   price: string;

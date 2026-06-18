@@ -43,7 +43,7 @@
             <i-tabler name="clock" class="qs-icon"></i-tabler>
             <div>
               <span class="qs-label">Duration</span>
-              <span class="qs-value">{{ cfg.duration }}</span>
+              <span class="qs-value">{{ cert.duration }}</span>
             </div>
           </div>
           <div class="qs-row">
@@ -64,7 +64,7 @@
             <i-tabler name="currency-rupee" class="qs-icon"></i-tabler>
             <div>
               <span class="qs-label">Price</span>
-              <span class="qs-value price-highlight" [style.color]="cfg.color">{{ cfg.price }}</span>
+              <span class="qs-value price-highlight" [style.color]="cfg.color">{{ cert.price }}</span>
             </div>
           </div>
         </div>
@@ -146,7 +146,7 @@
         <div class="signup-cta">
           <div class="cta-price-info">
             <span class="cta-price-label">Enroll for</span>
-            <span class="cta-price-value" [style.color]="cfg.color">{{ cfg.price }}</span>
+            <span class="cta-price-value" [style.color]="cfg.color">{{ cert.price }}</span>
           </div>
           <button
             class="signup-now-btn"

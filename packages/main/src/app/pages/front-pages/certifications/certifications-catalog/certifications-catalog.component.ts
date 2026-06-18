@@ -57,7 +57,7 @@ export class CertificationsCatalogComponent implements OnInit {
       });
   }
 
-  viewDetails(certificateId: number): void {
+  viewDetails(certificateId: string): void {
     this.router.navigate(['/certification-details', certificateId]);
   }
 
@@ -66,8 +66,8 @@ export class CertificationsCatalogComponent implements OnInit {
       certificateId: card.certification.certificate_id,
       certificateName: card.certification.certificate_name,
       shortName: card.config.shortName,
-      price: card.config.price,
-      duration: card.config.duration,
+      price: card.certification.price,
+      duration: card.certification.duration,
       totalCourses: card.totalCourses,
     };
     this.router.navigate(['/authentication/signup'], {
@@ -79,7 +79,7 @@ export class CertificationsCatalogComponent implements OnInit {
     this.router.navigate(['/catalog']);
   }
 
-  trackByCardId(_index: number, card: CertificationCardViewModel): number {
+  trackByCardId(_index: number, card: CertificationCardViewModel): string {
     return card.certification.certificate_id;
   }
 

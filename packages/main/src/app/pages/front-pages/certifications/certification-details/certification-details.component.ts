@@ -37,7 +37,7 @@ export class CertificationDetailsComponent implements OnInit {
 
   readonly certification = signal<Certification | null>(null);
   readonly config = signal<CertificationConfig | null>(null);
-  readonly selectedLpId = signal<number | null>(null);
+  readonly selectedLpId = signal<string | null>(null);
   readonly productMap = signal<Map<number, CourseProduct>>(new Map());
 
   readonly selectedLp = computed(() => {
@@ -56,9 +56,8 @@ export class CertificationDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     const idParam = this.route.snapshot.paramMap.get('certificateId');
-    const certId = idParam ? parseInt(idParam, 10) : NaN;
 
-    if (isNaN(certId)) {
+    if (!idParam) {
       this.isNotFound.set(true);
       return;
     }
@@ -73,41 +72,41 @@ export class CertificationDetailsComponent implements OnInit {
       }
       this.productMap.set(map);
 
-      const cert = certs.find((c) => c.certificate_id === certId) ?? null;
+      const cert = certs.find((c) => c.certificate_id === idParam) ?? null;
       if (!cert) {
         this.isNotFound.set(true);
         return;
       }
       this.certification.set(cert);
-      this.config.set(getConfigById(certId) ?? null);
+      this.config.set(getConfigById(idParam) ?? null);
       this.selectedLpId.set(cert.learning_paths[0]?.lp_id ?? null);
     });
   }
 
-  selectLp(lpId: number): void {
+  selectLp(lpId: string): void {
     this.selectedLpId.set(lpId);
   }
 
-  getCourseDuration(courseId: number): string {
-    return this.productMap().get(courseId)?.duration ?? '';
+  getCourseDuration(courseId: string): string {
+    return this.productMap().get(Number(courseId))?.duration ?? '';
   }
 
-  navigateToCourse(courseId: number): void {
-    if (!this.productMap().has(courseId)) {
+  navigateToCourse(courseId: string): void {
+    if (!this.productMap().has(Number(courseId))) {
       console.warn(`[CertificationDetails] Course ID ${courseId} not found in product-data.json`);
       return;
     }
     const cert = this.certification();
     const cfg = this.config();
-    this.router.navigate(['/coursedetails', courseId], {
+    this.router.navigate(['/coursedetails', Number(courseId)], {
       queryParams: { source: 'certification' },
       state: {
         source: 'certification',
         certificateId: cert?.certificate_id ?? null,
         certificateName: cert?.certificate_name ?? null,
-        price: cfg?.price ?? null,
+        price: cert?.price ?? null,
         shortName: cfg?.shortName ?? null,
-        duration: cfg?.duration ?? null,
+        duration: cert?.duration ?? null,
         totalCourses: this.totalCourses(),
       },
     });
@@ -126,8 +125,8 @@ export class CertificationDetailsComponent implements OnInit {
       certificateId: cert.certificate_id,
       certificateName: cert.certificate_name,
       shortName: cfg.shortName,
-      price: cfg.price,
-      duration: cfg.duration,
+      price: cert.price,
+      duration: cert.duration,
       totalCourses: this.totalCourses(),
     };
 
