@@ -69,15 +69,15 @@
         <!-- Quick Links -->
         <div class="footer-col">
           <h6 class="footer-col-heading">Quick Links</h6>
-          <a class="footer-link" [routerLink]="['/catalog']" [class.selected]="isActiveRoute('catalog')">
-            <mat-icon class="fli">library_books</mat-icon>Course Catalog
+          <a class="footer-link" [routerLink]="['/about']" [class.selected]="isActiveRoute('about')">
+            <mat-icon class="fli">info</mat-icon>About Us
           </a>
           <a class="footer-link" [routerLink]="['/blogs']" [class.selected]="isActiveRoute('blogs')">
             <mat-icon class="fli">article</mat-icon>Blogs
           </a>
-          <a class="footer-link" [routerLink]="['/about']" [class.selected]="isActiveRoute('about')">
-            <mat-icon class="fli">info</mat-icon>About Us
-          </a>
+          <a class="footer-link" [routerLink]="['/catalog']" [class.selected]="isActiveRoute('catalog')">
+            <mat-icon class="fli">library_books</mat-icon>Course Catalog
+          </a>              
           <a class="footer-link" [routerLink]="['/contact']" [class.selected]="isActiveRoute('contact')">
             <mat-icon class="fli">mail</mat-icon>Contact Us
           </a>
@@ -141,15 +141,13 @@
           <span class="footer-strip-copy">© 2026 DOCHEK. All rights reserved.</span>
           <span class="footer-strip-pipe">|</span>
           <a href="https://www.touchstonelc.com/" target="_blank" class="footer-strip-powered">
-            Powered by Touchstone Product
+           Touchstone Product
           </a>
         </div>
         <div class="footer-strip-right">
           <a class="footer-strip-nav" [routerLink]="['/privacy']">Privacy</a>
           <a class="footer-strip-nav" [routerLink]="['/terms']">Terms</a>
-          <span class="footer-status">
-            <span class="status-dot"></span>All systems operational
-          </span>
+
         </div>
       </div>
 

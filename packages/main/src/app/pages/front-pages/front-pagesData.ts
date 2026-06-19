@@ -54,7 +54,7 @@ export const cardimgs: cardimgs[] = [
     views: '4,200',
     category: 'Learning & Development',
     comments: 5,
-    date: 'Tue, Apr 22',
+    date: 'Apr 2026',
   },
   {
     id: 101,
@@ -67,7 +67,7 @@ export const cardimgs: cardimgs[] = [
     views: '3,800',
     category: 'Learning & Development',
     comments: 7,
-    date: 'Thu, Jun 5',
+    date: 'Jun 2026',
   },
   {
     id: 102,
@@ -80,7 +80,7 @@ export const cardimgs: cardimgs[] = [
     views: '2,600',
     category: 'Learning & Development',
     comments: 4,
-    date: 'Tue, Jun 10',
+    date: 'Jun 2026',
   },
   {
     id: 1,

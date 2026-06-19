@@ -1,18 +1,42 @@
 [
     {
         "certificate_id": "1",
-        "certificate_name": "Certification in Cloud, Cybersecurity and Digital Transformation (CCD-Tech Certification)",
+        "certificate_name": "Certification in Cloud, Cybersecurity and Digital Transformation (CCD-Tech Certification) ",
         "certificate_description": "<p>The CCD-Tech Certification equips professionals with foundational and advanced knowledge in Cloud Technologies, Cybersecurity, and Digital Transformation. This program is designed for IT professionals, business leaders, and managers seeking to leverage technology for business innovation, secure operations, and strategic transformation. Participants gain hands-on awareness, practical insights, and strategic understanding of modern enterprise technologies.<\/p>\r\n",
         "price": "₹ 799",
-        "duration": "7 Hrs 19 min",
-        "total_courses": "27",
-        "total_learning_paths": "3",
+        "duration": "7 Hrs 19 Mins",
+        "total_courses": "31",
+        "total_learning_paths": "4",
         "learning_paths": [
+            {
+                "lp_id": "15",
+                "lp_name": "Effective Communication",
+                "lp_description": "<p>The SDBPS Certification is designed to equip professionals with critical self-development, communication, leadership, and business skills to excel in the modern workplace. This program provides practical tools for effective communication, performance management, presentations, business writing, and interpersonal effectiveness.<br \/>\r\nParticipants will gain actionable insights, hands-on skills, and frameworks to enhance personal and professional effectiveness.<\/p>\r\n",
+                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
+                "courses": [
+                    {
+                        "course_id": "734",
+                        "course_name": "Using Open-Ended Questions"
+                    },
+                    {
+                        "course_id": "733",
+                        "course_name": "Electronic Communications"
+                    },
+                    {
+                        "course_id": "732",
+                        "course_name": "Creating Win-Win Scenarios"
+                    },
+                    {
+                        "course_id": "731",
+                        "course_name": "Communicating Upward"
+                    }
+                ]
+            },
             {
                 "lp_id": "7",
                 "lp_name": "Digital Transformation",
                 "lp_description": "<p>The CCD-Tech Certification equips professionals with foundational and advanced knowledge in Cloud Technologies, Cybersecurity, and Digital Transformation. This program is designed for IT professionals, business leaders, and managers seeking to leverage technology for business innovation, secure operations, and strategic transformation.<br \/>\r\nParticipants gain hands-on awareness, practical insights, and strategic understanding of modern enterprise technologies.<\/p>\r\n",
-                "lp_banner": "https://dochek.com/assets/assets/img/default_learning_plan_banner.jpg",
+                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
                 "courses": [
                     {
                         "course_id": "1139",
@@ -40,7 +64,7 @@
                 "lp_id": "6",
                 "lp_name": "Cybersecurity Essentials ",
                 "lp_description": "<p>Build awareness and understanding of cybersecurity threats, defense mechanisms, privacy regulations, and IT security practices.<\/p>\r\n",
-                "lp_banner": "https://dochek.com/assets/assets/img/default_learning_plan_banner.jpg",
+                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
                 "courses": [
                     {
                         "course_id": "1849",
@@ -120,7 +144,7 @@
                 "lp_id": "5",
                 "lp_name": "Cloud Technology ",
                 "lp_description": "<p>Understand cloud computing fundamentals, key platforms, and hybrid cloud strategies for business.<\/p>\r\n",
-                "lp_banner": "https://dochek.com/assets/assets/img/default_learning_plan_banner.jpg",
+                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
                 "courses": [
                     {
                         "course_id": "863",
@@ -147,7 +171,7 @@
         "certificate_name": "Certification in Human-Centric Leadership and Inclusive Culture (HC-LC Certification)",
         "certificate_description": "<p>The HC-LC Certification is designed to cultivate the mindset and skills needed to lead with empathy, inclusivity, and emotional intelligence in today&rsquo;s evolving workplace. This program integrates key human-centric competencies &mdash; from interpersonal effectiveness and creative problem-solving to diversity, equity, and inclusion (DEI) leadership. Through structured modules, participants will learn how to foster trust, resolve conflicts, inspire collaboration, and build inclusive cultures that drive organizational performance and employee well-being.<\/p>\r\n",
         "price": "₹ 799",
-        "duration": "7 Hrs 19 min",
+        "duration": "8 Hrs 57 Mins",
         "total_courses": "37",
         "total_learning_paths": "4",
         "learning_paths": [
@@ -155,7 +179,7 @@
                 "lp_id": "11",
                 "lp_name": "Diversity, Equity & Inclusion at Workplace",
                 "lp_description": "<p>The HC-LC Certification is designed to cultivate the mindset and skills needed to lead with empathy, inclusivity, and emotional intelligence in today&rsquo;s evolving workplace. This program integrates key human-centric competencies &mdash; from interpersonal effectiveness and creative problem-solving to diversity, equity, and inclusion (DEI) leadership. Through structured modules, participants will learn how to foster trust, resolve conflicts, inspire collaboration, and build inclusive cultures that drive organizational performance and employee well-being.<\/p>\r\n",
-                "lp_banner": "https://dochek.com/assets/assets/img/default_learning_plan_banner.jpg",
+                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
                 "courses": [
                     {
                         "course_id": "1181",
@@ -263,7 +287,7 @@
                 "lp_id": "10",
                 "lp_name": "Creative Thinking and Problem Solving",
                 "lp_description": "<p>The HC-LC Certification is designed to cultivate the mindset and skills needed to lead with empathy, inclusivity, and emotional intelligence in today&rsquo;s evolving workplace. This program integrates key human-centric competencies &mdash; from interpersonal effectiveness and creative problem-solving to diversity, equity, and inclusion (DEI) leadership. Through structured modules, participants will learn how to foster trust, resolve conflicts, inspire collaboration, and build inclusive cultures that drive organizational performance and employee well-being.<\/p>\r\n",
-                "lp_banner": "https://dochek.com/assets/assets/img/default_learning_plan_banner.jpg",
+                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
                 "courses": [
                     {
                         "course_id": "1197",
@@ -279,7 +303,7 @@
                 "lp_id": "9",
                 "lp_name": "Conflict Management and Collaboration",
                 "lp_description": "<p>The HC-LC Certification is designed to cultivate the mindset and skills needed to lead with empathy, inclusivity, and emotional intelligence in today&rsquo;s evolving workplace. This program integrates key human-centric competencies &mdash; from interpersonal effectiveness and creative problem-solving to diversity, equity, and inclusion (DEI) leadership. Through structured modules, participants will learn how to foster trust, resolve conflicts, inspire collaboration, and build inclusive cultures that drive organizational performance and employee well-being.<\/p>\r\n",
-                "lp_banner": "https://dochek.com/assets/assets/img/default_learning_plan_banner.jpg",
+                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
                 "courses": [
                     {
                         "course_id": "771",
@@ -299,7 +323,7 @@
                 "lp_id": "8",
                 "lp_name": "Interpersonal Skills and Empathy",
                 "lp_description": "<p>The HC-LC Certification is designed to cultivate the mindset and skills needed to lead with empathy, inclusivity, and emotional intelligence in today&rsquo;s evolving workplace. This program integrates key human-centric competencies &mdash; from interpersonal effectiveness and creative problem-solving to diversity, equity, and inclusion (DEI) leadership. Through structured modules, participants will learn how to foster trust, resolve conflicts, inspire collaboration, and build inclusive cultures that drive organizational performance and employee well-being.<\/p>\r\n",
-                "lp_banner": "https://dochek.com/assets/assets/img/default_learning_plan_banner.jpg",
+                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
                 "courses": [
                     {
                         "course_id": "1180",
@@ -342,7 +366,7 @@
         "certificate_name": "Certification in Self-Development and Business Power Skills (SDBPS Certification)",
         "certificate_description": "<p>The SDBPS Certification is designed to equip professionals with critical self-development, communication, leadership, and business skills to excel in the modern workplace. This program provides practical tools for effective communication, performance management, presentations, business writing, and interpersonal effectiveness. Participants will gain actionable insights, hands-on skills, and frameworks to enhance personal and professional effectiveness.<\/p>\r\n",
         "price": "₹ 799",
-        "duration": "7 Hrs 19 min",
+        "duration": "8 Hrs 37 Mins",
         "total_courses": "42",
         "total_learning_paths": "6",
         "learning_paths": [
@@ -350,7 +374,7 @@
                 "lp_id": "17",
                 "lp_name": "Managing Performance",
                 "lp_description": "<p>The SDBPS Certification is designed to equip professionals with critical self-development, communication, leadership, and business skills to excel in the modern workplace. This program provides practical tools for effective communication, performance management, presentations, business writing, and interpersonal effectiveness.<br \/>\r\nParticipants will gain actionable insights, hands-on skills, and frameworks to enhance personal and professional effectiveness.<\/p>\r\n",
-                "lp_banner": "https://dochek.com/assets/assets/img/default_learning_plan_banner.jpg",
+                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
                 "courses": [
                     {
                         "course_id": "776",
@@ -374,7 +398,7 @@
                 "lp_id": "16",
                 "lp_name": "Business Power Skills",
                 "lp_description": "<p>The SDBPS Certification is designed to equip professionals with critical self-development, communication, leadership, and business skills to excel in the modern workplace. This program provides practical tools for effective communication, performance management, presentations, business writing, and interpersonal effectiveness.<br \/>\r\nParticipants will gain actionable insights, hands-on skills, and frameworks to enhance personal and professional effectiveness.<\/p>\r\n",
-                "lp_banner": "https://dochek.com/assets/assets/img/default_learning_plan_banner.jpg",
+                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
                 "courses": [
                     {
                         "course_id": "1203",
@@ -442,7 +466,7 @@
                 "lp_id": "15",
                 "lp_name": "Effective Communication",
                 "lp_description": "<p>The SDBPS Certification is designed to equip professionals with critical self-development, communication, leadership, and business skills to excel in the modern workplace. This program provides practical tools for effective communication, performance management, presentations, business writing, and interpersonal effectiveness.<br \/>\r\nParticipants will gain actionable insights, hands-on skills, and frameworks to enhance personal and professional effectiveness.<\/p>\r\n",
-                "lp_banner": "https://dochek.com/assets/assets/img/default_learning_plan_banner.jpg",
+                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
                 "courses": [
                     {
                         "course_id": "734",
@@ -466,7 +490,7 @@
                 "lp_id": "14",
                 "lp_name": "Effective Feedback",
                 "lp_description": "<p>The SDBPS Certification is designed to equip professionals with critical self-development, communication, leadership, and business skills to excel in the modern workplace. This program provides practical tools for effective communication, performance management, presentations, business writing, and interpersonal effectiveness.<br \/>\r\nParticipants will gain actionable insights, hands-on skills, and frameworks to enhance personal and professional effectiveness.<\/p>\r\n",
-                "lp_banner": "https://dochek.com/assets/assets/img/default_learning_plan_banner.jpg",
+                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
                 "courses": [
                     {
                         "course_id": "1603",
@@ -502,7 +526,7 @@
                 "lp_id": "13",
                 "lp_name": "Effective Meetings",
                 "lp_description": "<p>The SDBPS Certification is designed to equip professionals with critical self-development, communication, leadership, and business skills to excel in the modern workplace. This program provides practical tools for effective communication, performance management, presentations, business writing, and interpersonal effectiveness.<br \/>\r\nParticipants will gain actionable insights, hands-on skills, and frameworks to enhance personal and professional effectiveness.<\/p>\r\n",
-                "lp_banner": "https://dochek.com/assets/assets/img/default_learning_plan_banner.jpg",
+                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
                 "courses": [
                     {
                         "course_id": "740",
@@ -522,7 +546,7 @@
                 "lp_id": "12",
                 "lp_name": "Self-Development",
                 "lp_description": "<p>The SDBPS Certification is designed to equip professionals with critical self-development, communication, leadership, and business skills to excel in the modern workplace. This program provides practical tools for effective communication, performance management, presentations, business writing, and interpersonal effectiveness.<br \/>\r\nParticipants will gain actionable insights, hands-on skills, and frameworks to enhance personal and professional effectiveness.<\/p>\r\n",
-                "lp_banner": "https://dochek.com/assets/assets/img/default_learning_plan_banner.jpg",
+                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
                 "courses": [
                     {
                         "course_id": "988",
@@ -569,7 +593,7 @@
         "certificate_name": "Certification in Workplace Resilience, Wellness, and Emotional Intelligence (WRWEI Certification)",
         "certificate_description": "<p>The WRWEI Certification equips professionals with essential skills to build resilience, promote mental wellness, and develop emotional intelligence in the workplace. This program provides practical strategies for personal and team well-being, navigating workplace politics, and fostering psychologically safe work environments. Participants will gain actionable insights and frameworks to improve workplace performance, relationships, and overall well-being.<\/p>\r\n",
         "price": "₹ 799",
-        "duration": "7 Hrs 19 min",
+        "duration": "5 Hrs 28 Mins",
         "total_courses": "26",
         "total_learning_paths": "4",
         "learning_paths": [
@@ -577,7 +601,7 @@
                 "lp_id": "21",
                 "lp_name": "Emotional Intelligence",
                 "lp_description": "<p>The WRWEI Certification equips professionals with essential skills to build resilience, promote mental wellness, and develop emotional intelligence in the workplace. This program provides practical strategies for personal and team well-being, navigating workplace politics, and fostering psychologically safe work environments.<br \/>\r\nParticipants will gain actionable insights and frameworks to improve workplace performance, relationships, and overall well-being.<\/p>\r\n",
-                "lp_banner": "https://dochek.com/assets/assets/img/default_learning_plan_banner.jpg",
+                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
                 "courses": [
                     {
                         "course_id": "898",
@@ -605,7 +629,7 @@
                 "lp_id": "20",
                 "lp_name": "Workplace Wellness",
                 "lp_description": "<p>The WRWEI Certification equips professionals with essential skills to build resilience, promote mental wellness, and develop emotional intelligence in the workplace. This program provides practical strategies for personal and team well-being, navigating workplace politics, and fostering psychologically safe work environments.<br \/>\r\nParticipants will gain actionable insights and frameworks to improve workplace performance, relationships, and overall well-being.<\/p>\r\n",
-                "lp_banner": "https://dochek.com/assets/assets/img/default_learning_plan_banner.jpg",
+                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
                 "courses": [
                     {
                         "course_id": "1080",
@@ -689,7 +713,7 @@
                 "lp_id": "19",
                 "lp_name": "Workplace Politics",
                 "lp_description": "<p>The WRWEI Certification equips professionals with essential skills to build resilience, promote mental wellness, and develop emotional intelligence in the workplace. This program provides practical strategies for personal and team well-being, navigating workplace politics, and fostering psychologically safe work environments.<br \/>\r\nParticipants will gain actionable insights and frameworks to improve workplace performance, relationships, and overall well-being.<\/p>\r\n",
-                "lp_banner": "https://dochek.com/assets/assets/img/default_learning_plan_banner.jpg",
+                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
                 "courses": [
                     {
                         "course_id": "869",
@@ -701,7 +725,7 @@
                 "lp_id": "18",
                 "lp_name": "Resilience at Work",
                 "lp_description": "<p>The WRWEI Certification equips professionals with essential skills to build resilience, promote mental wellness, and develop emotional intelligence in the workplace. This program provides practical strategies for personal and team well-being, navigating workplace politics, and fostering psychologically safe work environments.<br \/>\r\nParticipants will gain actionable insights and frameworks to improve workplace performance, relationships, and overall well-being.<\/p>\r\n",
-                "lp_banner": "https://dochek.com/assets/assets/img/default_learning_plan_banner.jpg",
+                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
                 "courses": [
                     {
                         "course_id": "1218",
@@ -716,7 +740,7 @@
         "certificate_name": "Certification in Strategic Marketing and Brand Leadership (CSMBL Certification)",
         "certificate_description": "<p>The CSMBL Certification is designed to provide a holistic understanding of modern marketing, customer behavior, branding, and innovation strategies that drive global business success. This program equips learners with strategic marketing frameworks, customer insight models, and leadership tools to effectively manage brands, enhance customer engagement, and lead high-performing sales and marketing teams. Participants will gain global perspectives through modules developed around Dr. Jagdish N. Sheth&rsquo;s marketing insights, ensuring real-world relevance and strategic application.<\/p>\r\n",
         "price": "₹ 799",
-        "duration": "7 Hrs 19 min",
+        "duration": "9 Hrs 47 Mins",
         "total_courses": "47",
         "total_learning_paths": "6",
         "learning_paths": [
@@ -724,7 +748,7 @@
                 "lp_id": "27",
                 "lp_name": "Innovation & Market Trends",
                 "lp_description": "<p>The CSMBL Certification is designed to provide a holistic understanding of modern marketing, customer behavior, branding, and innovation strategies that drive global business success. This program equips learners with strategic marketing frameworks, customer insight models, and leadership tools to effectively manage brands, enhance customer engagement, and lead high-performing sales and marketing teams.<br \/>\r\nParticipants will gain global perspectives through modules developed around Dr. Jagdish N. Sheth&rsquo;s marketing insights, ensuring real-world relevance and strategic application.<\/p>\r\n",
-                "lp_banner": "https://dochek.com/assets/assets/img/default_learning_plan_banner.jpg",
+                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
                 "courses": [
                     {
                         "course_id": "902",
@@ -776,7 +800,7 @@
                 "lp_id": "26",
                 "lp_name": "Sales Effectiveness & Leadership",
                 "lp_description": "<p>The CSMBL Certification is designed to provide a holistic understanding of modern marketing, customer behavior, branding, and innovation strategies that drive global business success. This program equips learners with strategic marketing frameworks, customer insight models, and leadership tools to effectively manage brands, enhance customer engagement, and lead high-performing sales and marketing teams.<br \/>\r\nParticipants will gain global perspectives through modules developed around Dr. Jagdish N. Sheth&rsquo;s marketing insights, ensuring real-world relevance and strategic application.<\/p>\r\n",
-                "lp_banner": "https://dochek.com/assets/assets/img/default_learning_plan_banner.jpg",
+                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
                 "courses": [
                     {
                         "course_id": "1192",
@@ -804,7 +828,7 @@
                 "lp_id": "25",
                 "lp_name": "Customer Focus & Satisfaction",
                 "lp_description": "<p>The CSMBL Certification is designed to provide a holistic understanding of modern marketing, customer behavior, branding, and innovation strategies that drive global business success. This program equips learners with strategic marketing frameworks, customer insight models, and leadership tools to effectively manage brands, enhance customer engagement, and lead high-performing sales and marketing teams.<br \/>\r\nParticipants will gain global perspectives through modules developed around Dr. Jagdish N. Sheth&rsquo;s marketing insights, ensuring real-world relevance and strategic application.<\/p>\r\n",
-                "lp_banner": "https://dochek.com/assets/assets/img/default_learning_plan_banner.jpg",
+                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
                 "courses": [
                     {
                         "course_id": "1859",
@@ -852,7 +876,7 @@
                 "lp_id": "24",
                 "lp_name": "Brand Management & Strategy",
                 "lp_description": "<p>The CSMBL Certification is designed to provide a holistic understanding of modern marketing, customer behavior, branding, and innovation strategies that drive global business success. This program equips learners with strategic marketing frameworks, customer insight models, and leadership tools to effectively manage brands, enhance customer engagement, and lead high-performing sales and marketing teams.<br \/>\r\nParticipants will gain global perspectives through modules developed around Dr. Jagdish N. Sheth&rsquo;s marketing insights, ensuring real-world relevance and strategic application.<\/p>\r\n",
-                "lp_banner": "https://dochek.com/assets/assets/img/default_learning_plan_banner.jpg",
+                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
                 "courses": [
                     {
                         "course_id": "909",
@@ -904,7 +928,7 @@
                 "lp_id": "23",
                 "lp_name": "The 4 A’s of Marketing Framework",
                 "lp_description": "<p>The CSMBL Certification is designed to provide a holistic understanding of modern marketing, customer behavior, branding, and innovation strategies that drive global business success. This program equips learners with strategic marketing frameworks, customer insight models, and leadership tools to effectively manage brands, enhance customer engagement, and lead high-performing sales and marketing teams.<br \/>\r\nParticipants will gain global perspectives through modules developed around Dr. Jagdish N. Sheth&rsquo;s marketing insights, ensuring real-world relevance and strategic application.<\/p>\r\n",
-                "lp_banner": "https://dochek.com/assets/assets/img/default_learning_plan_banner.jpg",
+                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
                 "courses": [
                     {
                         "course_id": "924",
@@ -924,7 +948,7 @@
                 "lp_id": "22",
                 "lp_name": "Marketing Foundations & Market Segmentation",
                 "lp_description": "<p>The CSMBL Certification is designed to provide a holistic understanding of modern marketing, customer behavior, branding, and innovation strategies that drive global business success. This program equips learners with strategic marketing frameworks, customer insight models, and leadership tools to effectively manage brands, enhance customer engagement, and lead high-performing sales and marketing teams.<br \/>\r\nParticipants will gain global perspectives through modules developed around Dr. Jagdish N. Sheth&rsquo;s marketing insights, ensuring real-world relevance and strategic application.<\/p>\r\n",
-                "lp_banner": "https://dochek.com/assets/assets/img/default_learning_plan_banner.jpg",
+                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
                 "courses": [
                     {
                         "course_id": "920",
@@ -953,6 +977,276 @@
                     {
                         "course_id": "803",
                         "course_name": "Introduction to Digital Marketing"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "certificate_id": "6",
+        "certificate_name": "Certification in Transformational Leadership & Team Excellence (CTLTE Certification)",
+        "certificate_description": "<p>This certification equips professionals with the knowledge and skills to lead teams effectively, manage people, drive innovation, and implement organizational change. Participants will learn proven leadership models, team dynamics strategies, and change management frameworks for modern workplaces.<\/p>\r\n",
+        "price": "₹ 799",
+        "duration": "5 Hrs 28 Mins",
+        "total_courses": "24",
+        "total_learning_paths": "5",
+        "learning_paths": [
+            {
+                "lp_id": "32",
+                "lp_name": "Leading Change",
+                "lp_description": "<p>This certification equips professionals with the knowledge and skills to lead teams effectively, manage people, drive innovation, and implement organizational change. Participants will learn proven leadership models, team dynamics strategies, and change management frameworks for modern workplaces.<\/p>\r\n",
+                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
+                "courses": [
+                    {
+                        "course_id": "1202",
+                        "course_name": "Dealing with Environmental Change and Uncertainty"
+                    },
+                    {
+                        "course_id": "1194",
+                        "course_name": "Five Key Elements of Successful Change Management"
+                    },
+                    {
+                        "course_id": "995",
+                        "course_name": "Strategies to Embrace Change at Work"
+                    },
+                    {
+                        "course_id": "943",
+                        "course_name": "Change Management Strategy and Process"
+                    },
+                    {
+                        "course_id": "752",
+                        "course_name": "McKinsey's 7-S Model"
+                    },
+                    {
+                        "course_id": "751",
+                        "course_name": "Kurt Lewin’s 3 Stages of Change Model"
+                    },
+                    {
+                        "course_id": "750",
+                        "course_name": "Kotter's 8-Step Change Model"
+                    }
+                ]
+            },
+            {
+                "lp_id": "31",
+                "lp_name": "Leading Innovation",
+                "lp_description": "<p>This certification equips professionals with the knowledge and skills to lead teams effectively, manage people, drive innovation, and implement organizational change. Participants will learn proven leadership models, team dynamics strategies, and change management frameworks for modern workplaces.<\/p>\r\n",
+                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
+                "courses": [
+                    {
+                        "course_id": "755",
+                        "course_name": "Trystorming"
+                    },
+                    {
+                        "course_id": "754",
+                        "course_name": "Leading Innovation Sessions"
+                    },
+                    {
+                        "course_id": "753",
+                        "course_name": "Building Innovation Teams"
+                    }
+                ]
+            },
+            {
+                "lp_id": "30",
+                "lp_name": "Sales Effectiveness",
+                "lp_description": "<p>This certification equips professionals with the knowledge and skills to lead teams effectively, manage people, drive innovation, and implement organizational change. Participants will learn proven leadership models, team dynamics strategies, and change management frameworks for modern workplaces.<\/p>\r\n",
+                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
+                "courses": [
+                    {
+                        "course_id": "1097",
+                        "course_name": "Mastering the Cold Calling Process"
+                    }
+                ]
+            },
+            {
+                "lp_id": "29",
+                "lp_name": "Leading People",
+                "lp_description": "<p>This certification equips professionals with the knowledge and skills to lead teams effectively, manage people, drive innovation, and implement organizational change. Participants will learn proven leadership models, team dynamics strategies, and change management frameworks for modern workplaces.<\/p>\r\n",
+                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
+                "courses": [
+                    {
+                        "course_id": "1092",
+                        "course_name": "Key Skills of Effective Virtual Leadership"
+                    },
+                    {
+                        "course_id": "1002",
+                        "course_name": "Importance of Leadership and People Management"
+                    },
+                    {
+                        "course_id": "965",
+                        "course_name": "Strategies and Skills for Effective Leadership and People Management"
+                    },
+                    {
+                        "course_id": "759",
+                        "course_name": "Motivating People – Theory X vs. Theory Y"
+                    },
+                    {
+                        "course_id": "758",
+                        "course_name": "Leading, Not Managing People"
+                    },
+                    {
+                        "course_id": "757",
+                        "course_name": "Holding People Accountable"
+                    },
+                    {
+                        "course_id": "756",
+                        "course_name": "Facilitating vs. Directing People"
+                    }
+                ]
+            },
+            {
+                "lp_id": "28",
+                "lp_name": "Leading Teams",
+                "lp_description": "<p>This certification equips professionals with the knowledge and skills to lead teams effectively, manage people, drive innovation, and implement organizational change. Participants will learn proven leadership models, team dynamics strategies, and change management frameworks for modern workplaces.<\/p>\r\n",
+                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
+                "courses": [
+                    {
+                        "course_id": "983",
+                        "course_name": "Brain-Based Ways to Improve Team Performance"
+                    },
+                    {
+                        "course_id": "764",
+                        "course_name": "Leading Generationally Diverse Teams"
+                    },
+                    {
+                        "course_id": "763",
+                        "course_name": "Leading Dynamic Teams"
+                    },
+                    {
+                        "course_id": "762",
+                        "course_name": "Leading and Managing Effective Virtual Teams"
+                    },
+                    {
+                        "course_id": "761",
+                        "course_name": "Leading and Motivating Call Center Teams"
+                    },
+                    {
+                        "course_id": "760",
+                        "course_name": "Employee Motivation – Intrinsic vs. Extrinsic Motivation"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "certificate_id": "7",
+        "certificate_name": "Certification in Strategic Finance & Business Acumen (CSFBA Certification)",
+        "certificate_description": "<p>The CSFBA Certification is designed for professionals seeking a deep understanding of modern financial systems, strategic decision-making, and digital transformation in finance. This program bridges core accounting principles, financial analytics, and business acumen, equipping learners to navigate both traditional finance and emerging fintech landscapes.<\/p>\r\n",
+        "price": "₹ 799",
+        "duration": "4 Hrs 12 Mins",
+        "total_courses": "17",
+        "total_learning_paths": "5",
+        "learning_paths": [
+            {
+                "lp_id": "37",
+                "lp_name": "Modern Finance & Technology",
+                "lp_description": "<p>The CSFBA Certification is designed for professionals seeking a deep understanding of modern financial systems, strategic decision-making, and digital transformation in finance. This program bridges core accounting principles, financial analytics, and business acumen, equipping learners to navigate both traditional finance and emerging fintech landscapes.<\/p>\r\n",
+                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
+                "courses": [
+                    {
+                        "course_id": "1081",
+                        "course_name": "Data Analytics for Finance"
+                    },
+                    {
+                        "course_id": "1079",
+                        "course_name": "Blockchain Revolution for Enterprises"
+                    },
+                    {
+                        "course_id": "996",
+                        "course_name": "Cryptography"
+                    }
+                ]
+            },
+            {
+                "lp_id": "36",
+                "lp_name": "Business Acumen",
+                "lp_description": "<p>The CSFBA Certification is designed for professionals seeking a deep understanding of modern financial systems, strategic decision-making, and digital transformation in finance. This program bridges core accounting principles, financial analytics, and business acumen, equipping learners to navigate both traditional finance and emerging fintech landscapes.<\/p>\r\n",
+                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
+                "courses": [
+                    {
+                        "course_id": "696",
+                        "course_name": "Forecasting and Budgeting "
+                    },
+                    {
+                        "course_id": "695",
+                        "course_name": "Finance for Non-Finance Managers"
+                    },
+                    {
+                        "course_id": "694",
+                        "course_name": "Examining the Balance Sheet"
+                    },
+                    {
+                        "course_id": "682",
+                        "course_name": "Business Acumen – Finance"
+                    }
+                ]
+            },
+            {
+                "lp_id": "35",
+                "lp_name": "Advanced Finance Topics",
+                "lp_description": "<p>The CSFBA Certification is designed for professionals seeking a deep understanding of modern financial systems, strategic decision-making, and digital transformation in finance. This program bridges core accounting principles, financial analytics, and business acumen, equipping learners to navigate both traditional finance and emerging fintech landscapes.<\/p>\r\n",
+                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
+                "courses": [
+                    {
+                        "course_id": "925",
+                        "course_name": "Shareholder Driven Companies"
+                    },
+                    {
+                        "course_id": "1198",
+                        "course_name": "Derivatives"
+                    }
+                ]
+            },
+            {
+                "lp_id": "34",
+                "lp_name": "Financial Analysis & Metrics",
+                "lp_description": "<p>The CSFBA Certification is designed for professionals seeking a deep understanding of modern financial systems, strategic decision-making, and digital transformation in finance. This program bridges core accounting principles, financial analytics, and business acumen, equipping learners to navigate both traditional finance and emerging fintech landscapes.<\/p>\r\n",
+                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
+                "courses": [
+                    {
+                        "course_id": "951",
+                        "course_name": "Intangible Assets"
+                    },
+                    {
+                        "course_id": "696",
+                        "course_name": "Forecasting and Budgeting "
+                    },
+                    {
+                        "course_id": "694",
+                        "course_name": "Examining the Balance Sheet"
+                    },
+                    {
+                        "course_id": "1665",
+                        "course_name": "Understanding Financial Performance Metrics"
+                    }
+                ]
+            },
+            {
+                "lp_id": "33",
+                "lp_name": "Core Accounting & Finance",
+                "lp_description": "<p>The CSFBA Certification is designed for professionals seeking a deep understanding of modern financial systems, strategic decision-making, and digital transformation in finance. This program bridges core accounting principles, financial analytics, and business acumen, equipping learners to navigate both traditional finance and emerging fintech landscapes.<\/p>\r\n",
+                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
+                "courses": [
+                    {
+                        "course_id": "1017",
+                        "course_name": "Consolidating Subsidiaries"
+                    },
+                    {
+                        "course_id": "987",
+                        "course_name": "Currency Transactions"
+                    },
+                    {
+                        "course_id": "985",
+                        "course_name": "Deferred Revenue"
+                    },
+                    {
+                        "course_id": "1182",
+                        "course_name": "Intercompany Transactions"
+                    },
+                    {
+                        "course_id": "938",
+                        "course_name": "Basics of Financial Accounting"
                     }
                 ]
             }
