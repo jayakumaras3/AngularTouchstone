@@ -84,6 +84,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
+    <!-- Cloudflare Turnstile — explicit render; widget is rendered by js/script.js -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async></script>
 </head>
 <body>
     <header class="header" id="mainHeader">
@@ -218,6 +220,12 @@
                                 </svg>
                             </button>
                         </div>
+                    </div>
+
+                    <!-- Cloudflare Turnstile CAPTCHA -->
+                    <div class="turnstile-wrapper">
+                        <div id="turnstileContainer"></div>
+                        <p id="captchaError" class="captcha-error-msg is-hidden" role="alert" aria-live="polite"></p>
                     </div>
 
                     <!-- Action Buttons -->

@@ -354,6 +354,23 @@ form {
     color: var(--muted);
 }
 
+/* Cloudflare Turnstile — size:'flexible' fills this wrapper's width, so it
+   stays responsive across desktop, tablet and mobile without a fixed size.
+   No margin needed: the parent form's `gap: 20px` already spaces it evenly
+   between the Confirm Password field and the action buttons. */
+.turnstile-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.captcha-error-msg {
+    font-size: 12px;
+    color: #c53030;
+    margin-top: 6px;
+}
+
 /* ── 6. Buttons ───────────────────────────────────────────── */
 .btn-group {
     display: flex;
@@ -595,6 +612,10 @@ html.theme-dark input::placeholder {
 html.theme-dark .helper-text,
 html.theme-dark .chk {
     color: #9ca3af;
+}
+
+html.theme-dark .captcha-error-msg {
+    color: #fecaca;
 }
 
 html.theme-dark .btn-primary:disabled,
