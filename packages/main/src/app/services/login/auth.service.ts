@@ -15,10 +15,14 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  login(username: string, password: string): Observable<any> {
+  /**
+   * @param turnstileToken Cloudflare Turnstile response token, verified server-side
+   *   against https://challenges.cloudflare.com/turnstile/v0/siteverify before authenticating.
+   */
+  login(username: string, password: string, turnstileToken: string): Observable<any> {
     return this.http.post<any>(
       `${this.apiUrl}/login_register`,
-      { username, password },
+      { username, password, turnstileToken },
       {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',

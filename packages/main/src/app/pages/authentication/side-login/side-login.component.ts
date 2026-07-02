@@ -9,11 +9,37 @@ import { LoginUrl } from '../../../config';
 import { FooterComponent } from '../../front-pages/footer/footer.component';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { DomSanitizer } from '@angular/platform-browser';
+import { environment } from '../../../../environments/environment';
+
+/** Cloudflare Turnstile — https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/ */
+interface TurnstileRenderOptions {
+  sitekey: string;
+  theme?: 'light' | 'dark' | 'auto';
+  size?: 'normal' | 'compact' | 'flexible';
+  callback?: (token: string) => void;
+  'expired-callback'?: () => void;
+  'error-callback'?: () => void;
+  'timeout-callback'?: () => void;
+}
+
+interface TurnstileApi {
+  render: (container: HTMLElement, options: TurnstileRenderOptions) => string;
+  reset: (widgetId?: string) => void;
+  remove: (widgetId: string) => void;
+  getResponse: (widgetId?: string) => string | undefined;
+}
+
+declare global {
+  interface Window {
+    turnstile?: TurnstileApi;
+  }
+}
 
 @Component({
   selector: 'app-side-login',
   imports: [CommonModule, RouterModule, FooterComponent, MaterialModule, FormsModule, ReactiveFormsModule],
-  templateUrl: './side-login.component.html'
+  templateUrl: './side-login.component.html',
+  styleUrl: './side-login.component.scss'
 })
 export class AppSideLoginComponent implements AfterViewInit, OnInit, OnDestroy {
   //  options = this.settings.getOptions();
@@ -29,6 +55,14 @@ export class AppSideLoginComponent implements AfterViewInit, OnInit, OnDestroy {
   // Template references for autofill workaround (Edge IE mode compatibility)
   @ViewChild('usernameInput') usernameInput!: ElementRef<HTMLInputElement>;
   @ViewChild('passwordInput') passwordInput!: ElementRef<HTMLInputElement>;
+
+  // Cloudflare Turnstile
+  @ViewChild('turnstileContainer') turnstileContainer!: ElementRef<HTMLDivElement>;
+  readonly turnstileSiteKey = environment.turnstileSiteKey;
+  turnstileToken: string = '';
+  captchaError: string = '';
+  private turnstileWidgetId: string | null = null;
+  private turnstileRenderAttempts = 0;
 
   constructor(
     private authservice: AuthService,
@@ -71,6 +105,9 @@ export class AppSideLoginComponent implements AfterViewInit, OnInit, OnDestroy {
     setTimeout(() => {
       this.syncAutofillValues();
     }, 500);
+
+    // Cloudflare Turnstile — explicit render (script is loaded via index.html)
+    this.renderTurnstileWidget();
   }
 
   ngOnInit(): void {
@@ -94,6 +131,68 @@ export class AppSideLoginComponent implements AfterViewInit, OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.successTimer !== null) {
       clearTimeout(this.successTimer);
+    }
+    if (this.turnstileWidgetId !== null && window.turnstile) {
+      window.turnstile.remove(this.turnstileWidgetId);
+    }
+  }
+
+  /**
+   * Renders the Cloudflare Turnstile widget explicitly into #turnstileContainer.
+   * The api.js script (loaded with `render=explicit` in index.html) may still be
+   * downloading when this runs, so poll briefly until `window.turnstile` exists.
+   */
+  private renderTurnstileWidget(): void {
+    const turnstile = window.turnstile;
+    if (turnstile && this.turnstileContainer?.nativeElement) {
+      this.turnstileWidgetId = turnstile.render(this.turnstileContainer.nativeElement, {
+        sitekey: this.turnstileSiteKey,
+        theme: 'auto',
+        size: 'flexible',
+        callback: (token: string) => {
+          this.ngZone.run(() => {
+            this.turnstileToken = token;
+            this.captchaError = '';
+          });
+        },
+        'expired-callback': () => {
+          this.ngZone.run(() => {
+            this.turnstileToken = '';
+            this.captchaError = 'Please complete the CAPTCHA verification.';
+          });
+        },
+        'error-callback': () => {
+          this.ngZone.run(() => {
+            this.turnstileToken = '';
+            this.captchaError = 'CAPTCHA verification failed. Please try again.';
+            this.resetTurnstile();
+          });
+        },
+        'timeout-callback': () => {
+          this.ngZone.run(() => {
+            this.turnstileToken = '';
+            this.captchaError = 'CAPTCHA verification failed. Please try again.';
+            this.resetTurnstile();
+          });
+        },
+      });
+    } else if (this.turnstileRenderAttempts < 30) {
+      this.turnstileRenderAttempts++;
+      setTimeout(() => this.renderTurnstileWidget(), 200);
+    } else {
+      // api.js never became available (e.g. blocked by network/extension) — surface a message
+      // rather than leaving the Sign In button silently disabled with no explanation.
+      this.ngZone.run(() => {
+        this.captchaError = 'Network error. Please try again.';
+      });
+    }
+  }
+
+  /** Resets the widget and clears any stored token, forcing re-verification (tokens are single-use). */
+  private resetTurnstile(): void {
+    this.turnstileToken = '';
+    if (this.turnstileWidgetId !== null && window.turnstile) {
+      window.turnstile.reset(this.turnstileWidgetId);
     }
   }
 
@@ -164,12 +263,17 @@ export class AppSideLoginComponent implements AfterViewInit, OnInit, OnDestroy {
 
     this.syncAutofillValues();
 
+    if (!this.turnstileToken) {
+      this.captchaError = 'Please complete the CAPTCHA verification.';
+      return;
+    }
+
     if (this.form.valid && !this.isSubmitting) {
       this.isSubmitting = true;
       this.errorMessage = '';
       this.lastAttemptTime = Date.now();
 
-      this.authservice.login(this.form.value.username!, this.form.value.password!)
+      this.authservice.login(this.form.value.username!, this.form.value.password!, this.turnstileToken)
         .subscribe({
           next: res => {
             this.isSubmitting = false;
@@ -196,6 +300,8 @@ export class AppSideLoginComponent implements AfterViewInit, OnInit, OnDestroy {
               }
             } else {
               this.loginAttempts++;
+              // Turnstile tokens are single-use — force re-verification on any failed attempt.
+              this.resetTurnstile();
               if (res.errors) {
                 // Get error text and sanitize it
                 const errorText = Object.values(res.errors).join(' ');
@@ -203,7 +309,7 @@ export class AppSideLoginComponent implements AfterViewInit, OnInit, OnDestroy {
                 this.errorMessage = this.sanitizer.sanitize(1, errorText) || 'Login failed';
               } else {
                // this.errorMessage = 'Username or Password don\'t match.';
-               
+
                this.errorMessage = res?.message || 'Username or Password don\'t match.';
               }
             }
@@ -211,6 +317,7 @@ export class AppSideLoginComponent implements AfterViewInit, OnInit, OnDestroy {
           error: err => {
             this.loginAttempts++;
             this.isSubmitting = false;
+            this.resetTurnstile();
           //  this.errorMessage = 'Server error. Please try again later.';
               this.errorMessage = err.error?.message || 'Server error. Please try again later.';
           }

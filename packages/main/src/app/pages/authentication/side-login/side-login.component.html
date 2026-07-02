@@ -110,6 +110,16 @@
                   </mat-error>
                 </mat-form-field>
 
+                <!-- Cloudflare Turnstile CAPTCHA -->
+                <div class="turnstile-wrapper m-b-16">
+                  <div #turnstileContainer></div>
+                  @if(captchaError) {
+                    <div class="captcha-error-msg" role="alert" aria-live="polite">
+                      {{ captchaError }}
+                    </div>
+                  }
+                </div>
+
                 <!-- Success Message (from PHP redirect) -->
                 @if(successMessage) {
                   <div class="alert alert-success m-b-16" style="display:flex; align-items:flex-start; gap:10px; color: #0f5132; padding: 12px 16px; border: 1px solid #badbcc; border-radius: 6px; background-color: #d1e7dd; font-size: 14px; font-weight: 500; line-height: 1.5;">
@@ -135,7 +145,7 @@
                 </div>
 
                 <!-- SUBMIT BUTTON -->
-                <button mat-flat-button color="primary" class="w-100" [disabled]="isSubmitting">
+                <button mat-flat-button color="primary" class="w-100" [disabled]="isSubmitting || form.invalid || !turnstileToken">
                   {{ isSubmitting ? 'Signing In...' : 'Sign In' }}
                 </button>
 

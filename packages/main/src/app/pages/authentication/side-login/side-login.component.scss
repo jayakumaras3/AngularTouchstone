@@ -1,0 +1,21 @@
+// ── Cloudflare Turnstile ───────────────────────────────────────────────────────
+// size:'flexible' makes the widget fill this wrapper's width so it stays
+// responsive across desktop, tablet and mobile without any fixed pixel width.
+.turnstile-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+
+  .cf-turnstile {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+.captcha-error-msg {
+  font-size: 12px;
+  color: #f44336;
+  margin-top: 4px;
+  padding-left: 2px;
+}
