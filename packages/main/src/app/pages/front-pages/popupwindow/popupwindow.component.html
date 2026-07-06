@@ -36,6 +36,15 @@
       <mat-label>Message / Project Details (optional)</mat-label>
       <textarea matInput formControlName="message" rows="3"></textarea>
     </mat-form-field>
+
+    <div class="turnstile-wrapper">
+      <div #turnstileContainer></div>
+      @if (captchaError) {
+        <div class="captcha-error-msg" role="alert" aria-live="polite">
+          {{ captchaError }}
+        </div>
+      }
+    </div>
   </form>
 </mat-dialog-content>
 
@@ -45,7 +54,7 @@
       mat-raised-button
             color="primary"
             (click)="onSubmit()"
-            [disabled]="form.invalid || isSubmitting"
+            [disabled]="form.invalid || isSubmitting || !turnstileToken"
           >
             {{ isSubmitting ? 'Submitting...' : 'Submit' }}
           </button>

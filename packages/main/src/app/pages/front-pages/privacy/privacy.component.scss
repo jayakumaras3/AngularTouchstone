@@ -6,6 +6,15 @@
      justify-content: center;
     align-items: center;
     padding: 40px 20px;
+
+    /* Follows the app's active theme (see app/config.ts + assets/scss/theme-variables)
+       instead of a hardcoded white box, so it blends in under both themes and under
+       browser/OS forced-dark: color-scheme: light dark tells the browser this
+       subtree genuinely supports both, which is enough to stop auto-dark heuristics
+       from repainting it independently of the colors below. */
+    color-scheme: light dark;
+    background-color: var(--mat-sys-background);
+    color: var(--mat-sys-on-background);
 }/* ==== Layout Base ==== */
 .privacy-header{
  
@@ -126,18 +135,21 @@ section.privacy-section {
 
 /* x_panel heading & content styles */
 .x_panel {
+  background-color: var(--mat-sys-background);
+  color: var(--mat-sys-on-background);
+
   h2 {
-    color: #1d3461;
+    color: var(--mat-sys-primary);
     font-size: 1.4rem;
     font-weight: 700;
     margin-top: 2.5rem;
     margin-bottom: 0.75rem;
     padding-bottom: 8px;
-    border-bottom: 2px solid rgba(29, 52, 97, 0.2);
+    border-bottom: 2px solid var(--mat-sys-outline-variant);
   }
 
   h3 {
-    color: #1d6fa4;
+    color: var(--mat-sys-secondary);
     font-size: 1.1rem;
     font-weight: 700;
     margin-top: 1.5rem;
@@ -145,7 +157,7 @@ section.privacy-section {
   }
 
   p {
-    color: #374151;
+    color: var(--mat-sys-on-background);
     font-size: 1rem;
     line-height: 1.75;
     margin-bottom: 0.75rem;
@@ -156,7 +168,7 @@ section.privacy-section {
     margin-bottom: 1rem;
 
     li {
-      color: #374151;
+      color: var(--mat-sys-on-background);
       font-size: 1rem;
       line-height: 1.75;
       margin-bottom: 0.4rem;
@@ -169,12 +181,12 @@ section.privacy-section {
   }
 
   a {
-    color: #1d6fa4;
+    color: var(--mat-sys-primary);
     text-decoration: none;
 
     &:hover {
       text-decoration: underline;
-      color: #1d3461;
+      color: var(--mat-sys-secondary);
     }
   }
 }
@@ -187,30 +199,30 @@ section.privacy-section {
   margin-bottom: 1.5rem;
 
   thead tr {
-    background-color: #1d3461;
+    background-color: var(--mat-sys-primary);
 
     th {
-      background-color: #1d3461;
-      color: #ffffff;
+      background-color: var(--mat-sys-primary);
+      color: var(--mat-sys-on-primary);
       font-weight: 700;
       padding: 12px 16px;
-      border: 1px solid #1d3461;
+      border: 1px solid var(--mat-sys-primary);
       vertical-align: middle;
       white-space: normal;
     }
   }
 
   tbody tr {
-    background-color: #ffffff;
+    background-color: var(--mat-sys-background);
 
     &:nth-child(even) {
-      background-color: #f8f9fa;
+      background-color: var(--mat-sys-surface-bright);
     }
 
     td {
       padding: 11px 16px;
-      border: 1px solid #dee2e6;
-      color: #374151;
+      border: 1px solid var(--mat-sys-outline-variant);
+      color: var(--mat-sys-on-background);
       vertical-align: middle;
     }
   }
@@ -240,3 +252,8 @@ section.privacy-section {
     padding: 12px 15px;
   }
 }
+
+/* .bgwidth/.x_panel already read the app's live --mat-sys-* theme variables,
+   so they repaint automatically whenever app/config.ts switches the
+   html.dark-theme / html.light-theme class - no separate dark-mode branch
+   needed here. */
