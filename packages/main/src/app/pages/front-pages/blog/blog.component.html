@@ -13,7 +13,7 @@
       @if(cardimg.id === 100 || cardimg.id === 101 || cardimg.id === 102) {
         <article class="featured-blog-card" (click)="getNavigate(cardimg)">
           <div class="featured-blog-card__media">
-            <img [src]="cardimg.imgSrc" class="featured-blog-img" alt="Smart Learning with DOCHEK" />
+            <img [src]="cardimg.imgSrc" class="featured-blog-img" [class.featured-blog-img--top]="cardimg.id === 100" alt="Smart Learning with DOCHEK" />
           </div>
           <div class="featured-blog-card__content">
             <mat-chip class="featured-chip">
