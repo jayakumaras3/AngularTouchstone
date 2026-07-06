@@ -113,7 +113,21 @@ export const FrontPagesRoutes: Routes = [
       { path: 'coursedetails/:courseId', component: ProductDetailsComponent },
       { path: 'coursedetails', component: ProductDetailsComponent }, // Fallback for backward compatibility
       { path: 'privacy', component: PrivacyComponent },
-      { path: 'terms', component:TermsComponent },      
+      { path: 'terms', component:TermsComponent },
+      {
+        // Ads-only landing page — reached exclusively via direct campaign URLs
+        // (LinkedIn/Facebook/Google Ads). Intentionally not linked from any nav,
+        // footer, or sitemap.
+        path: 'landing',
+        loadComponent: () =>
+          import('./ads-landing/ads-landing.component').then((m) => m.AdsLandingComponent),
+        data: {
+          landingSlug: 'dochek-awareness',
+          title: 'Dochek | The LMS Built for Companies That Take Learning Seriously',
+          description:
+            "Whether you're training 10 people or 10,000, Dochek keeps your L&D running without the complexity. See how Dochek + 500 microlearning courses work for your team.",
+        },
+      },
     ],
   },
 ];

@@ -70,7 +70,7 @@ export class AppComponent implements OnInit {
     const cleanUrl = (url || '').split('?')[0].toLowerCase();
     const publicHeaderPatterns = [
       /^\/$/,
-      /^\/(homepage|about|features|catalog|blogs|contact|coursecatalog|sme-catalog|certifications|book-demo|privacy|terms)$/,
+      /^\/(homepage|about|features|catalog|blogs|contact|coursecatalog|sme-catalog|certifications|book-demo|privacy|terms|landing)$/,
       /^\/sme-catalog\/.+/,
       /^\/certification-details(?:\/.+)?$/,
       /^\/coursedetails(?:\/.+)?$/,

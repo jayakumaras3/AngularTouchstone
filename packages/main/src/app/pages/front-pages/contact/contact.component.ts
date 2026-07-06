@@ -14,7 +14,6 @@ import { FooterComponent } from '../footer/footer.component';
 import { IconModule } from '../../../icon/icon.module';
 import { MaterialModule } from '../../../material.module';
 import { environment } from '../../../../environments/environment';
-import { TurnstileService, TurnstileFailureReason } from '../../../services/turnstile/turnstile.service';
 
 @Component({
   selector: 'app-contact',
@@ -39,25 +38,24 @@ export class ContactComponent implements OnInit, AfterViewInit, OnDestroy {
   form: FormGroup;
   backgroundStyle: any;
 
-  // Cloudflare Turnstile — token kept in memory only (never localStorage/sessionStorage).
-  @ViewChild('turnstileContainer') turnstileContainer!: ElementRef<HTMLDivElement>;
-  readonly turnstileSiteKey = environment.turnstileSiteKey;
-  turnstileToken = '';
-  captchaError: string | null = null;
+  // Cloudflare Turnstile — same explicit-render pattern used in SignupComponent.
+  @ViewChild('turnstileContainer') private turnstileContainer!: ElementRef;
   private turnstileWidgetId: string | null = null;
+  private readonly turnstileSiteKey = environment.turnstileSiteKey;
 
-   constructor(
-     private fb: FormBuilder,
-     private authService: AuthService,
-     private turnstileService: TurnstileService
-   ) {
+   constructor(private fb: FormBuilder, private authService: AuthService) {
     this.form = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       enquiry: ['Partnership', Validators.required],
-      comment: ['']
+      comment: [''],
+      captchaVerified: [false, Validators.requiredTrue],
     });
+  }
+
+  get f() {
+    return this.form.controls;
   }
 
   ngOnInit() {
@@ -65,43 +63,31 @@ export class ContactComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    this.turnstileService
-      .render(this.turnstileContainer.nativeElement, {
+    this.waitForTurnstile();
+  }
+
+  private waitForTurnstile(attempts = 0): void {
+    const turnstile = (window as any).turnstile;
+    if (turnstile) {
+      this.turnstileWidgetId = turnstile.render(this.turnstileContainer.nativeElement, {
         sitekey: this.turnstileSiteKey,
         theme: 'auto',
-        size: 'flexible',
-        onVerify: (token) => {
-          this.turnstileToken = token;
-          this.captchaError = null;
+        callback: () => {
+          this.form.patchValue({ captchaVerified: true });
         },
-        onFailure: (reason) => this.handleCaptchaFailure(reason),
-      })
-      .then((widgetId) => {
-        this.turnstileWidgetId = widgetId;
+        'expired-callback': () => {
+          this.form.patchValue({ captchaVerified: false });
+        },
       });
-  }
-
-  ngOnDestroy(): void {
-    this.turnstileService.remove(this.turnstileWidgetId);
-  }
-
-  private handleCaptchaFailure(reason: TurnstileFailureReason): void {
-    this.turnstileToken = '';
-
-    if (reason === 'expired') {
-      this.captchaError = 'Please complete CAPTCHA verification.';
-    } else if (reason === 'network') {
-      this.captchaError = 'Unable to verify CAPTCHA. Please try again.';
-    } else {
-      this.captchaError = 'CAPTCHA verification failed.';
-      this.resetTurnstile();
+    } else if (attempts < 30) {
+      setTimeout(() => this.waitForTurnstile(attempts + 1), 200);
     }
   }
 
-  /** Turnstile tokens are single-use — force re-verification after any failed attempt. */
-  private resetTurnstile(): void {
-    this.turnstileToken = '';
-    this.turnstileService.reset(this.turnstileWidgetId);
+  ngOnDestroy(): void {
+    if (this.turnstileWidgetId !== null && (window as any).turnstile) {
+      (window as any).turnstile.remove(this.turnstileWidgetId);
+    }
   }
 
 
@@ -123,30 +109,28 @@ setBackground() {
 isSubmitting = false; // track submission state
 
 submit() {
+  this.form.markAllAsTouched();
+
   if (this.form.valid && !this.isSubmitting) {
-
-    if (!this.turnstileToken) {
-      this.captchaError = 'Please complete CAPTCHA verification.';
-      return;
-    }
-
     this.isSubmitting = true; // disable button immediately
 
-    this.authService.sendProductEnquiry({ ...this.form.value, turnstileToken: this.turnstileToken }).subscribe({
+    const { firstName, lastName, email, enquiry, comment } = this.form.value;
+
+    this.authService.sendProductEnquiry({ firstName, lastName, email, enquiry, comment }).subscribe({
       next: (res) => {
         if (res.success) {
           alert('✅ Product enquiry submitted successfully!');
           this.form.reset();
-          this.resetTurnstile();
+          if (this.turnstileWidgetId !== null && (window as any).turnstile) {
+            (window as any).turnstile.reset(this.turnstileWidgetId);
+          }
         } else {
           alert(res.message || 'Failed to submit enquiry.');
-          this.resetTurnstile();
         }
       },
       error: (err) => {
         console.error('HTTP Error:', err);
         alert('Server error. Check console for details.');
-        this.resetTurnstile();
       },
       complete: () => {
         this.isSubmitting = false; // re-enable button after response

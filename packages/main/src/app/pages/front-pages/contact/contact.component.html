@@ -58,9 +58,9 @@
 
             <div class="turnstile-wrapper">
               <div #turnstileContainer></div>
-              @if (captchaError) {
-                <div class="captcha-error-msg" role="alert" aria-live="polite">
-                  {{ captchaError }}
+              @if (f['captchaVerified'].touched && f['captchaVerified'].invalid) {
+                <div class="captcha-error-msg" role="alert">
+                  Please complete CAPTCHA verification.
                 </div>
               }
             </div>
@@ -69,7 +69,7 @@
               mat-flat-button
               color="primary"
               type="submit"
-              [disabled]="form.invalid || isSubmitting || !turnstileToken"
+              [disabled]="form.invalid || isSubmitting"
             >
               {{ isSubmitting ? 'Submitting...' : 'Submit' }}
             </button>

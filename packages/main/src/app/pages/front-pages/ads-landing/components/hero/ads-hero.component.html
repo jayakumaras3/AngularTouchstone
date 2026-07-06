@@ -1,0 +1,33 @@
+<section [id]="config.id" class="ads-hero spacing-top-bottom">
+  <div class="container">
+    <div class="ads-hero__grid">
+      <div class="ads-hero__content">
+        @if (config.eyebrow) {
+          <p class="f-s-14 f-w-600 text-primary m-b-8">{{ config.eyebrow }}</p>
+        }
+        <h1 class="f-s-48 section-sub-title lh-normal m-b-16">{{ config.headline }}</h1>
+        <p class="f-s-18 lh-normal m-b-24">{{ config.description }}</p>
+        <a
+          mat-stroked-button
+          color="primary"
+          [href]="'#' + config.ctaFragment"
+          (click)="scrollToFragment($event, config.ctaFragment)"
+        >
+          {{ config.ctaLabel }}
+        </a>
+      </div>
+
+      <div class="ads-hero__image">
+        <img [src]="config.imageUrl" [alt]="config.imageAlt" class="img-fluid" />
+      </div>
+
+      <div class="ads-hero__form">
+        <mat-card>
+          <mat-card-content>
+            <app-lead-form [formId]="config.ctaFragment" [config]="config.form"></app-lead-form>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</section>

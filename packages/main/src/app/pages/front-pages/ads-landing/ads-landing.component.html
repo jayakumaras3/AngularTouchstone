@@ -1,0 +1,38 @@
+@if (config) {
+  <main class="ads-landing" [attr.aria-label]="config.campaignName + ' landing page'">
+    <app-ads-hero [config]="config.hero"></app-ads-hero>
+
+    @for (section of config.sections; track section.id) {
+      <app-cta-section [config]="section"></app-cta-section>
+    }
+
+    <section [id]="config.finalCta.id" class="ads-landing__final-cta spacing-top-bottom">
+      <div class="container">
+        <div class="row align-items-start">
+          <div class="col-md-6 m-b-30">
+            <h2 class="f-s-40 section-sub-title lh-normal m-b-16">{{ config.finalCta.heading }}</h2>
+            @if (config.finalCta.description) {
+              <p class="f-s-18 lh-normal">{{ config.finalCta.description }}</p>
+            }
+          </div>
+
+          <div class="col-md-6 m-b-30">
+            <mat-card>
+              <mat-card-content>
+                <app-lead-form [formId]="config.finalCta.id" [config]="config.finalCta.form"></app-lead-form>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+
+        @if (config.finalCta.featureCards) {
+          <div class="m-t-48">
+            <app-feature-cards [config]="config.finalCta.featureCards"></app-feature-cards>
+          </div>
+        }
+      </div>
+    </section>
+
+    <app-footer></app-footer>
+  </main>
+}

@@ -7,19 +7,19 @@
   forgotUrl: 'http://172.16.0.173/DOCHEK',
   contactApiUrl: 'http://172.16.0.173/DOCHEK/landing',
   // Cloudflare Turnstile — public site key only. Never put the secret key here.
-  turnstileSiteKey: '0x4AAAAAADuaw8KeeasZQeVF'
+  turnstileSiteKey: '0x4AAAAAADh_GIYrBeeJ7VaM'
 };
 /*export const environment = {
   production: false,
   apiUrl: 'https://staging.dochek.com/landing',
   forgotUrl: 'https://staging.dochek.com/landing',
   contactApiUrl: 'https://staging.dochek.com/landing',
-  turnstileSiteKey: '0x4AAAAAADuaw8KeeasZQeVF'
+  turnstileSiteKey: '0x4AAAAAADh_GIYrBeeJ7VaM'
 };
 export const environment = {
   production: false,
   apiUrl: 'https://dochek.com/landing',
   forgotUrl: 'https://dochek.com/landing',
   contactApiUrl: 'https://dochek.com/landing',
-  turnstileSiteKey: '0x4AAAAAADuaw8KeeasZQeVF'
+  turnstileSiteKey: '0x4AAAAAADh_GIYrBeeJ7VaM'
 };*/
