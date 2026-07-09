@@ -24,15 +24,63 @@
 }
 
 .ads-landing__final-cta-form-shell {
-  max-width: 420px;
+  position: relative;
+  max-width: 520px;
   margin-left: auto;
-  border-radius: 20px;
+  border-radius: 28px;
   overflow: hidden;
-  box-shadow: var(--mat-sys-level3);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.16);
+  border: 1px solid color-mix(in srgb, var(--mat-sys-primary) 20%, transparent);
+}
+
+.ads-landing__final-cta-form-shell::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(
+    90deg,
+    var(--mat-sys-primary) 0%,
+    color-mix(in srgb, var(--mat-sys-primary) 55%, #ffffff) 100%
+  );
+  z-index: 1;
+}
+
+.ads-landing__final-cta-form-card {
+  background: color-mix(in srgb, var(--mat-sys-primary) 4%, var(--mat-sys-surface)) !important;
 }
 
 .ads-landing__final-cta-form-card .mat-mdc-card-content {
-  padding: 32px !important;
+  padding: 56px !important;
+}
+
+// Scoped, cosmetic-only overrides matching the hero form's treatment — bigger
+// card, taller inputs, bolder button — so the CTA reads clearly here too.
+// Scoped to .ads-landing__final-cta-form-shell so nothing leaks elsewhere and
+// LeadFormComponent's own files stay untouched.
+.ads-landing__final-cta-form-shell ::ng-deep .mat-mdc-form-field {
+  --mat-form-field-outlined-container-shape: 14px;
+  --mat-form-field-container-height: 56px;
+}
+
+.ads-landing__final-cta-form-shell ::ng-deep .lead-form h3 {
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.ads-landing__final-cta-form-shell ::ng-deep .lead-form__submit {
+  height: 58px;
+  margin-top: 20px;
+  font-size: 17px;
+  font-weight: 700;
+  border-radius: 14px;
+  transition: transform 0.2s ease;
+
+  &:not(:disabled):hover {
+    transform: translateY(-3px);
+  }
 }
 
 .ads-landing__final-cta-cards {
@@ -61,5 +109,9 @@
 @media (max-width: 767px) {
   .ads-landing__final-cta {
     padding: 40px 0;
+  }
+
+  .ads-landing__final-cta-form-card .mat-mdc-card-content {
+    padding: 24px !important;
   }
 }

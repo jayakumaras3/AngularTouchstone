@@ -1,19 +1,22 @@
 .ads-hero {
   position: relative;
   overflow: hidden;
-  padding: 56px 0;
+  padding: 100px 0 90px;
+  background: linear-gradient(180deg,
+      color-mix(in srgb, var(--mat-sys-primary) 4%, var(--mat-sys-background)) 0%,
+      var(--mat-sys-background) 100%);
 }
 
 .ads-hero__glow {
   position: absolute;
-  top: -140px;
-  right: -100px;
-  width: 420px;
-  height: 420px;
+  top: 120px;
+  right: -120px;
+  width: 480px;
+  height: 480px;
   border-radius: 50%;
   background: radial-gradient(circle, var(--mat-sys-primary) 0%, transparent 70%);
-  opacity: 0.12;
-  filter: blur(60px);
+  opacity: 0.15;
+  filter: blur(70px);
   pointer-events: none;
 }
 
@@ -22,8 +25,8 @@
   z-index: 1;
   display: grid;
   grid-template-columns: 1.4fr 1fr;
-  gap: 48px;
-  align-items: center;
+  gap: 72px;
+  align-items: start;
 }
 
 .ads-hero__content {
@@ -43,78 +46,128 @@
 }
 
 .ads-hero__heading {
-  font-size: clamp(2.75rem, 1.8rem + 2.8vw, 4rem);
-  font-weight: 700;
-  line-height: 1.15;
+  font-size: clamp(2.75rem, 1.6rem + 3.2vw, 2rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
   margin: 0 0 24px;
-  color: var(--mat-sys-on-background);
 }
 
 .ads-hero__description {
-  font-size: 18px;
+  font-size: 22px;
   line-height: 1.7;
-  max-width: 540px;
+  max-width: 560px;
   margin: 0 0 32px;
   color: var(--mat-sys-on-surface-variant, var(--mat-sys-on-background));
 }
 
-.ads-hero__visual {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.ads-hero__image-card {
+.ads-hero__content-image {
   border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+  margin: 0 0 32px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 
   img {
     display: block;
     width: 100%;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 16 / 10;
     object-fit: cover;
+    object-position: center 25%;
   }
 
   &:hover {
     transform: translateY(-4px);
-    box-shadow: 0 28px 70px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 26px 60px rgba(15, 23, 42, 0.12);
   }
 }
 
-.ads-hero__form-shell {
-  border-radius: 24px;
+.ads-hero__cta {
+  height: 56px;
+  padding: 0 28px;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.ads-hero__visual-card {
+  border-radius: 28px;
   overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+  background: var(--mat-sys-surface);
+  box-shadow: 0 30px 80px rgba(15, 23, 42, 0.1);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 36px 90px rgba(15, 23, 42, 0.14);
+  }
+}
+
+.ads-hero__visual-form {
+  padding: 40px;
+}
+
+.ads-hero__form-card {
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
 .ads-hero__form-card .mat-mdc-card-content {
-  padding: 40px !important;
+  padding: 0 !important;
 }
 
-// Scoped, cosmetic-only override so inputs inside this hero's lead form read
-// as pill-rounded (12-14px) to match the card's premium feel; scoped to
-// .ads-hero__form-shell so it never affects other LeadFormComponent usages
-// on the page, and LeadFormComponent's own files are untouched.
-.ads-hero__form-shell ::ng-deep .mat-mdc-form-field {
+// Scoped, cosmetic-only overrides so this hero's lead form matches the
+// premium spec (56px inputs/button, 14px radius, gradient CTA) — scoped to
+// .ads-hero__visual-form so nothing leaks to other LeadFormComponent usages
+// on the page, and LeadFormComponent's own files stay untouched.
+.ads-hero__visual-form ::ng-deep .mat-mdc-form-field {
   --mat-form-field-outlined-container-shape: 14px;
+  --mat-form-field-container-height: 56px;
 }
 
-@media (min-width: 1600px) {
+.ads-hero__visual-form ::ng-deep .lead-form h3 {
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.ads-hero__visual-form ::ng-deep .lead-form__submit {
+  height: 56px;
+  margin-top: 20px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 14px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  // Gradient only applies once the form is valid — scoped to :not(:disabled)
+  // so Material's own disabled (dimmed/greyed) styling still shows clearly
+  // when the button isn't clickable yet. Previously this was unconditional,
+  // so enabled and disabled looked identical.
+  &:not(:disabled) {
+    background: linear-gradient(135deg,
+        var(--mat-sys-primary) 0%,
+        color-mix(in srgb, var(--mat-sys-primary) 78%, black) 100%) !important;
+  }
+
+  &:not(:disabled):hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.16);
+  }
+}
+
+@media (min-width: 1920px) {
   .ads-hero__grid {
-    gap: 64px;
+    gap: 88px;
   }
 }
 
 @media (max-width: 1023px) {
   .ads-hero {
-    padding: 48px 0;
+    padding: 72px 0 64px;
   }
 
   .ads-hero__grid {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 40px;
   }
 
   .ads-hero__content {
@@ -124,30 +177,26 @@
   .ads-hero__description {
     max-width: none;
   }
-
-  .ads-hero__image-card img {
-    aspect-ratio: 21 / 9;
-  }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 599px) {
   .ads-hero {
-    padding: 40px 0;
+    padding: 48px 0 40px;
   }
 
   .ads-hero__grid {
-    gap: 24px;
+    gap: 32px;
   }
 
-  .ads-hero__visual {
-    gap: 16px;
+  .ads-hero__heading {
+    letter-spacing: -0.02em;
   }
 
-  .ads-hero__image-card img {
-    aspect-ratio: 16 / 9;
+  .ads-hero__description {
+    font-size: 18px;
   }
 
-  .ads-hero__form-card .mat-mdc-card-content {
-    padding: 24px !important;
+  .ads-hero__visual-form {
+    padding: 24px;
   }
 }

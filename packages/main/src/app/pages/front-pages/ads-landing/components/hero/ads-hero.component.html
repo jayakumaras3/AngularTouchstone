@@ -9,10 +9,16 @@
         }
         <h1 class="ads-hero__heading">{{ config.headline }}</h1>
         <p class="ads-hero__description">{{ config.description }}</p>
+
+        <div class="ads-hero__content-image">
+          <img [src]="config.imageUrl" [alt]="config.imageAlt" />
+        </div>
+
         @if (config.ctaLabel) {
           <a
             mat-stroked-button
             color="primary"
+            class="ads-hero__cta"
             [href]="'#' + config.ctaFragment"
             (click)="scrollToFragment($event, config.ctaFragment!)"
           >
@@ -21,19 +27,13 @@
         }
       </div>
 
-      <div class="ads-hero__visual">
-        <div class="ads-hero__image-card">
-          <img [src]="config.imageUrl" [alt]="config.imageAlt" />
-        </div>
-
-        <div class="ads-hero__form">
-          <div class="ads-hero__form-shell">
-            <mat-card class="ads-hero__form-card">
-              <mat-card-content>
-                <app-lead-form formId="ads-lead-form" [config]="config.form"></app-lead-form>
-              </mat-card-content>
-            </mat-card>
-          </div>
+      <div class="ads-hero__visual-card">
+        <div class="ads-hero__visual-form">
+          <mat-card class="ads-hero__form-card">
+            <mat-card-content>
+              <app-lead-form formId="ads-lead-form" [config]="config.form"></app-lead-form>
+            </mat-card-content>
+          </mat-card>
         </div>
       </div>
     </div>
