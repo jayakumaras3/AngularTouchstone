@@ -1,11 +1,11 @@
 <div class="feature-cards">
   @if (config.heading) {
-    <h2 class="f-s-40 section-sub-title lh-normal text-center m-b-24">{{ config.heading }}</h2>
+    <h2 class="feature-cards__heading text-center">{{ config.heading }}</h2>
   }
 
   <div class="feature-cards__grid">
     @for (item of config.items; track item.title) {
-      <div class="feature-cards__card bg-light-primary rounded-8 p-24 text-center">
+      <div class="feature-cards__card bg-light-primary text-center">
         <i-tabler [name]="item.icon" class="icon-40 text-primary" aria-hidden="true"></i-tabler>
         <h3 class="f-s-20 m-t-16 m-b-8 lh-normal">{{ item.title }}</h3>
         <p class="f-s-14 m-0 lh-normal">{{ item.description }}</p>

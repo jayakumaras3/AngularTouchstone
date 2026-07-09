@@ -1,0 +1,216 @@
+<app-header></app-header>
+
+<main class="ads4">
+  <!-- 1. Hero -->
+  <section class="ads4-hero" aria-label="Introduction">
+    <span class="ads4-hero__shape ads4-hero__shape--one" aria-hidden="true"></span>
+    <span class="ads4-hero__shape ads4-hero__shape--two" aria-hidden="true"></span>
+
+    <div class="ads4-container ads4-hero__grid">
+      <div class="ads4-hero__content">
+        <span class="ads4-badge">{{ heroBadge }}</span>
+        <h1 class="ads4-hero__heading">{{ heroHeading }}</h1>
+        <p class="ads4-hero__subheading">{{ heroSubheading }}</p>
+
+        <ul class="ads4-hero__benefits">
+          @for (benefit of heroBenefits; track benefit) {
+            <li>
+              <i-tabler name="circle-check" class="icon-20" aria-hidden="true"></i-tabler>
+              <span>{{ benefit }}</span>
+            </li>
+          }
+        </ul>
+
+        <a
+          mat-flat-button
+          color="primary"
+          class="ads4-hero__cta"
+          href="#ads-lead-form"
+          (click)="scrollToFragment($event, 'ads-lead-form')"
+        >
+          {{ heroCtaLabel }}
+        </a>
+      </div>
+
+      <div class="ads4-hero__visual">
+        <div class="ads4-hero__image glass-float">
+          <img [src]="heroImage" [alt]="heroImageAlt" loading="eager" />
+        </div>
+
+        <div id="ads-lead-form" class="ads4-form-card glass-card">
+          @if (formSubmitted) {
+            <div class="ads4-form-card__success" role="status" aria-live="polite">
+              <i-tabler name="circle-check" class="icon-40" aria-hidden="true"></i-tabler>
+              <h2 class="ads4-form-card__success-title">You're all set!</h2>
+              <p class="ads4-form-card__success-text">Our team will reach out shortly to schedule your demo.</p>
+            </div>
+          } @else {
+            <h2 class="ads4-form-card__heading">🚀 See Dochek in Action</h2>
+
+            <form
+              class="ads4-form-card__form"
+              [formGroup]="leadForm"
+              (ngSubmit)="submit()"
+              aria-label="See Dochek in Action"
+              novalidate
+            >
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Full Name</mat-label>
+                <input matInput formControlName="fullName" />
+                @if (hasError('fullName', 'required')) {
+                  <mat-error>Full name is required.</mat-error>
+                }
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Work Email</mat-label>
+                <input matInput type="email" formControlName="workEmail"  />
+                @if (hasError('workEmail', 'required')) {
+                  <mat-error>Work email is required.</mat-error>
+                } @else if (hasError('workEmail', 'email')) {
+                  <mat-error>Enter a valid email address.</mat-error>
+                }
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Company Name</mat-label>
+                <input matInput formControlName="companyName"  />
+                @if (hasError('companyName', 'required')) {
+                  <mat-error>Company name is required.</mat-error>
+                }
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Team Size</mat-label>
+                <mat-select formControlName="teamSize">
+                  @for (option of teamSizeOptions; track option.value) {
+                    <mat-option [value]="option.value">{{ option.label }}</mat-option>
+                  }
+                </mat-select>
+                @if (hasError('teamSize', 'required')) {
+                  <mat-error>Team size is required.</mat-error>
+                }
+              </mat-form-field>
+
+              <button
+                mat-flat-button
+                color="primary"
+                type="submit"
+                class="w-100 ads4-form-card__submit"
+                [disabled]="leadForm.invalid"
+              >
+                Schedule Demo →
+              </button>
+            </form>
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Trust / Social proof -->
+  <section class="ads4-trust" aria-labelledby="ads4-trust-heading">
+    <div class="ads4-container">
+      <h2 id="ads4-trust-heading" class="ads4-trust__heading">{{ trustHeading }}</h2>
+
+      <div class="ads4-trust__grid">
+        @for (stat of trustStats; track stat.label; let i = $index) {
+          <div class="ads4-trust__item glass-card" #statTarget>
+            <span class="ads4-trust__value">{{ stat.displayValue }}{{ stat.suffix }}</span>
+            <span class="ads4-trust__label">{{ stat.label }}</span>
+          </div>
+        }
+        @for (badge of trustBadges; track badge.label) {
+          <div class="ads4-trust__item glass-card">
+            <i-tabler [name]="badge.icon" class="icon-28 ads4-trust__icon" aria-hidden="true"></i-tabler>
+            <span class="ads4-trust__label">{{ badge.label }}</span>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Problem / Solution -->
+  <section class="ads4-compare" aria-label="Why teams choose Dochek">
+    <div class="ads4-container">
+      <div class="ads4-compare__grid">
+        <div class="ads4-compare__panel glass-card ads4-compare__panel--problem">
+          <h3 class="ads4-compare__title">{{ problemHeading }}</h3>
+          <ul class="ads4-compare__list">
+            @for (point of problemPoints; track point) {
+              <li>
+                <i-tabler name="x" class="icon-18" aria-hidden="true"></i-tabler>
+                <span>{{ point }}</span>
+              </li>
+            }
+          </ul>
+        </div>
+
+        <div class="ads4-compare__panel glass-card ads4-compare__panel--solution">
+          <h3 class="ads4-compare__title">{{ solutionHeading }}</h3>
+          <ul class="ads4-compare__list">
+            @for (point of solutionPoints; track point) {
+              <li>
+                <i-tabler name="circle-check" class="icon-18" aria-hidden="true"></i-tabler>
+                <span>{{ point }}</span>
+              </li>
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Feature showcase -->
+  <section class="ads4-features" aria-label="Product features">
+    <div class="ads4-container ads4-features__stack">
+      @for (feature of features; track feature.restOfTitle; let i = $index) {
+        <article
+          #revealTarget
+          [attr.data-index]="i"
+          class="ads4-feature"
+          [class.ads4-feature--reverse]="feature.reverse"
+          [class.is-visible]="featureVisible[i]"
+        >
+          <div class="ads4-feature__media">
+            <img [src]="feature.imageUrl" [alt]="feature.imageAlt" loading="lazy" />
+          </div>
+          <div class="ads4-feature__content">
+            <h3 class="ads4-feature__title">
+              <span class="ads4-feature__accent">{{ feature.accentWord }}</span> {{ feature.restOfTitle }}
+            </h3>
+            <p class="ads4-feature__description">{{ feature.description }}</p>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <!-- 5. Scale Without Limits -->
+  <section class="ads4-scale" aria-label="Scale without limits">
+    <div class="ads4-container ads4-scale__inner">
+      <h2 class="ads4-scale__heading">{{ scaleHeading }}</h2>
+      <p class="ads4-scale__range">
+        <span>{{ scaleFrom }}</span>
+        <i-tabler name="arrow-right" class="icon-28" aria-hidden="true"></i-tabler>
+        <span class="ads4-scale__range-highlight">{{ scaleTo }}</span>
+      </p>
+      <p class="ads4-scale__tagline">{{ scaleTagline }}</p>
+    </div>
+  </section>
+
+  <!-- 6. Final CTA -->
+  <section class="ads4-final-cta" aria-label="Book a demo">
+    <span class="ads4-final-cta__shape ads4-final-cta__shape--one" aria-hidden="true"></span>
+    <span class="ads4-final-cta__shape ads4-final-cta__shape--two" aria-hidden="true"></span>
+
+    <div class="ads4-container ads4-final-cta__inner">
+      <h2 class="ads4-final-cta__heading">{{ finalCtaHeading }}</h2>
+      <a class="ads4-final-cta__button" href="#ads-lead-form" (click)="scrollToFragment($event, 'ads-lead-form')">
+        {{ finalCtaLabel }}
+      </a>
+    </div>
+  </section>
+</main>
+
+<app-footer></app-footer>

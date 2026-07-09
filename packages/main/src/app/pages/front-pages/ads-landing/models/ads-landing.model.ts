@@ -38,8 +38,8 @@ export interface CtaSectionConfig {
   eyebrow?: string;
   heading: string;
   description: string;
-  ctaLabel: string;
-  ctaFragment: string;
+  ctaLabel?: string;
+  ctaFragment?: string;
   imageUrl?: string;
   imageAlt?: string;
   reverse?: boolean;
@@ -52,8 +52,8 @@ export interface HeroSectionConfig {
   eyebrow?: string;
   headline: string;
   description: string;
-  ctaLabel: string;
-  ctaFragment: string;
+  ctaLabel?: string;
+  ctaFragment?: string;
   imageUrl: string;
   imageAlt: string;
   form: LeadFormConfig;

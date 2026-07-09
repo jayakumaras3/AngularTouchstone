@@ -1,6 +1,6 @@
 <section
   [id]="config.id"
-  class="cta-section spacing-top-bottom"
+  class="cta-section"
   [class.bg-light-primary]="config.tinted"
   [class.cta-section--reverse]="config.reverse"
 >
@@ -8,29 +8,31 @@
     <div class="cta-section__inner">
       <div class="cta-section__content">
         @if (config.eyebrow) {
-          <p class="f-s-14 f-w-600 text-primary m-b-8">{{ config.eyebrow }}</p>
+          <span class="cta-section__eyebrow">{{ config.eyebrow }}</span>
         }
-        <h2 class="f-s-40 section-sub-title lh-normal m-b-16">{{ config.heading }}</h2>
-        <p class="f-s-18 lh-normal m-b-24">{{ config.description }}</p>
-        <a
-          mat-flat-button
-          color="primary"
-          [href]="'#' + config.ctaFragment"
-          (click)="scrollToFragment($event, config.ctaFragment)"
-        >
-          {{ config.ctaLabel }}
-        </a>
+        <h2 class="cta-section__heading">{{ config.heading }}</h2>
+        <p class="cta-section__description">{{ config.description }}</p>
+        @if (config.ctaLabel) {
+          <a
+            mat-flat-button
+            color="primary"
+            [href]="'#' + config.ctaFragment"
+            (click)="scrollToFragment($event, config.ctaFragment!)"
+          >
+            {{ config.ctaLabel }}
+          </a>
+        }
       </div>
 
       @if (config.imageUrl) {
         <div class="cta-section__media">
-          <img [src]="config.imageUrl" [alt]="config.imageAlt || ''" loading="lazy" class="img-fluid" />
+          <img [src]="config.imageUrl" [alt]="config.imageAlt || ''" loading="lazy" />
         </div>
       }
     </div>
 
     @if (config.featureCards) {
-      <div class="cta-section__cards m-t-48">
+      <div class="cta-section__cards">
         <app-feature-cards [config]="config.featureCards"></app-feature-cards>
       </div>
     }

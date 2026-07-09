@@ -1,32 +1,40 @@
-<section [id]="config.id" class="ads-hero spacing-top-bottom">
+<section [id]="config.id" class="ads-hero">
+  <span class="ads-hero__glow" aria-hidden="true"></span>
+
   <div class="container">
     <div class="ads-hero__grid">
       <div class="ads-hero__content">
         @if (config.eyebrow) {
-          <p class="f-s-14 f-w-600 text-primary m-b-8">{{ config.eyebrow }}</p>
+          <span class="ads-hero__eyebrow">{{ config.eyebrow }}</span>
         }
-        <h1 class="f-s-48 section-sub-title lh-normal m-b-16">{{ config.headline }}</h1>
-        <p class="f-s-18 lh-normal m-b-24">{{ config.description }}</p>
-        <a
-          mat-stroked-button
-          color="primary"
-          [href]="'#' + config.ctaFragment"
-          (click)="scrollToFragment($event, config.ctaFragment)"
-        >
-          {{ config.ctaLabel }}
-        </a>
+        <h1 class="ads-hero__heading">{{ config.headline }}</h1>
+        <p class="ads-hero__description">{{ config.description }}</p>
+        @if (config.ctaLabel) {
+          <a
+            mat-stroked-button
+            color="primary"
+            [href]="'#' + config.ctaFragment"
+            (click)="scrollToFragment($event, config.ctaFragment!)"
+          >
+            {{ config.ctaLabel }}
+          </a>
+        }
       </div>
 
-      <div class="ads-hero__image">
-        <img [src]="config.imageUrl" [alt]="config.imageAlt" class="img-fluid" />
-      </div>
+      <div class="ads-hero__visual">
+        <div class="ads-hero__image-card">
+          <img [src]="config.imageUrl" [alt]="config.imageAlt" />
+        </div>
 
-      <div class="ads-hero__form">
-        <mat-card>
-          <mat-card-content>
-            <app-lead-form [formId]="config.ctaFragment" [config]="config.form"></app-lead-form>
-          </mat-card-content>
-        </mat-card>
+        <div class="ads-hero__form">
+          <div class="ads-hero__form-shell">
+            <mat-card class="ads-hero__form-card">
+              <mat-card-content>
+                <app-lead-form formId="ads-lead-form" [config]="config.form"></app-lead-form>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
       </div>
     </div>
   </div>
