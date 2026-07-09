@@ -33,6 +33,27 @@
   max-width: 620px;
 }
 
+.ads-hero__attribution {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px 6px 10px;
+  border-radius: 0;
+  background: color-mix(in srgb, var(--mat-sys-on-background) 6%, var(--mat-sys-surface));
+  border: 1px solid color-mix(in srgb, var(--mat-sys-outline) 60%, transparent);
+  color: var(--mat-sys-on-surface-variant, var(--mat-sys-on-background));
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.ads-hero__attribution-icon {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
 .ads-hero__eyebrow {
   display: inline-block;
   padding: 6px 14px;

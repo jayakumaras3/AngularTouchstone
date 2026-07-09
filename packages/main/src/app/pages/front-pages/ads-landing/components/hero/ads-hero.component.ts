@@ -15,6 +15,8 @@ import { HeroSectionConfig } from '../../models/ads-landing.model';
 export class AdsHeroComponent {
   @Input({ required: true }) config!: HeroSectionConfig;
 
+  readonly attributionText = 'Built by Touchstone Learning & Consulting';
+
   scrollToFragment(event: Event, fragment: string): void {
     event.preventDefault();
     document.getElementById(fragment)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
