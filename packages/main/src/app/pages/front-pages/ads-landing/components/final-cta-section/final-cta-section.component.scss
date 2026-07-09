@@ -1,0 +1,112 @@
+.final-cta-section {
+  padding: 64px 0;
+}
+
+.final-cta-section__heading {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 0 0 16px;
+  color: var(--mat-sys-on-background);
+}
+
+.final-cta-section__description {
+  font-size: 18px;
+  line-height: 1.6;
+  max-width: 480px;
+  margin: 0;
+  white-space: pre-line;
+  color: var(--mat-sys-on-surface-variant, var(--mat-sys-on-background));
+}
+
+.final-cta-section__form-shell {
+  position: relative;
+  max-width: 520px;
+  margin-left: auto;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.16);
+  border: 1px solid color-mix(in srgb, var(--mat-sys-primary) 20%, transparent);
+}
+
+.final-cta-section__form-shell::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(
+    90deg,
+    var(--mat-sys-primary) 0%,
+    color-mix(in srgb, var(--mat-sys-primary) 55%, #ffffff) 100%
+  );
+  z-index: 1;
+}
+
+.final-cta-section__form-card {
+  background: color-mix(in srgb, var(--mat-sys-primary) 4%, var(--mat-sys-surface)) !important;
+}
+
+.final-cta-section__form-card .mat-mdc-card-content {
+  padding: 56px !important;
+}
+
+// Scoped, cosmetic-only overrides matching the hero form's treatment — bigger
+// card, taller inputs, bolder button. Scoped to .final-cta-section__form-shell
+// so nothing leaks elsewhere and LeadFormComponent's own files stay untouched.
+.final-cta-section__form-shell ::ng-deep .mat-mdc-form-field {
+  --mat-form-field-outlined-container-shape: 14px;
+  --mat-form-field-container-height: 56px;
+}
+
+.final-cta-section__form-shell ::ng-deep .lead-form h3 {
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.final-cta-section__form-shell ::ng-deep .lead-form__submit {
+  height: 58px;
+  margin-top: 20px;
+  font-size: 17px;
+  font-weight: 700;
+  border-radius: 14px;
+  transition: transform 0.2s ease;
+
+  &:not(:disabled):hover {
+    transform: translateY(-3px);
+  }
+}
+
+.final-cta-section__cards {
+  margin-top: 48px;
+}
+
+@media (max-width: 959px) {
+  .final-cta-section {
+    padding: 56px 0;
+  }
+
+  .final-cta-section__heading {
+    font-size: 30px;
+  }
+
+  .final-cta-section__description {
+    max-width: none;
+  }
+
+  .final-cta-section__form-shell {
+    margin-left: 0;
+    max-width: 480px;
+  }
+}
+
+@media (max-width: 767px) {
+  .final-cta-section {
+    padding: 40px 0;
+  }
+
+  .final-cta-section__form-card .mat-mdc-card-content {
+    padding: 24px !important;
+  }
+}

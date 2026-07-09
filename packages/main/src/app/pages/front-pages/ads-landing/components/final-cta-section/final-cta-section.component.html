@@ -1,0 +1,33 @@
+<section [id]="config.id" class="final-cta-section">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6 m-b-30">
+        <h2 class="final-cta-section__heading">{{ config.heading }}</h2>
+        @if (config.description) {
+          <p class="final-cta-section__description">{{ config.description }}</p>
+        }
+      </div>
+
+      <div class="col-md-6 m-b-30">
+        <div class="final-cta-section__form-shell">
+          <mat-card class="final-cta-section__form-card">
+            <mat-card-content>
+              <app-lead-form
+                [formId]="config.id"
+                [config]="config.form"
+                [source]="source"
+                [campaign]="campaign"
+              ></app-lead-form>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+
+    @if (config.featureCards) {
+      <div class="final-cta-section__cards">
+        <app-feature-cards [config]="config.featureCards"></app-feature-cards>
+      </div>
+    }
+  </div>
+</section>

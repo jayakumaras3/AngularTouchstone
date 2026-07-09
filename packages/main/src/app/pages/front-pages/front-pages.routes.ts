@@ -118,7 +118,7 @@ export const FrontPagesRoutes: Routes = [
         // Ads-only landing page — reached exclusively via direct campaign URLs
         // (LinkedIn/Facebook/Google Ads). Intentionally not linked from any nav,
         // footer, or sitemap.
-        path: 'landing',
+        path: 'dochek-lms',
         loadComponent: () =>
           import('./ads-landing/ads-landing.component').then((m) => m.AdsLandingComponent),
         data: {
@@ -126,6 +126,34 @@ export const FrontPagesRoutes: Routes = [
           title: 'Dochek | The LMS Built for Companies That Take Learning Seriously',
           description:
             "Whether you're training 10 people or 10,000, Dochek keeps your L&D running without the complexity. See how Dochek + 500 microlearning courses work for your team.",
+        },
+      },
+      {
+        // Dochek + microlearning bundle landing page — reached exclusively via
+        // direct campaign URLs. Intentionally not linked from any nav, footer,
+        // or sitemap.
+        path: 'smartlms',
+        loadComponent: () =>
+          import('./smartlms/smartlms.component').then((m) => m.SmartlmsComponent),
+        data: {
+          title: 'Dochek Smart LMS + Microlearning Bundle | Touchstone',
+          description:
+            'Get the best of both worlds — a lightweight, scalable LMS and instant access to 500+ microlearning courses. See the bundle in action.',
+        },
+      },
+      {
+        // Bespoke AR/VR/XR immersive-learning landing page — reached
+        // exclusively via direct campaign URLs. Intentionally not linked from
+        // any nav, footer, or sitemap.
+        path: 'immersivelearning',
+        loadComponent: () =>
+          import('./immersivelearning/immersivelearning.component').then(
+            (m) => m.ImmersivelearningComponent
+          ),
+        data: {
+          title: 'Immersive AR/VR/XR Training | Touchstone Learning & Consulting',
+          description:
+            "Training that works because it feels real. Explore bespoke AR, VR, and XR learning experiences built around your team's real-world challenges.",
         },
       },
     ],

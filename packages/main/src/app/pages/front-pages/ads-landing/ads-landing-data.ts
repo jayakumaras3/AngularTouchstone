@@ -8,7 +8,7 @@ export const ADS_LANDING_PAGES: Record<string, AdsLandingPageConfig> = {
       title: 'Dochek | The LMS Built for Companies That Take Learning Seriously',
       description:
         "Whether you're training 10 people or 10,000, Dochek keeps your L&D running without the complexity.",
-      canonicalPath: '/landing',
+      canonicalPath: '/dochek-lms',
     },
     hero: {
       id: 'ads-hero',
