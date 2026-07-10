@@ -21,8 +21,10 @@ The 404 error when accessing `/DOCHEK/ang/authentication/reset-password?token=..
 ### 3. Rebuilt Angular App
 ```bash
 cd packages/main
-ng build --configuration production --base-href /DOCHEK/ang/
+npm run build -- --base-href /DOCHEK/ang/
 ```
+
+> **Note (social-share SEO snapshots):** production builds must go through `npm run build`, not a raw `ng build` call. `npm run build` automatically triggers the `postbuild` script (`scripts/generate-seo-snapshots.mjs`) afterwards, which generates static `index.html` snapshots with correct Open Graph/Twitter meta tags for `/catalog`, `/homepage`, `/about`, `/contact`, and other public marketing routes, so Microsoft Teams/LinkedIn/Facebook/WhatsApp/Slack/Outlook show the DOCHEK logo and description when links are shared. If you ever build with `ng build` directly, run `node scripts/generate-seo-snapshots.mjs` afterwards as an extra manual step.
 
 **Output Location**: `packages/main/dist/Modernize/browser/`
 

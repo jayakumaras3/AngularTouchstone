@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 import { NavigationEnd, Router, RouterOutlet, ActivatedRoute } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
 import { initAutoTheme, defaults } from './config';
@@ -23,7 +24,8 @@ export class AppComponent implements OnInit {
     private readonly router: Router,
     private readonly activatedRoute: ActivatedRoute,
     private readonly titleService: Title,
-    private readonly metaService: Meta
+    private readonly metaService: Meta,
+    @Inject(DOCUMENT) private readonly document: Document
   ) {}
 
   ngOnInit() {
@@ -57,12 +59,23 @@ export class AppComponent implements OnInit {
           data['description'] ||
           'Create academic and corporate training programs, certifications, engaging gamification experiences, and track learning progress with no lags through our learning platform. Sign up today!';
 
+        const ogImage = new URL('assets/images/og/dochek-og.jpg', this.document.baseURI).href;
+        const canonicalUrl = `${this.document.location.origin}${this.document.location.pathname}`;
+
         this.titleService.setTitle(title);
         this.metaService.updateTag({ name: 'description', content: description });
+        this.metaService.updateTag({ property: 'og:type', content: 'website' });
+        this.metaService.updateTag({ property: 'og:site_name', content: 'DOCHEK' });
         this.metaService.updateTag({ property: 'og:title', content: title });
         this.metaService.updateTag({ property: 'og:description', content: description });
+        this.metaService.updateTag({ property: 'og:url', content: canonicalUrl });
+        this.metaService.updateTag({ property: 'og:image', content: ogImage });
+        this.metaService.updateTag({ property: 'og:image:width', content: '1200' });
+        this.metaService.updateTag({ property: 'og:image:height', content: '630' });
+        this.metaService.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
         this.metaService.updateTag({ name: 'twitter:title', content: title });
         this.metaService.updateTag({ name: 'twitter:description', content: description });
+        this.metaService.updateTag({ name: 'twitter:image', content: ogImage });
       });
   }
 
