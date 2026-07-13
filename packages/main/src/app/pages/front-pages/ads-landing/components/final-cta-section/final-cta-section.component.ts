@@ -17,4 +17,5 @@ export class FinalCtaSectionComponent {
   @Input({ required: true }) config!: FinalCtaSectionConfig;
   @Input() source = 'landing-page';
   @Input() campaign = '';
+  @Input() cardsPosition: 'before' | 'after' = 'after';
 }

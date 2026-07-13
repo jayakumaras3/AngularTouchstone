@@ -33,6 +33,10 @@
     max-width: 480px;
     margin: 0 0 24px;
     color: var(--mat-sys-on-surface-variant, var(--mat-sys-on-background));
+
+    &--multiline {
+      white-space: pre-line;
+    }
   }
 
   &__content {
@@ -51,7 +55,8 @@
     align-items: center;
     justify-content: center;
 
-    img {
+    img,
+    video {
       width: 100%;
       height: auto;
       max-height: 320px;

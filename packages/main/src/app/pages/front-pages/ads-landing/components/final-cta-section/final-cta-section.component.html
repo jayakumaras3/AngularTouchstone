@@ -1,5 +1,11 @@
 <section [id]="config.id" class="final-cta-section">
   <div class="container">
+    @if (config.featureCards && cardsPosition === 'before') {
+      <div class="final-cta-section__cards final-cta-section__cards--before">
+        <app-feature-cards [config]="config.featureCards"></app-feature-cards>
+      </div>
+    }
+
     <div class="row align-items-center">
       <div class="col-md-6 m-b-30">
         <h2 class="final-cta-section__heading">{{ config.heading }}</h2>
@@ -24,7 +30,7 @@
       </div>
     </div>
 
-    @if (config.featureCards) {
+    @if (config.featureCards && cardsPosition === 'after') {
       <div class="final-cta-section__cards">
         <app-feature-cards [config]="config.featureCards"></app-feature-cards>
       </div>

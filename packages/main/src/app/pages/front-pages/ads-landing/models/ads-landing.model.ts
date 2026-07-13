@@ -42,6 +42,7 @@ export interface CtaSectionConfig {
   ctaFragment?: string;
   imageUrl?: string;
   imageAlt?: string;
+  videoUrl?: string;
   reverse?: boolean;
   tinted?: boolean;
   featureCards?: FeatureCardsConfig;

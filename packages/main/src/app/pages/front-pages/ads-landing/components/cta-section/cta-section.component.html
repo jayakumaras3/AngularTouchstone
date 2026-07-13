@@ -11,7 +11,7 @@
           <span class="cta-section__eyebrow">{{ config.eyebrow }}</span>
         }
         <h2 class="cta-section__heading">{{ config.heading }}</h2>
-        <p class="cta-section__description">{{ config.description }}</p>
+        <p class="cta-section__description cta-section__description--multiline">{{ config.description }}</p>
         @if (config.ctaLabel) {
           <a
             mat-flat-button
@@ -24,7 +24,11 @@
         }
       </div>
 
-      @if (config.imageUrl) {
+      @if (config.videoUrl) {
+        <div class="cta-section__media">
+          <video [src]="config.videoUrl" controls preload="metadata" [attr.aria-label]="config.imageAlt || ''"></video>
+        </div>
+      } @else if (config.imageUrl) {
         <div class="cta-section__media">
           <img [src]="config.imageUrl" [alt]="config.imageAlt || ''" loading="lazy" />
         </div>

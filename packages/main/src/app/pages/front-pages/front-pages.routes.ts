@@ -142,6 +142,19 @@ export const FrontPagesRoutes: Routes = [
         },
       },
       {
+        // Microlearning library landing page — reached exclusively via direct
+        // campaign URLs. Intentionally not linked from any nav, footer, or
+        // sitemap.
+        path: 'microlearning',
+        loadComponent: () =>
+          import('./microlearning/microlearning.component').then((m) => m.MicrolearningComponent),
+        data: {
+          title: 'Microlearning Library | 500+ Courses for Your Team | Touchstone',
+          description:
+            'The courses the best professionals in the world are taking — now available to your team. Get access to 500+ microlearning courses trusted by 50,000+ professionals at the world’s leading organisations.',
+        },
+      },
+      {
         // Bespoke AR/VR/XR immersive-learning landing page — reached
         // exclusively via direct campaign URLs. Intentionally not linked from
         // any nav, footer, or sitemap.

@@ -3,6 +3,8 @@ import { CtaSectionConfig, FinalCtaSectionConfig, HeroSectionConfig } from '../a
 export interface LandingPageConfig {
   campaignName: string;
   hero: HeroSectionConfig;
+  intro: CtaSectionConfig;
+  sectionsHeading: string;
   sections: CtaSectionConfig[];
   finalCta: FinalCtaSectionConfig;
 }
@@ -44,34 +46,54 @@ export const IMMERSIVE_LEARNING_PAGE: LandingPageConfig = {
       ],
     },
   },
+  intro: {
+    id: 'redefine-reality',
+    heading: 'Redefine Reality with Cutting-Edge AR, VR, and XR Solutions',
+    description:
+      'Unlock the power of immersive learning with creative, interactive, and real-life simulations using state-of-the-art Augmented Reality (AR), Virtual Reality (VR), and Extended Reality (XR) solutions. Elevate your training to the next level with interactive learning that feels real.\n\nOur AR, VR, and XR Solutions offer hands-on experiences that help people learn faster and better. Whether you are training employees or engaging students, our innovative tools deliver impactful and engaging learning experiences.',
+    videoUrl: 'assets/images/AdsPage/Immersive%20Learning%20Solutions.mp4',
+    imageAlt: 'Preview of a video showing a learner using a VR headset',
+    ctaLabel: 'Schedule a Demo',
+    ctaFragment: 'immersive-lead-form-2',
+    reverse: true,
+  },
+  sectionsHeading: 'All Your Needs. Perfectly Met',
   sections: [
     {
-      id: 'redefine-reality',
-      heading: 'Redefine Reality with Cutting-Edge AR, VR, and XR Solutions',
+      id: 'realistic-scenarios',
+      heading: 'Realistic Scenarios',
       description:
-        "Unlock the power of immersive learning with creative, interactive, real-life simulations using state-of-the-art Augmented Reality (AR), Virtual Reality (VR), and Extended Reality (XR) solutions. Our AR, VR, and XR solutions offer hands-on experiences that help people learn faster and better, whether you're training employees or engaging students.",
-      imageUrl: 'assets/images/ImmersiveLearning/gamified-leaderboard.png',
-      imageAlt: 'Learners in VR headsets viewing a gamified leaderboard dashboard',
-      ctaLabel: 'Schedule a Demo',
-      ctaFragment: 'immersive-lead-form-2',
+        "Training that simulates hands-on experience, making it easier to apply learning to real-life situations. Our solutions provide hyper-realistic learning technologies that bridge the gap between theory and practice, so learners gain confidence and ability applying knowledge in controlled yet realistic environments, ensuring they're prepared for real-world applications.",
+      imageUrl: 'assets/images/AdsPage/01_Realistic-Scenario-1.png',
+      imageAlt: 'First-person view from a train simulator cab used for realistic scenario training',
+      reverse: true,
+    },
+    {
+      id: 'scalable',
+      heading: 'Scalable',
+      description:
+        "3D-modeled environments are accessible anywhere, anytime, across desktop, mobile, and AR/VR headsets, so every learner gets the same experience no matter where they are. This scalability ensures consistent training experiences for large teams or geographically dispersed workforces, all while optimizing resources effectively.",
+      imageUrl: 'assets/images/AdsPage/02_Scalable-1.png',
+      imageAlt: 'VR training environment with labeled equipment used to teach technical procedures',
       reverse: false,
     },
     {
       id: 'real-time-data',
-      heading: 'Real-Time Data You Can Act On',
+      heading: 'Real-Time Data',
       description:
-        "Receive real-time metrics as learners move through immersive training. These data-driven insights help you personalize learning paths, identify skill gaps, and make informed decisions that improve outcomes across the business.",
-      imageUrl: 'assets/images/ImmersiveLearning/learner-tracking.png',
-      imageAlt: 'VR headset training session with a live learner-tracking and reporting dashboard',
+        'Receive real-time metrics and gather actionable insights as learners move through immersive training. These data-driven insights help you personalize learning paths, identify skill gaps, and make informed decisions that improve outcomes across the business.',
+      imageUrl: 'assets/images/AdsPage/03_Real-time-Data-1.png',
+      imageAlt: 'Augmented reality tablet view overlaying utility data onto a residential street',
       reverse: true,
     },
     {
-      id: 'realistic-scenarios',
-      heading: 'Realistic Scenarios, Built to Scale',
+      id: 'immersive-technology',
+      heading: 'Immersive Technology',
       description:
-        "Training that simulates hands-on experience, making it easier to apply learning to real-life situations. 3D-modeled environments are accessible anywhere, anytime, across desktop, mobile, and AR/VR headsets, so every learner gets the same experience, no matter where they are.",
+        "High-quality 3D models and simulations that mirror real AR, VR, and XR platforms. Our technology creates engaging, hands-on experiences that boost knowledge retention. Whether it's a straightforward walkthrough or a complex hands-on task, our immersive tech makes even the hardest skills easier to learn.",
+      imageUrl: 'assets/images/AdsPage/04_Immersive-Technology.png',
+      imageAlt: 'Learner wearing a VR headset surrounded by data visualizations and AR overlays',
       reverse: false,
-      tinted: true,
     },
   ],
   finalCta: {

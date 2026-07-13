@@ -1,0 +1,21 @@
+<main class="landing-page" aria-label="Microlearning library landing page">
+  <!-- 1. Hero + adjoining "Get access to the full library" lead form -->
+  <app-ads-hero [config]="config.hero"></app-ads-hero>
+
+  <!-- 2. Trust / statistics band (500+ courses, 50,000+ professionals, Fortune 500) -->
+  <app-microlearning-stats [config]="config.stats"></app-microlearning-stats>
+
+  <!-- 3. Feature / benefit blocks (alternating image + text) -->
+  @for (section of config.sections; track section.id) {
+    <app-cta-section [config]="section"></app-cta-section>
+  }
+
+  <!-- 4. Final CTA + second lead form + "The DOCHEK Edge" cards -->
+  <app-final-cta-section
+    [config]="config.finalCta"
+    source="microlearning"
+    cardsPosition="after"
+  ></app-final-cta-section>
+
+  <app-footer></app-footer>
+</main>

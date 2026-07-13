@@ -1,11 +1,19 @@
 <main class="landing-page" aria-label="Bespoke immersive learning (AR/VR/XR) landing page">
   <app-ads-hero [config]="config.hero"></app-ads-hero>
 
+  <app-cta-section [config]="config.intro"></app-cta-section>
+
+  <h2 class="landing-page__sections-heading text-center">{{ config.sectionsHeading }}</h2>
+
   @for (section of config.sections; track section.id) {
     <app-cta-section [config]="section"></app-cta-section>
   }
 
-  <app-final-cta-section [config]="config.finalCta" source="immersivelearning"></app-final-cta-section>
+  <app-final-cta-section
+    [config]="config.finalCta"
+    source="immersivelearning"
+    cardsPosition="before"
+  ></app-final-cta-section>
 
   <app-footer></app-footer>
 </main>

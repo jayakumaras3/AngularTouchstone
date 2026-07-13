@@ -1,0 +1,24 @@
+<section [id]="config.id" class="stats">
+  <div class="container">
+    @if (config.eyebrow || config.heading) {
+      <div class="stats__header text-center">
+        @if (config.eyebrow) {
+          <span class="stats__eyebrow">{{ config.eyebrow }}</span>
+        }
+        @if (config.heading) {
+          <h2 class="stats__heading">{{ config.heading }}</h2>
+        }
+      </div>
+    }
+
+    <div class="stats__grid">
+      @for (item of config.items; track item.label) {
+        <div class="stats__card">
+          <span class="stats__value">{{ item.value }}</span>
+          <span class="stats__label">{{ item.label }}</span>
+          <p class="stats__description">{{ item.description }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
