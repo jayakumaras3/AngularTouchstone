@@ -1,4 +1,5 @@
 import { AdsLandingPageConfig } from './models/ads-landing.model';
+import { LEAD_FORM_FIELDS } from './lead-form-fields';
 
 export const ADS_LANDING_PAGES: Record<string, AdsLandingPageConfig> = {
   'dochek-awareness': {
@@ -21,11 +22,7 @@ export const ADS_LANDING_PAGES: Record<string, AdsLandingPageConfig> = {
         subheading: "Leave your details and we'll walk you through Dochek — no pressure, no pitch.",
         submitLabel: 'Learn more about Dochek →',
         successMessage: "Thanks! We'll be in touch shortly to walk you through Dochek.",
-        fields: [
-          { name: 'fullName', label: 'Full name', type: 'text',  required: true },
-          { name: 'workEmail', label: 'Work email', type: 'email',  required: true },
-          { name: 'companyName', label: 'Company name', type: 'text', required: true },
-        ],
+        fields: LEAD_FORM_FIELDS,
       },
     },
     sections: [
@@ -67,11 +64,7 @@ export const ADS_LANDING_PAGES: Record<string, AdsLandingPageConfig> = {
         subheading: "Leave your details and we'll walk you through Dochek — no pressure, no pitch.",
         submitLabel: 'Learn more about Dochek →',
         successMessage: "Thanks! We'll be in touch shortly to walk you through Dochek.",
-        fields: [
-          { name: 'fullName', label: 'Full name', type: 'text',  required: true },
-          { name: 'workEmail', label: 'Work email', type: 'email', required: true },
-          { name: 'companyName', label: 'Company name', type: 'text', required: true },
-        ],
+        fields: LEAD_FORM_FIELDS,
       },
       featureCards: {
         heading: 'The DOCHEK Edge',

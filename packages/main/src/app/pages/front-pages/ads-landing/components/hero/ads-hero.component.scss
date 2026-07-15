@@ -33,10 +33,23 @@
   max-width: 620px;
 }
 
+// Row that keeps the attribution label and the library eyebrow pill on one
+// horizontal, vertically-centered line with consistent spacing. flex-wrap lets
+// the pill drop below the label on narrow widths without breaking the layout.
+.ads-hero__badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
 .ads-hero__attribution {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  min-width: 0;
+  max-width: 100%;
   padding: 6px 14px 6px 10px;
   border-radius: 0;
   background: color-mix(in srgb, var(--mat-sys-on-background) 6%, var(--mat-sys-surface));
@@ -44,7 +57,6 @@
   color: var(--mat-sys-on-surface-variant, var(--mat-sys-on-background));
   font-size: 12px;
   font-weight: 600;
-  margin-bottom: 24px;
 }
 
 .ads-hero__attribution-icon {
@@ -54,8 +66,18 @@
   object-fit: contain;
 }
 
+// Truncate with an ellipsis only as a last resort on very small widths so the
+// long label can never force the badge to overflow its container.
+.ads-hero__attribution-text {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .ads-hero__eyebrow {
   display: inline-block;
+  max-width: 100%;
   padding: 6px 14px;
   border-radius: 999px;
   background: color-mix(in srgb, var(--mat-sys-primary) 12%, transparent);
@@ -63,7 +85,6 @@
   border: 1px solid color-mix(in srgb, var(--mat-sys-primary) 28%, transparent);
   font-size: 13px;
   font-weight: 700;
-  margin-bottom: 24px;
 }
 
 .ads-hero__heading {
@@ -137,42 +158,27 @@
   padding: 0 !important;
 }
 
-// Scoped, cosmetic-only overrides so this hero's lead form matches the
-// premium spec (56px inputs/button, 14px radius, gradient CTA) — scoped to
-// .ads-hero__visual-form so nothing leaks to other LeadFormComponent usages
-// on the page, and LeadFormComponent's own files stay untouched.
+// Scoped, cosmetic-only field override: keep the 14px rounded corners only.
+// Field height and floating-label positioning are intentionally left to the
+// global theme (the theme tunes the label `top` off the container height, so
+// forcing a taller height here made floated labels overlap values and the
+// next field's error). Scoped to .ads-hero__visual-form so nothing leaks to
+// other LeadFormComponent usages, and LeadFormComponent's own files stay
+// untouched. The submit button is left to the global theme button style.
 .ads-hero__visual-form ::ng-deep .mat-mdc-form-field {
   --mat-form-field-outlined-container-shape: 14px;
-  --mat-form-field-container-height: 56px;
+}
+
+// Give the message textarea a comfortable multi-line height; the single-line
+// fields keep the global theme height.
+.ads-hero__visual-form ::ng-deep textarea.mat-mdc-input-element {
+  resize: vertical;
+  min-height: 92px;
 }
 
 .ads-hero__visual-form ::ng-deep .lead-form h3 {
   font-size: 24px;
   font-weight: 800;
-}
-
-.ads-hero__visual-form ::ng-deep .lead-form__submit {
-  height: 56px;
-  margin-top: 20px;
-  font-size: 16px;
-  font-weight: 700;
-  border-radius: 14px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-
-  // Gradient only applies once the form is valid — scoped to :not(:disabled)
-  // so Material's own disabled (dimmed/greyed) styling still shows clearly
-  // when the button isn't clickable yet. Previously this was unconditional,
-  // so enabled and disabled looked identical.
-  &:not(:disabled) {
-    background: linear-gradient(135deg,
-        var(--mat-sys-primary) 0%,
-        color-mix(in srgb, var(--mat-sys-primary) 78%, black) 100%) !important;
-  }
-
-  &:not(:disabled):hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.16);
-  }
 }
 
 @media (min-width: 1920px) {

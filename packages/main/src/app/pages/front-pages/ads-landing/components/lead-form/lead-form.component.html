@@ -25,6 +25,13 @@
               <mat-option [value]="option.value">{{ option.label }}</mat-option>
             }
           </mat-select>
+        } @else if (field.type === 'textarea') {
+          <textarea
+            matInput
+            [rows]="field.rows || 4"
+            [placeholder]="field.placeholder || ''"
+            [formControlName]="field.name"
+          ></textarea>
         } @else {
           <input
             matInput

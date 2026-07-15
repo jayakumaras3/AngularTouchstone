@@ -4,6 +4,7 @@ import {
   HeroSectionConfig,
   LeadFormConfig,
 } from '../ads-landing/models/ads-landing.model';
+import { LEAD_FORM_FIELDS } from '../ads-landing/lead-form-fields';
 import { StatsConfig } from './components/stats/stats.component';
 
 export interface MicrolearningPageConfig {
@@ -14,35 +15,16 @@ export interface MicrolearningPageConfig {
   finalCta: FinalCtaSectionConfig;
 }
 
-// Shared team-size options — the same four bands used across the other Dochek
-// landing pages, so the lead data stays consistent in the CRM.
-const TEAM_SIZE_FIELD = {
-  name: 'teamSize',
-  label: 'How many learners are you looking to onboard?',
-  type: 'select' as const,
-  required: true,
-  options: [
-    { label: '1–50', value: '1-50' },
-    { label: '51–200', value: '51-200' },
-    { label: '201–1,000', value: '201-1000' },
-    { label: '1,000+', value: '1000+' },
-  ],
-};
-
 // Both forms on the page ask for the same details and share the same CTA,
-// matching the "Get access to the full library" card in the design.
+// matching the "Get access to the full library" card in the design. Uses the
+// shared Contact-style field set (all fields mandatory).
 const LIBRARY_ACCESS_FORM: LeadFormConfig = {
   heading: 'Get access to the full library.',
   subheading:
     "Tell us where to reach you and we'll show you what's inside — and how to get your team learning within days.",
   submitLabel: 'Explore the full library →',
   successMessage: "Thanks! We'll be in touch shortly with your access to the full library.",
-  fields: [
-    { name: 'fullName', label: 'Full name', type: 'text', required: true, placeholder: 'Priya Sharma' },
-    { name: 'workEmail', label: 'Work email', type: 'email', required: true, placeholder: 'priya@company.com' },
-    { name: 'companyName', label: 'Company name', type: 'text', required: true, placeholder: 'Acme Corp' },
-    TEAM_SIZE_FIELD,
-  ],
+  fields: LEAD_FORM_FIELDS,
 };
 
 export const MICROLEARNING_PAGE: MicrolearningPageConfig = {

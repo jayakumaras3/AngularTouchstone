@@ -4,19 +4,22 @@
   <div class="container">
     <div class="ads-hero__grid">
       <div class="ads-hero__content">
-        <span class="ads-hero__attribution">
-          <img
-            class="ads-hero__attribution-icon"
-            src="assets/images/AdsPage/taglogo.png"
-            alt=""
-            aria-hidden="true"
-          />
-          <span>{{ attributionText }}</span>
-        </span>
+        <div class="ads-hero__badges">
+          <span class="ads-hero__attribution">
+            <img
+              class="ads-hero__attribution-icon"
+              src="assets/images/AdsPage/taglogo.png"
+              alt=""
+              aria-hidden="true"
+            />
+            <span class="ads-hero__attribution-text">{{ attributionText }}</span>
+          </span>
 
-        @if (config.eyebrow) {
-          <span class="ads-hero__eyebrow">{{ config.eyebrow }}</span>
-        }
+          @if (config.eyebrow) {
+            <span class="ads-hero__eyebrow">{{ config.eyebrow }}</span>
+          }
+        </div>
+
         <h1 class="ads-hero__heading">{{ config.headline }}</h1>
         <p class="ads-hero__description">{{ config.description }}</p>
 

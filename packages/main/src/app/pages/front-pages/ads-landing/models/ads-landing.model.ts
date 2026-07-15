@@ -1,4 +1,4 @@
-export type LeadFormFieldType = 'text' | 'email' | 'select';
+export type LeadFormFieldType = 'text' | 'email' | 'select' | 'textarea';
 
 export interface LeadFormFieldOption {
   label: string;
@@ -12,6 +12,8 @@ export interface LeadFormFieldConfig {
   placeholder?: string;
   required?: boolean;
   options?: LeadFormFieldOption[];
+  /** Rows for a textarea field (ignored by other types). */
+  rows?: number;
 }
 
 export interface LeadFormConfig {

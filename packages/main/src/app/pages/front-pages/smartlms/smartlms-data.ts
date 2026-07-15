@@ -1,4 +1,5 @@
 import { CtaSectionConfig, FinalCtaSectionConfig, HeroSectionConfig } from '../ads-landing/models/ads-landing.model';
+import { LEAD_FORM_FIELDS } from '../ads-landing/lead-form-fields';
 
 export interface LandingPageConfig {
   campaignName: string;
@@ -22,23 +23,7 @@ export const SMARTLMS_PAGE: LandingPageConfig = {
       subheading: "Tell us where to reach you and we'll show you exactly what Dochek + the microlearning library looks like for your team.",
       submitLabel: 'Get a walkthrough of the bundle →',
       successMessage: "Thanks! We'll be in touch shortly with your bundle walkthrough.",
-      fields: [
-        { name: 'fullName', label: 'Full name', type: 'text', required: true },
-        { name: 'workEmail', label: 'Work email', type: 'email', required: true },
-        { name: 'companyName', label: 'Company name', type: 'text', required: true },
-        {
-          name: 'teamSize',
-          label: 'Team size',
-          type: 'select',
-          required: true,
-          options: [
-            { label: '1–50', value: '1-50' },
-            { label: '51–200', value: '51-200' },
-            { label: '201–1,000', value: '201-1000' },
-            { label: '1,000+', value: '1000+' },
-          ],
-        },
-      ],
+      fields: LEAD_FORM_FIELDS,
     },
   },
   sections: [
@@ -79,23 +64,7 @@ export const SMARTLMS_PAGE: LandingPageConfig = {
       subheading: "Leave your details and we'll walk you through the full Dochek + microlearning bundle — no pressure, no pitch.",
       submitLabel: 'Schedule a demo →',
       successMessage: "Thanks! We'll be in touch shortly to schedule your demo.",
-      fields: [
-        { name: 'fullName', label: 'Full name', type: 'text', required: true },
-        { name: 'workEmail', label: 'Work email', type: 'email', required: true },
-        { name: 'companyName', label: 'Company name', type: 'text', required: true },
-        {
-          name: 'teamSize',
-          label: 'Team size',
-          type: 'select',
-          required: true,
-          options: [
-            { label: '1–50', value: '1-50' },
-            { label: '51–200', value: '51-200' },
-            { label: '201–1,000', value: '201-1000' },
-            { label: '1,000+', value: '1000+' },
-          ],
-        },
-      ],
+      fields: LEAD_FORM_FIELDS,
     },
     featureCards: {
       heading: 'The DOCHEK Edge',
