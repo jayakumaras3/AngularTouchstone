@@ -1,1256 +1,1228 @@
 [
     {
-        "certificate_id": 1,
-        "short_name": "CCD-Tech",
-        "color": "#3b82f6",
-        "icon": "cloud",
-        "price_value": 799,
-        "certificate_name": "Certification in Cloud, Cybersecurity, and Digital Transformation (CCD-Tech Certification)11",
-        "certificate_description": "<p>The CCD-Tech Certification equips professionals with foundational and advanced knowledge in Cloud Technologies, Cybersecurity, and Digital Transformation. Participants gain hands-on awareness, practical insights, and strategic understanding of modern enterprise technologies.<\/p>",
-        "price": "₹799",
-        "duration": "7 Hours 10 Minutes",
-        "total_courses": 27,
-        "total_learning_paths": 3,
+        "certificate_id": "1",
+        "certificate_name": "Certification in Cloud, Cybersecurity and Digital Transformation (CCD-Tech Certification)",
+        "certificate_description": "<p>The CCD-Tech Certification equips professionals with foundational and advanced knowledge in Cloud Technologies, Cybersecurity, and Digital Transformation. This program is designed for IT professionals, business leaders, and managers seeking to leverage technology for business innovation, secure operations, and strategic transformation. Participants gain hands-on awareness, practical insights, and strategic understanding of modern enterprise technologies.<\/p>\r\n",
+        "price": "₹ 799",
+        "duration": "7 Hrs 19 Mins",
+        "total_courses": "27",
+        "total_learning_paths": "3",
         "learning_paths": [
             {
-                "lp_id": 5,
-                "lp_name": "Cloud Technology ",
-                "lp_description": "<p>Understand cloud computing fundamentals, key platforms, and hybrid cloud strategies for business.<\/p>\r\n",
-                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
-                "courses": [
-                    {
-                        "course_id": 840,
-                        "course_name": "An Introduction to Amazon Web Services (AWS)"
-                    },
-                    {
-                        "course_id": 846,
-                        "course_name": "Google Cloud for Businesses"
-                    },
-                    {
-                        "course_id": 849,
-                        "course_name": "Introduction to Microsoft Azure"
-                    },
-                    {
-                        "course_id": 863,
-                        "course_name": "Hybrid Cloud for Businesses"
-                    }
-                ]
-            },
-            {
-                "lp_id": 6,
-                "lp_name": "Cybersecurity Essentials ",
-                "lp_description": "<p>Build awareness and understanding of cybersecurity threats, defense mechanisms, privacy regulations, and IT security practices.<\/p>\r\n",
-                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
-                "courses": [
-                    {
-                        "course_id": 804,
-                        "course_name": "How to Protect Yourself from Cyber Security Threats"
-                    },
-                    {
-                        "course_id": 860,
-                        "course_name": "The Cybersecurity Landscape"
-                    },
-                    {
-                        "course_id": 861,
-                        "course_name": "Malware and Advanced Persistent Threats"
-                    },
-                    {
-                        "course_id": 862,
-                        "course_name": "Network Cybersecurity Attacks – Management and Monitoring"
-                    },
-                    {
-                        "course_id": 867,
-                        "course_name": "Computer Forensics"
-                    },
-                    {
-                        "course_id": 967,
-                        "course_name": "Online Safety and Cyber Security"
-                    },
-                    {
-                        "course_id": 1008,
-                        "course_name": "Relationship Between Data Protection and Privacy"
-                    },
-                    {
-                        "course_id": 1163,
-                        "course_name": "Data Protection and Privacy"
-                    },
-                    {
-                        "course_id": 1166,
-                        "course_name": "A Deep Dive Into Phishing"
-                    },
-                    {
-                        "course_id": 1170,
-                        "course_name": "Cybersecurity Essentials"
-                    },
-                    {
-                        "course_id": 1171,
-                        "course_name": "Security Awareness for IT Professionals"
-                    },
-                    {
-                        "course_id": 1172,
-                        "course_name": "The Basics of GDPR"
-                    },
-                    {
-                        "course_id": 1814,
-                        "course_name": "Managing Passwords"
-                    },
-                    {
-                        "course_id": 1839,
-                        "course_name": "Social Engineering"
-                    },
-                    {
-                        "course_id": 1842,
-                        "course_name": "Shadow IT"
-                    },
-                    {
-                        "course_id": 1846,
-                        "course_name": "Malware"
-                    },
-                    {
-                        "course_id": 1847,
-                        "course_name": "Cloud Security"
-                    },
-                    {
-                        "course_id": 1849,
-                        "course_name": "Mobile Security"
-                    }
-                ]
-            },
-            {
-                "lp_id": 7,
+                "lp_id": "7",
                 "lp_name": "Digital Transformation",
                 "lp_description": "<p>The CCD-Tech Certification equips professionals with foundational and advanced knowledge in Cloud Technologies, Cybersecurity, and Digital Transformation. This program is designed for IT professionals, business leaders, and managers seeking to leverage technology for business innovation, secure operations, and strategic transformation.<br \/>\r\nParticipants gain hands-on awareness, practical insights, and strategic understanding of modern enterprise technologies.<\/p>\r\n",
-                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
+                "lp_banner": "http:\/\/localhost\/DOCHEK\/assets\/assets\/img\/default_learning_plan_banner.jpg",
                 "courses": [
                     {
-                        "course_id": 720,
-                        "course_name": "Transformation of Markets, Business Models, and Strategy"
+                        "course_id": "1139",
+                        "course_name": "Organization Changes Needed For Internal Digital Transformation"
                     },
                     {
-                        "course_id": 1093,
-                        "course_name": "Transformation of Customer Needs, Workforce Needs, and Operations"
-                    },
-                    {
-                        "course_id": 1094,
-                        "course_name": "Transformation of Technology, Security, and Enterprise Architecture"
-                    },
-                    {
-                        "course_id": 1137,
+                        "course_id": "1137",
                         "course_name": "An Introduction to Digital Transformation"
                     },
                     {
-                        "course_id": 1139,
-                        "course_name": "Organization Changes Needed For Internal Digital Transformation"
+                        "course_id": "1094",
+                        "course_name": "Transformation of Technology, Security, and Enterprise Architecture"
+                    },
+                    {
+                        "course_id": "1093",
+                        "course_name": "Transformation of Customer Needs, Workforce Needs, and Operations"
+                    },
+                    {
+                        "course_id": "720",
+                        "course_name": "Transformation of Markets, Business Models, and Strategy"
+                    }
+                ]
+            },
+            {
+                "lp_id": "6",
+                "lp_name": "Cybersecurity Essentials ",
+                "lp_description": "<p>Build awareness and understanding of cybersecurity threats, defense mechanisms, privacy regulations, and IT security practices.<\/p>\r\n",
+                "lp_banner": "http:\/\/localhost\/DOCHEK\/assets\/assets\/img\/default_learning_plan_banner.jpg",
+                "courses": [
+                    {
+                        "course_id": "1849",
+                        "course_name": "Mobile Security"
+                    },
+                    {
+                        "course_id": "1847",
+                        "course_name": "Cloud Security"
+                    },
+                    {
+                        "course_id": "1846",
+                        "course_name": "Malware"
+                    },
+                    {
+                        "course_id": "1842",
+                        "course_name": "Shadow IT"
+                    },
+                    {
+                        "course_id": "1839",
+                        "course_name": "Social Engineering"
+                    },
+                    {
+                        "course_id": "1814",
+                        "course_name": "Managing Passwords"
+                    },
+                    {
+                        "course_id": "1172",
+                        "course_name": "The Basics of GDPR"
+                    },
+                    {
+                        "course_id": "1171",
+                        "course_name": "Security Awareness for IT Professionals"
+                    },
+                    {
+                        "course_id": "1170",
+                        "course_name": "Cybersecurity Essentials"
+                    },
+                    {
+                        "course_id": "1166",
+                        "course_name": "A Deep Dive Into Phishing"
+                    },
+                    {
+                        "course_id": "1163",
+                        "course_name": "Data Protection and Privacy"
+                    },
+                    {
+                        "course_id": "1008",
+                        "course_name": "Relationship Between Data Protection and Privacy"
+                    },
+                    {
+                        "course_id": "967",
+                        "course_name": "Online Safety and Cyber Security"
+                    },
+                    {
+                        "course_id": "867",
+                        "course_name": "Computer Forensics"
+                    },
+                    {
+                        "course_id": "862",
+                        "course_name": "Network Cybersecurity Attacks – Management and Monitoring"
+                    },
+                    {
+                        "course_id": "861",
+                        "course_name": "Malware and Advanced Persistent Threats"
+                    },
+                    {
+                        "course_id": "860",
+                        "course_name": "The Cybersecurity Landscape"
+                    },
+                    {
+                        "course_id": "804",
+                        "course_name": "How to Protect Yourself from Cyber Security Threats"
+                    }
+                ]
+            },
+            {
+                "lp_id": "5",
+                "lp_name": "Cloud Technology ",
+                "lp_description": "<p>Understand cloud computing fundamentals, key platforms, and hybrid cloud strategies for business.<\/p>\r\n",
+                "lp_banner": "http:\/\/localhost\/DOCHEK\/assets\/assets\/img\/default_learning_plan_banner.jpg",
+                "courses": [
+                    {
+                        "course_id": "863",
+                        "course_name": "Hybrid Cloud for Businesses"
+                    },
+                    {
+                        "course_id": "849",
+                        "course_name": "Introduction to Microsoft Azure"
+                    },
+                    {
+                        "course_id": "846",
+                        "course_name": "Google Cloud for Businesses"
+                    },
+                    {
+                        "course_id": "840",
+                        "course_name": "An Introduction to Amazon Web Services (AWS)"
                     }
                 ]
             }
         ]
     },
     {
-        "certificate_id": 2,
-        "short_name": "HC-LC",
-        "color": "#8b5cf6",
-        "icon": "users",
-        "price_value": 899,
+        "certificate_id": "2",
         "certificate_name": "Certification in Human-Centric Leadership and Inclusive Culture (HC-LC Certification)",
-        "certificate_description": "<p>The HC-LC Certification is designed to cultivate the mindset and skills needed to lead with empathy, inclusivity, and emotional intelligence in today’s evolving workplace. This program integrates key human-centric competencies, from interpersonal effectiveness and creative problem-solving to diversity, equity, and inclusion (DEI) leadership.<\/p>",
-        "price": "₹899",
-        "duration": "9 Hours",
-        "total_courses": 38,
-        "total_learning_paths": 4,
+        "certificate_description": "<p>The HC-LC Certification is designed to cultivate the mindset and skills needed to lead with empathy, inclusivity, and emotional intelligence in today&rsquo;s evolving workplace. This program integrates key human-centric competencies &mdash; from interpersonal effectiveness and creative problem-solving to diversity, equity, and inclusion (DEI) leadership. Through structured modules, participants will learn how to foster trust, resolve conflicts, inspire collaboration, and build inclusive cultures that drive organizational performance and employee well-being.<\/p>\r\n",
+        "price": "₹ 899",
+        "duration": "8 Hrs 57 Mins",
+        "total_courses": "37",
+        "total_learning_paths": "4",
         "learning_paths": [
             {
-                "lp_id": 8,
-                "lp_name": "Interpersonal Skills and Empathy",
-                "lp_description": "<p>The HC-LC Certification is designed to cultivate the mindset and skills needed to lead with empathy, inclusivity, and emotional intelligence in today’s evolving workplace. This program integrates key human-centric competencies — from interpersonal effectiveness and creative problem-solving to diversity, equity, and inclusion (DEI) leadership. Through structured modules, participants will learn how to foster trust, resolve conflicts, inspire collaboration, and build inclusive cultures that drive organizational performance and employee well-being.<\/p>\r\n",
-                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
-                "courses": [
-                    {
-                        "course_id": 692,
-                        "course_name": "Interpersonal Relationships"
-                    },
-                    {
-                        "course_id": 746,
-                        "course_name": "Enhancing Listening Skills"
-                    },
-                    {
-                        "course_id": 747,
-                        "course_name": "Networking and Building Relationships"
-                    },
-                    {
-                        "course_id": 937,
-                        "course_name": "Applying Interpersonal Skills at Work"
-                    },
-                    {
-                        "course_id": 988,
-                        "course_name": "Influence of Interpersonal Skills on Business  Culture "
-                    },
-                    {
-                        "course_id": 994,
-                        "course_name": "Steps to Improve Interpersonal Communication Skills "
-                    },
-                    {
-                        "course_id": 1023,
-                        "course_name": "Empathy-Building Exercises to Improve Communication and Relationships"
-                    },
-                    {
-                        "course_id": 1180,
-                        "course_name": "Strategies to Improve Empathetic Skills"
-                    }
-                ]
-            },
-            {
-                "lp_id": 9,
-                "lp_name": "Conflict Management and Collaboration",
+                "lp_id": "11",
+                "lp_name": "Diversity, Equity & Inclusion at Workplace",
                 "lp_description": "<p>The HC-LC Certification is designed to cultivate the mindset and skills needed to lead with empathy, inclusivity, and emotional intelligence in today&rsquo;s evolving workplace. This program integrates key human-centric competencies &mdash; from interpersonal effectiveness and creative problem-solving to diversity, equity, and inclusion (DEI) leadership. Through structured modules, participants will learn how to foster trust, resolve conflicts, inspire collaboration, and build inclusive cultures that drive organizational performance and employee well-being.<\/p>\r\n",
-                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
+                "lp_banner": "http:\/\/localhost\/DOCHEK\/assets\/assets\/img\/default_learning_plan_banner.jpg",
                 "courses": [
                     {
-                        "course_id": 765,
-                        "course_name": "Situational Conflict"
+                        "course_id": "1181",
+                        "course_name": "Anti-Discrimination Commitment"
                     },
                     {
-                        "course_id": 770,
-                        "course_name": "Small vs. Large Group Conflict"
-                    },
-                    {
-                        "course_id": 771,
-                        "course_name": "The Role of the Facilitator"
-                    }
-                ]
-            },
-            {
-                "lp_id": 10,
-                "lp_name": "Creative Thinking and Problem-Solving",
-                "lp_description": "<p>The HC-LC Certification is designed to cultivate the mindset and skills needed to lead with empathy, inclusivity, and emotional intelligence in today&rsquo;s evolving workplace. This program integrates key human-centric competencies &mdash; from interpersonal effectiveness and creative problem-solving to diversity, equity, and inclusion (DEI) leadership. Through structured modules, participants will learn how to foster trust, resolve conflicts, inspire collaboration, and build inclusive cultures that drive organizational performance and employee well-being.<\/p>\r\n",
-                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
-                "courses": [
-                    {
-                        "course_id": 1178,
-                        "course_name": "An Introduction to Creative Thinking"
-                    },
-                    {
-                        "course_id": 1197,
-                        "course_name": "Exploring and Improving Creative Thinking Skills"
-                    }
-                ]
-            },
-            {
-                "lp_id": 11,
-                "lp_name": "Diversity, Equity, and Inclusion at Workplace",
-                "lp_description": "<p>The HC-LC Certification is designed to cultivate the mindset and skills needed to lead with empathy, inclusivity, and emotional intelligence in today&rsquo;s evolving workplace. This program integrates key human-centric competencies &mdash; from interpersonal effectiveness and creative problem-solving to diversity, equity, and inclusion (DEI) leadership. Through structured modules, participants will learn how to foster trust, resolve conflicts, inspire collaboration, and build inclusive cultures that drive organizational performance and employee well-being.<\/p>\r\n",
-                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
-                "courses": [
-                    {
-                        "course_id": 813,
-                        "course_name": "Diversity Hiring and Inclusion "
-                    },
-                    {
-                        "course_id": 822,
-                        "course_name": "Dimensions of Diversity"
-                    },
-                    {
-                        "course_id": 824,
-                        "course_name": "Employee Resource Groups"
-                    },
-                    {
-                        "course_id": 826,
-                        "course_name": "Using Social Media Recruitment for DEI"
-                    },
-                    {
-                        "course_id": 828,
-                        "course_name": "Understanding the Cultural Differences (U.S.\/India)"
-                    },
-                    {
-                        "course_id": 829,
-                        "course_name": "Disability Awareness Full Circle Inclusion and Diversity"
-                    },
-                    {
-                        "course_id": 830,
-                        "course_name": "English as a Second Language (ESL)"
-                    },
-                    {
-                        "course_id": 834,
-                        "course_name": "Using Pronouns at Workplace"
-                    },
-                    {
-                        "course_id": 835,
-                        "course_name": "Dealing with Customers who are Discriminatory"
-                    },
-                    {
-                        "course_id": 864,
-                        "course_name": "Disability Law Full Circle Inclusion and Diversity"
-                    },
-                    {
-                        "course_id": 868,
-                        "course_name": "Unconscious Bias – Bias in Talent Development and Recruitment"
-                    },
-                    {
-                        "course_id": 872,
-                        "course_name": "Invisible Disabilities"
-                    },
-                    {
-                        "course_id": 873,
-                        "course_name": "Web Design for User Accessibility "
-                    },
-                    {
-                        "course_id": 874,
-                        "course_name": "Serving Customers With Disabilities"
-                    },
-                    {
-                        "course_id": 876,
-                        "course_name": "Neurodiversity"
-                    },
-                    {
-                        "course_id": 877,
-                        "course_name": "Affirmative Action for Businesses"
-                    },
-                    {
-                        "course_id": 1009,
-                        "course_name": "Microaggressions in Gender-Based Discrimination"
-                    },
-                    {
-                        "course_id": 1021,
-                        "course_name": "Understanding Gender Inequality"
-                    },
-                    {
-                        "course_id": 1022,
-                        "course_name": "Creating an Inclusive Workplace Culture"
-                    },
-                    {
-                        "course_id": 1023,
-                        "course_name": "Empathy-Building Exercises to Improve Communication and Relationships"
-                    },
-                    {
-                        "course_id": 1024,
-                        "course_name": "Gender Stereotypes in the Workplace"
-                    },
-                    {
-                        "course_id": 1072,
-                        "course_name": "An Introduction to DEI"
-                    },
-                    {
-                        "course_id": 1073,
-                        "course_name": "Gender and Innovation"
-                    },
-                    {
-                        "course_id": 1086,
+                        "course_id": "1086",
                         "course_name": "The Macro Effects of Microaggressions"
                     },
                     {
-                        "course_id": 1181,
-                        "course_name": "Anti-Discrimination Commitment"
+                        "course_id": "1073",
+                        "course_name": "Gender and Innovation"
+                    },
+                    {
+                        "course_id": "1024",
+                        "course_name": "Gender Stereotypes in the Workplace"
+                    },
+                    {
+                        "course_id": "1023",
+                        "course_name": "Empathy-Building Exercises to Improve Communication and Relationships"
+                    },
+                    {
+                        "course_id": "1022",
+                        "course_name": "Creating an Inclusive Workplace Culture"
+                    },
+                    {
+                        "course_id": "1021",
+                        "course_name": "Understanding Gender Inequality"
+                    },
+                    {
+                        "course_id": "1009",
+                        "course_name": "Microaggressions in Gender-Based Discrimination"
+                    },
+                    {
+                        "course_id": "877",
+                        "course_name": "Affirmative Action for Businesses"
+                    },
+                    {
+                        "course_id": "876",
+                        "course_name": "Neurodiversity"
+                    },
+                    {
+                        "course_id": "874",
+                        "course_name": "Serving Customers With Disabilities"
+                    },
+                    {
+                        "course_id": "873",
+                        "course_name": "Web Design for User Accessibility "
+                    },
+                    {
+                        "course_id": "872",
+                        "course_name": "Invisible Disabilities"
+                    },
+                    {
+                        "course_id": "868",
+                        "course_name": "Unconscious Bias – Bias in Talent Development and Recruitment"
+                    },
+                    {
+                        "course_id": "864",
+                        "course_name": "Disability Law Full Circle Inclusion and Diversity"
+                    },
+                    {
+                        "course_id": "835",
+                        "course_name": "Dealing with Customers who are Discriminatory"
+                    },
+                    {
+                        "course_id": "834",
+                        "course_name": "Using Pronouns at Workplace"
+                    },
+                    {
+                        "course_id": "830",
+                        "course_name": "English as a Second Language (ESL)"
+                    },
+                    {
+                        "course_id": "829",
+                        "course_name": "Disability Awareness Full Circle Inclusion and Diversity"
+                    },
+                    {
+                        "course_id": "828",
+                        "course_name": "Understanding the Cultural Differences (U.S.\/India)"
+                    },
+                    {
+                        "course_id": "826",
+                        "course_name": "Using Social Media Recruitment for DEI"
+                    },
+                    {
+                        "course_id": "824",
+                        "course_name": "Employee Resource Groups"
+                    },
+                    {
+                        "course_id": "822",
+                        "course_name": "Dimensions of Diversity"
+                    },
+                    {
+                        "course_id": "813",
+                        "course_name": "Diversity Hiring and Inclusion "
+                    },
+                    {
+                        "course_id": "1072",
+                        "course_name": "An Introduction to DEI"
+                    }
+                ]
+            },
+            {
+                "lp_id": "10",
+                "lp_name": "Creative Thinking and Problem Solving",
+                "lp_description": "<p>The HC-LC Certification is designed to cultivate the mindset and skills needed to lead with empathy, inclusivity, and emotional intelligence in today&rsquo;s evolving workplace. This program integrates key human-centric competencies &mdash; from interpersonal effectiveness and creative problem-solving to diversity, equity, and inclusion (DEI) leadership. Through structured modules, participants will learn how to foster trust, resolve conflicts, inspire collaboration, and build inclusive cultures that drive organizational performance and employee well-being.<\/p>\r\n",
+                "lp_banner": "http:\/\/localhost\/DOCHEK\/assets\/assets\/img\/default_learning_plan_banner.jpg",
+                "courses": [
+                    {
+                        "course_id": "1197",
+                        "course_name": "Exploring and Improving Creative Thinking Skills"
+                    },
+                    {
+                        "course_id": "1178",
+                        "course_name": "An Introduction to Creative Thinking"
+                    }
+                ]
+            },
+            {
+                "lp_id": "9",
+                "lp_name": "Conflict Management and Collaboration",
+                "lp_description": "<p>The HC-LC Certification is designed to cultivate the mindset and skills needed to lead with empathy, inclusivity, and emotional intelligence in today&rsquo;s evolving workplace. This program integrates key human-centric competencies &mdash; from interpersonal effectiveness and creative problem-solving to diversity, equity, and inclusion (DEI) leadership. Through structured modules, participants will learn how to foster trust, resolve conflicts, inspire collaboration, and build inclusive cultures that drive organizational performance and employee well-being.<\/p>\r\n",
+                "lp_banner": "http:\/\/localhost\/DOCHEK\/assets\/assets\/img\/default_learning_plan_banner.jpg",
+                "courses": [
+                    {
+                        "course_id": "771",
+                        "course_name": "The Role of the Facilitator"
+                    },
+                    {
+                        "course_id": "770",
+                        "course_name": "Small vs. Large Group Conflict"
+                    },
+                    {
+                        "course_id": "765",
+                        "course_name": "Situational Conflict"
+                    }
+                ]
+            },
+            {
+                "lp_id": "8",
+                "lp_name": "Interpersonal Skills and Empathy",
+                "lp_description": "<p>The HC-LC Certification is designed to cultivate the mindset and skills needed to lead with empathy, inclusivity, and emotional intelligence in today&rsquo;s evolving workplace. This program integrates key human-centric competencies &mdash; from interpersonal effectiveness and creative problem-solving to diversity, equity, and inclusion (DEI) leadership. Through structured modules, participants will learn how to foster trust, resolve conflicts, inspire collaboration, and build inclusive cultures that drive organizational performance and employee well-being.<\/p>\r\n",
+                "lp_banner": "http:\/\/localhost\/DOCHEK\/assets\/assets\/img\/default_learning_plan_banner.jpg",
+                "courses": [
+                    {
+                        "course_id": "1180",
+                        "course_name": "Strategies to Improve Empathetic Skills"
+                    },
+                    {
+                        "course_id": "1023",
+                        "course_name": "Empathy-Building Exercises to Improve Communication and Relationships"
+                    },
+                    {
+                        "course_id": "994",
+                        "course_name": "Steps to Improve Interpersonal Communication Skills "
+                    },
+                    {
+                        "course_id": "988",
+                        "course_name": "Influence of Interpersonal Skills on Business  Culture "
+                    },
+                    {
+                        "course_id": "937",
+                        "course_name": "Applying Interpersonal Skills at Work"
+                    },
+                    {
+                        "course_id": "747",
+                        "course_name": "Networking and Building Relationships"
+                    },
+                    {
+                        "course_id": "746",
+                        "course_name": "Enhancing Listening Skills"
+                    },
+                    {
+                        "course_id": "692",
+                        "course_name": "Interpersonal Relationships"
                     }
                 ]
             }
         ]
     },
     {
-        "certificate_id": 3,
-        "short_name": "SDBPS",
-        "color": "#10b981",
-        "icon": "brain",
-        "price_value": 799,
+        "certificate_id": "3",
         "certificate_name": "Certification in Self-Development and Business Power Skills (SDBPS Certification)",
-        "certificate_description": "<p>This program provides practical tools for effective communication, performance management, presentations, business writing, and interpersonal effectiveness. Participants will gain actionable insights, hands-on skills, and frameworks to enhance personal and professional effectiveness.<\/p>\r\n",
-        "price": "₹799",
-        "duration": "8 Hours 37 Minutes",
-        "total_courses": 42,
-        "total_learning_paths": 6,
+        "certificate_description": "<p>The SDBPS Certification is designed to equip professionals with critical self-development, communication, leadership, and business skills to excel in the modern workplace. This program provides practical tools for effective communication, performance management, presentations, business writing, and interpersonal effectiveness. Participants will gain actionable insights, hands-on skills, and frameworks to enhance personal and professional effectiveness.<\/p>\r\n",
+        "price": "₹ 799",
+        "duration": "8 Hrs 37 Mins",
+        "total_courses": "42",
+        "total_learning_paths": "6",
         "learning_paths": [
             {
-                "lp_id": 12,
-                "lp_name": "Self-Development",
-                "lp_description": "<p>The SDBPS Certification is designed to equip professionals with critical self-development, communication, leadership, and business skills to excel in the modern workplace. This program provides practical tools for effective communication, performance management, presentations, business writing, and interpersonal effectiveness.<br \/>\r\nParticipants will gain actionable insights, hands-on skills, and frameworks to enhance personal and professional effectiveness.<\/p>\r\n",
-                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
-                "courses": [
-                    {
-                        "course_id": 809,
-                        "course_name": "Effective Resume Development"
-                    },
-                    {
-                        "course_id": 814,
-                        "course_name": "Delivering Effective Presentations "
-                    },
-                    {
-                        "course_id": 821,
-                        "course_name": "Technical Enhancements for Delivering Effective Presentations  "
-                    },
-                    {
-                        "course_id": 823,
-                        "course_name": "Principles of Lean Operations"
-                    },
-                    {
-                        "course_id": 878,
-                        "course_name": "How to Give an Elevator Pitch?"
-                    },
-                    {
-                        "course_id": 933,
-                        "course_name": "Interpersonal Communication in the Workplace"
-                    },
-                    {
-                        "course_id": 956,
-                        "course_name": "How Leaders Create and Use Networks"
-                    },
-                    {
-                        "course_id": 976,
-                        "course_name": "Definition, Techniques, and Tips for Virtual Selling"
-                    },
-                    {
-                        "course_id": 988,
-                        "course_name": "Influence of Interpersonal Skills on Business  Culture "
-                    }
-                ]
-            },
-            {
-                "lp_id": 13,
-                "lp_name": "Effective Meetings",
-                "lp_description": "<p>The SDBPS Certification is designed to equip professionals with critical self-development, communication, leadership, and business skills to excel in the modern workplace. This program provides practical tools for effective communication, performance management, presentations, business writing, and interpersonal effectiveness.<br \/>\r\nParticipants will gain actionable insights, hands-on skills, and frameworks to enhance personal and professional effectiveness.<\/p>\r\n",
-                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
-                "courses": [
-                    {
-                        "course_id": 738,
-                        "course_name": "Assigning Roles and Responsibilities"
-                    },
-                    {
-                        "course_id": 739,
-                        "course_name": "Defining the Right Agenda"
-                    },
-                    {
-                        "course_id": 740,
-                        "course_name": "Understanding the Value of People's Time"
-                    }
-                ]
-            },
-            {
-                "lp_id": 14,
-                "lp_name": "Effective Feedback",
-                "lp_description": "<p>The SDBPS Certification is designed to equip professionals with critical self-development, communication, leadership, and business skills to excel in the modern workplace. This program provides practical tools for effective communication, performance management, presentations, business writing, and interpersonal effectiveness.<br \/>\r\nParticipants will gain actionable insights, hands-on skills, and frameworks to enhance personal and professional effectiveness.<\/p>\r\n",
-                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
-                "courses": [
-                    {
-                        "course_id": 684,
-                        "course_name": "Giving Effective Feedback"
-                    },
-                    {
-                        "course_id": 735,
-                        "course_name": "Resistant vs. Open to Change"
-                    },
-                    {
-                        "course_id": 736,
-                        "course_name": "Sandwich Feedback"
-                    },
-                    {
-                        "course_id": 737,
-                        "course_name": "Managing Your Reaction to Feedback"
-                    },
-                    {
-                        "course_id": 1304,
-                        "course_name": "Understanding 360-Degree Feedback "
-                    },
-                    {
-                        "course_id": 1602,
-                        "course_name": "Understanding 360-Degree Feedback Reports"
-                    },
-                    {
-                        "course_id": 1603,
-                        "course_name": "360-Degree Feedback and Personal Development Plans "
-                    }
-                ]
-            },
-            {
-                "lp_id": 15,
-                "lp_name": "Effective Communication",
-                "lp_description": "<p>The SDBPS Certification is designed to equip professionals with critical self-development, communication, leadership, and business skills to excel in the modern workplace. This program provides practical tools for effective communication, performance management, presentations, business writing, and interpersonal effectiveness.<br \/>\r\nParticipants will gain actionable insights, hands-on skills, and frameworks to enhance personal and professional effectiveness.<\/p>\r\n",
-                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
-                "courses": [
-                    {
-                        "course_id": 731,
-                        "course_name": "Communicating Upward"
-                    },
-                    {
-                        "course_id": 732,
-                        "course_name": "Creating Win-Win Scenarios"
-                    },
-                    {
-                        "course_id": 733,
-                        "course_name": "Electronic Communications"
-                    },
-                    {
-                        "course_id": 734,
-                        "course_name": "Using Open-Ended Questions"
-                    }
-                ]
-            },
-            {
-                "lp_id": 16,
-                "lp_name": "Business Power Skills",
-                "lp_description": "<p>The SDBPS Certification is designed to equip professionals with critical self-development, communication, leadership, and business skills to excel in the modern workplace. This program provides practical tools for effective communication, performance management, presentations, business writing, and interpersonal effectiveness.<br \/>\r\nParticipants will gain actionable insights, hands-on skills, and frameworks to enhance personal and professional effectiveness.<\/p>\r\n",
-                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
-                "courses": [
-                    {
-                        "course_id": 697,
-                        "course_name": "Building Your Personal Brand"
-                    },
-                    {
-                        "course_id": 698,
-                        "course_name": "Business Acumen"
-                    },
-                    {
-                        "course_id": 699,
-                        "course_name": "Business Communication Skills"
-                    },
-                    {
-                        "course_id": 700,
-                        "course_name": "Customer Service "
-                    },
-                    {
-                        "course_id": 701,
-                        "course_name": "Effective Presentations"
-                    },
-                    {
-                        "course_id": 702,
-                        "course_name": "Interpersonal Effectiveness"
-                    },
-                    {
-                        "course_id": 703,
-                        "course_name": "Project Management"
-                    },
-                    {
-                        "course_id": 710,
-                        "course_name": "Review of Grammatical Principles"
-                    },
-                    {
-                        "course_id": 991,
-                        "course_name": "How to Keep the Brain Fit for Agile Leadership"
-                    },
-                    {
-                        "course_id": 992,
-                        "course_name": "Improving Your Judgment and Complex Decision-Making Skills"
-                    },
-                    {
-                        "course_id": 993,
-                        "course_name": "Examples and Process of Business Transformation "
-                    },
-                    {
-                        "course_id": 1000,
-                        "course_name": "Soft Skills in Business and Their Importance"
-                    },
-                    {
-                        "course_id": 1005,
-                        "course_name": "Ways to Apply Leadership Techniques at Work"
-                    },
-                    {
-                        "course_id": 1078,
-                        "course_name": "Becoming a Good Business Writer"
-                    },
-                    {
-                        "course_id": 1203,
-                        "course_name": "The Whys and Hows of a Growth Mindset at Work"
-                    }
-                ]
-            },
-            {
-                "lp_id": 17,
+                "lp_id": "17",
                 "lp_name": "Managing Performance",
                 "lp_description": "<p>The SDBPS Certification is designed to equip professionals with critical self-development, communication, leadership, and business skills to excel in the modern workplace. This program provides practical tools for effective communication, performance management, presentations, business writing, and interpersonal effectiveness.<br \/>\r\nParticipants will gain actionable insights, hands-on skills, and frameworks to enhance personal and professional effectiveness.<\/p>\r\n",
-                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
+                "lp_banner": "http:\/\/localhost\/DOCHEK\/assets\/assets\/img\/default_learning_plan_banner.jpg",
                 "courses": [
                     {
-                        "course_id": 773,
-                        "course_name": "Individual Development Plans"
+                        "course_id": "776",
+                        "course_name": "The GROW Model"
                     },
                     {
-                        "course_id": 774,
-                        "course_name": "Setting SMART Goals"
-                    },
-                    {
-                        "course_id": 775,
+                        "course_id": "775",
                         "course_name": "Setting Stretch Goals"
                     },
                     {
-                        "course_id": 776,
-                        "course_name": "The GROW Model"
+                        "course_id": "774",
+                        "course_name": "Setting SMART Goals"
+                    },
+                    {
+                        "course_id": "773",
+                        "course_name": "Individual Development Plans"
+                    }
+                ]
+            },
+            {
+                "lp_id": "16",
+                "lp_name": "Business Power Skills",
+                "lp_description": "<p>The SDBPS Certification is designed to equip professionals with critical self-development, communication, leadership, and business skills to excel in the modern workplace. This program provides practical tools for effective communication, performance management, presentations, business writing, and interpersonal effectiveness.<br \/>\r\nParticipants will gain actionable insights, hands-on skills, and frameworks to enhance personal and professional effectiveness.<\/p>\r\n",
+                "lp_banner": "http:\/\/localhost\/DOCHEK\/assets\/assets\/img\/default_learning_plan_banner.jpg",
+                "courses": [
+                    {
+                        "course_id": "1203",
+                        "course_name": "The Whys and Hows of a Growth Mindset at Work"
+                    },
+                    {
+                        "course_id": "1005",
+                        "course_name": "Ways to Apply Leadership Techniques at Work"
+                    },
+                    {
+                        "course_id": "1000",
+                        "course_name": "Soft Skills in Business and Their Importance"
+                    },
+                    {
+                        "course_id": "993",
+                        "course_name": "Examples and Process of Business Transformation "
+                    },
+                    {
+                        "course_id": "992",
+                        "course_name": "Improving Your Judgment and Complex Decision-Making Skills"
+                    },
+                    {
+                        "course_id": "991",
+                        "course_name": "How to Keep the Brain Fit for Agile Leadership"
+                    },
+                    {
+                        "course_id": "710",
+                        "course_name": "Review of Grammatical Principles"
+                    },
+                    {
+                        "course_id": "697",
+                        "course_name": "Building Your Personal Brand"
+                    },
+                    {
+                        "course_id": "1078",
+                        "course_name": "Becoming a Good Business Writer"
+                    },
+                    {
+                        "course_id": "703",
+                        "course_name": "Project Management"
+                    },
+                    {
+                        "course_id": "702",
+                        "course_name": "Interpersonal Effectiveness"
+                    },
+                    {
+                        "course_id": "701",
+                        "course_name": "Effective Presentations"
+                    },
+                    {
+                        "course_id": "700",
+                        "course_name": "Customer Service "
+                    },
+                    {
+                        "course_id": "699",
+                        "course_name": "Business Communication Skills"
+                    },
+                    {
+                        "course_id": "698",
+                        "course_name": "Business Acumen"
+                    }
+                ]
+            },
+            {
+                "lp_id": "15",
+                "lp_name": "Effective Communication",
+                "lp_description": "<p>The SDBPS Certification is designed to equip professionals with critical self-development, communication, leadership, and business skills to excel in the modern workplace. This program provides practical tools for effective communication, performance management, presentations, business writing, and interpersonal effectiveness.<br \/>\r\nParticipants will gain actionable insights, hands-on skills, and frameworks to enhance personal and professional effectiveness.<\/p>\r\n",
+                "lp_banner": "http:\/\/localhost\/DOCHEK\/assets\/assets\/img\/default_learning_plan_banner.jpg",
+                "courses": [
+                    {
+                        "course_id": "734",
+                        "course_name": "Using Open-Ended Questions"
+                    },
+                    {
+                        "course_id": "733",
+                        "course_name": "Electronic Communications"
+                    },
+                    {
+                        "course_id": "732",
+                        "course_name": "Creating Win-Win Scenarios"
+                    },
+                    {
+                        "course_id": "731",
+                        "course_name": "Communicating Upward"
+                    }
+                ]
+            },
+            {
+                "lp_id": "14",
+                "lp_name": "Effective Feedback",
+                "lp_description": "<p>The SDBPS Certification is designed to equip professionals with critical self-development, communication, leadership, and business skills to excel in the modern workplace. This program provides practical tools for effective communication, performance management, presentations, business writing, and interpersonal effectiveness.<br \/>\r\nParticipants will gain actionable insights, hands-on skills, and frameworks to enhance personal and professional effectiveness.<\/p>\r\n",
+                "lp_banner": "http:\/\/localhost\/DOCHEK\/assets\/assets\/img\/default_learning_plan_banner.jpg",
+                "courses": [
+                    {
+                        "course_id": "1603",
+                        "course_name": "360-Degree Feedback and Personal Development Plans "
+                    },
+                    {
+                        "course_id": "1602",
+                        "course_name": "Understanding 360-Degree Feedback Reports"
+                    },
+                    {
+                        "course_id": "1304",
+                        "course_name": "Understanding 360-Degree Feedback "
+                    },
+                    {
+                        "course_id": "737",
+                        "course_name": "Managing Your Reaction to Feedback"
+                    },
+                    {
+                        "course_id": "736",
+                        "course_name": "Sandwich Feedback"
+                    },
+                    {
+                        "course_id": "735",
+                        "course_name": "Resistant vs. Open to Change"
+                    },
+                    {
+                        "course_id": "684",
+                        "course_name": "Giving Effective Feedback"
+                    }
+                ]
+            },
+            {
+                "lp_id": "13",
+                "lp_name": "Effective Meetings",
+                "lp_description": "<p>The SDBPS Certification is designed to equip professionals with critical self-development, communication, leadership, and business skills to excel in the modern workplace. This program provides practical tools for effective communication, performance management, presentations, business writing, and interpersonal effectiveness.<br \/>\r\nParticipants will gain actionable insights, hands-on skills, and frameworks to enhance personal and professional effectiveness.<\/p>\r\n",
+                "lp_banner": "http:\/\/localhost\/DOCHEK\/assets\/assets\/img\/default_learning_plan_banner.jpg",
+                "courses": [
+                    {
+                        "course_id": "740",
+                        "course_name": "Understanding the Value of People's Time"
+                    },
+                    {
+                        "course_id": "739",
+                        "course_name": "Defining the Right Agenda"
+                    },
+                    {
+                        "course_id": "738",
+                        "course_name": "Assigning Roles and Responsibilities"
+                    }
+                ]
+            },
+            {
+                "lp_id": "12",
+                "lp_name": "Self-Development",
+                "lp_description": "<p>The SDBPS Certification is designed to equip professionals with critical self-development, communication, leadership, and business skills to excel in the modern workplace. This program provides practical tools for effective communication, performance management, presentations, business writing, and interpersonal effectiveness.<br \/>\r\nParticipants will gain actionable insights, hands-on skills, and frameworks to enhance personal and professional effectiveness.<\/p>\r\n",
+                "lp_banner": "http:\/\/localhost\/DOCHEK\/assets\/assets\/img\/default_learning_plan_banner.jpg",
+                "courses": [
+                    {
+                        "course_id": "988",
+                        "course_name": "Influence of Interpersonal Skills on Business  Culture "
+                    },
+                    {
+                        "course_id": "976",
+                        "course_name": "Definition, Techniques, and Tips for Virtual Selling"
+                    },
+                    {
+                        "course_id": "956",
+                        "course_name": "How Leaders Create and Use Networks"
+                    },
+                    {
+                        "course_id": "933",
+                        "course_name": "Interpersonal Communication in the Workplace"
+                    },
+                    {
+                        "course_id": "878",
+                        "course_name": "How to Give an Elevator Pitch?"
+                    },
+                    {
+                        "course_id": "823",
+                        "course_name": "Principles of Lean Operations"
+                    },
+                    {
+                        "course_id": "821",
+                        "course_name": "Technical Enhancements for Delivering Effective Presentations  "
+                    },
+                    {
+                        "course_id": "814",
+                        "course_name": "Delivering Effective Presentations "
+                    },
+                    {
+                        "course_id": "809",
+                        "course_name": "Effective Resume Development"
                     }
                 ]
             }
         ]
     },
     {
-        "certificate_id": 4,
-        "short_name": "WRWEI",
-        "color": "#f59e0b",
-        "icon": "heart",
-        "price_value": 599,
+        "certificate_id": "4",
         "certificate_name": "Certification in Workplace Resilience, Wellness, and Emotional Intelligence (WRWEI Certification)",
-        "certificate_description": "<p>The WRWEI Certification equips professionals with essential skills to build resilience, promote mental wellness, and develop emotional intelligence in the workplace. Participants will gain actionable insights and frameworks to improve workplace performance, relationships, and overall well-being.<\/p>\r\n",
-        "price": "₹599",
-        "duration": "5 Hours 29 Minutes",
-        "total_courses": 26,
-        "total_learning_paths": 4,
+        "certificate_description": "<p>The WRWEI Certification equips professionals with essential skills to build resilience, promote mental wellness, and develop emotional intelligence in the workplace. This program provides practical strategies for personal and team well-being, navigating workplace politics, and fostering psychologically safe work environments. Participants will gain actionable insights and frameworks to improve workplace performance, relationships, and overall well-being.<\/p>\r\n",
+        "price": "₹ 599",
+        "duration": "5 Hrs 28 Mins",
+        "total_courses": "26",
+        "total_learning_paths": "4",
         "learning_paths": [
             {
-                "lp_id": 18,
-                "lp_name": "Resilience at Work",
+                "lp_id": "21",
+                "lp_name": "Emotional Intelligence",
                 "lp_description": "<p>The WRWEI Certification equips professionals with essential skills to build resilience, promote mental wellness, and develop emotional intelligence in the workplace. This program provides practical strategies for personal and team well-being, navigating workplace politics, and fostering psychologically safe work environments.<br \/>\r\nParticipants will gain actionable insights and frameworks to improve workplace performance, relationships, and overall well-being.<\/p>\r\n",
-                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
+                "lp_banner": "http:\/\/localhost\/DOCHEK\/assets\/assets\/img\/default_learning_plan_banner.jpg",
                 "courses": [
                     {
-                        "course_id": 1218,
-                        "course_name": "How to Boost Resilience at Work"
+                        "course_id": "898",
+                        "course_name": "Modern Day Workforce"
+                    },
+                    {
+                        "course_id": "745",
+                        "course_name": "Social Competence"
+                    },
+                    {
+                        "course_id": "744",
+                        "course_name": "Personal Competence"
+                    },
+                    {
+                        "course_id": "743",
+                        "course_name": "Introduction to Emotional Intelligence "
+                    },
+                    {
+                        "course_id": "742",
+                        "course_name": "Emotional Intelligence Strategies"
                     }
                 ]
             },
             {
-                "lp_id": 19,
-                "lp_name": "Workplace Politics",
+                "lp_id": "20",
+                "lp_name": "Workplace Wellness",
                 "lp_description": "<p>The WRWEI Certification equips professionals with essential skills to build resilience, promote mental wellness, and develop emotional intelligence in the workplace. This program provides practical strategies for personal and team well-being, navigating workplace politics, and fostering psychologically safe work environments.<br \/>\r\nParticipants will gain actionable insights and frameworks to improve workplace performance, relationships, and overall well-being.<\/p>\r\n",
-                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
+                "lp_banner": "http:\/\/localhost\/DOCHEK\/assets\/assets\/img\/default_learning_plan_banner.jpg",
                 "courses": [
                     {
-                        "course_id": 869,
+                        "course_id": "1080",
+                        "course_name": "Consequences of Actions-Impulsive Behavior at the Workplace"
+                    },
+                    {
+                        "course_id": "1020",
+                        "course_name": "How to Improve Workplace Wellness"
+                    },
+                    {
+                        "course_id": "1018",
+                        "course_name": "Culture of Self-Care in the Workplace "
+                    },
+                    {
+                        "course_id": "1016",
+                        "course_name": "What Is Meant by Well-Being in the Workplace"
+                    },
+                    {
+                        "course_id": "1015",
+                        "course_name": "The Importance of Wellness in the Workplace"
+                    },
+                    {
+                        "course_id": "1004",
+                        "course_name": "Advantages of Leading with Empathy and Authenticity"
+                    },
+                    {
+                        "course_id": "994",
+                        "course_name": "Steps to Improve Interpersonal Communication Skills "
+                    },
+                    {
+                        "course_id": "990",
+                        "course_name": "10 Ways to Practice Self-Care at Work"
+                    },
+                    {
+                        "course_id": "989",
+                        "course_name": "An Introduction to Wellness"
+                    },
+                    {
+                        "course_id": "981",
+                        "course_name": "Strategies to Improve Staff Wellness"
+                    },
+                    {
+                        "course_id": "971",
+                        "course_name": "Mental Wellness at the Workplace and Its Benefits"
+                    },
+                    {
+                        "course_id": "970",
+                        "course_name": "Types and Elements of Empathy"
+                    },
+                    {
+                        "course_id": "966",
+                        "course_name": "Importance of Psychological Safety at Work"
+                    },
+                    {
+                        "course_id": "964",
+                        "course_name": "The 4 Stages of Psychological Safety"
+                    },
+                    {
+                        "course_id": "963",
+                        "course_name": "Tips to Create a Psychologically Safe Work Environment"
+                    },
+                    {
+                        "course_id": "962",
+                        "course_name": "Impacts of Returning to the Workplace"
+                    },
+                    {
+                        "course_id": "960",
+                        "course_name": "Importance of Self-Care and Staying Well at Work "
+                    },
+                    {
+                        "course_id": "957",
+                        "course_name": "Five Ways to Promote Employee Mental Wellness "
+                    },
+                    {
+                        "course_id": "845",
+                        "course_name": "Managing Stress and Emotions"
+                    }
+                ]
+            },
+            {
+                "lp_id": "19",
+                "lp_name": "Workplace Politics",
+                "lp_description": "<p>The WRWEI Certification equips professionals with essential skills to build resilience, promote mental wellness, and develop emotional intelligence in the workplace. This program provides practical strategies for personal and team well-being, navigating workplace politics, and fostering psychologically safe work environments.<br \/>\r\nParticipants will gain actionable insights and frameworks to improve workplace performance, relationships, and overall well-being.<\/p>\r\n",
+                "lp_banner": "http:\/\/localhost\/DOCHEK\/assets\/assets\/img\/default_learning_plan_banner.jpg",
+                "courses": [
+                    {
+                        "course_id": "869",
                         "course_name": "Workplace Politics: Debate"
                     }
                 ]
             },
             {
-                "lp_id": 20,
-                "lp_name": "Workplace Wellness",
+                "lp_id": "18",
+                "lp_name": "Resilience at Work",
                 "lp_description": "<p>The WRWEI Certification equips professionals with essential skills to build resilience, promote mental wellness, and develop emotional intelligence in the workplace. This program provides practical strategies for personal and team well-being, navigating workplace politics, and fostering psychologically safe work environments.<br \/>\r\nParticipants will gain actionable insights and frameworks to improve workplace performance, relationships, and overall well-being.<\/p>\r\n",
-                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
+                "lp_banner": "http:\/\/localhost\/DOCHEK\/assets\/assets\/img\/default_learning_plan_banner.jpg",
                 "courses": [
                     {
-                        "course_id": 845,
-                        "course_name": "Managing Stress and Emotions"
-                    },
-                    {
-                        "course_id": 957,
-                        "course_name": "Five Ways to Promote Employee Mental Wellness "
-                    },
-                    {
-                        "course_id": 960,
-                        "course_name": "Importance of Self-Care and Staying Well at Work "
-                    },
-                    {
-                        "course_id": 962,
-                        "course_name": "Impacts of Returning to the Workplace"
-                    },
-                    {
-                        "course_id": 963,
-                        "course_name": "Tips to Create a Psychologically Safe Work Environment"
-                    },
-                    {
-                        "course_id": 964,
-                        "course_name": "The 4 Stages of Psychological Safety"
-                    },
-                    {
-                        "course_id": 966,
-                        "course_name": "Importance of Psychological Safety at Work"
-                    },
-                    {
-                        "course_id": 970,
-                        "course_name": "Types and Elements of Empathy"
-                    },
-                    {
-                        "course_id": 971,
-                        "course_name": "Mental Wellness at the Workplace and Its Benefits"
-                    },
-                    {
-                        "course_id": 981,
-                        "course_name": "Strategies to Improve Staff Wellness"
-                    },
-                    {
-                        "course_id": 989,
-                        "course_name": "An Introduction to Wellness"
-                    },
-                    {
-                        "course_id": 990,
-                        "course_name": "10 Ways to Practice Self-Care at Work"
-                    },
-                    {
-                        "course_id": 994,
-                        "course_name": "Steps to Improve Interpersonal Communication Skills "
-                    },
-                    {
-                        "course_id": 1004,
-                        "course_name": "Advantages of Leading with Empathy and Authenticity"
-                    },
-                    {
-                        "course_id": 1015,
-                        "course_name": "The Importance of Wellness in the Workplace"
-                    },
-                    {
-                        "course_id": 1016,
-                        "course_name": "What Is Meant by Well-Being in the Workplace"
-                    },
-                    {
-                        "course_id": 1018,
-                        "course_name": "Culture of Self-Care in the Workplace "
-                    },
-                    {
-                        "course_id": 1020,
-                        "course_name": "How to Improve Workplace Wellness"
-                    },
-                    {
-                        "course_id": 1080,
-                        "course_name": "Consequences of Actions-Impulsive Behavior at the Workplace"
-                    }
-                ]
-            },
-            {
-                "lp_id": 21,
-                "lp_name": "Emotional Intelligence",
-                "lp_description": "<p>The WRWEI Certification equips professionals with essential skills to build resilience, promote mental wellness, and develop emotional intelligence in the workplace. This program provides practical strategies for personal and team well-being, navigating workplace politics, and fostering psychologically safe work environments.<br \/>\r\nParticipants will gain actionable insights and frameworks to improve workplace performance, relationships, and overall well-being.<\/p>\r\n",
-                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
-                "courses": [
-                    {
-                        "course_id": 742,
-                        "course_name": "Emotional Intelligence Strategies"
-                    },
-                    {
-                        "course_id": 743,
-                        "course_name": "Introduction to Emotional Intelligence "
-                    },
-                    {
-                        "course_id": 744,
-                        "course_name": "Personal Competence"
-                    },
-                    {
-                        "course_id": 745,
-                        "course_name": "Social Competence"
-                    },
-                    {
-                        "course_id": 898,
-                        "course_name": "Modern Day Workforce"
+                        "course_id": "1218",
+                        "course_name": "How to Boost Resilience at Work"
                     }
                 ]
             }
         ]
     },
     {
-        "certificate_id": 5,
-        "short_name": "CSMBL",
-        "color": "#ec4899",
-        "icon": "chart-bar",
-        "price_value": 899,
+        "certificate_id": "5",
         "certificate_name": "Certification in Strategic Marketing and Brand Leadership (CSMBL Certification)",
-        "certificate_description": "<p>The CSMBL Certification is designed to provide a holistic understanding of modern marketing, customer behavior, branding, and innovation strategies that drive global business success. Participants will gain global perspectives through modules developed around Dr. Jagdish N. Sheth's marketing insights, ensuring real-world relevance and strategic application.<\/p>",
-        "price": "₹899",
-        "duration": "10 Hours",
-        "total_courses": 47,
-        "total_learning_paths": 6,
+        "certificate_description": "<p>The CSMBL Certification is designed to provide a holistic understanding of modern marketing, customer behavior, branding, and innovation strategies that drive global business success. This program equips learners with strategic marketing frameworks, customer insight models, and leadership tools to effectively manage brands, enhance customer engagement, and lead high-performing sales and marketing teams. Participants will gain global perspectives through modules developed around Dr. Jagdish N. Sheth&rsquo;s marketing insights, ensuring real-world relevance and strategic application.<\/p>\r\n",
+        "price": "₹ 899",
+        "duration": "9 Hrs 47 Mins",
+        "total_courses": "47",
+        "total_learning_paths": "6",
         "learning_paths": [
             {
-                "lp_id": 22,
-                "lp_name": "Marketing Foundations & Market Segmentation",
-                "lp_description": "<p>The CSMBL Certification is designed to provide a holistic understanding of modern marketing, customer behavior, branding, and innovation strategies that drive global business success. This program equips learners with strategic marketing frameworks, customer insight models, and leadership tools to effectively manage brands, enhance customer engagement, and lead high-performing sales and marketing teams.<br \/>\r\nParticipants will gain global perspectives through modules developed around Dr. Jagdish N. Sheth&rsquo;s marketing insights, ensuring real-world relevance and strategic application.<\/p>\r\n",
-                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
-                "courses": [
-                    {
-                        "course_id": 803,
-                        "course_name": "Introduction to Digital Marketing"
-                    },
-                    {
-                        "course_id": 910,
-                        "course_name": "Methods of Segmenting the Market"
-                    },
-                    {
-                        "course_id": 911,
-                        "course_name": "Market Segmentation: Overview"
-                    },
-                    {
-                        "course_id": 912,
-                        "course_name": "Market Psychographics"
-                    },
-                    {
-                        "course_id": 913,
-                        "course_name": "What is Market Segmentation"
-                    },
-                    {
-                        "course_id": 916,
-                        "course_name": "Market Buy-o-Graphics"
-                    },
-                    {
-                        "course_id": 920,
-                        "course_name": "Awareness and Accessibility: Overview "
-                    }
-                ]
-            },
-            {
-                "lp_id": 23,
-                "lp_name": "The 4 A’s of Marketing Framework",
-                "lp_description": "<p>The CSMBL Certification is designed to provide a holistic understanding of modern marketing, customer behavior, branding, and innovation strategies that drive global business success. This program equips learners with strategic marketing frameworks, customer insight models, and leadership tools to effectively manage brands, enhance customer engagement, and lead high-performing sales and marketing teams.<br \/>\r\nParticipants will gain global perspectives through modules developed around Dr. Jagdish N. Sheth&rsquo;s marketing insights, ensuring real-world relevance and strategic application.<\/p>\r\n",
-                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
-                "courses": [
-                    {
-                        "course_id": 922,
-                        "course_name": "Four A's of Marketing: Differentiating Factors"
-                    },
-                    {
-                        "course_id": 924,
-                        "course_name": "4 As of Marketing Part 1"
-                    },
-                    {
-                        "course_id": 926,
-                        "course_name": "Affordability and Acceptability"
-                    }
-                ]
-            },
-            {
-                "lp_id": 24,
-                "lp_name": "Brand Management & Strategy",
-                "lp_description": "<p>The CSMBL Certification is designed to provide a holistic understanding of modern marketing, customer behavior, branding, and innovation strategies that drive global business success. This program equips learners with strategic marketing frameworks, customer insight models, and leadership tools to effectively manage brands, enhance customer engagement, and lead high-performing sales and marketing teams.<br \/>\r\nParticipants will gain global perspectives through modules developed around Dr. Jagdish N. Sheth&rsquo;s marketing insights, ensuring real-world relevance and strategic application.<\/p>\r\n",
-                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
-                "courses": [
-                    {
-                        "course_id": 879,
-                        "course_name": "Brand Loyalty Overview"
-                    },
-                    {
-                        "course_id": 880,
-                        "course_name": "Behavioral Theories of Brand Loyalty"
-                    },
-                    {
-                        "course_id": 881,
-                        "course_name": "Institutional Theories of Brand Loyalty"
-                    },
-                    {
-                        "course_id": 882,
-                        "course_name": "Socialization Theories of Brand Loyalty"
-                    },
-                    {
-                        "course_id": 903,
-                        "course_name": "Do Brand Have Nine Lives"
-                    },
-                    {
-                        "course_id": 904,
-                        "course_name": "Understanding Brand Value"
-                    },
-                    {
-                        "course_id": 905,
-                        "course_name": "Expand the Brand Reach"
-                    },
-                    {
-                        "course_id": 906,
-                        "course_name": "Brand Variation"
-                    },
-                    {
-                        "course_id": 907,
-                        "course_name": "Extending the Brand Reach"
-                    },
-                    {
-                        "course_id": 908,
-                        "course_name": "Brand Repositioning"
-                    },
-                    {
-                        "course_id": 909,
-                        "course_name": "Getting More out of a Brand"
-                    }
-                ]
-            },
-            {
-                "lp_id": 25,
-                "lp_name": "Customer Focus & Satisfaction",
-                "lp_description": "<p>The CSMBL Certification is designed to provide a holistic understanding of modern marketing, customer behavior, branding, and innovation strategies that drive global business success. This program equips learners with strategic marketing frameworks, customer insight models, and leadership tools to effectively manage brands, enhance customer engagement, and lead high-performing sales and marketing teams.<br \/>\r\nParticipants will gain global perspectives through modules developed around Dr. Jagdish N. Sheth&rsquo;s marketing insights, ensuring real-world relevance and strategic application.<\/p>\r\n",
-                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
-                "courses": [
-                    {
-                        "course_id": 700,
-                        "course_name": "Customer Service "
-                    },
-                    {
-                        "course_id": 716,
-                        "course_name": "Improving Customer Rapport"
-                    },
-                    {
-                        "course_id": 717,
-                        "course_name": "Understanding Customer Motivation in Sales"
-                    },
-                    {
-                        "course_id": 718,
-                        "course_name": "Managing Upset Customers"
-                    },
-                    {
-                        "course_id": 820,
-                        "course_name": "Role of the Customer and Supplier "
-                    },
-                    {
-                        "course_id": 842,
-                        "course_name": "Building Strategic Customer Alliances"
-                    },
-                    {
-                        "course_id": 854,
-                        "course_name": "Improving Customer Satisfaction"
-                    },
-                    {
-                        "course_id": 923,
-                        "course_name": "Customer Relationship Management "
-                    },
-                    {
-                        "course_id": 958,
-                        "course_name": "An Overview of Customer Service "
-                    },
-                    {
-                        "course_id": 1859,
-                        "course_name": "Handling Email Complaints"
-                    }
-                ]
-            },
-            {
-                "lp_id": 26,
-                "lp_name": "Sales Effectiveness & Leadership",
-                "lp_description": "<p>The CSMBL Certification is designed to provide a holistic understanding of modern marketing, customer behavior, branding, and innovation strategies that drive global business success. This program equips learners with strategic marketing frameworks, customer insight models, and leadership tools to effectively manage brands, enhance customer engagement, and lead high-performing sales and marketing teams.<br \/>\r\nParticipants will gain global perspectives through modules developed around Dr. Jagdish N. Sheth&rsquo;s marketing insights, ensuring real-world relevance and strategic application.<\/p>\r\n",
-                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
-                "courses": [
-                    {
-                        "course_id": 690,
-                        "course_name": "Sales Effectiveness"
-                    },
-                    {
-                        "course_id": 691,
-                        "course_name": "Sales Leadership"
-                    },
-                    {
-                        "course_id": 1096,
-                        "course_name": "Effective Sales Presentation Skills for Small Groups"
-                    },
-                    {
-                        "course_id": 1097,
-                        "course_name": "Mastering the Cold Calling Process"
-                    },
-                    {
-                        "course_id": 1192,
-                        "course_name": "Sales and Procurement Practices"
-                    }
-                ]
-            },
-            {
-                "lp_id": 27,
+                "lp_id": "27",
                 "lp_name": "Innovation & Market Trends",
                 "lp_description": "<p>The CSMBL Certification is designed to provide a holistic understanding of modern marketing, customer behavior, branding, and innovation strategies that drive global business success. This program equips learners with strategic marketing frameworks, customer insight models, and leadership tools to effectively manage brands, enhance customer engagement, and lead high-performing sales and marketing teams.<br \/>\r\nParticipants will gain global perspectives through modules developed around Dr. Jagdish N. Sheth&rsquo;s marketing insights, ensuring real-world relevance and strategic application.<\/p>\r\n",
-                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
+                "lp_banner": "http:\/\/localhost\/DOCHEK\/assets\/assets\/img\/default_learning_plan_banner.jpg",
                 "courses": [
                     {
-                        "course_id": 753,
-                        "course_name": "Building Innovation Teams"
+                        "course_id": "902",
+                        "course_name": "How Will the Declining Middle Class Impact the World Part 2"
                     },
                     {
-                        "course_id": 754,
-                        "course_name": "Leading Innovation Sessions"
-                    },
-                    {
-                        "course_id": 755,
-                        "course_name": "Trystorming"
-                    },
-                    {
-                        "course_id": 884,
-                        "course_name": "Food as a Necessity"
-                    },
-                    {
-                        "course_id": 886,
-                        "course_name": "Time and Space as Dimensions of Varying Consumption"
-                    },
-                    {
-                        "course_id": 887,
-                        "course_name": "Dramatic Difference of Clothing and Shelter"
-                    },
-                    {
-                        "course_id": 888,
-                        "course_name": "Technology, Friendship and Agreement as Dimensions of Varying Consumption"
-                    },
-                    {
-                        "course_id": 889,
-                        "course_name": "Other Dimensions of Varying Consumption"
-                    },
-                    {
-                        "course_id": 899,
-                        "course_name": "Reality of the Declining Middle Class"
-                    },
-                    {
-                        "course_id": 900,
+                        "course_id": "900",
                         "course_name": "How Will the Declining Middle Class Impact the World Part 1"
                     },
                     {
-                        "course_id": 902,
-                        "course_name": "How Will the Declining Middle Class Impact the World Part 2"
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "certificate_id": 6,
-        "short_name": "CTLTE",
-        "color": "#06b6d4",
-        "icon": "award",
-        "price_value": 599,
-        "certificate_name": "Certification in Transformational Leadership and Team Excellence (CTLTE Certification)",
-        "certificate_description": "<p>This certification equips professionals with the knowledge and skills to lead teams effectively, manage people, drive innovation, and implement organizational change. Participants will learn proven leadership models, team dynamics strategies, and change management frameworks for modern workplaces.<\/p>\r\n",
-        "price": "₹599",
-        "duration": "5 Hours 28 Minutes",
-        "total_courses": 24,
-        "total_learning_paths": 5,
-        "learning_paths": [
-            {
-                "lp_id": 28,
-                "lp_name": "Leading Teams",
-                "lp_description": "<p>This certification equips professionals with the knowledge and skills to lead teams effectively, manage people, drive innovation, and implement organizational change. Participants will learn proven leadership models, team dynamics strategies, and change management frameworks for modern workplaces.<\/p>\r\n",
-                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
-                "courses": [
-                    {
-                        "course_id": 760,
-                        "course_name": "Employee Motivation – Intrinsic vs. Extrinsic Motivation"
+                        "course_id": "899",
+                        "course_name": "Reality of the Declining Middle Class"
                     },
                     {
-                        "course_id": 761,
-                        "course_name": "Leading and Motivating Call Center Teams"
+                        "course_id": "889",
+                        "course_name": "Other Dimensions of Varying Consumption"
                     },
                     {
-                        "course_id": 762,
-                        "course_name": "Leading and Managing Effective Virtual Teams"
+                        "course_id": "888",
+                        "course_name": "Technology, Friendship and Agreement as Dimensions of Varying Consumption"
                     },
                     {
-                        "course_id": 763,
-                        "course_name": "Leading Dynamic Teams"
+                        "course_id": "887",
+                        "course_name": "Dramatic Difference of Clothing and Shelter"
                     },
                     {
-                        "course_id": 764,
-                        "course_name": "Leading Generationally Diverse Teams"
+                        "course_id": "886",
+                        "course_name": "Time and Space as Dimensions of Varying Consumption"
                     },
                     {
-                        "course_id": 983,
-                        "course_name": "Brain-Based Ways to Improve Team Performance"
+                        "course_id": "884",
+                        "course_name": "Food as a Necessity"
+                    },
+                    {
+                        "course_id": "755",
+                        "course_name": "Trystorming"
+                    },
+                    {
+                        "course_id": "754",
+                        "course_name": "Leading Innovation Sessions"
+                    },
+                    {
+                        "course_id": "753",
+                        "course_name": "Building Innovation Teams"
                     }
                 ]
             },
             {
-                "lp_id": 29,
-                "lp_name": "Leading People",
-                "lp_description": "<p>This certification equips professionals with the knowledge and skills to lead teams effectively, manage people, drive innovation, and implement organizational change. Participants will learn proven leadership models, team dynamics strategies, and change management frameworks for modern workplaces.<\/p>\r\n",
-                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
+                "lp_id": "26",
+                "lp_name": "Sales Effectiveness & Leadership",
+                "lp_description": "<p>The CSMBL Certification is designed to provide a holistic understanding of modern marketing, customer behavior, branding, and innovation strategies that drive global business success. This program equips learners with strategic marketing frameworks, customer insight models, and leadership tools to effectively manage brands, enhance customer engagement, and lead high-performing sales and marketing teams.<br \/>\r\nParticipants will gain global perspectives through modules developed around Dr. Jagdish N. Sheth&rsquo;s marketing insights, ensuring real-world relevance and strategic application.<\/p>\r\n",
+                "lp_banner": "http:\/\/localhost\/DOCHEK\/assets\/assets\/img\/default_learning_plan_banner.jpg",
                 "courses": [
                     {
-                        "course_id": 756,
-                        "course_name": "Facilitating vs. Directing People"
+                        "course_id": "1192",
+                        "course_name": "Sales and Procurement Practices"
                     },
                     {
-                        "course_id": 757,
-                        "course_name": "Holding People Accountable"
+                        "course_id": "1096",
+                        "course_name": "Effective Sales Presentation Skills for Small Groups"
                     },
                     {
-                        "course_id": 758,
-                        "course_name": "Leading, Not Managing People"
+                        "course_id": "691",
+                        "course_name": "Sales Leadership"
                     },
                     {
-                        "course_id": 759,
-                        "course_name": "Motivating People – Theory X vs. Theory Y"
+                        "course_id": "690",
+                        "course_name": "Sales Effectiveness"
                     },
                     {
-                        "course_id": 965,
-                        "course_name": "Strategies and Skills for Effective Leadership and People Management"
-                    },
-                    {
-                        "course_id": 1002,
-                        "course_name": "Importance of Leadership and People Management"
-                    },
-                    {
-                        "course_id": 1092,
-                        "course_name": "Key Skills of Effective Virtual Leadership"
-                    }
-                ]
-            },
-            {
-                "lp_id": 30,
-                "lp_name": "Sales Effectiveness",
-                "lp_description": "<p>This certification equips professionals with the knowledge and skills to lead teams effectively, manage people, drive innovation, and implement organizational change. Participants will learn proven leadership models, team dynamics strategies, and change management frameworks for modern workplaces.<\/p>\r\n",
-                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
-                "courses": [
-                    {
-                        "course_id": 1097,
+                        "course_id": "1097",
                         "course_name": "Mastering the Cold Calling Process"
                     }
                 ]
             },
             {
-                "lp_id": 31,
-                "lp_name": "Leading Innovation",
-                "lp_description": "<p>This certification equips professionals with the knowledge and skills to lead teams effectively, manage people, drive innovation, and implement organizational change. Participants will learn proven leadership models, team dynamics strategies, and change management frameworks for modern workplaces.<\/p>\r\n",
-                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
+                "lp_id": "25",
+                "lp_name": "Customer Focus & Satisfaction",
+                "lp_description": "<p>The CSMBL Certification is designed to provide a holistic understanding of modern marketing, customer behavior, branding, and innovation strategies that drive global business success. This program equips learners with strategic marketing frameworks, customer insight models, and leadership tools to effectively manage brands, enhance customer engagement, and lead high-performing sales and marketing teams.<br \/>\r\nParticipants will gain global perspectives through modules developed around Dr. Jagdish N. Sheth&rsquo;s marketing insights, ensuring real-world relevance and strategic application.<\/p>\r\n",
+                "lp_banner": "http:\/\/localhost\/DOCHEK\/assets\/assets\/img\/default_learning_plan_banner.jpg",
                 "courses": [
                     {
-                        "course_id": 753,
-                        "course_name": "Building Innovation Teams"
+                        "course_id": "1859",
+                        "course_name": "Handling Email Complaints"
                     },
                     {
-                        "course_id": 754,
-                        "course_name": "Leading Innovation Sessions"
+                        "course_id": "958",
+                        "course_name": "An Overview of Customer Service "
                     },
                     {
-                        "course_id": 755,
-                        "course_name": "Trystorming"
+                        "course_id": "923",
+                        "course_name": "Customer Relationship Management "
+                    },
+                    {
+                        "course_id": "842",
+                        "course_name": "Building Strategic Customer Alliances"
+                    },
+                    {
+                        "course_id": "820",
+                        "course_name": "Role of the Customer and Supplier "
+                    },
+                    {
+                        "course_id": "718",
+                        "course_name": "Managing Upset Customers"
+                    },
+                    {
+                        "course_id": "717",
+                        "course_name": "Understanding Customer Motivation in Sales"
+                    },
+                    {
+                        "course_id": "716",
+                        "course_name": "Improving Customer Rapport"
+                    },
+                    {
+                        "course_id": "700",
+                        "course_name": "Customer Service "
+                    },
+                    {
+                        "course_id": "854",
+                        "course_name": "Improving Customer Satisfaction"
                     }
                 ]
             },
             {
-                "lp_id": 32,
-                "lp_name": "Leading Change",
-                "lp_description": "<p>This certification equips professionals with the knowledge and skills to lead teams effectively, manage people, drive innovation, and implement organizational change. Participants will learn proven leadership models, team dynamics strategies, and change management frameworks for modern workplaces.<\/p>\r\n",
-                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
+                "lp_id": "24",
+                "lp_name": "Brand Management & Strategy",
+                "lp_description": "<p>The CSMBL Certification is designed to provide a holistic understanding of modern marketing, customer behavior, branding, and innovation strategies that drive global business success. This program equips learners with strategic marketing frameworks, customer insight models, and leadership tools to effectively manage brands, enhance customer engagement, and lead high-performing sales and marketing teams.<br \/>\r\nParticipants will gain global perspectives through modules developed around Dr. Jagdish N. Sheth&rsquo;s marketing insights, ensuring real-world relevance and strategic application.<\/p>\r\n",
+                "lp_banner": "http:\/\/localhost\/DOCHEK\/assets\/assets\/img\/default_learning_plan_banner.jpg",
                 "courses": [
                     {
-                        "course_id": 750,
-                        "course_name": "Kotter's 8-Step Change Model"
+                        "course_id": "909",
+                        "course_name": "Getting More out of a Brand"
                     },
                     {
-                        "course_id": 751,
-                        "course_name": "Kurt Lewin’s 3 Stages of Change Model"
+                        "course_id": "907",
+                        "course_name": "Extending the Brand Reach"
                     },
                     {
-                        "course_id": 752,
-                        "course_name": "McKinsey's 7-S Model"
+                        "course_id": "905",
+                        "course_name": "Expand the Brand Reach"
                     },
                     {
-                        "course_id": 943,
-                        "course_name": "Change Management Strategy and Process"
+                        "course_id": "908",
+                        "course_name": "Brand Repositioning"
                     },
                     {
-                        "course_id": 995,
-                        "course_name": "Strategies to Embrace Change at Work"
+                        "course_id": "906",
+                        "course_name": "Brand Variation"
                     },
                     {
-                        "course_id": 1194,
-                        "course_name": "Five Key Elements of Successful Change Management"
+                        "course_id": "904",
+                        "course_name": "Understanding Brand Value"
                     },
                     {
-                        "course_id": 1202,
-                        "course_name": "Dealing with Environmental Change and Uncertainty"
+                        "course_id": "903",
+                        "course_name": "Do Brand Have Nine Lives"
+                    },
+                    {
+                        "course_id": "882",
+                        "course_name": "Socialization Theories of Brand Loyalty"
+                    },
+                    {
+                        "course_id": "881",
+                        "course_name": "Institutional Theories of Brand Loyalty"
+                    },
+                    {
+                        "course_id": "880",
+                        "course_name": "Behavioral Theories of Brand Loyalty"
+                    },
+                    {
+                        "course_id": "879",
+                        "course_name": "Brand Loyalty Overview"
+                    }
+                ]
+            },
+            {
+                "lp_id": "23",
+                "lp_name": "The 4 A’s of Marketing Framework",
+                "lp_description": "<p>The CSMBL Certification is designed to provide a holistic understanding of modern marketing, customer behavior, branding, and innovation strategies that drive global business success. This program equips learners with strategic marketing frameworks, customer insight models, and leadership tools to effectively manage brands, enhance customer engagement, and lead high-performing sales and marketing teams.<br \/>\r\nParticipants will gain global perspectives through modules developed around Dr. Jagdish N. Sheth&rsquo;s marketing insights, ensuring real-world relevance and strategic application.<\/p>\r\n",
+                "lp_banner": "http:\/\/localhost\/DOCHEK\/assets\/assets\/img\/default_learning_plan_banner.jpg",
+                "courses": [
+                    {
+                        "course_id": "924",
+                        "course_name": "4 As of Marketing Part 1"
+                    },
+                    {
+                        "course_id": "926",
+                        "course_name": "Affordability and Acceptability"
+                    },
+                    {
+                        "course_id": "922",
+                        "course_name": "Four A's of Marketing: Differentiating Factors"
+                    }
+                ]
+            },
+            {
+                "lp_id": "22",
+                "lp_name": "Marketing Foundations & Market Segmentation",
+                "lp_description": "<p>The CSMBL Certification is designed to provide a holistic understanding of modern marketing, customer behavior, branding, and innovation strategies that drive global business success. This program equips learners with strategic marketing frameworks, customer insight models, and leadership tools to effectively manage brands, enhance customer engagement, and lead high-performing sales and marketing teams.<br \/>\r\nParticipants will gain global perspectives through modules developed around Dr. Jagdish N. Sheth&rsquo;s marketing insights, ensuring real-world relevance and strategic application.<\/p>\r\n",
+                "lp_banner": "http:\/\/localhost\/DOCHEK\/assets\/assets\/img\/default_learning_plan_banner.jpg",
+                "courses": [
+                    {
+                        "course_id": "920",
+                        "course_name": "Awareness and Accessibility: Overview "
+                    },
+                    {
+                        "course_id": "916",
+                        "course_name": "Market Buy-o-Graphics"
+                    },
+                    {
+                        "course_id": "912",
+                        "course_name": "Market Psychographics"
+                    },
+                    {
+                        "course_id": "910",
+                        "course_name": "Methods of Segmenting the Market"
+                    },
+                    {
+                        "course_id": "911",
+                        "course_name": "Market Segmentation: Overview"
+                    },
+                    {
+                        "course_id": "913",
+                        "course_name": "What is Market Segmentation"
+                    },
+                    {
+                        "course_id": "803",
+                        "course_name": "Introduction to Digital Marketing"
                     }
                 ]
             }
         ]
     },
     {
-        "certificate_id": 7,
-        "short_name": "CSFBA",
-        "color": "#ef4444",
-        "icon": "coins",
-        "price_value": 499,
-        "certificate_name": "Certification in Strategic Finance and Business Acumen (CSFBA Certification)",
-        "certificate_description": "<p>The CSFBA Certification is designed for professionals seeking a deep understanding of modern financial systems, strategic decision-making, and digital transformation in finance. This program bridges core accounting principles, financial analytics, and business acumen, equipping learners to navigate both traditional finance and emerging fintech landscapes.<\/p>\r\n",
-        "price": "₹499",
-        "duration": "4.2 Hours",
-        "total_courses": 18,
-        "total_learning_paths": 5,
+        "certificate_id": "6",
+        "certificate_name": "Certification in Transformational Leadership & Team Excellence (CTLTE Certification)",
+        "certificate_description": "<p>This certification equips professionals with the knowledge and skills to lead teams effectively, manage people, drive innovation, and implement organizational change. Participants will learn proven leadership models, team dynamics strategies, and change management frameworks for modern workplaces.<\/p>\r\n",
+        "price": "₹ 599",
+        "duration": "5 Hrs 28 Mins",
+        "total_courses": "24",
+        "total_learning_paths": "5",
         "learning_paths": [
             {
-                "lp_id": 33,
-                "lp_name": "Core Accounting and Finance",
-                "lp_description": "<p>The CSFBA Certification is designed for professionals seeking a deep understanding of modern financial systems, strategic decision-making, and digital transformation in finance. This program bridges core accounting principles, financial analytics, and business acumen, equipping learners to navigate both traditional finance and emerging fintech landscapes.<\/p>\r\n",
-                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
+                "lp_id": "32",
+                "lp_name": "Leading Change",
+                "lp_description": "<p>This certification equips professionals with the knowledge and skills to lead teams effectively, manage people, drive innovation, and implement organizational change. Participants will learn proven leadership models, team dynamics strategies, and change management frameworks for modern workplaces.<\/p>\r\n",
+                "lp_banner": "http:\/\/localhost\/DOCHEK\/assets\/assets\/img\/default_learning_plan_banner.jpg",
                 "courses": [
                     {
-                        "course_id": 938,
-                        "course_name": "Basics of Financial Accounting"
+                        "course_id": "1202",
+                        "course_name": "Dealing with Environmental Change and Uncertainty"
                     },
                     {
-                        "course_id": 985,
-                        "course_name": "Deferred Revenue"
+                        "course_id": "1194",
+                        "course_name": "Five Key Elements of Successful Change Management"
                     },
                     {
-                        "course_id": 987,
-                        "course_name": "Currency Transactions"
+                        "course_id": "995",
+                        "course_name": "Strategies to Embrace Change at Work"
                     },
                     {
-                        "course_id": 1017,
-                        "course_name": "Consolidating Subsidiaries"
+                        "course_id": "943",
+                        "course_name": "Change Management Strategy and Process"
                     },
                     {
-                        "course_id": 1182,
-                        "course_name": "Intercompany Transactions"
+                        "course_id": "752",
+                        "course_name": "McKinsey's 7-S Model"
+                    },
+                    {
+                        "course_id": "751",
+                        "course_name": "Kurt Lewin’s 3 Stages of Change Model"
+                    },
+                    {
+                        "course_id": "750",
+                        "course_name": "Kotter's 8-Step Change Model"
                     }
                 ]
             },
             {
-                "lp_id": 34,
-                "lp_name": "Financial Analysis & Metrics",
-                "lp_description": "<p>The CSFBA Certification is designed for professionals seeking a deep understanding of modern financial systems, strategic decision-making, and digital transformation in finance. This program bridges core accounting principles, financial analytics, and business acumen, equipping learners to navigate both traditional finance and emerging fintech landscapes.<\/p>\r\n",
-                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
+                "lp_id": "31",
+                "lp_name": "Leading Innovation",
+                "lp_description": "<p>This certification equips professionals with the knowledge and skills to lead teams effectively, manage people, drive innovation, and implement organizational change. Participants will learn proven leadership models, team dynamics strategies, and change management frameworks for modern workplaces.<\/p>\r\n",
+                "lp_banner": "http:\/\/localhost\/DOCHEK\/assets\/assets\/img\/default_learning_plan_banner.jpg",
                 "courses": [
                     {
-                        "course_id": 694,
-                        "course_name": "Examining the Balance Sheet"
+                        "course_id": "755",
+                        "course_name": "Trystorming"
                     },
                     {
-                        "course_id": 696,
+                        "course_id": "754",
+                        "course_name": "Leading Innovation Sessions"
+                    },
+                    {
+                        "course_id": "753",
+                        "course_name": "Building Innovation Teams"
+                    }
+                ]
+            },
+            {
+                "lp_id": "30",
+                "lp_name": "Sales Effectiveness",
+                "lp_description": "<p>This certification equips professionals with the knowledge and skills to lead teams effectively, manage people, drive innovation, and implement organizational change. Participants will learn proven leadership models, team dynamics strategies, and change management frameworks for modern workplaces.<\/p>\r\n",
+                "lp_banner": "http:\/\/localhost\/DOCHEK\/assets\/assets\/img\/default_learning_plan_banner.jpg",
+                "courses": [
+                    {
+                        "course_id": "1097",
+                        "course_name": "Mastering the Cold Calling Process"
+                    }
+                ]
+            },
+            {
+                "lp_id": "29",
+                "lp_name": "Leading People",
+                "lp_description": "<p>This certification equips professionals with the knowledge and skills to lead teams effectively, manage people, drive innovation, and implement organizational change. Participants will learn proven leadership models, team dynamics strategies, and change management frameworks for modern workplaces.<\/p>\r\n",
+                "lp_banner": "http:\/\/localhost\/DOCHEK\/assets\/assets\/img\/default_learning_plan_banner.jpg",
+                "courses": [
+                    {
+                        "course_id": "1092",
+                        "course_name": "Key Skills of Effective Virtual Leadership"
+                    },
+                    {
+                        "course_id": "1002",
+                        "course_name": "Importance of Leadership and People Management"
+                    },
+                    {
+                        "course_id": "965",
+                        "course_name": "Strategies and Skills for Effective Leadership and People Management"
+                    },
+                    {
+                        "course_id": "759",
+                        "course_name": "Motivating People – Theory X vs. Theory Y"
+                    },
+                    {
+                        "course_id": "758",
+                        "course_name": "Leading, Not Managing People"
+                    },
+                    {
+                        "course_id": "757",
+                        "course_name": "Holding People Accountable"
+                    },
+                    {
+                        "course_id": "756",
+                        "course_name": "Facilitating vs. Directing People"
+                    }
+                ]
+            },
+            {
+                "lp_id": "28",
+                "lp_name": "Leading Teams",
+                "lp_description": "<p>This certification equips professionals with the knowledge and skills to lead teams effectively, manage people, drive innovation, and implement organizational change. Participants will learn proven leadership models, team dynamics strategies, and change management frameworks for modern workplaces.<\/p>\r\n",
+                "lp_banner": "http:\/\/localhost\/DOCHEK\/assets\/assets\/img\/default_learning_plan_banner.jpg",
+                "courses": [
+                    {
+                        "course_id": "983",
+                        "course_name": "Brain-Based Ways to Improve Team Performance"
+                    },
+                    {
+                        "course_id": "764",
+                        "course_name": "Leading Generationally Diverse Teams"
+                    },
+                    {
+                        "course_id": "763",
+                        "course_name": "Leading Dynamic Teams"
+                    },
+                    {
+                        "course_id": "762",
+                        "course_name": "Leading and Managing Effective Virtual Teams"
+                    },
+                    {
+                        "course_id": "761",
+                        "course_name": "Leading and Motivating Call Center Teams"
+                    },
+                    {
+                        "course_id": "760",
+                        "course_name": "Employee Motivation – Intrinsic vs. Extrinsic Motivation"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "certificate_id": "7",
+        "certificate_name": "Certification in Strategic Finance & Business Acumen (CSFBA Certification)",
+        "certificate_description": "<p>The CSFBA Certification is designed for professionals seeking a deep understanding of modern financial systems, strategic decision-making, and digital transformation in finance. This program bridges core accounting principles, financial analytics, and business acumen, equipping learners to navigate both traditional finance and emerging fintech landscapes.<\/p>\r\n",
+        "price": "₹ 499",
+        "duration": "4 Hrs 12 Mins",
+        "total_courses": "17",
+        "total_learning_paths": "5",
+        "learning_paths": [
+            {
+                "lp_id": "37",
+                "lp_name": "Modern Finance & Technology",
+                "lp_description": "<p>The CSFBA Certification is designed for professionals seeking a deep understanding of modern financial systems, strategic decision-making, and digital transformation in finance. This program bridges core accounting principles, financial analytics, and business acumen, equipping learners to navigate both traditional finance and emerging fintech landscapes.<\/p>\r\n",
+                "lp_banner": "http:\/\/localhost\/DOCHEK\/assets\/assets\/img\/default_learning_plan_banner.jpg",
+                "courses": [
+                    {
+                        "course_id": "1081",
+                        "course_name": "Data Analytics for Finance"
+                    },
+                    {
+                        "course_id": "1079",
+                        "course_name": "Blockchain Revolution for Enterprises"
+                    },
+                    {
+                        "course_id": "996",
+                        "course_name": "Cryptography"
+                    }
+                ]
+            },
+            {
+                "lp_id": "36",
+                "lp_name": "Business Acumen",
+                "lp_description": "<p>The CSFBA Certification is designed for professionals seeking a deep understanding of modern financial systems, strategic decision-making, and digital transformation in finance. This program bridges core accounting principles, financial analytics, and business acumen, equipping learners to navigate both traditional finance and emerging fintech landscapes.<\/p>\r\n",
+                "lp_banner": "http:\/\/localhost\/DOCHEK\/assets\/assets\/img\/default_learning_plan_banner.jpg",
+                "courses": [
+                    {
+                        "course_id": "696",
                         "course_name": "Forecasting and Budgeting "
                     },
                     {
-                        "course_id": 951,
-                        "course_name": "Intangible Assets"
+                        "course_id": "695",
+                        "course_name": "Finance for Non-Finance Managers"
                     },
                     {
-                        "course_id": 1665,
-                        "course_name": "Understanding Financial Performance Metrics"
+                        "course_id": "694",
+                        "course_name": "Examining the Balance Sheet"
+                    },
+                    {
+                        "course_id": "682",
+                        "course_name": "Business Acumen – Finance"
                     }
                 ]
             },
             {
-                "lp_id": 35,
+                "lp_id": "35",
                 "lp_name": "Advanced Finance Topics",
                 "lp_description": "<p>The CSFBA Certification is designed for professionals seeking a deep understanding of modern financial systems, strategic decision-making, and digital transformation in finance. This program bridges core accounting principles, financial analytics, and business acumen, equipping learners to navigate both traditional finance and emerging fintech landscapes.<\/p>\r\n",
-                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
+                "lp_banner": "http:\/\/localhost\/DOCHEK\/assets\/assets\/img\/default_learning_plan_banner.jpg",
                 "courses": [
                     {
-                        "course_id": 925,
+                        "course_id": "925",
                         "course_name": "Shareholder Driven Companies"
                     },
                     {
-                        "course_id": 1198,
+                        "course_id": "1198",
                         "course_name": "Derivatives"
                     }
                 ]
             },
             {
-                "lp_id": 36,
-                "lp_name": "Business Acumen",
+                "lp_id": "34",
+                "lp_name": "Financial Analysis & Metrics",
                 "lp_description": "<p>The CSFBA Certification is designed for professionals seeking a deep understanding of modern financial systems, strategic decision-making, and digital transformation in finance. This program bridges core accounting principles, financial analytics, and business acumen, equipping learners to navigate both traditional finance and emerging fintech landscapes.<\/p>\r\n",
-                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
+                "lp_banner": "http:\/\/localhost\/DOCHEK\/assets\/assets\/img\/default_learning_plan_banner.jpg",
                 "courses": [
                     {
-                        "course_id": 682,
-                        "course_name": "Business Acumen – Finance"
+                        "course_id": "951",
+                        "course_name": "Intangible Assets"
                     },
                     {
-                        "course_id": 694,
+                        "course_id": "696",
+                        "course_name": "Forecasting and Budgeting "
+                    },
+                    {
+                        "course_id": "694",
                         "course_name": "Examining the Balance Sheet"
                     },
                     {
-                        "course_id": 695,
-                        "course_name": "Finance for Non-Finance Managers"
-                    },
-                    {
-                        "course_id": 696,
-                        "course_name": "Forecasting and Budgeting "
+                        "course_id": "1665",
+                        "course_name": "Understanding Financial Performance Metrics"
                     }
                 ]
             },
             {
-                "lp_id": 37,
-                "lp_name": "Modern Finance & Technology",
+                "lp_id": "33",
+                "lp_name": "Core Accounting & Finance",
                 "lp_description": "<p>The CSFBA Certification is designed for professionals seeking a deep understanding of modern financial systems, strategic decision-making, and digital transformation in finance. This program bridges core accounting principles, financial analytics, and business acumen, equipping learners to navigate both traditional finance and emerging fintech landscapes.<\/p>\r\n",
-                "lp_banner": "https:\/\/dochek.com\/assets\/assets\/img\/default_learning_plan_banner.jpg",
+                "lp_banner": "http:\/\/localhost\/DOCHEK\/assets\/assets\/img\/default_learning_plan_banner.jpg",
                 "courses": [
                     {
-                        "course_id": 996,
-                        "course_name": "Cryptography"
+                        "course_id": "1017",
+                        "course_name": "Consolidating Subsidiaries"
                     },
                     {
-                        "course_id": 1079,
-                        "course_name": "Blockchain Revolution for Enterprises"
+                        "course_id": "987",
+                        "course_name": "Currency Transactions"
                     },
                     {
-                        "course_id": 1081,
-                        "course_name": "Data Analytics for Finance"
+                        "course_id": "985",
+                        "course_name": "Deferred Revenue"
+                    },
+                    {
+                        "course_id": "1182",
+                        "course_name": "Intercompany Transactions"
+                    },
+                    {
+                        "course_id": "938",
+                        "course_name": "Basics of Financial Accounting"
                     }
                 ]
             }

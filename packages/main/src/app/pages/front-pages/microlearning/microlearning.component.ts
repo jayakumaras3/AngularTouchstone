@@ -9,9 +9,9 @@ import { MICROLEARNING_PAGE } from './microlearning-data';
 /**
  * Standalone microlearning landing page (/microlearning). Reuses the shared
  * ads-landing building blocks (hero, cta-section, final-cta-section) exactly
- * like the smartlms/immersivelearning pages, and adds one page-specific stats
- * band. Reached only via direct campaign URLs — intentionally not linked from
- * any nav, footer, or sitemap.
+ * like the smartlms page, and adds one page-specific stats band. Reached only
+ * via direct campaign URLs — intentionally not linked from any nav, footer, or
+ * sitemap.
  */
 @Component({
   selector: 'app-microlearning',

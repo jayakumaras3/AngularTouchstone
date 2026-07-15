@@ -52,6 +52,18 @@ function matchFieldValidator(matchTo: string): ValidatorFn {
   };
 }
 
+// Email fields must not contain any whitespace.
+function emailNoSpaceValidator(control: AbstractControl): ValidationErrors | null {
+  const hasSpace = /\s/.test(control.value ?? '');
+  return hasSpace ? { spaceInEmail: true } : null;
+}
+
+// Password fields must not contain any whitespace.
+function passwordNoSpaceValidator(control: AbstractControl): ValidationErrors | null {
+  const hasSpace = /\s/.test(control.value ?? '');
+  return hasSpace ? { spaceInPassword: true } : null;
+}
+
 @Component({
   selector: 'app-signup',
   standalone: true,
@@ -99,10 +111,10 @@ private readonly subs = new Subscription();
   readonly form = this.fb.group({
     firstName:       ['', [Validators.required, Validators.minLength(2)]],
     lastName:        ['', [Validators.required, Validators.minLength(2)]],
-    email:           ['', [Validators.required, Validators.email]],
-    confirmEmail:    ['', [Validators.required, Validators.email, matchFieldValidator('email')]],
-    password:        ['', [Validators.required, passwordStrengthValidator]],
-    confirmPassword: ['', [Validators.required, matchFieldValidator('password')]],
+    email:           ['', [Validators.required, Validators.email, emailNoSpaceValidator]],
+    confirmEmail:    ['', [Validators.required, Validators.email, emailNoSpaceValidator, matchFieldValidator('email')]],
+    password:        ['', [Validators.required, passwordNoSpaceValidator, passwordStrengthValidator]],
+    confirmPassword: ['', [Validators.required, passwordNoSpaceValidator, matchFieldValidator('password')]],
     captchaVerified: [false, Validators.requiredTrue],
   });
 
@@ -168,6 +180,33 @@ private readonly subs = new Subscription();
 
   togglePassword(): void { this.showPassword.update(v => !v); }
   toggleConfirmPassword(): void { this.showConfirmPassword.update(v => !v); }
+
+  /** Prevent the space bar from entering a space in email/password fields. */
+  blockSpace(event: KeyboardEvent): void {
+    if (event.key === ' ' || event.code === 'Space') {
+      event.preventDefault();
+    }
+  }
+
+  /**
+   * Strip whitespace from anything pasted into email/password fields so a
+   * pasted value with spaces never silently lands in the control. The
+   * no-space validators still run as the safety net for other input paths.
+   */
+  stripPastedSpaces(event: ClipboardEvent, controlName: string): void {
+    const pasted = event.clipboardData?.getData('text') ?? '';
+    if (!/\s/.test(pasted)) return;
+    event.preventDefault();
+    const input = event.target as HTMLInputElement;
+    const control = this.form.get(controlName);
+    const cleaned =
+      input.value.slice(0, input.selectionStart ?? input.value.length) +
+      pasted.replace(/\s/g, '') +
+      input.value.slice(input.selectionEnd ?? input.value.length);
+    control?.setValue(cleaned);
+    control?.markAsDirty();
+    this.cdr.markForCheck();
+  }
 
   submit(): void {
     this.form.markAllAsTouched();

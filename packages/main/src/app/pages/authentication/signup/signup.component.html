@@ -115,10 +115,14 @@
                     formControlName="email"
                     autocomplete="email"
                     aria-required="true"
+                    (keydown)="blockSpace($event)"
+                    (paste)="stripPastedSpaces($event, 'email')"
                   />
                   <mat-error>
                     @if (f['email'].errors?.['required']) {
                       Email is required.
+                    } @else if (f['email'].errors?.['spaceInEmail']) {
+                      Email cannot contain spaces
                     } @else if (f['email'].errors?.['email']) {
                       Please enter a valid email address.
                     }
@@ -138,10 +142,14 @@
                     autocomplete="email"
                     aria-required="true"
                     aria-describedby="confirmEmailHint"
+                    (keydown)="blockSpace($event)"
+                    (paste)="stripPastedSpaces($event, 'confirmEmail')"
                   />
                   <mat-error id="confirmEmailHint">
                     @if (f['confirmEmail'].errors?.['required']) {
                       Please confirm your email address.
+                    } @else if (f['confirmEmail'].errors?.['spaceInEmail']) {
+                      Email cannot contain spaces
                     } @else if (f['confirmEmail'].errors?.['email']) {
                       Please enter a valid email address.
                     } @else if (f['confirmEmail'].errors?.['mismatch']) {
@@ -166,6 +174,8 @@
                     autocomplete="new-password"
                     aria-required="true"
                     aria-describedby="pwChecklist"
+                    (keydown)="blockSpace($event)"
+                    (paste)="stripPastedSpaces($event, 'password')"
                   />
                   <button
                     mat-icon-button
@@ -194,6 +204,8 @@
                   <mat-error>
                     @if (f['password'].errors?.['required']) {
                       Password is required.
+                    } @else if (f['password'].errors?.['spaceInPassword']) {
+                      Password cannot contain spaces
                     } @else {
                       Password does not meet all requirements below.
                     }
@@ -232,6 +244,8 @@
                     autocomplete="new-password"
                     aria-required="true"
                     aria-describedby="confirmPwHint"
+                    (keydown)="blockSpace($event)"
+                    (paste)="stripPastedSpaces($event, 'confirmPassword')"
                   />
                   <button
                     mat-icon-button
@@ -260,6 +274,8 @@
                   <mat-error id="confirmPwHint">
                     @if (f['confirmPassword'].errors?.['required']) {
                       Please confirm your password.
+                    } @else if (f['confirmPassword'].errors?.['spaceInPassword']) {
+                      Password cannot contain spaces
                     } @else if (f['confirmPassword'].errors?.['mismatch']) {
                       Passwords do not match.
                     }

@@ -154,21 +154,6 @@ export const FrontPagesRoutes: Routes = [
             'The courses the best professionals in the world are taking — now available to your team. Get access to 500+ microlearning courses trusted by 50,000+ professionals at the world’s leading organisations.',
         },
       },
-      {
-        // Bespoke AR/VR/XR immersive-learning landing page — reached
-        // exclusively via direct campaign URLs. Intentionally not linked from
-        // any nav, footer, or sitemap.
-        path: 'immersivelearning',
-        loadComponent: () =>
-          import('./immersivelearning/immersivelearning.component').then(
-            (m) => m.ImmersivelearningComponent
-          ),
-        data: {
-          title: 'Immersive AR/VR/XR Training | Touchstone Learning & Consulting',
-          description:
-            "Training that works because it feels real. Explore bespoke AR, VR, and XR learning experiences built around your team's real-world challenges.",
-        },
-      },
     ],
   },
 ];
