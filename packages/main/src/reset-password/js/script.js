@@ -39,6 +39,9 @@
     var backBtn        = document.getElementById('backBtn');
     var turnstileContainer = document.getElementById('turnstileContainer');
     var captchaError       = document.getElementById('captchaError');
+    var pwChecklist         = document.getElementById('pwChecklist');
+    var confirmMismatchMsg = document.getElementById('confirmMismatchMsg');
+    var checklistItems = [];
 
     function getQueryParam(name) {
         var query = window.location.search || '';
@@ -91,16 +94,78 @@
         }
     }
 
+    // ── Password strength checklist ──────────────────────────
+    // Renders the same 5-rule checklist as the Angular Sign Up page
+    // (see js/password-rules.js) and keeps it in sync in real time.
+    function buildChecklist() {
+        if (!pwChecklist || !window.PasswordRules) {
+            return;
+        }
+
+        var svgNS = 'http://www.w3.org/2000/svg';
+
+        window.PasswordRules.rules.forEach(function (rule) {
+            var item = document.createElement('div');
+            item.className = 'checklist-item';
+            item.setAttribute('data-rule', rule.key);
+
+            var svg = document.createElementNS(svgNS, 'svg');
+            svg.setAttribute('viewBox', '0 0 24 24');
+            svg.setAttribute('width', '16');
+            svg.setAttribute('height', '16');
+            svg.setAttribute('fill', 'none');
+            svg.setAttribute('stroke', 'currentColor');
+            svg.setAttribute('stroke-width', '2.5');
+            svg.setAttribute('stroke-linecap', 'round');
+            svg.setAttribute('stroke-linejoin', 'round');
+            svg.setAttribute('aria-hidden', 'true');
+
+            var polyline = document.createElementNS(svgNS, 'polyline');
+            polyline.setAttribute('points', '20 6 9 17 4 12');
+            svg.appendChild(polyline);
+
+            var span = document.createElement('span');
+            span.textContent = rule.label;
+
+            item.appendChild(svg);
+            item.appendChild(span);
+            pwChecklist.appendChild(item);
+
+            checklistItems.push({ label: rule.label, test: rule.test, el: item });
+        });
+    }
+
+    function updateChecklist(value) {
+        checklistItems.forEach(function (entry) {
+            var met = entry.test(value);
+            entry.el.classList.toggle('valid', met);
+            entry.el.setAttribute('aria-label', entry.label + ': ' + (met ? 'met' : 'not met'));
+        });
+    }
+
+    function updateConfirmMismatch(np, cp) {
+        if (!confirmMismatchMsg) {
+            return;
+        }
+        var showMismatch = cp.length > 0 && np !== cp;
+        confirmMismatchMsg.classList.toggle('is-hidden', !showMismatch);
+    }
+
     // ── Validation ──────────────────────────────────────────
     // Enable Reset button only when:
-    //   • both fields are non-empty
-    //   • new password is at least 8 characters
+    //   • new password satisfies every rule in window.PasswordRules
+    //     (min 8 chars, uppercase, lowercase, number, special char)
     //   • both passwords match
     //   • Turnstile CAPTCHA verification is completed
     function validate() {
         var np = newInput.value;
         var cp = confInput.value;
-        var ok = np.length >= 8 && cp.length > 0 && np === cp && !!turnstileToken;
+
+        updateChecklist(np);
+        updateConfirmMismatch(np, cp);
+
+        var passwordValid = window.PasswordRules ? window.PasswordRules.isValid(np) : np.length >= 8;
+        var ok = passwordValid && cp.length > 0 && np === cp && !!turnstileToken;
         resetBtn.disabled = !ok;
     }
 
@@ -230,5 +295,7 @@
     updateHeaderState();
     initLinkState();
     renderTurnstileWidget();
+    buildChecklist();
+    validate();
 
 }());

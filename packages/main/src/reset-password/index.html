@@ -188,12 +188,8 @@
                                 </svg>
                             </button>
                         </div>
-                        <!-- Per-field hint shown below the New Password input only -->
-                        <p class="helper-text">
-                            <span class="chk">&#10003;</span> Min 8 chars
-                            &nbsp;|&nbsp;
-                            <span class="chk">&#10003;</span> Letters, numbers &amp; special chars
-                        </p>
+                        <!-- Password Strength Checklist (mirrors Sign Up page) -->
+                        <div class="password-checklist" id="pwChecklist" aria-label="Password requirements"></div>
                     </div>
 
                     <!-- Confirm Password -->
@@ -220,6 +216,7 @@
                                 </svg>
                             </button>
                         </div>
+                        <p id="confirmMismatchMsg" class="confirm-mismatch-msg is-hidden" role="alert" aria-live="polite">Passwords do not match.</p>
                     </div>
 
                     <!-- Cloudflare Turnstile CAPTCHA -->
@@ -348,6 +345,7 @@
         </div>
     </footer>
 
+    <script src="js/password-rules.js"></script>
     <script src="js/script.js"></script>
 
     <!-- Mobile navigation script -->

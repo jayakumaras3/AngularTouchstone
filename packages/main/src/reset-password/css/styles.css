@@ -342,16 +342,46 @@ form {
 
 .eye-svg.hidden { display: none; }
 
-/* Helper / hint text */
-.helper-text {
-    font-size: 12px;
-    color: var(--muted);
-    line-height: 1.5;
+/* Password Strength Checklist — mirrors the Angular Sign Up page's
+   .password-checklist / .checklist-item styling exactly (see
+   app/pages/authentication/signup/signup.component.scss) so both
+   pages present identical real-time validation feedback. */
+.password-checklist {
+    margin-top: 8px;
 }
 
-.chk {
-    font-weight: 700;
-    color: var(--muted);
+.checklist-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #9e9e9e;
+    margin-bottom: 6px;
+}
+
+.checklist-item svg {
+    flex-shrink: 0;
+    color: #9e9e9e;
+    transition: color 0.2s ease;
+}
+
+.checklist-item span {
+    transition: color 0.2s ease;
+}
+
+.checklist-item.valid {
+    color: #2e7d32;
+}
+
+.checklist-item.valid svg {
+    color: #2e7d32;
+}
+
+/* Confirm Password inline mismatch message */
+.confirm-mismatch-msg {
+    font-size: 12px;
+    color: #c53030;
+    margin-top: 6px;
 }
 
 /* Cloudflare Turnstile — size:'flexible' fills this wrapper's width, so it
@@ -514,11 +544,13 @@ form {
 
     .form-input::placeholder,
     input::placeholder,
-    .helper-text,
-    .chk,
     .btn-primary:disabled,
     #resetBtn:disabled {
         color: #9ca3af;
+    }
+
+    .confirm-mismatch-msg {
+        color: #fecaca;
     }
 
     .btn-primary:disabled,
@@ -609,12 +641,8 @@ html.theme-dark input::placeholder {
     color: #9ca3af;
 }
 
-html.theme-dark .helper-text,
-html.theme-dark .chk {
-    color: #9ca3af;
-}
-
-html.theme-dark .captcha-error-msg {
+html.theme-dark .captcha-error-msg,
+html.theme-dark .confirm-mismatch-msg {
     color: #fecaca;
 }
 
