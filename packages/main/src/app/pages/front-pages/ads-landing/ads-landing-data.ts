@@ -4,24 +4,24 @@ import { LEAD_FORM_FIELDS } from './lead-form-fields';
 export const ADS_LANDING_PAGES: Record<string, AdsLandingPageConfig> = {
   'dochek-awareness': {
     slug: 'dochek-awareness',
-    campaignName: 'Dochek awareness',
+    campaignName: 'DOCHEK awareness',
     seo: {
-      title: 'Dochek | The LMS Built for Companies That Take Learning Seriously',
+      title: 'DOCHEK | The LMS Built for Companies That Take Learning Seriously',
       description:
-        "Whether you're training 10 people or 10,000, Dochek keeps your L&D running without the complexity.",
+        "Whether you're training 10 people or 10,000, DOCHEK keeps your L&D running without the complexity.",
       canonicalPath: '/dochek-lms',
     },
     hero: {
       id: 'ads-hero',
       headline: 'The LMS built for companies that take learning seriously.',
-      description: "Whether you're training 10 people or 10,000, Dochek keeps your L&D running without the complexity.",
+      description: "Whether you're training 10 people or 10,000, DOCHEK keeps your L&D running without the complexity.",
       imageUrl: 'assets/images/AdsPage/Untitled-4.png',
       imageAlt: 'Business people meeting and reviewing training content on a tablet',
       form: {
         heading: 'Want to see how it works?',
-        subheading: "Leave your details and we'll walk you through Dochek — no pressure, no pitch.",
-        submitLabel: 'Learn more about Dochek →',
-        successMessage: "Thanks! We'll be in touch shortly to walk you through Dochek.",
+        subheading: "Leave your details and we'll walk you through DOCHEK — no pressure, no pitch.",
+        submitLabel: 'Learn more about DOCHEK →',
+        successMessage: "Thanks! We'll be in touch shortly to walk you through DOCHEK.",
         fields: LEAD_FORM_FIELDS,
       },
     },
@@ -58,12 +58,12 @@ export const ADS_LANDING_PAGES: Record<string, AdsLandingPageConfig> = {
       id: 'ads-lead-form-2',
       heading: 'Scale Without Limits',
       description:
-        "DOCHEK is lightweight by design, easy to configure, fast to launch, and built to scale without breaking. Whether you're onboarding a new cohort or rolling out a company-wide programme, the platform handles it without friction.\n\nAnd as your organisation grows, Dochek grows with it. From 10 learners to 10,000, the experience stays consistent, no lag, no migration, no starting over. Training shouldn't be complicated. Dochek makes sure it isn't.",
+        "DOCHEK is lightweight by design, easy to configure, fast to launch, and built to scale without breaking. Whether you're onboarding a new cohort or rolling out a company-wide programme, the platform handles it without friction.\n\nAnd as your organisation grows, DOCHEK grows with it. From 10 learners to 10,000, the experience stays consistent, no lag, no migration, no starting over. Training shouldn't be complicated. DOCHEK makes sure it isn't.",
       form: {
         heading: 'Want to see how it works?',
-        subheading: "Leave your details and we'll walk you through Dochek — no pressure, no pitch.",
-        submitLabel: 'Learn more about Dochek →',
-        successMessage: "Thanks! We'll be in touch shortly to walk you through Dochek.",
+        subheading: "Leave your details and we'll walk you through DOCHEK — no pressure, no pitch.",
+        submitLabel: 'Learn more about DOCHEK →',
+        successMessage: "Thanks! We'll be in touch shortly to walk you through DOCHEK.",
         fields: LEAD_FORM_FIELDS,
       },
       featureCards: {

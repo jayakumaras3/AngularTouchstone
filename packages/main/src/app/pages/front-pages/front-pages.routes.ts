@@ -123,9 +123,9 @@ export const FrontPagesRoutes: Routes = [
           import('./ads-landing/ads-landing.component').then((m) => m.AdsLandingComponent),
         data: {
           landingSlug: 'dochek-awareness',
-          title: 'Dochek | The LMS Built for Companies That Take Learning Seriously',
+          title: 'DOCHEK | The LMS Built for Companies That Take Learning Seriously',
           description:
-            "Whether you're training 10 people or 10,000, Dochek keeps your L&D running without the complexity. See how Dochek + 500 microlearning courses work for your team.",
+            "Whether you're training 10 people or 10,000, DOCHEK keeps your L&D running without the complexity. See how DOCHEK + 500 microlearning courses work for your team.",
         },
       },
       {
@@ -136,7 +136,7 @@ export const FrontPagesRoutes: Routes = [
         loadComponent: () =>
           import('./smartlms/smartlms.component').then((m) => m.SmartlmsComponent),
         data: {
-          title: 'Dochek Smart LMS + Microlearning Bundle | Touchstone',
+          title: 'DOCHEK Smart LMS + Microlearning Bundle | Touchstone',
           description:
             'Get the best of both worlds — a lightweight, scalable LMS and instant access to 500+ microlearning courses. See the bundle in action.',
         },

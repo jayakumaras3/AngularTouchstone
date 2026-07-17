@@ -59,7 +59,7 @@ export class AdsPageComponent implements AfterViewInit, OnDestroy {
   // 1. Hero
   readonly heroBadge = 'Enterprise LMS Platform';
   readonly heroHeading = 'The LMS built for companies that take learning seriously.';
-  readonly heroSubheading = 'Train 10 people or 10,000. Dochek scales with your business.';
+  readonly heroSubheading = 'Train 10 people or 10,000. DOCHEK scales with your business.';
   readonly heroBenefits = ['Enterprise LMS', 'Microlearning Library', 'AR/VR Training'];
   readonly heroImage = 'assets/images/AdsPage/Untitled-4.png';
   readonly heroImageAlt = 'Two professionals reviewing training content together on a tablet';
@@ -89,7 +89,7 @@ export class AdsPageComponent implements AfterViewInit, OnDestroy {
   // 4. Problem / Solution
   readonly problemHeading = 'Traditional LMS';
   readonly problemPoints = ['Complex setup', 'Difficult management', 'Poor engagement'];
-  readonly solutionHeading = 'Dochek';
+  readonly solutionHeading = 'DOCHEK';
   readonly solutionPoints = ['Simple deployment', 'Scalable learning', 'Better engagement'];
 
   // 5. Feature showcase
@@ -125,7 +125,7 @@ export class AdsPageComponent implements AfterViewInit, OnDestroy {
   readonly scaleHeading = 'Scale Without Limits';
   readonly scaleFrom = '10 learners';
   readonly scaleTo = '10,000 learners';
-  readonly scaleTagline = 'Dochek grows with you.';
+  readonly scaleTagline = 'DOCHEK grows with you.';
 
   // 7. Final CTA
   readonly finalCtaHeading = "Ready to transform your organization's learning?";

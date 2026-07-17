@@ -1,8 +1,23 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Output,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
 import { MaterialModule } from '../../../../../material.module';
 import { AuthService } from '../../../../../services/login/auth.service';
+import { TurnstileService, TurnstileWidgetState } from '../../../../../services/turnstile/turnstile.service';
 import { LeadFormConfig } from '../../models/ads-landing.model';
 
 @Component({
@@ -13,31 +28,49 @@ import { LeadFormConfig } from '../../models/ads-landing.model';
   styleUrl: './lead-form.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LeadFormComponent implements OnInit, OnChanges {
+export class LeadFormComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
   @Input({ required: true }) config!: LeadFormConfig;
   @Input() formId = 'ads-lead-form';
   @Input() source = 'ads-landing';
   @Input() campaign = '';
   @Output() leadSubmitted = new EventEmitter<Record<string, string>>();
 
+  @ViewChild('turnstileContainer') private turnstileContainer!: ElementRef<HTMLDivElement>;
+
   form!: FormGroup;
   isSubmitting = false;
   submitted = false;
   submitError: string | null = null;
 
+  captchaState: TurnstileWidgetState = 'loading';
+  captchaError: string | null = null;
+  captchaToken = '';
+  private turnstileWidgetId: string | null = null;
+  private turnstileRendered = false;
+
   constructor(
     private readonly fb: FormBuilder,
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
+    private readonly turnstileService: TurnstileService,
+    private readonly cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
     this.buildForm();
   }
 
+  ngAfterViewInit(): void {
+    this.renderCaptcha();
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['config'] && !changes['config'].firstChange) {
       this.buildForm();
     }
+  }
+
+  ngOnDestroy(): void {
+    this.turnstileService.remove(this.turnstileWidgetId);
   }
 
   hasError(fieldName: string, error: string): boolean {
@@ -51,25 +84,42 @@ export class LeadFormComponent implements OnInit, OnChanges {
       return;
     }
 
+    if (!this.captchaToken) {
+      this.captchaError = 'Please complete the verification above.';
+      return;
+    }
+
     this.isSubmitting = true;
     this.submitError = null;
+    this.captchaError = null;
 
     this.authService
-      .sendProductEnquiry({ ...this.form.value, source: this.source, campaign: this.campaign })
+      .sendProductEnquiry({
+        ...this.form.value,
+        source: this.source,
+        campaign: this.campaign,
+        turnstileToken: this.captchaToken,
+      })
       .subscribe({
         next: (res: any) => {
           this.isSubmitting = false;
           if (res?.success === false) {
             this.submitError = res?.message || 'Something went wrong. Please try again.';
+            this.resetCaptcha();
+            this.cdr.markForCheck();
             return;
           }
           this.submitted = true;
           this.leadSubmitted.emit(this.form.value);
           this.form.reset();
+          this.resetCaptcha();
+          this.cdr.markForCheck();
         },
         error: () => {
           this.isSubmitting = false;
           this.submitError = 'Something went wrong. Please try again.';
+          this.resetCaptcha();
+          this.cdr.markForCheck();
         },
       });
   }
@@ -91,5 +141,45 @@ export class LeadFormComponent implements OnInit, OnChanges {
     this.form = this.fb.group(controls);
     this.submitted = false;
     this.submitError = null;
+  }
+
+  private renderCaptcha(): void {
+    if (this.turnstileRendered || !this.turnstileContainer?.nativeElement) {
+      return;
+    }
+    this.turnstileRendered = true;
+
+    this.turnstileService.render(this.turnstileContainer.nativeElement, {
+      onToken: (token) => {
+        this.captchaToken = token;
+        this.captchaError = null;
+        this.cdr.markForCheck();
+      },
+      onExpired: () => {
+        this.captchaToken = '';
+        this.cdr.markForCheck();
+      },
+      onError: () => {
+        this.captchaToken = '';
+        this.captchaError = 'Verification failed. Please try again.';
+        this.resetCaptcha();
+        this.cdr.markForCheck();
+      },
+      onReady: (widgetId) => {
+        this.turnstileWidgetId = widgetId;
+        this.captchaState = 'ready';
+        this.cdr.markForCheck();
+      },
+      onLoadError: () => {
+        this.captchaState = 'error';
+        this.cdr.markForCheck();
+      },
+    });
+  }
+
+  /** Turnstile tokens are single-use — force re-verification after every submit attempt. */
+  private resetCaptcha(): void {
+    this.captchaToken = '';
+    this.turnstileService.reset(this.turnstileWidgetId);
   }
 }

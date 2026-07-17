@@ -53,12 +53,31 @@
       <p class="text-error f-s-14 m-b-16" role="alert" aria-live="assertive">{{ submitError }}</p>
     }
 
+    <div class="turnstile-wrapper" [class.turnstile-wrapper--loading]="captchaState === 'loading'">
+      <div
+        #turnstileContainer
+        class="turnstile-widget"
+        [class.d-none]="captchaState !== 'ready'"
+      ></div>
+      @if (captchaState === 'loading') {
+        <div class="turnstile-skeleton" aria-hidden="true"></div>
+      }
+      @if (captchaState === 'error') {
+        <p class="text-error f-s-14 m-b-0" role="alert">
+          Verification widget failed to load. Please disable any ad blockers and refresh the page.
+        </p>
+      }
+      @if (captchaError) {
+        <p class="text-error f-s-14 m-b-0" role="alert" aria-live="assertive">{{ captchaError }}</p>
+      }
+    </div>
+
     <button
       mat-flat-button
       color="primary"
       type="submit"
       class="w-100 lead-form__submit"
-      [disabled]="form.invalid || isSubmitting"
+      [disabled]="form.invalid || isSubmitting || !captchaToken"
     >
       {{ isSubmitting ? 'Submitting…' : config.submitLabel }}
     </button>

@@ -15,12 +15,12 @@ export const SMARTLMS_PAGE: LandingPageConfig = {
     eyebrow: 'DOCHEK + MICROLEARNING LIBRARY',
     headline: 'Get the best of both worlds.',
     description:
-      'Most LMS platforms give you the system. Dochek gives you both — a lightweight, scalable LMS and instant access to a library of 500+ microlearning courses.',
+      'Most LMS platforms give you the system. DOCHEK gives you both — a lightweight, scalable LMS and instant access to a library of 500+ microlearning courses.',
     imageUrl: 'assets/images/SmartLMS/team-learning.png',
     imageAlt: 'Team collaborating and learning together around a laptop',
     form: {
       heading: 'See the full bundle in action.',
-      subheading: "Tell us where to reach you and we'll show you exactly what Dochek + the microlearning library looks like for your team.",
+      subheading: "Tell us where to reach you and we'll show you exactly what DOCHEK + the microlearning library looks like for your team.",
       submitLabel: 'Get a walkthrough of the bundle →',
       successMessage: "Thanks! We'll be in touch shortly with your bundle walkthrough.",
       fields: LEAD_FORM_FIELDS,
@@ -31,7 +31,7 @@ export const SMARTLMS_PAGE: LandingPageConfig = {
       id: 'two-systems-one-login',
       heading: 'Two Systems. One Login.',
       description:
-        "No more juggling separate logins or clunky integrations. Dochek's LMS and its 500+ course microlearning library live in one place, so your team spends less time navigating tools and more time learning.",
+        "No more juggling separate logins or clunky integrations. DOCHEK's LMS and its 500+ course microlearning library live in one place, so your team spends less time navigating tools and more time learning.",
       imageUrl: 'assets/images/SmartLMS/course-builder.png',
       imageAlt: 'Professional building a course on a laptop',
       reverse: false,
@@ -58,10 +58,10 @@ export const SMARTLMS_PAGE: LandingPageConfig = {
     id: 'smartlms-lead-form-2',
     heading: 'The Best of Both, Without the Complexity',
     description:
-      "Dochek keeps your L&D running without the overhead — one login, one dashboard, and a course library that's always growing.\n\nSee exactly what the bundle looks like for your team before you commit to anything.",
+      "DOCHEK keeps your L&D running without the overhead — one login, one dashboard, and a course library that's always growing.\n\nSee exactly what the bundle looks like for your team before you commit to anything.",
     form: {
       heading: 'Ready to see it for yourself?',
-      subheading: "Leave your details and we'll walk you through the full Dochek + microlearning bundle — no pressure, no pitch.",
+      subheading: "Leave your details and we'll walk you through the full DOCHEK + microlearning bundle — no pressure, no pitch.",
       submitLabel: 'Schedule a demo →',
       successMessage: "Thanks! We'll be in touch shortly to schedule your demo.",
       fields: LEAD_FORM_FIELDS,

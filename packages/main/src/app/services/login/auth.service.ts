@@ -160,6 +160,10 @@ export class AuthService {
     );
   }
 
+  /**
+   * @param formData Includes `turnstileToken`, the Cloudflare Turnstile response
+   *   token, verified server-side before the enquiry is processed.
+   */
   sendProductEnquiry(formData: any): Observable<any> {
     const csrfToken = this.getCsrfToken();
     
