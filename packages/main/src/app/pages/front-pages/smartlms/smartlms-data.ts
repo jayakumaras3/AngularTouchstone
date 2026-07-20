@@ -61,7 +61,7 @@ export const SMARTLMS_PAGE: LandingPageConfig = {
       "DOCHEK keeps your L&D running without the overhead — one login, one dashboard, and a course library that's always growing.\n\nSee exactly what the bundle looks like for your team before you commit to anything.",
     form: {
       heading: 'Ready to see it for yourself?',
-      subheading: "Leave your details and we'll walk you through the full DOCHEK + microlearning bundle — no pressure, no pitch.",
+      subheading: "Leave your details and we'll walk you through the full DOCHEK + microlearning bundle.",
       submitLabel: 'Schedule a demo →',
       successMessage: "Thanks! We'll be in touch shortly to schedule your demo.",
       fields: LEAD_FORM_FIELDS,

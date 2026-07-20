@@ -118,7 +118,7 @@ export const FrontPagesRoutes: Routes = [
         // Ads-only landing page — reached exclusively via direct campaign URLs
         // (LinkedIn/Facebook/Google Ads). Intentionally not linked from any nav,
         // footer, or sitemap.
-        path: 'dochek-lms',
+        path: 'Dochek_awareness_207',
         loadComponent: () =>
           import('./ads-landing/ads-landing.component').then((m) => m.AdsLandingComponent),
         data: {

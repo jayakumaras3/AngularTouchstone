@@ -9,7 +9,7 @@ export const ADS_LANDING_PAGES: Record<string, AdsLandingPageConfig> = {
       title: 'DOCHEK | The LMS Built for Companies That Take Learning Seriously',
       description:
         "Whether you're training 10 people or 10,000, DOCHEK keeps your L&D running without the complexity.",
-      canonicalPath: '/dochek-lms',
+      canonicalPath: '/Dochek_awareness_207',
     },
     hero: {
       id: 'ads-hero',
@@ -19,7 +19,7 @@ export const ADS_LANDING_PAGES: Record<string, AdsLandingPageConfig> = {
       imageAlt: 'Business people meeting and reviewing training content on a tablet',
       form: {
         heading: 'Want to see how it works?',
-        subheading: "Leave your details and we'll walk you through DOCHEK — no pressure, no pitch.",
+        subheading: "Leave your details and we'll walk you through DOCHEK.",
         submitLabel: 'Learn more about DOCHEK →',
         successMessage: "Thanks! We'll be in touch shortly to walk you through DOCHEK.",
         fields: LEAD_FORM_FIELDS,
@@ -61,7 +61,7 @@ export const ADS_LANDING_PAGES: Record<string, AdsLandingPageConfig> = {
         "DOCHEK is lightweight by design, easy to configure, fast to launch, and built to scale without breaking. Whether you're onboarding a new cohort or rolling out a company-wide programme, the platform handles it without friction.\n\nAnd as your organisation grows, DOCHEK grows with it. From 10 learners to 10,000, the experience stays consistent, no lag, no migration, no starting over. Training shouldn't be complicated. DOCHEK makes sure it isn't.",
       form: {
         heading: 'Want to see how it works?',
-        subheading: "Leave your details and we'll walk you through DOCHEK — no pressure, no pitch.",
+        subheading: "Leave your details and we'll walk you through DOCHEK.",
         submitLabel: 'Learn more about DOCHEK →',
         successMessage: "Thanks! We'll be in touch shortly to walk you through DOCHEK.",
         fields: LEAD_FORM_FIELDS,

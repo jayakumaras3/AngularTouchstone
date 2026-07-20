@@ -12,7 +12,7 @@ export const PRIMARY_NEED_OPTIONS: LeadFormFieldOption[] = [
 ];
 
 /**
- * Contact-style lead-form field set shared by the /dochek-lms, /smartlms and
+ * Contact-style lead-form field set shared by the /Dochek_awareness_207, /smartlms and
  * /microlearning campaign pages. Every field is mandatory on these pages; the
  * LeadFormComponent turns `required` into Validators.required and adds
  * Validators.email for the email field. Kept in one place so the three pages
@@ -25,7 +25,7 @@ export const PRIMARY_NEED_OPTIONS: LeadFormFieldOption[] = [
 // inside the empty field and floats above once focused or filled.
 export const LEAD_FORM_FIELDS: LeadFormFieldConfig[] = [
   { name: 'firstName', label: 'First name', type: 'text', required: true },
-  { name: 'lastName', label: 'Last name', type: 'text', required: true },
+  { name: 'lastName', label: 'Last name', type: 'text', required: true }, 
   { name: 'city', label: 'City', type: 'text', required: true },
   { name: 'companyName', label: 'Company name', type: 'text', required: true },
   { name: 'workEmail', label: 'Work email', type: 'email', required: true },
