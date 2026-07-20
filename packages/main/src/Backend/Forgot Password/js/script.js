@@ -1,0 +1,364 @@
+/* Minimal reset password interactions */
+
+// Cache elements once after page load
+// ──────────────────────────────────────────────────────────
+// DOCHEK – Reset Password  |  script.js
+// Matches element IDs in index.html (toggleNew / toggleConfirm,
+// eyeOffNew / eyeOnNew, eyeOffConfirm / eyeOnConfirm)
+// ──────────────────────────────────────────────────────────
+
+(function () {
+    'use strict';
+
+    // Cloudflare Turnstile — public site key (safe to expose client-side).
+    // Shared with the Angular login page; if this static page is ever served
+    // from a different hostname, add that hostname to the widget in the
+    // Cloudflare dashboard (or issue it a dedicated site key).
+    var TURNSTILE_SITE_KEY = '0x4AAAAAADuaw8KeeasZQeVF';
+    var turnstileToken = '';
+    var turnstileWidgetId = null;
+    var turnstileRenderAttempts = 0;
+
+    var header = document.querySelector('.header');
+    var formCard = document.querySelector('.form-card');
+    var formTitle = document.getElementById('formTitle');
+    var statusCard = document.getElementById('statusCard');
+    var statusTitle = document.getElementById('statusTitle');
+    var statusMessage = document.getElementById('statusMessage');
+    var requestLinkBtn = document.getElementById('requestLinkBtn');
+    var form = document.getElementById('resetPasswordForm');
+    var newInput = document.getElementById('newPassword');
+    var confInput = document.getElementById('confirmPassword');
+    var toggleNew = document.getElementById('toggleNew');
+    var toggleConfirm = document.getElementById('toggleConfirm');
+    var eyeOffNew = document.getElementById('eyeOffNew');
+    var eyeOnNew = document.getElementById('eyeOnNew');
+    var eyeOffConfirm = document.getElementById('eyeOffConfirm');
+    var eyeOnConfirm = document.getElementById('eyeOnConfirm');
+    var resetBtn = document.getElementById('resetBtn');
+    var backBtn = document.getElementById('backBtn');
+    var turnstileContainer = document.getElementById('turnstileContainer');
+    var captchaError = document.getElementById('captchaError');
+    var pwChecklist = document.getElementById('pwChecklist');
+    var confirmMismatchMsg = document.getElementById('confirmMismatchMsg');
+    var checklistItems = [];
+
+    // Forgot Password form elements — mutually exclusive with the Reset
+    // Password form above (only one of the two ever exists on a given
+    // page load), so they safely share TURNSTILE_SITE_KEY, turnstileContainer
+    // and captchaError below instead of needing a second implementation.
+    var forgotForm = document.getElementById('forgotPasswordForm');
+    var forgotEmailInput = document.getElementById('forgotEmail');
+    var forgotEmailError = document.getElementById('forgotEmailError');
+    var forgotSubmitBtn = document.getElementById('forgotSubmitBtn');
+
+    function getQueryParam(name) {
+        var query = window.location.search || '';
+        if (!query || query.length < 2) {
+            return '';
+        }
+
+        var parts = query.substring(1).split('&');
+        for (var i = 0; i < parts.length; i++) {
+            var pair = parts[i].split('=');
+            if (decodeURIComponent(pair[0] || '') === name) {
+                return decodeURIComponent((pair[1] || '').replace(/\+/g, ' '));
+            }
+        }
+
+        return '';
+    }
+
+    function showInvalidState(title, message) {
+        if (!formCard || !statusCard || !form || !formTitle) {
+            return;
+        }
+
+        formCard.classList.add('is-status-view');
+        formTitle.textContent = title;
+        statusTitle.textContent = title;
+        statusMessage.textContent = message;
+        statusCard.classList.remove('is-hidden');
+        form.classList.add('is-hidden');
+    }
+
+    function initLinkState() {
+        var status = String(getQueryParam('status') || '').toLowerCase();
+        var error = String(getQueryParam('error') || '').toLowerCase();
+        var message = getQueryParam('message');
+
+        if (status === 'expired' || error === 'expired') {
+            showInvalidState(
+                'Session Expired',
+                message || 'This password reset link has expired. Please request a new reset link.'
+            );
+            return;
+        }
+
+        if (status === 'invalid' || error === 'invalid' || status === 'used' || error === 'used') {
+            showInvalidState(
+                'Reset Link Invalid',
+                message || 'This password reset link is no longer valid.'
+            );
+        }
+    }
+
+    // ── Password strength checklist ──────────────────────────
+    // Renders the same 5-rule checklist as the Angular Sign Up page
+    // (see js/password-rules.js) and keeps it in sync in real time.
+    function buildChecklist() {
+        if (!pwChecklist || !window.PasswordRules) {
+            return;
+        }
+
+        var svgNS = 'http://www.w3.org/2000/svg';
+
+        window.PasswordRules.rules.forEach(function (rule) {
+            var item = document.createElement('div');
+            item.className = 'checklist-item';
+            item.setAttribute('data-rule', rule.key);
+
+            var svg = document.createElementNS(svgNS, 'svg');
+            svg.setAttribute('viewBox', '0 0 24 24');
+            svg.setAttribute('width', '16');
+            svg.setAttribute('height', '16');
+            svg.setAttribute('fill', 'none');
+            svg.setAttribute('stroke', 'currentColor');
+            svg.setAttribute('stroke-width', '2.5');
+            svg.setAttribute('stroke-linecap', 'round');
+            svg.setAttribute('stroke-linejoin', 'round');
+            svg.setAttribute('aria-hidden', 'true');
+
+            var polyline = document.createElementNS(svgNS, 'polyline');
+            polyline.setAttribute('points', '20 6 9 17 4 12');
+            svg.appendChild(polyline);
+
+            var span = document.createElement('span');
+            span.textContent = rule.label;
+
+            item.appendChild(svg);
+            item.appendChild(span);
+            pwChecklist.appendChild(item);
+
+            checklistItems.push({ label: rule.label, test: rule.test, el: item });
+        });
+    }
+
+    function updateChecklist(value) {
+        checklistItems.forEach(function (entry) {
+            var met = entry.test(value);
+            entry.el.classList.toggle('valid', met);
+            entry.el.setAttribute('aria-label', entry.label + ': ' + (met ? 'met' : 'not met'));
+        });
+    }
+
+    function updateConfirmMismatch(np, cp) {
+        if (!confirmMismatchMsg) {
+            return;
+        }
+        var showMismatch = cp.length > 0 && np !== cp;
+        confirmMismatchMsg.classList.toggle('is-hidden', !showMismatch);
+    }
+
+    // ── Validation ──────────────────────────────────────────
+    // Enable Reset button only when:
+    //   • new password satisfies every rule in window.PasswordRules
+    //     (min 8 chars, uppercase, lowercase, number, special char)
+    //   • both passwords match
+    //   • Turnstile CAPTCHA verification is completed
+    function validate() {
+        if (!form || !newInput || !confInput || !resetBtn) {
+            return;
+        }
+
+        var np = newInput.value;
+        var cp = confInput.value;
+
+        updateChecklist(np);
+        updateConfirmMismatch(np, cp);
+
+        var passwordValid = window.PasswordRules ? window.PasswordRules.isValid(np) : np.length >= 8;
+        var ok = passwordValid && cp.length > 0 && np === cp && !!turnstileToken;
+        resetBtn.disabled = !ok;
+    }
+
+    // ── Forgot Password validation ────────────────────────────
+    // Mirrors validate() above: the Request Password Reset button stays
+    // disabled until the email looks valid AND Turnstile verification
+    // has completed.
+    function isValidEmail(value) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+    }
+
+    function validateForgot() {
+        if (!forgotForm || !forgotEmailInput || !forgotSubmitBtn) {
+            return;
+        }
+
+        var email = forgotEmailInput.value.trim();
+        var emailValid = email.length > 0 && isValidEmail(email);
+
+        if (forgotEmailError) {
+            forgotEmailError.classList.toggle('is-hidden', email.length === 0 || emailValid);
+        }
+
+        forgotSubmitBtn.disabled = !(emailValid && !!turnstileToken);
+    }
+
+    function showCaptchaError(message) {
+        if (!captchaError) {
+            return;
+        }
+        captchaError.textContent = message;
+        captchaError.classList.remove('is-hidden');
+    }
+
+    function clearCaptchaError() {
+        if (!captchaError) {
+            return;
+        }
+        captchaError.textContent = '';
+        captchaError.classList.add('is-hidden');
+    }
+
+    // ── Cloudflare Turnstile ──────────────────────────────────
+    // Explicit render: api.js is loaded with `render=explicit` in index.html,
+    // so the widget must be rendered manually once window.turnstile is ready.
+    function renderTurnstileWidget() {
+        var turnstile = window.turnstile;
+        if (turnstile && turnstileContainer) {
+            turnstileWidgetId = turnstile.render(turnstileContainer, {
+                sitekey: TURNSTILE_SITE_KEY,
+                // This page forces its theme via a .theme-dark/.theme-light class
+                // (set before this script runs — see the inline bootstrap in
+                // index.html), not just prefers-color-scheme, so read it directly
+                // instead of using Turnstile's 'auto' to keep the widget in sync.
+                theme: document.documentElement.classList.contains('theme-dark') ? 'dark' : 'light',
+                size: 'flexible',
+                callback: function (token) {
+                    turnstileToken = token;
+                    clearCaptchaError();
+                    validate();
+                    validateForgot();
+                },
+                'expired-callback': function () {
+                    turnstileToken = '';
+                    showCaptchaError('Please complete the CAPTCHA verification.');
+                    validate();
+                    validateForgot();
+                },
+                'error-callback': function () {
+                    turnstileToken = '';
+                    showCaptchaError('CAPTCHA verification failed. Please try again.');
+                    resetTurnstile();
+                    validate();
+                    validateForgot();
+                },
+                'timeout-callback': function () {
+                    turnstileToken = '';
+                    showCaptchaError('CAPTCHA verification failed. Please try again.');
+                    resetTurnstile();
+                    validate();
+                    validateForgot();
+                }
+            });
+        } else if (turnstileRenderAttempts < 30) {
+            turnstileRenderAttempts++;
+            setTimeout(renderTurnstileWidget, 200);
+        } else {
+            // api.js never became available (e.g. blocked by network/extension).
+            showCaptchaError('Network error. Please try again.');
+        }
+    }
+
+    // Resets the widget and clears the stored token — Turnstile tokens are
+    // single-use, so any failed/expired attempt needs a fresh verification.
+    function resetTurnstile() {
+        turnstileToken = '';
+        if (turnstileWidgetId !== null && window.turnstile) {
+            window.turnstile.reset(turnstileWidgetId);
+        }
+    }
+
+    function updateHeaderState() {
+        if (!header) {
+            return;
+        }
+
+        header.classList.toggle('is-scrolled', window.scrollY > 8);
+    }
+
+    // ── Event listeners ──────────────────────────────────────
+    function bindPasswordToggle(button, input, eyeOff, eyeOn, labelPrefix) {
+        if (!button || !input || !eyeOff || !eyeOn) {
+            return;
+        }
+
+        button.addEventListener('click', function () {
+            var willShow = input.type === 'password';
+            input.type = willShow ? 'text' : 'password';
+            eyeOff.classList.toggle('hidden', willShow);
+            eyeOn.classList.toggle('hidden', !willShow);
+            button.setAttribute('aria-label', (willShow ? 'Hide ' : 'Show ') + labelPrefix);
+            input.focus();
+        });
+    }
+
+    if (newInput) {
+        newInput.addEventListener('input', validate);
+    }
+    if (confInput) {
+        confInput.addEventListener('input', validate);
+    }
+    bindPasswordToggle(toggleNew, newInput, eyeOffNew, eyeOnNew, 'new password');
+    bindPasswordToggle(toggleConfirm, confInput, eyeOffConfirm, eyeOnConfirm, 'confirm password');
+    window.addEventListener('scroll', updateHeaderState, { passive: true });
+
+    if (backBtn) {
+        backBtn.addEventListener('click', function () {
+            window.history.back();
+        });
+    }
+
+    if (requestLinkBtn) {
+        requestLinkBtn.addEventListener('click', function () {
+            window.location.href = '../index.html#/authentication/forgotpassword';
+        });
+    }
+
+    if (form) {
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            if (!turnstileToken) {
+                showCaptchaError('Please complete the CAPTCHA verification.');
+                return;
+            }
+
+            form.submit();
+        });
+    }
+
+    // ── Forgot Password form wiring ───────────────────────────
+    // Same gate as Reset Password: block submission until Turnstile has
+    // verified, then let the native POST (with its CSRF field) proceed.
+    if (forgotForm && forgotEmailInput && forgotSubmitBtn) {
+        forgotEmailInput.addEventListener('input', validateForgot);
+        forgotEmailInput.addEventListener('blur', validateForgot);
+
+        forgotForm.addEventListener('submit', function (e) {
+            if (!turnstileToken) {
+                e.preventDefault();
+                showCaptchaError('Please complete the CAPTCHA verification.');
+            }
+        });
+    }
+
+    updateHeaderState();
+    initLinkState();
+    renderTurnstileWidget();
+    buildChecklist();
+    validate();
+    validateForgot();
+
+}());

@@ -4,11 +4,10 @@ import { LeadFormFieldConfig, LeadFormFieldOption } from './models/ads-landing.m
  * Shared "Primary Need / Training Type" options for the campaign lead forms.
  */
 export const PRIMARY_NEED_OPTIONS: LeadFormFieldOption[] = [
-  { label: 'Compliance & Safety Training', value: 'compliance-safety' },
-  { label: 'Onboarding & Skills Development', value: 'onboarding-skills' },
-  { label: 'Leadership & Soft Skills', value: 'leadership-soft-skills' },
-  { label: 'Technical / Product Training', value: 'technical-product' },
+  { label: 'LMS', value: 'lms' },
   { label: 'Microlearning Library', value: 'microlearning-library' },
+  { label: 'Custom Training Content', value: 'custom-training-content' },
+  { label: 'Immersive Learning', value: 'immersive-learning' },
   { label: 'Other', value: 'other' },
 ];
 
@@ -32,7 +31,7 @@ export const LEAD_FORM_FIELDS: LeadFormFieldConfig[] = [
   { name: 'workEmail', label: 'Work email', type: 'email', required: true },
   {
     name: 'primaryNeed',
-    label: 'Primary Need / Training Type',
+    label: 'Primary Need',
     type: 'select',
     required: true,
     options: PRIMARY_NEED_OPTIONS,

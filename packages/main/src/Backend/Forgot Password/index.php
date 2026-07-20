@@ -93,6 +93,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo base_url('assets/assets/ang_reset/css/styles.css'); ?>">
+    <!-- Cloudflare Turnstile — explicit render; widget is rendered by assets/assets/ang_reset/js/script.js -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async></script>
 </head>
 
 <body>
@@ -158,13 +160,18 @@
 
         <div class="right-section">
             <?php if (session()->get('success')): ?>
-                <div class="alert alert-success" role="alert" style="font-size:15px">
-                    <?= session()->get('success') ?>
+                <div class="status-card status-card--success" role="alert" aria-live="polite">
+                    <div class="status-card__heading">
+                        <svg class="status-card__icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        <p class="status-card__message status-card__message--lead"><?= session()->get('success') ?></p>
+                    </div>
                 </div>
             <?php endif; ?>
             <?php if (session()->get('error')): ?>
-                <div class="alert alert-danger" role="alert" style="font-size:15px">
-                    <?= session()->get('error') ?>
+                <div class="status-card status-card--error" role="alert" aria-live="polite">
+                    <p class="status-card__message status-card__message--lead"><?= session()->get('error') ?></p>
                 </div>
             <?php endif; ?>
 
@@ -211,40 +218,50 @@
                     <?php endif; ?>
                 <?php } elseif ($landing_type == 2) { ?>
                     <div class="form-card">
-                        <form autocomplete="off" class="form"
+                        <h2 class="form-title">Forgot Your Password?</h2>
+                        <p class="form-subtitle">Please enter the email address associated with your account and we will send you a link to reset your password.</p>
+
+                        <?php if (isset($validation)): ?>
+                            <div class="status-card status-card--error" role="alert" aria-live="polite">
+                                <div class="status-card__message status-card__message--lead"><?= $validation->listErrors() ?></div>
+                            </div>
+                        <?php endif; ?>
+
+                        <form autocomplete="off" class="form" novalidate id="forgotPasswordForm"
                             action="<?php echo base_url('forgot_password'); ?>" method="POST"><?= csrf_field() ?>
-                            <div class="auth-brand">
-                                <a href="<?php echo base_url(''); ?>" class="logo logo-light text-center">
-                                    <span class="logo-lg">
-                                        <h3>Forgot Password</h3>
-                                        <br>
-                                    </span>
-                                </a>
-                            </div>
-                            <div class="mb-3">
-                                <input type="text" class="form-control" name="email"
-                                    placeholder="Enter your email" value="<?= set_value('email') ?>">
-                            </div>
-                            <div>
-                                <?php if (isset($validation)): ?>
-                                    <div>
-                                        <div class="alert alert-danger" role="alert">
-                                            <?= $validation->listErrors() ?>
-                                        </div>
-                                    </div>
-                                <?php endif; ?>
-                            </div>
-                            <div class="mb-3">
-                                <button type="submit" class="form-control btn btn-sm btn-warning">Request
-                                    Password Reset</button>
-                            </div>
-                            <div class="mb-3">
-                                <a href="<?php echo base_url('/'); ?>" class="text-muted float-end"><small>Back
-                                        to Sign in</small></a>
+
+                            <div class="form-group">
+                                <label for="forgotEmail" class="form-label">Email Address</label>
+                                <div class="input-wrapper">
+                                    <input
+                                        type="email"
+                                        class="form-input"
+                                        id="forgotEmail"
+                                        name="email"
+                                        placeholder="Enter your email"
+                                        autocomplete="off"
+                                        value="<?= set_value('email') ?>" />
+                                </div>
+                                <p id="forgotEmailError" class="confirm-mismatch-msg is-hidden" role="alert" aria-live="polite">Please enter a valid email address.</p>
                             </div>
 
+                            <!-- Cloudflare Turnstile CAPTCHA (same widget/config as Reset Password) -->
+                            <div class="turnstile-wrapper">
+                                <div id="turnstileContainer"></div>
+                                <p id="captchaError" class="captcha-error-msg is-hidden" role="alert" aria-live="polite"></p>
+                            </div>
+
+                            <div class="btn-group">
+                                <button type="submit" class="btn btn-primary" id="forgotSubmitBtn" disabled>
+                                    Request Password Reset
+                                </button>
+                                <a href="<?php echo base_url('/'); ?>" class="btn btn-outline">
+                                    Back to Login
+                                </a>
+                            </div>
                         </form>
-                    <?php } elseif ($landing_type == 3) { ?>
+                    </div>
+                <?php } elseif ($landing_type == 3) { ?>
                         <div id="statusCard" class="status-card status-card--error is-hidden" role="alert" aria-live="polite">
                             <strong id="statusTitle" class="status-card__title">Reset Link Invalid</strong>
                             <p id="statusMessage" class="status-card__message">This password reset link is no longer valid.</p>
@@ -524,6 +541,9 @@
     const confirmPassword = document.getElementById('confirmPassword');
 
     [password, confirmPassword].forEach(input => {
+        if (!input) {
+            return;
+        }
         input.addEventListener('keydown', function(e) {
             if (e.key === ' ') {
                 e.preventDefault();
