@@ -73,11 +73,6 @@ export class LeadFormComponent implements OnInit, OnChanges, AfterViewInit, OnDe
     this.turnstileService.remove(this.turnstileWidgetId);
   }
 
-  hasError(fieldName: string, error: string): boolean {
-    const control = this.form.get(fieldName);
-    return !!control && control.touched && control.hasError(error);
-  }
-
   submit(): void {
     if (this.isSubmitting || this.form.invalid) {
       this.form.markAllAsTouched();

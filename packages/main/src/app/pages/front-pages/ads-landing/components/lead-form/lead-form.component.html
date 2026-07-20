@@ -40,12 +40,6 @@
             [formControlName]="field.name"
           />
         }
-
-        @if (hasError(field.name, 'required')) {
-          <mat-error>{{ field.label }} is required.</mat-error>
-        } @else if (hasError(field.name, 'email')) {
-          <mat-error>Enter a valid email address.</mat-error>
-        }
       </mat-form-field>
     }
 
