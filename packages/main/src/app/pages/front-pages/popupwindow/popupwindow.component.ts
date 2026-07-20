@@ -46,7 +46,7 @@ statusType: 'success' | 'error' | null = null;
       email: ['', [Validators.required, Validators.email]],
       city: ['', Validators.required],
       phone: [''],
-      message: [''],
+      message: ['', Validators.required],
       captchaVerified: [false, Validators.requiredTrue],
     });
   }
