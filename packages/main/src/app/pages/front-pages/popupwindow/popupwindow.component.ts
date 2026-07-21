@@ -9,6 +9,7 @@ import { AuthService } from '../../../services/login/auth.service';
 import { NoCodeInputDirective } from '../../../directives/no-code-input.directive';
 import { environment } from '../../../../environments/environment';
 import { noWhitespaceValidator, trimFormGroupValues } from '../../../shared/validators/no-whitespace.validator';
+import { RequiredFieldsNoteComponent } from '../../../shared/required-fields-note/required-fields-note.component';
 
 @Component({
   selector: 'app-popupwindow',
@@ -21,6 +22,7 @@ import { noWhitespaceValidator, trimFormGroupValues } from '../../../shared/vali
     MatInputModule,
     MatButtonModule,
     NoCodeInputDirective,
+    RequiredFieldsNoteComponent,
   ],
   templateUrl: './popupwindow.component.html',
   styleUrls: ['./popupwindow.component.scss'],

@@ -27,6 +27,7 @@ import { LoginUrl } from '../../../config';
 import { Subscription } from 'rxjs';
 import { CertificationSignupState } from '../../front-pages/certifications/certifications.model';
 import { AuthService } from '../../../services/login/auth.service';
+import { RequiredFieldsNoteComponent } from '../../../shared/required-fields-note/required-fields-note.component';
 
 const TURNSTILE_SITE_KEY = '0x4AAAAAADh_GIYrBeeJ7VaM';
 
@@ -74,7 +75,8 @@ function passwordNoSpaceValidator(control: AbstractControl): ValidationErrors | 
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    FooterComponent
+    FooterComponent,
+    RequiredFieldsNoteComponent
   ],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss'

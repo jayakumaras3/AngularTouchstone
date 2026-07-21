@@ -16,6 +16,7 @@ import { IconModule } from '../../icon/icon.module';
 import { HeaderComponent } from '../../shared/header/header.component';
 import { FooterComponent } from '../front-pages/footer/footer.component';
 import { noWhitespaceValidator, trimFormGroupValues } from '../../shared/validators/no-whitespace.validator';
+import { RequiredFieldsNoteComponent } from '../../shared/required-fields-note/required-fields-note.component';
 
 interface TrustStat {
   value: number;
@@ -48,7 +49,7 @@ const TEAM_SIZE_OPTIONS = [
 @Component({
   selector: 'app-ads-page',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MaterialModule, IconModule, HeaderComponent, FooterComponent],
+  imports: [CommonModule, ReactiveFormsModule, MaterialModule, IconModule, HeaderComponent, FooterComponent, RequiredFieldsNoteComponent],
   templateUrl: './ads-page.component.html',
   styleUrl: './ads-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

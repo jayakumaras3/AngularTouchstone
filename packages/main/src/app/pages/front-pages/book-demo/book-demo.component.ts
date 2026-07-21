@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../services/login/auth.service';
 import { noWhitespaceValidator, trimFormGroupValues } from '../../../shared/validators/no-whitespace.validator';
+import { RequiredFieldsNoteComponent } from '../../../shared/required-fields-note/required-fields-note.component';
 
 @Component({
   selector: 'app-book-demo',
@@ -15,7 +16,8 @@ import { noWhitespaceValidator, trimFormGroupValues } from '../../../shared/vali
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    RequiredFieldsNoteComponent
   ],
   template: `
     <div class="popup-container p-4">
@@ -74,6 +76,7 @@ import { noWhitespaceValidator, trimFormGroupValues } from '../../../shared/vali
             Submit
           </button>
         </div>
+        <app-required-fields-note></app-required-fields-note>
       </form>
     </div>
   `,

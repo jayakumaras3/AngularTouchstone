@@ -19,12 +19,13 @@ import { MaterialModule } from '../../../../../material.module';
 import { AuthService } from '../../../../../services/login/auth.service';
 import { TurnstileService, TurnstileWidgetState } from '../../../../../services/turnstile/turnstile.service';
 import { noWhitespaceValidator, trimFormGroupValues } from '../../../../../shared/validators/no-whitespace.validator';
+import { RequiredFieldsNoteComponent } from '../../../../../shared/required-fields-note/required-fields-note.component';
 import { LeadFormConfig } from '../../models/ads-landing.model';
 
 @Component({
   selector: 'app-lead-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MaterialModule],
+  imports: [CommonModule, ReactiveFormsModule, MaterialModule, RequiredFieldsNoteComponent],
   templateUrl: './lead-form.component.html',
   styleUrl: './lead-form.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

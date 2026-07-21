@@ -15,6 +15,7 @@ import { IconModule } from '../../../icon/icon.module';
 import { MaterialModule } from '../../../material.module';
 import { environment } from '../../../../environments/environment';
 import { noWhitespaceValidator, trimFormGroupValues } from '../../../shared/validators/no-whitespace.validator';
+import { RequiredFieldsNoteComponent } from '../../../shared/required-fields-note/required-fields-note.component';
 
 @Component({
   selector: 'app-contact',
@@ -30,7 +31,8 @@ import { noWhitespaceValidator, trimFormGroupValues } from '../../../shared/vali
     MatDividerModule,
     MaterialModule,
     IconModule,
-    FooterComponent
+    FooterComponent,
+    RequiredFieldsNoteComponent
   ],
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss']
