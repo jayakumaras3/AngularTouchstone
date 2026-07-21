@@ -78,22 +78,16 @@
   margin-top: 60px;
 }
 
-// Message textarea -> 8px -> counter/helper -> 4px (owned by the component
-// itself) -> validation line -> 12px -> whatever follows (Turnstile).
-app-message-field-status {
-  display: block;
-  margin: 8px 0 12px;
-}
-
 // ── Cloudflare Turnstile ─────────────────────────────────────────────────
 // size:'flexible' makes the widget fill this wrapper's width so it stays
 // responsive across desktop, tablet and mobile without any fixed pixel width.
+// (Message -> Turnstile gap is owned by app-message-field-status itself.)
 .turnstile-wrapper {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 
   .cf-turnstile {
     width: 100%;

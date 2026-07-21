@@ -15,14 +15,19 @@
   width: 100%;
 }
 
-// .form-container's flex `gap: 16px` applies uniformly between every field,
-// which is more than the Message field needs relative to its own counter/
-// validation line and the Turnstile widget below it. Pull it in to the
-// requested 8px (before) / 12px (after) by offsetting that ambient gap.
+// .form-container's flex `gap: 16px` applies uniformly between every field.
+// app-message-field-status already owns its own leading/trailing margin
+// (16px when empty, 6px/12px when showing a message) — offset the ambient
+// 16px gap so the two don't stack into double the intended spacing.
 app-message-field-status {
   display: block;
-  margin-top: -8px;
-  margin-bottom: -4px;
+  margin-top: 0 !important; // 16px gap (ambient) alone already matches the "no message" target
+  margin-bottom: 0 !important;
+
+  &.has-message {
+    margin-top: -10px !important; // 16px gap - 10px = 6px
+    margin-bottom: -4px !important; // 16px gap - 4px = 12px
+  }
 }
 .mat-mdc-dialog-content{
     padding-top: 10px !important;
@@ -55,6 +60,7 @@ app-message-field-status {
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
+  margin-bottom: 20px;
 
   .cf-turnstile {
     width: 100%;
@@ -115,6 +121,23 @@ app-message-field-status {
   // 4. Compact Form Elements
   .form-container {
     gap: 8px !important; // Reduce gap between inputs
+  }
+
+  // The 16px-gap offsets above assume the normal 16px flex gap; in this
+  // compact mode the gap itself is already reduced to 8px, so let it alone
+  // provide the (smaller, intentionally tighter) spacing here.
+  app-message-field-status {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+
+    &.has-message {
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+    }
+  }
+
+  .turnstile-wrapper {
+    margin-bottom: 8px !important;
   }
 
   mat-form-field {

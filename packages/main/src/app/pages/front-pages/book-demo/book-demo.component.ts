@@ -75,10 +75,6 @@ import { MessageFieldStatusComponent } from '../../../shared/message-field-statu
     mat-form-field {
       width: 100%;
     }
-    app-message-field-status {
-      display: block;
-      margin: 8px 0 12px;
-    }
   `]
 })
 export class BookDemoComponent {

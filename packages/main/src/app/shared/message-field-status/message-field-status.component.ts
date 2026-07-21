@@ -1,17 +1,26 @@
-import { Component, Input } from '@angular/core';
+import { Component, HostBinding, Input } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 import { countMeaningfulCharacters } from '../utils/meaningful-characters.util';
 
-type MessageFieldState = 'idle' | 'empty' | 'short' | 'valid';
-
 /**
- * Live helper text + character counter for "Message" style textareas, paired
- * with `minimumMeaningfulCharacters()`. Reads the same meaningful-character
- * count the validator uses so the copy on screen always matches what's
- * actually valid. Plain getters (no OnPush/subscriptions) so it updates on
- * every change-detection pass exactly like the codebase's existing
- * `control.touched && control.hasError(...)` template checks — including the
- * touched-but-unchanged case right after a submit-time `markAllAsTouched()`.
+ * Single validation message for "Message" style textareas, paired with
+ * `minimumMeaningfulCharacters()`. No character counter and no success
+ * message — renders nothing at all once the field is valid. Plain getters
+ * (no OnPush/subscriptions) so it updates on every change-detection pass
+ * exactly like the codebase's existing `control.touched && control.hasError(...)`
+ * template checks — including the touched-but-unchanged case right after a
+ * submit-time `markAllAsTouched()`.
+ *
+ * The host always owns the full "field -> Turnstile" gap itself (so callers
+ * don't need their own per-field spacing rules): 16px on both sides when
+ * there's nothing to show (equal top/bottom so it's correct whether the host
+ * layout is normal block flow, where adjoining margins on an empty element
+ * collapse through to a single 16px gap, or a flex container, where margins
+ * never collapse and each side needs its own explicit value), or 6px above /
+ * 12px below when a validation message is showing. Forms whose layout adds
+ * its own ambient spacing between fields (flex `gap`, a blanket
+ * `margin-bottom` rule, etc.) need a small local override so it isn't
+ * doubled up — see popupwindow.component.scss for the one case that needs it.
  *
  * Usage: <app-message-field-status [control]="f['message']" [min]="20"></app-message-field-status>
  */
@@ -19,51 +28,26 @@ type MessageFieldState = 'idle' | 'empty' | 'short' | 'valid';
   selector: 'app-message-field-status',
   standalone: true,
   template: `
-    @switch (state) {
-      @case ('idle') {
-        <p class="message-field-status message-field-status--hint">Minimum {{ min }} characters required.</p>
-      }
-      @case ('empty') {
-        <p class="message-field-status message-field-status--error" role="alert">Message is required.</p>
-      }
-      @case ('short') {
-        <p class="message-field-status message-field-status--error">{{ count }} / {{ min }} minimum characters</p>
-        <p class="message-field-status message-field-status--error" role="alert">
-          Please enter at least {{ min }} characters.
-        </p>
-      }
-      @case ('valid') {
-        <p class="message-field-status message-field-status--valid" role="status" aria-live="polite">
-          {{ count === min ? min + ' / ' + min + ' minimum reached' : count + ' characters entered' }} &#10003;
-        </p>
-        <p class="message-field-status message-field-status--valid">&#10003; Minimum character requirement met.</p>
-      }
+    @if (message) {
+      <p class="message-field-status" role="alert">{{ message }}</p>
     }
   `,
   styles: [`
     :host {
       display: block;
+      margin-top: 16px;
+      margin-bottom: 16px;
+    }
+    :host(.has-message) {
+      margin-top: 6px;
+      margin-bottom: 12px;
     }
     .message-field-status {
       font-size: 12px;
       font-weight: 500;
       line-height: 1.5;
-      margin: 4px 0 0;
-    }
-    .message-field-status:first-child {
-      /* The 8px gap between the textarea and this component is owned by
-         each host form's own layout (flex gap / margin), since it varies by
-         context — this component only owns the gap *between* its own lines. */
-      margin-top: 0;
-    }
-    .message-field-status--hint {
-      color: #94a3b8;
-    }
-    .message-field-status--error {
+      margin: 0;
       color: #dc3545;
-    }
-    .message-field-status--valid {
-      color: #198754;
     }
   `],
 })
@@ -71,22 +55,23 @@ export class MessageFieldStatusComponent {
   @Input({ required: true }) control!: AbstractControl;
   @Input() min = 20;
 
-  get count(): number {
-    return countMeaningfulCharacters(this.control.value);
+  @HostBinding('class.has-message')
+  get hasMessage(): boolean {
+    return !!this.message;
   }
 
-  get state(): MessageFieldState {
-    const count = this.count;
+  get message(): string | null {
     const interacted = this.control.dirty || this.control.touched;
-    if (!interacted && count === 0) {
-      return 'idle';
+    if (!interacted) {
+      return null;
     }
+    const count = countMeaningfulCharacters(this.control.value);
     if (count === 0) {
-      return 'empty';
+      return 'Message is required.';
     }
     if (count < this.min) {
-      return 'short';
+      return `Please enter at least ${this.min} characters.`;
     }
-    return 'valid';
+    return null;
   }
 }

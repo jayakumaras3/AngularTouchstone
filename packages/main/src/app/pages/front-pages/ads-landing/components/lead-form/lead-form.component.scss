@@ -12,22 +12,16 @@
   }
 
   // The Message field owns its own spacing via app-message-field-status
-  // below (8px / 4px / 12px rhythm), so it doesn't need the general 16px
-  // field-to-field margin too.
+  // below (16px, or 6px/12px when a validation message is showing), so it
+  // doesn't need the general 16px field-to-field margin too.
   .mat-mdc-form-field.lead-form__message-field {
     margin-bottom: 0;
   }
 
-  // Keep the submit button clearly separated from the last field/message
-  // (16px field gap + 8px here = 24px total).
+  // Keep the submit button clearly separated from Turnstile.
   &__submit {
-    margin-top: 8px;
+    margin-top: 0;
   }
-}
-
-app-message-field-status {
-  display: block;
-  margin: 8px 0 12px;
 }
 
 // Cloudflare Turnstile — reserves a fixed-height slot so the widget's
@@ -37,7 +31,7 @@ app-message-field-status {
   position: relative;
   width: 100%;
   min-height: 65px;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
   overflow: hidden;
 
   &--loading {
