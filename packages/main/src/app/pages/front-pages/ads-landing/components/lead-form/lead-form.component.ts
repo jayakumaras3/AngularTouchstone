@@ -18,6 +18,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } 
 import { MaterialModule } from '../../../../../material.module';
 import { AuthService } from '../../../../../services/login/auth.service';
 import { TurnstileService, TurnstileWidgetState } from '../../../../../services/turnstile/turnstile.service';
+import { noWhitespaceValidator, trimFormGroupValues } from '../../../../../shared/validators/no-whitespace.validator';
 import { LeadFormConfig } from '../../models/ads-landing.model';
 
 @Component({
@@ -74,7 +75,13 @@ export class LeadFormComponent implements OnInit, OnChanges, AfterViewInit, OnDe
   }
 
   submit(): void {
-    if (this.isSubmitting || this.form.invalid) {
+    if (this.isSubmitting) {
+      return;
+    }
+
+    trimFormGroupValues(this.form);
+
+    if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
     }
@@ -126,6 +133,9 @@ export class LeadFormComponent implements OnInit, OnChanges, AfterViewInit, OnDe
       const validators: ValidatorFn[] = [];
       if (field.required) {
         validators.push(Validators.required);
+        if (field.type !== 'select') {
+          validators.push(noWhitespaceValidator());
+        }
       }
       if (field.type === 'email') {
         validators.push(Validators.email);

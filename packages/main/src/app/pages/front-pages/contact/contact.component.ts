@@ -14,6 +14,7 @@ import { FooterComponent } from '../footer/footer.component';
 import { IconModule } from '../../../icon/icon.module';
 import { MaterialModule } from '../../../material.module';
 import { environment } from '../../../../environments/environment';
+import { noWhitespaceValidator, trimFormGroupValues } from '../../../shared/validators/no-whitespace.validator';
 
 @Component({
   selector: 'app-contact',
@@ -45,9 +46,9 @@ export class ContactComponent implements OnInit, AfterViewInit, OnDestroy {
 
    constructor(private fb: FormBuilder, private authService: AuthService) {
     this.form = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      firstName: ['', [Validators.required, noWhitespaceValidator()]],
+      lastName: ['', [Validators.required, noWhitespaceValidator()]],
+      email: ['', [Validators.required, Validators.email, noWhitespaceValidator()]],
       enquiry: ['Partnership', Validators.required],
       comment: [''],
       captchaVerified: [false, Validators.requiredTrue],
@@ -109,6 +110,7 @@ setBackground() {
 isSubmitting = false; // track submission state
 
 submit() {
+  trimFormGroupValues(this.form);
   this.form.markAllAsTouched();
 
   if (this.form.valid && !this.isSubmitting) {

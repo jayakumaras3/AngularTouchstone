@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../services/login/auth.service';
 import { NoCodeInputDirective } from '../../../directives/no-code-input.directive';
 import { environment } from '../../../../environments/environment';
+import { noWhitespaceValidator, trimFormGroupValues } from '../../../shared/validators/no-whitespace.validator';
 
 @Component({
   selector: 'app-popupwindow',
@@ -41,12 +42,12 @@ statusType: 'success' | 'error' | null = null;
     private authService: AuthService
   ) {
     this.form = this.fb.group({
-      name: ['', Validators.required],
-      company: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      city: ['', Validators.required],
+      name: ['', [Validators.required, noWhitespaceValidator()]],
+      company: ['', [Validators.required, noWhitespaceValidator()]],
+      email: ['', [Validators.required, Validators.email, noWhitespaceValidator()]],
+      city: ['', [Validators.required, noWhitespaceValidator()]],
       phone: [''],
-      message: ['', Validators.required],
+      message: ['', [Validators.required, noWhitespaceValidator()]],
       captchaVerified: [false, Validators.requiredTrue],
     });
   }
@@ -84,6 +85,7 @@ statusType: 'success' | 'error' | null = null;
   }
 
       onSubmit() {
+      trimFormGroupValues(this.form);
       this.form.markAllAsTouched();
 
       if (this.form.valid && !this.isSubmitting) {

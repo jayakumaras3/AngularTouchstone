@@ -40,6 +40,14 @@
             [formControlName]="field.name"
           />
         }
+
+        @if (form.get(field.name)?.touched && form.get(field.name)?.hasError('required')) {
+          <mat-error>{{ field.label }} is required.</mat-error>
+        } @else if (form.get(field.name)?.touched && form.get(field.name)?.hasError('whitespace')) {
+          <mat-error>{{ field.label }} cannot be empty.</mat-error>
+        } @else if (form.get(field.name)?.touched && form.get(field.name)?.hasError('email')) {
+          <mat-error>Enter a valid email address.</mat-error>
+        }
       </mat-form-field>
     }
 
@@ -71,7 +79,7 @@
       color="primary"
       type="submit"
       class="w-100 lead-form__submit"
-      [disabled]="form.invalid || isSubmitting || !captchaToken"
+      [disabled]="isSubmitting || !captchaToken"
     >
       {{ isSubmitting ? 'Submitting…' : config.submitLabel }}
     </button>

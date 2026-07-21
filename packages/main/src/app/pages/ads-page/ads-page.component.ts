@@ -15,6 +15,7 @@ import { MaterialModule } from '../../material.module';
 import { IconModule } from '../../icon/icon.module';
 import { HeaderComponent } from '../../shared/header/header.component';
 import { FooterComponent } from '../front-pages/footer/footer.component';
+import { noWhitespaceValidator, trimFormGroupValues } from '../../shared/validators/no-whitespace.validator';
 
 interface TrustStat {
   value: number;
@@ -68,9 +69,9 @@ export class AdsPageComponent implements AfterViewInit, OnDestroy {
   // 2. Lead form
   readonly teamSizeOptions = TEAM_SIZE_OPTIONS;
   readonly leadForm: FormGroup = this.fb.group({
-    fullName: ['', Validators.required],
-    workEmail: ['', [Validators.required, Validators.email]],
-    companyName: ['', Validators.required],
+    fullName: ['', [Validators.required, noWhitespaceValidator()]],
+    workEmail: ['', [Validators.required, Validators.email, noWhitespaceValidator()]],
+    companyName: ['', [Validators.required, noWhitespaceValidator()]],
     teamSize: ['', Validators.required],
   });
   formSubmitted = false;
@@ -162,6 +163,8 @@ export class AdsPageComponent implements AfterViewInit, OnDestroy {
   }
 
   submit(): void {
+    trimFormGroupValues(this.leadForm);
+
     if (this.leadForm.invalid) {
       this.leadForm.markAllAsTouched();
       return;
