@@ -17,6 +17,7 @@ import { environment } from '../../../../environments/environment';
 import { noWhitespaceValidator, trimFormGroupValues } from '../../../shared/validators/no-whitespace.validator';
 import { minimumMeaningfulCharacters } from '../../../shared/validators/minimum-meaningful-characters.validator';
 import { RequiredFieldsNoteComponent } from '../../../shared/required-fields-note/required-fields-note.component';
+import { MessageFieldStatusComponent } from '../../../shared/message-field-status/message-field-status.component';
 
 @Component({
   selector: 'app-contact',
@@ -33,7 +34,8 @@ import { RequiredFieldsNoteComponent } from '../../../shared/required-fields-not
     MaterialModule,
     IconModule,
     FooterComponent,
-    RequiredFieldsNoteComponent
+    RequiredFieldsNoteComponent,
+    MessageFieldStatusComponent
   ],
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss']
@@ -53,7 +55,7 @@ export class ContactComponent implements OnInit, AfterViewInit, OnDestroy {
       lastName: ['', [Validators.required, noWhitespaceValidator()]],
       email: ['', [Validators.required, Validators.email, noWhitespaceValidator()]],
       enquiry: ['Partnership', Validators.required],
-      comment: ['', [Validators.required, noWhitespaceValidator(), minimumMeaningfulCharacters(30)]],
+      comment: ['', [Validators.required, noWhitespaceValidator(), minimumMeaningfulCharacters(20)]],
       captchaVerified: [false, Validators.requiredTrue],
     });
   }

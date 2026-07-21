@@ -11,6 +11,7 @@ import { environment } from '../../../../environments/environment';
 import { noWhitespaceValidator, trimFormGroupValues } from '../../../shared/validators/no-whitespace.validator';
 import { minimumMeaningfulCharacters } from '../../../shared/validators/minimum-meaningful-characters.validator';
 import { RequiredFieldsNoteComponent } from '../../../shared/required-fields-note/required-fields-note.component';
+import { MessageFieldStatusComponent } from '../../../shared/message-field-status/message-field-status.component';
 
 @Component({
   selector: 'app-popupwindow',
@@ -24,6 +25,7 @@ import { RequiredFieldsNoteComponent } from '../../../shared/required-fields-not
     MatButtonModule,
     NoCodeInputDirective,
     RequiredFieldsNoteComponent,
+    MessageFieldStatusComponent,
   ],
   templateUrl: './popupwindow.component.html',
   styleUrls: ['./popupwindow.component.scss'],
@@ -50,7 +52,7 @@ statusType: 'success' | 'error' | null = null;
       email: ['', [Validators.required, Validators.email, noWhitespaceValidator()]],
       city: ['', [Validators.required, noWhitespaceValidator()]],
       phone: [''],
-      message: ['', [Validators.required, noWhitespaceValidator(), minimumMeaningfulCharacters(30)]],
+      message: ['', [Validators.required, noWhitespaceValidator(), minimumMeaningfulCharacters(20)]],
       captchaVerified: [false, Validators.requiredTrue],
     });
   }

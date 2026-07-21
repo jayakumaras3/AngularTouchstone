@@ -7,7 +7,7 @@ import { minimumMeaningfulCharacters } from './minimum-meaningful-characters.val
  * Delegates to the same validator function used by Reactive Forms so the
  * meaningful-character counting logic exists in exactly one place.
  *
- * Usage: <textarea ngModel [appMinMeaningfulChars]="30" name="message"></textarea>
+ * Usage: <textarea ngModel [appMinMeaningfulChars]="20" name="message"></textarea>
  */
 @Directive({
   selector: '[appMinMeaningfulChars]',
@@ -21,7 +21,7 @@ import { minimumMeaningfulCharacters } from './minimum-meaningful-characters.val
   ],
 })
 export class MinMeaningfulCharsDirective implements Validator {
-  @Input('appMinMeaningfulChars') min = 30;
+  @Input('appMinMeaningfulChars') min = 20;
 
   validate(control: AbstractControl): ValidationErrors | null {
     return minimumMeaningfulCharacters(this.min)(control);

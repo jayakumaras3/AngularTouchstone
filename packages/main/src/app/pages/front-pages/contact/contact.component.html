@@ -49,10 +49,11 @@
                   </mat-select>
                 </mat-form-field>
 
-                <mat-form-field appearance="outline" class="w-100">
+                <mat-form-field appearance="outline" class="w-100 hide-hint">
                   <mat-label>Message</mat-label>
                   <textarea matInput rows="5" placeholder="Write your message here" formControlName="comment"></textarea>
                 </mat-form-field>
+                <app-message-field-status [control]="f['comment']" [min]="20"></app-message-field-status>
               </div>
             </div>
 

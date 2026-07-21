@@ -21,12 +21,13 @@ import { TurnstileService, TurnstileWidgetState } from '../../../../../services/
 import { noWhitespaceValidator, trimFormGroupValues } from '../../../../../shared/validators/no-whitespace.validator';
 import { minimumMeaningfulCharacters } from '../../../../../shared/validators/minimum-meaningful-characters.validator';
 import { RequiredFieldsNoteComponent } from '../../../../../shared/required-fields-note/required-fields-note.component';
+import { MessageFieldStatusComponent } from '../../../../../shared/message-field-status/message-field-status.component';
 import { LeadFormConfig } from '../../models/ads-landing.model';
 
 @Component({
   selector: 'app-lead-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MaterialModule, RequiredFieldsNoteComponent],
+  imports: [CommonModule, ReactiveFormsModule, MaterialModule, RequiredFieldsNoteComponent, MessageFieldStatusComponent],
   templateUrl: './lead-form.component.html',
   styleUrl: './lead-form.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -143,7 +144,7 @@ export class LeadFormComponent implements OnInit, OnChanges, AfterViewInit, OnDe
         validators.push(Validators.email);
       }
       if (field.type === 'textarea') {
-        validators.push(minimumMeaningfulCharacters(30));
+        validators.push(minimumMeaningfulCharacters(20));
       }
       controls[field.name] = ['', validators];
     }

@@ -32,10 +32,11 @@
       <input matInput formControlName="phone" type="tel" />
     </mat-form-field>
 
-    <mat-form-field appearance="outline" class="full-width">
+    <mat-form-field appearance="outline" class="full-width hide-hint">
       <mat-label>Message / Project Details</mat-label>
       <textarea matInput formControlName="message" rows="3" required></textarea>
     </mat-form-field>
+    <app-message-field-status [control]="f['message']" [min]="20"></app-message-field-status>
 
     <div class="turnstile-wrapper">
       <div #turnstileContainer></div>

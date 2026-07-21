@@ -8,6 +8,7 @@ import { AuthService } from '../../../services/login/auth.service';
 import { noWhitespaceValidator, trimFormGroupValues } from '../../../shared/validators/no-whitespace.validator';
 import { minimumMeaningfulCharacters } from '../../../shared/validators/minimum-meaningful-characters.validator';
 import { RequiredFieldsNoteComponent } from '../../../shared/required-fields-note/required-fields-note.component';
+import { MessageFieldStatusComponent } from '../../../shared/message-field-status/message-field-status.component';
 
 @Component({
   selector: 'app-book-demo',
@@ -18,7 +19,8 @@ import { RequiredFieldsNoteComponent } from '../../../shared/required-fields-not
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    RequiredFieldsNoteComponent
+    RequiredFieldsNoteComponent,
+    MessageFieldStatusComponent
   ],
   template: `
     <div class="popup-container p-4">
@@ -44,10 +46,11 @@ import { RequiredFieldsNoteComponent } from '../../../shared/required-fields-not
           <input matInput formControlName="city" required>
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="w-100 mb-3">
+        <mat-form-field appearance="outline" class="w-100 hide-hint">
           <mat-label>Message</mat-label>
           <textarea matInput formControlName="message" rows="3"></textarea>
         </mat-form-field>
+        <app-message-field-status [control]="form.get('message')!" [min]="20"></app-message-field-status>
 
         <div class="d-flex justify-content-between mt-4">
           <button mat-button type="button" (click)="onCancel()">Cancel</button>
@@ -72,6 +75,10 @@ import { RequiredFieldsNoteComponent } from '../../../shared/required-fields-not
     mat-form-field {
       width: 100%;
     }
+    app-message-field-status {
+      display: block;
+      margin: 8px 0 12px;
+    }
   `]
 })
 export class BookDemoComponent {
@@ -87,7 +94,7 @@ export class BookDemoComponent {
       company: ['', [Validators.required, noWhitespaceValidator()]],
       email: ['', [Validators.required, Validators.email, noWhitespaceValidator()]],
       city: ['', [Validators.required, noWhitespaceValidator()]],
-      message: ['', [Validators.required, noWhitespaceValidator(), minimumMeaningfulCharacters(30)]]
+      message: ['', [Validators.required, noWhitespaceValidator(), minimumMeaningfulCharacters(20)]]
     });
   }
 

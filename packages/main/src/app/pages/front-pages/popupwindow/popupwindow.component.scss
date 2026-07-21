@@ -14,6 +14,16 @@
 .full-width {
   width: 100%;
 }
+
+// .form-container's flex `gap: 16px` applies uniformly between every field,
+// which is more than the Message field needs relative to its own counter/
+// validation line and the Turnstile widget below it. Pull it in to the
+// requested 8px (before) / 12px (after) by offsetting that ambient gap.
+app-message-field-status {
+  display: block;
+  margin-top: -8px;
+  margin-bottom: -4px;
+}
 .mat-mdc-dialog-content{
     padding-top: 10px !important;
 }
