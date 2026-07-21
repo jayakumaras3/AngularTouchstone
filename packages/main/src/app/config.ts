@@ -136,15 +136,15 @@ export const logoUrl = '/DOCHEK_lms/ang/';*/
 */
 //Host URL
 /**//*
-// 
+// */
 export const baseUrlPath = '/ang/';
 export const baseUrlPathslash = '/ang';
 export const LoginUrl = 'ang/';
-export const logoUrl = '/ang/';*/
-/**/export const baseUrlPath = '/DOCHEK/ang/';
+export const logoUrl = '/ang/';
+/*export const baseUrlPath = '/DOCHEK/ang/';
 export const baseUrlPathslash = '/DOCHEK/ang';
 export const LoginUrl = 'DOCHEK/ang/';
-export const logoUrl = '/DOCHEK/ang/';
+export const logoUrl = '/DOCHEK/ang/';*/
 /*export const baseUrlPath = '';
 export const baseUrlPathslash = '';
 export const LoginUrl = '';

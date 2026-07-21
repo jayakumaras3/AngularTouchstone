@@ -1,6 +1,9 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  RewriteBase /DOCHEK/ang/
+  # No hardcoded RewriteBase: this build is deployed at different sub-paths
+  # (e.g. dochek.com/ang/ in production, /DOCHEK/ang/ on staging). Apache
+  # auto-detects the base from this file's own location when none is set,
+  # which keeps the same build working correctly at either path.
 
   # Don't rewrite files or directories that exist
   RewriteCond %{REQUEST_FILENAME} -f [OR]
