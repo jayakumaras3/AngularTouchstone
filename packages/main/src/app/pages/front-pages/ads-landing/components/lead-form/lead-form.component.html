@@ -47,6 +47,8 @@
           <mat-error>{{ field.label }} cannot be empty.</mat-error>
         } @else if (form.get(field.name)?.touched && form.get(field.name)?.hasError('email')) {
           <mat-error>Enter a valid email address.</mat-error>
+        } @else if (form.get(field.name)?.touched && form.get(field.name)?.hasError('minMeaningfulLength')) {
+          <mat-error>{{ field.label }} must contain at least 30 characters.</mat-error>
         }
       </mat-form-field>
     }
@@ -79,7 +81,7 @@
       color="primary"
       type="submit"
       class="w-100 lead-form__submit"
-      [disabled]="isSubmitting || !captchaToken"
+      [disabled]="isSubmitting || !captchaToken || form.invalid"
     >
       {{ isSubmitting ? 'Submitting…' : config.submitLabel }}
     </button>

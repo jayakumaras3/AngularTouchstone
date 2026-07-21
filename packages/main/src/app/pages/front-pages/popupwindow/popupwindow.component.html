@@ -61,6 +61,8 @@
         <mat-error>Message / Project Details is required.</mat-error>
       } @else if (f['message'].touched && f['message'].hasError('whitespace')) {
         <mat-error>Message / Project Details cannot be empty.</mat-error>
+      } @else if (f['message'].touched && f['message'].hasError('minMeaningfulLength')) {
+        <mat-error>Message / Project Details must contain at least 30 characters.</mat-error>
       }
     </mat-form-field>
 

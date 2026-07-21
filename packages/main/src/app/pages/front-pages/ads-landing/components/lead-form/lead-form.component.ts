@@ -19,6 +19,7 @@ import { MaterialModule } from '../../../../../material.module';
 import { AuthService } from '../../../../../services/login/auth.service';
 import { TurnstileService, TurnstileWidgetState } from '../../../../../services/turnstile/turnstile.service';
 import { noWhitespaceValidator, trimFormGroupValues } from '../../../../../shared/validators/no-whitespace.validator';
+import { minimumMeaningfulCharacters } from '../../../../../shared/validators/minimum-meaningful-characters.validator';
 import { RequiredFieldsNoteComponent } from '../../../../../shared/required-fields-note/required-fields-note.component';
 import { LeadFormConfig } from '../../models/ads-landing.model';
 
@@ -140,6 +141,9 @@ export class LeadFormComponent implements OnInit, OnChanges, AfterViewInit, OnDe
       }
       if (field.type === 'email') {
         validators.push(Validators.email);
+      }
+      if (field.type === 'textarea') {
+        validators.push(minimumMeaningfulCharacters(30));
       }
       controls[field.name] = ['', validators];
     }

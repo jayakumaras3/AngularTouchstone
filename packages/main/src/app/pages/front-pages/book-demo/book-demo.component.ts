@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../services/login/auth.service';
 import { noWhitespaceValidator, trimFormGroupValues } from '../../../shared/validators/no-whitespace.validator';
+import { minimumMeaningfulCharacters } from '../../../shared/validators/minimum-meaningful-characters.validator';
 import { RequiredFieldsNoteComponent } from '../../../shared/required-fields-note/required-fields-note.component';
 
 @Component({
@@ -66,8 +67,15 @@ import { RequiredFieldsNoteComponent } from '../../../shared/required-fields-not
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="w-100 mb-3">
-          <mat-label>Message (Optional)</mat-label>
+          <mat-label>Message</mat-label>
           <textarea matInput formControlName="message" rows="3"></textarea>
+          @if (form.get('message')?.touched && form.get('message')?.hasError('required')) {
+            <mat-error>Message is required.</mat-error>
+          } @else if (form.get('message')?.touched && form.get('message')?.hasError('whitespace')) {
+            <mat-error>Message is required.</mat-error>
+          } @else if (form.get('message')?.touched && form.get('message')?.hasError('minMeaningfulLength')) {
+            <mat-error>Message must contain at least 30 characters.</mat-error>
+          }
         </mat-form-field>
 
         <div class="d-flex justify-content-between mt-4">
@@ -108,7 +116,7 @@ export class BookDemoComponent {
       company: ['', [Validators.required, noWhitespaceValidator()]],
       email: ['', [Validators.required, Validators.email, noWhitespaceValidator()]],
       city: ['', [Validators.required, noWhitespaceValidator()]],
-      message: ['']
+      message: ['', [Validators.required, noWhitespaceValidator(), minimumMeaningfulCharacters(30)]]
     });
   }
 

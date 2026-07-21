@@ -15,6 +15,7 @@ import { IconModule } from '../../../icon/icon.module';
 import { MaterialModule } from '../../../material.module';
 import { environment } from '../../../../environments/environment';
 import { noWhitespaceValidator, trimFormGroupValues } from '../../../shared/validators/no-whitespace.validator';
+import { minimumMeaningfulCharacters } from '../../../shared/validators/minimum-meaningful-characters.validator';
 import { RequiredFieldsNoteComponent } from '../../../shared/required-fields-note/required-fields-note.component';
 
 @Component({
@@ -52,7 +53,7 @@ export class ContactComponent implements OnInit, AfterViewInit, OnDestroy {
       lastName: ['', [Validators.required, noWhitespaceValidator()]],
       email: ['', [Validators.required, Validators.email, noWhitespaceValidator()]],
       enquiry: ['Partnership', Validators.required],
-      comment: [''],
+      comment: ['', [Validators.required, noWhitespaceValidator(), minimumMeaningfulCharacters(30)]],
       captchaVerified: [false, Validators.requiredTrue],
     });
   }

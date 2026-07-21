@@ -9,6 +9,7 @@ import { AuthService } from '../../../services/login/auth.service';
 import { NoCodeInputDirective } from '../../../directives/no-code-input.directive';
 import { environment } from '../../../../environments/environment';
 import { noWhitespaceValidator, trimFormGroupValues } from '../../../shared/validators/no-whitespace.validator';
+import { minimumMeaningfulCharacters } from '../../../shared/validators/minimum-meaningful-characters.validator';
 import { RequiredFieldsNoteComponent } from '../../../shared/required-fields-note/required-fields-note.component';
 
 @Component({
@@ -49,7 +50,7 @@ statusType: 'success' | 'error' | null = null;
       email: ['', [Validators.required, Validators.email, noWhitespaceValidator()]],
       city: ['', [Validators.required, noWhitespaceValidator()]],
       phone: [''],
-      message: ['', [Validators.required, noWhitespaceValidator()]],
+      message: ['', [Validators.required, noWhitespaceValidator(), minimumMeaningfulCharacters(30)]],
       captchaVerified: [false, Validators.requiredTrue],
     });
   }
