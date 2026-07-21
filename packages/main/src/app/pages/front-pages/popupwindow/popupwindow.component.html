@@ -10,43 +10,21 @@
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Name</mat-label>
       <input matInput formControlName="name" required />
-      @if (f['name'].touched && f['name'].hasError('required')) {
-        <mat-error>Name is required.</mat-error>
-      } @else if (f['name'].touched && f['name'].hasError('whitespace')) {
-        <mat-error>Name cannot be empty.</mat-error>
-      }
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Organization</mat-label>
       <input matInput formControlName="company" required />
-      @if (f['company'].touched && f['company'].hasError('required')) {
-        <mat-error>Organization is required.</mat-error>
-      } @else if (f['company'].touched && f['company'].hasError('whitespace')) {
-        <mat-error>Organization cannot be empty.</mat-error>
-      }
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Email Address</mat-label>
       <input matInput formControlName="email" type="email" required />
-      @if (f['email'].touched && f['email'].hasError('required')) {
-        <mat-error>Email Address is required.</mat-error>
-      } @else if (f['email'].touched && f['email'].hasError('whitespace')) {
-        <mat-error>Email Address cannot be empty.</mat-error>
-      } @else if (f['email'].touched && f['email'].hasError('email')) {
-        <mat-error>Enter a valid email address.</mat-error>
-      }
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Country</mat-label>
       <input matInput formControlName="city" required />
-      @if (f['city'].touched && f['city'].hasError('required')) {
-        <mat-error>Country is required.</mat-error>
-      } @else if (f['city'].touched && f['city'].hasError('whitespace')) {
-        <mat-error>Country cannot be empty.</mat-error>
-      }
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="full-width">
@@ -57,13 +35,6 @@
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Message / Project Details</mat-label>
       <textarea matInput formControlName="message" rows="3" required></textarea>
-      @if (f['message'].touched && f['message'].hasError('required')) {
-        <mat-error>Message / Project Details is required.</mat-error>
-      } @else if (f['message'].touched && f['message'].hasError('whitespace')) {
-        <mat-error>Message / Project Details cannot be empty.</mat-error>
-      } @else if (f['message'].touched && f['message'].hasError('minMeaningfulLength')) {
-        <mat-error>Message / Project Details must contain at least 30 characters.</mat-error>
-      }
     </mat-form-field>
 
     <div class="turnstile-wrapper">

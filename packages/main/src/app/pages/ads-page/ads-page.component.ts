@@ -158,11 +158,6 @@ export class AdsPageComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  hasError(controlName: string, error: string): boolean {
-    const control = this.leadForm.get(controlName);
-    return !!control && control.touched && control.hasError(error);
-  }
-
   submit(): void {
     trimFormGroupValues(this.leadForm);
 

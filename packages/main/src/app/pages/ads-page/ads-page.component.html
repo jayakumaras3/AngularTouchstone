@@ -57,33 +57,16 @@
               <mat-form-field appearance="outline" class="w-100">
                 <mat-label>Full Name</mat-label>
                 <input matInput formControlName="fullName" />
-                @if (hasError('fullName', 'required')) {
-                  <mat-error>Full name is required.</mat-error>
-                } @else if (hasError('fullName', 'whitespace')) {
-                  <mat-error>Full Name cannot be empty.</mat-error>
-                }
               </mat-form-field>
 
               <mat-form-field appearance="outline" class="w-100">
                 <mat-label>Work Email</mat-label>
                 <input matInput type="email" formControlName="workEmail"  />
-                @if (hasError('workEmail', 'required')) {
-                  <mat-error>Work email is required.</mat-error>
-                } @else if (hasError('workEmail', 'whitespace')) {
-                  <mat-error>Work Email cannot be empty.</mat-error>
-                } @else if (hasError('workEmail', 'email')) {
-                  <mat-error>Enter a valid email address.</mat-error>
-                }
               </mat-form-field>
 
               <mat-form-field appearance="outline" class="w-100">
                 <mat-label>Company Name</mat-label>
                 <input matInput formControlName="companyName"  />
-                @if (hasError('companyName', 'required')) {
-                  <mat-error>Company name is required.</mat-error>
-                } @else if (hasError('companyName', 'whitespace')) {
-                  <mat-error>Company Name cannot be empty.</mat-error>
-                }
               </mat-form-field>
 
               <mat-form-field appearance="outline" class="w-100">
@@ -93,9 +76,6 @@
                     <mat-option [value]="option.value">{{ option.label }}</mat-option>
                   }
                 </mat-select>
-                @if (hasError('teamSize', 'required')) {
-                  <mat-error>Team size is required.</mat-error>
-                }
               </mat-form-field>
 
               <button

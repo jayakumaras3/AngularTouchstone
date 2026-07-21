@@ -27,55 +27,26 @@ import { RequiredFieldsNoteComponent } from '../../../shared/required-fields-not
         <mat-form-field appearance="outline" class="w-100 mb-3">
           <mat-label>Name</mat-label>
           <input matInput formControlName="name" required>
-          @if (form.get('name')?.touched && form.get('name')?.hasError('required')) {
-            <mat-error>Name is required.</mat-error>
-          } @else if (form.get('name')?.touched && form.get('name')?.hasError('whitespace')) {
-            <mat-error>Name cannot be empty.</mat-error>
-          }
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="w-100 mb-3">
           <mat-label>Company</mat-label>
           <input matInput formControlName="company" required>
-          @if (form.get('company')?.touched && form.get('company')?.hasError('required')) {
-            <mat-error>Company is required.</mat-error>
-          } @else if (form.get('company')?.touched && form.get('company')?.hasError('whitespace')) {
-            <mat-error>Company cannot be empty.</mat-error>
-          }
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="w-100 mb-3">
           <mat-label>Email</mat-label>
           <input matInput formControlName="email" required type="email">
-          @if (form.get('email')?.touched && form.get('email')?.hasError('required')) {
-            <mat-error>Email is required.</mat-error>
-          } @else if (form.get('email')?.touched && form.get('email')?.hasError('whitespace')) {
-            <mat-error>Email cannot be empty.</mat-error>
-          } @else if (form.get('email')?.touched && form.get('email')?.hasError('email')) {
-            <mat-error>Enter a valid email address.</mat-error>
-          }
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="w-100 mb-3">
           <mat-label>City</mat-label>
           <input matInput formControlName="city" required>
-          @if (form.get('city')?.touched && form.get('city')?.hasError('required')) {
-            <mat-error>City is required.</mat-error>
-          } @else if (form.get('city')?.touched && form.get('city')?.hasError('whitespace')) {
-            <mat-error>City cannot be empty.</mat-error>
-          }
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="w-100 mb-3">
           <mat-label>Message</mat-label>
           <textarea matInput formControlName="message" rows="3"></textarea>
-          @if (form.get('message')?.touched && form.get('message')?.hasError('required')) {
-            <mat-error>Message is required.</mat-error>
-          } @else if (form.get('message')?.touched && form.get('message')?.hasError('whitespace')) {
-            <mat-error>Message is required.</mat-error>
-          } @else if (form.get('message')?.touched && form.get('message')?.hasError('minMeaningfulLength')) {
-            <mat-error>Message must contain at least 30 characters.</mat-error>
-          }
         </mat-form-field>
 
         <div class="d-flex justify-content-between mt-4">

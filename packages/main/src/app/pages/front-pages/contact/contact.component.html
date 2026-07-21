@@ -25,33 +25,16 @@
                 <mat-form-field appearance="outline" class="w-100">
                   <mat-label>First Name</mat-label>
                   <input matInput placeholder="First Name" formControlName="firstName" />
-                  @if (f['firstName'].touched && f['firstName'].hasError('required')) {
-                    <mat-error>First Name is required.</mat-error>
-                  } @else if (f['firstName'].touched && f['firstName'].hasError('whitespace')) {
-                    <mat-error>First Name cannot be empty.</mat-error>
-                  }
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="w-100">
                   <mat-label>Last Name</mat-label>
                   <input matInput placeholder="Last Name" formControlName="lastName" />
-                  @if (f['lastName'].touched && f['lastName'].hasError('required')) {
-                    <mat-error>Last Name is required.</mat-error>
-                  } @else if (f['lastName'].touched && f['lastName'].hasError('whitespace')) {
-                    <mat-error>Last Name cannot be empty.</mat-error>
-                  }
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="w-100">
                   <mat-label>Email</mat-label>
                   <input matInput type="email" placeholder="Email address" formControlName="email" />
-                  @if (f['email'].touched && f['email'].hasError('required')) {
-                    <mat-error>Email is required.</mat-error>
-                  } @else if (f['email'].touched && f['email'].hasError('whitespace')) {
-                    <mat-error>Email cannot be empty.</mat-error>
-                  } @else if (f['email'].touched && f['email'].hasError('email')) {
-                    <mat-error>Enter a valid email address.</mat-error>
-                  }
                 </mat-form-field>
               </div>
 
@@ -69,13 +52,6 @@
                 <mat-form-field appearance="outline" class="w-100">
                   <mat-label>Message</mat-label>
                   <textarea matInput rows="5" placeholder="Write your message here" formControlName="comment"></textarea>
-                  @if (f['comment'].touched && f['comment'].hasError('required')) {
-                    <mat-error>Message is required.</mat-error>
-                  } @else if (f['comment'].touched && f['comment'].hasError('whitespace')) {
-                    <mat-error>Message is required.</mat-error>
-                  } @else if (f['comment'].touched && f['comment'].hasError('minMeaningfulLength')) {
-                    <mat-error>Message must contain at least 30 characters.</mat-error>
-                  }
                 </mat-form-field>
               </div>
             </div>
