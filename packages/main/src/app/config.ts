@@ -148,14 +148,15 @@ export const logoUrl = '/DOCHEK/ang/';
 /*export const baseUrlPath = '';
 export const baseUrlPathslash = '';
 export const LoginUrl = '';
+
 export const logoUrl = '';*/
 
 
 // PHP service URLs
-/*export const apiUrl = 'http://172.16.0.173/DOCHEK/landing';
+/*export const apiUrl = 'http://172.16.2.218/DOCHEK/landing';
   
-  export const forgotUrl = 'http://172.16.0.173/DOCHEK/landing';
-  export const contactApiUrl = 'http://172.16.0.173/DOCHEK/landing';*/
+  export const forgotUrl = 'http://172.16.2.218/DOCHEK/landing';
+  export const contactApiUrl = 'http://172.16.2.218/DOCHEK/landing';*/
 
 
 // ✅ Use environment-based URLs (will be auto-selected)

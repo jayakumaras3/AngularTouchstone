@@ -9,9 +9,9 @@
 };*/
 export const environment = {
   production: true,
- apiUrl: 'http://172.16.0.173/DOCHEK/landing',
-  forgotUrl: 'http://172.16.0.173/DOCHEK',
-  contactApiUrl: 'http://172.16.0.173/DOCHEK/landing',
+ apiUrl: 'http://172.16.2.218/DOCHEK/landing',
+  forgotUrl: 'http://172.16.2.218/DOCHEK',
+  contactApiUrl: 'http://172.16.2.218/DOCHEK/landing',
   // Cloudflare Turnstile — public site key only. Never put the secret key here.
   turnstileSiteKey: '0x4AAAAAADh_GIYrBeeJ7VaM'
 };
