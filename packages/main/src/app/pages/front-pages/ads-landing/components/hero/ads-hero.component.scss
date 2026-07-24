@@ -147,11 +147,22 @@
 
 .ads-hero__visual-form {
   padding: 40px;
+
+  // The required-fields note carries its own top margin and should sit close
+  // to the card's bottom edge instead of repeating the 40px used for the
+  // other three sides. Falls back to the full 40px when the note isn't
+  // rendered (e.g. the post-submit success state).
+  &:has(app-required-fields-note) {
+    padding-bottom: 10px;
+  }
 }
 
 .ads-hero__form-card {
   background: transparent !important;
   box-shadow: none !important;
+  // Structural, transparent wrapper only — the global card-stack spacing
+  // rule (assets/scss/override-component/_card.scss) shouldn't apply here.
+  margin-bottom: 0;
 }
 
 .ads-hero__form-card .mat-mdc-card-content {

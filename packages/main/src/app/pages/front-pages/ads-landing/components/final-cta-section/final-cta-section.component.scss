@@ -46,10 +46,21 @@
 
 .final-cta-section__form-card {
   background: color-mix(in srgb, var(--mat-sys-primary) 4%, var(--mat-sys-surface)) !important;
+  // Structural wrapper only — the global card-stack spacing rule
+  // (assets/scss/override-component/_card.scss) shouldn't apply here.
+  margin-bottom: 0;
 }
 
 .final-cta-section__form-card .mat-mdc-card-content {
   padding: 56px !important;
+
+  // The required-fields note carries its own top margin and should sit close
+  // to the card's bottom edge instead of repeating the 56px used for the
+  // other three sides. Falls back to the full 56px when the note isn't
+  // rendered (e.g. the post-submit success state).
+  &:has(app-required-fields-note) {
+    padding-bottom: 10px !important;
+  }
 }
 
 // Scoped, cosmetic-only field override: keep the 14px rounded corners only.

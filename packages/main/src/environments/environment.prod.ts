@@ -1,12 +1,12 @@
 // Production Server - 172.16.0.173/DOCHEK
-/*export const environment = {
+/**/export const environment = {
   production: true,
   apiUrl: 'http://172.16.2.218/DOCHEK/landing',
   forgotUrl: 'http://172.16.2.218/DOCHEK',
   contactApiUrl: 'http://172.16.2.218/DOCHEK/landing',
   // Cloudflare Turnstile — public site key only. Never put the secret key here.
   turnstileSiteKey: '0x4AAAAAADh_GIYrBeeJ7VaM'
-};*/
+};
 
 /**/
 // Alternative Staging
@@ -18,11 +18,11 @@
   turnstileSiteKey: '0x4AAAAAADh_GIYrBeeJ7VaM'
 };
 */
-/**/
+/*
 export const environment = {
   production: true,
   apiUrl: 'https://dochek.com/landing',
   forgotUrl: 'https://dochek.com/landing',
   contactApiUrl: 'https://dochek.com/landing',
   turnstileSiteKey: '0x4AAAAAADh_GIYrBeeJ7VaM'
-}
+}*/
