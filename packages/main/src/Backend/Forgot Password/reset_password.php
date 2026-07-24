@@ -361,6 +361,64 @@
     <script src="<?php echo base_url('assets/assets/ang_reset/js/password-rules.js'); ?>"></script>
     <script src="<?php echo base_url('assets/assets/ang_reset/js/script.js'); ?>"></script>
 
+    <!-- Reset Password page only — blocks whitespace in the New Password /
+         Confirm Password fields. Scoped to #newPassword and #confirmPassword
+         so it never touches the Forgot Password form or js/script.js. -->
+    <script>
+        (function () {
+            'use strict';
+
+            function stripWhitespace(input) {
+                var value = input.value;
+                var cleaned = value.replace(/\s+/g, '');
+                if (cleaned === value) {
+                    return;
+                }
+
+                var caret = input.selectionStart;
+                var removedBeforeCaret = 0;
+                for (var i = 0; i < caret && i < value.length; i++) {
+                    if (/\s/.test(value.charAt(i))) {
+                        removedBeforeCaret++;
+                    }
+                }
+
+                input.value = cleaned;
+
+                var newCaret = Math.max(0, caret - removedBeforeCaret);
+                if (typeof input.setSelectionRange === 'function') {
+                    input.setSelectionRange(newCaret, newCaret);
+                }
+
+                // Re-fire "input" so the existing checklist/match/submit-gating
+                // listeners in js/script.js react to the cleaned value.
+                input.dispatchEvent(new Event('input', { bubbles: true }));
+            }
+
+            function blockSpaces(input) {
+                if (!input) {
+                    return;
+                }
+
+                // Desktop keyboards: stop the space character before it lands.
+                input.addEventListener('keydown', function (e) {
+                    if (e.key === ' ' || e.code === 'Space' || e.keyCode === 32) {
+                        e.preventDefault();
+                    }
+                });
+
+                // Catches everything keydown can miss (paste, drag-drop,
+                // autofill, IME, mobile virtual keyboards).
+                input.addEventListener('input', function () {
+                    stripWhitespace(input);
+                });
+            }
+
+            blockSpaces(document.getElementById('newPassword'));
+            blockSpaces(document.getElementById('confirmPassword'));
+        }());
+    </script>
+
     <!-- Mobile navigation script -->
     <script>
         (function() {
