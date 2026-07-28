@@ -32,7 +32,7 @@
       <div class="hero-stat-divider"></div>
       <div class="hero-stat">
         <span class="hero-stat-value">34</span>
-        <span class="hero-stat-label">Learning Paths</span>
+        <span class="hero-stat-label">Learning Plans</span>
       </div>
     </div>
   </div>
@@ -83,7 +83,7 @@
             </div>
             <div class="stat-item">
               <i-tabler name="route" class="stat-icon" [style.color]="card.config.color"></i-tabler>
-              <span class="stat-label">{{ card.certification.learning_paths.length }} Learning Paths</span>
+              <span class="stat-label">{{ card.certification.learning_paths.length }} Learning Plans</span>
             </div>
           </div>
 
@@ -98,15 +98,17 @@
             >
               View Details
             </button>
-            <button
-              class="signup-btn"
-              type="button"
-              [style.--btn-color]="card.config.color"
-              (click)="signUpNow(card)"
-              [attr.aria-label]="'Sign up for ' + card.certification.certificate_name"
-            >
-              Sign Up
-            </button>
+            @if (!authService.isLoggedIn()) {
+              <button
+                class="signup-btn"
+                type="button"
+                [style.--btn-color]="card.config.color"
+                (click)="signUpNow(card)"
+                [attr.aria-label]="'Sign up for ' + card.certification.certificate_name"
+              >
+                Sign Up
+              </button>
+            }
           </div>
 
         </div>

@@ -125,7 +125,7 @@ class Dashboard extends BaseController
             $data['pending_access_count'] = $pending_access_count;
         }
 
-        $data['upcoming_holidays'] = $this->holidays_model->upcoming_holidays(1, 2);
+        $data['upcoming_holidays'] = $this->holidays_model->upcoming_holidays(1, 4);
 
         $thisyear = date('Y');
         $start_year = $thisyear . '-01-01';

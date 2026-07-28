@@ -1,3 +1,28 @@
+<style>
+    /* Same rounded-corner + shadow + table look as other redesigned Project_Manage/etrack pages
+       (e.g. Effort_Tracker, approve_access_view.php, etrack/claims). */
+    .team-effort-card {
+        border: none;
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: 0 0.5rem 1.5rem rgba(50, 58, 70, 0.12);
+    }
+
+    .team-effort-card table thead th {
+        border-bottom: 2px solid #eef2f7;
+        color: #6c757d;
+        font-weight: 700;
+    }
+
+    [data-bs-theme="dark"] .team-effort-card table thead th {
+        border-bottom-color: #36404a;
+        color: #cedeef;
+    }
+
+    .team-effort-card table tbody td {
+        vertical-align: middle;
+    }
+</style>
 <div class="row">
     <div class="col-12">
         <div class="page-title-box">
@@ -12,18 +37,18 @@
 </div>
 <div class="row">
     <div class="col-md-3">
-        <div class="card">
+        <div class="card team-effort-card">
             <div class="card-body">
                 <form method="post" action="<?php echo base_url('Project_Manage/Effort_Tracker/Team_data'); ?>">
                     <div class="form-group mb-3">
                         <label for="week">Select Week:</label>
                         <input type="week" id="week" name="weekDate" class="form-control" value="<?php echo isset($selected_week) ? $selected_week : ''; ?>" required>
                     </div>
-                    <button type="submit" class="btn btn-outline-success waves-effect btn-xs waves-light">Change Week</button>
+                    <button type="submit" class="btn btn-outline-success rounded-pill waves-effect btn-xs waves-light">Change Week</button>
                 </form>
             </div>
         </div>
-        <div class="card">
+        <div class="card team-effort-card mt-3">
             <div class="card-body">
                 <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">Team Data <?php
                                                                             if (isset($selected_week)) {
@@ -42,9 +67,9 @@
                                                                                 echo " | $startDate to $endDate";
                                                                             }
                                                                             ?></h5>
-                <table class="table table-bordered table-striped dt-responsive nowrap w-100" id="my_team_table">
+                <table class="table" id="my_team_table">
                     <thead>
-                        <tr>
+                        <tr class="table-light">
                             <th>Employee</th>
                             <th>Effort</th>
                             <th>View</th>
@@ -83,7 +108,7 @@
                                     <td>
                                         <form method="post" action="<?php echo base_url('Project_Manage/Effort_Tracker/view_member_effort'); ?>">
                                             <input type="hidden" name="member_id" value="<?php echo $member['id_user']; ?>">
-                                            <button type="submit" class="btn btn-outline-primary waves-effect btn-xs waves-light"><span class="mdi mdi-eye"></span></button>
+                                            <button type="submit" class="btn btn-outline-primary rounded-pill waves-effect btn-xs waves-light"><span class="mdi mdi-eye"></span></button>
                                         </form>
                                     </td>
                                 </tr>
@@ -110,17 +135,17 @@
     </div>
     <!-- Table to show employee effort that need manager's approval -->
     <div class="col-md-9">
-        <div class="card">
+        <div class="card team-effort-card">
             <div class="card-body">
                 <h5 class="text-uppercase bg-light p-2 mt-0 mb-3 d-flex justify-content-between align-items-center">
                     Items for Approval
                     <?php if (!empty($effort_data) && is_array($effort_data)) { ?>
-                        <button type="button" id="approve_all_btn" class="btn btn-danger waves-effect btn-xs waves-light">Approve All</button>
+                        <button type="button" id="approve_all_btn" class="btn btn-danger rounded-pill waves-effect btn-xs waves-light">Approve All</button>
                     <?php } ?>
                 </h5>
-                <table class="table table-bordered table-striped dt-responsive nowrap w-100" id="project_effort_table">
+                <table class="table" id="project_effort_table">
                     <thead>
-                        <tr>
+                        <tr class="table-light">
                             <th>S.No</th>
                             <th>Employee</th>
                             <th>Project</th>
@@ -178,13 +203,13 @@
                                             <form method="post" class="mng-response-form" action="<?php echo base_url('Project_Manage/Effort_Tracker/mng_response'); ?>"><?= csrf_field() ?>
                                                 <input type="hidden" name="pe_id" value="<?php echo $data['pe_id']; ?>">
                                                 <input type="hidden" name="status" value="2">
-                                                <button type="submit" class="btn btn-outline-success waves-effect btn-xs waves-light"><i class="fa fa-check"></i></button>
+                                                <button type="submit" class="btn btn-outline-success rounded-pill waves-effect btn-xs waves-light"><i class="fa fa-check"></i></button>
                                             </form>
                                             &nbsp; &nbsp; &nbsp; &nbsp;
                                             <form method="post" class="mng-response-form" action="<?php echo base_url('Project_Manage/Effort_Tracker/mng_response'); ?>"><?= csrf_field() ?>
                                                 <input type="hidden" name="pe_id" value="<?php echo $data['pe_id']; ?>">
                                                 <input type="hidden" name="status" value="3">
-                                                <button type="submit" class="btn btn-outline-danger waves-effect btn-xs waves-light"><i class="fa fa-times"></i></button>
+                                                <button type="submit" class="btn btn-outline-danger rounded-pill waves-effect btn-xs waves-light"><i class="fa fa-times"></i></button>
                                             </form>
                                         </span>
                                     </td>

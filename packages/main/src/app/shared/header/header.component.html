@@ -13,7 +13,9 @@
           <a mat-button class="nav-item" [routerLink]="['/catalog']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Course Catalog</a>
           <a mat-button class="nav-item" [routerLink]="['/certifications']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Certifications</a>
         </nav>
-        <a mat-flat-button color="primary" class="public-header-login" [routerLink]="['/login']">Login</a>
+        @if (!authService.isLoggedIn()) {
+          <a mat-flat-button color="primary" class="public-header-login" [routerLink]="['/login']">Login</a>
+        }
       } @else {
         <button mat-icon-button type="button" class="mobile-menu-btn" aria-label="Open navigation menu" (click)="toggleMobileNav()">
           <mat-icon>menu</mat-icon>
@@ -45,6 +47,8 @@
       <li><a [routerLink]="['/catalog']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeMobileNav()">Course Catalog</a></li>
       <li><a [routerLink]="['/certifications']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeMobileNav()">Certifications</a></li>
     </ul>
-    <a mat-flat-button color="primary" class="mobile-login-btn" [routerLink]="['/login']" (click)="closeMobileNav()">Login</a>
+    @if (!authService.isLoggedIn()) {
+      <a mat-flat-button color="primary" class="mobile-login-btn" [routerLink]="['/login']" (click)="closeMobileNav()">Login</a>
+    }
   </nav>
 }

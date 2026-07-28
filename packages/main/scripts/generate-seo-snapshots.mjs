@@ -29,7 +29,7 @@ const ROUTES = [
   },
   {
     path: 'about',
-    title: 'About DOCHEK: Built for Focus, not Noise',
+    title: 'About Us | DOCHEK',
     description:
       'Discover more about DOCHEK and the team behind the platform simplifying learning management for modern organizations.',
   },
@@ -41,13 +41,13 @@ const ROUTES = [
   },
   {
     path: 'features',
-    title: 'DOCHEK | Lightweight Learning Platform',
+    title: 'Launch Courses in Minutes | Cloud-based LMS',
     description:
       'Create courses in minutes, manage learner tracking, certifications, gamification, and reporting with a lightweight learning management platform. Sign up today!',
   },
   {
     path: 'coursecatalog',
-    title: 'DOCHEK | Online Courses for Professional Development',
+    title: 'Course Catalog | DOCHEK',
     description:
       "Explore leadership, business, compliance, cybersecurity, and soft skills training courses through DOCHEK's online learning catalog for modern organizations.",
   },
@@ -59,7 +59,7 @@ const ROUTES = [
   },
   {
     path: 'catalog',
-    title: 'DOCHEK Course Library',
+    title: 'Course Catalog | DOCHEK',
     description: 'Launch Courses in Minutes | Cloud-based Learning Management System',
   },
   {

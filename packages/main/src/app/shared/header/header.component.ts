@@ -4,6 +4,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { BrandingComponent } from 'src/app/layouts/full/vertical/sidebar/branding.component';
 import { MaterialModule } from 'src/app/material.module';
+import { AuthService } from 'src/app/services/login/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -17,6 +18,7 @@ export class HeaderComponent {
   isScrolled = false;
   mobileNavOpen = false;
 
+  protected readonly authService = inject(AuthService);
   private readonly mediaMatcher = inject(MediaMatcher);
   private readonly mobileQuery = this.mediaMatcher.matchMedia('(max-width: 1199px)');
 

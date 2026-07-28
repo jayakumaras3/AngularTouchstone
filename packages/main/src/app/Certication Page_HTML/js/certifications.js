@@ -55,7 +55,7 @@ function createCardElement(vm, index) {
   [
     { icon: 'clock', label: config.duration                                },
     { icon: 'book',  label: `${totalCourses} Courses`                     },
-    { icon: 'route', label: `${cert.learning_paths.length} Learning Paths` },
+    { icon: 'route', label: `${cert.learning_paths.length} Learning Plans` },
   ].forEach((s, i) => {
     icons[i].innerHTML    = getIcon(s.icon, 18);
     icons[i].style.color  = config.color;

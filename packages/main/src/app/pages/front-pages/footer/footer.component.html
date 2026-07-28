@@ -10,8 +10,10 @@
               DOCHEK - A Learning Platform Built for Focus, Not Noise
             </h2>
             <div class="m-b-24 hstack">
-              <a [class.selected]="isActiveRoute('coursecatalog')"
-                [routerLink]="['/login']" mat-flat-button color="primary" class="zindexreduce">Member Login</a>
+              @if (!authService.isLoggedIn()) {
+                <a [class.selected]="isActiveRoute('coursecatalog')"
+                  [routerLink]="['/login']" mat-flat-button color="primary" class="zindexreduce">Member Login</a>
+              }
               <a target="_blank" mat-stroked-button color="primary"
                 class="border-primary zindexreduce" (click)="openBookDemoDialog()">Book a Demo</a>
             </div>
@@ -86,9 +88,11 @@
         <!-- Platform -->
         <div class="footer-col">
           <h6 class="footer-col-heading">Platform</h6>
-          <a class="footer-link" [routerLink]="['/login']">
-            <mat-icon class="fli">login</mat-icon>Member Login
-          </a>
+          @if (!authService.isLoggedIn()) {
+            <a class="footer-link" [routerLink]="['/login']">
+              <mat-icon class="fli">login</mat-icon>Member Login
+            </a>
+          }
           <a class="footer-link footer-link-btn" (click)="openBookDemoDialog()">
             <mat-icon class="fli">event</mat-icon>Book a Demo
           </a>

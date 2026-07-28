@@ -7,6 +7,7 @@ import { NoCodeInputGuardService } from './services/no-code-input-guard.service'
 import { DiaAssistantComponent } from './components/dia-assistant/dia-assistant.component';
 import { filter, map, mergeMap } from 'rxjs/operators';
 import { HeaderComponent } from './shared/header/header.component';
+import { AuthService } from './services/login/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -25,6 +26,7 @@ export class AppComponent implements OnInit {
     private readonly activatedRoute: ActivatedRoute,
     private readonly titleService: Title,
     private readonly metaService: Meta,
+    private readonly authService: AuthService,
     @Inject(DOCUMENT) private readonly document: Document
   ) {}
 
@@ -32,6 +34,18 @@ export class AppComponent implements OnInit {
     initAutoTheme(defaults.forceDark);
     this.noCodeGuard.start();
     this.updatePublicHeader(this.router.url);
+
+    // Single place the shared PHP-session auth state is (re)checked: once on
+    // bootstrap (covers arriving here from a marketplace link), and again
+    // whenever the tab regains visibility (covers logging out from PHP in
+    // another tab/window and coming back). Deliberately NOT gated behind an
+    // APP_INITIALIZER/resolver — this must never block first render, since a
+    // slow or unreachable auth endpoint would otherwise leave the app blank
+    // while waiting. AuthService.refreshAuthState() already can't throw or
+    // hang (it has its own timeout + catchError); the try/catch here is a
+    // second layer so a future change to that contract still can't take the
+    // whole app down.
+    this.initAuthStateSync();
 
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
@@ -83,6 +97,28 @@ export class AppComponent implements OnInit {
         this.metaService.updateTag({ name: 'twitter:description', content: description });
         this.metaService.updateTag({ name: 'twitter:image', content: ogImage });
       });
+  }
+
+  private initAuthStateSync(): void {
+    try {
+      this.authService.refreshAuthState().subscribe({
+        error: (error) => console.error('Initial auth status check failed', error),
+      });
+
+      this.document.addEventListener('visibilitychange', () => {
+        try {
+          if (this.document.visibilityState === 'visible') {
+            this.authService.refreshAuthState().subscribe({
+              error: (error) => console.error('Auth status re-check failed', error),
+            });
+          }
+        } catch (error) {
+          console.error('Auth status re-check on visibilitychange failed', error);
+        }
+      });
+    } catch (error) {
+      console.error('Auth state sync failed to initialize; continuing in guest mode', error);
+    }
   }
 
   private updatePublicHeader(url: string): void {

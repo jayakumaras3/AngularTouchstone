@@ -1,3 +1,28 @@
+<style>
+    /* Same rounded-corner + shadow + table look as other redesigned Project_Manage/etrack pages
+       (e.g. approve_access_view.php, etrack/claims). */
+    .effort-tracker-card {
+        border: none;
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: 0 0.5rem 1.5rem rgba(50, 58, 70, 0.12);
+    }
+
+    .effort-tracker-card table thead th {
+        border-bottom: 2px solid #eef2f7;
+        color: #6c757d;
+        font-weight: 700;
+    }
+
+    [data-bs-theme="dark"] .effort-tracker-card table thead th {
+        border-bottom-color: #36404a;
+        color: #cedeef;
+    }
+
+    .effort-tracker-card table tbody td {
+        vertical-align: middle;
+    }
+</style>
 <div class="row">
     <div class="col-12">
         <div class="page-title-box">
@@ -29,7 +54,7 @@ $maxWeekAttr = $maxDate->format('Y-\WW'); // Output format: YYYY-Www
 ?>
 <div class="row">
     <div class="col-md-4">
-        <div class="card">
+        <div class="card effort-tracker-card">
             <div class="card-body">
                 <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">Add Effort</h5>
                 <div id="add-effort-alert" class="alert d-none" role="alert"></div>
@@ -82,7 +107,7 @@ $maxWeekAttr = $maxDate->format('Y-\WW'); // Output format: YYYY-Www
                             <small class="form-text text-muted">Maximum 20 words.</small>
                         </div>
                         <div class="col-md-4 align-self-end">
-                            <button type="submit" class="btn btn-outline-primary waves-effect btn-sm waves-light">Save</button>
+                            <button type="submit" class="btn btn-outline-primary rounded-pill waves-effect btn-sm waves-light">Save</button>
                         </div>
                     </div>
                 </form>
@@ -104,7 +129,7 @@ $maxWeekAttr = $maxDate->format('Y-\WW'); // Output format: YYYY-Www
         <!-- Table to show the effort data -->
         <div class="row ">
             <div class="col-md-12">
-                <div class="card">
+                <div class="card effort-tracker-card">
 
                     <div class="card-body">
                         <div class="row mb-1">
@@ -135,16 +160,16 @@ $maxWeekAttr = $maxDate->format('Y-\WW'); // Output format: YYYY-Www
                                             <input type="week" id="weekDate" name="weekDate" class="form-control" required>
                                         </div>
                                         <div class="col-md-6">
-                                            <button type="submit" class="btn btn-outline-info waves-effect btn-sm waves-light">Change Week</button>
+                                            <button type="submit" class="btn btn-outline-info rounded-pill waves-effect btn-sm waves-light">Change Week</button>
                                         </div>
                                     </div>
                                 </form>
                             </div>
                         </div>
 
-                        <table class="table table-centered table-bordered table-striped" id="products-datatable" data-selected-week="<?php echo isset($selected_week) ? $selected_week : date('Y-\WW'); ?>">
-                            <thead class="table-light">
-                                <tr>
+                        <table class="table table-centered" id="products-datatable" data-selected-week="<?php echo isset($selected_week) ? $selected_week : date('Y-\WW'); ?>">
+                            <thead>
+                                <tr class="table-light">
                                     <th style="width: 50px;">S.No</th>
                                     <th>Project Name</th>
                                     <th style="text-align: right; width: 180px;">Effort</th>
@@ -210,11 +235,11 @@ $maxWeekAttr = $maxDate->format('Y-\WW'); // Output format: YYYY-Www
                                                 <?php if ($canEdit) { ?>
 
                                                     <td style="text-align: center; white-space: nowrap;">
-                                                        <button type="button" class="btn btn-outline-success waves-effect btn-xs waves-light effort-save-btn" title="Save Effort"><span class="mdi mdi-content-save"></span></button>
+                                                        <button type="button" class="btn btn-outline-success rounded-pill waves-effect btn-xs waves-light effort-save-btn" title="Save Effort"><span class="mdi mdi-content-save"></span></button>
                                                         &nbsp;&nbsp;
                                                         <form method="POST" action="<?php echo base_url('Project_Manage/Effort_Tracker/Delete_effort'); ?>" onsubmit="return confirm('Are you sure you want to delete this effort entry?');" style="display:inline-block;"><?= csrf_field() ?>
                                                             <input type="hidden" name="pe_id" value="<?php echo $effort['pe_id']; ?>">
-                                                            <button type="submit" class="btn btn-outline-danger waves-effect btn-xs waves-light" title="Delete Effort"><span class="mdi mdi-delete"></span></button>
+                                                            <button type="submit" class="btn btn-outline-danger rounded-pill waves-effect btn-xs waves-light" title="Delete Effort"><span class="mdi mdi-delete"></span></button>
                                                         </form>
                                                     </td>
                                                 <?php } else { ?>
@@ -225,19 +250,19 @@ $maxWeekAttr = $maxDate->format('Y-\WW'); // Output format: YYYY-Www
                                                     <?php
                                                     switch ($status) {
                                                         case 1:
-                                                            echo '<span class="badge bg-soft-secondary text-secondary p-1">Active</span>';
+                                                            echo '<span class="badge bg-soft-secondary text-secondary rounded-pill p-1 px-2">Active</span>';
                                                             break;
                                                         case 2:
-                                                            echo '<span class="badge bg-soft-success text-success p-1">Approved</span>';
+                                                            echo '<span class="badge bg-soft-success text-success rounded-pill p-1 px-2">Approved</span>';
                                                             break;
                                                         case 3:
-                                                            echo '<span class="badge bg-soft-danger text-danger p-1">TL Reject</span>';
+                                                            echo '<span class="badge bg-soft-danger text-danger rounded-pill p-1 px-2">TL Reject</span>';
                                                             break;
                                                         case 4:
-                                                            echo '<span class="badge bg-soft-warning text-warning p-1">PM Reject</span>';
+                                                            echo '<span class="badge bg-soft-warning text-warning rounded-pill p-1 px-2">PM Reject</span>';
                                                             break;
                                                         case 10:
-                                                            echo '<span class="badge bg-soft-dark text-dark p-1">Deleted</span>';
+                                                            echo '<span class="badge bg-soft-dark text-dark rounded-pill p-1 px-2">Deleted</span>';
                                                             break;
                                                     }
                                                     ?>
@@ -343,7 +368,7 @@ $maxWeekAttr = $maxDate->format('Y-\WW'); // Output format: YYYY-Www
         var saveBtn = $('<button>').attr({
             type: 'button',
             title: 'Save Effort'
-        }).addClass('btn btn-outline-success waves-effect btn-xs waves-light effort-save-btn').html('<span class="mdi mdi-content-save"></span>');
+        }).addClass('btn btn-outline-success rounded-pill waves-effect btn-xs waves-light effort-save-btn').html('<span class="mdi mdi-content-save"></span>');
 
         var deleteForm = $('<form>').attr({
             method: 'POST',
@@ -363,7 +388,7 @@ $maxWeekAttr = $maxDate->format('Y-\WW'); // Output format: YYYY-Www
             $('<button>').attr({
                 type: 'submit',
                 title: 'Delete Effort'
-            }).addClass('btn btn-outline-danger waves-effect btn-xs waves-light').html('<span class="mdi mdi-delete"></span>')
+            }).addClass('btn btn-outline-danger rounded-pill waves-effect btn-xs waves-light').html('<span class="mdi mdi-delete"></span>')
         );
 
         row.append($('<td>').css({

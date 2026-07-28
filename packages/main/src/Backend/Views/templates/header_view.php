@@ -899,7 +899,17 @@ $current_subsubpage = explode('/', uri_string())[2] ?? '';
                                         <?php }
                                         } ?>
 
-
+                                        <?php if (in_array('18', $arrayaccessmenu)) { ?>
+                                            <li class="menu-item">
+                                                <a href="<?php echo base_url() . "Certification/dashboard"; ?>"
+                                                    class="menu-link">
+                                                     <span class="menu-icon"><i class="mdi mdi-certificate-outline"></i></span>
+                                                    <span class="menu-text"><?php echo lang('Buttons.Certificate'); ?></span>
+                                                </a>
+                                            </li>
+                                        <?php
+                                        }
+                                        ?>
 
                                         <?php if (in_array('44', $arrayuserlevel)) { ?>
                                             <li class="menu-item">
@@ -1006,312 +1016,302 @@ $current_subsubpage = explode('/', uri_string())[2] ?? '';
                                                                     <form action="<?php echo base_url('demo/Demo_dashboard'); ?>" method="POST"><?= csrf_field() ?>
                                                                         <button type="submit" class="menu-link"
                                                                             style="border:none;background:none;cursor:pointer;" title="Demos">
-                                                                           
+
                                                                             <span class="menu-text"> <?php echo lang('Buttons.Demos'); ?> </span>
                                                                         </button>
                                                                     </form>
                                                                 </li>
-                                                            <?php } ?>
-                                                            <?php if (in_array('69', $arrayuserlevel)) { ?>
-                                                                <li class="menu-item">
-                                                                    <a href="<?php echo base_url() . "etrack/Fin_admin/dashboard"; ?>"
-                                                                        class="menu-link">
-                                                                         <span class="menu-text">Finance Dashboard</span>
-                                                                    </a>
-                                                                </li>
-                                                            <?php } ?>
-                                                            <?php if (in_array('68', $arrayuserlevel)) { ?>
-                                                                <li class="menu-item">
-                                                                    <a href="<?php echo base_url() . "etrack/Sales_admin"; ?>"
-                                                                        class="menu-link">
-                                                                       
-                                                                        <span class="menu-text">Sales Dashboard</span>
-                                                                    </a>
-                                                                </li>
-                                                            <?php } ?>
-                                                            <!--  <?php if (array_intersect(['3048', '2010', '3014', '69'], array_map('strval', $arrayuserlevel))) { ?>
-                                                    <li class="menu-item">
-                                                        <a href="<?php echo base_url() . "etrack/executive_dashboard"; ?>"
-                                                            class="menu-link">
-                                                            <span class="menu-icon"><i class="mdi mdi-view-dashboard-variant"></i></span>
-                                                            <span class="menu-text">CEO Dashboard</span>
-                                                        </a>
-                                                    </li>
-                                                <?php } ?> -->
+                                                                <?php if (in_array('69', $arrayuserlevel)) { ?>
+                                                                    <li class="menu-item">
+                                                                        <a href="<?php echo base_url() . "etrack/Fin_admin/dashboard"; ?>"
+                                                                            class="menu-link">
+                                                                            <span class="menu-text">Finance Dashboard</span>
+                                                                        </a>
+                                                                    </li>
+                                                                <?php } ?>
+                                                                <?php if (in_array('68', $arrayuserlevel)) { ?>
+                                                                    <li class="menu-item">
+                                                                        <a href="<?php echo base_url() . "etrack/Sales_admin"; ?>"
+                                                                            class="menu-link">
+
+                                                                            <span class="menu-text">Sales Dashboard</span>
+                                                                        </a>
+                                                                    </li>
+                                                                <?php } ?>
+
                                                             </ul>
                                                         </div>
-
                                                     </li>
                                                 <?php } ?>
-                                                <?php if (in_array('8', $arrayuserlevel)) { ?>
-                                                    <li class="menu-item">
-                                                        <a href="#common" data-bs-toggle="collapse" class="menu-link">
-                                                            <span class="menu-icon"><i class="mdi mdi-passport"></i></span>
-                                                            <span class="menu-text"> <?php echo lang('Buttons.HRMS'); ?> </span>
-                                                            <span class="menu-arrow"></span>
-                                                        </a>
-                                                        <div class="collapse" id="common">
-                                                            <ul class="sub-menu">
-                                                                <li class="menu-item">
-                                                                    <a href="<?php echo base_url() . "etrack/dashboard/org_chart"; ?>"
-                                                                        class="menu-link">
-                                                                        <span class="menu-text"><?php echo lang('Buttons.Org_Structure'); ?></span>
-                                                                    </a>
-                                                                </li>
-
-                                                                <li class="menu-item">
-                                                                    <a href="<?php echo base_url() . "etrack/dashboard/holiday_cal"; ?>"
-                                                                        class="menu-link">
-                                                                        <span class="menu-text"><?php echo lang('Buttons.Holidays'); ?></span>
-                                                                    </a>
-                                                                </li>
-                                                                <li class="menu-item">
-                                                                    <a href="<?php echo base_url() . "etrack/dashboard/policies"; ?>"
-                                                                        class="menu-link">
-                                                                        <span class="menu-text"><?php echo lang('Buttons.Policies'); ?></span>
-                                                                    </a>
-                                                                </li>
-                                                                <li class="menu-item">
-                                                                    <a href="<?php echo base_url() . "etrack/employee_details/dependents"; ?>"
-                                                                        class="menu-link">
-                                                                        <span class="menu-text"> <?php echo lang('Buttons.My_Dependents'); ?></span>
-                                                                    </a>
-                                                                </li>
-                                                                <li class="menu-item">
-                                                                    <a href="<?php echo base_url() . "User_login/profile/update_data"; ?>"
-                                                                        class="menu-link">
-                                                                        <span class="menu-text"> <?php echo lang('Buttons.My_Personal_Data'); ?></span>
-                                                                    </a>
-                                                                </li>
-                                                                <li class="menu-item">
-                                                                    <a href="<?php echo base_url() . "User_login/profile/documents"; ?>"
-                                                                        class="menu-link">
-                                                                        <span class="menu-text"> <?php echo lang('Buttons.My_Documents'); ?></span>
-                                                                    </a>
-                                                                </li>
-                                                                <li class="menu-item">
-                                                                    <a href="<?php echo base_url() . "etrack/Payroll"; ?>"
-                                                                        class="menu-link">
-                                                                        <span class="menu-text"> <?php echo lang('Buttons.My_Payslips'); ?></span>
-                                                                    </a>
-                                                                </li>
-                                                                <li class="menu-item">
-                                                                    <a href="<?php echo base_url() . "etrack/employee_details/appraisals"; ?>"
-                                                                        class="menu-link">
-                                                                        <span class="menu-text"> <?php echo lang('Buttons.My_Appraisals'); ?></span>
-                                                                    </a>
-                                                                </li>
-                                                                <li class="menu-item">
-                                                                    <a href="<?php echo base_url() . "etrack/employee_details/income_tax"; ?>"
-                                                                        class="menu-link">
-                                                                        <span class="menu-text"> <?php echo lang('Buttons.My_Income_Tax'); ?></span>
-                                                                    </a>
-                                                                </li>
-
-                                                                <li class="menu-item">
-                                                                    <a href="<?php echo base_url() . "Etrack/exit_clearance" ?>"
-                                                                        class="menu-link">
-                                                                        <span class="menu-text"><?php echo lang('Buttons.Exit_Clearance'); ?></span>
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </li>
-                                                    <li class="menu-item">
-                                                        <a href="#leavemng" data-bs-toggle="collapse" class="menu-link">
-                                                            <span class="menu-icon"><i class="mdi mdi-beach"></i></span>
-                                                            <span class="menu-text"> <?php echo lang('Buttons.Attendance'); ?></span>
-                                                            <span class="menu-arrow"></span>
-                                                        </a>
-                                                        <div class="collapse" id="leavemng">
-                                                            <ul class="sub-menu">
-                                                                <li class="menu-item">
-                                                                    <a href="<?php echo base_url() . "etrack/leaves"; ?>"
-                                                                        class="menu-link">
-                                                                        <span class="menu-text"> <?php echo lang('Buttons.Leave_Management'); ?></span>
-                                                                    </a>
-                                                                </li>
-                                                                <li class="menu-item">
-                                                                    <a href="<?php echo base_url() . "etrack/leaves/statement"; ?>"
-                                                                        class="menu-link">
-                                                                        <span class="menu-text"> <?php echo lang('Buttons.My_Leaves'); ?></span>
-                                                                    </a>
-                                                                </li>
-                                                                <li class="menu-item">
-                                                                    <a href="<?php echo base_url() . "etrack/attendance/view/1"; ?>"
-                                                                        class="menu-link">
-                                                                        <span class="menu-text"> <?php echo lang('Buttons.My_Attendance'); ?></span>
-                                                                    </a>
-                                                                </li>
-                                                                <li class="menu-item">
-                                                                    <a href="<?php echo base_url() . "etrack/attendance/wfh_statement_view"; ?>"
-                                                                        class="menu-link">
-                                                                        <span class="menu-text"><?php echo lang('Buttons.Work_From_Home'); ?></span>
-                                                                    </a>
-                                                                </li>
-                                                                <?php if (session()->get('report_to_you') == 2) { ?>
-                                                                    <li class="menu-item">
-                                                                        <a href="<?php echo base_url() . "etrack/attendance/team_attendance"; ?>"
-                                                                            class="menu-link">
-                                                                            <span class="menu-text"> <?php echo lang('Buttons.Team_Attendance'); ?></span>
-                                                                        </a>
-                                                                    </li>
-                                                                <?php } ?>
-                                                                <li class="menu-item">
-                                                                    <a href="<?php echo base_url() . "etrack/attendance/access_card_data"; ?>"
-                                                                        class="menu-link">
-                                                                        <span class="menu-text"> <?php echo lang('Buttons.Access_Card'); ?></span>
-                                                                    </a>
-                                                                </li>
-                                                                <?php if (in_array('2030', $arrayuserlevel)) { ?>
-                                                                    <li class="menu-item">
-                                                                        <a href="<?php echo base_url() . "etrack/Attendance_admin"; ?>"
-                                                                            class="menu-link">
-                                                                            <span class="menu-text"> <?php echo lang('Buttons.Access_Card_Data'); ?></span>
-                                                                        </a>
-                                                                    </li>
-                                                                <?php } ?>
-                                                                <?php if (session()->get('report_to_you') == 2) { ?>
-                                                                    <li class="menu-item">
-                                                                        <a href="<?php echo base_url() . "etrack/leaves/team_leaves"; ?>"
-                                                                            class="menu-link">
-                                                                            <span class="menu-text"> <?php echo lang('Buttons.Team_Leaves'); ?></span>
-                                                                        </a>
-                                                                    </li>
-                                                                <?php } ?>
-                                                            </ul>
-                                                        </div>
-                                                    </li>
-                                                    <?php if (in_array('4', $arrayuserlevel)) { ?>
+                                            <?php } ?>
+                                            <li class="menu-item">
+                                                <a href="#common" data-bs-toggle="collapse" class="menu-link">
+                                                    <span class="menu-icon"><i class="mdi mdi-passport"></i></span>
+                                                    <span class="menu-text"> <?php echo lang('Buttons.HRMS'); ?> </span>
+                                                    <span class="menu-arrow"></span>
+                                                </a>
+                                                <div class="collapse" id="common">
+                                                    <ul class="sub-menu">
                                                         <li class="menu-item">
-                                                            <a href="#tasks" data-bs-toggle="collapse" class="menu-link">
-                                                                <span class="menu-icon"><i class="mdi mdi-alarm-note"></i></span>
-                                                                <span class="menu-text"> <?php echo lang('Buttons.Project_Management'); ?> </span>
-                                                                <span class="menu-arrow"></span>
+                                                            <a href="<?php echo base_url() . "etrack/dashboard/org_chart"; ?>"
+                                                                class="menu-link">
+                                                                <span class="menu-text"><?php echo lang('Buttons.Org_Structure'); ?></span>
                                                             </a>
-                                                            <div class="collapse" id="tasks">
-                                                                <ul class="sub-menu">
-                                                                    <?php if (in_array('4', $arrayuserlevel)) { ?>
-                                                                        <li class="menu-item">
-                                                                            <a href="<?php echo base_url() . "Project_Manage/PM_ucn"; ?>"
-                                                                                class="menu-link">
-                                                                                <span class="menu-text"> <?php echo lang('Buttons.My_UCN'); ?></span>
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="menu-item">
-                                                                            <a href="<?php echo base_url() . "User_login/client_list/my_client_list"; ?>"
-                                                                                class="menu-link">
-                                                                                <span class="menu-text"> <?php echo lang('Buttons.Clients'); ?></span>
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="menu-item">
-                                                                            <a href="<?php echo base_url() . "Project_Manage/Invoices"; ?>" class="menu-link">
-                                                                                <span class="menu-text"> Invoices </span>
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="menu-item">
-                                                                            <a href="<?php echo base_url() . "Project_Manage/Effort_Tracker/Approve_access"; ?>" class="menu-link">
-                                                                                <span class="menu-text"> Project Access Request </span>
-                                                                            </a>
-                                                                        </li>
-                                                                    <?php } ?>
-                                                                </ul>
-                                                            </div>
                                                         </li>
-                                                    <?php } ?>
-                                                    <?php if (in_array('2010', $arrayuserlevel)) { ?>
+
                                                         <li class="menu-item">
-                                                            <a href="#hr" data-bs-toggle="collapse" class="menu-link">
-                                                                <span class="menu-icon"><i class="mdi mdi-handshake-outline"></i></span>
-                                                                <span class="menu-text"><?php echo lang('Buttons.Admin'); ?> <?php echo lang('Buttons.HRMS'); ?></span>
-                                                                <span class="menu-arrow"></span>
+                                                            <a href="<?php echo base_url() . "etrack/dashboard/holiday_cal"; ?>"
+                                                                class="menu-link">
+                                                                <span class="menu-text"><?php echo lang('Buttons.Holidays'); ?></span>
                                                             </a>
-                                                            <div class="collapse" id="hr">
-                                                                <ul class="sub-menu">
-                                                                    <!--  <li class="menu-item">
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a href="<?php echo base_url() . "etrack/dashboard/policies"; ?>"
+                                                                class="menu-link">
+                                                                <span class="menu-text"><?php echo lang('Buttons.Policies'); ?></span>
+                                                            </a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a href="<?php echo base_url() . "etrack/employee_details/dependents"; ?>"
+                                                                class="menu-link">
+                                                                <span class="menu-text"> <?php echo lang('Buttons.My_Dependents'); ?></span>
+                                                            </a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a href="<?php echo base_url() . "User_login/profile/update_data"; ?>"
+                                                                class="menu-link">
+                                                                <span class="menu-text"> <?php echo lang('Buttons.My_Personal_Data'); ?></span>
+                                                            </a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a href="<?php echo base_url() . "User_login/profile/documents"; ?>"
+                                                                class="menu-link">
+                                                                <span class="menu-text"> <?php echo lang('Buttons.My_Documents'); ?></span>
+                                                            </a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a href="<?php echo base_url() . "etrack/Payroll"; ?>"
+                                                                class="menu-link">
+                                                                <span class="menu-text"> <?php echo lang('Buttons.My_Payslips'); ?></span>
+                                                            </a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a href="<?php echo base_url() . "etrack/employee_details/appraisals"; ?>"
+                                                                class="menu-link">
+                                                                <span class="menu-text"> <?php echo lang('Buttons.My_Appraisals'); ?></span>
+                                                            </a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a href="<?php echo base_url() . "etrack/employee_details/income_tax"; ?>"
+                                                                class="menu-link">
+                                                                <span class="menu-text"> <?php echo lang('Buttons.My_Income_Tax'); ?></span>
+                                                            </a>
+                                                        </li>
+
+                                                        <li class="menu-item">
+                                                            <a href="<?php echo base_url() . "Etrack/exit_clearance" ?>"
+                                                                class="menu-link">
+                                                                <span class="menu-text"><?php echo lang('Buttons.Exit_Clearance'); ?></span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                            <li class="menu-item">
+                                                <a href="#leavemng" data-bs-toggle="collapse" class="menu-link">
+                                                    <span class="menu-icon"><i class="mdi mdi-beach"></i></span>
+                                                    <span class="menu-text"> <?php echo lang('Buttons.Attendance'); ?></span>
+                                                    <span class="menu-arrow"></span>
+                                                </a>
+                                                <div class="collapse" id="leavemng">
+                                                    <ul class="sub-menu">
+                                                        <li class="menu-item">
+                                                            <a href="<?php echo base_url() . "etrack/leaves"; ?>"
+                                                                class="menu-link">
+                                                                <span class="menu-text"> <?php echo lang('Buttons.Leave_Management'); ?></span>
+                                                            </a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a href="<?php echo base_url() . "etrack/leaves/statement"; ?>"
+                                                                class="menu-link">
+                                                                <span class="menu-text"> <?php echo lang('Buttons.My_Leaves'); ?></span>
+                                                            </a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a href="<?php echo base_url() . "etrack/attendance/view/1"; ?>"
+                                                                class="menu-link">
+                                                                <span class="menu-text"> <?php echo lang('Buttons.My_Attendance'); ?></span>
+                                                            </a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a href="<?php echo base_url() . "etrack/attendance/wfh_statement_view"; ?>"
+                                                                class="menu-link">
+                                                                <span class="menu-text"><?php echo lang('Buttons.Work_From_Home'); ?></span>
+                                                            </a>
+                                                        </li>
+                                                        <?php if (session()->get('report_to_you') == 2) { ?>
+                                                            <li class="menu-item">
+                                                                <a href="<?php echo base_url() . "etrack/attendance/team_attendance"; ?>"
+                                                                    class="menu-link">
+                                                                    <span class="menu-text"> <?php echo lang('Buttons.Team_Attendance'); ?></span>
+                                                                </a>
+                                                            </li>
+                                                        <?php } ?>
+                                                        <li class="menu-item">
+                                                            <a href="<?php echo base_url() . "etrack/attendance/access_card_data"; ?>"
+                                                                class="menu-link">
+                                                                <span class="menu-text"> <?php echo lang('Buttons.Access_Card'); ?></span>
+                                                            </a>
+                                                        </li>
+                                                        <?php if (in_array('2030', $arrayuserlevel)) { ?>
+                                                            <li class="menu-item">
+                                                                <a href="<?php echo base_url() . "etrack/Attendance_admin"; ?>"
+                                                                    class="menu-link">
+                                                                    <span class="menu-text"> <?php echo lang('Buttons.Access_Card_Data'); ?></span>
+                                                                </a>
+                                                            </li>
+                                                        <?php } ?>
+                                                        <?php if (session()->get('report_to_you') == 2) { ?>
+                                                            <li class="menu-item">
+                                                                <a href="<?php echo base_url() . "etrack/leaves/team_leaves"; ?>"
+                                                                    class="menu-link">
+                                                                    <span class="menu-text"> <?php echo lang('Buttons.Team_Leaves'); ?></span>
+                                                                </a>
+                                                            </li>
+                                                        <?php } ?>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                            <?php if (in_array('4', $arrayuserlevel)) { ?>
+                                                <li class="menu-item">
+                                                    <a href="#tasks" data-bs-toggle="collapse" class="menu-link">
+                                                        <span class="menu-icon"><i class="mdi mdi-alarm-note"></i></span>
+                                                        <span class="menu-text"> <?php echo lang('Buttons.Project_Management'); ?> </span>
+                                                        <span class="menu-arrow"></span>
+                                                    </a>
+                                                    <div class="collapse" id="tasks">
+                                                        <ul class="sub-menu">
+                                                            <?php if (in_array('4', $arrayuserlevel)) { ?>
+                                                                <li class="menu-item">
+                                                                    <a href="<?php echo base_url() . "Project_Manage/PM_ucn"; ?>"
+                                                                        class="menu-link">
+                                                                        <span class="menu-text"> <?php echo lang('Buttons.My_UCN'); ?></span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="menu-item">
+                                                                    <a href="<?php echo base_url() . "User_login/client_list/my_client_list"; ?>"
+                                                                        class="menu-link">
+                                                                        <span class="menu-text"> <?php echo lang('Buttons.Clients'); ?></span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="menu-item">
+                                                                    <a href="<?php echo base_url() . "Project_Manage/Invoices"; ?>" class="menu-link">
+                                                                        <span class="menu-text"> Invoices </span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="menu-item">
+                                                                    <a href="<?php echo base_url() . "Project_Manage/Effort_Tracker/Approve_access"; ?>" class="menu-link">
+                                                                        <span class="menu-text"> Project Access Request </span>
+                                                                    </a>
+                                                                </li>
+                                                            <?php } ?>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                            <?php } ?>
+                                            <?php if (in_array('2010', $arrayuserlevel)) { ?>
+                                                <li class="menu-item">
+                                                    <a href="#hr" data-bs-toggle="collapse" class="menu-link">
+                                                        <span class="menu-icon"><i class="mdi mdi-handshake-outline"></i></span>
+                                                        <span class="menu-text"><?php echo lang('Buttons.Admin'); ?> <?php echo lang('Buttons.HRMS'); ?></span>
+                                                        <span class="menu-arrow"></span>
+                                                    </a>
+                                                    <div class="collapse" id="hr">
+                                                        <ul class="sub-menu">
+                                                            <!--  <li class="menu-item">
                                                                     <a href="<?php echo base_url() . "etrack/HR_admin/hr_dashboard"; ?>" class="menu-link">
                                                                         <span class="menu-text"> HR Dashboard</span>
                                                                     </a>
                                                                 </li> -->
-                                                                    <li class="menu-item">
-                                                                        <a href="<?php echo base_url() . "etrack/leaveadmin"; ?>"
-                                                                            class="menu-link">
-                                                                            <span class="menu-text"><?php echo lang('Buttons.HR_Leaves'); ?></span>
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="menu-item">
-                                                                        <a href="<?php echo base_url() . "etrack/HR_admin"; ?>"
-                                                                            class="menu-link">
-                                                                            <span class="menu-text"><?php echo lang('Buttons.HR_Attendance'); ?></span>
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="menu-item">
-                                                                        <a href="<?php echo base_url() . "etrack/HR_admin/personal"; ?>"
-                                                                            class="menu-link">
-                                                                            <span class="menu-text"><?php echo lang('Buttons.HR_Personal_Data'); ?></span>
-                                                                        </a>
-                                                                    </li>
+                                                            <li class="menu-item">
+                                                                <a href="<?php echo base_url() . "etrack/leaveadmin"; ?>"
+                                                                    class="menu-link">
+                                                                    <span class="menu-text"><?php echo lang('Buttons.HR_Leaves'); ?></span>
+                                                                </a>
+                                                            </li>
+                                                            <li class="menu-item">
+                                                                <a href="<?php echo base_url() . "etrack/HR_admin"; ?>"
+                                                                    class="menu-link">
+                                                                    <span class="menu-text"><?php echo lang('Buttons.HR_Attendance'); ?></span>
+                                                                </a>
+                                                            </li>
+                                                            <li class="menu-item">
+                                                                <a href="<?php echo base_url() . "etrack/HR_admin/personal"; ?>"
+                                                                    class="menu-link">
+                                                                    <span class="menu-text"><?php echo lang('Buttons.HR_Personal_Data'); ?></span>
+                                                                </a>
+                                                            </li>
 
-                                                                    <li class="menu-item">
-                                                                        <a href="<?php echo base_url() . "Holiday/holidays"; ?>"
-                                                                            class="menu-link">
-                                                                            <span class="menu-text"><?php echo lang('Buttons.HR_Holidays'); ?></span>
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="menu-item">
-                                                                        <a href="<?php echo base_url() . "Emanual/emanual_product/document_view" ?>" class="menu-link">
+                                                            <li class="menu-item">
+                                                                <a href="<?php echo base_url() . "Holiday/holidays"; ?>"
+                                                                    class="menu-link">
+                                                                    <span class="menu-text"><?php echo lang('Buttons.HR_Holidays'); ?></span>
+                                                                </a>
+                                                            </li>
+                                                            <li class="menu-item">
+                                                                <a href="<?php echo base_url() . "Emanual/emanual_product/document_view" ?>" class="menu-link">
 
-                                                                            <span class="menu-text"><?php echo lang('Buttons.HR_Policies'); ?></span>
-                                                                        </a>
-                                                                    </li>
+                                                                    <span class="menu-text"><?php echo lang('Buttons.HR_Policies'); ?></span>
+                                                                </a>
+                                                            </li>
 
-                                                                    <!-- <li class="menu-item">
+                                                            <!-- <li class="menu-item">
                                                                     <a href="<?php echo base_url() . "Others/Tournaments"; ?>"
                                                                         class="menu-link">
                                                                         <span class="menu-text"> Tournaments</span>
                                                                     </a>
                                                                 </li> -->
-                                                                </ul>
-                                                            </div>
-                                                        </li>
-                                                    <?php } ?>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                            <?php } ?>
 
-                                                    <?php if (in_array('3014', $arrayuserlevel)) { ?>
-                                                        <li class="menu-item">
-                                                            <a href="#finance" data-bs-toggle="collapse" class="menu-link">
-                                                                <span class="menu-icon"><i class="mdi mdi-currency-inr"></i></span>
-                                                                <span class="menu-text"> <?php echo lang('Buttons.Finance'); ?></span>
-                                                                <span class="menu-arrow"></span>
-                                                            </a>
-                                                            <div class="collapse" id="finance">
-                                                                <ul class="sub-menu">
+                                            <?php if (in_array('3014', $arrayuserlevel)) { ?>
+                                                <li class="menu-item">
+                                                    <a href="#finance" data-bs-toggle="collapse" class="menu-link">
+                                                        <span class="menu-icon"><i class="mdi mdi-currency-inr"></i></span>
+                                                        <span class="menu-text"> <?php echo lang('Buttons.Finance'); ?></span>
+                                                        <span class="menu-arrow"></span>
+                                                    </a>
+                                                    <div class="collapse" id="finance">
+                                                        <ul class="sub-menu">
 
-                                                                    <?php if (in_array('3048', $arrayuserlevel)) { ?>
-                                                                        <li class="menu-item">
-                                                                            <a href="<?php echo base_url() . "etrack/Fin_admin"; ?>"
-                                                                                class="menu-link">
-                                                                                <span class="menu-text"><?php echo lang('Buttons.Payroll'); ?></span>
-                                                                            </a>
-                                                                        </li>
-                                                                    <?php } ?>
-                                                                    <li class="menu-item">
-                                                                        <a href="<?php echo base_url() . "Project_Manage/Invoices"; ?>" class="menu-link">
-                                                                            <span class="menu-text"> Invoices</span>
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="menu-item">
-                                                                        <a href="<?php echo base_url() . "Project_Manage/MileStones/milestones_summary"; ?>" class="menu-link">
-                                                                            <span class="menu-text"> Milestones</span>
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="menu-item">
-                                                                        <a href="<?php echo base_url() . "Project_Manage/PM_wip"; ?>"
-                                                                            class="menu-link">
-                                                                            <span class="menu-text"><?php echo lang('Buttons.WIP Summary'); ?></span>
-                                                                        </a>
-                                                                    </li>
+                                                            <?php if (in_array('3048', $arrayuserlevel)) { ?>
+                                                                <li class="menu-item">
+                                                                    <a href="<?php echo base_url() . "etrack/Fin_admin"; ?>"
+                                                                        class="menu-link">
+                                                                        <span class="menu-text"><?php echo lang('Buttons.Payroll'); ?></span>
+                                                                    </a>
+                                                                </li>
+                                                            <?php } ?>
+                                                            <li class="menu-item">
+                                                                <a href="<?php echo base_url() . "Project_Manage/Invoices"; ?>" class="menu-link">
+                                                                    <span class="menu-text"> Invoices</span>
+                                                                </a>
+                                                            </li>
+                                                            <li class="menu-item">
+                                                                <a href="<?php echo base_url() . "Project_Manage/MileStones/milestones_summary"; ?>" class="menu-link">
+                                                                    <span class="menu-text"> Milestones</span>
+                                                                </a>
+                                                            </li>
+                                                            <li class="menu-item">
+                                                                <a href="<?php echo base_url() . "Project_Manage/PM_wip"; ?>"
+                                                                    class="menu-link">
+                                                                    <span class="menu-text"><?php echo lang('Buttons.WIP Summary'); ?></span>
+                                                                </a>
+                                                            </li>
 
-                                                                    <!-- <li class="menu-item">
+                                                            <!-- <li class="menu-item">
                                                                     <a href="<?php echo base_url() . "etrack/Fin_admin/purchase_orders"; ?>"
                                                                         class="menu-link">
                                                                         <span class="menu-text">PO - Received</span>
@@ -1344,22 +1344,22 @@ $current_subsubpage = explode('/', uri_string())[2] ?? '';
                                                                 </a>
                                                             </li>-->
 
-                                                                    <?php if (in_array('3048', $arrayuserlevel)) { ?>
-                                                                        <li class="menu-item">
-                                                                            <a href="<?php echo base_url() . "etrack/Fin_admin/approve_grace"; ?>"
-                                                                                class="menu-link">
-                                                                                <span class="menu-text"> <?php echo lang('Buttons.Grace Management'); ?></span>
-                                                                            </a>
-                                                                        </li>
-                                                                    <?php } ?>
+                                                            <?php if (in_array('3048', $arrayuserlevel)) { ?>
+                                                                <li class="menu-item">
+                                                                    <a href="<?php echo base_url() . "etrack/Fin_admin/approve_grace"; ?>"
+                                                                        class="menu-link">
+                                                                        <span class="menu-text"> <?php echo lang('Buttons.Grace Management'); ?></span>
+                                                                    </a>
+                                                                </li>
+                                                            <?php } ?>
 
 
-                                                                </ul>
-                                                            </div>
-                                                        </li>
-                                                    <?php } ?>
-                                                    <?php if (in_array('2015', $arrayuserlevel)) { ?>
-                                                        <!--                                                     <li class="menu-item">
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                            <?php } ?>
+                                            <?php if (in_array('2015', $arrayuserlevel)) { ?>
+                                                <!--                                                     <li class="menu-item">
                                                         <a href="#atsmng" data-bs-toggle="collapse" class="menu-link">
                                                             <span class="menu-icon"><i class="fe-activity"></i></span>
                                                             <span class="menu-text"> <?php echo lang('Buttons.ATS'); ?> </span>
@@ -1376,208 +1376,196 @@ $current_subsubpage = explode('/', uri_string())[2] ?? '';
                                                             </ul>
                                                         </div>
                                                     </li> -->
-                                                    <?php } ?>
-                                                    <?php if (in_array('4154', $arrayuserlevel)) { ?>
-                                                        <li class="menu-item">
-                                                            <a href="#itsupport" data-bs-toggle="collapse" class="menu-link">
-                                                                <span class="menu-icon"><i class="mdi mdi-hammer-wrench"></i></span>
-                                                                <span class="menu-text"> <?php echo lang('Buttons.IT_Support'); ?> </span>
-                                                                <span class="menu-arrow"></span>
-                                                            </a>
-                                                            <div class="collapse" id="itsupport">
-                                                                <ul class="sub-menu">
-                                                                    <li class="menu-item">
-                                                                        <a href="<?php echo base_url() . "etrack/ITSupport"; ?>"
-                                                                            class="menu-link">
-                                                                            <span class="menu-text"> <?php echo lang('Buttons.IT_Support'); ?> <?php echo lang('Buttons.Dashboard'); ?></span>
-                                                                        </a>
-                                                                    </li>
+                                            <?php } ?>
+                                            <?php if (in_array('4154', $arrayuserlevel)) { ?>
+                                                <li class="menu-item">
+                                                    <a href="#itsupport" data-bs-toggle="collapse" class="menu-link">
+                                                        <span class="menu-icon"><i class="mdi mdi-hammer-wrench"></i></span>
+                                                        <span class="menu-text"> <?php echo lang('Buttons.IT_Support'); ?> </span>
+                                                        <span class="menu-arrow"></span>
+                                                    </a>
+                                                    <div class="collapse" id="itsupport">
+                                                        <ul class="sub-menu">
+                                                            <li class="menu-item">
+                                                                <a href="<?php echo base_url() . "etrack/ITSupport"; ?>"
+                                                                    class="menu-link">
+                                                                    <span class="menu-text"> <?php echo lang('Buttons.IT_Support'); ?> <?php echo lang('Buttons.Dashboard'); ?></span>
+                                                                </a>
+                                                            </li>
 
-                                                                    <li class="menu-item">
-                                                                        <a href="<?php echo base_url() . "etrack/ITSupport/support_admin"; ?>"
-                                                                            class="menu-link">
-                                                                            <span class="menu-text"> <?php echo lang('Buttons.IT_Support'); ?> <?php echo lang('Buttons.Admin'); ?></span>
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="menu-item">
-                                                                        <a href="<?php echo base_url() . "etrack/ITSupport/assets"; ?>"
-                                                                            class="menu-link">
-                                                                            <span class="menu-text"> <?php echo lang('Buttons.IT_Assets'); ?></span>
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="menu-item">
-                                                                        <a href="<?php echo base_url() . "etrack/ITSupport/softwares"; ?>"
-                                                                            class="menu-link">
-                                                                            <span class="menu-text"> <?php echo lang('Buttons.IT_Softwares'); ?></span>
-                                                                        </a>
-                                                                    </li>
+                                                            <li class="menu-item">
+                                                                <a href="<?php echo base_url() . "etrack/ITSupport/support_admin"; ?>"
+                                                                    class="menu-link">
+                                                                    <span class="menu-text"> <?php echo lang('Buttons.IT_Support'); ?> <?php echo lang('Buttons.Admin'); ?></span>
+                                                                </a>
+                                                            </li>
+                                                            <li class="menu-item">
+                                                                <a href="<?php echo base_url() . "etrack/ITSupport/assets"; ?>"
+                                                                    class="menu-link">
+                                                                    <span class="menu-text"> <?php echo lang('Buttons.IT_Assets'); ?></span>
+                                                                </a>
+                                                            </li>
+                                                            <li class="menu-item">
+                                                                <a href="<?php echo base_url() . "etrack/ITSupport/softwares"; ?>"
+                                                                    class="menu-link">
+                                                                    <span class="menu-text"> <?php echo lang('Buttons.IT_Softwares'); ?></span>
+                                                                </a>
+                                                            </li>
 
-                                                                </ul>
-                                                            </div>
-                                                        </li>
-                                                    <?php } ?>
-                                                <?php } ?>
-                                                <?php if (in_array('1005', $arrayuserlevel) || in_array('1010', $arrayuserlevel) || session()->get('client') == '1' || session()->get('client') == '25') { ?>
-                                                    <?php if ($id_user != 1324 && $id_user != 1135) { ?>
-                                                        <li class="menu-item">
-                                                            <a href="#others" data-bs-toggle="collapse" class="menu-link">
-                                                                <span class="menu-icon"><i class="mdi mdi-auto-fix"></i></span>
-                                                                <span class="menu-text"> <?php
-                                                                                            echo lang('Buttons.Custom_Projects'); ?> </span>
-                                                                <span class="menu-arrow"></span>
-                                                            </a>
-                                                            <div class="collapse" id="others">
-                                                                <ul class="sub-menu">
-                                                                    <!-- <li class="menu-item">
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                            <?php } ?>
+                                            <?php if (in_array('1005', $arrayuserlevel) || in_array('1010', $arrayuserlevel) || session()->get('client') == '1' || session()->get('client') == '25') { ?>
+                                                <?php if ($id_user != 1324 && $id_user != 1135) { ?>
+                                                    <li class="menu-item">
+                                                        <a href="#others" data-bs-toggle="collapse" class="menu-link">
+                                                            <span class="menu-icon"><i class="mdi mdi-auto-fix"></i></span>
+                                                            <span class="menu-text"> <?php
+                                                                                        echo lang('Buttons.Custom_Projects'); ?> </span>
+                                                            <span class="menu-arrow"></span>
+                                                        </a>
+                                                        <div class="collapse" id="others">
+                                                            <ul class="sub-menu">
+                                                                <!-- <li class="menu-item">
                                                             <a href="<?php echo base_url() . "Contentforu/Dashboard"; ?>"
                                                                 class="menu-link">
                                                                 <span class="menu-text"> Contentforu </span>
                                                             </a>
                                                         </li> -->
 
-                                                                    <?php if (in_array('1005', $arrayuserlevel)) { ?>
-                                                                        <!--  <li class="menu-item">
+                                                                <?php if (in_array('1005', $arrayuserlevel)) { ?>
+                                                                    <!--  <li class="menu-item">
                                                                 <a href="<?php echo base_url() . "Emanual/dashboard"; ?>"
                                                                     class="menu-link">
                                                                     <span class="menu-text"> e-Manual Dashboard </span>
                                                                 </a>
                                                             </li> -->
-                                                                    <?php } ?>
-                                                                    <?php if (in_array('1010', $arrayuserlevel)) { ?>
-                                                                        <!-- <li class="menu-item">
+                                                                <?php } ?>
+                                                                <?php if (in_array('1010', $arrayuserlevel)) { ?>
+                                                                    <!-- <li class="menu-item">
                                                                 <a href="<?php echo base_url() . "Emanual/emanual_product"; ?>"
                                                                     class="menu-link">
                                                                     <span class="menu-text"> e-Manual Editor </span>
                                                                 </a>
                                                             </li> -->
-                                                                    <?php } ?>
-                                                                    <?php if (session()->get('client') == 1 || session()->get('client') == '25') { ?>
-                                                                        <!-- <li class="menu-item">
+                                                                <?php } ?>
+                                                                <?php if (session()->get('client') == 1 || session()->get('client') == '25') { ?>
+                                                                    <!-- <li class="menu-item">
                                                                 <a href="<?php echo base_url() . "Others/Ojts_consolidated"; ?>" class="menu-link">
                                                                     <span class="menu-text"> OJTS View </span>
                                                                 </a>
                                                             </li> -->
-                                                                        <li class="menu-item">
-                                                                            <a href="<?php echo base_url() . "Others/Ojts_consolidated/ojts_download_pdf"; ?>"
+                                                                    <li class="menu-item">
+                                                                        <a href="<?php echo base_url() . "Others/Ojts_consolidated/ojts_download_pdf"; ?>"
+                                                                            class="menu-link">
+                                                                            <span class="menu-text"> <?php echo lang('Buttons.OJTS'); ?></span>
+                                                                        </a>
+                                                                        <?php if (session()->get('id_user') == 1 || session()->get('id_user') == '1184' || session()->get('id_user') == '834') { ?>
+                                                                            <a href="<?php echo base_url() . "Emanual/emanual_product/helpdocument_view"; ?>"
                                                                                 class="menu-link">
-                                                                                <span class="menu-text"> <?php echo lang('Buttons.OJTS'); ?></span>
+                                                                                <span class="menu-text">DOCHEK Help</span>
                                                                             </a>
-                                                                            <?php if (session()->get('id_user') == 1 || session()->get('id_user') == '1184' || session()->get('id_user') == '834') { ?>
-                                                                                <a href="<?php echo base_url() . "Emanual/emanual_product/helpdocument_view"; ?>"
-                                                                                    class="menu-link">
-                                                                                    <span class="menu-text">DOCHEK Help</span>
-                                                                                </a>
-                                                                            <?php } ?>
-                                                                        </li>
+                                                                        <?php } ?>
+                                                                    </li>
 
-                                                                    <?php } ?>
-                                                                    <?php //if (session()->get('client') == 1) { 
-                                                                    ?>
-                                                                    <!-- <li class="menu-item">
+                                                                <?php } ?>
+                                                                <?php //if (session()->get('client') == 1) { 
+                                                                ?>
+                                                                <!-- <li class="menu-item">
                                                                 <a href="<?php echo base_url() . "open/Question_bank/tab_questions_post"; ?>"
                                                                     class="menu-link">
                                                                     <span class="menu-text"> <?php echo lang('Buttons.Question_Bank'); ?></span>
                                                                 </a>
                                                             </li> -->
-                                                                    <?php //} 
-                                                                    ?>
+                                                                <?php //} 
+                                                                ?>
 
-                                                                    <?php if (in_array('5', $arrayuserlevel) || in_array('44', $arrayuserlevel)) { ?>
-                                                                        <?php if (in_array('15', $arrayaccessmenu)) {  ?>
-                                                                            <li class="menu-item">
-                                                                                <a href="<?php echo base_url() . "Certification/certification_dashboard"; ?>"
-                                                                                    class="menu-link">
-                                                                                    <!-- <span class="menu-icon"><i
+                                                                <?php if (in_array('5', $arrayuserlevel) || in_array('44', $arrayuserlevel)) { ?>
+                                                                    <?php if (in_array('15', $arrayaccessmenu)) {  ?>
+                                                                        <li class="menu-item">
+                                                                            <a href="<?php echo base_url() . "Certification/certification_dashboard"; ?>"
+                                                                                class="menu-link">
+                                                                                <!-- <span class="menu-icon"><i
                                                                                         class="mdi mdi-certificate"></i></span> -->
-                                                                                    <span class="menu-text"><?php echo lang('Buttons.Certifications'); ?> Admin</span>
-                                                                                </a>
-                                                                            </li>
-                                                                        <?php }
-                                                                    } else { ?>
-                                                                        <li class="menu-item">
-                                                                            <a href="<?php echo base_url() . "Certification/Certification_Portal"; ?>"
-                                                                                class="menu-link">
-                                                                                <!-- <span class="menu-icon"><i
+                                                                                <span class="menu-text"><?php echo lang('Buttons.Certifications'); ?> Admin</span>
+                                                                            </a>
+                                                                        </li>
+                                                                    <?php }
+                                                                } else { ?>
+                                                                    <li class="menu-item">
+                                                                        <a href="<?php echo base_url() . "Certification/Certification_Portal"; ?>"
+                                                                            class="menu-link">
+                                                                            <!-- <span class="menu-icon"><i
                                                                                     class="mdi mdi-certificate"></i></span> -->
-                                                                                <span class="menu-text"><?php echo lang('Buttons.Certifications'); ?></span>
-                                                                            </a>
-                                                                        </li>
-                                                                    <?php } ?>
+                                                                            <span class="menu-text"><?php echo lang('Buttons.Certifications'); ?></span>
+                                                                        </a>
+                                                                    </li>
+                                                                <?php } ?>
 
-                                                                    <?php if (in_array('18', $arrayaccessmenu)) { ?>
-                                                                        <li class="menu-item">
-                                                                            <a href="<?php echo base_url() . "Certification/dashboard"; ?>"
-                                                                                class="menu-link">
-                                                                                <!-- <span class="menu-icon"><i
-                                                                                    class="mdi mdi-certificate-outline"></i></span> -->
-                                                                                <span class="menu-text"><?php echo lang('Buttons.Certificate'); ?></span>
-                                                                            </a>
-                                                                        </li>
-                                                                    <?php
-                                                                    }
-                                                                    ?>
-                                                                </ul>
-                                                            </div>
-                                                        </li>
-                                                    <?php } ?>
-                                                <?php } ?>
-                                                <?php if (in_array('6', $arrayuserlevel)) { ?>
-                                                    <li class="menu-item">
-                                                        <a href="#super" data-bs-toggle="collapse" class="menu-link">
-                                                            <span class="menu-icon"><i class="mdi mdi-chess-king"></i></span>
-                                                            <span class="menu-text"> <?php echo lang('Buttons.Super_Admin'); ?> </span>
-                                                            <span class="menu-arrow"></span>
-                                                        </a>
-                                                        <div class="collapse" id="super">
-                                                            <ul class="sub-menu">
-                                                                <li class="menu-item">
 
-                                                                    <form action="<?php echo base_url('marketplace/admin'); ?>" method="POST"><?= csrf_field() ?>
-                                                                        <input type="hidden" name="type" value="1">
-                                                                        <button type="submit" class="menu-link"
-                                                                            style="border:none;background:none;cursor:pointer;"
-                                                                            title="My Report">
-                                                                            <!-- <span class="menu-icon"><i class="fe-bar-chart"></i></span> -->
-                                                                            <span class="menu-text">Marketplace Admin</span>
-                                                                        </button>
-                                                                    </form>
-                                                                </li>
-                                                                <li class="menu-item">
-                                                                    <a href="<?php echo base_url() . "category/dashboard"; ?>"
-                                                                        class="menu-link">
-                                                                        <span class="menu-text"> <?php echo lang('Buttons.Categories'); ?></span>
-                                                                    </a>
-                                                                </li>
-                                                                <li class="menu-item">
-                                                                    <a href="<?php echo base_url() . "User_login/client_list"; ?>"
-                                                                        class="menu-link">
-                                                                        <span class="menu-text"> <?php echo lang('Buttons.Clients'); ?></span>
-                                                                    </a>
-                                                                </li>
-                                                                <li class="menu-item">
-                                                                    <a href="<?php echo base_url() . "User_login/partners/partner_list"; ?>"
-                                                                        class="menu-link">
-                                                                        <span class="menu-text"> <?php echo lang('Buttons.Partners'); ?></span>
-                                                                    </a>
-                                                                </li>
-                                                                <li class="menu-item">
-                                                                    <a href="<?php echo base_url() . "Support/Support_user/notificatoins"; ?>"
-                                                                        class="menu-link">
-                                                                        <span class="menu-text"> <?php echo lang('Buttons.Notifications'); ?></span>
-                                                                    </a>
-                                                                </li>
-
-                                                                <li class="menu-item">
-                                                                    <a href="<?php echo base_url() . "access/AccessController"; ?>"
-                                                                        class="menu-link">
-                                                                        <span class="menu-text"> <?php echo lang('Buttons.Access'); ?></span>
-                                                                    </a>
-                                                                </li>
                                                             </ul>
                                                         </div>
                                                     </li>
                                                 <?php } ?>
                                             <?php } ?>
+                                            <?php if (in_array('6', $arrayuserlevel)) { ?>
+                                                <li class="menu-item">
+                                                    <a href="#super" data-bs-toggle="collapse" class="menu-link">
+                                                        <span class="menu-icon"><i class="mdi mdi-chess-king"></i></span>
+                                                        <span class="menu-text"> <?php echo lang('Buttons.Super_Admin'); ?> </span>
+                                                        <span class="menu-arrow"></span>
+                                                    </a>
+                                                    <div class="collapse" id="super">
+                                                        <ul class="sub-menu">
+                                                            <li class="menu-item">
+
+                                                                <form action="<?php echo base_url('marketplace/admin'); ?>" method="POST"><?= csrf_field() ?>
+                                                                    <input type="hidden" name="type" value="1">
+                                                                    <button type="submit" class="menu-link"
+                                                                        style="border:none;background:none;cursor:pointer;"
+                                                                        title="My Report">
+                                                                        <!-- <span class="menu-icon"><i class="fe-bar-chart"></i></span> -->
+                                                                        <span class="menu-text">Marketplace Admin</span>
+                                                                    </button>
+                                                                </form>
+                                                            </li>
+                                                            <li class="menu-item">
+                                                                <a href="<?php echo base_url() . "category/dashboard"; ?>"
+                                                                    class="menu-link">
+                                                                    <span class="menu-text"> <?php echo lang('Buttons.Categories'); ?></span>
+                                                                </a>
+                                                            </li>
+                                                            <li class="menu-item">
+                                                                <a href="<?php echo base_url() . "User_login/client_list"; ?>"
+                                                                    class="menu-link">
+                                                                    <span class="menu-text"> <?php echo lang('Buttons.Clients'); ?></span>
+                                                                </a>
+                                                            </li>
+                                                            <li class="menu-item">
+                                                                <a href="<?php echo base_url() . "User_login/partners/partner_list"; ?>"
+                                                                    class="menu-link">
+                                                                    <span class="menu-text"> <?php echo lang('Buttons.Partners'); ?></span>
+                                                                </a>
+                                                            </li>
+                                                            <li class="menu-item">
+                                                                <a href="<?php echo base_url() . "Support/Support_user/notificatoins"; ?>"
+                                                                    class="menu-link">
+                                                                    <span class="menu-text"> <?php echo lang('Buttons.Notifications'); ?></span>
+                                                                </a>
+                                                            </li>
+
+                                                            <li class="menu-item">
+                                                                <a href="<?php echo base_url() . "access/AccessController"; ?>"
+                                                                    class="menu-link">
+                                                                    <span class="menu-text"> <?php echo lang('Buttons.Access'); ?></span>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                            <?php } ?>
+                                        <?php } ?>
                                     </ul>
                                     <!--- End Menu -->
                                     <div class="clearfix"></div>
@@ -1659,7 +1647,7 @@ $current_subsubpage = explode('/', uri_string())[2] ?? '';
                 </div>
 
                 <ul class="topbar-menu d-flex align-items-center">
-                   
+
                     <?php //if ($client != 1) { 
                     ?>
                     <li class="d-none d-sm-inline-block">

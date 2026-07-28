@@ -158,7 +158,7 @@ class CertificationPaymentModel extends Model
             ])
             ->get()
             ->getRowArray();
-    }
+    } 
     public function getPaymentHistory($userId)
     {
         return $this->db->table('certification_payments cp')

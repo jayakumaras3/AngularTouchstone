@@ -62,25 +62,36 @@ while ($cursor <= $cycleEnd) {
     $officeVal = $officeByDate[$thisdate] ?? 0;
     $accessHr = $accessHrByDate[$thisdate] ?? null;
 
-    $status = 'none';
+    // A day can carry more than one status at once (e.g. half-day leave + half-day WFH),
+    // so every applicable status is collected instead of picking a single one.
+    $statuses = [];
     $note = null;
 
     if ($isHoliday) {
-        $status = 'holiday';
+        $statuses[] = 'holiday';
     } elseif ($isWeekend) {
-        $status = 'weekend';
-    } elseif ($leave > 0) {
-        $status = $leave >= 1 ? 'leave' : 'half_leave';
-        $note = $leaveType === 9 ? 'OD' : null;
-    } elseif ($wfh >= 1) {
-        $status = 'wfh';
-    } elseif ($wfh > 0) {
-        $status = 'half_wfh';
-    } elseif ($officeVal > 0) {
-        $status = 'in_office';
-    } elseif ($thisdate < $today) {
-        $status = 'absent';
+        $statuses[] = 'weekend';
+    } else {
+        if ($leave > 0) {
+            $statuses[] = $leave >= 1 ? 'leave' : 'half_leave';
+            $note = $leaveType === 9 ? 'OD' : null;
+        }
+        if ($wfh >= 1) {
+            $statuses[] = 'wfh';
+        } elseif ($wfh > 0) {
+            $statuses[] = 'half_wfh';
+        }
+        if ($officeVal > 0) {
+            $statuses[] = 'in_office';
+        }
+        if (empty($statuses) && $thisdate < $today) {
+            $statuses[] = 'absent';
+        }
     }
+
+    // Kept separate from $note (which can hold the leave 'OD' marker instead) so the office
+    // duration is always available to render inside the "In Office" badge itself.
+    $officeHrLabel = $officeVal > 0 ? attendance_hr_label($accessHr) : null;
 
     if ($note === null) {
         $note = attendance_hr_label($accessHr);
@@ -100,8 +111,10 @@ while ($cursor <= $cycleEnd) {
         'date' => $thisdate,
         'day' => (int) $cursor->format('j'),
         'dow' => $dow,
-        'status' => $status,
+        'status' => $statuses[0] ?? 'none',
+        'statuses' => $statuses,
         'note' => $note,
+        'office_hr_label' => $officeHrLabel,
         'is_today' => $thisdate === $today,
         'needs_highlight' => $needsHighlight,
     ];
@@ -498,9 +511,20 @@ if ($return_page == 1 && ($todaydtdat < 1 || $previewdaytotal < 1)) {
                                     <div class="font-11">Holiday</div>
                                 <?php } elseif ($d['status'] === 'weekend') { ?>
                                     <div class="font-11">Weekend</div>
-                                <?php } elseif (isset($statusMeta[$d['status']])) { ?>
-                                    <span class="badge <?php echo $statusMeta[$d['status']]['badge']; ?> font-11"><?php echo $statusMeta[$d['status']]['label']; ?></span>
-                                    <?php if (!empty($d['note'])) { ?>
+                                <?php } elseif (!empty($d['statuses'])) { ?>
+                                    <div class="d-flex flex-wrap gap-1 justify-content-center">
+                                        <?php foreach ($d['statuses'] as $st) {
+                                            if (!isset($statusMeta[$st])) {
+                                                continue;
+                                            }
+                                            $badgeLabel = ($st === 'in_office' && !empty($d['office_hr_label']))
+                                                ? $d['office_hr_label']
+                                                : $statusMeta[$st]['label'];
+                                        ?>
+                                            <span class="badge <?php echo $statusMeta[$st]['badge']; ?> font-11"><?php echo esc($badgeLabel); ?></span>
+                                        <?php } ?>
+                                    </div>
+                                    <?php if (!empty($d['note']) && $d['note'] !== $d['office_hr_label']) { ?>
                                         <div class="text-muted font-11 mt-1"><?php echo esc($d['note']); ?></div>
                                     <?php } ?>
                                 <?php } else { ?>

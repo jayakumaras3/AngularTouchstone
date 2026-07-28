@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FooterComponent } from '../../footer/footer.component';
 import { IconModule } from '../../../../icon/icon.module';
+import { AuthService } from 'src/app/services/login/auth.service';
 import {
   Certification,
   CertificationCardViewModel,
@@ -33,6 +34,7 @@ import {
 export class CertificationsCatalogComponent implements OnInit {
   private readonly router = inject(Router);
   private readonly http = inject(HttpClient);
+  protected readonly authService = inject(AuthService);
 
   readonly cards = signal<CertificationCardViewModel[]>([]);
 

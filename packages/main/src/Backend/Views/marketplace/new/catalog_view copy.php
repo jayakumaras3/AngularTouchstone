@@ -465,7 +465,7 @@ $arrayaccessmenu  = array_map('intval', explode(',', $accessmenu));
 
                         <div class="catalog-type-group">
                             <span class="catalog-type-label"><?= lang('UI_Text.Catalog_Type') ?></span>
-                            <a href="http://172.16.2.218/DOCHEK/ang/coursecatalog" target="_blank" rel="noopener" class="catalog-type-card">
+                            <a href="<?php echo base_url('ang/coursecatalog') ?>" target="_blank" rel="noopener" class="catalog-type-card">
                                 <span class="catalog-type-icon bg-soft-primary text-primary">
                                     <i class="mdi mdi-bookshelf"></i>
                                 </span>
@@ -474,7 +474,7 @@ $arrayaccessmenu  = array_map('intval', explode(',', $accessmenu));
                                     <span class="catalog-type-subtitle"><?= lang('UI_Text.Browse_Full_Course_List') ?></span>
                                 </span>
                             </a>
-                            <a href="http://172.16.2.218/DOCHEK/ang/sme-catalog" target="_blank" rel="noopener" class="catalog-type-card">
+                            <a href="<?php echo base_url('ang/sme-catalog') ?>" target="_blank" rel="noopener" class="catalog-type-card">
                                 <span class="catalog-type-icon bg-soft-warning text-warning">
                                     <i class="mdi mdi-bank"></i>
                                 </span>

@@ -20,6 +20,7 @@ import {
   topcardsGrid,
 } from '../front-pagesData';
 import { TemplateVideoComponent } from '../template-video/template-video.component';
+import { AuthService } from 'src/app/services/login/auth.service';
 @Component({
   selector: 'app-footer',
   imports: [MaterialModule, IconModule, RouterLink],
@@ -36,6 +37,7 @@ export class FooterComponent {
   showBackground: boolean = false;
   frameworks = frameworks;
   selectedIndex = 1;
+    protected readonly authService = inject(AuthService);
     readonly dialog = inject(MatDialog);
   private router = inject(Router);
   private destroyRef = inject(DestroyRef); // ✅ For automatic cleanup

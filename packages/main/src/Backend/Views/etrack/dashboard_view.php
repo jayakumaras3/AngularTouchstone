@@ -36,9 +36,16 @@ $effort_delta = $this_week_effort - $last_week_effort;
         </div>
     </div>
 </div>
-<?php if (in_array('7', $arrayuserlevel)) { ?>
+<?php if (in_array('7', $arrayuserlevel)) {
+    $showTeamEffort = session()->get('report_to_you') == 2;
+    $showProjectAccess = in_array('4', $arrayuserlevel);
+    $visibleTileCount = 2 + ($showTeamEffort ? 1 : 0) + ($showProjectAccess ? 1 : 0);
+    // Stretch the tiles evenly across the row depending on how many are actually visible
+    // to this user, instead of always reserving a quarter-width slot for hidden tiles.
+    $tileColClass = $visibleTileCount == 2 ? 'col-md-6 col-xl-6' : ($visibleTileCount == 3 ? 'col-md-6 col-xl-4' : 'col-md-6 col-xl-3');
+?>
     <div class="row">
-        <div class="col-md-6 col-xl-3">
+        <div class="<?php echo $tileColClass; ?>">
             <div class="widget-rounded-circle card">
                 <div class="card-body">
                     <a href="<?php echo base_url('Project_Manage/Effort_Tracker'); ?>" class="text-reset">
@@ -60,7 +67,7 @@ $effort_delta = $this_week_effort - $last_week_effort;
             </div> <!-- end widget-rounded-circle-->
         </div> <!-- end col-->
 
-        <div class="col-md-6 col-xl-3">
+        <div class="<?php echo $tileColClass; ?>">
             <div class="widget-rounded-circle card">
                 <div class="card-body">
                     <a href="<?php echo base_url('Project_Manage/Effort_Tracker'); ?>" class="text-reset">
@@ -81,9 +88,9 @@ $effort_delta = $this_week_effort - $last_week_effort;
                 </div>
             </div> <!-- end widget-rounded-circle-->
         </div> <!-- end col-->
-        <?php if (session()->get('report_to_you') == 2) { ?>
+        <?php if ($showTeamEffort) { ?>
 
-            <div class="col-md-6 col-xl-3">
+            <div class="<?php echo $tileColClass; ?>">
                 <div class="widget-rounded-circle card">
                     <div class="card-body">
                         <a href="<?php echo base_url('Project_Manage/Effort_Tracker/Team_data'); ?>" class="text-reset">
@@ -106,8 +113,8 @@ $effort_delta = $this_week_effort - $last_week_effort;
             </div> <!-- end col-->
 
         <?php } ?>
-        <?php if (in_array('4', $arrayuserlevel)) { ?>
-            <div class="col-md-6 col-xl-3">
+        <?php if ($showProjectAccess) { ?>
+            <div class="<?php echo $tileColClass; ?>">
                 <div class="widget-rounded-circle card">
                     <div class="card-body">
                         <a href="<?php echo base_url('Project_Manage/Effort_Tracker/Approve_access'); ?>" class="text-reset">
@@ -373,7 +380,12 @@ $effort_delta = $this_week_effort - $last_week_effort;
                                         <div class="font-18 fw-bold text-warning"><?php echo date('d', $hdt); ?></div>
                                     </div>
                                     <div>
-                                        <div class="fw-semibold"><?php echo esc($hol['description']); ?></div>
+                                        <div class="fw-semibold">
+                                            <?php echo esc($hol['description']); ?>
+                                            <?php if ($hol['type'] == 2) { ?>
+                                                <span class="restricted-tag">Restricted</span>
+                                            <?php } ?>
+                                        </div>
                                         <div class="text-muted font-13"><?php echo date('l', $hdt); ?></div>
                                     </div>
                                 </div>
@@ -391,27 +403,57 @@ $effort_delta = $this_week_effort - $last_week_effort;
         <div class="card h-100">
             <div class="card-body pb-tight">
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 class="header-title mb-0">Leave Balance</h4>
-                    <a href="<?php echo base_url('etrack/leaves'); ?>" class="font-13">View All</a>
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="lb-header-icon"><i class="mdi mdi-calendar-month-outline"></i></div>
+                        <div>
+                            <h4 class="header-title mb-0">Leave Summary</h4>
+                            <p class="text-muted font-13 mb-0">Summary of your available leave balances</p>
+                        </div>
+                    </div>
+                    <a href="<?php echo base_url('etrack/leaves'); ?>" class="font-13 fw-semibold text-nowrap">View All <i class="mdi mdi-chevron-right"></i></a>
                 </div>
-                <div class="row">
-                    <?php foreach (($leave_balance ?? []) as $lb) {
+                <div class="row g-2">
+                    <?php
+                    $lb_themes = [
+                        'Earned Leave'     => ['icon' => 'mdi-calendar-check-outline', 'color' => '#0acf97', 'tile' => '#eafaf1', 'tileDark' => 'rgba(10, 207, 151, .08)'],
+                        'Casual Leave'     => ['icon' => 'mdi-beach',                  'color' => '#3479f6', 'tile' => '#eaf3fb', 'tileDark' => 'rgba(52, 121, 246, .08)'],
+                        'Restricted Leave' => ['icon' => 'mdi-lock-outline',           'color' => '#ffbc00', 'tile' => '#fdf6e8', 'tileDark' => 'rgba(255, 188, 0, .08)'],
+                        'Comp Off'         => ['icon' => 'mdi-briefcase-outline',      'color' => '#6658dd', 'tile' => '#f2f1fb', 'tileDark' => 'rgba(102, 88, 221, .1)'],
+                    ];
+                    foreach (($leave_balance ?? []) as $lb):
                         $total = max(0, (int) $lb['total']);
                         $balance = (float) $lb['balance'];
                         $used = max(0, $total - $balance);
                         $pct = $total > 0 ? min(100, (int) round(($used / $total) * 100)) : 0;
+                        $theme = $lb_themes[$lb['label']] ?? ['icon' => 'mdi-calendar-outline', 'color' => '#6c757d', 'tile' => '#f8f9fc', 'tileDark' => 'rgba(255, 255, 255, .04)'];
                     ?>
-                        <div class="col-md-6 mb-3">
-                            <div class="d-flex justify-content-between">
-                                <span><?php echo esc($lb['label']); ?></span>
-                                <span class="text-muted font-13"><?php echo $used; ?> / <?php echo $total; ?> Days</span>
-                            </div>
-                            <div class="progress" style="height:6px;">
-                                <div class="progress-bar bg-primary" role="progressbar" style="width: <?php echo $pct; ?>%"></div>
+                        <div class="col-md-6">
+                            <div class="lb-tile" style="--lb-color: <?php echo $theme['color']; ?>; --lb-tile-bg: <?php echo $theme['tile']; ?>; --lb-tile-bg-dark: <?php echo $theme['tileDark']; ?>;">
+                                <div class="lb-tile-icon"><i class="mdi <?php echo $theme['icon']; ?>"></i></div>
+                                <div class="lb-tile-stats">
+                                    <h6 class="lb-tile-title"><?php echo esc($lb['label']); ?></h6>
+                                    <div class="d-flex gap-4">
+                                        <div>
+                                            <div class="lb-stat-label">Taken</div>
+                                            <div class="lb-stat-value"><?php echo $used; ?> <span class="lb-stat-unit">Days</span></div>
+                                        </div>
+                                        <div>
+                                            <div class="lb-stat-label lb-accent">Balance</div>
+                                            <div class="lb-stat-value lb-accent"><?php echo rtrim(rtrim(number_format($balance, 1), '0'), '.'); ?> <span class="lb-stat-unit">Days</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="lb-ring-wrap">
+                                    <div class="lb-ring" style="--pct: <?php echo $pct; ?>;">
+                                        <span class="lb-ring-pct"><?php echo $pct; ?>%</span>
+                                    </div>
+                                    <div class="lb-ring-caption">of <?php echo $total; ?> Day<?php echo $total == 1 ? '' : 's'; ?></div>
+                                </div>
                             </div>
                         </div>
-                    <?php } ?>
+                    <?php endforeach; ?>
                 </div>
+
             </div>
         </div>
     </div>
@@ -426,6 +468,183 @@ $effort_delta = $this_week_effort - $last_week_effort;
 
     .pb-tight {
         padding-bottom: 0.25rem;
+    }
+
+    .restricted-tag {
+        color: #fa5c7c;
+        font-style: italic;
+        font-size: .75rem;
+    }
+
+    .lb-header-icon {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        font-size: 1.15rem;
+        background: rgba(102, 88, 221, .12);
+        color: #6658dd;
+    }
+
+    [data-bs-theme="dark"] .lb-header-icon {
+        background: rgba(146, 152, 245, .18);
+        color: #9298f5;
+    }
+
+    .lb-tile {
+        display: flex;
+        align-items: center;
+        gap: .85rem;
+        height: 100%;
+        padding: .9rem 1rem;
+        border-radius: 14px;
+        background: var(--lb-tile-bg);
+    }
+
+    [data-bs-theme="dark"] .lb-tile {
+        background: var(--lb-tile-bg-dark);
+    }
+
+    .lb-tile-icon {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        font-size: 1.1rem;
+        background: rgba(255, 255, 255, .65);
+        color: var(--lb-color);
+    }
+
+    [data-bs-theme="dark"] .lb-tile-icon {
+        background: rgba(255, 255, 255, .08);
+    }
+
+    .lb-tile-stats {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .lb-tile-title {
+        font-size: .8rem;
+        font-weight: 700;
+        color: #1d3153;
+        margin-bottom: .4rem;
+    }
+
+    [data-bs-theme="dark"] .lb-tile-title {
+        color: #f3f7f9;
+    }
+
+    .lb-stat-label {
+        font-size: .68rem;
+        color: #6c757d;
+        margin-bottom: .1rem;
+    }
+
+    [data-bs-theme="dark"] .lb-stat-label {
+        color: #98a6ad;
+    }
+
+    .lb-stat-label.lb-accent {
+        color: var(--lb-color);
+        font-weight: 600;
+    }
+
+    .lb-stat-value {
+        font-size: 1.05rem;
+        font-weight: 800;
+        color: #1d3153;
+        line-height: 1.1;
+    }
+
+    [data-bs-theme="dark"] .lb-stat-value {
+        color: #f3f7f9;
+    }
+
+    .lb-stat-value.lb-accent {
+        color: var(--lb-color);
+    }
+
+    .lb-stat-unit {
+        font-size: .68rem;
+        font-weight: 600;
+        color: #98a6ad;
+    }
+
+    .lb-ring-wrap {
+        flex-shrink: 0;
+        text-align: center;
+    }
+
+    .lb-ring {
+        position: relative;
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: conic-gradient(var(--lb-color) calc(var(--pct) * 1%), rgba(0, 0, 0, .08) 0);
+    }
+
+    .lb-ring::before {
+        content: '';
+        position: absolute;
+        inset: 5px;
+        border-radius: 50%;
+        background: var(--lb-tile-bg);
+    }
+
+    [data-bs-theme="dark"] .lb-ring::before {
+        background: #232b36;
+    }
+
+    .lb-ring-pct {
+        position: relative;
+        z-index: 1;
+        font-size: .72rem;
+        font-weight: 800;
+        color: #1d3153;
+    }
+
+    [data-bs-theme="dark"] .lb-ring-pct {
+        color: #f3f7f9;
+    }
+
+    .lb-ring-caption {
+        font-size: .65rem;
+        color: #98a6ad;
+        margin-top: .35rem;
+        white-space: nowrap;
+    }
+
+    .lb-footer-note {
+        border-radius: 12px;
+        background: #f8f9fc;
+        padding: .65rem .85rem;
+    }
+
+    [data-bs-theme="dark"] .lb-footer-note {
+        background: #1a2129;
+    }
+
+    .lb-footer-icon {
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        font-size: .8rem;
+        background: #3479f6;
+        color: #fff;
     }
 
     .qa-action-item {
@@ -466,6 +685,10 @@ $effort_delta = $this_week_effort - $last_week_effort;
         font-weight: 600;
         color: #313a46;
         line-height: 1.2;
+    }
+
+    [data-bs-theme="dark"] .qa-action-label {
+        color: #f3f7f9;
     }
 
     .dash-legend-dot {
@@ -543,6 +766,21 @@ $effort_delta = $this_week_effort - $last_week_effort;
         border-radius: 14px;
         padding: 0.85rem 0.6rem;
         background-color: #fff;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .dash-people-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    [data-bs-theme="dark"] .dash-people-card {
+        background-color: #232b36;
+        border-color: #36404a;
+    }
+
+    [data-bs-theme="dark"] .dash-people-card:hover {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     }
 
     .dash-people-badge {

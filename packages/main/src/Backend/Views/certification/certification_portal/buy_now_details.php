@@ -179,7 +179,7 @@
             <div class="cert-meta">
                 <span><?= $course_count ?? 0 ?> Courses</span>
                 <span>•</span>
-                <span><?= $learning_plan_count ?? 0 ?> Learning Paths</span>
+                <span><?= $learning_plan_count ?? 0 ?> Learning Plan</span>
             </div>
         </div>
 

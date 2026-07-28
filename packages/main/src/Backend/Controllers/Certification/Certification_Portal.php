@@ -392,12 +392,12 @@ class Certification_Portal extends BaseController
     {
         if ($response = $this->requireRole(['5', '44', '3'])) {
             return $response;
-        }
+        } 
 
         $data['paymentHistory'] = $this->CertificationPaymentModel
             ->getPaymentHistory(session()->get('id_user'));
-        // print_r($data['payments']);
-        // exit();
+        print_r($data['paymentHistory']);
+        exit();
 
         echo view('templates/header_view', $data);
         echo view('certification/certification_portal/payment_history', $data);

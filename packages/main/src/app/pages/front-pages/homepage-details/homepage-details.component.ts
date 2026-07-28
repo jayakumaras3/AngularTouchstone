@@ -20,6 +20,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { TemplateVideoComponent } from '../template-video/template-video.component';
 import { Router, RouterModule } from '@angular/router';
 import { PopupwindowComponent } from '../popupwindow/popupwindow.component';
+import { AuthService } from 'src/app/services/login/auth.service';
 
 
 interface Course {
@@ -66,6 +67,7 @@ interface HeroSlide {
   /*  Courese Career skills start*/
 export class HomepageDetailsComponent implements OnInit, OnDestroy{
    private router = inject(Router);
+   protected readonly authService = inject(AuthService);
   heroSlides: HeroSlide[] = [
     {
       title: 'One Platform. All Your Learning Needs. Zero Chaos.',

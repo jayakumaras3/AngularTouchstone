@@ -50,6 +50,7 @@ class Filters extends BaseConfig
                 'except' => [
                     'landing/*',
                     'Landing/login_register',
+                    'Landing/authStatus',
                     'ang/login',
                     'login',
                     'login/*',

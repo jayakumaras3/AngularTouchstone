@@ -85,6 +85,7 @@ $routes->group('api/mobile', function ($routes) {
 
 $routes->post('Landing/login_register', 'Landing::login_register');
 $routes->options('Landing/login_register', 'Landing::login_register');
+$routes->get('Landing/authStatus', 'Landing::authStatus');
 $routes->get('login', 'Landing::login_register');
 $routes->get('signup', 'Landing::signup');
 $routes->get('Landing_dochek', 'Landing_dochek::login_register');

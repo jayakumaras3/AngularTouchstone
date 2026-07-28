@@ -93,7 +93,7 @@
                   <polyline points="2 17 12 22 22 17" />
                   <polyline points="2 12 12 17 22 12" />
                 </svg>
-                LEARNING PATHS
+                Learning Plan
               </span>
               <span class="info-row__value"><?php echo count($get_certification_learning_plan_courses); ?></span>
             </div>
@@ -175,7 +175,7 @@
             } ?>
 
             <!-- NAV -->
-            <nav class="paths-nav" aria-label="Learning paths">
+            <nav class="paths-nav" aria-label="Learning Plan">
               <?php $i = 1;
               foreach ($get_certification_learning_plan_courses as $plan) { ?>
                 <label for="path-tab-<?php echo $i; ?>" class="paths-nav__item">

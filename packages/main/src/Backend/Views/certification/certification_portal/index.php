@@ -109,7 +109,7 @@
                       <polyline points="2 12 12 17 22 12" />
                     </svg>
                   </span>
-                  <span><?= $all_cert['learning_plan_count']; ?> Learning Paths</span>
+                  <span><?= $all_cert['learning_plan_count']; ?> Learning Plan</span>
                 </div>
               </div>
               <div class="cert-card__actions">

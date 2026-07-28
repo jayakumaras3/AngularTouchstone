@@ -292,6 +292,7 @@ export class AppSideLoginComponent implements AfterViewInit, OnInit, OnDestroy {
 
               // ✅ Token should be stored in httpOnly cookie by backend
               // (Backend needs to set this header: Set-Cookie: token=xxx; HttpOnly; Secure; SameSite=Strict)
+              this.authservice.setLoginState();
 
               if (res.redirect_url && this.isValidRedirectUrl(res.redirect_url)) {
                 window.location.href = res.redirect_url;

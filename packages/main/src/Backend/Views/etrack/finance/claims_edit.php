@@ -5,6 +5,31 @@ $id_user = session('id_user');
 $arrayuserlevel  = array_map('intval', explode(',', $userlevel) ?? '');
 
 ?>
+<style>
+    /* Same rounded-corner + shadow treatment used across the redesigned etrack pages
+       (e.g. Etrack/claims list, etrack/attendance/view). */
+    .claim-card {
+        border: none;
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: 0 0.5rem 1.5rem rgba(50, 58, 70, 0.12);
+    }
+
+    .claim-card table thead th {
+        border-bottom: 2px solid #eef2f7;
+        color: #6c757d;
+        font-weight: 700;
+    }
+
+    [data-bs-theme="dark"] .claim-card table thead th {
+        border-bottom-color: #36404a;
+        color: #cedeef;
+    }
+
+    .claim-card table tbody td {
+        vertical-align: middle;
+    }
+</style>
 
 <div class="row">
     <div class="col-12">
@@ -65,7 +90,7 @@ $arrayuserlevel  = array_map('intval', explode(',', $userlevel) ?? '');
 
     <div class="row">
         <div class="col-xl-8 col-md-8">
-            <div class="card">
+            <div class="card claim-card">
                 <div class="card-body">
                     <form class="form-horizontal" action="<?php echo base_url('etrack/claims/update_claim'); ?>" method="POST"><?= csrf_field() ?>
                         <div class="row">
@@ -209,7 +234,7 @@ $arrayuserlevel  = array_map('intval', explode(',', $userlevel) ?? '');
         </div>
         <div class="col-xl-4 col-md-4">
             <?php if ($type == 2) { ?>
-            <div class="card">
+            <div class="card claim-card">
                 <div class="card-body">
                     <p>If claim is related to any project, the expense head should be the linked UCN. Project Manager need to approve the claim before it can be processed.</p>
                     </br>
@@ -228,7 +253,7 @@ $arrayuserlevel  = array_map('intval', explode(',', $userlevel) ?? '');
                 </div>
             </div>
             <?php } else { ?>
-            <div class="card">
+            <div class="card claim-card">
                 <div class="card-body">
                     <p>If claim is not related to any specific project, the expense head should be one of the general expense heads. Pramod Chandran need to approve the claim before it can be processed.</p>
                     <form class="form-horizontal" action="<?php echo base_url('etrack/claims/claim_status_change'); ?>" method="POST">
@@ -245,7 +270,7 @@ $arrayuserlevel  = array_map('intval', explode(',', $userlevel) ?? '');
                     </form>
                 </div>
             </div>
-            <div class="card">
+            <div class="card claim-card">
                 <div class="card-body">
                     <p>If claim is not related to any specific project, and general purpose exspenses by Facility team that need approval from Shrikant.</p>
                     <form class="form-horizontal" action="<?php echo base_url('etrack/claims/claim_status_change'); ?>" method="POST">
@@ -269,11 +294,11 @@ $arrayuserlevel  = array_map('intval', explode(',', $userlevel) ?? '');
 <?php } else { ?>
        <div class="row">
             <div class="col-xl-8 col-md-8">
-                <div class="card">
+                <div class="card claim-card">
                     <div class="card-body">
-                        <table class="table table-bordered">
-                            
-                            <tr style="background-color: #9cf4e545;">
+                        <table class="table">
+
+                            <tr class="table-light">
                                 <th>Vendor</th>
                                 <th>Claim Date</th>
                                 <th>Mode</th>
@@ -323,7 +348,7 @@ $arrayuserlevel  = array_map('intval', explode(',', $userlevel) ?? '');
                                         echo 'N/A';
                                     } ?></td>
                             </tr>
-                            <tr style="background-color: #9cf4e545;">
+                            <tr class="table-light">
                                 <th colspan="6">Description</th>
                             </tr>
                             <tr>
@@ -336,7 +361,7 @@ $arrayuserlevel  = array_map('intval', explode(',', $userlevel) ?? '');
             <div class="col-xl-4 col-md-4">
                 <?php if ($id_user == 1 && ($vendor_payment_details[0]['status'] == 3 || $vendor_payment_details[0]['status'] == 4)) { ?>
 
-                    <div class="card">
+                    <div class="card claim-card">
                         <div class="card-body">
                             <form class="form-horizontal" action="<?php echo base_url('etrack/claims/claim_status_change'); ?>" method="POST">
                                 <div class="row">
@@ -352,7 +377,7 @@ $arrayuserlevel  = array_map('intval', explode(',', $userlevel) ?? '');
                             </form>
                         </div>
                     </div>
-                    <div class="card">
+                    <div class="card claim-card">
                         <div class="card-body">
                             <form class="form-horizontal" action="<?php echo base_url('etrack/claims/claim_status_change'); ?>" method="POST">
                                 <div class="row">
@@ -368,7 +393,7 @@ $arrayuserlevel  = array_map('intval', explode(',', $userlevel) ?? '');
                             </form>
                         </div>
                     </div>
-                    <div class="card">
+                    <div class="card claim-card">
                         <div class="card-body">
                             <form class="form-horizontal" action="<?php echo base_url('etrack/claims/claim_status_change'); ?>" method="POST">
                                 <div class="row">
@@ -388,7 +413,7 @@ $arrayuserlevel  = array_map('intval', explode(',', $userlevel) ?? '');
                 <?php } ?>
                 <?php if ($id_user == 1138 && ($vendor_payment_details[0]['status'] == 6)) { ?>
 
-                    <div class="card">
+                    <div class="card claim-card">
                         <div class="card-body">
                             <form class="form-horizontal" action="<?php echo base_url('etrack/claims/claim_status_change'); ?>" method="POST">
                                 <div class="row">
@@ -404,7 +429,7 @@ $arrayuserlevel  = array_map('intval', explode(',', $userlevel) ?? '');
                             </form>
                         </div>
                     </div>
-                    <div class="card">
+                    <div class="card claim-card">
                         <div class="card-body">
                             <form class="form-horizontal" action="<?php echo base_url('etrack/claims/claim_status_change'); ?>" method="POST">
                                 <div class="row">
@@ -424,7 +449,7 @@ $arrayuserlevel  = array_map('intval', explode(',', $userlevel) ?? '');
                 <?php } ?>
                 <?php if ((in_array(3014, $arrayuserlevel)) && ($vendor_payment_details[0]['status'] == 8)) { ?>
 
-                    <div class="card">
+                    <div class="card claim-card">
                         <div class="card-body">
                             <form class="form-horizontal" action="<?php echo base_url('etrack/claims/claim_status_change'); ?>" method="POST">
                                 <div class="row">
@@ -440,7 +465,7 @@ $arrayuserlevel  = array_map('intval', explode(',', $userlevel) ?? '');
                             </form>
                         </div>
                     </div>
-                    <div class="card">
+                    <div class="card claim-card">
                         <div class="card-body">
                             <form class="form-horizontal" action="<?php echo base_url('etrack/claims/claim_status_change'); ?>" method="POST">
                                 <div class="row">
@@ -458,7 +483,7 @@ $arrayuserlevel  = array_map('intval', explode(',', $userlevel) ?? '');
                     </div>
                 <?php } ?>
                 <?php if ((in_array(3014, $arrayuserlevel)) && ($vendor_payment_details[0]['status'] == 8 || $vendor_payment_details[0]['status'] == 9)) { ?>
-                    <div class="card">
+                    <div class="card claim-card">
                         <div class="card-body">
                             <form class="form-horizontal" action="<?php echo base_url('etrack/claims/claim_status_change'); ?>" method="POST">
                                 <div class="row">
@@ -481,13 +506,13 @@ $arrayuserlevel  = array_map('intval', explode(',', $userlevel) ?? '');
 <?php } ?>
 <div class="row">
     <div class="col-8">
-        <div class="card">
+        <div class="card claim-card">
             <div class="card-body">
                 <h4 class="header-title">Claim History</h4>
                 <div class="table-responsive">
-                    <table class="table table-bordered mb-0">
+                    <table class="table mb-0">
                         <thead>
-                            <tr>
+                            <tr class="table-light">
                                 <th>Description</th>
                                 <th>Notes</th>
                                 <th>Updated By</th>
@@ -517,7 +542,7 @@ $arrayuserlevel  = array_map('intval', explode(',', $userlevel) ?? '');
     </div>
 
     <div class="col-4">
-        <div class="card">
+        <div class="card claim-card">
             <div class="card-body">
                 <p class="text-muted font-14">
                     Upload supporting documents for this claim.<br>
@@ -541,18 +566,20 @@ $arrayuserlevel  = array_map('intval', explode(',', $userlevel) ?? '');
                             </div>
                         </div>
                     </div>
-            </div> <!-- end table-responsive-->
-        </div> <!-- end card-body-->
+                </form>
+            </div> <!-- end card-body-->
+        </div>
 
-        <div class="card">
+        <div class="card claim-card">
             <div class="card-body">
 
-                <table class="table table-bordered mb-0">
+                <table class="table mb-0">
                     <thead>
-                        <tr>
+                        <tr class="table-light">
                             <th>Documents</th>
                             <th>Delete</th>
                         </tr>
+                    </thead>
                     <tbody>
                         <?php
                         $documents = session()->get('claim_documents') ?? [];
@@ -576,12 +603,8 @@ $arrayuserlevel  = array_map('intval', explode(',', $userlevel) ?? '');
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
-                    </thead>
-                    <tbody>
-
-                    </tbody>
                 </table>
-            </div> <!-- end table-responsive-->
-        </div> <!-- end card-body-->
+            </div> <!-- end card-body-->
+        </div>
     </div>
 </div>

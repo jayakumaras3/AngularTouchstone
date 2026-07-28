@@ -14,6 +14,7 @@ import { TermsComponent } from './terms/terms.component';
 import { ShopComponent } from '../apps/ecommerce/shop/shop.component';
 import { ProductDetailsComponent } from '../apps/ecommerce/product-details/product-details.component';
 import { AppSideLoginComponent } from '../authentication/side-login/side-login.component';
+import { authGuard } from '../authentication/side-login/auth.guard';
 import{AppSideForgotPasswordComponent} from '../authentication/side-forgot-password/side-forgot-password.component';
 import{CourseCatalogComponent} from './coursecatalog/coursecatalog.component';
 import { SmeCatalogComponent } from './sme-catalog/sme-catalog.component';
@@ -24,8 +25,17 @@ import { CertificationDetailsComponent } from './certifications/certification-de
 
 export const FrontPagesRoutes: Routes = [
 
-  { path: 'login', component:AppSideLoginComponent },
-  { path: 'forgotpassword', component:AppSideForgotPasswordComponent },
+  {
+    path: 'login',
+    component: AppSideLoginComponent,
+    canActivate: [authGuard],
+    data: { title: 'Member Login | DOCHEK' },
+  },
+  {
+    path: 'forgotpassword',
+    component: AppSideForgotPasswordComponent,
+    data: { title: 'Forgot Password | DOCHEK' },
+  },
 
   {
     path: '',
@@ -45,12 +55,16 @@ export const FrontPagesRoutes: Routes = [
         path: 'about',
         component: AboutUsComponent,
         data: {
-          title: 'About DOCHEK: Built for Focus, not Noise',
+          title: 'About Us',
           description:
             'Discover more about DOCHEK and the team behind the platform simplifying learning management for modern organizations.',
         },
       },
-      { path: 'blogs', component: BlogComponent },
+      {
+        path: 'blogs',
+        component: BlogComponent,
+        data: { title: 'Blogs | DOCHEK' },
+      },
       { path: 'portfolio', component: PortfolioComponent },
       { path: 'pricing', component: PricingComponent },
       {
@@ -66,7 +80,7 @@ export const FrontPagesRoutes: Routes = [
         path: 'features',
         component: FeaturePageComponent,
         data: {
-          title: 'DOCHEK | Lightweight Learning Platform',
+          title: 'Launch Courses in Minutes | Cloud-based LMS',
           description:
             'Create courses in minutes, manage learner tracking, certifications, gamification, and reporting with a lightweight learning management platform. Sign up today!',
         },
@@ -76,7 +90,7 @@ export const FrontPagesRoutes: Routes = [
         path: 'coursecatalog',
         component: CourseCatalogComponent,
         data: {
-          title: 'DOCHEK | Online Courses for Professional Development',
+          title: 'Course Catalog | DOCHEK',
           description:
             'Explore leadership, business, compliance, cybersecurity, and soft skills training courses through DOCHEK\'s online learning catalog for modern organizations.',
         },
@@ -87,7 +101,7 @@ export const FrontPagesRoutes: Routes = [
         path: 'certifications',
         component: CertificationsCatalogComponent,
         data: {
-          title: 'Professional Certification Programs | DOCHEK',
+          title: 'Professional Certification Programs',
           description:
             'Explore industry-focused certification programs designed to accelerate careers and build professional credibility.',
         },
@@ -100,12 +114,16 @@ export const FrontPagesRoutes: Routes = [
           description: 'View certification details, learning paths, and courses.',
         },
       },
-      { path: 'blog-details', component: BlogDetailsComponent },
+      {
+        path: 'blog-details',
+        component: BlogDetailsComponent,
+        data: { title: 'Blogs | DOCHEK' },
+      },
       {
         path: 'catalog',
         component: ShopComponent,
         data: {
-          title: 'DOCHEK | Online Courses for Professional Development',
+          title: 'Course Catalog | DOCHEK',
           description:
             'Explore leadership, business, compliance, cybersecurity, and workplace learning courses through DOCHEK\'s online course catalog for modern organizations.',
         },

@@ -50,14 +50,17 @@ export const AuthenticationRoutes: Routes = [
       {
         path: 'forgotpassword',
         component: AppSideForgotPasswordComponent,
+        data: { title: 'Forgot Password | DOCHEK' },
       },
       {
         path: 'reset-password',
         component: AppSideResetPasswordComponent,
+        data: { title: 'Reset Password | DOCHEK' },
       },
       {
         path: 'login',
         component: AppSideLoginComponent,
+        data: { title: 'Member Login | DOCHEK' },
       },
       {
         path: 'side-register',
@@ -66,6 +69,7 @@ export const AuthenticationRoutes: Routes = [
       {
         path: 'signup',
         component: SignupComponent,
+        data: { title: 'Sign Up | DOCHEK' },
       },
       {
         path: 'side-two-steps',

@@ -353,7 +353,7 @@ $arrayuserlevel = array_map('intval', explode(',', $userlevel));
             <div class="card profile-edit-card">
                 <div class="card-body">
                     <div class="d-flex align-items-center gap-3 mb-4">
-                        <div class="profile-card-icon bg-soft-success text-success"><i class="mdi mdi-key-outline"></i></div>
+                        <div class="profile-card-icon bg-soft-success text-success"><i class="mdi mdi-cog-outline"></i></div>
                         <div>
                             <h5 class="mb-0 fw-bold"><?php echo lang('Buttons.Change_Site_Settings'); ?></h5>
                         </div>

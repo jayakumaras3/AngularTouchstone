@@ -8,8 +8,8 @@
   contactApiUrl: 'http://172.16.2.218/DOCHEK/landing',
   // Cloudflare Turnstile — public site key only. Never put the secret key here.
   turnstileSiteKey: '0x4AAAAAADh_GIYrBeeJ7VaM'
-};
-/*export const environment = {
+};/*
+export const environment = {
   production: false,
   apiUrl: 'https://staging.dochek.com/landing',
   forgotUrl: 'https://staging.dochek.com/landing',

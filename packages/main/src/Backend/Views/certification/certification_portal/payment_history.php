@@ -11,7 +11,7 @@
              </div>
              <h4 class="page-title">Payment History</h4>
          </div>
-     </div>
+     </div> 
  </div>
  <div class="row">
      <div class="col-lg-12">

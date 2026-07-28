@@ -1,7 +1,13 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { catchError, tap, timeout } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
+
+export interface AuthStatus {
+  loggedIn: boolean;
+  user?: { id_user: string; username: string; name: string } | null;
+}
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +20,56 @@ export class AuthService {
   private baseUrl = environment.apiUrl.replace('/landing', '');
 
   constructor(private http: HttpClient) {}
+
+  /**
+   * Single source of truth for whether the user is authenticated in the
+   * shared PHP session. Backed by GET {apiUrl}/authStatus, which reads the
+   * same server-side session the PHP marketplace already uses.
+   */
+  private readonly _loggedIn = signal(false);
+  readonly authState = this._loggedIn.asReadonly();
+
+  isLoggedIn(): boolean {
+    try {
+      return this._loggedIn();
+    } catch (error) {
+      console.error('AuthService.isLoggedIn failed; defaulting to guest', error);
+      return false;
+    }
+  }
+
+  setLoginState(): void {
+    this._loggedIn.set(true);
+  }
+
+  clearLoginState(): void {
+    this._loggedIn.set(false);
+  }
+
+  /**
+   * Re-checks the PHP session and updates the signal. Always resolves to a
+   * value (never throws, never hangs indefinitely) so callers — including
+   * route guards — can safely subscribe with no error handling of their own.
+   * A network failure, non-2xx response, CORS block, or timeout all fall
+   * back to guest mode rather than leaving the app waiting.
+   */
+  refreshAuthState(): Observable<AuthStatus> {
+    try {
+      return this.http.get<AuthStatus>(`${this.apiUrl}/authStatus`).pipe(
+        timeout(8000),
+        tap((status) => this._loggedIn.set(!!status.loggedIn)),
+        catchError((error) => {
+          console.error('AuthService.refreshAuthState failed; defaulting to guest', error);
+          this._loggedIn.set(false);
+          return of({ loggedIn: false } as AuthStatus);
+        })
+      );
+    } catch (error) {
+      console.error('AuthService.refreshAuthState threw synchronously; defaulting to guest', error);
+      this._loggedIn.set(false);
+      return of({ loggedIn: false } as AuthStatus);
+    }
+  }
 
   /**
    * @param turnstileToken Cloudflare Turnstile response token, verified server-side
@@ -221,7 +277,8 @@ export class AuthService {
   logout(): void {
     localStorage.clear();
     sessionStorage.clear();
-    
+    this.clearLoginState();
+
     this.http.post(`${this.apiUrl}/logout`, {}).subscribe(
       () => console.log('✅ Logged out successfully'),
       (err) => console.warn('⚠️ Logout warning (backend may be offline)')

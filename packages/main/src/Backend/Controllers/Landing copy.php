@@ -209,20 +209,6 @@ class Landing extends BaseController
 
         return redirect()->to(base_url() . 'ang/login?success=Your account has been activated successfully. Please log in.');
     }
-    public function authStatus()
-    {
-        $this->response->setHeader('Content-Type', 'application/json');
-        $user = $this->getAuthenticatedUser();
-
-        return $this->response->setJSON([
-            'loggedIn' => $user !== null,
-            'user' => $user ? [
-                'id_user'  => $user['id_user'],
-                'username' => $user['username'],
-                'name'     => $user['name'],
-            ] : null,
-        ]);
-    }
     public function login_register()
     {
         helper(['form']);

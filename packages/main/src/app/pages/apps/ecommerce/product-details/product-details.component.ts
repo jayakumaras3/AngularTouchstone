@@ -1,5 +1,6 @@
 import { Component, AfterViewInit, inject, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 import { Location, CommonModule } from '@angular/common';
 import { MaterialModule } from '../../../../material.module';
 import { IconModule } from '../../../../icon/icon.module';
@@ -53,6 +54,7 @@ export class ProductDetailsComponent implements AfterViewInit, OnInit {
   private navService = inject(NavService);
   private destroyRef = inject(DestroyRef);
   private mediaMatcher = inject(MediaMatcher);
+  private titleService = inject(Title);
 
   // Track navigation source (chatbot, catalog, etc.)
   private navigationSource: string | null = null;
@@ -316,6 +318,12 @@ export class ProductDetailsComponent implements AfterViewInit, OnInit {
     // Set the product and normalize objectives
     this.product = productToLoad;
     this.normalizeObjectives(this.product);
+
+    // Browser tab title reflects the loaded course name (route data can't
+    // express this since the title isn't known until the course loads).
+    this.titleService.setTitle(
+      this.product.product_name ? `${this.product.product_name} | DOCHEK` : 'Course Details | DOCHEK'
+    );
 
     // Update language based on product's language property
     if (this.product.language) {
