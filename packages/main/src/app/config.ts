@@ -137,7 +137,7 @@ export const logoUrl = '/DOCHEK_lms/ang/';*/
 //Host URL
 /**//*
 // */
-export const baseUrlPath = '/ang/';
+/**/export const baseUrlPath = '/ang/';
 export const baseUrlPathslash = '/ang';
 export const LoginUrl = 'ang/';
 export const logoUrl = '/ang/';

@@ -7,6 +7,7 @@ import {
   OnDestroy,
   ElementRef,
   ViewChild,
+  effect,
   signal,
   inject
 } from '@angular/core';
@@ -87,6 +88,8 @@ export class SignupComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('turnstileContainer') private turnstileContainer!: ElementRef;
   private turnstileWidgetId: string | null = null;
 
+  @ViewChild('successPanel') private successPanel?: ElementRef<HTMLElement>;
+
   readonly showPassword = signal(false);
   readonly showConfirmPassword = signal(false);
   readonly isSubmitting = signal(false);
@@ -145,6 +148,22 @@ private readonly subs = new Subscription();
         this.cdr.markForCheck();
       })
     );
+
+    // Move focus to the success panel once it appears, after it has rendered.
+    // Runs only on the '' -> message transition, so it never steals focus
+    // while the user is filling out the form.
+    effect(() => {
+      if (this.successMessage()) {
+        setTimeout(() => this.focusSuccessPanel());
+      }
+    });
+  }
+
+  private focusSuccessPanel(): void {
+    const el = this.successPanel?.nativeElement;
+    if (!el) return;
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    el.focus({ preventScroll: true });
   }
 
   ngOnInit(): void { /* script loaded via index.html */ }
