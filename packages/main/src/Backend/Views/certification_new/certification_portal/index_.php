@@ -60,7 +60,7 @@
             <div class="cert-card__thumb">
               <img src="<?= base_url('assets/assets/certification/assets/images/'.$all_cert['cert_id'].'.jpg') ?>" alt="<?= $all_cert['name'] ?>" class="cert-card__img">
             </div>
-            <div class="cert-card__body">
+            <div class="cert-card__body">  
               <h2 class="cert-card__title"><?php echo $all_cert['name']; ?></h2>
               <p class="cert-card__desc"><?php echo $all_cert['description']; ?></p>
               <div class="cert-card__price">₹ <?= number_format($all_cert['amount'], 0) ?></div>

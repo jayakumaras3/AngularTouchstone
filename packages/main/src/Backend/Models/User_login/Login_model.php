@@ -73,6 +73,22 @@ class Login_model extends Model
     }
 
 
+    /**
+     * Lightweight lookup (no valid=1 filter) used only to tell a deactivated
+     * account apart from a truly wrong username/password after login_view()
+     * (which excludes valid=0 users) has already come back empty.
+     */
+    public function getUserForLoginCheck($username)
+    {
+        $builder = $this->db->table('users as u');
+        $builder->select('u.id_user, u.username, u.email, u.password, u.valid');
+        $builder->where('u.username', $username);
+        $builder->orWhere('u.email', $username);
+        $data = $builder->get()->getResultArray();
+
+        return $data[0] ?? null;
+    }
+
     public function login_view($username)
     {
         $builder = $this->db->table("users as u");

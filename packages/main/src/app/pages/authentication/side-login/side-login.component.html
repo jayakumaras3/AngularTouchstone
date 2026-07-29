@@ -145,7 +145,7 @@
                 </div>
 
                 <!-- SUBMIT BUTTON -->
-                <button mat-flat-button color="primary" class="w-100" [disabled]="isSubmitting || form.invalid || !turnstileToken">
+                <button mat-flat-button type="submit" color="primary" class="w-100" [disabled]="isSubmitting || form.invalid || !turnstileToken">
                   {{ isSubmitting ? 'Signing In...' : 'Sign In' }}
                 </button>
 

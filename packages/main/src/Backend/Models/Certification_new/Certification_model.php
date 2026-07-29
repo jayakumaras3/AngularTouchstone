@@ -23,11 +23,11 @@ class Certification_model extends Model
             ANY_VALUE(cert_assign.user_id),
             MAX(cert_assign.status) as certification_status,
             COUNT(DISTINCT mp.mp_id) as learning_plan_count,
-            COUNT(DISTINCT mp.mp_id, sc.scourse_id) as course_count,
+            COUNT(DISTINCT sc.scourse_id) as course_count,
             ANY_VALUE(pm.amount) as amount,
                 cp.payment_status,COUNT(
     DISTINCT CASE
-        WHEN suc.course_status = 2 THEN CONCAT(mp.mp_id, '-', sc.scourse_id)
+        WHEN suc.course_status = 2 THEN suc.course_id
     END
 ) AS completed_course_count,MAX(sud.raw) AS assessment_score
         ");
@@ -120,11 +120,12 @@ class Certification_model extends Model
             ANY_VALUE(cert_assign.user_id),
             MAX(cert_assign.status) as certification_status,
             COUNT(DISTINCT mp.mp_id) as learning_plan_count,
-            COUNT(DISTINCT mp.mp_id, sc.scourse_id) as course_count,
+            COUNT(DISTINCT sc.scourse_id) as course_count,
             ANY_VALUE(pm.amount) as amount,
-            cp.payment_status,COUNT(
-    DISTINCT CASE
-        WHEN suc.course_status = 2 THEN CONCAT(mp.mp_id, '-', sc.scourse_id)
+            cp.payment_status,SUM(
+    CASE
+        WHEN suc.course_status = 2 THEN 1
+        ELSE 0
     END
 ) AS completed_course_count,MAX(sud.raw) AS assessment_score
         ");

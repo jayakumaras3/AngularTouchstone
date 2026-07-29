@@ -56,7 +56,13 @@ export class SecurityHttpInterceptor implements HttpInterceptor {
       catchError((error: HttpErrorResponse) => {
         // ✅ Allow quickaccess API errors to pass through to component for proper error handling
         const isQuickAccessRequest = req.url.includes('/api/quickaccess/authenticate');
-        
+
+        // ✅ Allow login API errors (invalid credentials, deactivated account, etc.) to pass
+        // through to the login component for proper in-page error handling. Without this,
+        // a failed login attempt (401/403) triggers a redirect back to the login page itself,
+        // which looks like a page refresh and loses entered values + the mapped error message.
+        const isLoginRequest = req.url.includes('/login_register');
+
         // ✅ Check if response has redirect URL in the body
         if (error.error?.redirect || error.error?.redirect_url) {
           const redirectUrl = error.error.redirect || error.error.redirect_url;
@@ -65,8 +71,8 @@ export class SecurityHttpInterceptor implements HttpInterceptor {
           return throwError(() => error);
         }
         
-        // ✅ Handle 401 Unauthorized (expired token) — but NOT for quickaccess
-        if (error.status === 401 && !isQuickAccessRequest) {
+        // ✅ Handle 401 Unauthorized (expired token) — but NOT for quickaccess or login itself
+        if (error.status === 401 && !isQuickAccessRequest && !isLoginRequest) {
           console.warn('🔄 401 Unauthorized - Redirecting to login');
           this.router.navigate(['/authentication/login'], {
             queryParams: {
@@ -75,9 +81,9 @@ export class SecurityHttpInterceptor implements HttpInterceptor {
             }
           });
         }
-        
-        // ✅ Handle 403 Forbidden
-        if (error.status === 403) {
+
+        // ✅ Handle 403 Forbidden — but NOT for login itself (e.g. deactivated account)
+        if (error.status === 403 && !isLoginRequest) {
           console.warn('🔄 403 Forbidden - Redirecting to login');
           this.router.navigate(['/authentication/login'], {
             queryParams: {

@@ -1737,7 +1737,7 @@ $current_subsubpage = explode('/', uri_string())[2] ?? '';
                                 <i class="fe-mail"></i>
                                 <span><?php echo lang('Buttons.My Support'); ?></span>
                             </a>
-                            <?php if ($client == 1): ?>
+                            <?php if ($client == 1 || $client == 85): ?>
                                 <a href="<?php echo base_url('Certification/Certification_Portal/paymentHistory'); ?>"
                                     class="dropdown-item notify-item">
                                     <i class="fe-clock"></i>

@@ -10,6 +10,7 @@ import { FooterComponent } from '../../front-pages/footer/footer.component';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { DomSanitizer } from '@angular/platform-browser';
 import { environment } from '../../../../environments/environment';
+import { mapAuthErrorMessage } from '../../../services/login/auth-error-messages';
 
 /** Cloudflare Turnstile — https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/ */
 interface TurnstileRenderOptions {
@@ -307,11 +308,12 @@ export class AppSideLoginComponent implements AfterViewInit, OnInit, OnDestroy {
                 // Get error text and sanitize it
                 const errorText = Object.values(res.errors).join(' ');
                 // This ensures only plain text, no HTML/JS execution
-                this.errorMessage = this.sanitizer.sanitize(1, errorText) || 'Login failed';
+                const sanitizedText = this.sanitizer.sanitize(1, errorText) || 'Login failed';
+                this.errorMessage = mapAuthErrorMessage(sanitizedText);
               } else {
                // this.errorMessage = 'Username or Password don\'t match.';
 
-               this.errorMessage = res?.message || 'Username or Password don\'t match.';
+               this.errorMessage = mapAuthErrorMessage(res?.message || 'Username or Password don\'t match.');
               }
             }
           },
@@ -320,7 +322,7 @@ export class AppSideLoginComponent implements AfterViewInit, OnInit, OnDestroy {
             this.isSubmitting = false;
             this.resetTurnstile();
           //  this.errorMessage = 'Server error. Please try again later.';
-              this.errorMessage = err.error?.message || 'Server error. Please try again later.';
+              this.errorMessage = mapAuthErrorMessage(err.error?.message || 'Server error. Please try again later.');
           }
         });
     }

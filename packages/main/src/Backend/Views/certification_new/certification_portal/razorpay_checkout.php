@@ -51,27 +51,17 @@
 
                     fetch("<?= base_url('Certification/Certification_Payment/paymentCancelled') ?>", {
                             method: "POST",
-                            credentials: "same-origin",
                             headers: {
                                 "Content-Type": "application/x-www-form-urlencoded"
                             },
-                            body: "razorpay_order_id=<?= $order_id ?>" +
-                                "&<?= csrf_token() ?>=<?= csrf_hash() ?>"
+                            body: "razorpay_order_id=<?= $order_id ?>"
                         })
-                        .then(res => {
-                            console.log("Cancel Status:", res.status);
-                            return res.text();
-                        })
-                        .then(data => {
-                            console.log(data);
+                        .then(() => {
 
                             window.location.href =
                                 "<?= base_url('Certification/Certification_Portal/buyNowDetails') ?>";
-                        })
-                        .catch(err => {
-                            console.error("Cancel Error:", err);
-                        });
 
+                        });
                 }
             }
         };
@@ -81,35 +71,19 @@
         /* ADD FAILURE HANDLER HERE */
         rzp.on('payment.failed', function(response) {
 
-            console.log(response);
-
             fetch("<?= base_url('Certification/Certification_Payment/paymentFailed') ?>", {
                     method: "POST",
-                    credentials: "same-origin",
                     headers: {
                         "Content-Type": "application/x-www-form-urlencoded"
                     },
-                    body: "razorpay_order_id=<?= $order_id ?>" +
-                        "&<?= csrf_token() ?>=<?= csrf_hash() ?>"
+                    body: "razorpay_order_id=<?= $order_id ?>"
                 })
-                .then(res => {
-                    console.log("Failed Status:", res.status);
-                    return res.text();
-                })
+                .then(res => res.json())
                 .then(data => {
-
-                    console.log(data);
 
                     window.location.href =
                         "<?= base_url('Certification/Certification_Portal/buyNowDetails') ?>";
-
-                })
-                .catch(err => {
-
-                    console.error(err);
-
                 });
-
         });
         window.onload = function() {
             rzp.open();

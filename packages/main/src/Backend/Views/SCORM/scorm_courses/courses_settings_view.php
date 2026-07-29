@@ -618,13 +618,15 @@ $lastModified = !empty($row['last_updated_on']) ? date('d M Y h:i A', (int) $row
 						<div class="card settings-section h-100">
 							<div class="card-body">
 								<h5 class="section-title"><i class="mdi mdi-video-outline"></i> <?= lang('UI_Text.Preview Video') ?></h5>
-								<?php $folderloc = $baseloc . 'assets/assets/uploads/SCORM_course_promovideo/' . $scourse_id;
+								<?php $videodisplay = 0;
+								$folderloc = $baseloc . 'assets/assets/uploads/SCORM_course_promovideo/' . $scourse_id;
 								if (is_dir($folderloc)) {
 									$files2 = scandir($folderloc, SCANDIR_SORT_DESCENDING);
 									foreach ($files2 as $key => $value) {
 										if (strlen($value) > 3) {
 											$file_parts = pathinfo($value);
 											if ($file_parts['extension'] != 'DS_Store') {
+												$videodisplay = 1;
 								?>
 												<video width="100%" class="mb-2" controls>
 													<source
@@ -632,47 +634,47 @@ $lastModified = !empty($row['last_updated_on']) ? date('d M Y h:i A', (int) $row
 														type="video/mp4">
 													<?= lang('Statements.State_0002') ?>
 												</video>
-												<?php if ($row['thumbnail'] != $value) { ?>
-													<form class="form-horizontal mt-1"
-														action="<?php echo base_url('XAPI/XAPI_courses/del_file'); ?>" method="POST"><?= csrf_field() ?>
-														<input type="hidden" name="tab" value="3">
-														<input type="hidden" name="fileloc" value="<?php echo $folderloc . '/' . $value; ?>">
-														<button type="submit" class="btn btn-outline-danger waves-effect btn-sm rounded-pill waves-light"
-															onclick="return confirm('<?php echo lang('Alert.Aler_003') ?>')"><?= lang('Buttons.Delete_Video') ?></button>
-													</form>
+												<form class="form-horizontal mt-1"
+													action="<?php echo base_url('XAPI/XAPI_courses/del_file'); ?>" method="POST"><?= csrf_field() ?>
+													<input type="hidden" name="tab" value="3">
+													<input type="hidden" name="fileloc" value="<?php echo $folderloc . '/' . $value; ?>">
+													<button type="submit" class="btn btn-outline-danger waves-effect btn-sm rounded-pill waves-light"
+														onclick="return confirm('<?php echo lang('Alert.Aler_003') ?>')"><?= lang('Buttons.Delete_Video') ?></button>
+												</form>
 									<?php
-												}
 											}
 										}
 									}
 								}
 								?>
-								<div class="upload-recommend mb-3">
-									<div class="upload-recommend-title"><?= lang('UI_Text.Recommended') ?>:</div>
-									<ul>
-										<li><i class="mdi mdi-check-circle-outline"></i> <?= lang('Statements.State_0016') ?></li>
-										<li><i class="mdi mdi-check-circle-outline"></i> <?= lang('Statements.State_0017') ?></li>
-										<li><i class="mdi mdi-check-circle-outline"></i> <?= lang('Statements.State_0018') ?></li>
-										<li><i class="mdi mdi-check-circle-outline"></i> <?= lang('Statements.State_0019') ?></li>
-									</ul>
-								</div>
-
-								<form class="form-horizontal2 mt-2" enctype="multipart/form-data" action=<?php echo base_url($form_url_3); ?> method="post" id="submitForm"><?= csrf_field() ?>
-
-									<div class="mb-3">
-										<input type="file" name="file" required class="form-control" />
+								<?php if ($videodisplay == 0) { ?>
+									<div class="upload-recommend mb-3">
+										<div class="upload-recommend-title"><?= lang('UI_Text.Recommended') ?>:</div>
+										<ul>
+											<li><i class="mdi mdi-check-circle-outline"></i> <?= lang('Statements.State_0016') ?></li>
+											<li><i class="mdi mdi-check-circle-outline"></i> <?= lang('Statements.State_0017') ?></li>
+											<li><i class="mdi mdi-check-circle-outline"></i> <?= lang('Statements.State_0018') ?></li>
+											<li><i class="mdi mdi-check-circle-outline"></i> <?= lang('Statements.State_0019') ?></li>
+										</ul>
 									</div>
-									<input type="hidden" name="tab" value="3">
-									<input type="hidden" name="scourse_id" value="<?php echo $scourse_id ?>">
-									<button type="submit"
-										class="btn btn-outline-success waves-effect btn-sm rounded-pill waves-light mb-3"
-										id="submitButton"><?= lang('Buttons.Upload_Video') ?></button>
-									<?php if (isset($promovalidation)): ?>
-										<div class="alert alert-danger" role="alert">
-											<?= $promovalidation->listErrors() ?>
+
+									<form class="form-horizontal2 mt-2" enctype="multipart/form-data" action=<?php echo base_url($form_url_3); ?> method="post" id="submitForm"><?= csrf_field() ?>
+
+										<div class="mb-3">
+											<input type="file" name="file" required class="form-control" />
 										</div>
-									<?php endif; ?>
-								</form>
+										<input type="hidden" name="tab" value="3">
+										<input type="hidden" name="scourse_id" value="<?php echo $scourse_id ?>">
+										<button type="submit"
+											class="btn btn-outline-success waves-effect btn-sm rounded-pill waves-light mb-3"
+											id="submitButton"><?= lang('Buttons.Upload_Video') ?></button>
+										<?php if (isset($promovalidation)): ?>
+											<div class="alert alert-danger" role="alert">
+												<?= $promovalidation->listErrors() ?>
+											</div>
+										<?php endif; ?>
+									</form>
+								<?php } ?>
 							</div>
 						</div>
 					</div>
