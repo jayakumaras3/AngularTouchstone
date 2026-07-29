@@ -15,6 +15,7 @@ import { IconModule } from '../../../../icon/icon.module';
 import { Certification } from '../certifications.model';
 import { getConfigById, getTotalCourses } from '../certifications-data';
 import { CertificationConfig, CertificationSignupState } from '../certifications.model';
+import { AuthService } from 'src/app/services/login/auth.service';
 
 interface CourseProduct {
   id: number;
@@ -34,6 +35,7 @@ export class CertificationDetailsComponent implements OnInit {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
   private readonly http = inject(HttpClient);
+  protected readonly authService = inject(AuthService);
 
   readonly certification = signal<Certification | null>(null);
   readonly config = signal<CertificationConfig | null>(null);

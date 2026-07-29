@@ -19,6 +19,7 @@ import { computed, signal } from '@angular/core';
 import { users } from '../../../front-pages/front-pagesData';
 import { setupCards, stats, tclients } from '../../../front-pages/front-pagesData';
 import { ProductDataService } from '../../../../services/product-data.service';
+import { AuthService } from '../../../../services/login/auth.service';
 
 interface Product {
   id: any;
@@ -55,6 +56,7 @@ export class ProductDetailsComponent implements AfterViewInit, OnInit {
   private destroyRef = inject(DestroyRef);
   private mediaMatcher = inject(MediaMatcher);
   private titleService = inject(Title);
+  protected readonly authService = inject(AuthService);
 
   // Track navigation source (chatbot, catalog, etc.)
   private navigationSource: string | null = null;

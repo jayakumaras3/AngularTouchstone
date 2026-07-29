@@ -148,15 +148,17 @@
             <span class="cta-price-label">Enroll for</span>
             <span class="cta-price-value" [style.color]="cfg.color">{{ cert.price }}</span>
           </div>
-          <button
-            class="signup-now-btn"
-            type="button"
-            [style.background]="cfg.color"
-            (click)="signUpNow()"
-          >
-            Sign Up Now
-            <i-tabler name="arrow-right" class="signup-arrow"></i-tabler>
-          </button>
+          @if (!authService.isLoggedIn()) {
+            <button
+              class="signup-now-btn"
+              type="button"
+              [style.background]="cfg.color"
+              (click)="signUpNow()"
+            >
+              Sign Up Now
+              <i-tabler name="arrow-right" class="signup-arrow"></i-tabler>
+            </button>
+          }
         </div>
 
       </div>

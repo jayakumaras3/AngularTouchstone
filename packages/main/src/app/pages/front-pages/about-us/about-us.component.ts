@@ -10,6 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { setupCards, stats, tclients, users, frameworks } from '../front-pagesData';
 import { TemplateVideoComponent } from '../template-video/template-video.component';
+import { AuthService } from 'src/app/services/login/auth.service';
 
 // Move interface outside the component class
 interface TimelineEvent {
@@ -35,6 +36,8 @@ interface TimelineEvent {
   styleUrl: './about-us.component.scss'
 })
 export class AboutUsComponent {
+  protected readonly authService = inject(AuthService);
+
    reportLink = 'https://www.coursera.org';
   imagePath = 'assets/images/front-pages/Why-We-Built-DoChek.png';
   timelineEvents: TimelineEvent[] = [
