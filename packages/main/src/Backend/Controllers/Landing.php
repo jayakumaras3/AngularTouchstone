@@ -131,7 +131,7 @@ class Landing extends BaseController
             'email' => $data['email'],
             'username' => $data['email'],
             'valid' => 0,
-            'client_id' => 70,
+            'client_id' => 85,
             'userid' => bin2hex(random_bytes(8)),
             'password' => password_hash(
                 $data['password'],
@@ -153,29 +153,40 @@ class Landing extends BaseController
         }
         $email = \Config\Services::email();
 
-        $activationLink = base_url("activate-account?token=" . $insertData['userid']);
+        $activationLink = base_url("activate-account?token=" . urlencode($insertData['userid']));
+
         $email->setFrom('do-not-reply@touchstonelc.com', 'Dochek');
         $email->setTo($data['email']);
         $email->setSubject('Activate Your Account');
 
         $email->setMessage("
-    <h2>Welcome!</h2>
-    <p>Thank you for registering.</p>
-    <p>Please click the button below to activate your account.</p>
+        <h2>Welcome!</h2>
 
-    <p>
-        <a href='{$activationLink}'
-           style='padding:10px 20px;
-                  background:#007bff;
-                  color:#fff;
-                  text-decoration:none;
-                  border-radius:4px;'>
-            Activate Account
-        </a>
-    </p>
+        <p>Thank you for registering.</p>
 
-    <p>If you did not create this account, you can ignore this email.</p>
-");
+        <p>Please click the button below to activate your account.</p>
+
+        <p>
+            <a href='{$activationLink}'
+            style='display:inline-block;
+                    padding:12px 24px;
+                    background:#007bff;
+                    color:#ffffff;
+                    text-decoration:none;
+                    border-radius:4px;'>
+                Activate Account
+            </a>
+        </p>
+
+        <p>If the button above doesn't work, copy and paste the following URL into your browser:</p>
+
+        <p>
+            <a href='{$activationLink}'>{$activationLink}</a>
+        </p>
+
+        <p>If you did not create this account, you can safely ignore this email.</p>
+        ");
+
 
         $email->send();
 
@@ -190,24 +201,21 @@ class Landing extends BaseController
     public function activateAccount()
     {
         $token = $this->request->getGet('token');
-        // print_r($token);
-        // exit();
-
-        if (empty($token)) {
-            return redirect()->to(base_url() . 'ang/login?success=Invalid activation link.');
-        }
+       // print_r($token);
+       // exit();
 
         $user = $this->login_model->getUserByToken($token);
 
-        if (!$user) {
-            return redirect()->to(base_url() . 'ang/login');
+        if ($user['valid'] == 1) {
+            return redirect()->to(base_url('ang/login?success=Your account is already activated. Please log in.'));
         }
+
         $this->login_model->activateuser($user['id_user'], [
-            'valid' => 1,
-            'userid' => null
+            'valid'  => 1,
+            // 'userid' => null
         ]);
 
-        return redirect()->to(base_url() . 'ang/login?success=Your account has been activated successfully. Please log in.');
+        return redirect()->to(base_url('ang/login?success=Your account has been activated successfully. Please log in.'));
     }
     public function authStatus()
     {
@@ -332,6 +340,29 @@ class Landing extends BaseController
     |--------------------------------------------------------------------------
     */
         if (!$user) {
+
+            // login_view() silently excludes valid=0 accounts, so a deactivated
+            // user also lands here. Check separately, and only disclose the
+            // deactivated status if the password actually matches - otherwise
+            // this becomes a way to probe which usernames are deactivated.
+            $inactiveUser = $this->login_model->getUserForLoginCheck($username);
+
+            if (
+                $inactiveUser &&
+                (int) $inactiveUser['valid'] === 0 &&
+                password_verify($password, $inactiveUser['password'])
+            ) {
+
+                $cache->save($attemptKey, $attempts + 1, 300);
+
+                return $this->response
+                    ->setStatusCode(403)
+                    ->setJSON([
+                        'success' => false,
+                        'message' => 'Your account has been deactivated, contact admin.'
+                    ]);
+            }
+
             return $authFail();
         }
 
@@ -488,7 +519,7 @@ class Landing extends BaseController
             7 => 'marketplace/dashboard',
             8 => 'SCORM/Scorm_client/reviews'
         ];
-        if ($user['client'] == 70) {
+        if ($user['client'] == 85) {
             $redirect = base_url('Certification/Certification_Portal');
         } else {
             $redirect = base_url(
@@ -989,7 +1020,7 @@ class Landing extends BaseController
             $message = 'Hi ' . esc($userdata['name']) . ',<br><br>'
                 . 'Your reset password request has been received.<br><br>'
                 . '<a href="' . $resetLink . '" target="_blank">Click here to Reset Password</a><br><br>'
-               // . '<small>Note: Reset link expires in 15 minutes.</small><br><br>'
+                // . '<small>Note: Reset link expires in 15 minutes.</small><br><br>'
                 . 'Thanks,<br>Dochek Team';
 
             $emailService = \Config\Services::email();

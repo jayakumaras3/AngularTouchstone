@@ -141,7 +141,7 @@
 
         <div class="d-flex align-items-center gap-20 m-y-20">
           <button *ngIf="!isCertificationSource" mat-flat-button class="p-y-20" (click)="openBookDemoDialog()">Enquire Now</button>
-          <button *ngIf="isCertificationSource && !authService.isLoggedIn()" mat-flat-button color="primary" class="p-y-20" (click)="navigateSignUp()">Sign Up Now</button>
+          <button *ngIf="isCertificationSource && authService.authInitialized() && !authService.isLoggedIn()" mat-flat-button color="primary" class="p-y-20" (click)="navigateSignUp()">Sign Up Now</button>
         </div>
       </div>
     </div>

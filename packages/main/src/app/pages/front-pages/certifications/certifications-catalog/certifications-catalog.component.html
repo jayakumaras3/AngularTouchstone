@@ -98,7 +98,7 @@
             >
               View Details
             </button>
-            @if (!authService.isLoggedIn()) {
+            @if (authService.authInitialized() && !authService.isLoggedIn()) {
               <button
                 class="signup-btn"
                 type="button"

@@ -344,10 +344,27 @@ class XAPI_courses extends BaseController
         if ($response =  $this->requireRole(['6', '44', '5', '4'])) {
             return $response;
         }
+        if (isset($_POST['tab'])) {
+            $_SESSION['tab'] = $_POST['tab'];
+        }
         if (isset($_POST['fileloc'])) {
             $dirPath = $_POST['fileloc'];
-            unlink($dirPath);
-            session()->setFlashdata('success', lang('Messages.Success_0005'));
+            $deleted = false;
+            if (is_file($dirPath)) {
+                try {
+                    $deleted = unlink($dirPath);
+                } catch (\ErrorException $e) {
+                    log_message('error', 'del_file: unable to delete {file}: {msg}', [
+                        'file' => $dirPath,
+                        'msg'  => $e->getMessage(),
+                    ]);
+                }
+            }
+            if ($deleted) {
+                session()->setFlashdata('success', lang('Messages.Success_0005'));
+            } else {
+                session()->setFlashdata('error', lang('Messages.Error_0001'));
+            }
         }
         return redirect()->to(base_url() . 'SCORM/scorm_courses/course_settings_view');
     }

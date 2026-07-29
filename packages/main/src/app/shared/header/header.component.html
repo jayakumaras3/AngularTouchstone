@@ -13,7 +13,7 @@
           <a mat-button class="nav-item" [routerLink]="['/catalog']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Course Catalog</a>
           <a mat-button class="nav-item" [routerLink]="['/certifications']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Certifications</a>
         </nav>
-        @if (!authService.isLoggedIn()) {
+        @if (authService.authInitialized() && !authService.isLoggedIn()) {
           <a mat-flat-button color="primary" class="public-header-login" [routerLink]="['/login']">Login</a>
         }
       } @else {
@@ -47,7 +47,7 @@
       <li><a [routerLink]="['/catalog']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeMobileNav()">Course Catalog</a></li>
       <li><a [routerLink]="['/certifications']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeMobileNav()">Certifications</a></li>
     </ul>
-    @if (!authService.isLoggedIn()) {
+    @if (authService.authInitialized() && !authService.isLoggedIn()) {
       <a mat-flat-button color="primary" class="mobile-login-btn" [routerLink]="['/login']" (click)="closeMobileNav()">Login</a>
     }
   </nav>

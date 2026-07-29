@@ -22,7 +22,7 @@
                 <div class="m-b-24 hstack hero-slide-actions" [class.single-cta]="slide.showDefaultActions === false">
                   <ng-container *ngIf="slide.showDefaultActions !== false; else heroSingleCta">
                     <a
-                      *ngIf="!authService.isLoggedIn()"
+                      *ngIf="authService.authInitialized() && !authService.isLoggedIn()"
                       [class.selected]="isActiveRoute('coursecatalog')"
                       [routerLink]="['/login']"
                       mat-flat-button

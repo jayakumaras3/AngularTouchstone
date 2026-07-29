@@ -189,7 +189,7 @@ class Landing extends BaseController
     }
     public function activateAccount()
     {
-        $token = $this->request->getGet('token');
+        $token = $this->request->getVar('token');
         // print_r($token);
         // exit();
 

@@ -10,7 +10,7 @@
               DOCHEK - A Learning Platform Built for Focus, Not Noise
             </h2>
             <div class="m-b-24 hstack">
-              @if (!authService.isLoggedIn()) {
+              @if (authService.authInitialized() && !authService.isLoggedIn()) {
                 <a [class.selected]="isActiveRoute('coursecatalog')"
                   [routerLink]="['/login']" mat-flat-button color="primary" class="zindexreduce">Member Login</a>
               }
@@ -88,7 +88,7 @@
         <!-- Platform -->
         <div class="footer-col">
           <h6 class="footer-col-heading">Platform</h6>
-          @if (!authService.isLoggedIn()) {
+          @if (authService.authInitialized() && !authService.isLoggedIn()) {
             <a class="footer-link" [routerLink]="['/login']">
               <mat-icon class="fli">login</mat-icon>Member Login
             </a>

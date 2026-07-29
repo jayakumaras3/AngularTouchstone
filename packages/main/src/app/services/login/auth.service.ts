@@ -29,6 +29,15 @@ export class AuthService {
   private readonly _loggedIn = signal(false);
   readonly authState = this._loggedIn.asReadonly();
 
+  /**
+   * True once the first refreshAuthState() call (success or failure) has
+   * resolved. Guest-only CTAs (Login, Member Login, Sign Up, Sign Up Now)
+   * must stay out of the DOM until this flips true, so a logged-in user
+   * never sees them flash before the PHP session check completes.
+   */
+  private readonly _authInitialized = signal(false);
+  readonly authInitialized = this._authInitialized.asReadonly();
+
   isLoggedIn(): boolean {
     try {
       return this._loggedIn();
@@ -57,16 +66,21 @@ export class AuthService {
     try {
       return this.http.get<AuthStatus>(`${this.apiUrl}/authStatus`).pipe(
         timeout(8000),
-        tap((status) => this._loggedIn.set(!!status.loggedIn)),
+        tap((status) => {
+          this._loggedIn.set(!!status.loggedIn);
+          this._authInitialized.set(true);
+        }),
         catchError((error) => {
           console.error('AuthService.refreshAuthState failed; defaulting to guest', error);
           this._loggedIn.set(false);
+          this._authInitialized.set(true);
           return of({ loggedIn: false } as AuthStatus);
         })
       );
     } catch (error) {
       console.error('AuthService.refreshAuthState threw synchronously; defaulting to guest', error);
       this._loggedIn.set(false);
+      this._authInitialized.set(true);
       return of({ loggedIn: false } as AuthStatus);
     }
   }
