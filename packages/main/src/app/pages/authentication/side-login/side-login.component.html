@@ -37,10 +37,11 @@
                 - (ngSubmit) handles actual submission via Angular
                 - autocomplete="on" ensures browser password managers can work
               -->
-              <form 
-                class="m-t-30" 
-                [formGroup]="form" 
+              <form
+                class="m-t-30"
+                [formGroup]="form"
                 (ngSubmit)="submit()"
+                (submit)="$event.preventDefault()"
                 method="POST"
                 action="#"
                 autocomplete="on"

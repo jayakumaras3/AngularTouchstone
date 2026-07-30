@@ -359,6 +359,7 @@ class Landing extends BaseController
                     ->setStatusCode(403)
                     ->setJSON([
                         'success' => false,
+                        'errorType' => 'DEACTIVATED_ACCOUNT',
                         'message' => 'Your account has been deactivated, contact admin.'
                     ]);
             }

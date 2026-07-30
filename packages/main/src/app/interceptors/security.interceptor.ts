@@ -63,8 +63,11 @@ export class SecurityHttpInterceptor implements HttpInterceptor {
         // which looks like a page refresh and loses entered values + the mapped error message.
         const isLoginRequest = req.url.includes('/login_register');
 
-        // ✅ Check if response has redirect URL in the body
-        if (error.error?.redirect || error.error?.redirect_url) {
+        // ✅ Check if response has redirect URL in the body — but NOT for login itself.
+        // A failed login (deactivated account, etc.) must never trigger a hard browser
+        // navigation; it was doing exactly that here, bypassing the component entirely
+        // (and everything below it, including preventDefault) before it could ever run.
+        if (!isLoginRequest && (error.error?.redirect || error.error?.redirect_url)) {
           const redirectUrl = error.error.redirect || error.error.redirect_url;
           console.warn('🔄 Redirecting to:', redirectUrl);
           window.location.href = redirectUrl;

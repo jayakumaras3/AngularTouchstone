@@ -3,6 +3,7 @@ import { Component, AfterViewInit, OnInit, OnDestroy, ViewChild, ElementRef, NgZ
 import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 import { MaterialModule } from '../../../material.module';
 import { AuthService } from '../../../services/login/auth.service';
 import { LoginUrl } from '../../../config';
@@ -10,7 +11,6 @@ import { FooterComponent } from '../../front-pages/footer/footer.component';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { DomSanitizer } from '@angular/platform-browser';
 import { environment } from '../../../../environments/environment';
-import { mapAuthErrorMessage } from '../../../services/login/auth-error-messages';
 
 /** Cloudflare Turnstile — https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/ */
 interface TurnstileRenderOptions {
@@ -308,21 +308,56 @@ export class AppSideLoginComponent implements AfterViewInit, OnInit, OnDestroy {
                 // Get error text and sanitize it
                 const errorText = Object.values(res.errors).join(' ');
                 // This ensures only plain text, no HTML/JS execution
-                const sanitizedText = this.sanitizer.sanitize(1, errorText) || 'Login failed';
-                this.errorMessage = mapAuthErrorMessage(sanitizedText);
+                this.errorMessage = this.sanitizer.sanitize(1, errorText) || 'Login failed';
               } else {
-               // this.errorMessage = 'Username or Password don\'t match.';
-
-               this.errorMessage = mapAuthErrorMessage(res?.message || 'Username or Password don\'t match.');
+                this.errorMessage = res?.message || 'Username or Password don\'t match.';
               }
             }
           },
-          error: err => {
+          error: (err: HttpErrorResponse) => {
             this.loginAttempts++;
             this.isSubmitting = false;
-            this.resetTurnstile();
-          //  this.errorMessage = 'Server error. Please try again later.';
-              this.errorMessage = mapAuthErrorMessage(err.error?.message || 'Server error. Please try again later.');
+
+            // Defensive: a throw anywhere in here (turnstile widget, sanitizer, a
+            // malformed error body) must never leave the user staring at a blank
+            // form with no feedback, so fall back to a generic message on failure.
+            try {
+              // Turnstile tokens are single-use — force re-verification on any failed attempt.
+              this.resetTurnstile();
+
+              switch (err.status) {
+                case 401:
+                  // Never trust the backend text for invalid credentials — always generic.
+                  this.errorMessage = 'Invalid username or password.';
+                  break;
+
+                case 403:
+                  // Deactivated-account message is safe to show as-is: the backend only
+                  // returns 403 once the password has already matched, so this can't be
+                  // used to probe usernames for account status.
+                  this.errorMessage = err.error?.message || 'Your account has been deactivated, contact admin.';
+                  break;
+
+                case 429:
+                  this.errorMessage = err.error?.message || 'Too many login attempts. Please try again after 5 minutes.';
+                  break;
+
+                case 422:
+                  if (err.error?.errors) {
+                    const errorText = Object.values(err.error.errors).join(' ');
+                    this.errorMessage = this.sanitizer.sanitize(1, errorText) || 'Validation failed.';
+                  } else {
+                    this.errorMessage = err.error?.message || 'Validation failed.';
+                  }
+                  break;
+
+                default:
+                  this.errorMessage = err.error?.message || 'Something went wrong. Please try again.';
+              }
+            } catch (uiError) {
+              console.error('Login error-handling failed unexpectedly', uiError);
+              this.errorMessage = 'Something went wrong. Please try again.';
+            }
           }
         });
     }

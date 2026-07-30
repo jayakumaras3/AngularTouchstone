@@ -100,8 +100,16 @@ class Login_model extends Model
         $builder->join('timezone as t', 't.id_t = u.timezone  and t.status=1', "left");
         $builder->join('useractivity as ua', 'ua.username = u.username', 'left');
         // $builder->join('profile as p', 'p.username = u.username', 'left');
+        // The username/email match MUST be grouped. Without groupStart()/groupEnd() the
+        // builder emits "u.username = X OR u.email = X AND u.valid = 1 AND du.status = 1",
+        // and because SQL binds AND tighter than OR that is read as
+        // "u.username = X OR (u.email = X AND u.valid = 1 AND du.status = 1)" - so a match
+        // on username bypassed the valid = 1 filter entirely and let a deactivated account
+        // authenticate successfully.
+        $builder->groupStart();
         $builder->where('u.username', $username);
-        $builder->Orwhere('u.email', $username);
+        $builder->orWhere('u.email', $username);
+        $builder->groupEnd();
         $builder->where('u.valid', '1');
         $builder->where('du.status', '1');
         $builder->groupBY('u.id_user', 'asc');
