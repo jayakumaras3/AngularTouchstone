@@ -87,8 +87,18 @@ export class NoCodeInputGuardService {
     if (!(target instanceof this.document.defaultView!.HTMLInputElement)) return false;
 
     // Only guard text-like input types.
-    const type = (target.getAttribute('type') ?? 'text').toLowerCase();
+    const type = (target.type || target.getAttribute('type') || 'text').toLowerCase();
     if (['number', 'date', 'datetime-local', 'time', 'month', 'week', 'color', 'file', 'range'].includes(type)) {
+      return false;
+    }
+
+    // Password values are treated as plain strings — no HTML/XSS hardening is
+    // applied so any character (including < and >) can be used in a password.
+    // Checked via the `type` IDL property (not just the attribute) because
+    // show/hide toggles flip it between 'password' and 'text' at runtime;
+    // `autocomplete` catches it in the 'text' (visible) state too.
+    const autocomplete = (target.getAttribute('autocomplete') ?? '').toLowerCase();
+    if (type === 'password' || autocomplete.includes('password')) {
       return false;
     }
 

@@ -85,6 +85,8 @@
                     name="password"
                     autocomplete="current-password"
                     (input)="clearErrorMessage()"
+                    (keydown)="blockSpace($event)"
+                    (paste)="stripPastedSpaces($event)"
                     #passwordInput />
                   <button
                     mat-icon-button

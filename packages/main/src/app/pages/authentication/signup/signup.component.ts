@@ -104,7 +104,7 @@ export class SignupComponent implements OnInit, AfterViewInit, OnDestroy {
     { key: 'uppercase',   label: 'One uppercase letter',         check: (v: string) => /[A-Z]/.test(v) },
     { key: 'lowercase',   label: 'One lowercase letter',         check: (v: string) => /[a-z]/.test(v) },
     { key: 'number',      label: 'One number',                   check: (v: string) => /[0-9]/.test(v) },
-    { key: 'specialChar', label: 'Special character (!@#$%^&*)', check: (v: string) => /[!@#$%^&*]/.test(v) },
+    { key: 'specialChar', label: 'Special character (!@#$%^&*()_+-=[]{}|;:<>?)', check: (v: string) => /[!@#$%^&*()_+\-=\[\]{}|;:<>?]/.test(v) },
   ] as const;
 
   private readonly fb = inject(FormBuilder);

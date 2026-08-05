@@ -31,6 +31,8 @@ export class NoCodeInputDirective {
 
   @HostListener('keydown', ['$event'])
   onKeydown(event: Event): void {
+    if (this.isPasswordField()) return;
+
     const keyboardEvent = event as KeyboardEvent;
     if (keyboardEvent.key === '<' || keyboardEvent.key === '>') {
       keyboardEvent.preventDefault();
@@ -39,6 +41,8 @@ export class NoCodeInputDirective {
 
   @HostListener('paste', ['$event'])
   onPaste(event: Event): void {
+    if (this.isPasswordField()) return;
+
     const clipboardEvent = event as ClipboardEvent;
     const pasteText = clipboardEvent.clipboardData?.getData('text') ?? '';
     if (!pasteText) return;
@@ -73,12 +77,28 @@ export class NoCodeInputDirective {
   }
 
   private sanitizeAndSync(): void {
+    if (this.isPasswordField()) return;
+
     const el = this.elementRef.nativeElement;
     const current = el.value;
     const sanitized = this.sanitizeValue(current);
     if (sanitized === current) return;
 
     this.writeValue(sanitized);
+  }
+
+  // Password values are treated as plain strings — no HTML/XSS hardening is
+  // applied so any character (including < and >) can be used in a password.
+  // Password-specific rules (no whitespace, complexity) are enforced by the
+  // dedicated password validators/handlers instead.
+  // `type` is checked via the IDL property (not getAttribute) because the
+  // show/hide toggle flips it between 'password' and 'text' at runtime;
+  // `autocomplete` catches it in the 'text' (visible) state too.
+  private isPasswordField(): boolean {
+    const el = this.elementRef.nativeElement;
+    if ('type' in el && el.type?.toLowerCase() === 'password') return true;
+    const autocomplete = el.getAttribute('autocomplete')?.toLowerCase() ?? '';
+    return autocomplete.includes('password');
   }
 
   private writeValue(value: string): void {

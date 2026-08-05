@@ -100,7 +100,7 @@ export function initAutoTheme(forceDark?: boolean): void {
 export const defaults: AppSettings = {
   dir: 'ltr',
   theme: detectColorScheme(), // type-safe: returns 'light' | 'dark'
-  sidenavOpened: false,
+  sidenavOpened: false, 
   sidenavCollapsed: false,
   boxed: true,
   horizontal: false,
@@ -137,14 +137,14 @@ export const logoUrl = '/DOCHEK_lms/ang/';*/
 //Host URL
 /**//*
 // */
-/**/export const baseUrlPath = '/ang/';
+/*export const baseUrlPath = '/ang/';
 export const baseUrlPathslash = '/ang';
 export const LoginUrl = 'ang/';
-export const logoUrl = '/ang/';
-/*export const baseUrlPath = '/DOCHEK/ang/';
+export const logoUrl = '/ang/';*/
+/**/export const baseUrlPath = '/DOCHEK/ang/';
 export const baseUrlPathslash = '/DOCHEK/ang';
 export const LoginUrl = 'DOCHEK/ang/';
-export const logoUrl = '/DOCHEK/ang/';*/
+export const logoUrl = '/DOCHEK/ang/';
 /*export const baseUrlPath = '';
 export const baseUrlPathslash = '';
 export const LoginUrl = '';

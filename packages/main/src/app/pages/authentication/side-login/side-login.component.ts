@@ -241,6 +241,26 @@ export class AppSideLoginComponent implements AfterViewInit, OnInit, OnDestroy {
     this.showPassword = !this.showPassword;
   }
 
+  /** Prevent the space bar from entering a space in the password field. */
+  blockSpace(event: KeyboardEvent): void {
+    if (event.key === ' ' || event.code === 'Space') {
+      event.preventDefault();
+    }
+  }
+
+  /** Strip whitespace from anything pasted into the password field. */
+  stripPastedSpaces(event: ClipboardEvent): void {
+    const pasted = event.clipboardData?.getData('text') ?? '';
+    if (!/\s/.test(pasted)) return;
+    event.preventDefault();
+    const input = event.target as HTMLInputElement;
+    const cleaned =
+      input.value.slice(0, input.selectionStart ?? input.value.length) +
+      pasted.replace(/\s/g, '') +
+      input.value.slice(input.selectionEnd ?? input.value.length);
+    this.form.patchValue({ password: cleaned });
+  }
+
   private isValidRedirectUrl(url: string): boolean {
     try {
       const parsedUrl = new URL(url, window.location.href);
