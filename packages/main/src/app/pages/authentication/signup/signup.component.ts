@@ -40,7 +40,7 @@ function passwordStrengthValidator(control: AbstractControl): ValidationErrors |
   if (!/[A-Z]/.test(v)) errors['uppercase'] = true;
   if (!/[a-z]/.test(v)) errors['lowercase'] = true;
   if (!/[0-9]/.test(v)) errors['number'] = true;
-  if (!/[!@#$%^&*]/.test(v)) errors['specialChar'] = true;
+  if (!/[`~!@#$%^&*()_+\-=\[\]{}|\\;:'"<>,.?/]/.test(v)) errors['specialChar'] = true;
   return Object.keys(errors).length ? errors : null;
 }
 
@@ -104,7 +104,7 @@ export class SignupComponent implements OnInit, AfterViewInit, OnDestroy {
     { key: 'uppercase',   label: 'One uppercase letter',         check: (v: string) => /[A-Z]/.test(v) },
     { key: 'lowercase',   label: 'One lowercase letter',         check: (v: string) => /[a-z]/.test(v) },
     { key: 'number',      label: 'One number',                   check: (v: string) => /[0-9]/.test(v) },
-    { key: 'specialChar', label: 'Special character (!@#$%^&*()_+-=[]{}|;:<>?)', check: (v: string) => /[!@#$%^&*()_+\-=\[\]{}|;:<>?]/.test(v) },
+    { key: 'specialChar', label: 'Special character (!@#$%^&*()_+-=[]{}|;:<>?.)', check: (v: string) => /[`~!@#$%^&*()_+\-=\[\]{}|\\;:'"<>,.?/]/.test(v) },
   ] as const;
 
   private readonly fb = inject(FormBuilder);

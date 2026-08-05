@@ -19,3 +19,13 @@
   margin-top: 4px;
   padding-left: 2px;
 }
+
+// "Don't have an account? Sign Up" link below the Sign In button — no
+// underline in any state, including hover.
+.signup-link {
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: none;
+  }
+}

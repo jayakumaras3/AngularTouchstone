@@ -98,13 +98,24 @@ export class LeadFormComponent implements OnInit, OnChanges, AfterViewInit, OnDe
     this.submitError = null;
     this.captchaError = null;
 
+    // The PHP endpoint (angualr_product_enquiry) reads `email` / `enquiry` / `comment` —
+    // map the UI's workEmail / primaryNeed / message controls onto those names here so the
+    // form itself can keep its user-friendly control names without touching the backend.
+    const payload = {
+      ...this.form.value,
+      email: this.form.value.workEmail,
+      enquiry: this.form.value.primaryNeed,
+      comment: this.form.value.message,
+      source: this.source,
+      campaign: this.campaign,
+      turnstileToken: this.captchaToken,
+    };
+
+    console.log('Form Value', this.form.value);
+    console.log('API Payload', payload);
+
     this.authService
-      .sendProductEnquiry({
-        ...this.form.value,
-        source: this.source,
-        campaign: this.campaign,
-        turnstileToken: this.captchaToken,
-      })
+      .sendProductEnquiry(payload)
       .subscribe({
         next: (res: any) => {
           this.isSubmitting = false;

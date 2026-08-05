@@ -15,7 +15,7 @@
         { key: 'uppercase',   label: 'One uppercase letter',         test: function (v) { return /[A-Z]/.test(v); } },
         { key: 'lowercase',   label: 'One lowercase letter',         test: function (v) { return /[a-z]/.test(v); } },
         { key: 'number',      label: 'One number',                   test: function (v) { return /[0-9]/.test(v); } },
-        { key: 'specialChar', label: 'Special character (!@#$%^&*)', test: function (v) { return /[!@#$%^&*]/.test(v); } }
+        { key: 'specialChar', label: 'Special character (!@#$%^&*()_+-=[]{}|;:<>?.)', test: function (v) { return /!@#$%^&*()_+-=[]{}|;:<>?./.test(v); } }
     ];
 
     function isValid(value) {

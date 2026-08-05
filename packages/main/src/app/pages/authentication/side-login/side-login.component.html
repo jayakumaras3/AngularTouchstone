@@ -152,6 +152,17 @@
                   {{ isSubmitting ? 'Signing In...' : 'Sign In' }}
                 </button>
 
+                <!-- SIGN UP LINK -->
+                <span class="d-block text-center f-w-500 m-t-16 f-s-14">
+                  Don't have an account?
+                  <a
+                    [routerLink]="['/authentication/signup']"
+                    class="text-primary f-w-600 text-decoration-none f-s-14 signup-link"
+                  >
+                    Sign Up
+                  </a>
+                </span>
+
               </form>
 
             </div>

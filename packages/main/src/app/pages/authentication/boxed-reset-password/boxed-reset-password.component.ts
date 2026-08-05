@@ -60,8 +60,8 @@ export class AppBoxedResetPasswordComponent implements OnInit {
   form = new FormGroup({
     password: new FormControl<string>('', [
       Validators.required,
-      Validators.minLength(3),
-      Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]/)
+      Validators.minLength(8),
+      Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[`~!@#$%^&*()_+\-=\[\]{}|\\;:'"<>,.?/])(?!.*\s).{8,}$/)
     ]),
     confirmPassword: new FormControl<string>('', [
       Validators.required,
