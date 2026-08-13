@@ -16,7 +16,7 @@
     </div>
   } @else {
     @for (field of config.fields; track field.name) {
-      <mat-form-field appearance="outline" class="w-100" [class.hide-hint]="field.type === 'textarea'" [class.lead-form__message-field]="field.type === 'textarea'">
+      <mat-form-field appearance="outline" class="w-100" [class.hide-hint]="field.type === 'textarea'">
         <mat-label>{{ field.label }}</mat-label>
 
         @if (field.type === 'select') {
@@ -41,9 +41,6 @@
           />
         }
       </mat-form-field>
-      @if (field.type === 'textarea') {
-        <app-message-field-status [control]="form.get(field.name)!" [min]="20"></app-message-field-status>
-      }
     }
 
     @if (submitError) {

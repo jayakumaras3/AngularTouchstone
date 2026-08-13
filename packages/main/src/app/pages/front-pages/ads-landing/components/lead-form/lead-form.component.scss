@@ -11,12 +11,9 @@
     margin-bottom: 16px;
   }
 
-  // The Message field owns its own spacing via app-message-field-status
-  // below (16px, or 6px/12px when a validation message is showing), so it
-  // doesn't need the general 16px field-to-field margin too.
-  .mat-mdc-form-field.lead-form__message-field {
-    margin-bottom: 0;
-  }
+  // The Message field needs no validation slot of its own — it is optional and
+  // has no length rules — so the general 16px rule above gives it the same
+  // Message -> Turnstile gap every other field gets.
 
   // Keep the submit button clearly separated from Turnstile.
   &__submit {

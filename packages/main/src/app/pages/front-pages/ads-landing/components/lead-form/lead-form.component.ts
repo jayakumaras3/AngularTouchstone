@@ -19,15 +19,13 @@ import { MaterialModule } from '../../../../../material.module';
 import { AuthService } from '../../../../../services/login/auth.service';
 import { TurnstileService, TurnstileWidgetState } from '../../../../../services/turnstile/turnstile.service';
 import { noWhitespaceValidator, trimFormGroupValues } from '../../../../../shared/validators/no-whitespace.validator';
-import { minimumMeaningfulCharacters } from '../../../../../shared/validators/minimum-meaningful-characters.validator';
 import { RequiredFieldsNoteComponent } from '../../../../../shared/required-fields-note/required-fields-note.component';
-import { MessageFieldStatusComponent } from '../../../../../shared/message-field-status/message-field-status.component';
 import { LeadFormConfig } from '../../models/ads-landing.model';
 
 @Component({
   selector: 'app-lead-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MaterialModule, RequiredFieldsNoteComponent, MessageFieldStatusComponent],
+  imports: [CommonModule, ReactiveFormsModule, MaterialModule, RequiredFieldsNoteComponent],
   templateUrl: './lead-form.component.html',
   styleUrl: './lead-form.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -154,9 +152,11 @@ export class LeadFormComponent implements OnInit, OnChanges, AfterViewInit, OnDe
       if (field.type === 'email') {
         validators.push(Validators.email);
       }
-      if (field.type === 'textarea') {
-        validators.push(minimumMeaningfulCharacters(20));
-      }
+      // No length rules anywhere: the Message textarea on these campaign pages
+      // is optional (`required: false` in LEAD_FORM_FIELDS) and deliberately
+      // carries no min or max validator, so it stays valid at any length —
+      // empty, one character, or several thousand. Adding one here would apply
+      // to all three pages at once, which is exactly what must not happen.
       controls[field.name] = ['', validators];
     }
 
