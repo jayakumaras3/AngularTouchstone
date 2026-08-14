@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit, OnDestroy, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { finalize } from 'rxjs/operators';
+import { FormBuilder, FormGroup, FormGroupDirective, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -49,6 +50,14 @@ export class ContactComponent implements OnInit, AfterViewInit, OnDestroy {
   private turnstileWidgetId: string | null = null;
   private readonly turnstileSiteKey = environment.turnstileSiteKey;
 
+  // The directive bound to <form [formGroup]>. Needed because the `submitted`
+  // flag Material reads when deciding whether to paint a field red lives here,
+  // on the directive, and not on the FormGroup — see resetAfterSuccess().
+  @ViewChild(FormGroupDirective) private formDirective?: FormGroupDirective;
+
+  /** Pristine control values, captured at construction and restored on success. */
+  private readonly initialFormValues: Record<string, unknown>;
+
    constructor(private fb: FormBuilder, private authService: AuthService) {
     this.form = this.fb.group({
       firstName: ['', [Validators.required, noWhitespaceValidator()]],
@@ -58,6 +67,8 @@ export class ContactComponent implements OnInit, AfterViewInit, OnDestroy {
       comment: ['', [Validators.required, noWhitespaceValidator(), minimumMeaningfulCharacters(20)]],
       captchaVerified: [false, Validators.requiredTrue],
     });
+
+    this.initialFormValues = this.form.getRawValue();
   }
 
   get f() {
@@ -123,15 +134,24 @@ submit() {
 
     const { firstName, lastName, email, enquiry, comment } = this.form.value;
 
-    this.authService.sendProductEnquiry({ firstName, lastName, email, enquiry, comment }).subscribe({
+    this.authService.sendProductEnquiry({ firstName, lastName, email, enquiry, comment })
+      // finalize() runs on success AND on error; the previous `complete`
+      // callback did not, because RxJS never completes a stream that errored.
+      // That left isSubmitting stuck at true after any network failure, so the
+      // button stayed disabled on "Submitting..." and the user could not retry.
+      .pipe(finalize(() => (this.isSubmitting = false)))
+      .subscribe({
       next: (res) => {
         if (res.success) {
           alert('✅ Product enquiry submitted successfully!');
-          this.form.reset();
+          this.resetAfterSuccess();
           if (this.turnstileWidgetId !== null && (window as any).turnstile) {
             (window as any).turnstile.reset(this.turnstileWidgetId);
           }
         } else {
+          // Not a success: leave the form exactly as the user left it — values,
+          // touched state and validation messages all intact — so they can fix
+          // whatever the server objected to and retry.
           alert(res.message || 'Failed to submit enquiry.');
         }
       },
@@ -139,11 +159,34 @@ submit() {
         console.error('HTTP Error:', err);
         alert('Server error. Check console for details.');
       },
-      complete: () => {
-        this.isSubmitting = false; // re-enable button after response
-      }
     });
   }
+}
+
+/**
+ * Returns the form to its freshly-loaded state after a confirmed success.
+ *
+ * `this.form.reset()` on its own was not enough, and that was the bug. It does
+ * clear the values and mark every control pristine + untouched, but the
+ * `submitted` flag lives on the FormGroupDirective attached to the <form>
+ * element rather than on the FormGroup, and nothing clears it. Material's
+ * default ErrorStateMatcher paints a field red when
+ * `control.invalid && (control.touched || form.submitted)`, so with `submitted`
+ * stuck at true every emptied required control satisfied that condition and the
+ * whole form rendered in the error state even though the user had touched
+ * nothing. `resetForm()` clears the values and that flag together.
+ *
+ * Feeding the captured initial values back in also restores the `enquiry`
+ * select's 'Partnership' default, which a bare `reset()` blanked out.
+ */
+private resetAfterSuccess(): void {
+  if (this.formDirective) {
+    this.formDirective.resetForm(this.initialFormValues);
+    return;
+  }
+  // Defensive: the directive is always present in this template, but never let
+  // a missing ViewChild turn a successful submit into a form left dirty.
+  this.form.reset(this.initialFormValues);
 }
 
 }
