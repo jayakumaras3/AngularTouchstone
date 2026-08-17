@@ -38,7 +38,7 @@
 
     [data-bs-theme="dark"] .leave-statement-card .dataTables_length select,
     [data-bs-theme="dark"] .leave-statement-card .dataTables_filter input {
-        border-color: #36404a;
+        border-color: #424e5a;
     }
 
     .leave-statement-card .pagination .page-link {

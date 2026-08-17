@@ -2,6 +2,41 @@
 $arrayuserlevel = array_map('intval', explode(',', $userlevel));
 $client = session()->get('client');
 ?>
+<style>
+    .card {
+        border-radius: 16px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.04);
+        border: none;
+    }
+
+    .btn-add-page {
+        background-color: rgba(var(--ct-primary-rgb), 0.1);
+        color: rgb(var(--ct-primary-rgb));
+        border: 1px solid rgba(var(--ct-primary-rgb), 0.25);
+        font-weight: 600;
+        font-size: 12.5px;
+    }
+
+    .btn-add-page:hover {
+        background-color: rgba(var(--ct-primary-rgb), 0.18);
+        color: rgb(var(--ct-primary-rgb));
+    }
+
+    .cs-table thead th {
+        font-weight: 700;
+        font-size: 13px;
+        color: #495057;
+        background-color: rgba(var(--ct-primary-rgb), 0.06);
+        border: none;
+        padding: 12px 16px;
+    }
+
+    .cs-table td {
+        vertical-align: middle;
+        font-size: 13.5px;
+        padding: 12px 16px;
+    }
+</style>
 <div class="row">
     <div class="col-12">
         <div class="page-title-box">
@@ -55,13 +90,13 @@ foreach ($pagesDetails as $item) {
 }
 ?>
 
-<div class="row">
+<div class="row mb-3">
     <?php if (in_array('67', $arrayuserlevel) || in_array('46', $arrayuserlevel)) { ?>
         <div class="col-lg-4">
             <form action="<?php echo base_url('SCORM/course_builder/Scorm_course_pages/add_test_feedback') ?>"
                 method="POST"><?= csrf_field() ?>
                 <input type="hidden" name="scourse_id" value="<?php echo $scourse_id ?>">
-                <button type="submit" title="Add Test Feedback" class="btn btn-sm btn-light waves-effect"
+                <button type="submit" title="Add Test Feedback" class="btn btn-add-page btn-sm rounded-pill waves-effect waves-light w-100"
                     onclick="return confirm('<?php echo lang('Alert.Aler_006') ?>')"><i
                         class="mdi mdi-thumb-up-outline font-18"></i> Add Test Feedback</button>
             </form>
@@ -70,7 +105,7 @@ foreach ($pagesDetails as $item) {
             <form action="<?php echo base_url('SCORM/course_builder/Scorm_course_pages/delete_test_feedback') ?>"
                 method="POST"><?= csrf_field() ?>
                 <input type="hidden" name="scourse_id" value="<?php echo $scourse_id ?>">
-                <button type="submit" title="Delete Test Feedback" class="btn btn-sm btn-light waves-effect"
+                <button type="submit" title="Delete Test Feedback" class="btn btn-outline-danger btn-sm rounded-pill waves-effect waves-light w-100"
                     onclick="return confirm('<?php echo lang('Alert.Aler_007') ?>')"><i
                         class="mdi mdi-delete-circle font-18"></i> Delete Test Feedback</button>
             </form>
@@ -80,14 +115,13 @@ foreach ($pagesDetails as $item) {
         <form action="<?php echo base_url('SCORM/course_builder/Scorm_course_pages/delete_course_pages') ?>"
             method="POST"><?= csrf_field() ?>
             <input type="hidden" name="scourse_id" value="<?php echo $scourse_id ?>">
-            <button type="submit" title="Delete All Pages" class="btn btn-sm btn-light waves-effect"
+            <button type="submit" title="Delete All Pages" class="btn btn-outline-danger btn-sm rounded-pill waves-effect waves-light w-100"
                 onclick="return confirm('<?php echo lang('Alert.Aler_008') ?>')"><i
                     class="mdi mdi-delete-circle font-18"></i> Delete All Pages</button>
         </form>
     </div>
 
 </div>
-<br><br>
 
 <div class="row">
     <div class="col-lg-12">
@@ -104,7 +138,7 @@ foreach ($pagesDetails as $item) {
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <table class="table dt-responsive nowrap w-100">
+                <table class="table cs-table dt-responsive nowrap w-100">
                     <thead>
                         <tr>
                             <th width=5%>#</th>
@@ -157,6 +191,15 @@ foreach ($pagesDetails as $item) {
                                             break;
                                         case 9:
                                             echo 'Audio Version';
+                                            break;
+                                        case 10:
+                                            echo 'Text Only';
+                                            break;
+                                        case 11:
+                                            echo 'Image + Text';
+                                            break;
+                                        case 12:
+                                            echo 'Text + Image';
                                             break;
                                     }
 

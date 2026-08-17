@@ -46,7 +46,7 @@ $year = isset($year) ? $year : date('Y');
 
     [data-bs-theme="dark"] .claims-table-card .dataTables_length select,
     [data-bs-theme="dark"] .claims-table-card .dataTables_filter input {
-        border-color: #36404a;
+        border-color: #424e5a;
     }
 
     .claims-table-card .pagination .page-link {

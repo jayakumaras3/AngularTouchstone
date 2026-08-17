@@ -44,7 +44,7 @@
 
     [data-bs-theme="dark"] .ticket-details-table-card .dataTables_length select,
     [data-bs-theme="dark"] .ticket-details-table-card .dataTables_filter input {
-        border-color: #36404a;
+        border-color: #424e5a;
     }
 
     .ticket-details-table-card .pagination .page-link {
@@ -132,7 +132,7 @@
         <div class="page-title-box">
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item"><a href="<?php echo base_url($header_link); ?>"><?= lang('UI_Text.Admin_Support') ?></a></li>
+                    <li class="breadcrumb-item"><a href="<?php echo base_url($header_link); ?>"><?= lang('Buttons.Support') ?></a></li>
                 </ol>
             </div>
             <h4 class="page-title"><?= lang('UI_Text.Ticket_Details') ?></h4>

@@ -38,7 +38,7 @@
 
     [data-bs-theme="dark"] .support-table-card .dataTables_length select,
     [data-bs-theme="dark"] .support-table-card .dataTables_filter input {
-        border-color: #36404a;
+        border-color: #424e5a;
     }
 
     .support-table-card .pagination .page-link {

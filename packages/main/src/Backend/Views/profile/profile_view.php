@@ -47,6 +47,11 @@ $arrayuserlevel = array_map('intval', explode(',', $userlevel));
         padding: .55rem .9rem;
     }
 
+    input[type="password"]::-ms-reveal,
+    input[type="password"]::-ms-clear {
+        display: none;
+    }
+
     .password-strength-meter {
         display: flex;
         align-items: center;

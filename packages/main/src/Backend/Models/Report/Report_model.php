@@ -212,10 +212,10 @@ class Report_model extends Model
 
         if ($status != 0) {
             $builder->where("FROM_UNIXTIME(sud.last_updated_on, '%Y-%m-%d') >=", $startdate);
-            $builder->where("FROM_UNIXTIME(sud.last_updated_on, '%Y-%m-%d') <", $enddate);
+            $builder->where("FROM_UNIXTIME(sud.last_updated_on, '%Y-%m-%d') <=", $enddate);
         } else {
             $builder->where("FROM_UNIXTIME(sud.createdon, '%Y-%m-%d') >=", $startdate);
-            $builder->where("FROM_UNIXTIME(sud.createdon, '%Y-%m-%d') <", $enddate);
+            $builder->where("FROM_UNIXTIME(sud.createdon, '%Y-%m-%d') <=", $enddate);
         }
 
         $builder->where('sud.course_status', $status);

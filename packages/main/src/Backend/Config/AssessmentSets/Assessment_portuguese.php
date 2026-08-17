@@ -51,7 +51,8 @@ class Assessment_portuguese
         "63" => 0, // page level course completion 
         "74" => 1, //CertificateEnabled
         "72" => "selecione <b> próximo </b> para continuar.",
-        '75' => "LearningAids"
+        "75" => "LearningAids",
+        '76' => "Sair do curso"
     );
     public static $assessment_scqmcq_sets = array(
         "59" => "<i>Selecione a(s) resposta correta(s) e clique em <strong>Enviar.</strong></i>",

@@ -21,18 +21,27 @@ $arraystakeholders  = explode(',', $client);
     <div class="col-md-4">
         <div class="card">
             <div class="card-body">
+                <?php
+                // The course group itself isn't picked here - it's whichever group the
+                // user arrived from ($sc_cgid) - so name it explicitly, otherwise the
+                // page only shows a "user group" dropdown with no visible course group,
+                // which reads as if the form's own title/direction is wrong.
+                $currentCourseGroup = null;
+                foreach ($course_group as $group) {
+                    if ($group['sc_cgid'] == $sc_cgid) {
+                        $currentCourseGroup = $group['description'];
+                        break;
+                    }
+                }
+                ?>
+                <?php if ($currentCourseGroup !== null): ?>
+                    <p class="mb-2"><strong><?= lang('UI_Text.Course_Groups') ?>:</strong> <?= esc($currentCourseGroup) ?></p>
+                <?php endif; ?>
                 <form action="<?php echo base_url('SCORM/scorm_user_group/assignCoursegrouptoUsergroup') ?>" method="post" autocomplete="off" id="submitForm"><?= csrf_field() ?>
-                    <!-- <div class="mb-2">
-                        <select class="form-select" name="c_gid" required>
-                            <option value="">-- Select Course Group --</option>
-                            <?php foreach ($course_group as $group) { ?>
-                                <option value="<?php echo $group['sc_cgid'] ?>"><?php echo $group['description'] ?></option>
-                            <?php } ?>
-                        </select>
-                    </div> -->
                     <div class="mb-2">
+                        <label><?= lang('UI_Text.Select_User_Group') ?></label>
                         <select class="form-select" name="u_gid" required>
-                            
+
                             <?php foreach ($user_group as $group) { ?>
                                 <option value="<?php echo $group['sc_cgid'] ?>"><?php echo $group['description'] ?></option>
                             <?php } ?>

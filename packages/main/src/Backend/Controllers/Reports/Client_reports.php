@@ -44,7 +44,13 @@ class Client_reports extends BaseController
         $data = [];
         helper(['form']);
         $clientid = session()->get('client');
-        $year = date('Y');
+
+        $currentYear = (int) date('Y');
+        $selectedYear = (int) ($this->request->getGet('year') ?: $currentYear);
+        if ($selectedYear < 2000 || $selectedYear > $currentYear) {
+            $selectedYear = $currentYear;
+        }
+        $selectedMonth = (int) ($this->request->getGet('month') ?: date('n'));
 
         $data['total_users'] = $this->report_model->total_users($clientid);
         $data['total_courses'] =  $this->report_model->client_courses($clientid);
@@ -54,10 +60,12 @@ class Client_reports extends BaseController
         // $data['total_assgned_courses'] = $this->report_model->get_assigned_courses($clientid);
 
 
-        $data['completed_data'] = $this->report_model->checkrowexists($clientid, 2, $year);
+        $data['completed_data'] = $this->report_model->checkrowexists($clientid, 2, $selectedYear);
 
         //Graph Report
-        $data['Year'] = date('Y');
+        $data['Year'] = $selectedYear;
+        $data['current_year'] = $currentYear;
+        $data['selected_month'] = $selectedMonth;
         echo view('templates/header_view', $data);
         echo view('reports/client_report_view', $data);
         echo view('templates/footer_view');
@@ -232,7 +240,7 @@ class Client_reports extends BaseController
 
 
         session()->setFlashdata('success', lang('Messages.Success_0008'));
-        return redirect()->to(base_url('Reports/client_reports'));
+        return redirect()->to(base_url('Reports/client_reports') . '?year=' . $year . '&month=' . $_POST['month']);
     }
 
     public function report_course_report()

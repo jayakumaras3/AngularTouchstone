@@ -1,3 +1,64 @@
+<style>
+    /* Same rounded-corner + shadow + table look as SCORM/scorm_courses (courses_search_view.php)
+       and other redesigned pages this session. */
+    .attempt-details-card {
+        border: none;
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: 0 0.5rem 1.5rem rgba(50, 58, 70, 0.12);
+    }
+
+    .attempt-details-card table.dataTable thead th {
+        border-bottom: 2px solid #eef2f7;
+        color: #6c757d;
+        font-weight: 700;
+        white-space: nowrap;
+    }
+
+    [data-bs-theme="dark"] .attempt-details-card table.dataTable thead th {
+        border-bottom-color: #424e5a;
+        color: #cedeef;
+    }
+
+    .attempt-details-card table.dataTable tbody td {
+        vertical-align: middle;
+    }
+
+    .attempt-details-card .dataTables_length select {
+        border-radius: .5rem;
+        border: 1px solid #dee2e6;
+        padding: .25rem 1.75rem .25rem .6rem;
+    }
+
+    .attempt-details-card .dataTables_filter input {
+        border-radius: 2rem;
+        border: 1px solid #dee2e6;
+        padding: .4rem .75rem;
+        min-width: 260px;
+    }
+
+    [data-bs-theme="dark"] .attempt-details-card .dataTables_length select,
+    [data-bs-theme="dark"] .attempt-details-card .dataTables_filter input {
+        border-color: #424e5a;
+    }
+
+    .attempt-details-card .pagination .page-link {
+        border: none;
+        margin: 0 2px;
+        border-radius: 0;
+        color: #6658dd;
+    }
+
+    .attempt-details-card .pagination .page-item.active .page-link {
+        background-color: #6658dd;
+        color: #fff;
+    }
+
+    .attempt-details-card .pagination .page-item.disabled .page-link {
+        color: #ced4da;
+        background: transparent;
+    }
+</style>
 <div class="row">
     <div class="col-12">
         <div class="page-title-box">
@@ -15,10 +76,9 @@
 <div class="row">
 
     <div class="col-lg-12">
-        <div class="card">
+        <div class="card attempt-details-card">
             <div class="card-body">
-                <p class="text-muted font-13 mb-4"></p>
-                <table id="alternative-page-datatable" class="table dt-responsive nowrap w-100">
+                <table id="attempt-details-datatable" class="table dt-responsive nowrap w-100">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -28,7 +88,7 @@
                             <th><?php echo lang('UI_Text.Score'); ?></th>
                             <th><?php echo lang('UI_Text.Total_Time'); ?></th>
                             <th><?php echo lang('UI_Text.Details'); ?></th>
-                            <th><?php echo lang('Buttons.Delete'); ?></th>
+                            <th><?php echo lang('UI_Text.Action'); ?></th>
 
                         </tr>
                     </thead>
@@ -102,7 +162,7 @@
                                     <td>
                                         <form class="form-horizontal" action="<?php echo base_url($delete_enrollment) ?>" method="POST"><?= csrf_field() ?>
                                             <input type="hidden" name="sc_uid" value="<?php echo $eachAllCoursesForUsers['sc_uid'] ?>">
-                                            <button type="submit" onclick="return confirm('<?php echo lang('Alert.Aler_002') ?>')" class="btn btn-outline-primary waves-effect btn-xs waves-light"><span class="mdi mdi-trash-can-outline"></span></button>
+                                            <button type="submit" onclick="return confirm('<?php echo lang('Alert.Aler_002') ?>')" class="btn btn-outline-danger rounded-pill waves-effect btn-xs waves-light" title="<?= lang('Buttons.Delete') ?>"><span class="mdi mdi-trash-can-outline"></span></button>
                                         </form>
                                     </td>
                                 <?php } else { ?>
@@ -113,7 +173,7 @@
                                             <form class="form-horizontal" action="<?php echo base_url('User_login/client_users/deletecourseuserdetails') ?>" method="POST"><?= csrf_field() ?>
                                                 <input type="hidden" name="sc_uid" value="<?php echo $eachAllCoursesForUsers['sc_uid'] ?>">
                                                 <input type="hidden" name="id_user" value="<?php echo base64_encode($eachAllCoursesForUsers['student_id']) ?>">
-                                                <button type="submit" onclick="return confirm('<?php echo lang('Alert.Aler_002') ?>')" class="btn btn-outline-danger waves-effect btn-xs waves-light"><span class="mdi mdi-trash-can-outline"></span> <?php echo lang('Buttons.Delete'); ?></button>
+                                                <button type="submit" onclick="return confirm('<?php echo lang('Alert.Aler_002') ?>')" class="btn btn-outline-danger rounded-pill waves-effect btn-xs waves-light"><span class="mdi mdi-trash-can-outline"></span> <?php echo lang('Buttons.Delete'); ?></button>
                                             </form>
                                         </td>
                                     <?php } else { ?>
@@ -175,7 +235,21 @@
     });
 
     $(document).ready(function() {
-        $('#dynamic-table').DataTable();
+        $('#attempt-details-datatable').DataTable({
+            responsive: true,
+            pagingType: 'simple_numbers',
+            language: {
+                search: '_INPUT_',
+                searchPlaceholder: '<?= esc(lang('UI_Text.Search_Courses'), 'js') ?>',
+                lengthMenu: '_MENU_',
+                info: '<?= esc(lang('UI_Text.Datatable_Info'), 'js') ?>',
+                infoEmpty: '<?= esc(lang('UI_Text.Datatable_Info_Empty'), 'js') ?>',
+                paginate: {
+                    previous: "<i class='mdi mdi-chevron-left'>",
+                    next: "<i class='mdi mdi-chevron-right'>"
+                }
+            }
+        });
     });
 </script>
 <script>

@@ -1511,7 +1511,7 @@ class XAPI_courses extends BaseController
             $data['header'] = lang('UI_Text.Course_Report');
         } else {
             $data['show_course_header_link'] = true;
-            $data['course_header'] = 'My Courses';
+            $data['course_header'] = 'Courses';
             $data['course_header_link'] = 'SCORM/scorm_courses';
             $data['header'] = 'Assign Users';
         }

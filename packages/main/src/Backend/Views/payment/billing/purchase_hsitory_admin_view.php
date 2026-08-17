@@ -27,7 +27,7 @@ $sessionclient = session()->get('client');
                                     <th>Order ID</th>
                                     <th>Course Name</th>
                                     <th>Status</th>
-                                    <th>Amount</th>
+                                    <th>Price</th>
                                     <th>Paid On</th>
                                     <th>Invoice PDF</th>
                                     <th>Invoice</th>

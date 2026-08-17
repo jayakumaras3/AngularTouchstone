@@ -403,6 +403,118 @@ class Certification_Portal extends BaseController
         echo view('certification/certification_portal/payment_history', $data);
         echo view('templates/footer_view');
     }
+
+    /**
+     * Admin-only payment history across every user/client.
+     * Restricted to client_id = 1.
+     */
+    private function getAdminPaymentHistoryFilters(): array
+    {
+        return [
+            'user_name'      => $this->request->getGet('user_name'),
+            'email'          => $this->request->getGet('email'),
+            'certificate_id' => $this->request->getGet('certificate_id'),
+            'client_id'      => $this->request->getGet('client_id'),
+            'payment_status' => $this->request->getGet('payment_status'),
+            'date_from'      => $this->request->getGet('date_from'),
+            'date_to'        => $this->request->getGet('date_to'),
+        ];
+    }
+
+    public function adminPaymentHistory()
+    {
+        if ((int) session()->get('client') !== 1) {
+            return $this->forbiddenResponse(
+                'You do not have permission to access this page.'
+            );
+        }
+
+        $filters = $this->getAdminPaymentHistoryFilters();
+
+        $data['paymentHistory'] = $this->CertificationPaymentModel
+            ->getAdminPaymentHistory($filters);
+
+        $data['clientsList']      = $this->CertificationPaymentModel->getAllClientsForFilter();
+        $data['certificatesList'] = $this->CertificationPaymentModel->getAllCertificatesForFilter();
+        $data['filters']          = $filters;
+
+        echo view('templates/header_view', $data);
+        echo view('certification/certification_portal/admin_payment_history', $data);
+        echo view('templates/footer_view');
+    }
+
+    public function adminPaymentHistoryExport()
+    {
+        if ((int) session()->get('client') !== 1) {
+            return $this->forbiddenResponse(
+                'You do not have permission to access this page.'
+            );
+        }
+
+        $filters = $this->getAdminPaymentHistoryFilters();
+
+        $rows = $this->CertificationPaymentModel
+            ->getAdminPaymentHistory($filters);
+
+        $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+        $headings = [
+            'Payment ID',
+            'Order ID',
+            'Razorpay Payment ID',
+            'User Name',
+            'User Email',
+            'Client Name',
+            'Certificate Name',
+            'Amount',
+            'Payment Status',
+            'Payment Date',
+            'Created Date',
+        ];
+
+        $sheet->fromArray($headings, null, 'A1');
+
+        $row = 2;
+
+        foreach ($rows as $payment) {
+
+            $userName = trim(
+                ($payment['user_first_name'] ?? '') . ' ' . ($payment['user_last_name'] ?? '')
+            );
+
+            $sheet->fromArray([
+                $payment['payment_id'],
+                $payment['razorpay_order_id'],
+                $payment['razorpay_payment_id'],
+                $userName,
+                $payment['user_email'],
+                $payment['client_name'],
+                $payment['cert_name'],
+                $payment['final_amount'],
+                $payment['payment_status'],
+                !empty($payment['last_updated_on']) ? date('d M Y H:i', $payment['last_updated_on']) : '',
+                !empty($payment['createdon']) ? date('d M Y H:i', $payment['createdon']) : '',
+            ], null, 'A' . $row);
+
+            $row++;
+        }
+
+        foreach (range('A', 'K') as $col) {
+            $sheet->getColumnDimension($col)->setAutoSize(true);
+        }
+
+        $filename = 'Admin_Payment_History_' . date('Y-m-d_His') . '.xlsx';
+
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header("Content-Disposition: attachment; filename=\"$filename\"");
+        header('Cache-Control: max-age=0');
+
+        $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
+        $writer->save('php://output');
+        exit();
+    }
+
     public function assessmentLauncher($certificateId)
     {
         $certificate = $this->Certification_model->getCertificateById($certificateId);

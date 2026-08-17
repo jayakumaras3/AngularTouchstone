@@ -51,7 +51,7 @@ if (!empty($access_requests) && is_array($access_requests)) {
 
     [data-bs-theme="dark"] .access-requests-card .dataTables_length select,
     [data-bs-theme="dark"] .access-requests-card .dataTables_filter input {
-        border-color: #36404a;
+        border-color: #424e5a;
     }
 
     .access-requests-card .pagination .page-link {

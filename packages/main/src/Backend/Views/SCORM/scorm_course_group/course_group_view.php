@@ -55,7 +55,7 @@
 
     [data-bs-theme="dark"] .settings-section .dataTables_length select,
     [data-bs-theme="dark"] .settings-section .dataTables_filter input {
-        border-color: #36404a;
+        border-color: #424e5a;
     }
 
     /* Square pagination buttons (courses_search_view.php rounds these; this table keeps them square). */
@@ -75,11 +75,10 @@
             </div>
             <h4 class="page-title"><?= lang('UI_Text.Course_Groups') ?></h4>
         </div>
-        <div class="persistent-warning">
-            <div class="danger-text">
-                <?php echo lang('Statements.State_0005'); ?>
-            </div>
-        </div>
+        <!-- <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <?php echo lang('Statements.State_0005'); ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div> -->
     </div>
 </div>
 

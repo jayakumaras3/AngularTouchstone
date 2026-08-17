@@ -54,6 +54,7 @@ return [
     'Success_0052' => 'User enrolled successfully!',
     'Success_0053' => 'Users enrolled successfully!',
     'Success_0054' => 'Course duplicated successfully!',
+    'Success_0055' => 'File Uploaded Successfully',
 
     'Error_0001' => 'Error! Contact admin.',
     'Error_0002' => 'No courses from the group got added.',
@@ -80,6 +81,7 @@ return [
 	'Error_0023' => 'Demo link expired. Contact Sales.',
 	'Error_0024' => 'Course not found',
 	'Error_0025' => 'Something Went Wrong! Please contact Site Admin!',
-	'Error_0026' => "Your Browser Don't support FormData API! Use IE 10 or Above!"
+	'Error_0026' => "Your Browser Don't support FormData API! Use IE 10 or Above!",
+	'Error_0027' => 'Please complete your two-factor authentication (PAN verification) before editing your profile.'
 ];
 

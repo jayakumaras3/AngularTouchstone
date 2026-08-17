@@ -10,6 +10,21 @@
     <link rel="stylesheet" href="<?= base_url('assets/assets/certification/certification-details.css') ?>">
     <style>
         .payment-wrapper {
+            /* This page is a fixed light-theme design with no dark-mode styling of its
+               own, but it's still wrapped by header_view.php, which sets the root
+               `color-scheme: dark` whenever the site's dark mode is on. Without this,
+               the coupon-code input below (which sets no background of its own) picks
+               up the browser's native dark widget chrome and clashes against this
+               page's hardcoded white/light card. */
+            color-scheme: light;
+            /* The Terms & Conditions checkbox uses Bootstrap's .form-check-input, which
+               is custom-drawn (not native) from these two theme variables - so
+               color-scheme above doesn't touch it. Bootstrap's dark theme redefines
+               them site-wide, turning the checkbox's empty fill into a solid dark
+               square against this page's white card. Pin them back to their light
+               values for everything inside this wrapper regardless of site theme. */
+            --ct-secondary-bg: #fff;
+            --ct-border-color: #dee2e6;
             max-width: 900px;
             margin: 40px auto;
             padding: 0 15px;

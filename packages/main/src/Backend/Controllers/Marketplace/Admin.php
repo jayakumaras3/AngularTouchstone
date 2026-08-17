@@ -325,10 +325,15 @@ class Admin extends BaseController
             $objectives = $course['objective'] ?? '';
             $objectives = str_ireplace(['<br>', '<br/>', '<br />'], "\n", $objectives); // convert <br> to newline
             $objectives = strip_tags($objectives); // remove all HTML tags
+            // strip_tags() only removes tags, not entities like &nbsp;/&amp; left over
+            // from the rich-text editor, so decode those too (then collapse the
+            // resulting non-breaking spaces to normal ones for a clean export).
+            $objectives = str_replace("\xc2\xa0", ' ', html_entity_decode($objectives, ENT_QUOTES, 'UTF-8'));
             $objectives = str_replace('|', "\n• ", $objectives); // convert '|' into bullets
 
             // ✅ Clean description too (remove HTML)
             $description = strip_tags($course['description'] ?? '');
+            $description = str_replace("\xc2\xa0", ' ', html_entity_decode($description, ENT_QUOTES, 'UTF-8'));
 
             $sheet->setCellValue('A' . $row, $course['scourse_id'])
                 ->setCellValue('B' . $row, $course['course_code'])

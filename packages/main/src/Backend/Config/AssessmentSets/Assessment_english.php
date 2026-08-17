@@ -31,7 +31,8 @@ class Assessment_english
         "69" => "Questions",
         "70" => "of",
         "71" => "minutes",
-        "73" =>"<i>Click the image to enlarge it.</i>"
+        "73" => "<i>Click the image to enlarge it.</i>",
+        "74" => "Please select an answer."
 
     );
     // Course level settings
@@ -50,8 +51,9 @@ class Assessment_english
         "62" => 1, // free navigation (master)
         "63" => 0, // page level course completion 
         "74" => 1, //CertificateEnabled
-        "72" =>"Select <b>Next</b> to Continue.",
-         '75' => "LearningAids"
+        "72" => "Select <b>Next</b> to Continue.",
+        '75' => "LearningAids",
+        '76' => "Exit Course",
     );
     public static $assessment_scqmcq_sets = array(
         "59" => "<i>Select the best answer, then click Submit</i>",
@@ -65,6 +67,6 @@ class Assessment_english
         "76" => "<i>Select the best answers, then click Submit</i>",
         "77" => "Submit",
         "78" => "Please select an answer.",
-        "78" => "Please select an answer.",
+        
     );
 }

@@ -219,14 +219,19 @@ $lastModified = !empty($row['last_updated_on']) ? date('d M Y h:i A', (int) $row
 	[data-bs-theme="dark"] .upload-recommend ul li i {
 		color: #4ecb71;
 	}
+
+	.breadcrumb-item-normal {
+		color: var(--ct-body-color);
+		text-decoration: none;
+	}
 </style>
- <div class="row">
+<div class="row">
 	<div class="col-12">
 		<div class="page-title-box">
 			<div class="page-title-right">
 				<ol class="breadcrumb m-0">
 					<li class="breadcrumb-item"><a href="<?php echo base_url($courses_link); ?>"><?= esc($courses_link_label) ?></a></li>
-					<li class="breadcrumb-item"><a href="<?php echo base_url($header_link); ?>"><?= lang('UI_Text.Course_Details') ?></a></li>
+					<li class="breadcrumb-item"><a class="breadcrumb-item-normal" href="<?php echo base_url($header_link); ?>"><?= lang('UI_Text.Course_Details') ?></a></li>
 				</ol>
 			</div>
 			<h4 class="page-title"><?php echo esc($sub_header_1); ?></h4>
@@ -239,7 +244,7 @@ $lastModified = !empty($row['last_updated_on']) ? date('d M Y h:i A', (int) $row
 
 		<div class="d-flex flex-wrap justify-content-between align-items-start mt-2 gap-2">
 			<div>
-				
+
 				<div class="d-flex flex-wrap align-items-center gap-3 font-13 text-muted">
 					<span><i class="mdi mdi-calendar-outline me-1"></i><?= lang('UI_Text.Last_Modified') ?>: <?= esc($lastModified) ?></span>
 				</div>
@@ -361,11 +366,11 @@ $lastModified = !empty($row['last_updated_on']) ? date('d M Y h:i A', (int) $row
 						</div>
 					</div>
 
-					<div class="card settings-section mb-3">
-						<div class="card-body">
-							<h5 class="section-title"><i class="mdi mdi-cog-outline"></i> <?= lang('UI_Text.Course_Configuration') ?></h5>
-							<div class="row align-items-end">
-								<?php if ($client == 1) { ?>
+					<?php if ($client == 1) { ?>
+						<div class="card settings-section mb-3">
+							<div class="card-body">
+								<h5 class="section-title"><i class="mdi mdi-cog-outline"></i> <?= lang('UI_Text.Course_Configuration') ?></h5>
+								<div class="row align-items-end">
 									<div class="col-lg-4 mb-3">
 										<label class="form-label"><?= lang('UI_Text.Course Type') ?></label>
 										<select name="type" class="form-select">
@@ -375,14 +380,19 @@ $lastModified = !empty($row['last_updated_on']) ? date('d M Y h:i A', (int) $row
 									</div>
 									<div class="col-lg-4 mb-3">
 										<label class="form-label"><?= lang('UI_Text.Course Theme') ?></label>
+
 										<select name="theme" class="form-select">
 											<option value="1" <?php echo ($row['theme'] == 1) ? 'selected' : ''; ?>>Default</option>
 											<option value="2" <?php echo ($row['theme'] == 2) ? 'selected' : ''; ?>>ContentforU</option>
-											<option value="3" <?php echo ($row['theme'] == 3) ? 'selected' : ''; ?>>Assessment</option>
+											<option value="3" <?php echo ($row['theme'] == 3) ? 'selected' : ''; ?>>Wabtec</option>
 											<option value="4" <?php echo ($row['theme'] == 4) ? 'selected' : ''; ?>>Knowledge Works</option>
-											<option value="5" <?php echo ($row['theme'] == 5) ? 'selected' : ''; ?>>Assessment Arabic</option>
-											<option value="6" <?php echo ($row['theme'] == 6) ? 'selected' : ''; ?>>Wabtec Default</option>
+											<option value="5" <?php echo ($row['theme'] == 5) ? 'selected' : ''; ?>>Wabtec Arabic</option>
+											<option value="6" <?php echo ($row['theme'] == 6) ? 'selected' : ''; ?>>Wabtec Theme</option>
 											<option value="7" <?php echo ($row['theme'] == 7) ? 'selected' : ''; ?>>Vertical ContentforU</option>
+											<option value="8" <?php echo ($row['theme'] == 8) ? 'selected' : ''; ?>>Modern Theme</option>
+											<option value="9" <?php echo ($row['theme'] == 9) ? 'selected' : ''; ?>>Zydus Theme</option>
+
+
 										</select>
 									</div>
 									<div class="col-lg-4 mb-3">
@@ -400,23 +410,36 @@ $lastModified = !empty($row['last_updated_on']) ? date('d M Y h:i A', (int) $row
 									<div class="col-12">
 										<span class="badge bg-danger">* <?= lang('UI_Text.Only_Touchstone') ?></span>
 									</div>
-								<?php } else { ?>
-									<div class="col-lg-4 mb-3">
-										<label class="form-label"><?= lang('UI_Text.Course Theme') ?></label>
-										<select name="theme" class="form-select">
-											<option value="3" <?php echo ($row['theme'] == 3) ? 'selected' : ''; ?>>Assessment</option>
-											<option value="5" <?php echo ($row['theme'] == 5) ? 'selected' : ''; ?>>Assessment Arabic</option>
-										</select>
-									</div>
-									<?php
-									echo '<input type="hidden" name="theme" value="1">';
-									echo '<input type="hidden" name="demo" value="0">';
-									echo '<input type="hidden" name="type" value="' . $row['type'] . '">';
-									?>
-								<?php } ?>
+								</div>
 							</div>
 						</div>
-					</div>
+					<?php } elseif ($client == 86) { ?>
+						<div class="card settings-section mb-3">
+							<div class="card-body">
+								<h5 class="section-title"><i class="mdi mdi-cog-outline"></i> <?= lang('UI_Text.Course_Configuration') ?></h5>
+								<div class="col-lg-4 mb-3">
+									<label class="form-label"><?= lang('UI_Text.Course Theme') ?></label>
+
+									<select name="theme" class="form-select">
+										<option value="1" <?php echo ($row['theme'] == 1) ? 'selected' : ''; ?>>Touchstone 1</option>
+										<option value="8" <?php echo ($row['theme'] == 8) ? 'selected' : ''; ?>>Touchstone 2</option>
+										<option value="9" <?php echo ($row['theme'] == 9) ? 'selected' : ''; ?>>Zydus Theme</option>
+									</select>
+								</div>
+
+							</div>
+						</div>
+						<?php
+						echo '<input type="hidden" name="demo" value="0">';
+						echo '<input type="hidden" name="type" value="' . $row['type'] . '">';
+						?>
+					<?php } else { ?>
+						<?php
+						echo '<input type="hidden" name="theme" value="1">';
+						echo '<input type="hidden" name="demo" value="0">';
+						echo '<input type="hidden" name="type" value="' . $row['type'] . '">';
+						?>
+					<?php } ?>
 
 					<div class="card settings-section mb-3">
 						<div class="card-body">
@@ -588,7 +611,7 @@ $lastModified = !empty($row['last_updated_on']) ? date('d M Y h:i A', (int) $row
 									}
 								}
 								if ($imagedisplay == 0) {
-								?>
+									?>
 									<form enctype="multipart/form-data" action="<?php echo base_url($form_url_1) ?>"
 										method="post" id="submitForm"><?= csrf_field() ?>
 										<p class="text-danger"><?= lang('Statements.State_0001') ?></p>
@@ -641,7 +664,7 @@ $lastModified = !empty($row['last_updated_on']) ? date('d M Y h:i A', (int) $row
 													<button type="submit" class="btn btn-outline-danger waves-effect btn-sm rounded-pill waves-light"
 														onclick="return confirm('<?php echo lang('Alert.Aler_003') ?>')"><?= lang('Buttons.Delete_Video') ?></button>
 												</form>
-									<?php
+								<?php
 											}
 										}
 									}

@@ -52,7 +52,8 @@ class Assessment_arabic
         "63" => 0, // page level course completion
         "74" => 1, //CertificateEnabled
         "72" => ".حدد <b> التالي </b> للمتابعة",
-        '75' => "LearningAids"
+        '75' => "وسائل تعليمية",
+        '76' => "الخروج من الدورة",
     );
     public static $assessment_scqmcq_sets = array(
         "59" => "<i>حدد الإجابة (الإجابات) الصحيحة، ثم انقر <strong>إرسال</strong></i>",

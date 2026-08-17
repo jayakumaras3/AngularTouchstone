@@ -58,7 +58,7 @@ class Profile extends BaseController
         }
 
         if (!isset($_SESSION['pannumber'])) {
-            session()->setFlashdata('error', lang('Messages.Error_0001'));
+            session()->setFlashdata('error', lang('Messages.Error_0027'));
             return redirect()->to(base_url() . 'etrack/employee_details');
         }
 
@@ -87,7 +87,7 @@ class Profile extends BaseController
             return $response;
         }
         if (!isset($_SESSION['pannumber'])) {
-            session()->setFlashdata('error', lang('Messages.Error_0001'));
+            session()->setFlashdata('error', lang('Messages.Error_0027'));
             return redirect()->to(base_url() . 'etrack/employee_details');
         }
         $id_user = session()->get('id_user');

@@ -16,12 +16,45 @@ if (isset($coursedetails)) {
         $theme = 'WabtecTheme';
     } elseif ($coursedetails[0]['theme'] == '7') {
         $theme = 'Vertical_ContentforU';
+    } elseif ($coursedetails[0]['theme'] == '8') {
+        $theme = 'ModernTheme';
+    } elseif ($coursedetails[0]['theme'] == '9') {
+        $theme = 'ZydusTheme';
     } else {
         $theme = 'Default';
     }
 } else {
     $theme = 'Default';
 }
+/* ModernTheme has been re-published as a complete exported SCORM package: its assets moved
+   from export_themes/ModernTheme/{css,scripts,lib,images,Json}/ down one level into
+   export_themes/ModernTheme/theme/..., alongside a new index.html + imsmanifest.xml + .xsd
+   schemas at the package root. The old flat paths no longer exist, so every theme URL built
+   below was 404ing until this extra segment was added.
+   Verified before gating: the other 8 folders in export_themes/ still use the old flat
+   layout (css/ and content.html at their root), so the segment MUST be ModernTheme-only --
+   applying it globally would 404 every other theme. Resolved once here rather than inline at
+   each URL, so there is a single place to update if another theme is re-published this way.
+   Everything inside theme/ kept its original names (css/, scripts/, lib/, images/, Json/,
+   and all 14 CSS filenames), so only this prefix changed. */
+$themePath = ($theme === 'ModernTheme') ? $theme . '/theme' : $theme;
+/* ZydusTheme is a colour-fork of the updated ModernTheme, not a separate design system.
+   Verified by hashing every file in both packages: of ZydusTheme's 136 files only 16 differ
+   from their ModernTheme counterpart, and every one of those differs solely in brand colour
+   (content.html, main.js, footerBarController.js, 8 stylesheets, 3 SVGs) or line endings
+   (menuRowClick.js, CRLF vs LF, byte-identical otherwise). The DOM contract Preview targets
+   is present in ZydusTheme/css/Color.css at identical occurrence counts: #Tmenu.sideBar 102,
+   .toc-row-item 38, #sideBarHeader 44, .headingArea 31, .pageHeaderText 8, tickSymbol 20,
+   aria-selected 15. The two selector sets are identical apart from Zydus adding :root/a/a:focus.
+   So the whole Preview integration below is theme-family behaviour, not ModernTheme branding,
+   and gating it on ModernTheme alone left ZydusTheme rendering the legacy Preview UI.
+   Colour still comes from the theme's own stylesheets - every override below either reuses a
+   theme token (var(--menu-brand), which Zydus defines as var(--zydus-primary)) or sets a
+   non-colour property, so widening this gate carries no ModernTheme colour into Zydus.
+   $themePath deliberately stays ModernTheme-only: ModernTheme is the one folder re-published
+   with a nested theme/ directory; ZydusTheme still uses the flat layout Export's copyFolder()
+   expects. */
+$isModernFamily = ($theme === 'ModernTheme' || $theme === 'ZydusTheme');
 ?>
 <!DOCTYPE html>
 <html lang="en" data-layout="horizontal" data-topbar-color="light">
@@ -38,39 +71,61 @@ if (isset($coursedetails)) {
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
 
-    <link href="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $theme ?>/css/bootstrap.css" rel="stylesheet">
-    <link href="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $theme ?>/css/custom.css" rel="stylesheet">
-    <link href="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $theme ?>/css/Color.css" rel="stylesheet">
-    <link href="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $theme ?>/css/content.css" rel="stylesheet">
-    <link href="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $theme ?>/css/footer.css" rel="stylesheet">
-    <link href="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $theme ?>/css/mobile.css" rel="stylesheet">
-    <link href="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $theme ?>/css/toc.css" rel="stylesheet">
-    <link href="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $theme ?>/css/certification.css" rel="stylesheet">
-    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $theme ?>/lib/angular-1.5.8/angular.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $theme ?>/lib/angular-1.5.8/angular-route.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $theme ?>/lib/angular-1.5.8/angular-sanitize.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $theme ?>/lib/radialIndicator.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $theme ?>/lib/angular.radialIndicator.js"></script>
-    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $theme ?>/lib/jquery-3.1.1.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $theme ?>/lib/bootstrap.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $theme ?>/lib/preloadjs/assets/src/common/Proxy.js"></script>
-    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $theme ?>/lib/preloadjs/assets/src/common/Extend.js"></script>
-    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $theme ?>/lib/preloadjs/assets/src/common/EventDispatcher.js"></script>
-    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $theme ?>/lib/preloadjs/assets/src/SoundInstance.js"></script>
-    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $theme ?>/lib/preloadjs/assets/src/Preloadjs.js"></script>
-    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $theme ?>/lib/preloadjs/assets/src/Soundjs.js"></script>
-    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $theme ?>/lib/createjs-2015.11.26.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $theme ?>/scripts/service/globalSettingService.js"></script>
-    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $theme ?>/scripts/service/globalVariableService.js"></script>
-    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $theme ?>/scripts/controller/sideBarController.js"></script>
-    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $theme ?>/scripts/controller/footerBarController.js"></script>
-    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $theme ?>/scripts/controller/contentController.js"></script>
-    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $theme ?>/scripts/controller/certificateController.js"></script>
-    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $theme ?>/scripts/controller/mainBarController.js"></script>
-    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $theme ?>/scripts/controller/loginController.js"></script>
-    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $theme ?>/scripts/app.js"></script>
-    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $theme ?>/scripts/main.js"></script>
-    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $theme ?>/scripts/jMain.js"></script>
+    <?php if ($isModernFamily): ?>
+    <?php /* Exact stylesheet set and order of the exported ModernTheme player, taken from a
+             real exported package's entry point (course-packages/DocheckPre/index.html):
+                 bootstrap -> sideBar -> content -> footer -> custom -> mobile -> toc -> Color
+             Differences this corrects versus what Preview loaded before:
+               - sideBar.css must be 2nd (it was 7th, so it wrongly overrode content.css)
+               - custom.css must be 5th (it was 2nd)
+               - certificate.css is NOT part of the exported set, so it is not loaded here
+                 (that also removes the 404 it was producing)
+             Color-FIXED.css is deliberately absent: the export does not load it, Color.css
+             is the live override layer and must stay last. */ ?>
+    <link href="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/css/bootstrap.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/css/sideBar.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/css/content.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/css/footer.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/css/custom.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/css/mobile.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/css/toc.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/css/Color.css" rel="stylesheet">
+    <?php else: ?>
+    <?php /* Every other theme keeps the original order and set, unchanged. */ ?>
+    <link href="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/css/bootstrap.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/css/custom.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/css/Color.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/css/content.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/css/footer.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/css/mobile.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/css/toc.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/css/certification.css" rel="stylesheet">
+    <?php endif; ?>
+    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/lib/angular-1.5.8/angular.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/lib/angular-1.5.8/angular-route.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/lib/angular-1.5.8/angular-sanitize.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/lib/radialIndicator.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/lib/angular.radialIndicator.js"></script>
+    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/lib/jquery-3.1.1.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/lib/bootstrap.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/lib/preloadjs/assets/src/common/Proxy.js"></script>
+    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/lib/preloadjs/assets/src/common/Extend.js"></script>
+    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/lib/preloadjs/assets/src/common/EventDispatcher.js"></script>
+    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/lib/preloadjs/assets/src/SoundInstance.js"></script>
+    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/lib/preloadjs/assets/src/Preloadjs.js"></script>
+    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/lib/preloadjs/assets/src/Soundjs.js"></script>
+    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/lib/createjs-2015.11.26.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/scripts/service/globalSettingService.js"></script>
+    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/scripts/service/globalVariableService.js"></script>
+    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/scripts/controller/sideBarController.js"></script>
+    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/scripts/controller/footerBarController.js"></script>
+    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/scripts/controller/contentController.js"></script>
+    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/scripts/controller/certificateController.js"></script>
+    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/scripts/controller/mainBarController.js"></script>
+    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/scripts/controller/loginController.js"></script>
+    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/scripts/app.js"></script>
+    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/scripts/main.js"></script>
+    <script src="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/scripts/jMain.js"></script>
     <script type='text/javascript' src="<?php echo base_url(); ?>/public/assets/ckeditor/ckeditor.js"></script>
 
     <style>
@@ -821,8 +876,472 @@ if (isset($coursedetails)) {
             }
         }
     </script>
+    <?php if ($isModernFamily): ?>
+    <style>
+        /* Footer Prev/Next/Learning-Aids keyboard focus. The controls were already
+           Tab-reachable and Enter/Space-activatable (they are real <button type="submit">
+           elements, and #resource1 has role=button + tabindex=0 with its own key handler) --
+           what was missing was a VISIBLE focus indicator, i.e. WCAG 2.4.7. Cause: the
+           buttons carried an inline `all: unset`, which resets outline-style to none. Being
+           an inline style it also outranked any stylesheet rule, so the ring could not be
+           restored from CSS without !important; the inline declaration was therefore
+           narrowed (in page_video_view.php) to only the resets actually needed
+           (background/border/padding/margin), leaving `outline` alone. No !important needed.
+           Values below are the theme's own focus treatment, taken from its #TmenuIcon rule so
+           the footer matches the header's existing convention rather than introducing a new
+           one. The colour is a theme token rather than a literal: that #TmenuIcon rule is
+           per-theme (ModernTheme Color.css:136-140 declares #2456d6, ZydusTheme Color.css:
+           173-177 declares #00A0A5), so the copied literal that used to sit here would have
+           painted ModernTheme's blue ring onto the teal Zydus player.
+           --brand, NOT --menu-brand: both themes define --menu-brand inside the
+           `#Tmenu.sideBar { ... }` rule (ModernTheme Color.css:2241, ZydusTheme :2278), so it
+           only inherits to sidebar descendants. .footer and #resource1 sit outside #Tmenu, so
+           var(--menu-brand) there would be invalid at computed-value time and `outline` would
+           fall back to its unset value - i.e. NO ring at all, a worse WCAG 2.4.7 failure than
+           a wrong colour. --brand is declared at :root by both (ModernTheme Color.css:10
+           #005E80, ZydusTheme :31 var(--zydus-primary) #006366) so it resolves document-wide.
+           The literal fallback keeps a ring visible if a future theme drops the token.
+           Known deliberate delta: ModernTheme's ring goes #2456d6 -> #005E80, which is that
+           theme's own --brand/--menu-brand value, so it is more on-brand, not less.
+           Note .footer > div applies
+           filter: contrast(1.15) brightness(0.62), which darkens the ring slightly - it is
+           inherited by descendants and cannot be escaped without moving the indicator off
+           the control, so it is accepted rather than fought. */
+        .footer > div > form > button:focus-visible,
+        #resource1:focus-visible {
+            outline: 2px solid var(--brand, #2456d6);
+            outline-offset: 3px;
+            border-radius: 4px;
+        }
+
+        /* Menu / Transcript tab focus ring. The theme puts its ring on the inner span
+           (`#toc_id > span:focus-visible`, Color.css:2425-2430) because that span is what it
+           makes focusable. Preview makes the role="tab" DIV the focusable control instead -
+           required, because the theme's own active/inactive tab styling keys off aria-selected
+           on that div (Color.css:2387-2390 / 2408-2409) - so the ring has to move with focus.
+           Declarations are copied verbatim from that theme rule, variable included; nothing is
+           invented, and the theme's span rule simply never matches now. */
+        #Tmenu.sideBar #sideBarHeader > #toc_id:focus-visible,
+        #Tmenu.sideBar #sideBarHeader > #trans_id:focus-visible {
+            outline: 2px solid var(--menu-brand);
+            outline-offset: 3px;
+            border-radius: 8px;
+        }
+
+        /* No menu-row focus rule here by design. span.toc-row-item now carries
+           role="button" tabindex="0" itself (matching the theme), so the theme's OWN
+           `.toc-row-item:focus-visible` ring (Color.css:2627-2631) matches natively. An
+           earlier `:has(:focus-visible)` workaround lived here to draw that ring on the row
+           while the focusable element was a boxless display:contents <button> inside it; both
+           the workaround and that button are gone. */
+
+        /* Color.css sizes .pageContent as a flex child (height:0; flex:1), but the
+           content blocks below were written for the legacy fixed-header shell and
+           hardcode 86vh/70vh. Neutralise those inside .pageContent only. */
+        .pageContent .iframe-container, .pageContent .responsive-iframe,
+        .pageContent #vidArea, .pageContent video,
+        .pageContent .question_bg, .pageContent .table-center,
+        .pageContent .text-page-container { height: 100% !important; }
+
+        /* jMain.js opens the drawer with an inline `display: block`, which beats
+           Color.css's unscoped `display: flex` and would render the sidebar as a plain
+           block box (its .tocData flex/scroll rules then do nothing). Color.css already
+           ships this exact guard for <=1024px; this extends it to wider viewports. */
+        #Tmenu.sideBar[style*="display: block"] {
+            display: flex !important;
+            flex-direction: column !important;
+        }
+
+    </style>
+    <script>
+        /* Same touch-detection convention the theme already uses in its own
+           QuizTemplate pages (Quiz.html / MCQ.html / SCQ.html); Color.css keys several
+           tablet-landscape rules off html.is-touch-device. */
+        (function () {
+            var isTouch = (navigator.maxTouchPoints > 0) || ('ontouchstart' in window);
+            if (isTouch && window.innerWidth <= 1366) {
+                document.documentElement.classList.add('is-touch-device');
+            }
+        })();
+
+        /* jMain.js's shouldMenuBeForcedClosedForAudioPage() reads the global
+           AudioVersionEnable, which the theme declares in scripts/scormFunctions.js -- a
+           SCORM API wrapper Preview deliberately does not load. Undeclared, that read
+           throws a ReferenceError on the first line of TtoggleMenu(), so the menu button
+           did nothing. Declaring it satisfies the reference without loading SCORM code. */
+        if (typeof window.AudioVersionEnable === 'undefined') {
+            window.AudioVersionEnable = false;
+        }
+    </script>
+    <?php endif; ?>
+    <?php
+    /* Inline knowledge-check pages (page types 5 = SCQ, 6 = MCQ) are rendered inside the
+       course page rather than in the quiz iframe, so they need the theme's own SCQ/MCQ
+       stylesheets. Gated on the page type so these rules never touch other page types. */
+    $isInlineQuestionPage = isset($row['type']) && ($row['type'] == 5 || $row['type'] == 6);
+    ?>
+    <?php if ($isModernFamily && $isInlineQuestionPage): ?>
+    <?php /* Exactly the order the theme's own SCQ.html / MCQ.html use:
+             SCQ|MCQ_style -> Color -> QuestionOptions. Color.css must follow the question
+             stylesheet so .Correct_CR / .Incorrect_CR win over its plain .correct /
+             .incorrect, which is what gives the theme's feedback bars their colours. */ ?>
+    <link href="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/css/<?php echo ($row['type'] == 5) ? 'SCQ_style.css' : 'MCQ_style.css'; ?>" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/css/Color.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/css/QuestionOptions.css" rel="stylesheet">
+    <style>
+        /* Structure only. The inline question markup lives inside the course page's
+           .pageContent, so give the theme's question card room and drop the legacy
+           full-height/background rules that were sized for the old shell. */
+        .pageContent .question_bg { background-image: none; height: auto; }
+        /* The theme's own knowledge-check layout has no bulb icon. */
+        .pageContent .question_bg_question { display: none; }
+        .pageContent .question_bg > table,
+        .pageContent .question_bg > table > tbody,
+        .pageContent .question_bg > table > tbody > tr,
+        .pageContent .question_bg > table > tbody > tr > td { display: block; width: auto; height: auto; }
+        /* Selected-option appearance is NOT declared here on purpose. QuestionOptions.css
+           marks it via [aria-checked="true"], which only the theme's own JS sets, and this
+           block used to substitute a hardcoded `background:#EAF4FF; box-shadow:...#2A78C8`.
+           Those are ModernTheme's blue accents, so once ZydusTheme (a colour-fork whose own
+           accent is teal #00A0A5 / rgba(0,160,165,.06)) started using this block it would
+           have been painted with the wrong brand. The colour now comes from the theme's own
+           stylesheet instead: QuestionOptions.css:91-97 lists `.highlight` in the very same
+           rule as `.answer[aria-checked="true"]`, with identical declarations, and that class
+           is dormant - it appears in exactly one CSS rule and is set by no theme script
+           (nextClassHighlight / navCircleHighlight / exitHighlight are unrelated names). So
+           the delegated script below toggles `.highlight` on the row and each theme supplies
+           its own selected colour with zero duplication here. */
+        /* The theme's own SCQ.html / MCQ.html never load Bootstrap, so its
+           `label { font-weight: bold }` reset does not exist there. Preview does load
+           Bootstrap, which was overriding QuestionOptions.css's option text. */
+        .pageContent .answer label { font-weight: 400; }
+
+        /* Correct-answer indicator. The quiz JS marks the right option by adding the
+           legacy `.correct_option` class to its <label>; that class carries a bright
+           green background from this file's inline block, which painted a bar across the
+           label instead of the theme's tick. Neutralise it inside .answer only, and
+           instead reveal QuestionOptions.css's own .tickSymbol (its green SVG, its
+           --before-visibility switch) in the 20px slot every row already reserves - so
+           the tick is centred in the row and never overlaps the input or the text. */
+        .pageContent .answer .correct_option { background-color: transparent; }
+        .pageContent .answer:has(.correct_option) .tickSymbol { --before-visibility: visible; }
+
+        /* Hover. QuestionOptions.css already supplies the theme's hover background
+           (.btn:hover etc -> #00587A); the only thing missing is the text colour, because
+           Bootstrap 3's `.btn:focus, .btn:hover { color: #333 }` has the same specificity
+           and QuestionOptions never re-declares `color`, so the label turned dark grey.
+           The theme's pages never load Bootstrap, so restore its white text only here. */
+        .pageContent .btn:hover, .pageContent .btn:focus,
+        .pageContent .retrybtn:hover, .pageContent .retrybtn:focus { color: #ffffff; }
+
+        /* In the theme, Submit/Try-Again are siblings of .options; here they sit inside it
+           (the form is display:contents), and .options is a flex column, so the default
+           align-items:stretch was widening them to the full row. Opt them out only.
+           Descendant (not child) combinator: the MCQ/SCQ submit button is a grandchild of
+           .option_container (the display:contents <form> sits in between), and `>` only
+           walks the real DOM tree, not the render tree, so it never matched -- MCQ's Submit
+           was stretching to the full options-column width as a result. */
+        .pageContent .option_container .btn,
+        .pageContent .option_container .retrybtn,
+        .pageContent .option_container #submit-btn,
+        .pageContent .option_container #retry-btn { align-self: flex-start; }
+
+        /* Legacy .question_base/.question_stem/.question_instructions/.options rules (this
+           file's earlier unconditional <style> block, ~line 442-507) were never gated for
+           ModernTheme the way .form-check already is in page_video_view.php. Each property
+           below is one the theme's own CSS never re-declares for that class, so it defaults
+           to 0 in the real export; these neutralise the un-gated legacy value back to that
+           same implicit default rather than inventing or duplicating a theme value. */
+        .pageContent .question_base { padding: 0; }
+        .pageContent .question_stem { margin-left: 0; margin-right: 0; }
+        .pageContent .question_instructions { margin-left: 0; margin-right: 0; }
+        .pageContent .options { padding: 0; margin-right: 0; }
+
+        /* SCQ_style/MCQ_style give .correct/.incorrect a legacy `margin-left: 2.5%` and
+           `padding-left: 2.1%`. The theme cancels those because its feedback element is
+           `<p id="feedback">` and `#feedback { margin: 0 }` outranks them; our feedback
+           keeps its own ids (the quiz JS needs them), so cancel the offset the same way -
+           otherwise the bar is indented and overflows the row on the right. */
+        .pageContent .option_container > .feedback { margin-left: 0; padding-left: 16px; }
+    </style>
+    <?php endif; ?>
+    <?php if ($isModernFamily && !empty($isQuizPage)): ?>
+    <?php /* The theme's own Quiz.html loads these two last (Quiz_style -> Color -> QuestionOptions);
+             they must also come after this file's legacy inline <style> block above, which styles
+             the old .options/.quiz_* classes and would otherwise win on equal specificity.
+             Gated on $isQuizPage so quiz rules never bleed into ordinary course pages. */ ?>
+    <link href="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/css/Quiz_style.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/css/Color.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/<?php echo $themePath ?>/css/QuestionOptions.css" rel="stylesheet">
+    <style>
+        /* The legacy faded/disabled state was styled as `.submit-quiz-btn.faded`; the
+           ModernTheme markup drops that class (it carried the old red background), so
+           re-attach the same affordance to the id the quiz JS already toggles. */
+        #submit-quiz-btn.faded { opacity: 0.5; cursor: not-allowed; }
+
+        /* In the theme, Submit sits outside .options; here the form is display:contents so
+           it becomes a flex item of that column, and align-items:stretch would widen it to
+           the full row. Opt just this button out. */
+        .mtQuizArea .options > #submit-quiz-btn { align-self: flex-start; }
+
+        /* Same Bootstrap `.btn:hover { color: #333 }` clash as on the inline pages - keep
+           the theme's hover background, restore its white label. #quizContainer covers the
+           Assessment Start button and the result page's Retry button. */
+        .mtQuizArea .btn:hover, .mtQuizArea .btn:focus,
+        .mtQuizArea .retrybtn:hover, .mtQuizArea .retrybtn:focus,
+        #quizContainer .btn:hover, #quizContainer .btn:focus,
+        #quizContainer .Startpagebtn:hover, #quizContainer .Startpagebtn:focus,
+        #quizContainer .retrybtn:hover, #quizContainer .retrybtn:focus { color: #ffffff; }
+
+        /* Structure only - no theme design values are redefined here. The question view
+           nests its content in a table purely for layout; neutralise that (and the
+           legacy full-viewport padding) so Quiz_style.css's own .questionContainer /
+           .contentWrapper / .options flex rules can take effect on the existing markup. */
+        .mtQuizArea { height: auto; width: auto; padding: 0; }
+        .mtQuizRoot { background: transparent; }
+        <?php /* Chain runs through #quizContainer now that the card is wrapped in it, so these
+                 stay direct-child selectors (they must not affect a table inside the question
+                 content itself). */ ?>
+        .mtQuizArea #quizContainer > table,
+        .mtQuizArea #quizContainer > table > tbody,
+        .mtQuizArea #quizContainer > table > tbody > tr,
+        .mtQuizArea #quizContainer > table > tbody > tr > td { display: block; width: auto; }
+        /* The theme's Quiz question layout has no bulb icon (see quiz.js). */
+        .mtQuizArea .Quiz_question_img { display: none; }
+
+        /* Selected-option appearance is deliberately not declared here - see the matching
+           note in the inline-question block above. It used to hardcode ModernTheme's blue
+           (#EAF4FF / #2A78C8), which would be the wrong brand for ZydusTheme's teal. The
+           delegated script below toggles the theme's own dormant `.highlight` class instead,
+           so the colour comes from each theme's QuestionOptions.css:91-97. */
+    </style>
+    <?php endif; ?>
+    <?php /* No --player-sidebar-width override here by design. Preview must be a clone of the
+             theme, so the sidebar is left entirely to the theme's own responsive rule
+             (Color.css: width: var(--player-sidebar-width) = 20vw, min-width 240px,
+             max-width 380px, plus its own per-breakpoint drawer widths below 1025px). An
+             earlier fixed 305px pin lived here; it was removed because a hardcoded width can
+             only ever match the export at one specific window width and diverges at every
+             other, whereas consuming the theme's variable rescales the tabs, rows, active bar
+             and insets exactly as the export does at any size. */ ?>
+    <?php if ($isModernFamily && ($isInlineQuestionPage || !empty($isQuizPage))): ?>
+    <?php /* Full-row option selection. In the export, the theme's own quiz.js puts an inline
+             onclick on the row div itself (`<div class="answer" onclick="selectOption('answerN')">`
+             - SCQ/quiz.js:42-45, MCQ/quiz.js, Quiz/quiz.js:345/354), which is what makes the whole
+             bordered row a click target there. Preview's rows carry no such handler, so only the
+             <input> and the <label for=...> were clickable natively, leaving real dead zones: the
+             row's own 10px side padding, the 20px .tickSymbol slot, both 12px flex gaps, and the
+             ~8px strips above/below the label's line box inside the 36px-min-height row.
+
+             One delegated listener here rather than three copies, because header.php is the only
+             file shared by all three question flows (launcher -> page_video_view for SCQ/MCQ,
+             quizQuestions -> quiz_questions for Quiz; the latter never loads footer.php).
+
+             Clicks that land on the input or the label are left entirely alone so the browser's
+             native activation stays the only thing acting on them - that is what prevents any
+             double-toggle. Nothing here touches scoring, attempts, retry or SCORM: it only sets
+             .checked, exactly as a real click would, then fires the same `change` event a real
+             click fires so existing listeners (e.g. quiz_questions.php's submit-enable check)
+             behave identically. Disabled inputs are skipped, so the post-submit lock applied by
+             footer.php's disable_radio_btns() keeps rows inert.
+
+             Deliberately NOT adding role/tabindex to the row: unlike the theme (which sets
+             tabindex="-1" on its input because the row is its tab stop), Preview's inputs are
+             real focusable controls with proper <label for> association, so keyboard and
+             screen-reader selection already work. Adding a second tab stop would regress that. */ ?>
+    <script>
+        document.addEventListener('click', function (event) {
+            if (!event.target || !event.target.closest) { return; }
+            var row = event.target.closest('.answer');
+            if (!row) { return; }
+
+            var input = row.querySelector('input[type="radio"], input[type="checkbox"]');
+            if (!input || input.disabled) { return; }
+
+            /* Native handling already covers these two - do not interfere. */
+            if (event.target === input || event.target.closest('label')) { return; }
+
+            if (input.type === 'radio') {
+                if (input.checked) { return; }
+                input.checked = true;
+            } else {
+                input.checked = !input.checked;
+            }
+            input.dispatchEvent(new Event('change', { bubbles: true }));
+        }, false);
+
+        /* Selected-option appearance. The theme's own quiz.js keeps a `.answer` row in sync
+           with its input by setting aria-checked on the row; Preview cannot reuse that path,
+           because the theme also puts role="radio"/role="checkbox" + tabindex="0" on the row
+           and tabindex="-1" on the input (SCQ/quiz.js:43,49 - MCQ/quiz.js:42-53), making the
+           row the widget. Preview instead keeps real native inputs with <label for>, which is
+           why the comment above refuses to add role/tabindex to the row: it already has
+           correct keyboard and screen-reader behaviour and a second tab stop would regress it.
+           Setting aria-checked on a role-less <div> would also be invalid ARIA.
+
+           So this syncs the theme's `.highlight` class instead - the class QuestionOptions.css
+           lists alongside .answer[aria-checked="true"] with the same declarations. Purely a
+           styling hook: no role, no tabindex, no ARIA state, nothing announced, and the
+           accessible checked state still comes from the native input alone.
+
+           One delegated 'change' listener covers every selection path, because a native input
+           click, a <label for> click and the row click above all end in a `change` event. All
+           rows are re-synced on each change so a radio group's previous selection clears. */
+        (function () {
+            function syncSelectedRows() {
+                var rows = document.querySelectorAll('.answer');
+                for (var i = 0; i < rows.length; i++) {
+                    var input = rows[i].querySelector('input[type="radio"], input[type="checkbox"]');
+                    if (!input) { continue; }
+                    if (input.checked) {
+                        rows[i].classList.add('highlight');
+                    } else {
+                        rows[i].classList.remove('highlight');
+                    }
+                }
+            }
+
+            document.addEventListener('change', function (event) {
+                if (!event.target || !event.target.closest) { return; }
+                if (!event.target.closest('.answer')) { return; }
+                syncSelectedRows();
+            }, false);
+
+            /* Initial state, so an option already checked on render (resume/bookmark, or a
+               reloaded page) shows as selected before the learner touches anything. */
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', syncSelectedRows, false);
+            } else {
+                syncSelectedRows();
+            }
+        }());
+    </script>
+    <?php endif; ?>
+    <?php if ($isModernFamily): ?>
+    <?php /* Sidebar menu row clicks. The updated ModernTheme added a "Full-row hit area" rule
+             (Color.css:2564-2570):
+                 #Tmenu.sideBar #tocData > span > li > span.toc-row-item > * { pointer-events: none }
+             In the theme that is safe and deliberate: span.toc-row-item ITSELF carries the
+             controller's inline onclick, and its children really are decorative, so disabling
+             hit-testing on them makes every click resolve to the handler element.
+
+             Preview's row is built the other way round - span.toc-row-item contains a
+             <form> whose <button type="submit"> is the actual handler. pointer-events is an
+             INHERITED property, so `none` on that form propagates to the button and to
+             everything inside it (display:contents on the form does not change inheritance).
+             The whole row interior therefore stopped being hittable, and the click resolved to
+             span.toc-row-item, which in Preview has no handler at all - the reported
+             "menu items do not respond".
+
+             Fixed the same way the theme solves it for its own rows (theme/scripts/
+             menuRowClick.js: delegate from document, then re-invoke the row's EXISTING
+             handler) rather than by fighting the theme's CSS with a higher-specificity
+             pointer-events override. Here that means submitting the row's own untouched form:
+             same action URL, same hidden inputs, same CSRF token, so navigation is identical
+             to a direct button press and no navigation logic is duplicated.
+
+             Keyboard was never affected and is left alone: pointer-events does not block
+             focus, so the real submit button is still reachable by Tab and activates on
+             Enter/Space natively. The button/anchor guard below means that if the theme's CSS
+             ever stops disabling hit-testing, the native submit takes over and this never
+             double-fires. */ ?>
+    <script>
+        document.addEventListener('click', function (event) {
+            if (!event.target || !event.target.closest) { return; }
+
+            /* If the click reached a real control, let it handle itself. */
+            if (event.target.closest('button, a, input, select, textarea')) { return; }
+
+            /* Resolve to the ROW WRAPPER (#tocData > span), not just .toc-row-item, which is
+               what menuRowClick.js's own rowWrapperFrom() does. The completion tick is a
+               sibling grid cell outside .toc-row-item and is itself pointer-events:none
+               (Color.css:2699), so a click on the tick - or on the wrapper's own padding -
+               resolves to the wrapper. Matching there makes the whole row live, exactly as
+               the theme intends. */
+            var wrapper = event.target.closest('#tocData > span');
+            if (!wrapper) { return; }
+
+            /* Locked rows: mirror the theme, which leaves .disabledClass rows inert. */
+            var listItem = wrapper.querySelector('li');
+            if (listItem && listItem.classList.contains('disabledClass')) { return; }
+
+            submitMenuRow(wrapper);
+        }, false);
+
+        /* Shared by the mouse and keyboard paths so the navigation call exists once. */
+        function submitMenuRow(wrapper) {
+            var form = wrapper.querySelector('form');
+            if (!form) { return; }
+
+            if (typeof form.requestSubmit === 'function') {
+                form.requestSubmit();
+            } else {
+                form.submit();
+            }
+        }
+
+        /* Keyboard activation for menu rows. span.toc-row-item is a span with role="button"
+           (the theme's own shape), and a role does NOT confer native key handling - only real
+           <button>/<a> elements activate on Enter/Space - which is why the theme pairs its
+           onclick with onkeydown="tocKeyHandler(event, this)" on that same span. Enter and
+           Space are the two keys the button role must support.
+           Cannot double-fire: a span with role=button emits no synthetic click on key press,
+           so the click listener above is not triggered by this, and the row is no longer
+           inside the form so Enter cannot implicitly submit either. */
+        document.addEventListener('keydown', function (event) {
+            if (event.key !== 'Enter' && event.key !== ' ') { return; }
+            if (!event.target || !event.target.closest) { return; }
+
+            var row = event.target.closest('#tocData > span > li > span.toc-row-item');
+            if (!row) { return; }
+
+            var listItem = row.closest('li');
+            if (listItem && listItem.classList.contains('disabledClass')) { return; }
+            if (row.getAttribute('aria-disabled') === 'true') { return; }
+
+            var wrapper = row.closest('#tocData > span');
+            if (!wrapper) { return; }
+
+            event.preventDefault(); /* stop Space scrolling the sidebar */
+            submitMenuRow(wrapper);
+        }, false);
+    </script>
+    <?php endif; ?>
+    <?php if ($theme === 'ZydusTheme'): ?>
+    <style>
+        /* Launch Screen background image - ZydusTheme only, per request.
+           .contentArea (video/text/etc. pages): .wholeContainer is covered edge-to-edge by
+           .contentArea's own opaque background (Color.css .wholeContainer{background:var(
+           --surface)} vs .contentArea{background:var(--surface-soft)}, no gap/margin between
+           them), so a background placed on the outer wrapper would never actually be visible.
+           .quiz_option_bg (quiz question pages, rendered via SCORM/course_builder/
+           quiz_questions.php) and .quiz_bg (the quiz "Start" intro page, rendered via
+           SCORM/course_builder/quiz_start_page.php) - both have their own top-level wrapper
+           instead of .contentArea, and neither has a background rule anywhere in the theme's
+           own CSS, so they were rendering plain white.
+           background-size:cover fills the available area while preserving the image's aspect
+           ratio; only background-image is set here, so any existing background-color still
+           shows through wherever the image doesn't fully opaque-cover. Pure CSS - no markup,
+           JS, or other themes touched. */
+        .contentArea,
+        .contentArea.fullContentArea,
+        .quiz_option_bg,
+        .quiz_bg {
+            background-image: url('<?php echo base_url('assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/' . $theme . '/images/') . rawurlencode('Background (1).png'); ?>');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    </style>
+    <?php endif; ?>
 </head>
 
 <body>
+    <?php if ($isModernFamily): ?>
+    <?php /* Color.css's .wholeContainer is itself the full-viewport flex column; nesting it
+             inside .container-fluid.full-view (max-width/position:absolute) would fight it. */ ?>
+    <div class="wholeContainer">
+    <?php else: ?>
     <div class="container-fluid full-view">
         <div class="row content">
+    <?php endif; ?>

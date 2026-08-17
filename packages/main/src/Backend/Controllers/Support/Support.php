@@ -118,7 +118,7 @@ class Support extends BaseController
 
     public function admin_support()
     {
-        if ($response =  $this->requireRole(['8'])) {
+        if ($response =  $this->requireRole(['6'])) {
             return $response;
         }
         
@@ -137,7 +137,7 @@ class Support extends BaseController
 
     public function AdminviewTicketDetails()
     {
-        if ($response =  $this->requireRole(['8'])) {
+        if ($response =  $this->requireRole(['6'])) {
             return $response;
         }
         $data = [];

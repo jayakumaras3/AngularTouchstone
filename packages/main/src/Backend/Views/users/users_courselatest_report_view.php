@@ -38,7 +38,7 @@
 
     [data-bs-theme="dark"] .user-report-card .dataTables_length select,
     [data-bs-theme="dark"] .user-report-card .dataTables_filter input {
-        border-color: #36404a;
+        border-color: #424e5a;
     }
 
     .user-report-card .pagination .page-link {
@@ -64,18 +64,20 @@
     <div class="col-6">
         <div class="card user-report-card">
             <div class="card-body">
+                <h4 class="mb-1 header-title"><i class="fe-plus-circle me-1"></i> <?= lang('UI_Text.Assign_Course') ?></h4>
+                <p class="text-muted font-13 mb-3"><?= lang('UI_Text.Assign_Course_Description') ?></p>
                 <form id="addcoursesForm"><?= csrf_field() ?>
                     <div class="row align-items-end">
                         <!-- Course Select -->
                         <div class="col-md-8 mb-3">
-                            <label>
+                            <label for="addcourses_course_select" class="form-label fw-semibold">
                                 <?php echo lang('UI_Text.Learning_Courses') ?>
                                 <span class="text-danger">*</span>
                             </label>
 
                             <input type="hidden" name="scenario" value="0">
 
-                            <select class="form-select select2-multiple"
+                            <select id="addcourses_course_select" class="form-select select2-multiple"
                                 data-toggle="select2"
                                 data-width="100%"
                                 multiple="multiple"
@@ -124,6 +126,7 @@
         <div class="col-12">
             <div class="card user-report-card">
                 <div class="card-body">
+                    <h4 class="mb-3 header-title"><i class="fe-list me-1"></i> <?= lang('UI_Text.Assigned_Courses') ?></h4>
                     <table id="user-report-datatable" class="table dt-responsive nowrap w-100">
                         <thead>
                             <tr class="table-light">

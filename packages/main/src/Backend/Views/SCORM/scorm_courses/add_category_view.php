@@ -110,7 +110,7 @@
                                         <form class="form-horizontal" action="<?php echo base_url($form_url_5) ?>" method="POST"><?= csrf_field() ?>
                                             <input type="hidden" name="status" value="0">
                                             <input type="hidden" name="mc_id" value="<?php echo $eachassigncategory['mc_id'] ?>">
-                                            <button type="submit" class="btn btn-outline-danger rounded-pill waves-effect btn-xs waves-light" onclick="return confirm('<?php echo lang('Alert.Aler_002') ?>')"><span class="mdi mdi-delete"></span> <?= lang('UI_Text.Delete') ?></button>
+                                            <button type="submit" class="btn btn-outline-danger rounded-pill waves-effect btn-xs waves-light" onclick="return confirm('<?php echo lang('Alert.Aler_002') ?>')"><span class="mdi mdi-delete"></span></button>
                                         </form>
                                     </td>
                                 </tr>

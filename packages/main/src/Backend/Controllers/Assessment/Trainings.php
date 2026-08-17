@@ -244,12 +244,12 @@ class Trainings extends BaseController
         }
         if (isset($_POST['page_id'])) {
             $data['page_id'] = $_POST['page_id'];
-            $data['page_number'] = $_POST['page_number'];
+            $data['page_number'] = $_POST['page_number'] ?? null;
             $_SESSION['page_id'] = $data['page_id'];
             $_SESSION['page_number'] = $data['page_number'];
         } elseif (isset($_SESSION['page_id']) || isset($_SESSION['page_number'])) {
-            $data['page_id'] = $_SESSION['page_id'];
-            $data['page_number'] = $_SESSION['page_number'];
+            $data['page_id'] = $_SESSION['page_id'] ?? null;
+            $data['page_number'] = $_SESSION['page_number'] ?? null;
             // $data['question_id'] = $_SESSION['question_id'];
         }
         $data['editpage'] = 'Assessment/trainings/editpage';
@@ -744,7 +744,7 @@ class Trainings extends BaseController
 
         // Final response
         if ($result) {
-            session()->setFlashdata('success', 'All files deleted successfully');
+            session()->setFlashdata('success', 'Deleted successfully');
         } else {
             session()->setFlashdata('error', 'Failed to update database');
         }
@@ -859,6 +859,23 @@ class Trainings extends BaseController
                 ];
                 $result = $this->assessment_training_model->addquestiondetails($newdata);
                 if ($result) {
+                    // Every quiz question needs at least one option, and at least one correct
+                    // option, to be answerable - seed one with placeholder text marked correct
+                    // rather than leaving the question unanswerable until the user adds one
+                    // themselves. Mirrors the same seeding done for new SCQ/MCQ questions and
+                    // the same "at least one correct" rule enforced in
+                    // Assessment_training_model::updateoptioneditableformat() when the user
+                    // later edits/deletes options.
+                    $this->assessment_training_model->addoptiondata([
+                        'scourse_id' => $this->request->getVar('scourse_id'),
+                        'question_id' => $result['question_id'],
+                        'values' => 'Option 1',
+                        'truefalse' => 1,
+                        'status' => '1',
+                        'last_updated_by' => session()->get('id_user'),
+                        'last_updated_on' => time(),
+                    ]);
+
                     $postData['question_id'] = $result['question_id'];
                     $postData['type'] = $data['type'];
                     session()->setFlashdata('post_data', $postData);
@@ -955,12 +972,12 @@ class Trainings extends BaseController
 
         if (isset($_POST['page_id'])) {
             $data['page_id'] = $_POST['page_id'];
-            $data['page_number'] = $_POST['page_number'];
+            $data['page_number'] = $_POST['page_number'] ?? null;
             $_SESSION['page_id'] = $data['page_id'];
             $_SESSION['page_number'] = $data['page_number'];
         } elseif (isset($_SESSION['page_id']) || isset($_SESSION['page_number'])) {
-            $data['page_id'] = $_SESSION['page_id'];
-            $data['page_number'] = $_SESSION['page_number'];
+            $data['page_id'] = $_SESSION['page_id'] ?? null;
+            $data['page_number'] = $_SESSION['page_number'] ?? null;
             // $data['question_id'] = $_SESSION['question_id'];
         }
         if (isset($_POST['tab'])) {
@@ -1017,22 +1034,28 @@ class Trainings extends BaseController
         $getQuestiondatax = $this->assessment_training_model->getQuestionDetails_byQID($data['pagerow']['page_id'], $data['scourse_id']);
         // print_r($getQuestiondatax);
         // exit();
-        if (!empty($getQuestiondatax)) {
-            $data['question_id'] = $getQuestiondatax[0]['q_id'];
-
-            $getQuestiondata = $this->assessment_training_model->geteditquestiondetails($data['question_id']);
-            $data['row'] = $getQuestiondata[0];
-            $data['question_attachment_image'] = $this->assessment_training_model->check_image_file_exists($data['question_id'], 1);
-            $data['question_attachment_video'] = $this->assessment_training_model->check_image_file_exists($data['question_id'], 3);
-            $data['AssessmentQuestionType'] = $this->dropdown_model->getCountrylist(21);
-            $data['allcategories'] = $this->scorm_course_model->getAllMetadata(12);
-            $data['getoptiondata'] = $this->assessment_training_model->getoptiondaata($data['question_id']);
-            $data['CategoryData'] = $this->dropdown_model->getCountrylist(20);
-
-            $data['page_content'] = $this->scorm_page_model->getpagecontent($data['page_number'], $data['scourse_id']);
-
-            $data['page_id'] = $getQuestiondata[0]['page_id'];
+        if (empty($getQuestiondatax)) {
+            // This view assumes a question already exists for the page (it fills $data['row']
+            // from one, unguarded, throughout question_edit_view.php) - a page that was only
+            // just retyped to SCQ/MCQ (rather than created as one) has no question row yet, so
+            // send the user to the course builder instead, which renders this same page safely
+            // via cyu.php's blank "add your first question" form.
+            return redirect()->to(base_url('SCORM/course_builder/Editor'));
         }
+        $data['question_id'] = $getQuestiondatax[0]['q_id'];
+
+        $getQuestiondata = $this->assessment_training_model->geteditquestiondetails($data['question_id']);
+        $data['row'] = $getQuestiondata[0];
+        $data['question_attachment_image'] = $this->assessment_training_model->check_image_file_exists($data['question_id'], 1);
+        $data['question_attachment_video'] = $this->assessment_training_model->check_image_file_exists($data['question_id'], 3);
+        $data['AssessmentQuestionType'] = $this->dropdown_model->getCountrylist(21);
+        $data['allcategories'] = $this->scorm_course_model->getAllMetadata(12);
+        $data['getoptiondata'] = $this->assessment_training_model->getoptiondaata($data['question_id']);
+        $data['CategoryData'] = $this->dropdown_model->getCountrylist(20);
+
+        $data['page_content'] = $this->scorm_page_model->getpagecontent($data['page_number'], $data['scourse_id']);
+
+        $data['page_id'] = $getQuestiondata[0]['page_id'];
         $currentpagenum = $data['pagerow']['page_number'];
         $fk_course_id = $data['pagerow']['fk_course_id'];
         $data['scourse_id'] = $fk_course_id;
@@ -1077,21 +1100,41 @@ class Trainings extends BaseController
                 'page_name' => 'required',
             ];
 
+
             if (!$this->validate($rules)) {
                 $data['coursevalidation'] = $this->validator;
             } else {
-                $newdata = [
-                    'page_name' => $this->request->getVar('page_name'),
-                    'sub_page_main' => $this->request->getVar('sub_page_main'),
-                    'type' => $this->request->getVar('type'),
-                    'status' => $this->request->getVar('status'),
-                    'page_number' => $this->request->getVar('page_number'),
-                    'last_update_by' => session()->get('id_user'),
-                    'last_update_on' => time(),
+                $result = $this->scorm_page_model->updatePageHierarchy(
 
-                ];
-                $result = $this->scorm_page_model->editpagedetails($newdata, $data['page_id']);
+                    $data['page_id'],
+
+                    [
+
+                        'page_name' => $this->request->getVar('page_name'),
+
+                        'type' => $this->request->getVar('type'),
+
+                        'status' => $this->request->getVar('status'),
+
+                        'page_number' => $this->request->getVar('page_number'),
+
+                    ],
+
+                    session()->get('id_user'),
+
+                    time()
+
+                );
                 if ($result) {
+                    if ((int) $this->request->getVar('status') !== 0) {
+
+                        $updatedPage = $this->scorm_page_model->getpagedata($data['page_id']);
+
+                        if (!empty($updatedPage)) {
+
+                            $_SESSION['page_number'] = $updatedPage[0]['page_number'];
+                        }
+                    }
                     session()->setFlashdata('success', lang('Messages.Success_0008'));
                 } else {
                     session()->setFlashdata('error', lang('Messages.Error_0001'));
@@ -1165,18 +1208,37 @@ class Trainings extends BaseController
             if (!$this->validate($rules)) {
                 $data['coursevalidation'] = $this->validator;
             } else {
-                $newdata = [
-                    'page_name' => $this->request->getVar('page_name'),
-                    'type' => $this->request->getVar('type'),
-                    'status' => $this->request->getVar('status'),
-                    'page_number' => $this->request->getVar('page_number'),
-                    'last_update_by' => session()->get('id_user'),
-                    'last_update_on' => time(),
+                $result = $this->scorm_page_model->updatePageHierarchy(
 
-                ];
-                $result = $this->scorm_page_model->editpagedetails($newdata, $data['page_id']);
+                    $data['page_id'],
 
+                    [
+
+                        'page_name' => $this->request->getVar('page_name'),
+
+                        'type' => $this->request->getVar('type'),
+
+                        'status' => $this->request->getVar('status'),
+
+                        'page_number' => $this->request->getVar('page_number'),
+
+                    ],
+
+                    session()->get('id_user'),
+
+                    time()
+
+                );
                 if ($result) {
+                    if ((int) $this->request->getVar('status') !== 0) {
+
+                        $updatedPage = $this->scorm_page_model->getpagedata($data['page_id']);
+
+                        if (!empty($updatedPage)) {
+
+                            $_SESSION['page_number'] = $updatedPage[0]['page_number'];
+                        }
+                    }
 
                     // print_r($_SESSION);
                     // exit();
@@ -1308,35 +1370,42 @@ class Trainings extends BaseController
         } else {
             $data['tab'] = 1;
         }
-        $category = $this->request->getVar('category');
-        $category_1 = isset($category) ? $category : '';
-        $correct = $this->request->getVar('correct');
-        $correct_1 = isset($correct) ? ($correct) : '';
-        $incorrect = $this->request->getVar('incorrect');
-        $incorrect_1 = isset($incorrect) ? ($incorrect) : '';
-        $incorrect2 = $this->request->getVar('incorrect2');
-        $incorrect_2 = isset($incorrect2) ? ($incorrect2) : '';
-        $noAttempts = $this->request->getVar('noAttempts');
-        $noAttempts_1 = isset($noAttempts) ? $noAttempts : '';
-        $quiz_type = $this->request->getVar('quiz_type');
-        $quiz_type_1 = isset($quiz_type) ? $quiz_type : '';
-        $score = $this->request->getVar('score');
-        $score_1 = isset($score) ? $score : '';
-
+        // Only touch a column when its form actually posted it - the Quiz Type selector
+        // (Quiz page type) and the Correct/Incorrect feedback boxes (SCQ/MCQ page type) now
+        // save independently of each other, so an unconditional $newdata here would silently
+        // blank out whichever group wasn't part of the request that just submitted.
         $newdata = [
-            'category' => $category_1,
-            'score' => $score_1,
-            'quiz_type' => $quiz_type_1,
-            'correct' => $correct_1,
-            'incorrect2' => $incorrect_2,
-            'incorrect' => $incorrect_1,
-            'noAttempts' => $noAttempts_1,
             'last_updated_by' => session()->get('id_user'),
             'last_updated_on' => time(),
         ];
-        // print_r($newdata);
-        // exit();
+        if ($this->request->getVar('category') !== null) {
+            $newdata['category'] = $this->request->getVar('category');
+        }
+        if ($this->request->getVar('correct') !== null) {
+            $newdata['correct'] = $this->request->getVar('correct');
+        }
+        if ($this->request->getVar('incorrect') !== null) {
+            $newdata['incorrect'] = $this->request->getVar('incorrect');
+        }
+        if ($this->request->getVar('incorrect2') !== null) {
+            $newdata['incorrect2'] = $this->request->getVar('incorrect2');
+        }
+        if ($this->request->getVar('noAttempts') !== null) {
+            $newdata['noAttempts'] = $this->request->getVar('noAttempts');
+        }
+        if ($this->request->getVar('quiz_type') !== null) {
+            $newdata['quiz_type'] = $this->request->getVar('quiz_type');
+        }
+        if ($this->request->getVar('score') !== null) {
+            $newdata['score'] = $this->request->getVar('score');
+        }
         $result = $this->assessment_training_model->updatequestiondetails($newdata, $data['question_id']);
+        // Switching a question's type to SCQ (112) - e.g. from MCQ, which allows several
+        // correct options - must leave it with exactly one correct option per the SCQ
+        // standard, so force it back down to just "Option 1" here.
+        if (isset($newdata['quiz_type']) && (string) $newdata['quiz_type'] === '112') {
+            $this->assessment_training_model->enforceSingleCorrectOption($data['question_id']);
+        }
         if ($result) {
             session()->setFlashdata('success', lang('Messages.Success_0008'));
         } else {
@@ -1366,10 +1435,22 @@ class Trainings extends BaseController
         ];
         $result = $this->assessment_training_model->updatequestiondetails($newdata, $q_id);
         if ($result) {
+            if ($this->request->isAJAX()) {
+                return $this->response->setJSON([
+                    'status' => 'OK',
+                    'message' => lang('Messages.Success_0005'),
+                ]);
+            }
             session()->setFlashdata('success', lang('Messages.Success_0005'));
             return redirect()->to(base_url() . 'SCORM/course_builder/Editor');
             // return redirect()->to(base_url() . 'Assessment/trainings/question_list_view');
         } else {
+            if ($this->request->isAJAX()) {
+                return $this->response->setStatusCode(422)->setJSON([
+                    'status' => 'ERROR',
+                    'message' => lang('Messages.Error_0001'),
+                ]);
+            }
             session()->setFlashdata('error', lang('Messages.Error_0001'));
             session()->setFlashdata('alert-class', 'alert-danger');
             return redirect()->to(base_url() . 'SCORM/course_builder/Editor');
@@ -1451,9 +1532,8 @@ class Trainings extends BaseController
         $data = [];
         $data['main_header'] = 'Courses';
         $data['main_header_link'] = 'SCORM/scorm_courses';
-        $data['header'] = 'Pages';
+        $data['header'] = 'Course Builder';
         $data['header_link'] = 'SCORM/course_builder/Editor';
-        $data['sub_header_1'] = 'Add Option';
         $data['header_1'] = 'Questions';
 
         if (isset($_POST['question_id'])) {
@@ -1499,6 +1579,18 @@ class Trainings extends BaseController
         $getQuestiondata = $this->assessment_training_model->geteditquestiondetails($data['question_id']);
         $data['row'] = $getQuestiondata[0];
         $data['getCourseData'] = $this->scorm_course_model->getCourseDetails($data['row']['scourse_id']);
+
+        // "Edit Quiz (2/10)" - this question's position among all questions on the page, and
+        // the page's total question count.
+        $pageQuestions = $this->assessment_training_model->getpagequestion($data['page_id']);
+        $questionPosition = 1;
+        foreach ($pageQuestions as $index => $pageQuestion) {
+            if ((string) $pageQuestion['q_id'] === (string) $data['question_id']) {
+                $questionPosition = $index + 1;
+                break;
+            }
+        }
+        $data['sub_header_1'] = 'Edit Quiz (' . $questionPosition . '/' . count($pageQuestions) . ')';
 
         $data['getoptiondata'] = $this->assessment_training_model->getoptiondaata($data['question_id']);
         $data['AssessmentQuestionType'] = $this->dropdown_model->getCountrylist(21);
@@ -1635,7 +1727,10 @@ class Trainings extends BaseController
         $id = $_POST['id'];
         $scourse_id = $_POST['scourse_id'];
         $question_id = $_POST['question_id'];
-        $result = $this->assessment_training_model->addoptioneditableformat($value, $column, $id, $scourse_id, $question_id);
+        // Optional - only sent when adding an option from the SCQ/MCQ editor, so this new
+        // option's default correctness can depend on the question type (see model method).
+        $pageType = isset($_POST['page_type']) ? $_POST['page_type'] : null;
+        $result = $this->assessment_training_model->addoptioneditableformat($value, $column, $id, $scourse_id, $question_id, $pageType);
         echo json_encode($result);
     }
     function editoption()
@@ -1826,7 +1921,7 @@ class Trainings extends BaseController
         $data['header_link'] = 'SCORM/course_builder/Editor';
         $data['header_1'] = 'Questions';
         $data['header_link_1'] = 'Assessment/trainings/question_list_view';
-        $data['sub_header_1'] = 'Assessment Settings';
+        $data['sub_header_1'] = lang('UI_Text.CB_Quiz_Settings');
         $data['form_link'] = 'Assessment/trainings/addQuestionsBank';
 
         $data['typeval'] = 8;
@@ -2324,14 +2419,14 @@ class Trainings extends BaseController
             );
 
             $result = $this->assessment_training_model->add_settings($data);
+            // This endpoint is only ever called via fetch() from assessment_settings_view.php's
+            // auto-save fields - it needs the newly inserted row's s_id back so the next edit to
+            // the same field deactivates the row that's actually current, not the one that was
+            // current when the page first loaded.
             if ($result) {
-                session()->setFlashdata('success', lang('Messages.Success_0011'));
-            } else {
-                session()->setFlashdata('error', lang('Messages.Error_0001'));
-                session()->setFlashdata('alert-class', 'alert-danger');
+                return $this->response->setJSON(['status' => 'OK', 's_id' => $result]);
             }
-
-            return redirect()->to(base_url() . 'Assessment/trainings/assessment_settings');
+            return $this->response->setJSON(['status' => 'Error']);
         }
     }
     function export_questions_excel()
@@ -2450,7 +2545,13 @@ class Trainings extends BaseController
 
 
         $today_dt = date("Y-m-d_H-i-sa");
-        $filename = $data['course_name'] . '_' . $today_dt . '.xlsx';
+        // Course names can contain characters that are invalid in a filesystem path (e.g. ":",
+        // "/", "?"), which made $writer->save() below fail to create the file at all, hence the
+        // generic "Error: File not created." - same sanitization already used for this same
+        // reason in generate_transcript_pdf()'s filename above.
+        $safeCourseName = preg_replace('/[\\\\\/:*?"<>|]+/', '_', $data['course_name']);
+        $safeCourseName = ($safeCourseName !== '' ? $safeCourseName : 'questions');
+        $filename = $safeCourseName . '_' . $today_dt . '.xlsx';
         $writer = new Xlsx($spreadsheet);
 
 
@@ -2513,8 +2614,8 @@ class Trainings extends BaseController
         } else {
             return redirect()->to(base_url() . 'Assessment/trainings');
         }
-        $data['header_1'] = 'Questions';
-        $data['header_link_1'] = 'Assessment/trainings/question_list_view';
+        $data['header_1'] = 'Course Builder';
+        $data['header_link_1'] = 'SCORM/course_builder/Editor';
         echo view('templates/header_view', $data);
         echo view('assessment/import_questions_excel', $data);
         echo view('templates/footer_view');
@@ -2607,7 +2708,13 @@ class Trainings extends BaseController
                             session()->setFlashdata('alert-class', 'alert-danger');
                         }
                     }
-                    return redirect()->to(base_url() . 'Assessment/trainings/question_list_view');
+                    // Land back on the Quiz tab in the (modern) course builder editor - not the
+                    // old, separately-styled question_list_view page this used to redirect to,
+                    // which broke out of the course-builder editing flow the import was started
+                    // from. $_SESSION['page_id'] (set above) and $_SESSION['crid'] (set when the
+                    // course was first opened in the editor) are enough for Editor::index() to
+                    // resolve back to this same quiz page.
+                    return redirect()->to(base_url() . 'SCORM/course_builder/Editor');
                 }
             }
             echo view('templates/header_view', $data);
@@ -2698,10 +2805,12 @@ class Trainings extends BaseController
                         //     session()->setFlashdata('error', lang('Messages.Error_0008'));
                         // session()->setFlashdata('alert-class', 'alert-danger');
                     }
-                    return redirect()->to(base_url() . 'Assessment/trainings/question_list_view');
+                    // Same fix as importNewquestionsOption() above - return to the Quiz tab in
+                    // the course builder editor instead of the old question_list_view page.
+                    return redirect()->to(base_url() . 'SCORM/course_builder/Editor');
                 } else {
                     session()->setFlashdata('error', lang('Messages.Error_0001'));
-                    return redirect()->to(base_url() . 'Assessment/trainings/question_list_view');
+                    return redirect()->to(base_url() . 'SCORM/course_builder/Editor');
                 }
             }
             echo view('templates/header_view', $data);
@@ -2914,7 +3023,7 @@ class Trainings extends BaseController
     }
     function review_quiz()
     {
-        if ($response =  $this->requireRole(['46', '67', '5', '44'])) {
+        if ($response =  $this->requireRole(['6', '46', '67', '5', '44'])) {
             return $response;
         }
         helper(['form']);
@@ -2949,7 +3058,7 @@ class Trainings extends BaseController
         } else {
             return redirect()->to(base_url() . 'SCORM/course_builder/Editor');
         }
-        $data['header_1'] = 'Development';
+        $data['header_1'] = 'Course Builder';
         $data['header_link_1'] = 'SCORM/course_builder/Editor';
         $questiondata = $this->assessment_training_model->getexportQuestionAnswerdata($data['page_id']);
 
@@ -2961,8 +3070,9 @@ class Trainings extends BaseController
         $data['groupedData'] = $groupedData;
         $maxOptions = 0;
         foreach ($groupedData as $q_id => $options) {
-            $data['maxOptions'] = max($maxOptions, count($options));
+            $maxOptions = max($maxOptions, count($options));
         }
+        $data['maxOptions'] = $maxOptions;
         echo view('templates/header_view', $data);
         echo view('assessment/review_quiz_view', $data);
         echo view('templates/footer_view');

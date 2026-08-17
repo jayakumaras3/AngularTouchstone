@@ -675,10 +675,16 @@ class Scorm_client_model extends Model
     }
     function getUsergroup($group_id)
     {
+        // A user's group-membership row can stay status=1 even after the user
+        // account itself is later deactivated/deleted (nothing cleans it up), so
+        // this must also check the live user record - otherwise assigning the
+        // group to a course re-adds inactive/deleted users every time.
         $builder = $this->db->table("scorm_user_group_assigned as ug");
         $builder->select('ug.user_id');
+        $builder->join('users as u', 'u.id_user = ug.user_id');
         $builder->where('ug.group_id', $group_id);
         $builder->where('ug.status', '1');
+        $builder->where('u.valid', '1');
         $data = $builder->get()->getResultArray();
         return $data;
     }

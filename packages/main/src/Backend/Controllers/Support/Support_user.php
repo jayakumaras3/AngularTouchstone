@@ -456,8 +456,10 @@ class Support_user extends BaseController
             if ($file && $file->isValid() && !$file->hasMoved() && $clientId > 0 && @getimagesize($file->getTempName()) !== false) {
                 $uploadDir = FCPATH . 'assets/assets/uploads/Support/' . $clientId . '/' . $ticketID;
 
-                if (!is_dir($uploadDir)) {
-                    mkdir($uploadDir, 0755, true);
+                if (!is_dir($uploadDir) && !@mkdir($uploadDir, 0755, true) && !is_dir($uploadDir)) {
+                    session()->setFlashdata('error', 'Could not create the upload folder on the server (permission denied). Contact an administrator.');
+                    $this->renderTicketDetails($ticketID, $isAdmin, $userID, $extraData);
+                    return;
                 }
 
                 // getRandomName() sidesteps the original filename entirely, so there's

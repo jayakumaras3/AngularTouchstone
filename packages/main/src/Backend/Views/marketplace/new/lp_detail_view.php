@@ -47,7 +47,7 @@ $banner = (!empty($learning_plan_details['banner']))
 
 <?php if ($totalCourses > 0): ?>
     <div class="row">
-        <div class="col-lg-9">
+        <div class="<?= $canManageLP ? 'col-lg-9' : 'col-lg-12' ?>">
             <!-- Hero -->
             <div class="lpd-hero mb-3" style="background-image:url('<?= $banner ?>');">
                 <div class="lpd-hero-overlay">
@@ -132,8 +132,8 @@ $banner = (!empty($learning_plan_details['banner']))
             <?php endif; ?>
         </div>
 
-        <div class="col-lg-3">
-            <?php if ($canManageLP): ?>
+        <?php if ($canManageLP): ?>
+            <div class="col-lg-3">
                 <!-- Administrator -->
                 <div class="card lpd-admin-card mb-3">
                     <div class="card-body">
@@ -166,8 +166,8 @@ $banner = (!empty($learning_plan_details['banner']))
                         <?php endif; ?>
                     </div>
                 </div>
-            <?php endif; ?>
-        </div>
+            </div>
+        <?php endif; ?>
     </div>
 
     <!-- All Courses -->

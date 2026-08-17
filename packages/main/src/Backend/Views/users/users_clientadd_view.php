@@ -47,7 +47,7 @@ $clientarray = explode(',', $client) ?>
                                 <p class="invalid"><span class="icon"></span> One capitalized letter</p>
                                  <p class="invalid"><span class="icon"></span> One lowercase letter</p>
                                 <p class="invalid"><span class="icon"></span> One number</p>
-                                <p class="invalid"><span class="icon"></span> Special character (!@#$%^&)</p>
+                                <p class="invalid"><span class="icon"></span> Special character (!@#$%^&*()_+-=[]{}|;:<>?)</p>
                             </div>
                         </div>
                     </div>

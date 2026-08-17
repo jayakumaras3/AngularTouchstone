@@ -59,49 +59,43 @@
                               </button>
                               <div class="modal fade" id="createCertificateModal" tabindex="-1" aria-hidden="true">
                                   <div class="modal-dialog modal-lg modal-dialog-centered">
-                                      <div class="modal-content">
+                                      <div class="modal-content create-certificate-modal">
 
-                                          <div class="modal-header">
-                                              <h5 class="modal-title"><?php echo lang('UI_Text.Create_Certification'); ?></h5>
-                                              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                          <div class="modal-header border-0 pb-0">
+                                              <div>
+                                                  <h5 class="modal-title fw-bold"><?php echo lang('UI_Text.Create_Certification'); ?></h5>
+                                                  <p class="text-muted font-13 mb-0"><?= lang('UI_Text.Fill_Details_Create_Certificate') ?></p>
+                                              </div>
+                                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<?= lang('Buttons.Close') ?>"></button>
                                           </div>
 
-                                          <div class="modal-body">
-                                              <form action="<?php echo base_url('Certification/certification_dashboard/add_new_certificate') ?>" method="POST"><?= csrf_field() ?>
-                                                  <?= csrf_field() ?>
+                                          <div class="modal-body pt-2">
+                                              <form id="createCertificateForm3" action="<?php echo base_url('Certification/certification_dashboard/add_new_certificate') ?>" method="POST"><?= csrf_field() ?>
                                                   <div class="mb-3">
-                                                      <label class="form-label"><?php echo lang('UI_Text.Certification_Name'); ?><span class="text-danger"> *</span></label>
+                                                      <label class="form-label fw-semibold"><?php echo lang('UI_Text.Certification_Name'); ?><span class="text-danger"> *</span></label>
                                                       <input type="text" name="name" class="form-control" required>
                                                   </div>
 
                                                   <div class="mb-3">
-                                                      <label class="form-label"><?= lang('UI_Text.Description') ?></label>
+                                                      <label class="form-label fw-semibold"><?= lang('UI_Text.Description') ?></label>
                                                       <textarea class="ckeditor" name="description"></textarea>
                                                   </div>
                                                   <div class="mb-3">
-                                                      <label class="form-label"><?= lang('UI_Text.Duration') ?><span class="text-danger">*</span></label>
+                                                      <label class="form-label fw-semibold"><?= lang('UI_Text.Duration') ?><span class="text-danger">*</span></label>
                                                       <input type="number" name="duration" class="form-control" required>
                                                   </div>
 
-                                                  <!-- <div class="mb-3">
-													<label class="form-label"><?= lang('UI_Text.Certificate_Type') ?></label>
-													<select class="form-select" name="type">
-														<option value="4"><?= lang('UI_Text.Certification') ?></option>
-														<option value="3"><?= lang('UI_Text.Courses') ?></option>
-														<option value="2"><?= lang('UI_Text.Learning_Plan') ?></option>
-														<?php if ($client_id == 1) { ?>
-															<option value="1"><?= lang('UI_Text.Marketplace') ?></option>
-														<?php } ?>
-													</select>
-												</div> -->
-
-                                                  <div class="text-center">
-                                                      <input type="hidden" name="type" value="4">
-                                                      <!-- <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button> -->
-                                                      <button type="submit" class="btn btn-outline-primary btn-xs waves-effect waves-light"><?= lang('Buttons.Submit') ?></button>
-                                                  </div>
-
+                                                  <input type="hidden" name="type" value="4">
                                               </form>
+                                          </div>
+
+                                          <div class="modal-footer border-top">
+                                              <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">
+                                                  <?php echo lang('Buttons.Cancel') ?>
+                                              </button>
+                                              <button type="submit" form="createCertificateForm3" class="btn btn-primary rounded-pill px-4">
+                                                  <?= lang('Buttons.Submit') ?>
+                                              </button>
                                           </div>
 
                                       </div>
@@ -118,3 +112,17 @@
               </div>
           </div>
       </div>
+
+      <style>
+          .create-certificate-modal {
+              border-radius: 18px;
+              border: none;
+              box-shadow: 0 0.5rem 1.5rem rgba(50, 58, 70, 0.2);
+          }
+
+          .create-certificate-modal .form-control,
+          .create-certificate-modal .form-select {
+              border-radius: 10px;
+              padding: 0.55rem 0.9rem;
+          }
+      </style>

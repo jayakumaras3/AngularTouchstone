@@ -237,7 +237,7 @@
                         </div>
                         <div class="form-group col-md-2 mb-2">
                             <label>Page Number</label>
-                            <input type="number" class="form-control col-md-12" name="page_number" placeholder="Page Number" value="<?php echo $pagerow['page_number'] ?>" />
+                            <input type="number" min="1" step="1" class="form-control col-md-12" name="page_number" placeholder="Page Number" value="<?php echo (int) $pagerow['page_number'] ?>" />
                         </div>
                         <div class="form-group col-md-2 mb-2">
                             <label>Status</label>
@@ -298,12 +298,12 @@
 
                             <div class="form-group col-md-2 mb-2">
                                 <label>Page Number</label>
-                                <input type="text" step="0.1" class="form-control col-md-12" name="page_number" placeholder="Page Number" value="<?php echo $pagerow['page_number'] ?>" />
+                                <input type="text" class="form-control col-md-12" name="page_number" placeholder="Page Number" value="<?php echo $pagerow['page_number'] ?>" readonly />
                             </div>
                             <?php if ($sub_page_main != 0) { ?>
                                 <div class="form-group col-md-2 mb-2">
                                     <label>Return Page</label>
-                                    <input type="text" step="0.1" class="form-control col-md-12" name="sub_page_main" placeholder="Return Page" value="<?php echo $pagerow['sub_page_main'] ?>" />
+                                    <input type="text" class="form-control col-md-12" name="sub_page_main" placeholder="Return Page" value="<?php echo $pagerow['sub_page_main'] ?>" readonly />
                                 </div>
                             <?php } else {
                                 echo '<input type="hidden" name="sub_page_main" value="0" />';
@@ -447,6 +447,7 @@ $array  = array_map('intval', str_split($userlevel)); ?>
                                                 data-question-id="<?php echo $questionId; ?>"
                                                 data-type="<?php echo $type; ?>"
                                                 data-current="<?php echo $truefalse; ?>"
+                                                data-option-id="<?php echo $optionId; ?>"
                                                 onclick="toggleTrueFalse(this, '<?php echo $optionId; ?>')">
                                                 <?php echo $btnText; ?>
                                             </button>
@@ -464,8 +465,8 @@ $array  = array_map('intval', str_split($userlevel)); ?>
                                         ?>
 
                                     </td>
-                                    <td contenteditable="true" onBlur="updateDate(this,'status','<?php echo $eachoptiondata['o_id'] ?>')">
-                                        <button type="button" onclick="updateDate('0','status','<?php echo $eachoptiondata['o_id'] ?>')" class="btn btn-outline-danger waves-effect btn-xs waves-light"><span class="mdi mdi-trash-can-outline"></span> Delete</button>
+                                    <td>
+                                        <button type="button" onclick="if (confirm('<?php echo lang('Alert.Aler_002') ?>')) updateDate('0','status','<?php echo $eachoptiondata['o_id'] ?>')" class="btn btn-outline-danger waves-effect btn-xs waves-light"><span class="mdi mdi-trash-can-outline"></span> Delete</button>
                                     </td>
                                 </tr>
                         <?php }
@@ -550,7 +551,7 @@ $array  = array_map('intval', str_split($userlevel)); ?>
                                             </div>
                                             <div class="col-md-4">
                                                 <label>Score</label>
-                                                <input type="text" class="form-control col-md-12" name="score" placeholder="Score" value="<?php echo $row['score'] ?>" />
+                                                <input type="number" min="0" max="100" class="form-control col-md-12" name="score" placeholder="Score" value="<?php echo $row['score'] ?>" oninput="clampScoreInput(this)" />
                                             </div>
 
                                             <div class="col-md-4">
@@ -695,12 +696,13 @@ $array  = array_map('intval', str_split($userlevel)); ?>
 
         if (type === '5' && newStatus === '1') {
             const buttons = document.querySelectorAll(`button[data-question-id="${questionId}"]`);
-            const alreadyCorrect = Array.from(buttons).some(btn =>
+            const currentCorrectBtn = Array.from(buttons).find(btn =>
                 btn.getAttribute('data-current') === '1'
             );
 
-            if (alreadyCorrect) {
-                alert("Only one correct answer is allowed for this single-choice question. Please unselect the current answer before selecting a new one.");
+            if (currentCorrectBtn) {
+                const oldOptionId = currentCorrectBtn.getAttribute('data-option-id');
+                switchCorrectAnswer(oldOptionId, optionId);
                 return;
             }
         }
@@ -708,12 +710,65 @@ $array  = array_map('intval', str_split($userlevel)); ?>
         // Proceed with AJAX update
         updateDate(newStatus, 'truefalse', optionId);
     }
+
+    // Mark the new option correct FIRST. The backend refuses to unmark a "wrong" option if it
+    // would leave zero correct options, so flipping the old one first (while it's still the
+    // only correct one) gets silently rejected - do it in this order instead.
+    function switchCorrectAnswer(oldOptionId, newOptionId) {
+        let scourse_id = '<?php echo $row['scourse_id'] ?>';
+        let question_id = '<?php echo $row['q_id'] ?>';
+        let url = '<?php echo base_url('Assessment/trainings/updatedateformat') ?>';
+
+        $.ajax({
+            url: url,
+            type: 'post',
+            data: {
+                value: '1',
+                column: 'truefalse',
+                id: newOptionId,
+                scourse_id: scourse_id,
+                question_id: question_id
+            }
+        }).done(function() {
+            $.ajax({
+                url: url,
+                type: 'post',
+                data: {
+                    value: '2',
+                    column: 'truefalse',
+                    id: oldOptionId,
+                    scourse_id: scourse_id,
+                    question_id: question_id
+                }
+            }).always(function() {
+                location.reload(true);
+            });
+        }).fail(function() {
+            location.reload(true);
+        });
+    }
 </script>
 
 
 <script>
     function updateScoreValue(newValue) {
         document.getElementById("scoreInput").value = newValue;
+    }
+
+    // min/max on a number input only affect the spinner arrows and form-level validation -
+    // typing or pasting a value directly bypasses them, so clamp on input too.
+    function clampScoreInput(el) {
+        if (el.value === '') return;
+        var value = parseInt(el.value, 10);
+        if (isNaN(value)) {
+            el.value = '';
+            return;
+        }
+        var min = el.min !== '' ? parseInt(el.min, 10) : null;
+        var max = el.max !== '' ? parseInt(el.max, 10) : null;
+        if (min !== null && value < min) value = min;
+        if (max !== null && value > max) value = max;
+        el.value = value;
     }
 </script>
 <script>

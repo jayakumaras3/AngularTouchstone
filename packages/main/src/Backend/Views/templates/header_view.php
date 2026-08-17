@@ -45,7 +45,7 @@ $current_subsubpage = explode('/', uri_string())[2] ?? '';
 
 <head>
     <meta charset="utf-8" />
-    <title>DoChek</title>
+    <title>DOCHEK</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="DoChek - an essential tool for Learning Management" name="description" />
     <meta content="DoChek" name="author" />
@@ -100,6 +100,21 @@ $current_subsubpage = explode('/', uri_string())[2] ?? '';
                dark-appropriate colors - author CSS like background-color on a <select> only
                reaches some of that, not the OS-drawn parts, which is why they stayed white. */
             color-scheme: dark;
+        }
+    </style>
+
+    <!-- Site-wide decorative background: soft wavy gradient (light theme only) in place of
+         the flat --ct-body-bg color. Built as an inline SVG data URI rather than an image
+         asset - a few gradient-filled wave paths, no file to host or keep in sync. Left alone
+         in dark mode so it doesn't fight [data-bs-theme="dark"]'s dark --ct-body-bg above. -->
+    <style>
+        [data-bs-theme="light"] body {
+            background-color: #eef0fb;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900' preserveAspectRatio='xMidYMid slice'%3E%3Crect width='1600' height='900' fill='%23f3f4fb'/%3E%3Cpath d='M0,140 C220,50 420,190 680,120 C940,50 1180,170 1600,70 L1600,0 L0,0 Z' fill='%23dfe2f5'/%3E%3Cpath d='M0,200 C240,100 460,240 720,160 C980,80 1220,220 1600,120 L1600,0 L0,0 Z' fill='%23eceef9' opacity='0.75'/%3E%3Cpath d='M0,900 C260,760 480,860 760,780 C1040,700 1300,820 1600,720 L1600,900 Z' fill='%23dbdef4'/%3E%3Cpath d='M0,900 C220,820 440,900 700,840 C980,770 1260,880 1600,800 L1600,900 Z' fill='%23cbcff1' opacity='0.7'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center top;
+            background-attachment: fixed;
         }
     </style>
 
@@ -260,10 +275,14 @@ $current_subsubpage = explode('/', uri_string())[2] ?? '';
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            z-index: 100;
-            /* Ensure it is above all other content */
+            z-index: 99999;
+            /* Above Bootstrap modals/offcanvas too, so it always blocks input while shown */
             transition: opacity 0.5s ease-out;
             /* Smooth fade-out */
+        }
+
+        [data-bs-theme="dark"] #loading-screen {
+            background-color: #1a2129;
         }
 
         /* Optional: Simple CSS Loader/Spinner */
@@ -667,6 +686,17 @@ $current_subsubpage = explode('/', uri_string())[2] ?? '';
             border-color: #7b82f7 !important;
             color: #fff !important;
         }
+
+        /* DataTables renders its length <select> and filter <input> as plain native
+           elements, not Bootstrap's .form-select/.form-control, so they don't pick up
+           the dark-theme border color Bootstrap defines via CSS variables and are left
+           borderless/low-contrast against the dark background. */
+        [data-bs-theme="dark"] .dataTables_length select,
+        [data-bs-theme="dark"] .dataTables_filter input {
+            border: 1px solid #424e5a !important;
+            background-color: #232b36 !important;
+            color: #cedeef !important;
+        }
     </style>
 </head>
 
@@ -678,9 +708,99 @@ $current_subsubpage = explode('/', uri_string())[2] ?? '';
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('loading-screen').style.display = 'none';
-        });
+        (function() {
+            var overlay = document.getElementById('loading-screen');
+            // True once the user has triggered a real navigation (link click / form submit)
+            // away from this page. While true, this page's own late-firing 'load' event (it
+            // can still be finishing images/plugins when the user clicks something) must NOT
+            // hide the overlay again - otherwise this page flashes back into view for a couple
+            // seconds while the browser is still fetching the next page in the background.
+            var navigating = false;
+            var hideTimer = null;
+
+            function showOverlay() {
+                if (hideTimer) {
+                    clearTimeout(hideTimer);
+                    hideTimer = null;
+                }
+                overlay.style.display = 'flex';
+            }
+
+            // Small grace period before actually hiding, so a page that finishes loading in
+            // a series of quick bursts (images, late plugin init, etc.) doesn't flicker the
+            // overlay on and off - it settles, then fades out once.
+            function hideOverlay() {
+                if (navigating) return;
+                if (hideTimer) clearTimeout(hideTimer);
+                hideTimer = setTimeout(function() {
+                    overlay.style.display = 'none';
+                }, 200);
+            }
+
+            // Hide once the initial page has finished loading.
+            document.addEventListener('DOMContentLoaded', hideOverlay);
+            window.addEventListener('load', hideOverlay);
+            // Covers browser back/forward cache restores, so the overlay never gets stuck.
+            window.addEventListener('pageshow', function() {
+                navigating = false;
+                hideOverlay();
+            });
+            setTimeout(hideOverlay, 4000);
+
+            // Show again the moment the user submits a form or clicks a navigation link -
+            // being on top of everything (see #loading-screen z-index) is what blocks clicks
+            // underneath while it's shown, so nothing extra is needed for that part.
+            //
+            // Forms marked data-download="1" are excluded: their response is a file download
+            // (Content-Disposition: attachment), which never actually navigates the browser
+            // away from this page - so 'load'/'pageshow' would never fire to clear
+            // "navigating" again, leaving the overlay stuck spinning forever (only a manual
+            // refresh, which does navigate, was clearing it). Forms marked data-ajax="1" are
+            // also excluded because their submit handler deliberately stays on this page.
+            // Deliberately NOT capture-phase: a capturing listener on document would run
+            // before the form's own onsubmit="return confirm(...)" (e.g. the delete-course
+            // form), showing the overlay before that handler gets a chance to cancel the
+            // submission. Clicking Cancel there would then leave the overlay stuck forever -
+            // "navigating" never got un-set because no actual navigation followed. Running
+            // in the bubble phase (after the target's own handlers) and checking
+            // defaultPrevented ensures the overlay only shows for submissions that actually
+            // go through.
+            document.addEventListener('submit', function(event) {
+                if (event.defaultPrevented) return;
+                if (event.target && event.target.tagName === 'FORM'
+                    && event.target.getAttribute('data-download') !== '1'
+                    && event.target.getAttribute('data-ajax') !== '1') {
+                    navigating = true;
+                    showOverlay();
+                }
+            });
+
+            document.addEventListener('click', function(event) {
+                var link = event.target.closest ? event.target.closest('a[href]') : null;
+                if (!link || link.hasAttribute('data-bs-toggle') || link.hasAttribute('data-bs-dismiss')) return;
+                if (link.getAttribute('data-download') === '1') return;
+                var href = link.getAttribute('href');
+                if (!href || href.charAt(0) === '#' || href.toLowerCase().indexOf('javascript:') === 0) return;
+                if (link.target && link.target !== '' && link.target !== '_self') return;
+                navigating = true;
+                showOverlay();
+            });
+
+            if (window.jQuery) {
+                jQuery(document).ajaxSend(showOverlay);
+                jQuery(document).ajaxComplete(function() {
+                    // An AJAX call finishing doesn't necessarily mean navigation is happening
+                    // (most of these calls just refresh part of the page), so it's safe to
+                    // drop the guard and hide here even if a click briefly set it.
+                    navigating = false;
+                    hideOverlay();
+                });
+                jQuery(document).ajaxError(function() {
+                    navigating = false;
+                    hideOverlay();
+                });
+            }
+        })();
     </script>
 
     <?php  //print_r($arrayuserlevel); 
@@ -899,12 +1019,12 @@ $current_subsubpage = explode('/', uri_string())[2] ?? '';
                                         <?php }
                                         } ?>
 
-                                        <?php if (in_array('18', $arrayaccessmenu)) { ?>
+                                        <?php if (in_array('15', $arrayaccessmenu)) { ?>
                                             <li class="menu-item">
-                                                <a href="<?php echo base_url() . "Certification/dashboard"; ?>"
+                                                <a href="<?php echo base_url() . "Certification/Certification_Portal"; ?>"
                                                     class="menu-link">
-                                                     <span class="menu-icon"><i class="mdi mdi-certificate-outline"></i></span>
-                                                    <span class="menu-text"><?php echo lang('Buttons.Certificate'); ?></span>
+                                                    <span class="menu-icon"><i class="mdi mdi-certificate-outline"></i></span>
+                                                    <span class="menu-text"><?php echo lang('Buttons.Certifications'); ?></span>
                                                 </a>
                                             </li>
                                         <?php
@@ -1480,9 +1600,8 @@ $current_subsubpage = explode('/', uri_string())[2] ?? '';
                                                             </li> -->
                                                                 <?php //} 
                                                                 ?>
-
-                                                                <?php if (in_array('5', $arrayuserlevel) || in_array('44', $arrayuserlevel)) { ?>
-                                                                    <?php if (in_array('15', $arrayaccessmenu)) {  ?>
+                                                                <?php if (in_array('15', $arrayaccessmenu)) {  ?>
+                                                                    <?php if (in_array('5', $arrayuserlevel) || in_array('44', $arrayuserlevel)) { ?>
                                                                         <li class="menu-item">
                                                                             <a href="<?php echo base_url() . "Certification/certification_dashboard"; ?>"
                                                                                 class="menu-link">
@@ -1491,18 +1610,30 @@ $current_subsubpage = explode('/', uri_string())[2] ?? '';
                                                                                 <span class="menu-text"><?php echo lang('Buttons.Certifications'); ?> Admin</span>
                                                                             </a>
                                                                         </li>
-                                                                    <?php }
-                                                                } else { ?>
-                                                                    <li class="menu-item">
-                                                                        <a href="<?php echo base_url() . "Certification/Certification_Portal"; ?>"
-                                                                            class="menu-link">
-                                                                            <!-- <span class="menu-icon"><i
+                                                                    <?php
+                                                                    } else { ?>
+                                                                        <li class="menu-item">
+                                                                            <a href="<?php echo base_url() . "Certification/Certification_Portal"; ?>"
+                                                                                class="menu-link">
+                                                                                <!-- <span class="menu-icon"><i
                                                                                     class="mdi mdi-certificate"></i></span> -->
-                                                                            <span class="menu-text"><?php echo lang('Buttons.Certifications'); ?></span>
-                                                                        </a>
-                                                                    </li>
-                                                                <?php } ?>
+                                                                                <span class="menu-text"><?php echo lang('Buttons.Certifications'); ?></span>
+                                                                            </a>
+                                                                        </li>
+                                                                <?php }
+                                                                } ?>
+                                                                <?php if (in_array('18', $arrayaccessmenu)) { ?>
+                                                                    <?php if (in_array('5', $arrayuserlevel) || in_array('44', $arrayuserlevel)) { ?>
 
+                                                                        <li class="menu-item">
+                                                                            <a href="<?php echo base_url() . "Certification/Dashboard"; ?>"
+                                                                                class="menu-link">
+                                                                                <!-- <span class="menu-icon"><i class="mdi mdi-certificate-outline"></i></span> -->
+                                                                                <span class="menu-text"><?php echo lang('Buttons.Certificate'); ?></span>
+                                                                            </a>
+                                                                        </li>
+                                                                <?php }
+                                                                } ?>
 
                                                             </ul>
                                                         </div>
@@ -1643,6 +1774,14 @@ $current_subsubpage = explode('/', uri_string())[2] ?? '';
                                 </a>
                             </li>
                         <?php } ?>
+                        <?php if (in_array('15', $arrayaccessmenu)) { ?>
+                            <li>
+                                <a href="<?php echo base_url('Certification/Certification_Portal') ?>" class="topbar-quicklink <?= ($current_page == 'Certification' && $current_subpage == 'Certification_Portal') ? 'active' : '' ?>">
+                                    <i class="mdi mdi-certificate"></i> <?php echo lang('UI_Text.Certifications'); ?>
+                                </a>
+                            </li>
+
+                        <?php } ?>
                     </ul>
                 </div>
 
@@ -1737,13 +1876,23 @@ $current_subsubpage = explode('/', uri_string())[2] ?? '';
                                 <i class="fe-mail"></i>
                                 <span><?php echo lang('Buttons.My Support'); ?></span>
                             </a>
-                            <?php if ($client == 1 || $client == 85): ?>
+                            <?php if (in_array('5', $arrayuserlevel) || in_array('44', $arrayuserlevel)) { ?>
+
+                                <?php if ($client == 1) { ?>
+
+                                    <a href="<?php echo base_url('Certification/Certification_Portal/adminPaymentHistory'); ?>"
+                                        class="dropdown-item notify-item">
+                                        <i class="fe-list"></i>
+                                        <span><?php echo lang('UI_Text.Admin_Payment_History'); ?></span>
+                                    </a>
+                                <?php } ?>
+                            <?php } else { ?>
                                 <a href="<?php echo base_url('Certification/Certification_Portal/paymentHistory'); ?>"
                                     class="dropdown-item notify-item">
                                     <i class="fe-clock"></i>
                                     <span><?php echo lang('UI_Text.Payment_History'); ?></span>
                                 </a>
-                            <?php endif; ?>
+                            <?php } ?>
                             <a href="<?php echo base_url('Help/View'); ?>"
                                 class="dropdown-item notify-item">
                                 <i class="fe-help-circle"></i>

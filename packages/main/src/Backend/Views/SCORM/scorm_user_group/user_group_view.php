@@ -38,7 +38,7 @@
 
     [data-bs-theme="dark"] .user-group-card .dataTables_length select,
     [data-bs-theme="dark"] .user-group-card .dataTables_filter input {
-        border-color: #36404a;
+        border-color: #424e5a;
     }
 
     .user-group-card .pagination .page-link {

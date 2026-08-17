@@ -485,7 +485,7 @@ $arrayclient  = explode(',', $sessionclient);
 
         [data-bs-theme="dark"] .users-table-card .dataTables_length select,
         [data-bs-theme="dark"] .users-table-card .dataTables_filter input {
-            border-color: #36404a;
+            border-color: #424e5a;
         }
 
         .users-table-card .pagination .page-link {

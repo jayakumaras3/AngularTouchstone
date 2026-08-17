@@ -1,4 +1,4 @@
-<!-- <style>
+﻿<!-- <style>
 
 
 	/* Set height of the grid so .sidenav can be 100% (adjust if needed) */
@@ -1263,8 +1263,7 @@ if ($subpages_Count > 0) {
 													if ($row['status'] != 8) { ?>
 
 														<div class="form-row">
-															<p style='color:red;'>Note : File name should be En_video name , Ex :
-																En_en_3.vtt</p>
+															<p style='color:red;'>Note: The file name should follow the format En_&lt;video name&gt; (e.g., En_en_3.vtt).</p>
 
 															<form class="form-horizontal2" enctype="multipart/form-data"
 																action=<?php echo base_url('SCORM/course_builder/scorm_course_pages/uploadvtt'); ?>
@@ -1504,7 +1503,7 @@ if ($subpages_Count > 0) {
 					<?php endif; ?>
 				</div>
 				<div class="tab-pane" id="storyboard">
-					<table class="table dt-responsive wrap w-100">
+					<table class="table dt-responsive wrap w">
 						<thead>
 							<tr>
 								<th>Audio</th>

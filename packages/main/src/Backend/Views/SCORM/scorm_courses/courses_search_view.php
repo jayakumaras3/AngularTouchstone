@@ -194,7 +194,7 @@ $canCreateCourse = in_array('44', $arrayuserlevel) || in_array('5', $arrayuserle
 
         [data-bs-theme="dark"] .courses-table-card .dataTables_length select,
         [data-bs-theme="dark"] .courses-table-card .dataTables_filter input {
-            border-color: #36404a;
+            border-color: #424e5a;
         }
 
         .courses-table-card table.dataTable thead th {

@@ -181,7 +181,7 @@ $array  = array_map('intval', str_split($userlevel)); ?>
                                     ?>
                                     <form class="form-horizontal" action="<?php echo base_url('Assessment/trainings/delquestion_file'); ?>" method="POST"><?= csrf_field() ?>
                                         <input type="hidden" name="fileloc" value="<?php echo $folderloc . '/' . $value; ?>">
-                                        <button type="submit" class="btn btn-outline-primary waves-effect btn-xs waves-light" onclick="return confirm('<?php echo lang('Alert.Aler_003') ?>')"><span class="mdi mdi-trash-can-outline"></span></button>
+                                        <button type="submit" class="btn btn-outline-danger waves-effect btn-xs waves-light" onclick="return confirm('<?php echo lang('Alert.Aler_003') ?>')"><span class="mdi mdi-trash-can-outline"></span></button>
                                     </form>
 
 
@@ -249,7 +249,7 @@ $array  = array_map('intval', str_split($userlevel)); ?>
                                 <form class="form-horizontal" action="<?php echo base_url('Assessment/trainings/delquestion_file'); ?>" method="POST"><?= csrf_field() ?>
                                     <?= csrf_field() ?>
                                     <input type="hidden" name="fileloc" value="<?php echo $folderloc . '/' . $value; ?>">
-                                    <button type="submit" class="btn btn-outline-primary waves-effect btn-xs waves-light" onclick="return confirm('<?php echo lang('Alert.Aler_003') ?>')"><span class="mdi mdi-trash-can-outline"></span></button>
+                                    <button type="submit" class="btn btn-outline-danger waves-effect btn-xs waves-light" onclick="return confirm('<?php echo lang('Alert.Aler_003') ?>')"><span class="mdi mdi-trash-can-outline"></span></button>
                                 </form>
                 <?php
                                 // }
@@ -319,7 +319,7 @@ $array  = array_map('intval', str_split($userlevel)); ?>
                                 <form class="form-horizontal" action="<?php echo base_url('Assessment/trainings/delquestion_file'); ?>" method="POST"><?= csrf_field() ?>
                                     <?= csrf_field() ?>
                                     <input type="hidden" name="fileloc" value="<?php echo $folderloc . '/' . $value; ?>">
-                                    <button type="submit" class="btn btn-outline-primary waves-effect btn-xs waves-light" onclick="return confirm('<?php echo lang('Alert.Aler_003') ?>')"><span class="mdi mdi-trash-can-outline"></span></button>
+                                    <button type="submit" class="btn btn-outline-danger waves-effect btn-xs waves-light" onclick="return confirm('<?php echo lang('Alert.Aler_003') ?>')"><span class="mdi mdi-trash-can-outline"></span></button>
                                 </form>
                 <?php
                                 // }

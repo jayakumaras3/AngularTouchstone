@@ -43,7 +43,7 @@
 
     [data-bs-theme="dark"] .courses-table-card .dataTables_length select,
     [data-bs-theme="dark"] .courses-table-card .dataTables_filter input {
-        border-color: #36404a;
+        border-color: #424e5a;
     }
 
     /* Square pagination buttons, matching SCORM/scorm_courses and SCORM/Scorm_learn_group. */

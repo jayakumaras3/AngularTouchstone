@@ -42,7 +42,7 @@ $hasPersonalDataCol = in_array('2010', $arrayuserlevel);
 
     [data-bs-theme="dark"] .deleted-users-card .dataTables_length select,
     [data-bs-theme="dark"] .deleted-users-card .dataTables_filter input {
-        border-color: #36404a;
+        border-color: #424e5a;
     }
 
     .deleted-users-card .pagination .page-link {
@@ -58,7 +58,7 @@ $hasPersonalDataCol = in_array('2010', $arrayuserlevel);
 
                 </ol>
             </div>
-            <h4 class="page-title"><?php echo lang('UI_Text.Deleted_Users') ?></h4>
+            <h4 class="page-title"><?php echo lang('UI_Text.Inactive_Users') ?></h4>
         </div>
     </div>
 </div>

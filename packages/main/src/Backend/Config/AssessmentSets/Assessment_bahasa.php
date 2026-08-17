@@ -51,7 +51,9 @@ class Assessment_bahasa
         "63" => 0, // page level course completion 
         "74" => 1, //CertificateEnabled
         "72" => "Pilih <b>Berikutnya</b> untuk Melanjutkan.",
-        '75' => "LearningAids"
+        '75' => "LearningAids",
+        '76' => "Keluar dari Kursus",
+
     );
     public static $assessment_scqmcq_sets = array(
         "59" => "<i>Pilih jawaban yang benar, lalu klik <strong>Kirim.</strong></i>",

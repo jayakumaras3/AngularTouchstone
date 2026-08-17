@@ -13,7 +13,7 @@ if (!$pageTitle && !empty($policy_name)) {
     $pageTitle = $policy_name[0]['document_name'];
 }
 if (!$pageTitle) {
-    $pageTitle = 'Help Document';
+    $pageTitle = 'Help';
 }
 ?>
 <div class="row">
@@ -21,14 +21,14 @@ if (!$pageTitle) {
         <div class="page-title-box">
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item"> <a href="<?php echo base_url('etrack/dashboard'); ?>">
+                    <li class="breadcrumb-item"> <a href="<?php echo base_url('my_training'); ?>">
                             Dashboard
                         </a>
                     </li>
                 </ol>
             </div>
             <h4 class="page-title">
-                Help Document
+                Help
             </h4>
         </div>
     </div>

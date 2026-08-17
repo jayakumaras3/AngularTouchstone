@@ -45,6 +45,19 @@ foreach ($clientCourseddata as $clienteachCourseddata) {
 }
 unset($clienteachCourseddata);
 
+// The alpha/beta/gamma buckets above each merge two mode values (e.g. Alpha=3 and
+// Alpha_2=4), so without this the query's last_updated_on-based order surfaces
+// whichever course was touched most recently at the top - meaning changing a
+// course's stage just jumps it around instead of settling into the Alpha -> Alpha_2
+// (or Beta -> Beta_2 / Gamma -> Gamma_2) sequence. Sort each bucket by mode so the
+// lower stage always lists first; PHP's usort is stable (8.0+), so courses already
+// sharing a mode keep their existing relative (last-updated) order.
+foreach (['alpha', 'beta', 'gamma'] as $stageGroup) {
+    usort($coursesByStatus[$stageGroup], function ($a, $b) {
+        return ((int) $a['mode']) <=> ((int) $b['mode']);
+    });
+}
+
 $courseStatusCounts = [
     'assigned'    => count($clientCourseddata),
     'in_progress' => count($coursesByStatus['in_progress']),

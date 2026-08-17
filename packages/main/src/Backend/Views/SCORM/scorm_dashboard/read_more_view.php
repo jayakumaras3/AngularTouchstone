@@ -46,10 +46,24 @@ $client = session()->get('client');
         overflow: hidden;
         border: 1px solid #ccc;
         box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+        /* Thumbnail upload only validates width (fixed at 480px) - height is
+           unconstrained, so without a fixed aspect ratio here an unusually tall
+           or short upload scales unpredictably as this column's width changes
+           across breakpoints. Pinning the ratio keeps every course's thumbnail
+           the same shape and properly responsive at every screen size. */
+        aspect-ratio: 16 / 9;
+        width: 100%;
     }
 
     [data-bs-theme="dark"] .course-thumb-wrap {
         box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+    }
+
+    .course-thumb-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
     }
 
     .course-action-row .persistent-warning {
@@ -130,13 +144,36 @@ $client = session()->get('client');
     }
 
     .about-course-box {
-        background: rgba(var(--ct-primary-rgb), 0.06);
-        border-radius: 10px;
+        background: var(--ct-card-bg);
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        border-radius: 16px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.04);
+    }
+
+    [data-bs-theme="dark"] .about-course-box {
+        border-color: #424e5a;
     }
 
     .about-course-title {
         font-weight: 600;
         margin-bottom: .5rem;
+    }
+
+    /* Description/objectives are rich-text HTML saved from the course editor, so they
+       can carry their own inline color/style from whoever authored them - the `*`
+       + !important here overrides that unconditionally to the current theme's body
+       color, instead of leaving contrast to whatever was baked into the saved HTML. */
+    .about-course-content,
+    .about-course-content * {
+        color: var(--ct-body-color) !important;
+    }
+
+    /* --ct-body-color is only a muted #94a0ad in dark mode - readable enough on plain
+       backgrounds, but not the clearly-legible shade this app otherwise uses for text
+       on dark cards. Force the same light color used everywhere else in dark mode. */
+    [data-bs-theme="dark"] .about-course-content,
+    [data-bs-theme="dark"] .about-course-content * {
+        color: #cedeef !important;
     }
 
     /* Every .card on this page (main content card, administration-card, enrolled-learners-card)
@@ -787,16 +824,16 @@ $paymentMessage = session()->getFlashdata('payment_message');
                                         <div class="mb-2 p-3 about-course-box">
                                             <h6 class="about-course-title">About this course</h6>
                                             <!-- DESCRIPTION -->
-                                            <div class="text-muted mb-2">
+                                            <div class="about-course-content mb-2">
                                                 <?= $clientCourseddata[0]['description'] ?? ''; ?>
                                             </div>
 
 
                                             <!-- OBJECTIVES -->
                                             <?php if (!empty($getAllObjectives)) { ?>
-                                                <div class="mt-3">
-                                                    <p class="text-muted"><?= lang('UI_Text.end_of_course') ?></p>
-                                                    <ul class="text-muted mt-2">
+                                                <div class="about-course-content mt-3">
+                                                    <p><?= lang('UI_Text.end_of_course') ?></p>
+                                                    <ul class="mt-2">
                                                         <?php foreach ($getAllObjectives as $obj) { ?>
                                                             <li><?= $obj['objective']; ?></li>
                                                         <?php } ?>

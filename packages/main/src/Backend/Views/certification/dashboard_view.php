@@ -41,7 +41,7 @@ $arrayaccessmenu  = array_map('intval', explode(',', $accessmenu)); ?>
 
 	[data-bs-theme="dark"] .certificate-table-card .dataTables_length select,
 	[data-bs-theme="dark"] .certificate-table-card .dataTables_filter input {
-		border-color: #36404a;
+		border-color: #424e5a;
 	}
 
 	.certificate-table-card .pagination .page-link {
@@ -131,7 +131,9 @@ $arrayaccessmenu  = array_map('intval', explode(',', $accessmenu)); ?>
 										</div>
 
 										<div class="modal-footer border-top">
-										
+											<button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">
+												<?= lang('Buttons.Cancel') ?>
+											</button>
 											<button type="submit" form="createCertificateForm" class="btn btn-primary rounded-pill px-4">
 												<?= lang('Buttons.Submit') ?>
 											</button>

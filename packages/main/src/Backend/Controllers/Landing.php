@@ -96,12 +96,10 @@ class Landing extends BaseController
                 ]);
         }
 
-        // Strong password validation.
-        // Requires lower/upper/digit/special char, rejects any whitespace,
-        // and otherwise allows any character (including '<' and '>').
+        // Strong password validation
         if (
             !preg_match(
-                '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])(?!.*\s).{8,}$/',
+                '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/',
                 $data['password']
             )
         ) {

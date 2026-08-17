@@ -264,12 +264,13 @@ $arrayaccessmenu  = array_map('intval', explode(',', $accessmenu)); ?>
     <div class="col-lg-6">
         <div class="card">
             <div class="card-body">
-                <h4 class="mb-3 header-title"><i class="fe-user me-1"></i> <?php echo lang('UI_Text.User_Report'); ?></h4>
+                <h4 class="mb-1 header-title"><i class="fe-user me-1"></i> <?php echo lang('UI_Text.User_Report'); ?></h4>
+                <p class="text-muted font-13 mb-3"><?php echo lang('UI_Text.User_Report_Description'); ?></p>
 
                 <form action="<?= base_url('Reports/client_reports/report_course_report') ?>" method="POST"><?= csrf_field() ?>
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label"><?php echo lang('UI_Text.Select_Users'); ?></label>
-                        <select class="form-control" name="users">
+                        <label for="report_select_user" class="form-label fw-semibold"><?php echo lang('UI_Text.Select_Users'); ?></label>
+                        <select id="report_select_user" class="form-control" name="users">
                             <?php
                             foreach ($total_users as $users) {
                             ?>
@@ -285,11 +286,12 @@ $arrayaccessmenu  = array_map('intval', explode(',', $accessmenu)); ?>
 
         <div class="card">
             <div class="card-body">
-                <h4 class="mb-3 header-title"><i class="fe-book-open me-1"></i> <?php echo lang('UI_Text.Course_Report'); ?></h4>
+                <h4 class="mb-1 header-title"><i class="fe-book-open me-1"></i> <?php echo lang('UI_Text.Course_Report'); ?></h4>
+                <p class="text-muted font-13 mb-3"><?php echo lang('UI_Text.Course_Report_Description'); ?></p>
                 <form action="<?= base_url('XAPI/XAPI_courses/courseusersassigned_report') ?>" method="POST"><?= csrf_field() ?>
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label"><?php echo lang('UI_Text.Select_Course'); ?></label>
-                        <select class="form-control" name="scourse_id">
+                        <label for="report_select_course" class="form-label fw-semibold"><?php echo lang('UI_Text.Select_Course'); ?></label>
+                        <select id="report_select_course" class="form-control" name="scourse_id">
                             <?php
                             foreach ($total_courses as $courses) {
                             ?>
@@ -348,24 +350,33 @@ $arrayaccessmenu  = array_map('intval', explode(',', $accessmenu)); ?>
             <div class="card-body">
                 <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
                     <h4 class="header-title mb-0"><i class="fe-bar-chart-2 me-1"></i> <?= lang('UI_Text.Data_for_Year'); ?> <?= $Year; ?></h4>
-                    <form action="<?= base_url('Reports/client_reports/update_graph') ?>" method="POST" class="d-flex align-items-center gap-2 m-0"><?= csrf_field() ?>
-                        <input type="hidden" name="Year" value="<?php echo date('Y'); ?>">
-                        <label for="update_graph_month" class="visually-hidden"><?php echo lang('UI_Text.Select_Month'); ?></label>
-                        <select id="update_graph_month" class="form-select form-select-sm rounded-pill" name="month" onchange="this.form.submit();" style="width:auto;">
-                            <?php
-                            for ($month = 1; $month <= 12; $month++) {
-                                // Translated month name (e.g., "January"), not PHP's date('F', ...) which is always English.
-                                $monthName = translated_month_name($month);
+                    <form action="<?= base_url('Reports/client_reports/update_graph') ?>" method="POST" class="d-flex flex-wrap align-items-center gap-2 m-0"><?= csrf_field() ?>
+                        <div class="d-flex align-items-center gap-1">
+                            <label for="update_graph_year" class="form-label mb-0 small text-muted"><?php echo lang('UI_Text.Select_Year'); ?></label>
+                            <select id="update_graph_year" class="form-select form-select-sm rounded-pill" name="Year" onchange="this.form.submit();" style="width:auto;">
+                                <?php for ($y = $current_year; $y >= $current_year - 4; $y--) : ?>
+                                    <option value="<?= $y ?>" <?= ($y == $Year) ? 'selected' : '' ?>><?= $y ?></option>
+                                <?php endfor; ?>
+                            </select>
+                        </div>
+                        <div class="d-flex align-items-center gap-1">
+                            <label for="update_graph_month" class="form-label mb-0 small text-muted"><?php echo lang('UI_Text.Select_Month'); ?></label>
+                            <select id="update_graph_month" class="form-select form-select-sm rounded-pill" name="month" onchange="this.form.submit();" style="width:auto;">
+                                <?php
+                                for ($month = 1; $month <= 12; $month++) {
+                                    // Translated month name (e.g., "January"), not PHP's date('F', ...) which is always English.
+                                    $monthName = translated_month_name($month);
+                                    $isSelected = ($month == $selected_month) ? 'selected' : '';
 
-                                // Output the option tag with the month number as value
-                                echo "<option value='$month'>" . esc($monthName) . "</option>";
-                            }
-                            ?>
-                        </select>
-                        <i class="fe-refresh-cw text-muted d-none d-md-inline-block" title="<?php echo lang('UI_Text.Update_graph'); ?>"></i>
-                        <noscript>
-                            <button type="submit" class="btn btn-outline-danger rounded-pill btn-sm"><?php echo lang('Buttons.Update'); ?></button>
-                        </noscript>
+                                    // Output the option tag with the month number as value
+                                    echo "<option value='$month' $isSelected>" . esc($monthName) . "</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-outline-primary btn-sm rounded-pill" title="<?php echo lang('UI_Text.Update_graph'); ?>">
+                            <i class="fe-refresh-cw"></i>
+                        </button>
                     </form>
                 </div>
                 <?php if ($completed_data) { ?>

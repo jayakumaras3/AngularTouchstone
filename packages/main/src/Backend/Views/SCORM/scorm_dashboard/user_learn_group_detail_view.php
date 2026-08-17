@@ -55,7 +55,7 @@
 
     [data-bs-theme="dark"] .course-group-card .dataTables_length select,
     [data-bs-theme="dark"] .course-group-card .dataTables_filter input {
-        border-color: #36404a;
+        border-color: #424e5a;
     }
 
     [data-bs-theme="dark"] .course-group-card .pagination .page-link {
@@ -91,6 +91,7 @@
         <div class="col-md-12">
             <div class="card course-group-card">
                 <div class="card-body">
+                    <h5 class="section-title"><i class="mdi mdi-link-variant"></i> <?= lang('UI_Text.Link_Course_to_Group') ?></h5>
                     <form class="form-horizontal" action="<?php echo base_url('my_training/pm_add_course_to_group') ?>"
                         method="POST"><?= csrf_field() ?>
                         <div class="row">
@@ -131,6 +132,7 @@
     <div class="col-md-12">
         <div class="card course-group-card">
             <div class="card-body">
+                <h5 class="section-title"><i class="mdi mdi-book-multiple-outline"></i> <?= lang('UI_Text.Group_Courses') ?></h5>
                 <table id="course-group-datatable" class="table dt-responsive nowrap w-100">
                     <thead>
                         <tr class="table-light">

@@ -23,7 +23,7 @@
         <div class="page-title-box">
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item"><a href="<?php echo base_url('Certification/Dashboard') ?>"><?= lang('UI_Text.Certificate_Dashboard') ?></a></li>
+                    <li class="breadcrumb-item"><a href="<?php echo base_url('Certification/Dashboard') ?>"><?= lang('UI_Text.Certificate') ?></a></li>
                 </ol>
             </div>
             <h4 class="page-title"><?= lang('UI_Text.Edit_Certificate') ?></h4>
@@ -32,10 +32,10 @@
 </div>
 
 <div class="row">
-    <div class="col-lg-8">
+    <div class="col-lg-12">
         <div class="card edit-certificate-card">
             <div class="card-body">
-                <form class="form-horizontal" action="<?php echo base_url('Certification/dashboard/update_certificate') ?>" method="POST" enctype="multipart/form-data"><?= csrf_field() ?>
+                <form class="form-horizontal" action="<?php echo base_url('Certification/Dashboard/update_certificate') ?>" method="POST" enctype="multipart/form-data"><?= csrf_field() ?>
 
                     <?php $type = $get_certificate_details[0]['type'];
                     $status = $get_certificate_details[0]['status']; ?>
@@ -105,8 +105,8 @@
             </div> <!-- end card-body-->
         </div> <!-- end card-->
     </div>
-    <div class="col-lg-4">
-        <div class="card edit-certificate-card">
+    <!-- <div class="col-lg-4"> -->
+        <!-- <div class="card edit-certificate-card">
             <div class="card-body">
                 <h5 class="mb-3 fw-bold"><?= lang('Buttons.Thumbnail') ?></h5>
                 <?php if (!empty($get_certificate_details[0]['thumbnail'])) { ?>
@@ -118,7 +118,7 @@
                 <?php } ?>
 
                 <form enctype="multipart/form-data"
-                    action="<?php echo base_url('Certification/certification_dashboard/thumbnail_upload') ?>" method="post" id="submitForm"><?= csrf_field() ?>
+                    action="<?php echo base_url('Certification/Dashboard/thumbnail_upload') ?>" method="post" id="submitForm"><?= csrf_field() ?>
                     <p class="text-danger font-13"><?= lang('UI_Text.Thumbnail_Upload_Note') ?></p>
 
                     <div class="mb-3">
@@ -136,11 +136,11 @@
                     </div>
                 <?php endif; ?>
             </div>
-        </div>
+        </div> -->
 
-        <div class="card edit-certificate-card">
+        <!-- <div class="card edit-certificate-card">
             <div class="card-body">
-                <form class="form-horizontal" action="<?php echo base_url('Certification/certification_dashboard/assign_certification_to_client') ?>" method="POST"><?= csrf_field() ?>
+                <form class="form-horizontal" action="<?php echo base_url('Certification/Dashboard/assign_certification_to_client') ?>" method="POST"><?= csrf_field() ?>
                     <div class="mb-3">
                         <label for="clientname" class="form-label fw-semibold"><?= lang('UI_Text.Assign_Certification_To_Client') ?></label>
                         <select name="client" class="form-select">
@@ -154,8 +154,8 @@
                         id="submitButton"><?= lang('Buttons.Submit') ?></button>
                 </form>
             </div>
-        </div>
-    </div>
+        </div> -->
+    <!-- </div> -->
 </div>
 
 <script>

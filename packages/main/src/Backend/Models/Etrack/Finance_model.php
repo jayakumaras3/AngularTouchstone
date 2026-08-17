@@ -294,39 +294,35 @@ class Finance_model extends Model
                 $userdata = $builder->get()->getResultArray();
 
                 if ($userdata) {
-                    $working_days = $Row[12];
+                    $account_num =  $Row[3];
+                    $bank_name =  $Row[4];
+                    $pan =  $Row[5];
+                    $uan =  $Row[6];
+                    $designation = $Row[8];
                     $lop = $Row[11];
-
-                    $gross_salary = $Row[21];
-
-                    $total_deduction = $Row[32];
-                    $net_pay_amount = $Row[33];
-                    $note = $Row[34];
+                    $working_days = $Row[12];
                     $basic = $Row[13];
                     $hra = $Row[14];
-                    //$conv = $Row[14];
                     $edu_allowance = $Row[15];
                     $lta = $Row[16];
                     $meal_allowance = $Row[17];
                     $medical_allwance = $Row[18]; //Internet Allowance
-                    //$car_lease_allowance = $Row[18]; 
                     $flexi_allowance = $Row[19];
                     $arrears_others = $Row[20];
+                    $gross_salary = $Row[21];
                     $pt = $Row[24];
                     $pf_ee = $Row[25];
                     $pf_er = $Row[26];
                     $esi = $Row[27];
                     $sal_adv_other_deduct = $Row[28];
                     $other_deduct = isset($Row[29]) ? $Row[29] : '0';
-                    //   $late_come_deduct = isset($Row[32]) ? $Row[32] : '0';
-                    $income_tax = $Row[31];
                     $sodexo = $Row[30];
-                    $account_num =  $Row[3];
-                    $bank_name =  $Row[4];
-                    $pan =  $Row[5];
-                    $designation = $Row[8];
-                    // $VFPEmployee =  isset($Row[28]) ? $Row[28] : '0';
-                    $uan =  $Row[6];
+                    $income_tax = $Row[31];
+                    $total_deduction = $Row[32];
+                    $net_pay_amount = $Row[33];
+                    $note = isset($Row[34]) ? $Row[34] : '';
+
+
                     $userid = $userdata[0]['id_user'];
                     $insertdata = [
                         'user_id' =>  $emp_code,

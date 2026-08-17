@@ -147,7 +147,12 @@ class Scorm_course_pages extends BaseController
         if ($response =  $this->requireRole(['5', '44', '67', '46'])) {
             return $response;
         }
-        $dompdf = new Dompdf();
+
+        // The installed Dompdf release emits PHP 8.4 compatibility deprecations. If PHP is
+        // configured to display them, those messages are inserted before the PDF bytes and
+        // corrupt the downloaded file. Keep real warnings/errors enabled for this request.
+        error_reporting(error_reporting() & ~E_DEPRECATED & ~E_USER_DEPRECATED);
+
         $data = [];
         helper(['form']);
         if (isset($_POST['scourse_id'])) {
@@ -163,33 +168,87 @@ class Scorm_course_pages extends BaseController
 
 
         $data['full_sb'] = $this->scorm_page_model->get_full_sb($data['scourse_id']);
+        if (empty($data['full_sb'])) {
+            return redirect()->back()->with('error', 'No storyboard content is available to export.');
+        }
 
-        $options = new Options();
-        $options->set('isHtml5ParserEnabled', true);
-        $options->set('isPhpEnabled', true);
-        $options->set('defaultFont', 'Arial');
         // if (!empty($data['userexitInterdata'])) {
         $data['logo'] = $this->imageToBase64(ROOTPATH . 'assets/assets/img/TS_Logo.svg');
 
+        $isArabic = ($data['full_sb'][0]['language'] ?? '') === 'Arabic';
+        // Devanagari-script Indian languages (Hindi, Marathi, Nepali, Sanskrit) - Dompdf's
+        // default 'DejaVu Sans' font (see the else branch below) has no Devanagari glyphs at
+        // all, so this transcript text rendered blank/missing. Noto Sans Devanagari (SIL OFL,
+        // see writable/fonts/NotoSansDevanagari/OFL.txt) is registered as the default font for
+        // just these languages instead, same pattern as the Arabic/mpdf branch - every other
+        // language keeps using DejaVu Sans exactly as before. Other Indic scripts (Tamil,
+        // Telugu, Bengali, etc.) use a different script each and would need their own font
+        // added here the same way if support for them is needed later.
+        $courseLanguage = $data['full_sb'][0]['language'] ?? '';
+        $isIndianLanguage = in_array($courseLanguage, ['Hindi', 'Marathi', 'Nepali', 'Sanskrit'], true);
         $html = view('page/pdf_transcript_view', $data);
-        $html = mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8');
-        $dompdf = new Dompdf($options);
-        $dompdf->loadHtml($html);
-        $dompdf->setPaper('A4', 'portrait');
-        $dompdf->render();
 
-        $canvas = $dompdf->getCanvas();
-        $font = $dompdf->getFontMetrics()->getFont('Segoe UI', 'normal');
-        $fontSize = 8;
-        $y = 820;
-        $canvas->page_text(558, $y, "{PAGE_NUM}", $font, $fontSize, [0, 0, 0]);
+        $filename = preg_replace('/[\\\\\/:*?"<>|]+/', '_', $data['full_sb'][0]['course_name']);
+        $filename = ($filename !== '' ? $filename : 'audio-transcript') . '.pdf';
 
+        if ($isArabic) {
+            // Dompdf has no Arabic text shaping (letter-joining) or right-to-left layout
+            // support at all - Arabic would render as disconnected, left-to-right glyphs even
+            // with an Arabic-capable font registered. mpdf (already a project dependency, see
+            // composer.json) handles both natively and ships its own Arabic-capable font
+            // family ('xbriyaz'), so Arabic transcripts are rendered through mpdf instead.
+            $mpdf = new \Mpdf\Mpdf([
+                'format' => 'A4',
+                'default_font' => 'xbriyaz',
+            ]);
+            $mpdf->SetDirectionality('rtl');
+            $mpdf->WriteHTML($html);
+            $mpdf->SetHTMLFooter('<div style="text-align:left; font-size:8pt;">{PAGENO}</div>');
+            $pdfOutput = $mpdf->Output('', \Mpdf\Output\Destination::STRING_RETURN);
+        } else {
+            $options = new Options();
+            $options->set('isHtml5ParserEnabled', true);
+            $options->set('isPhpEnabled', true);
+            // 'Arial' has no Cyrillic/other non-Latin glyphs in Dompdf's bundled fonts, so
+            // non-English transcript text (Russian, etc.) rendered blank/missing - 'DejaVu Sans'
+            // is Dompdf's built-in Unicode-covering font, already used for this same reason by
+            // the other PDF exports in this app (see pdf_exit_clearance_view.php, etc.). DejaVu
+            // Sans itself has no Devanagari glyphs, so Indian-language transcripts use the
+            // registered Noto Sans Devanagari font instead (see $isIndianLanguage above).
+            $options->set('defaultFont', $isIndianLanguage ? 'Noto Sans Devanagari' : 'DejaVu Sans');
+            $options->setFontCache(WRITEPATH . 'fonts/cache');
 
-        $dompdf->getOptions()->set('isHtml5ParserEnabled', true);
-        $dompdf->getOptions()->set('isPhpEnabled', true);
-        $dompdf->loadHtml($html);
+            $dompdf = new Dompdf($options);
 
-        $dompdf->stream($data['full_sb'][0]['course_name'] . '.pdf', ['Attachment' => true]);
+            if ($isIndianLanguage) {
+                $devanagariFontDir = WRITEPATH . 'fonts/NotoSansDevanagari/';
+                $dompdf->getFontMetrics()->registerFont(
+                    ['family' => 'Noto Sans Devanagari', 'style' => 'normal', 'weight' => 'normal'],
+                    $devanagariFontDir . 'NotoSansDevanagari-Regular.ttf'
+                );
+                $dompdf->getFontMetrics()->registerFont(
+                    ['family' => 'Noto Sans Devanagari', 'style' => 'normal', 'weight' => 'bold'],
+                    $devanagariFontDir . 'NotoSansDevanagari-Bold.ttf'
+                );
+            }
+
+            $dompdf->loadHtml($html);
+            $dompdf->setPaper('A4', 'portrait');
+            $dompdf->render();
+
+            $canvas = $dompdf->getCanvas();
+            $font = $dompdf->getFontMetrics()->getFont('Segoe UI', 'normal');
+            $fontSize = 8;
+            $y = 820;
+            $canvas->page_text(558, $y, "{PAGE_NUM}", $font, $fontSize, [0, 0, 0]);
+
+            $pdfOutput = $dompdf->output();
+        }
+
+        return $this->response
+            ->setHeader('Content-Type', 'application/pdf')
+            ->setHeader('Content-Disposition', 'attachment; filename="' . $filename . '"')
+            ->setBody($pdfOutput);
     }
     private function imageToBase64($path)
     {
@@ -286,6 +345,7 @@ class Scorm_course_pages extends BaseController
         if ($this->request->getPost()) {
             $rules = [
                 'page_name' => 'required',
+                'page_number' => 'required|integer|greater_than_equal_to[1]',
             ];
 
             if (!$this->validate($rules)) {
@@ -294,6 +354,32 @@ class Scorm_course_pages extends BaseController
                 $type = $this->request->getVar('type');
                 $page_number = $this->request->getVar('page_number');
                 $page_name = $this->request->getVar('page_name');
+
+                $database = \Config\Database::connect();
+
+                if ($this->scorm_page_model->hasDuplicateMainPageNumbers($data['scourse_id'])) {
+                    session()->setFlashdata('error', 'This course\'s page numbering needs to be repaired before a new page can be added. Contact admin.');
+                    session()->setFlashdata('alert-class', 'alert-danger');
+                    return redirect()->to(base_url('SCORM/course_builder/Editor'));
+                }
+
+                $database->transStart();
+
+
+
+                // Only main pages consume numbered slots. The model carries children with any
+
+                // parent page that shifts to make room for this insertion.
+
+                $numberingUpdated = $this->scorm_page_model->shiftPageNumbersFrom(
+
+                    $data['scourse_id'],
+
+                    $page_number,
+
+                    1
+
+                );
                 $newdata = [
                     'fk_course_id' => $data['scourse_id'],
                     'page_name' => $this->request->getVar('page_name'),
@@ -306,9 +392,26 @@ class Scorm_course_pages extends BaseController
                     'last_update_by' => session()->get('id_user'),
                     'last_update_on' => time()
                 ];
-                $result = $this->scorm_page_model->addpagedetails($newdata);
-                // print_r($result);
-                // exit();
+                $result = $numberingUpdated
+
+                    ? $this->scorm_page_model->addpagedetails($newdata)
+
+                    : false;
+
+                if (!$result) {
+
+                    $database->transRollback();
+
+                    $result = false;
+                } else {
+
+                    $committed = $database->transComplete();
+
+                    if (!$committed || !$database->transStatus()) {
+
+                        $result = false;
+                    }
+                }
 
                 if ($result) {
                     // print_r($result);
@@ -403,17 +506,11 @@ class Scorm_course_pages extends BaseController
         } else {
             return redirect()->to(base_url() . '/SCORM/course_builder/Editor');
         }
-        $page_number = $this->request->getVar('page_number');
-        $current_sub_pages = count($this->scorm_page_model->getSubpagecontent($page_number, $data['scourse_id']));
-        $newsubpage_id = $page_number + ($current_sub_pages + 1) / 100;
+
 
         if ($this->request->getPost()) {
             $newdata = [
-                'fk_course_id' => $data['scourse_id'],
                 'page_name' => $this->request->getVar('page_name'),
-                'sub_page_main' => $this->request->getVar('page_number'),
-                'type' => $this->request->getVar('type'),
-                'page_number' => $newsubpage_id,
                 'type' => $this->request->getVar('type'),
                 'status' => '1',
                 'createdby' => session()->get('id_user'),
@@ -421,18 +518,46 @@ class Scorm_course_pages extends BaseController
                 'last_update_by' => session()->get('id_user'),
                 'last_update_on' => time()
             ];
-            $result = $this->scorm_page_model->addpagedetails($newdata);
+            $result = $this->scorm_page_model->addSubpage(
 
+                $data['page_id'],
+
+                $data['scourse_id'],
+
+                $newdata
+
+            );
 
             if ($result) {
                 $_SESSION['scourse_id'] = $data['scourse_id'];
                 $_SESSION['page_id'] = $result['page_id'];
+                $_SESSION['page_number'] = $result['page_number'];
                 session()->setFlashdata('success', lang('Messages.Success_0011'));
-                return redirect()->to(base_url('SCORM/course_builder/scorm_course_pages/page_edit_view'));
+                if ($this->request->isAJAX()) {
+
+                    return $this->response->setJSON([
+
+                        'success' => true,
+
+                        'page_id' => $result['page_id'],
+
+                    ]);
+                }
+
+                return redirect()->to(base_url('SCORM/course_builder/Editor'));
             } else {
                 session()->setFlashdata('error', lang('Messages.Error_0001'));
                 session()->setFlashdata('alert-class', 'alert-danger');
-                return redirect()->to(base_url('SCORM/course_builder/Scorm_course_pages/storyboarding'));
+                if ($this->request->isAJAX()) {
+
+                    return $this->response
+
+                        ->setStatusCode(422)
+
+                        ->setJSON(['success' => false]);
+                }
+
+                return redirect()->to(base_url('SCORM/course_builder/Editor'));
             }
         }
 
@@ -446,16 +571,18 @@ class Scorm_course_pages extends BaseController
             return $response;
         }
         $data = [];
+
         helper(['form']);
 
         if (isset($_POST['crid'])) {
             $data['crid'] = $_POST['crid'];
+            $data['course_id'] = $data['crid'];
             $_SESSION['crid'] = $data['crid'];
             $_SESSION['scourse_id'] = $data['crid'];
         } elseif (isset($_SESSION['crid'])) {
             $data['course_id'] = $_SESSION['crid'];
         } elseif (isset($_SESSION['scourse_id'])) {
-            $data['scourse_id'] = $_SESSION['scourse_id'];
+            $data['course_id'] = $_SESSION['scourse_id'];
         } else {
             return redirect()->to(base_url() . '/SCORM/course_builder/Editor');
         }
@@ -496,6 +623,17 @@ class Scorm_course_pages extends BaseController
         // exit();
         if (!empty($pagedata)) {
             $data['row'] = $pagedata[0];
+            $data['page_id'] = $data['row']['page_id'];
+
+            $data['page_number'] = $data['row']['page_number'];
+
+            $data['page_name'] = $data['row']['page_name'];
+
+            $_SESSION['page_id'] = $data['page_id'];
+
+            $_SESSION['page_number'] = $data['page_number'];
+
+            $_SESSION['page_name'] = $data['page_name'];
         } else {
             return redirect()->to(base_url() . '/SCORM/course_builder/Editor');
         }
@@ -503,7 +641,7 @@ class Scorm_course_pages extends BaseController
 
         $data['sub_page_content'] = $this->scorm_page_model->getSubpagecontent($data['page_number'], $data['course_id']);
 
-        $data['page_id'] = $data['row']['page_id'];
+
 
         $currentpagenum = $data['row']['page_number'];
         $fk_course_id = $data['row']['fk_course_id'];
@@ -545,6 +683,7 @@ class Scorm_course_pages extends BaseController
         $user = session()->get('username');
 
         if ($this->request->getPost()) {
+            $result = false;
             //print_r("sss");
             $rules = [
                 'page_name' => 'required',
@@ -553,23 +692,53 @@ class Scorm_course_pages extends BaseController
             if (!$this->validate($rules)) {
                 $data['coursevalidation'] = $this->validator;
             } else {
-                $newdata = [
-                    'page_name' => $this->request->getVar('page_name'),
-                    'sub_page_main' => $this->request->getVar('sub_page_main'),
-                    'type' => $this->request->getVar('type'),
-                    'status' => $this->request->getVar('status'),
-                    'page_number' => $this->request->getVar('page_number'),
-                    'last_update_by' => session()->get('id_user'),
-                    'last_update_on' => time(),
+                $result = $this->scorm_page_model->updatePageHierarchy(
 
-                ];
-                $result = $this->scorm_page_model->editpagedetails($newdata, $data['page_id']);
+                    $data['page_id'],
+
+                    [
+
+                        'page_name' => $this->request->getVar('page_name'),
+
+                        'type' => $this->request->getVar('type'),
+
+                        'status' => $this->request->getVar('status'),
+
+                        'page_number' => $this->request->getVar('page_number'),
+
+                    ],
+
+                    session()->get('id_user'),
+
+                    time()
+
+                );
+
                 if ($result) {
+
+                    if ((int) $this->request->getVar('status') !== 0) {
+
+                        $updatedPage = $this->scorm_page_model->getpagedata($data['page_id']);
+
+                        if (!empty($updatedPage)) {
+
+                            $_SESSION['page_number'] = $updatedPage[0]['page_number'];
+                        }
+                    }
+
                     session()->setFlashdata('success', lang('Messages.Success_0008'));
                 } else {
                     session()->setFlashdata('error', lang('Messages.Error_0001'));
                     session()->setFlashdata('alert-class', 'alert-danger');
                 }
+            }
+            if ($this->request->isAJAX()) {
+
+                return $this->response
+
+                    ->setStatusCode($result ? 200 : 422)
+
+                    ->setJSON(['success' => (bool) $result]);
             }
         }
         return redirect()->to(base_url('SCORM/course_builder/scorm_course_pages/page_edit_view'));
@@ -627,20 +796,68 @@ class Scorm_course_pages extends BaseController
         } else {
             return redirect()->to(base_url() . 'SCORM/course_builder/Scorm_course_pages/storyboarding');
         }
-        if ($data['type'] == 4 || $data['type'] == 5 || $data['type'] == 6) {
-            $coursedata = $this->scorm_page_model->getCoursedata($data['scourse_id']);
-            $dir = FCPATH . 'assets/assets/uploads/SCORM_course_document/' . $data['scourse_id'] . '/' . $coursedata[0]['createdon'] . '/shared/assets/content/english/pages/' . $data['page_id'];
-            $this->emptyDir($dir);
-            rmdir($dir);
-        }
-        $newdata = [
-            'status' => $this->request->getVar('status'),
-            'last_update_by' => session()->get('id_user'),
-            'last_update_on' => time(),
 
-        ];
-        $result = $this->scorm_page_model->editpagedetails($newdata, $data['page_id']);
+        $newStatus = $this->request->getVar('status');
+        $result = false;
+
+        $existingPage = [];
+
+        // If this is deleting a main page (status -> 0), close the gap it leaves behind: every
+        // later page shifts down by one so numbering stays contiguous - same as editpage(). A
+        // sub-page's number (e.g. 1.02) is only ever compared against its own siblings (see
+        // getSubpagecontent()'s exact-match on sub_page_main) - shiftPageNumbersFrom()'s
+        // ">= fromNumber" is unbounded, so applying it to a sub-page's fractional number would
+        // also catch every later *main* page (2, 3, 4... are all >= 1.02) and drag them down too.
+        if ((int) $newStatus === 0) {
+            $existingPage = $this->scorm_page_model->getpagedata($data['page_id']);
+            // $isSubpage = !empty($existingPage) && (float) ($existingPage[0]['sub_page_main'] ?? 0) !== 0.0;
+            if (!empty($existingPage) && (int) $existingPage[0]['status'] !== 0) {
+                $result = $this->scorm_page_model->softDeletePageHierarchy(
+
+                    $data['page_id'],
+
+                    session()->get('id_user'),
+
+                    time()
+
+                );
+                // $this->scorm_page_model->shiftPageNumbersFrom($existingPage[0]['fk_course_id'], $existingPage[0]['page_number'], -1, [$data['page_id']]);
+            }
+        }
+
+
         if ($result) {
+            $persistedPage = $existingPage[0];
+
+            if (in_array((int) $persistedPage['type'], [4, 5, 6], true)) {
+
+                $coursedata = $this->scorm_page_model->getCoursedata($persistedPage['fk_course_id']);
+
+                if (!empty($coursedata)) {
+
+                    $dir = FCPATH
+
+                        . 'assets/assets/uploads/SCORM_course_document/'
+
+                        . $persistedPage['fk_course_id'] . '/'
+
+                        . $coursedata[0]['createdon']
+
+                        . '/shared/assets/content/english/pages/'
+
+                        . $persistedPage['page_id'];
+
+                    if (is_dir($dir)) {
+
+                        $this->emptyDir($dir);
+
+                        if (!rmdir($dir)) {
+
+                            log_message('error', 'Unable to remove deleted page asset directory: ' . $dir);
+                        }
+                    }
+                }
+            }
             session()->setFlashdata('success', lang('Messages.Success_0005'));
         } else {
             session()->setFlashdata('error', lang('Messages.Error_0001'));
@@ -1092,10 +1309,14 @@ class Scorm_course_pages extends BaseController
                 $pathfilename = '';
                 $functionName = '';
                 $onendnextscrn = '';
+                $icon = '';
                 if ($eachpage['type'] == '5' || $eachpage['type'] == '6') {
                     $this->exportQuestion($eachpage['page_id'], $data['scourse_id'], $eachpage['type'], $eachpage['language']);
                 } elseif ($eachpage['type'] == '4') {
                     $this->exportQuizQuestion($eachpage['page_id'], $data['scourse_id'], $eachpage['type'], $eachpage['language']);
+                } elseif ($eachpage['type'] == '10' || $eachpage['type'] == '11' || $eachpage['type'] == '12') {
+                    $this->exportTextPage($eachpage, $data['scourse_id']);
+                    $this->exportTextPageJson($eachpage, $data['scourse_id']);
                 }
                 if ($eachpage['type'] == '1') {
                     $type = 'captivate';
@@ -1103,23 +1324,38 @@ class Scorm_course_pages extends BaseController
                     $pathfilename = "story.html";
                     $functionName = "functionName";
                     $onendnextscrn = 'story_html5';
+                    $icon = "book-open";
                 } elseif ($eachpage['type'] == '2' || $eachpage['type'] == '9') {
                     $type = 'video';
                     $path = "assets/video/" . $eachpage['filename'];
                     $pathfilename = $eachpage['filename'];
                     $functionName = "onendnextscrn";
                     $onendnextscrn = 'false';
+                    $icon = "video";
                 } elseif ($eachpage['type'] == '3' || $eachpage['type'] == '4' || $eachpage['type'] == '5' || $eachpage['type'] == '6') {
                     $type = ($eachpage['type'] == '5' || $eachpage['type'] == '4' || $eachpage['type'] == '6') ? 'captivate' : 'captivate';
                     if ($eachpage['type'] == '4' || $eachpage['type'] == '5' || $eachpage['type'] == '6') {
                         $path = "assets/Quiz/" . $eachpage['page_id'] . "/index.html";
+                        if ($eachpage['type'] == '5' || $eachpage['type'] == '6') {
+                            $icon = "clipboard-check";
+                        } else {
+                            $icon = "clipboard-list";
+                        }
                     }
                     if ($eachpage['type'] == '3') {
                         $path = "assets/html/" . $eachpage['page_id'] . "/Screen_01.html";
+                        $icon = "book-open";
                     }
                     $pathfilename = "Screen_01.html";
                     $functionName = "functionName";
                     $onendnextscrn = ($eachpage['type'] == '5' || $eachpage['type'] == '6' || $eachpage['type'] == '4') ? 'captivate' : 'captivate';
+                } elseif ($eachpage['type'] == '10' || $eachpage['type'] == '11' || $eachpage['type'] == '12') {
+                    $type = 'captivate';
+                    $path = "assets/html/" . $eachpage['page_id'] . "/Screen_01.html";
+                    $pathfilename = "Screen_01.html";
+                    $functionName = "functionName";
+                    $onendnextscrn = 'captivate';
+                    $icon = "book-open";
                 }
                 // $sidebar = ($eachpage['page_number'] == '1');
                 // $header = ($eachpage['page_number'] == '1');
@@ -1132,6 +1368,8 @@ class Scorm_course_pages extends BaseController
                         "title" => $eachpage['title'],
                         "header" => $eachpage['header'],
                         "transcript" => $transcript,
+                        "masterIcon" => true,
+                        "icon" => $icon,
                         "settings" => [
                             "sidebar" => true,
                             "header" => true,
@@ -1225,6 +1463,8 @@ class Scorm_course_pages extends BaseController
             $LearningAidsTitle = $this->scorm_course_model->getAssignmetadatabyID($scourse_id, 75);
             $LearningAidsTitle = (isset($LearningAidsTitle[0]['value']) && ($LearningAidsTitle[0]['value'] != '')) ? $LearningAidsTitle[0]['value'] : $assessment_export_sets['75'];
 
+            $ExitCourseTitle = $this->scorm_course_model->getAssignmetadatabyID($scourse_id, 76);
+            $ExitCourseTitle = (isset($ExitCourseTitle[0]['value']) && ($ExitCourseTitle[0]['value'] != '')) ? $ExitCourseTitle[0]['value'] : $assessment_export_sets['76'];
 
             $CertificateEnabled = $this->scorm_course_model->getAssignmetadatabyID($scourse_id, 74);
             if (isset($CertificateEnabled[0]['value']) && ($CertificateEnabled[0]['value'] != '')) {
@@ -1249,7 +1489,7 @@ class Scorm_course_pages extends BaseController
             $getAllFileOwner = $this->scorm_course_model->getAllFileOwner($data['scourse_id']);
             $resource = (!empty($getAllFileOwner)) ? 'true' : 'false';
 
-            $templatejson = '{"master": ' . $master . ',"lmsStatus":"' . $lmsStatus . '","QuizAttempt": "2","AudioVersionEnable": ' . $AudioVersionEnable . ',"CertificateEnabled": ' . $CertificateEnabled . ',"PageLevelCourseComplete": ' . $PageLevelCourseComplete . ',"LearningAidsTitle": "' . $LearningAidsTitle . '","Menutitle":"' . $Menutitle . '","NextTitle":" ' . $NextTitle . '","Prevtitle":"' . $Prevtitle . '","MenuName":"' . $MenuName . '","TranscriptName": "' . $TranscriptName . '","ResumeTitle":"' . $ResumeTitle . '","ResumeHeader":"' . $ResumeHeader . '","ResumeYES": "' . $ResumeYES . '","ResumeNO":"' . $ResumeNO . '","VttLanguage": "' . $VttLanguage . '","CourseName":"' . $tocjsonfile[0]['course_name'] . '","VttLabel":"' . $VttLabel . '","spanCliContinue":"' . $spanCliContinue . '","Resource": ' . $resource . ',';
+            $templatejson = '{"master": ' . $master . ',"lmsStatus":"' . $lmsStatus . '","QuizAttempt": "2","AudioVersionEnable": ' . $AudioVersionEnable . ',"CertificateEnabled": ' . $CertificateEnabled . ',"PageLevelCourseComplete": ' . $PageLevelCourseComplete . ',"LearningAidsTitle": "' . $LearningAidsTitle . '","Menutitle":"' . $Menutitle . '","ExitCourseTitle":"' . $ExitCourseTitle . '","NextTitle":" ' . $NextTitle . '","Prevtitle":"' . $Prevtitle . '","MenuName":"' . $MenuName . '","TranscriptName": "' . $TranscriptName . '","ResumeTitle":"' . $ResumeTitle . '","ResumeHeader":"' . $ResumeHeader . '","ResumeYES": "' . $ResumeYES . '","ResumeNO":"' . $ResumeNO . '","VttLanguage": "' . $VttLanguage . '","CourseName":"' . $tocjsonfile[0]['course_name'] . '","VttLabel":"' . $VttLabel . '","spanCliContinue":"' . $spanCliContinue . '","Resource": ' . $resource . ',';
             if ($resource == true) {
                 $totalFiles = count($getAllFileOwner);
                 $templatejson .= '"ResourceArea": {"LearningAids": {"Title": "Troubleshooting","Resources": [';
@@ -1281,6 +1521,123 @@ class Scorm_course_pages extends BaseController
             session()->setFlashdata('error', lang('Messages.Error_0001'));
             return redirect()->to(base_url() . '/SCORM/course_builder/Scorm_course_pages/page_pdf_view');
         }
+    }
+    private function exportTextPage($eachpage, $scourse_id)
+    {
+        $timestamp = $eachpage['createdon'];
+        $htmlFolder = FCPATH . 'assets/assets/uploads/SCORM_course_document/' . $scourse_id . '/' . $timestamp . '/assets/html/' . $eachpage['page_id'];
+        if (!is_dir($htmlFolder)) {
+            mkdir($htmlFolder, 0777, true);
+        }
+
+        $imageTag = '';
+        if (!empty($eachpage['page_image']) && file_exists($htmlFolder . '/' . $eachpage['page_image'])) {
+            $alt = htmlspecialchars($eachpage['image_alt'] ?? '', ENT_QUOTES);
+            $imageTag = '<img src="' . $eachpage['page_image'] . '" alt="' . $alt . '" style="max-width:100%;height:auto;">';
+        }
+
+        $content = $eachpage['content'] ?? '';
+        $type = (int) $eachpage['type'];
+
+        if ($type == 11 && $imageTag !== '') {
+            $body = '<div class="text-page-row"><div class="text-page-image">' . $imageTag . '</div><div class="text-page-content">' . $content . '</div></div>';
+        } elseif ($type == 12 && $imageTag !== '') {
+            $body = '<div class="text-page-row"><div class="text-page-content">' . $content . '</div><div class="text-page-image">' . $imageTag . '</div></div>';
+        } else {
+            $body = '<div class="text-page-content">' . $content . '</div>';
+        }
+
+        $html = '<!DOCTYPE html><html><head><meta charset="UTF-8">'
+            . '<style>body{font-family:Arial,sans-serif;padding:20px;}.text-page-row{display:flex;gap:20px;align-items:flex-start;}.text-page-row>div{flex:1;min-width:0;}.text-page-image img{max-width:100%;height:auto;}</style>'
+            . '</head><body>' . $body . '</body></html>';
+
+        file_put_contents($htmlFolder . '/Screen_01.html', $html);
+    }
+    private function exportTextPageJson($eachpage, $scourse_id)
+    {
+        $timestamp = $eachpage['createdon'];
+        $htmlFolder = FCPATH . 'assets/assets/uploads/SCORM_course_document/' . $scourse_id . '/' . $timestamp . '/assets/html/' . $eachpage['page_id'];
+        if (!is_dir($htmlFolder)) {
+            mkdir($htmlFolder, 0777, true);
+        }
+
+        $type = (int) $eachpage['type'];
+        if ($type == 11) {
+            $layoutType = 'image-left';
+        } elseif ($type == 12) {
+            $layoutType = 'image-right';
+        } else {
+            $layoutType = 'text-only';
+        }
+
+        $hasImage = !empty($eachpage['page_image']) && file_exists($htmlFolder . '/' . $eachpage['page_image']);
+
+        $pagejson = [
+            "meta" => [
+                "pageId" => (string) $eachpage['page_id'],
+                "lang" => $eachpage['language'] ?? 'en'
+            ],
+            "theme" => [
+                "primary" => "#1A56DB",
+                "primaryDark" => "#1341B0",
+                "primaryLight" => "#EBF2FF",
+                "accent" => "#06B6D4",
+                "text" => "#0F172A",
+                "text2" => "#475569",
+                "text3" => "#94A3B8",
+                "bg" => "#F1F5F9",
+                "surface" => "#FFFFFF",
+                "surface2" => "#F8FAFC",
+                "border" => "#E2E8F0",
+                "radiusBase" => "0px",
+                "radiusLg" => "0px",
+                "radiusXl" => "0px"
+            ],
+            "layout" => [
+                "type" => $layoutType,
+                "mediaRatio" => $hasImage ? "46%" : "0%",
+                "contentRatio" => $hasImage ? "54%" : "100%",
+                "gap" => "52px",
+                "cardPadding" => "52px",
+                "maxWidth" => $hasImage ? "1120px" : "860px"
+            ],
+            "header" => [
+                "visible" => false,
+                "eyebrow" => "",
+                "title" => $eachpage['title'] ?? '',
+                "align" => "left",
+                "accentBar" => true
+            ],
+            "media" => [
+                "visible" => $hasImage,
+                "type" => "image",
+                "src" => $hasImage ? $eachpage['page_image'] : '',
+                "alt" => $eachpage['image_alt'] ?? '',
+                "caption" => "",
+                "aspectRatio" => "4/3",
+                "borderRadius" => "0px"
+            ],
+            "content" => [
+                "visible" => true,
+                "heading" => $eachpage['title'] ?? '',
+                "headingTag" => "h2",
+                "body" => $eachpage['content'] ?? '',
+                "components" => []
+            ],
+            "navigation" => [
+                "visible" => false,
+                "prevLabel" => "",
+                "prevHref" => "",
+                "nextLabel" => "",
+                "nextHref" => "#",
+                "showProgress" => false,
+                "currentPage" => (int) ($eachpage['page_number'] ?? 1),
+                "totalPages" => 0
+            ]
+        ];
+
+        $pagejsonEncoded = json_encode($pagejson, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+        file_put_contents($htmlFolder . '/page.json', $pagejsonEncoded);
     }
     function exportQuestion($page_id, $scourse_id, $type, $langauge)
     {
@@ -1571,6 +1928,11 @@ class Scorm_course_pages extends BaseController
         $ImageZoomText = $this->assessment_training_model->getassessment_settings($scourse_id, $page_id, '73');
         $ImageZoomText = (isset($ImageZoomText[0]['value']) && ($ImageZoomText[0]['value'] != '')) ? $ImageZoomText[0]['value'] : $assessmentSets['73'];
 
+        $AlertText = $this->assessment_training_model->getassessment_settings($scourse_id, $page_id, '74');
+        $AlertText = (isset($AlertText[0]['value']) && ($AlertText[0]['value'] != '')) ? $AlertText[0]['value'] : $assessmentSets['74'];
+
+
+
 
         $boolean = '';
 
@@ -1585,6 +1947,7 @@ class Scorm_course_pages extends BaseController
                 "TotalQuestions" => $TotalQuestions,
                 "OptionRandom" => $OptionRandom,
                 "passingScore" => $passingScore,
+                "AlertText" => $AlertText,
                 "QuizAttempt" => $QuizAttempt,
                 "iframeSrc" => "../../../theme/scripts/QuizTemplate/Quiz/Quiz.html",
                 "duration" => $duration,
@@ -1719,11 +2082,19 @@ class Scorm_course_pages extends BaseController
         if ($response =  $this->requireRole(['5', '44', '67', '46'])) {
             return $response;
         }
-        $position = $_POST['position'];
-        $pagenumberresult = $this->scorm_page_model->updatePagenumber($position);
-        if ($pagenumberresult) {
-            return json_encode(['success' => true]);
-        }
+        $position = $this->request->getPost('position');
+
+        $courseId = $this->request->getPost('scourse_id');
+
+        $pagenumberresult = $this->scorm_page_model->updatePagenumber($courseId, $position);
+
+
+
+        return $this->response
+
+            ->setStatusCode($pagenumberresult ? 200 : 422)
+
+            ->setJSON(['success' => $pagenumberresult]);
     }
     function uploadZipfile()
     {
@@ -1957,137 +2328,375 @@ class Scorm_course_pages extends BaseController
         }
         return redirect()->to(base_url('SCORM/course_builder/Editor'));
     }
-    function uploadHTML()
+    public function saveTextPage()
+    {
+        if ($response =  $this->requireRole(['5', '44', '46'])) {
+            return $response;
+        }
+        $data = [];
+        helper(['filesystem']);
+
+        if (isset($_POST['course_id'])) {
+            $data['course_id'] = $_POST['course_id'];
+            $_SESSION['course_id'] = $data['course_id'];
+        } else if (isset($_SESSION['course_id'])) {
+            $data['course_id'] = $_SESSION['course_id'];
+        }
+        if (isset($_POST['page_id'])) {
+            $data['page_id'] = $_POST['page_id'];
+            $_SESSION['page_id'] = $data['page_id'];
+        } else if (isset($_SESSION['page_id'])) {
+            $data['page_id'] = $_SESSION['page_id'];
+        }
+
+        if ($this->request->getPost()) {
+            $newdata = [];
+            // Content and image now save from independent forms (Text-Image page type) - only
+            // touch a column when its form actually posted it, so saving the image doesn't
+            // wipe out content (and vice versa).
+            if ($this->request->getPost('content') !== null) {
+                $newdata['content'] = $this->request->getPost('content');
+            }
+            if ($this->request->getPost('image_alt') !== null) {
+                $newdata['image_alt'] = $this->request->getPost('image_alt');
+            }
+
+            $file = $this->request->getFile('image');
+            if ($file && $file->isValid() && !$file->hasMoved()) {
+                $rules = [
+                    // JPG/JPEG/PNG only, max 1 MB
+                    'image' => 'is_image[image]|mime_in[image,image/jpg,image/jpeg,image/png]|max_size[image,1024]',
+                ];
+                if (!$this->validate($rules)) {
+                    $data['promovalidation'] = $this->validator;
+                    session()->setFlashdata('error', lang('Messages.Error_0001'));
+                    session()->setFlashdata('alert-class', 'alert-danger');
+                    return redirect()->to(base_url('SCORM/course_builder/Editor'));
+                }
+
+                $pagejsonfile = $this->scorm_page_model->getpagedata($data['page_id']);
+                $timestamp = $pagejsonfile[0]['createdon'];
+                $extension = $file->getExtension();
+                // Unique per upload (not just per page) so replacing an image never collides with a cached copy of the old one.
+                $filename = 'page_' . $data['page_id'] . '_' . time() . '.' . $extension;
+                $imageFolderPath = FCPATH . 'assets/assets/uploads/SCORM_course_document/' . $data['course_id'] . '/' . $timestamp . '/assets/html/' . $data['page_id'] . '/';
+
+                if (!is_dir($imageFolderPath)) {
+                    mkdir($imageFolderPath, 0777, true);
+                }
+
+                if ($file->move($imageFolderPath, $filename)) {
+                    // Remove the previous image file so uploads don't accumulate on disk.
+                    $previousFilename = $pagejsonfile[0]['page_image'] ?? '';
+                    if ($previousFilename !== '' && file_exists($imageFolderPath . $previousFilename)) {
+                        unlink($imageFolderPath . $previousFilename);
+                    }
+                    $newdata['page_image'] = $filename;
+                }
+            }
+
+            $result = $this->scorm_page_model->edituploadpagedetails($newdata, $data['page_id']);
+
+            if ($result) {
+                session()->setFlashdata('success', lang('Messages.Success_0009'));
+                session()->setFlashdata('alert-class', 'alert-danger');
+            } else {
+                session()->setFlashdata('error', lang('Messages.Error_0001'));
+                session()->setFlashdata('alert-class', 'alert-danger');
+            }
+        }
+        return redirect()->to(base_url('SCORM/course_builder/Editor'));
+    }
+    public function deleteTextImage()
     {
         if ($response =  $this->requireRole(['5', '44', '46'])) {
             return $response;
         }
 
-        $data = [];
+        $page_id = $_POST['page_id'] ?? null;
+        if ($page_id) {
+            $pagejsonfile = $this->scorm_page_model->getpagedata($page_id);
+            if (!empty($pagejsonfile) && !empty($pagejsonfile[0]['page_image'])) {
+                $imageFolderPath = FCPATH . 'assets/assets/uploads/SCORM_course_document/' . $pagejsonfile[0]['fk_course_id'] . '/' . $pagejsonfile[0]['createdon'] . '/assets/html/' . $page_id . '/';
+                $filePath = $imageFolderPath . $pagejsonfile[0]['page_image'];
+                if (file_exists($filePath)) {
+                    unlink($filePath);
+                }
+
+                $this->scorm_page_model->edituploadpagedetails(['page_image' => null, 'image_alt' => null], $page_id);
+                session()->setFlashdata('success', lang('Messages.Success_0005'));
+            }
+        }
+
+        return redirect()->to(base_url('SCORM/course_builder/Editor'));
+    }
+    function uploadHTML()
+    {
+        if ($response =  $this->requireRole(['5', '44', '67', '46'])) {
+            return $response;
+        }
+
+        try {
+            return $this->uploadHTMLInner();
+        } catch (\Throwable $e) {
+            log_message('error', 'uploadHTML failed: {exception}', ['exception' => $e]);
+            return $this->response->setJSON(['status' => 'ERROR', 'message' => lang('Messages.Error_0025')]);
+        }
+    }
+
+    private function uploadHTMLInner()
+    {
         helper(['filesystem']);
-        if (isset($_POST['course_id'])) {
-            $data['course_id'] = $_POST['course_id'];
-            $_SESSION['course_id'] = $data['course_id'];
-        } else if (isset($_GET['course_id'])) {
-            $data['course_id'] = $_GET['course_id'];
-        } else if (isset($_SESSION['course_id'])) {
-            $data['course_id'] = $_SESSION['course_id'];
-        } else {
-            return redirect()->to(base_url() . '/SCORM/course_builder/Editor');
+
+        if (!$this->request->is('post')) {
+            return $this->response->setJSON(['status' => 'ERROR', 'message' => lang('Messages.Error_0005')]);
         }
 
-        if (isset($_POST['page_id'])) {
-            $data['page_id'] = $_POST['page_id'];
-            $_SESSION['page_id'] = $data['page_id'];
-        } else if (isset($_GET['page_id'])) {
-            $data['page_id'] = $_GET['page_id'];
-        } else if (isset($_SESSION['page_id'])) {
-            $data['page_id'] = $_SESSION['page_id'];
+        if (empty($_POST) && empty($_FILES)) {
+            // $_POST and $_FILES are both wiped by PHP when the upload exceeds post_max_size.
+            return $this->response->setJSON(['status' => 'ERROR', 'message' => lang('Messages.Error_0007')]);
         }
 
-        sleep(2);
-        if ($this->request->getPost()) {
-            //    echo $this->request->getFile('zip_file');
-            //    exit();
-            $pagejsonfile = $this->scorm_page_model->getpagedata($data['page_id']);
-            // print_r($pagejsonfile);
-            $timestamp = $pagejsonfile[0]['createdon'];
-            $page_number = $pagejsonfile[0]['page_number'];
-            if ($file = $this->request->getFile('zip_file')) {
-                if ($file->isValid() && !$file->hasMoved()) {
-                    $filename = $file->getName();
-                    $extension = pathinfo($filename, PATHINFO_EXTENSION);
-                    if ($page_number == 1) {
-                        if ($extension == 'zip') {
-                            if (!is_dir(FCPATH . 'assets/assets/uploads/SCORM_course_document/' . $data['course_id'] . '/' . $timestamp . '/assets/html/' . $data['page_id'])) {
-                                mkdir('assets/assets/uploads/SCORM_course_document/' . $data['course_id'] . '/' . $timestamp . '/assets/html/' . $data['page_id'], 0777, true);
-                            }
-                            if (file_exists(FCPATH . 'assets/assets/uploads/SCORM_course_document/' . $data['course_id'] . '/' . $timestamp . '/assets/html/' . $data['page_id'])) {
-                                $dirPath = FCPATH . 'assets/assets/uploads/SCORM_course_document/' . $data['course_id'] . '/' . $timestamp . '/assets/html/' . $data['page_id'];
-                                $dir = $dirPath . DIRECTORY_SEPARATOR;
-                                $this->emptyDir($dir);
-                                rmdir($dir);
-                                $targetzip = FCPATH . 'assets/assets/uploads/SCORM_course_document/' . $data['course_id'] . '/' . $timestamp . '/assets/html/' . $data['page_id'] . '/' . $filename;
-                                $filenoext = basename($filename, '.zip');  // absolute path to the directory where zipper.php is in (lowercase)
-                                $filenoext = basename($filenoext, '.ZIP');  // absolute path to the directory where zipper.php is in (when uppercase)
-                                //$targetdir = $path . $filenoext; // target directory
+        $courseId = $this->request->getPost('course_id');
+        $pageId = $this->request->getPost('page_id');
+        $language = (int) ($this->request->getPost('language') ?? 1);
 
-                                if ($file->move(FCPATH . 'assets/assets/uploads/SCORM_course_document/' . $data['course_id'] . '/' . $timestamp . '/assets/html/' . $data['page_id'], $filename)) {
-                                    $zip = new ZipArchive();
-                                    $x = $zip->open($targetzip);
-                                    if ($x === true) {
-                                        $zip->extractTo(FCPATH . 'assets/assets/uploads/SCORM_course_document/' . $data['course_id'] . '/' . $timestamp . '/assets/html/' . $data['page_id']); // place in the directory with same name  
-                                        $zip->close();
-                                        unlink($targetzip);
-                                    }
-                                }
-                                $newdata = [
-                                    'video_upload' => $filename,
-                                ];
-                                $result = $this->scorm_page_model->edituploadpagedetails($newdata, $data['page_id']);
-                                $fileupload = [
-                                    'language' => $_POST['language'],
-                                    'page_id' => $data['page_id'],
-                                    'folder' => 'page1',
-                                    'status' => 1,
-                                    'createdby' => session()->get('id_user'),
-                                    'createdon' => time(),
-                                ];
-                                $this->scorm_page_model->insertFileuploaddata($fileupload);
-                                return json_encode($result);
-                            }
-                        } else {
-                            session()->setFlashdata('error', lang('Messages.Error_0001'));
-                            session()->setFlashdata('alert-class', 'alert-danger');
-                        }
-                    } else {
-                        if ($extension == 'zip') {
-                            if (!is_dir(FCPATH . 'assets/assets/uploads/SCORM_course_document/' . $data['course_id'] . '/' . $timestamp . '/assets/html/' . $data['page_id'])) {
-                                mkdir('assets/assets/uploads/SCORM_course_document/' . $data['course_id'] . '/' . $timestamp . '/assets/html/' . $data['page_id'], 0777, true);
-                            }
-                            if (file_exists(FCPATH . 'assets/assets/uploads/SCORM_course_document/' . $data['course_id'] . '/' . $timestamp . '/assets/html/' . $data['page_id'])) {
-                                $dirPath = FCPATH . 'assets/assets/uploads/SCORM_course_document/' . $data['course_id'] . '/' . $timestamp . '/assets/html/' . $data['page_id'];
-                                $dir = $dirPath . DIRECTORY_SEPARATOR;
-                                $this->emptyDir($dir);
-                                rmdir($dir);
-                                $targetzip = FCPATH . 'assets/assets/uploads/SCORM_course_document/' . $data['course_id'] . '/' . $timestamp . '/assets/html/' . $data['page_id'] . '/' . $filename;
-                                $filenoext = basename($filename, '.zip');  // absolute path to the directory where zipper.php is in (lowercase)
-                                $filenoext = basename($filenoext, '.ZIP');  // absolute path to the directory where zipper.php is in (when uppercase)
-                                //$targetdir = $path . $filenoext; // target directory
+        if (!ctype_digit((string) $courseId) || !ctype_digit((string) $pageId)) {
+            return $this->response->setJSON(['status' => 'ERROR', 'message' => lang('Messages.Error_0005')]);
+        }
 
-                                if ($file->move(FCPATH . 'assets/assets/uploads/SCORM_course_document/' . $data['course_id'] . '/' . $timestamp . '/assets/html/' . $data['page_id'], $filename)) {
-                                    $zip = new ZipArchive();
-                                    $x = $zip->open($targetzip);
-                                    if ($x === true) {
-                                        $zip->extractTo(FCPATH . 'assets/assets/uploads/SCORM_course_document/' . $data['course_id'] . '/' . $timestamp . '/assets/html/' . $data['page_id']); // place in the directory with same name  
-                                        $zip->close();
-                                        unlink($targetzip);
-                                    }
-                                }
-                                $newdata = [
-                                    'video_upload' => $filename,
-                                ];
-                                $result = $this->scorm_page_model->edituploadpagedetails($newdata, $data['page_id']);
-                                $fileupload = [
-                                    'language' => $_POST['language'],
-                                    'page_id' => $data['page_id'],
-                                    'folder' => $data['page_id'],
-                                    'status' => 1,
-                                    'createdby' => session()->get('id_user'),
-                                    'createdon' => time(),
-                                ];
-                                $this->scorm_page_model->insertFileuploaddata($fileupload);
-                                return json_encode($result);
-                            }
-                        } else {
-                            session()->setFlashdata('error', lang('Messages.Error_0001'));
-                            session()->setFlashdata('alert-class', 'alert-danger');
-                        }
-                    }
+        $_SESSION['course_id'] = $courseId;
+        $_SESSION['page_id'] = $pageId;
+
+        $pageRows = $this->scorm_page_model->getpagedata($pageId);
+        if (empty($pageRows) || (string) $pageRows[0]['fk_course_id'] !== (string) $courseId) {
+            return $this->response->setJSON(['status' => 'ERROR', 'message' => lang('Messages.Error_0024')]);
+        }
+
+        $file = $this->request->getFile('zip_file');
+        if (!$file || !$file->isValid()) {
+            $message = $file ? $file->getErrorString() : lang('Messages.Error_0005');
+            return $this->response->setJSON(['status' => 'ERROR', 'message' => $message]);
+        }
+
+        $filename = basename($file->getClientName() ?: $file->getName());
+        if (strtolower(pathinfo($filename, PATHINFO_EXTENSION)) !== 'zip') {
+            return $this->response->setJSON(['status' => 'ERROR', 'message' => 'Please upload a valid ZIP package.']);
+        }
+
+        $zip = new ZipArchive();
+        $openResult = $zip->open($file->getTempName());
+        if ($openResult !== true) {
+            return $this->response->setJSON(['status' => 'ERROR', 'message' => 'The ZIP package is invalid or could not be opened.']);
+        }
+        $zipIsOpen = true;
+
+        $rootHtmlFiles = [];
+        for ($index = 0; $index < $zip->numFiles; $index++) {
+            $entry = $zip->getNameIndex($index);
+            if ($entry === false) {
+                continue;
+            }
+
+            $normalizedEntry = str_replace('\\', '/', $entry);
+            if (
+                str_starts_with($normalizedEntry, '/')
+                || preg_match('/^[A-Za-z]:\//', $normalizedEntry)
+                || preg_match('~(^|/)\.\.(/|$)~', $normalizedEntry)
+            ) {
+                $zip->close();
+                $zipIsOpen = false;
+                return $this->response->setJSON(['status' => 'ERROR', 'message' => 'The ZIP package contains an unsafe file path.']);
+            }
+
+            $isDirectoryEntry = str_ends_with($normalizedEntry, '/');
+            $normalizedEntry = rtrim($normalizedEntry, '/');
+            if (!$isDirectoryEntry && $normalizedEntry !== '' && !str_contains($normalizedEntry, '/')) {
+                $extension = strtolower(pathinfo($normalizedEntry, PATHINFO_EXTENSION));
+                if (in_array($extension, ['html', 'htm'], true)) {
+                    $rootHtmlFiles[] = $normalizedEntry;
                 }
             }
         }
-        return redirect()->to(base_url('SCORM/course_builder/Editor'));
+
+        $knownEntryPoint = false;
+        foreach ($rootHtmlFiles as $rootHtmlFile) {
+            if (in_array(strtolower($rootHtmlFile), ['index.html', 'screen_01.html'], true)) {
+                $knownEntryPoint = true;
+                break;
+            }
+        }
+
+        if (!$knownEntryPoint && count($rootHtmlFiles) !== 1) {
+            $zip->close();
+            $zipIsOpen = false;
+            return $this->response->setJSON([
+                'status' => 'ERROR',
+                'message' => 'The ZIP package must contain index.html, Screen_01.html, or one HTML file at its root.',
+            ]);
+        }
+
+        $timestamp = $pageRows[0]['createdon'];
+        $pageNumber = $pageRows[0]['page_number'];
+        $packageParent = FCPATH . 'assets/assets/uploads/SCORM_course_document/' . $courseId . '/' . $timestamp . '/assets/html';
+        $targetDirectory = $packageParent . DIRECTORY_SEPARATOR . $pageId;
+        $stagingDirectory = $packageParent . DIRECTORY_SEPARATOR . '.html_upload_' . $pageId . '_' . bin2hex(random_bytes(6));
+        $backupDirectory = null;
+        $packageInstalled = false;
+        $databaseCommitted = false;
+        $removeDirectory = function (string $directory, string $description): bool {
+            try {
+                if (!is_dir($directory)) {
+                    return true;
+                }
+
+                $this->emptyDir($directory);
+                if (is_dir($directory) && !rmdir($directory)) {
+                    log_message('error', 'Unable to remove {description}: {path}', [
+                        'description' => $description,
+                        'path' => $directory,
+                    ]);
+                    return false;
+                }
+
+                return !is_dir($directory);
+            } catch (\Throwable $cleanupError) {
+                log_message('error', 'Unable to remove {description} at {path}: {exception}', [
+                    'description' => $description,
+                    'path' => $directory,
+                    'exception' => $cleanupError,
+                ]);
+                return false;
+            }
+        };
+        $restoreBackup = function (string $backup, string $target): bool {
+            try {
+                if (!rename($backup, $target)) {
+                    log_message('error', 'Unable to restore HTML package backup from {backup} to {target}', [
+                        'backup' => $backup,
+                        'target' => $target,
+                    ]);
+                    return false;
+                }
+
+                return true;
+            } catch (\Throwable $restoreError) {
+                log_message('error', 'Unable to restore HTML package backup from {backup} to {target}: {exception}', [
+                    'backup' => $backup,
+                    'target' => $target,
+                    'exception' => $restoreError,
+                ]);
+                return false;
+            }
+        };
+
+        try {
+            if (!is_dir($packageParent) && !mkdir($packageParent, 0777, true) && !is_dir($packageParent)) {
+                throw new \RuntimeException('Unable to create the HTML package directory.');
+            }
+            if (!mkdir($stagingDirectory, 0777, true)) {
+                throw new \RuntimeException('Unable to create the HTML package staging directory.');
+            }
+
+            $extracted = $zip->extractTo($stagingDirectory);
+            $zip->close();
+            $zipIsOpen = false;
+            if (!$extracted) {
+                throw new \RuntimeException('Unable to extract the HTML package.');
+            }
+
+            if (is_dir($targetDirectory)) {
+                $backupDirectory = $targetDirectory . '.backup_' . bin2hex(random_bytes(6));
+                if (!rename($targetDirectory, $backupDirectory)) {
+                    throw new \RuntimeException('Unable to preserve the existing HTML package.');
+                }
+            } elseif (file_exists($targetDirectory)) {
+                throw new \RuntimeException('The HTML package destination is not a directory.');
+            }
+
+            if (!rename($stagingDirectory, $targetDirectory)) {
+                if ($backupDirectory !== null && is_dir($backupDirectory)) {
+                    if (!$restoreBackup($backupDirectory, $targetDirectory)) {
+                        throw new \RuntimeException(
+                            'Unable to install the new HTML package or restore the existing package. '
+                                . 'The backup remains at ' . $backupDirectory
+                        );
+                    }
+                    $backupDirectory = null;
+                }
+                throw new \RuntimeException('Unable to install the HTML package.');
+            }
+            $stagingDirectory = null;
+            $packageInstalled = true;
+
+            $database = \Config\Database::connect();
+            if (!$database->transBegin()) {
+                throw new \RuntimeException('Unable to start the HTML package database transaction.');
+            }
+            try {
+                $result = $this->scorm_page_model->edituploadpagedetails(
+                    ['video_upload' => $filename],
+                    $pageId
+                );
+                $uploadedBy = session()->get('id_user');
+                $uploadedAt = time();
+                $packageRowSaved = $this->scorm_page_model->insertFileuploaddata([
+                    'language' => in_array($language, [1, 2, 3], true) ? $language : 1,
+                    'page_id' => $pageId,
+                    'folder' => ((float) $pageNumber === 1.0) ? 'page1' : $pageId,
+                    'status' => 1,
+                    'createdby' => $uploadedBy,
+                    'createdon' => $uploadedAt,
+                    'last_update_by' => $uploadedBy,
+                    'last_update_on' => $uploadedAt,
+                ]);
+                if ($packageRowSaved === false) {
+                    throw new \RuntimeException('Unable to save the HTML package record.');
+                }
+
+                if (!$database->transStatus()) {
+                    throw new \RuntimeException('Unable to save the HTML package details.');
+                }
+                if (!$database->transCommit()) {
+                    throw new \RuntimeException('Unable to commit the HTML package details.');
+                }
+                $databaseCommitted = true;
+            } catch (\Throwable $databaseError) {
+                $database->transRollback();
+                throw $databaseError;
+            }
+        } catch (\Throwable $e) {
+            if ($zipIsOpen) {
+                $zip->close();
+                $zipIsOpen = false;
+            }
+
+            // Never compensate the filesystem after the database commit. At that
+            // point the newly installed package is the authoritative copy.
+            if (!$databaseCommitted) {
+                if ($stagingDirectory !== null && is_dir($stagingDirectory)) {
+                    $removeDirectory($stagingDirectory, 'HTML package staging directory');
+                }
+                if ($packageInstalled && is_dir($targetDirectory)) {
+                    $removeDirectory($targetDirectory, 'failed HTML package installation');
+                    $packageInstalled = is_dir($targetDirectory);
+                }
+                if ($backupDirectory !== null && is_dir($backupDirectory) && !is_dir($targetDirectory)) {
+                    if ($restoreBackup($backupDirectory, $targetDirectory)) {
+                        $backupDirectory = null;
+                    }
+                }
+            }
+            throw $e;
+        }
+
+        // Backup deletion is post-commit housekeeping. A cleanup failure must not
+        // roll back or remove a package whose database changes are already durable.
+        if ($backupDirectory !== null && is_dir($backupDirectory)) {
+            $removeDirectory($backupDirectory, 'old HTML package backup');
+        }
+
+        return $this->response->setJSON($result);
     }
     function uploadvtt()
     {
@@ -2284,6 +2893,7 @@ class Scorm_course_pages extends BaseController
         $data['AssessmentSettings']['72'] = $this->scorm_course_model->getAssignmetadatabyID($data['scourse_id'], 72);
         $data['AssessmentSettings']['74'] = $this->scorm_course_model->getAssignmetadatabyID($data['scourse_id'], 74);
         $data['AssessmentSettings']['75'] = $this->scorm_course_model->getAssignmetadatabyID($data['scourse_id'], 75);
+        $data['AssessmentSettings']['76'] = $this->scorm_course_model->getAssignmetadatabyID($data['scourse_id'], 76);
 
         echo view('templates/header_view', $data);
         echo view('page/page_pdf_view', $data);
@@ -2349,7 +2959,7 @@ class Scorm_course_pages extends BaseController
         }
         return redirect()->to(base_url('SCORM/course_builder/Scorm_course_pages/page_pdf_view'));
     }
-    public function manifestfile($scourse_id, $Identifier)
+    public function manifestfile($scourse_id, $Identifier, $theme)
     {
         if ($response =  $this->requireRole(['5', '44', '67', '46'])) {
             return $response;
@@ -2424,17 +3034,27 @@ class Scorm_course_pages extends BaseController
         $resources->appendChild($resource);
 
         $xmlString = $xmlDoc->saveXML();
-
-        $folderPath = FCPATH . 'assets/assets/uploads/SCORM_course_document/scorm_libraries/index_files/';
-        if (!is_dir($folderPath)) {
-            mkdir($folderPath, 0777, true);
+        if ($theme == 7) {
+            $folderPath = FCPATH . 'assets/assets/uploads/SCORM_course_document/scorm_libraries/Vertical_index_files/';
+        } elseif ($theme == 8) {
+            $folderPath = FCPATH . 'assets/assets/uploads/SCORM_course_document/scorm_libraries/Modern_index_files/';
+        } else {
+            $folderPath = FCPATH . 'assets/assets/uploads/SCORM_course_document/scorm_libraries/index_files/';
         }
-
         $fileName = 'imsmanifest.xml';
-
         $filePath = $folderPath . $fileName;
 
-        file_put_contents($filePath, $xmlString);
+        // This is only caching a copy of the manifest on disk - the response below
+        // already carries the generated XML regardless, so a permission problem
+        // writing the cache shouldn't fail the whole request.
+        if (is_dir($folderPath) || @mkdir($folderPath, 0777, true) || is_dir($folderPath)) {
+            if (@file_put_contents($filePath, $xmlString) === false) {
+                log_message('error', 'manifestfile: unable to write cache copy to {file}', ['file' => $filePath]);
+            }
+        } else {
+            log_message('error', 'manifestfile: unable to create cache folder {folder}', ['folder' => $folderPath]);
+        }
+
         $this->response->setContentType('application/xml');
         $this->response->setBody($xmlString);
         return $this->response;
@@ -2485,7 +3105,6 @@ class Scorm_course_pages extends BaseController
             $zipfilenameformat = $decoded_course_name;
             // print_r($zipfilenameformat);
             // exit();
-            $this->manifestfile($data['scourse_id'], $Identifier);
             if ($theme == 1) {
                 $themesourceFolderPath = FCPATH . 'assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/Default';
                 $indexsourceFolderPath = FCPATH . 'assets/assets/uploads/SCORM_course_document/scorm_libraries/index_files';
@@ -2507,10 +3126,20 @@ class Scorm_course_pages extends BaseController
             } elseif ($theme == 7) {
                 $themesourceFolderPath = FCPATH . 'assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/Vertical_ContentforU';
                 $indexsourceFolderPath = FCPATH . 'assets/assets/uploads/SCORM_course_document/scorm_libraries/Vertical_index_files';
+            } elseif ($theme == 8) {
+                $themesourceFolderPath = FCPATH . 'assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/ModernTheme';
+                $indexsourceFolderPath = FCPATH . 'assets/assets/uploads/SCORM_course_document/scorm_libraries/Modern_index_files';
+            } elseif ($theme == 8) {
+                $themesourceFolderPath = FCPATH . 'assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/ModernTheme';
+                $indexsourceFolderPath = FCPATH . 'assets/assets/uploads/SCORM_course_document/scorm_libraries/Modern_index_files';
+            } elseif ($theme == 9) {
+                $themesourceFolderPath = FCPATH . 'assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/ZydusTheme';
+                $indexsourceFolderPath = FCPATH . 'assets/assets/uploads/SCORM_course_document/scorm_libraries/Zydus_index_files';
             } else {
                 $themesourceFolderPath = FCPATH . 'assets/assets/uploads/SCORM_course_document/scorm_libraries/export_themes/Default';
                 $indexsourceFolderPath = FCPATH . 'assets/assets/uploads/SCORM_course_document/scorm_libraries/index_files';
             }
+            $this->manifestfile($data['scourse_id'], $Identifier, $theme);
 
             $destinationfolderPath = FCPATH . 'assets/assets/uploads/SCORM_course_document/' . $data['scourse_id'] . '/' . $zipfilenameformat;
             // print_r($destinationfolderPath);
@@ -2689,14 +3318,18 @@ class Scorm_course_pages extends BaseController
             $data['course_id'] = $_POST['course_id'];
             $data['page_id'] = $_POST['page_id'];
             $data['status'] = $_POST['status'];
+            $result = $this->scorm_page_model->updatePageHierarchy(
 
-            $newdata = [
-                'status' => $data['status'],
-                'last_update_by' => session()->get('id_user'),
-                'last_update_on' => time(),
-            ];
+                $data['page_id'],
 
-            $result = $this->scorm_page_model->editpagedetails($newdata, $data['page_id']);
+                ['status' => $data['status']],
+
+                session()->get('id_user'),
+
+                time()
+
+            );
+
             if ($result) {
                 session()->setFlashdata('success', lang('Messages.Success_0008'));
             } else {

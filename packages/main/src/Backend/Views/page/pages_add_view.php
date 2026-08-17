@@ -3,7 +3,7 @@
 		<div class="page-title-box">
 			<div class="page-title-right">
 				<ol class="breadcrumb m-0">
-					<li class="breadcrumb-item"><a href="<?php echo base_url('SCORM/course_builder/Editor'); ?>">Pages</a></li>
+					<li class="breadcrumb-item"><a href="<?php echo base_url('SCORM/course_builder/Editor'); ?>">Course Builder</a></li>
 
 				</ol>
 			</div>
@@ -34,6 +34,9 @@
 									<option value="6">MCQ Check your understanding</option>
 									<option value="4">Quiz</option>
 									<option value="3">Html</option>
+									<option value="10">Text Only</option>
+									<option value="11">Image + Text</option>
+									<option value="12">Text + Image</option>
 								</select>
 							</div>
 							<div class="form-group col-md-2">

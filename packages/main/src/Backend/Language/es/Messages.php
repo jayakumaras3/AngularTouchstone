@@ -54,6 +54,7 @@ return [
     'Success_0052' => '¡Usuario inscrito exitosamente!',
     'Success_0053' => '¡Usuarios inscritos exitosamente!',
     'Success_0054' => '¡Curso duplicado exitosamente!',
+    'Success_0055' => 'Archivo subido con éxito',
 
     'Error_0001' => '¡Error! Contacta al administrador.',
     'Error_0002' => 'No se agregaron cursos del grupo.',
@@ -80,5 +81,6 @@ return [
     'Error_0023' => 'El enlace de demostración ha expirado. Contacta a ventas.',
     'Error_0024' => 'Curso no encontrado',
     'Error_0025' => '¡Algo salió mal! Por favor contacta al administrador del sitio!',
-    'Error_0026' => '¡Tu navegador no soporta la API FormData! ¡Usa IE 10 o superior!'
+    'Error_0026' => '¡Tu navegador no soporta la API FormData! ¡Usa IE 10 o superior!',
+    'Error_0027' => 'Por favor completa tu autenticación de dos factores (verificación de PAN) antes de editar tu perfil.'
 ];
