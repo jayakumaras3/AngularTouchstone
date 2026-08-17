@@ -6,6 +6,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../services/login/auth.service';
 import { noWhitespaceValidator, trimFormGroupValues } from '../../../shared/validators/no-whitespace.validator';
+import { emailFormatValidator } from '../../../shared/validators/email.validator';
+import { FieldErrorPipe } from '../../../shared/validators/field-error.pipe';
 import { minimumMeaningfulCharacters } from '../../../shared/validators/minimum-meaningful-characters.validator';
 import { RequiredFieldsNoteComponent } from '../../../shared/required-fields-note/required-fields-note.component';
 import { MessageFieldStatusComponent } from '../../../shared/message-field-status/message-field-status.component';
@@ -20,7 +22,8 @@ import { MessageFieldStatusComponent } from '../../../shared/message-field-statu
     MatInputModule,
     MatButtonModule,
     RequiredFieldsNoteComponent,
-    MessageFieldStatusComponent
+    MessageFieldStatusComponent,
+    FieldErrorPipe
   ],
   template: `
     <div class="popup-container p-4">
@@ -39,6 +42,9 @@ import { MessageFieldStatusComponent } from '../../../shared/message-field-statu
         <mat-form-field appearance="outline" class="w-100 mb-3">
           <mat-label>Email</mat-label>
           <input matInput formControlName="email" required type="email">
+          @if (form.get('email')!.errors | fieldError; as message) {
+            <mat-error>{{ message }}</mat-error>
+          }
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="w-100 mb-3">
@@ -51,6 +57,10 @@ import { MessageFieldStatusComponent } from '../../../shared/message-field-statu
           <textarea matInput formControlName="message" rows="3"></textarea>
         </mat-form-field>
         <app-message-field-status [control]="form.get('message')!" [min]="20"></app-message-field-status>
+
+        @if (submitError) {
+          <p class="text-error f-s-14 m-b-0" role="alert" aria-live="assertive">{{ submitError }}</p>
+        }
 
         <div class="d-flex justify-content-between mt-4">
           <button mat-button type="button" (click)="onCancel()">Cancel</button>
@@ -80,6 +90,7 @@ import { MessageFieldStatusComponent } from '../../../shared/message-field-statu
 export class BookDemoComponent {
   form: FormGroup;
   isSubmitting = false;
+  submitError: string | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -88,7 +99,7 @@ export class BookDemoComponent {
     this.form = this.fb.group({
       name: ['', [Validators.required, noWhitespaceValidator()]],
       company: ['', [Validators.required, noWhitespaceValidator()]],
-      email: ['', [Validators.required, Validators.email, noWhitespaceValidator()]],
+      email: ['', [Validators.required, emailFormatValidator(), noWhitespaceValidator()]],
       city: ['', [Validators.required, noWhitespaceValidator()]],
       message: ['', [Validators.required, noWhitespaceValidator(), minimumMeaningfulCharacters(20)]]
     });
@@ -108,12 +119,21 @@ export class BookDemoComponent {
 
       this.authService.sendContact(this.form.value).subscribe({
         next: (res: any) => {
-          console.log('Response:', res);
-          window.close(); // Close the popup window on success
+          this.isSubmitting = false;
+          // The endpoint answers HTTP 200 with { success: false } for a rejected
+          // email or an SMTP failure. Treating that as success left the button
+          // stuck disabled with no message — window.close() is a no-op here,
+          // because this is a routed page, not a popup.
+          if (res?.success === false) {
+            this.submitError = res?.message || 'Something went wrong. Please try again.';
+            return;
+          }
+          window.close();
         },
         error: (error: any) => {
           console.error('Error:', error);
           this.isSubmitting = false;
+          this.submitError = 'Something went wrong. Please try again.';
         }
       });
     }

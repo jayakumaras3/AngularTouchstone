@@ -10,6 +10,7 @@ import {
 import { Router, RouterModule } from '@angular/router';
 import { MaterialModule } from '../../../material.module';
 import { BrandingComponent } from '../../../layouts/full/vertical/sidebar/branding.component';
+import { emailFormatValidator } from '../../../shared/validators/email.validator';
 
 @Component({
   selector: 'app-boxed-register',
@@ -29,7 +30,9 @@ export class AppBoxedRegisterComponent {
 
   form = new FormGroup({
     uname: new FormControl('', [Validators.required, Validators.minLength(6)]),
-    email: new FormControl('', [Validators.required]),
+    // Had no format rule at all before — any string was accepted. Now shares the
+    // app-wide rule like every other email control.
+    email: new FormControl('', [Validators.required, emailFormatValidator()]),
     password: new FormControl('', [Validators.required]),
   });
 

@@ -67,6 +67,9 @@
                 @if(f['email'].errors && f['email'].errors['required']) {
                 <div class="text-error">Email is required.</div>
                 }
+                @if(f['email'].errors && f['email'].errors['email']) {
+                <div class="text-error">Please enter a valid email address.</div>
+                }
               </mat-hint>
               }
             </mat-form-field>

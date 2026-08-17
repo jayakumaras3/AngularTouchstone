@@ -40,6 +40,16 @@
             [formControlName]="field.name"
           />
         }
+
+        <!--
+          Config-driven, so every field on every campaign page is covered and any
+          field added to LEAD_FORM_FIELDS later is covered too. FieldErrorPipe
+          only speaks for the `email` key, so an empty required field still shows
+          nothing here — unchanged from before.
+        -->
+        @if (form.get(field.name)?.errors | fieldError; as message) {
+          <mat-error>{{ message }}</mat-error>
+        }
       </mat-form-field>
     }
 

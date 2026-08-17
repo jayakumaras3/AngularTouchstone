@@ -35,6 +35,9 @@
                 <mat-form-field appearance="outline" class="w-100">
                   <mat-label>Email</mat-label>
                   <input matInput type="email" placeholder="Email address" formControlName="email" />
+                  @if (f['email'].errors | fieldError; as message) {
+                    <mat-error>{{ message }}</mat-error>
+                  }
                 </mat-form-field>
               </div>
 

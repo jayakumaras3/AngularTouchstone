@@ -9,6 +9,8 @@ import { AuthService } from '../../../services/login/auth.service';
 import { NoCodeInputDirective } from '../../../directives/no-code-input.directive';
 import { environment } from '../../../../environments/environment';
 import { noWhitespaceValidator, trimFormGroupValues } from '../../../shared/validators/no-whitespace.validator';
+import { emailFormatValidator } from '../../../shared/validators/email.validator';
+import { FieldErrorPipe } from '../../../shared/validators/field-error.pipe';
 import { minimumMeaningfulCharacters } from '../../../shared/validators/minimum-meaningful-characters.validator';
 import { RequiredFieldsNoteComponent } from '../../../shared/required-fields-note/required-fields-note.component';
 import { MessageFieldStatusComponent } from '../../../shared/message-field-status/message-field-status.component';
@@ -26,6 +28,7 @@ import { MessageFieldStatusComponent } from '../../../shared/message-field-statu
     NoCodeInputDirective,
     RequiredFieldsNoteComponent,
     MessageFieldStatusComponent,
+    FieldErrorPipe,
   ],
   templateUrl: './popupwindow.component.html',
   styleUrls: ['./popupwindow.component.scss'],
@@ -49,7 +52,7 @@ statusType: 'success' | 'error' | null = null;
     this.form = this.fb.group({
       name: ['', [Validators.required, noWhitespaceValidator()]],
       company: ['', [Validators.required, noWhitespaceValidator()]],
-      email: ['', [Validators.required, Validators.email, noWhitespaceValidator()]],
+      email: ['', [Validators.required, emailFormatValidator(), noWhitespaceValidator()]],
       city: ['', [Validators.required, noWhitespaceValidator()]],
       phone: [''],
       message: ['', [Validators.required, noWhitespaceValidator(), minimumMeaningfulCharacters(20)]],

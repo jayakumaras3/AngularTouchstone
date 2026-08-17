@@ -76,6 +76,22 @@ class Landing extends BaseController
                 ]);
         }
 
+        // `valid_email` above already covers the common malformed cases, so this
+        // is belt-and-braces rather than a hole being closed: it makes all three
+        // mailing endpoints run the one shared rule, and additionally rejects an
+        // IP-literal domain (`user@[192.168.0.1]`), which filter_var allows and
+        // which would be written to both `email` and `username` and then mailed
+        // an activation link. Checking `email` alone is enough — the equality
+        // test below covers confirmEmail.
+        if (!$this->isValidEmailFormat($data['email'])) {
+            return $this->response
+                ->setStatusCode(422)
+                ->setJSON([
+                    'status' => false,
+                    'message' => 'Please enter a valid email address.'
+                ]);
+        }
+
         // Email confirmation
         if ($data['email'] !== $data['confirmEmail']) {
             return $this->response
@@ -709,6 +725,93 @@ class Landing extends BaseController
     //         }
     //     }
     // }
+    /**
+     * Server-side mirror of the Angular emailFormatValidator(), shared by every
+     * Angular endpoint that mails, so an invalid address can never reach the
+     * mailer even if the browser validation is bypassed.
+     *
+     * FILTER_VALIDATE_EMAIL does most of the work and, unlike Angular's built-in
+     * Validators.email, already rejects single-label domains such as `sad@com`
+     * and `name@example` (verified on PHP 7.4 and 8.3). The dotted-TLD check on
+     * top closes the one case it still allows — an IP-literal domain like
+     * `user@[192.168.0.1]` — and, more importantly, keeps this rule identical to
+     * the Angular emailFormatValidator() so the two halves cannot drift.
+     *
+     * Kept as a method on this controller for the same deployment reason as
+     * companyNameRow() — no extra file to copy.
+     *
+     * An empty or missing address counts as a failure. Every form feeding these
+     * endpoints marks email required, so there is no optional-email caller for
+     * that to affect; it only means a hand-built request can no longer post an
+     * enquiry nobody can reply to.
+     *
+     * @param mixed $email Raw value from the decoded request body.
+     */
+    private function isValidEmailFormat($email): bool
+    {
+        if (!is_string($email)) {
+            return false;
+        }
+
+        $value = trim($email);
+
+        if ($value === '' || filter_var($value, FILTER_VALIDATE_EMAIL) === false) {
+            return false;
+        }
+
+        return (bool) preg_match('/\.[a-zA-Z]{2,}$/', $value);
+    }
+
+    /**
+     * Builds the Company Name row for the two Angular admin emails below, or ''
+     * when the request carried no company name.
+     *
+     * Company Name is optional across the site: the campaign lead forms
+     * (/microlearning, /smartlms, /Dochek_awareness_207), the demo popup and
+     * Book a Demo collect one, while the Contact page deliberately does not.
+     * This only reads whatever the request happened to send — there is no
+     * validation rule, and a payload without a company name is just as valid as
+     * one with it. Both endpoints share this single implementation.
+     *
+     * Every control name the front end uses is accepted: the canonical
+     * `company_name` that AuthService normalises onto, plus the older
+     * `companyName` (campaign forms) and `company` (demo popup / Book a Demo),
+     * so a stale cached bundle or a hand-built client keeps working.
+     *
+     * Deliberately a method on this controller rather than an app/Helpers file:
+     * this controller is deployed on its own, and a helper() call would fatal
+     * with FileNotFoundException on any server the extra file had not reached.
+     *
+     * @param mixed $json Decoded request body, normally an array.
+     */
+    private function companyNameRow($json, string $label = 'Company Name'): string
+    {
+        if (!is_array($json)) {
+            return '';
+        }
+
+        foreach (['company_name', 'companyName', 'company'] as $key) {
+            // Text or a number only. is_scalar() would also let a boolean
+            // through and render it as "1"; arrays and objects are not names.
+            if (!isset($json[$key])) {
+                continue;
+            }
+
+            if (!is_string($json[$key]) && !is_int($json[$key]) && !is_float($json[$key])) {
+                continue;
+            }
+
+            $value = trim((string) $json[$key]);
+
+            if ($value !== '') {
+                // esc() because this is user input interpolated into an HTML body.
+                return '<strong>' . $label . ':</strong> ' . esc($value) . '<br>';
+            }
+        }
+
+        return '';
+    }
+
     public function angualr_contact_us()
     {
 
@@ -729,7 +832,11 @@ class Landing extends BaseController
 
         $name = $json['name'] ?? '';
 
-        $company = $json['company'] ?? '';
+        // Both callers (the demo popup and Book a Demo) mark Company required, so
+        // this row keeps rendering exactly as before; routing it through the shared
+        // method only means the label is dropped rather than left dangling if a
+        // future form on this endpoint omits the field.
+        $companyLine = $this->companyNameRow($json, 'Company');
 
         $emailFrom = $json['email'] ?? '';
 
@@ -737,14 +844,24 @@ class Landing extends BaseController
 
         $messageText = $json['message'] ?? '';
 
+        // Same guard as angualr_product_enquiry — one rule, both endpoints.
+        if (!$this->isValidEmailFormat($emailFrom)) {
+            return $this->response->setJSON([
+
+                'success' => false,
+
+                'message' => 'Please enter a valid email address.'
+
+            ]);
+        }
+
         // $to = 'srividya.a@touchstonelc.com,jayakumar.k@touchstonelc.com';
         $to = 'pramod.c@TouchstoneLC.com';
         $subject = 'Get in Touch';
 
         $message = "Hi,<br><br>
                 <strong>Name:</strong> {$name}<br>
-                <strong>Company:</strong> {$company}<br>
-                <strong>Email:</strong> {$emailFrom}<br>
+                {$companyLine}<strong>Email:</strong> {$emailFrom}<br>
                 <strong>City:</strong> {$city}<br>
                 <strong>Message:</strong> {$messageText}<br><br>
 
@@ -885,6 +1002,23 @@ class Landing extends BaseController
 
         $messageText = $json['comment'] ?? '';
 
+        // Reject a malformed address before the mailer is touched, so a bypassed
+        // or stale front end cannot deliver an unreplyable enquiry.
+        if (!$this->isValidEmailFormat($email)) {
+            return $this->response->setJSON([
+
+                'success' => false,
+
+                'message' => 'Please enter a valid email address.'
+
+            ]);
+        }
+
+        // Company Name is optional here: the campaign lead forms send one, the
+        // Contact page has no such field. companyNameRow() returns '' when it is
+        // absent, so that email renders exactly as it does today.
+        $companyLine = $this->companyNameRow($json);
+
         // $to = 'srividya.a@touchstonelc.com';
         $to = 'pramod.c@TouchstoneLC.com';
         $subject = 'Product Enquiry';
@@ -893,7 +1027,7 @@ class Landing extends BaseController
 
         Hi,<br><br>
 <strong>Name:</strong> {$name} {$lastName}<br>
-<strong>Email:</strong> {$email}<br>
+{$companyLine}<strong>Email:</strong> {$email}<br>
 <strong>Enquiry Type:</strong> {$enquiryType}<br>
 <strong>Message:</strong> {$messageText}<br><br>
 

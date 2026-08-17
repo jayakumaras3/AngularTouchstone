@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } 
 import { Router, RouterModule } from '@angular/router';
 import { MaterialModule } from '../../../material.module';
 import { AuthService } from '../../../services/login/auth.service';
+import { emailFormatValidator } from '../../../shared/validators/email.validator';
 import { LoginUrl } from '../../../config';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -43,7 +44,7 @@ export class AppSideForgotPasswordComponent {
   }
 
   form = new FormGroup({
-    email: new FormControl<string>('', [Validators.required, Validators.email]),
+    email: new FormControl<string>('', [Validators.required, emailFormatValidator()]),
   });
 
   get f() {

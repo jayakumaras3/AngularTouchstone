@@ -20,6 +20,9 @@
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Email Address</mat-label>
       <input matInput formControlName="email" type="email" required />
+      @if (f['email'].errors | fieldError; as message) {
+        <mat-error>{{ message }}</mat-error>
+      }
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="full-width">

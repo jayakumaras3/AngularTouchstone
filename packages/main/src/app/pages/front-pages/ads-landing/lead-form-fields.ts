@@ -15,9 +15,10 @@ export const PRIMARY_NEED_OPTIONS: LeadFormFieldOption[] = [
  * Contact-style lead-form field set used by the /Dochek_awareness_207, /smartlms
  * and /microlearning campaign pages — and by nothing else, so changes here stay
  * scoped to those three pages. Every field is mandatory on these pages; the
- * LeadFormComponent turns `required` into Validators.required and adds
- * Validators.email for the email field. Kept in one place so the three pages
- * stay in sync and the CRM receives a consistent payload.
+ * LeadFormComponent turns `required` into Validators.required and adds the
+ * shared emailFormatValidator() for any field declared `type: 'email'`. Kept in
+ * one place so the three pages stay in sync and the CRM receives a consistent
+ * payload.
  *
  * Deliberately shorter than the site's other contact forms: these campaign
  * pages ask for a single "Name" only (no separate last name) and skip City, to

@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, tap, timeout } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
+import { withCompanyName } from '../../shared/utils/company-name.util';
 
 export interface AuthStatus {
   loggedIn: boolean;
@@ -215,12 +216,17 @@ export class AuthService {
     );
   }
 
+  /**
+   * @param formData Passed through `withCompanyName`, so a form that collects a
+   *   company name has it forwarded as `company_name` and a form that does not
+   *   keeps its payload byte-for-byte unchanged. See company-name.util.ts.
+   */
   sendContact(formData: any): Observable<any> {
     const csrfToken = this.getCsrfToken();
-    
+
     return this.http.post<any>(
       `${this.contactApiUrl}/angualr_contact_us`,
-      formData,
+      withCompanyName(formData),
       {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
@@ -232,14 +238,17 @@ export class AuthService {
 
   /**
    * @param formData Includes `turnstileToken`, the Cloudflare Turnstile response
-   *   token, verified server-side before the enquiry is processed.
+   *   token, verified server-side before the enquiry is processed. Passed
+   *   through `withCompanyName`, so a form that collects a company name has it
+   *   forwarded as `company_name` and a form that does not keeps its payload
+   *   byte-for-byte unchanged. See company-name.util.ts.
    */
   sendProductEnquiry(formData: any): Observable<any> {
     const csrfToken = this.getCsrfToken();
-    
+
     return this.http.post<any>(
       `${this.contactApiUrl}/angualr_product_enquiry`,
-      formData,
+      withCompanyName(formData),
       {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',

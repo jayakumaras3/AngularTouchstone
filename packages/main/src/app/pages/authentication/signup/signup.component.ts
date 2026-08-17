@@ -28,6 +28,7 @@ import { LoginUrl } from '../../../config';
 import { Subscription } from 'rxjs';
 import { CertificationSignupState } from '../../front-pages/certifications/certifications.model';
 import { AuthService } from '../../../services/login/auth.service';
+import { emailFormatValidator } from '../../../shared/validators/email.validator';
 import { RequiredFieldsNoteComponent } from '../../../shared/required-fields-note/required-fields-note.component';
 
 const TURNSTILE_SITE_KEY = '0x4AAAAAADh_GIYrBeeJ7VaM';
@@ -116,8 +117,8 @@ private readonly subs = new Subscription();
   readonly form = this.fb.group({
     firstName:       ['', [Validators.required, Validators.minLength(2)]],
     lastName:        ['', [Validators.required, Validators.minLength(2)]],
-    email:           ['', [Validators.required, Validators.email, emailNoSpaceValidator]],
-    confirmEmail:    ['', [Validators.required, Validators.email, emailNoSpaceValidator, matchFieldValidator('email')]],
+    email:           ['', [Validators.required, emailFormatValidator(), emailNoSpaceValidator]],
+    confirmEmail:    ['', [Validators.required, emailFormatValidator(), emailNoSpaceValidator, matchFieldValidator('email')]],
     password:        ['', [Validators.required, passwordNoSpaceValidator, passwordStrengthValidator]],
     confirmPassword: ['', [Validators.required, passwordNoSpaceValidator, matchFieldValidator('password')]],
     captchaVerified: [false, Validators.requiredTrue],

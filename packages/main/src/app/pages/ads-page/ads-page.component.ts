@@ -16,6 +16,8 @@ import { IconModule } from '../../icon/icon.module';
 import { HeaderComponent } from '../../shared/header/header.component';
 import { FooterComponent } from '../front-pages/footer/footer.component';
 import { noWhitespaceValidator, trimFormGroupValues } from '../../shared/validators/no-whitespace.validator';
+import { emailFormatValidator } from '../../shared/validators/email.validator';
+import { FieldErrorPipe } from '../../shared/validators/field-error.pipe';
 import { RequiredFieldsNoteComponent } from '../../shared/required-fields-note/required-fields-note.component';
 
 interface TrustStat {
@@ -49,7 +51,7 @@ const TEAM_SIZE_OPTIONS = [
 @Component({
   selector: 'app-ads-page',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MaterialModule, IconModule, HeaderComponent, FooterComponent, RequiredFieldsNoteComponent],
+  imports: [CommonModule, ReactiveFormsModule, MaterialModule, IconModule, HeaderComponent, FooterComponent, RequiredFieldsNoteComponent, FieldErrorPipe],
   templateUrl: './ads-page.component.html',
   styleUrl: './ads-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -71,7 +73,7 @@ export class AdsPageComponent implements AfterViewInit, OnDestroy {
   readonly teamSizeOptions = TEAM_SIZE_OPTIONS;
   readonly leadForm: FormGroup = this.fb.group({
     fullName: ['', [Validators.required, noWhitespaceValidator()]],
-    workEmail: ['', [Validators.required, Validators.email, noWhitespaceValidator()]],
+    workEmail: ['', [Validators.required, emailFormatValidator(), noWhitespaceValidator()]],
     companyName: ['', [Validators.required, noWhitespaceValidator()]],
     teamSize: ['', Validators.required],
   });

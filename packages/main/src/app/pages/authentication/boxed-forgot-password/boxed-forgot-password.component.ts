@@ -5,6 +5,7 @@ import { Router, RouterModule } from '@angular/router';
 import { MaterialModule } from '../../../material.module';
 import { BrandingComponent } from '../../../layouts/full/vertical/sidebar/branding.component';
 import { AuthService } from '../../../services/login/auth.service';
+import { emailFormatValidator } from '../../../shared/validators/email.validator';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CommonModule } from '@angular/common';
@@ -41,7 +42,7 @@ export class AppBoxedForgotPasswordComponent {
   }
 
   form = new FormGroup({
-    email: new FormControl<string>('', [Validators.required, Validators.email]),
+    email: new FormControl<string>('', [Validators.required, emailFormatValidator()]),
   });
 
   get f() {

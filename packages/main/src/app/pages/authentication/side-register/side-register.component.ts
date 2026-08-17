@@ -5,6 +5,7 @@ import { Router, RouterModule } from '@angular/router';
 import { MaterialModule } from '../../../material.module';
 import { BrandingComponent } from '../../../layouts/full/vertical/sidebar/branding.component';
 import { AuthService } from '../../../services/login/auth.service';
+import { emailFormatValidator } from '../../../shared/validators/email.validator';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -26,7 +27,7 @@ export class AppSideRegisterComponent {
  form = new FormGroup({
   first_name: new FormControl('', [Validators.required]),
   last_name: new FormControl('', [Validators.required]),
-  email: new FormControl('', [Validators.required, Validators.email]),
+  email: new FormControl('', [Validators.required, emailFormatValidator()]),
   password: new FormControl('', [Validators.required]),
 });
 

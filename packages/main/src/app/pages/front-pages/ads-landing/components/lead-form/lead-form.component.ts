@@ -19,13 +19,15 @@ import { MaterialModule } from '../../../../../material.module';
 import { AuthService } from '../../../../../services/login/auth.service';
 import { TurnstileService, TurnstileWidgetState } from '../../../../../services/turnstile/turnstile.service';
 import { noWhitespaceValidator, trimFormGroupValues } from '../../../../../shared/validators/no-whitespace.validator';
+import { emailFormatValidator } from '../../../../../shared/validators/email.validator';
+import { FieldErrorPipe } from '../../../../../shared/validators/field-error.pipe';
 import { RequiredFieldsNoteComponent } from '../../../../../shared/required-fields-note/required-fields-note.component';
 import { LeadFormConfig } from '../../models/ads-landing.model';
 
 @Component({
   selector: 'app-lead-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MaterialModule, RequiredFieldsNoteComponent],
+  imports: [CommonModule, ReactiveFormsModule, MaterialModule, RequiredFieldsNoteComponent, FieldErrorPipe],
   templateUrl: './lead-form.component.html',
   styleUrl: './lead-form.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -99,6 +101,11 @@ export class LeadFormComponent implements OnInit, OnChanges, AfterViewInit, OnDe
     // The PHP endpoint (angualr_product_enquiry) reads `email` / `enquiry` / `comment` —
     // map the UI's workEmail / primaryNeed / message controls onto those names here so the
     // form itself can keep its user-friendly control names without touching the backend.
+    //
+    // Company Name needs no mapping: the `...this.form.value` spread already carries
+    // whichever controls this form's config declared, and AuthService.sendProductEnquiry
+    // normalises a `companyName` onto the backend's `company_name` key. A config without
+    // a company field simply produces no such key, and the email omits the row.
     const payload = {
       ...this.form.value,
       email: this.form.value.workEmail,
@@ -150,7 +157,11 @@ export class LeadFormComponent implements OnInit, OnChanges, AfterViewInit, OnDe
         }
       }
       if (field.type === 'email') {
-        validators.push(Validators.email);
+        // Shared app-wide rule rather than Validators.email: identical except it
+        // also rejects single-label domains (`sad@com`, `name@example`), which
+        // Angular's built-in accepts. Any future config field declared
+        // `type: 'email'` picks this up automatically.
+        validators.push(emailFormatValidator());
       }
       // No length rules anywhere: the Message textarea on these campaign pages
       // is optional (`required: false` in LEAD_FORM_FIELDS) and deliberately
