@@ -20,5 +20,14 @@
         </div>
       }
     </div>
+
+    @if (config.cta) {
+      <div class="stats__actions text-center">
+        <a class="stats__cta" [routerLink]="config.cta.link">
+          {{ config.cta.label }}
+          <span class="stats__cta-arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    }
   </div>
 </section>

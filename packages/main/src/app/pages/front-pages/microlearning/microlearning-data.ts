@@ -34,7 +34,7 @@ export const MICROLEARNING_PAGE: MicrolearningPageConfig = {
     eyebrow: 'MICROLEARNING LIBRARY',
     headline: 'The courses the best professionals in the world are taking. Now available to your team.',
     description:
-      '500+ courses across leadership, communication, compliance, and tech — the same library trusted by 50,000+ professionals at the world’s leading organisations.',
+      '500+ courses across leadership, communication, compliance, and tech — the same library trusted by 50,000+ professionals at the world’s leading organizations.',
     imageUrl: 'assets/images/Microlearning/hero-professionals.png',
     imageAlt: 'Professional learning on a laptop in a modern office alongside colleagues',
     form: LIBRARY_ACCESS_FORM,
@@ -42,7 +42,7 @@ export const MICROLEARNING_PAGE: MicrolearningPageConfig = {
   stats: {
     id: 'microlearning-stats',
     eyebrow: 'TRUSTED AT SCALE',
-    heading: 'The library trusted by the world’s leading organisations.',
+    heading: 'The library trusted by the world’s leading organizations.',
     items: [
       {
         value: '500+',
@@ -57,9 +57,13 @@ export const MICROLEARNING_PAGE: MicrolearningPageConfig = {
       {
         value: 'Fortune 500',
         label: 'Companies',
-        description: "The library trusted by professionals at the world's leading organisations.",
+        description: "The library trusted by professionals at the world's leading organizations.",
       },
     ],
+    cta: {
+      label: 'Explore the library',
+      link: '/catalog',
+    },
   },
   sections: [
     {
@@ -97,7 +101,7 @@ export const MICROLEARNING_PAGE: MicrolearningPageConfig = {
     id: 'microlearning-lead-form-2',
     heading: 'Get your team learning within days.',
     description:
-      '500+ courses. 50,000+ professionals. One library trusted by the world’s leading organisations — now available to your team.\n\nTell us where to reach you and we’ll show you exactly what’s inside.',
+      '500+ courses. 50,000+ professionals. One library trusted by the world’s leading organizations — now available to your team.\n\nTell us where to reach you and we’ll show you exactly what’s inside.',
     form: LIBRARY_ACCESS_FORM,
     featureCards: {
       heading: 'The DOCHEK Edge',

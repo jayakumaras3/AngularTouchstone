@@ -88,6 +88,40 @@
     margin: 10px 0 0;
     color: var(--mat-sys-on-surface-variant, var(--mat-sys-on-background));
   }
+
+  &__actions {
+    margin-top: 40px;
+  }
+
+  &__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 32px;
+    border-radius: 999px;
+    background: var(--mat-sys-primary);
+    color: var(--mat-sys-on-primary);
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 10px 24px color-mix(in srgb, var(--mat-sys-primary) 30%, transparent);
+    transition: transform 0.28s ease, box-shadow 0.28s ease;
+
+    &:hover,
+    &:focus-visible {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 34px color-mix(in srgb, var(--mat-sys-primary) 40%, transparent);
+      color: var(--mat-sys-on-primary);
+    }
+  }
+
+  &__cta-arrow {
+    transition: transform 0.28s ease;
+  }
+
+  &__cta:hover &__cta-arrow {
+    transform: translateX(4px);
+  }
 }
 
 @keyframes stats-fade-up {
@@ -132,5 +166,18 @@
     &:hover {
       transform: none;
     }
+  }
+
+  .stats__cta,
+  .stats__cta-arrow {
+    transition: none;
+  }
+
+  .stats__cta:hover {
+    transform: none;
+  }
+
+  .stats__cta:hover .stats__cta-arrow {
+    transform: none;
   }
 }

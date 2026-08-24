@@ -58,7 +58,7 @@ export const ADS_LANDING_PAGES: Record<string, AdsLandingPageConfig> = {
       id: 'ads-lead-form-2',
       heading: 'Scale Without Limits',
       description:
-        "DOCHEK is lightweight by design, easy to configure, fast to launch, and built to scale without breaking. Whether you're onboarding a new cohort or rolling out a company-wide programme, the platform handles it without friction.\n\nAnd as your organisation grows, DOCHEK grows with it. From 10 learners to 10,000, the experience stays consistent, no lag, no migration, no starting over. Training shouldn't be complicated. DOCHEK makes sure it isn't.",
+        "DOCHEK is lightweight by design, easy to configure, fast to launch, and built to scale without breaking. Whether you're onboarding a new cohort or rolling out a company-wide programme, the platform handles it without friction.\n\nAnd as your organizations grows, DOCHEK grows with it. From 10 learners to 10,000, the experience stays consistent, no lag, no migration, no starting over. Training shouldn't be complicated. DOCHEK makes sure it isn't.",
       form: {
         heading: 'Want to see how it works?',
         subheading: "Leave your details and we'll walk you through DOCHEK.",
